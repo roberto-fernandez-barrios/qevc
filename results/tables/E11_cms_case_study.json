@@ -1,0 +1,81 @@
+{
+  "experiment": "E11",
+  "samples": {
+    "mc_selected": 12445,
+    "data_selected": 12557,
+    "mc_sr": 10396,
+    "data_sr": 9630,
+    "mc_ss": 2049,
+    "data_ss": 2927
+  },
+  "claims_ledger": {
+    "C1_event_accuracy": {
+      "text": "event-level accuracy of f on collision data >= M_S - 0.05",
+      "requires": "I2 (target labels)",
+      "verdict": "UNRESOLVED",
+      "reason": "no event-level truth exists on collision data; certification requires I2 evidence the deployment does not possess (fail-closed by construction, spec \u00a720)"
+    },
+    "C2_w_norm": {
+      "text": "W+jets normalization consistent with MC within 30% in the high-mT CR",
+      "requires": "I1 + control-region aggregates",
+      "evidence": {
+        "data_yield": 2237,
+        "mc_yield": 2425.5,
+        "ratio": 0.9223,
+        "ratio_ci95": [
+          0.8845,
+          0.9613
+        ]
+      },
+      "verdict": "SUPPORTED",
+      "note": "MC lacks QCD; high-mT region is W-dominated (documented)"
+    },
+    "C3_no_shift": {
+      "text": "no MC->data shift detectable at the QK-MMD2 sensor noise floor",
+      "requires": "I1 (unlabeled target)",
+      "evidence": {
+        "mmd2_mc_vs_data": 0.002972,
+        "noise_floor_max": 0.001136,
+        "noise_floor_median": 0.000983
+      },
+      "verdict": "REFUTED",
+      "note": "REFUTED = shift detected -> geometry alarm active; the alarm can only veto, never certify (D-006)"
+    },
+    "C4_ss_qcd": {
+      "text": "SS control region shows a significant data excess over MC (QCD)",
+      "requires": "I1 + control-region aggregates",
+      "evidence": {
+        "data_ss": 2927,
+        "mc_ss": 1920.1,
+        "excess": 1006.9,
+        "z": 18.61
+      },
+      "verdict": "SUPPORTED"
+    }
+  },
+  "deployment_diagnostics": {
+    "qksvc": {
+      "auc_mc_val": 0.7357,
+      "m_source": 0.6652,
+      "threshold": 0.021856,
+      "score_ks_data_vs_mcval": {
+        "stat": 0.0635,
+        "p": 1.0270384777907664e-08
+      },
+      "frac_above_thr_data": 0.3459,
+      "frac_above_thr_mcval": 0.399
+    },
+    "xgboost": {
+      "auc_mc_val": 0.8508,
+      "m_source": 0.7928,
+      "threshold": 0.017198,
+      "score_ks_data_vs_mcval": {
+        "stat": 0.0746,
+        "p": 7.554183607588261e-12
+      },
+      "frac_above_thr_data": 0.2227,
+      "frac_above_thr_mcval": 0.2809
+    }
+  },
+  "wall_seconds": 21.1
+}

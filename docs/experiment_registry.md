@@ -380,5 +380,21 @@ entry.
   diagnostics; never "real-data accuracy".
 - **Falsifier:** auditor certifying event-level accuracy claims on real data =
   design failure (must be impossible by construction).
-- **Outputs:** `experiments/E11_cms_real_data/` case study + Fig. 9 data.
-- **Status:** planned (channel selection pending `docs/dataset_audit.md`).
+- **Outputs:** `results/tables/E11_cms_case_study.json` + Fig. 9 data.
+- **Status:** **complete** (2026-08-10; H→ττ 2012 μτ_h, root.cern 10%
+  mirror; MC 12,445 / data 12,557 selected; QKSVC + XGBoost with E01-frozen
+  hyperparameters, no target tuning — MC-val AUC 0.736 / 0.851). The ledger:
+  | Claim | Requires | Verdict | Evidence |
+  |---|---|---|---|
+  | C1 event accuracy on data | I2 labels | **UNRESOLVED** | labels do not exist — fail-closed by construction (the falsifier: certifying this would be design failure — did NOT happen) |
+  | C2 W norm within 30% (high-mT CR) | I1+CR | **SUPPORTED** | data/MC = 0.922 [0.885, 0.961] |
+  | C3 no MC→data shift at sensor floor | I1 | **REFUTED** | QK-MMD² 0.0030 vs floor 0.0011 (2.6×) — sim-to-real shift detected; alarm vetoes performance claims |
+  | C4 SS QCD excess | I1+CR | **SUPPORTED** | +1,007 events over MC, z = 18.6 (the data-driven QCD method's premise) |
+  The demonstration lands the paper's thesis on real collision data: aggregate
+  physics claims ARE certifiable from control-region evidence; event-level
+  performance claims are NOT, and the geometry sensor detects the sim-to-real
+  shift that justifies the abstention.
+  **Methods note (kept honest):** the first run's control regions caught a
+  ×10 MC normalization bug (full-lumi weights vs the mirror's ~10% data
+  luminosity) — fixed in `qevc.data.cms_htautau` (EFFECTIVE_LUMI_PB), both
+  manifests kept.

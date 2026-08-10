@@ -1,0 +1,71 @@
+{
+  "backend": {},
+  "config": {
+    "E11": {
+      "alpha": 0.05,
+      "claims": {
+        "C1_event_accuracy": {
+          "requires": "I2 (target labels)",
+          "text": "event-level accuracy of f on collision data >= M_S - 0.05"
+        },
+        "C2_w_norm": {
+          "mt_cut": 70.0,
+          "requires": "I1 + control-region aggregates",
+          "text": "W+jets normalization consistent with MC within 30% in the high-mT CR",
+          "tolerance": 0.3
+        },
+        "C3_no_shift": {
+          "requires": "I1 (unlabeled target)",
+          "text": "no MC->data shift detectable at the QK-MMD2 sensor noise floor"
+        },
+        "C4_ss_qcd": {
+          "requires": "I1 + control-region aggregates",
+          "text": "SS control region shows a significant data excess over MC (QCD)"
+        }
+      },
+      "experiment": "E11",
+      "inherits": [
+        "E01"
+      ],
+      "sensor": {
+        "n_noise_draws": 20,
+        "n_sample": 2000,
+        "seed": 1112
+      },
+      "train": {
+        "qksvc_n_train": 2000,
+        "seed": 1111,
+        "val_fraction": 0.3
+      }
+    }
+  },
+  "config_hash": "ff93aac27ec0bf72a5351e3e902d77ac226d51acdb45d678ab7e334a17503bc7",
+  "dataset_hashes": {
+    "cms_mirror": "root.cern HiggsTauTauReduced (audit \u00a72.1)"
+  },
+  "experiment_id": "E11",
+  "finished_at": 1786392738.8252997,
+  "git_commit": "7658a2834e4f10838309708b52e3356a22aae917",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E11_cms_case_study.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 1111,
+  "started_at": 1786392738.8252363,
+  "wall_seconds": 6.341934204101562e-05,
+  "warning": "git working tree dirty at run time"
+}

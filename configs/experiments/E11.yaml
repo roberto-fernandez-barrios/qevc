@@ -1,0 +1,27 @@
+# E11 — CMS real-data fail-closed demonstration (registered in docs/experiment_registry.md)
+experiment: E11
+inherits: [E01]
+train:
+  val_fraction: 0.30
+  seed: 1111
+  qksvc_n_train: 2000          # tier-A-scale QK training subset (E01 frozen params)
+sensor:
+  n_sample: 2000
+  n_noise_draws: 20            # MC-vs-MC bootstrap pairs -> sensor noise floor
+  seed: 1112
+claims:                        # the ledger (Fig. 9): id, requirement, resolution rule
+  C1_event_accuracy:
+    text: "event-level accuracy of f on collision data >= M_S - 0.05"
+    requires: "I2 (target labels)"
+  C2_w_norm:
+    text: "W+jets normalization consistent with MC within 30% in the high-mT CR"
+    requires: "I1 + control-region aggregates"
+    mt_cut: 70.0
+    tolerance: 0.30
+  C3_no_shift:
+    text: "no MC->data shift detectable at the QK-MMD2 sensor noise floor"
+    requires: "I1 (unlabeled target)"
+  C4_ss_qcd:
+    text: "SS control region shows a significant data excess over MC (QCD)"
+    requires: "I1 + control-region aggregates"
+alpha: 0.05
