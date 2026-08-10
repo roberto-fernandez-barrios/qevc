@@ -102,11 +102,24 @@ entry.
 - **Falsifier:** descriptors statistically flat across θ while E02 shows material
   degradation (records a *negative* geometry result).
 - **Outputs:** `results/tables/E03_geometry.json`, Fig. 3 data.
-- **Status:** specified (2026-08-10) — config `configs/experiments/E03.yaml`:
-  same environment list as E02; quantum kernel anchored to E01's frozen QK-SVC
-  (feature map + AngleScaler on tier-A train) with an RBF comparator anchored
-  to E01's frozen RBF-SVC; unlabeled 2000-event target samples per env from
-  the test role (I1 discipline — no target labels touched).
+- **Status:** **complete — first pass** (2026-08-10). Findings:
+  1. Kernel MMD² rank-correlates positively but weakly with degradation
+     magnitude across the 40 environments (quantum kernel ρ≈0.28–0.36; RBF
+     ρ≈0.29–0.42; only some nominally significant, uncorrected).
+  2. **Noise floor identified:** at n_target=2000, sampling noise on MMD²
+     (~±0.0002, measured via the weight-only environments whose feature
+     distribution is exactly nominal) is comparable to the signal range;
+     only the strongest shifts (soft_met=5, combo3) clear it. E04 must use
+     larger/repeated target draws.
+  3. **Structural blind spot (important for the paper):** normalization
+     nuisances change only event weights, so feature-space geometry is
+     *categorically blind* to them — I1-level sensors cannot flag shifts
+     that still damage physics inference (E08/H5). This is a designed-in
+     limitation of label-free OOD detection in HEP and a direct argument for
+     information-set-conditional auditing (Gate 4).
+  Follow-up registered for E04: variance-reduced geometry (repeated draws),
+  weight-only environments analyzed separately, out-of-environment
+  leave-one-nuisance-out protocol.
 
 ## E04 — Geometry → failure prediction
 

@@ -1,0 +1,187 @@
+{
+  "backend": {},
+  "config": {
+    "E01": {
+      "bootstrap": {
+        "n_resamples": 1000,
+        "seed": 303
+      },
+      "experiment": "E01",
+      "features": {
+        "quantum": [
+          "DER_mass_transverse_met_lep",
+          "DER_mass_vis",
+          "DER_pt_ratio_lep_had",
+          "DER_met_phi_centrality",
+          "DER_deltar_had_lep",
+          "DER_pt_h",
+          "DER_sum_pt",
+          "PRI_met"
+        ]
+      },
+      "splits": {
+        "fractions": {
+          "auditor_dev": 0.15,
+          "final_eval": 0.15,
+          "nominal_test": 0.15,
+          "source_val": 0.15,
+          "train": 0.4
+        },
+        "scheme": "raw_row_v2",
+        "seed": 101
+      },
+      "subset": {
+        "n_total": 300000,
+        "seed": 101
+      },
+      "tier_a": {
+        "models": [
+          "linear_svc",
+          "rbf_svc",
+          "xgboost",
+          "lightgbm",
+          "mlp",
+          "qksvc"
+        ],
+        "n_train": 2000,
+        "seed": 404
+      },
+      "tier_b": {
+        "models": [
+          "linear_svc",
+          "xgboost",
+          "lightgbm",
+          "mlp"
+        ]
+      },
+      "tuning": {
+        "cv_folds": 3,
+        "n_configs": 10,
+        "n_configs_overrides": {
+          "mlp": 5
+        },
+        "seed": 202
+      }
+    },
+    "E02": {
+      "bootstrap": {
+        "n_resamples": 500,
+        "seed": 505
+      },
+      "combos": [
+        {
+          "jes": 0.98,
+          "tes": 0.98
+        },
+        {
+          "jes": 1.02,
+          "tes": 1.02
+        },
+        {
+          "jes": 1.02,
+          "soft_met": 3.0,
+          "tes": 0.98
+        },
+        {
+          "bkg_scale": 1.002,
+          "diboson_scale": 1.5,
+          "jes": 0.98,
+          "soft_met": 5.0,
+          "tes": 0.98,
+          "ttbar_scale": 1.04
+        }
+      ],
+      "env_seeds": [
+        11,
+        12,
+        13
+      ],
+      "experiment": "E02",
+      "grid": {
+        "bkg_scale": [
+          0.998,
+          0.999,
+          1.001,
+          1.002
+        ],
+        "diboson_scale": [
+          0.5,
+          0.75,
+          1.25,
+          1.5
+        ],
+        "jes": [
+          0.98,
+          0.99,
+          1.01,
+          1.02
+        ],
+        "soft_met": [
+          1.0,
+          2.0,
+          3.0,
+          5.0
+        ],
+        "tes": [
+          0.98,
+          0.99,
+          1.01,
+          1.02
+        ],
+        "ttbar_scale": [
+          0.96,
+          0.98,
+          1.02,
+          1.04
+        ]
+      },
+      "inherits": "E01",
+      "save_scores": true
+    },
+    "E03": {
+      "experiment": "E03",
+      "inherits": [
+        "E01",
+        "E02"
+      ],
+      "kernels": {
+        "quantum": "from_E01",
+        "rbf": "from_E01"
+      },
+      "samples": {
+        "n_source": 2000,
+        "n_target_per_env": 2000,
+        "target_seed": 606
+      },
+      "top_eigs": 10
+    }
+  },
+  "config_hash": "e1083e143686e9e4848825fa75419d0ac76447c4ce419928990132c95a3406e4",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E03",
+  "finished_at": 1786371479.1573076,
+  "git_commit": "769387892837518191adfe7ea9a2ea4a2c2146b8",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E03_geometry.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 606,
+  "started_at": 1786371479.1568162,
+  "wall_seconds": 0.0004913806915283203,
+  "warning": "git working tree dirty at run time"
+}
