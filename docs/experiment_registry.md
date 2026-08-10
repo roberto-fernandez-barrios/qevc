@@ -186,6 +186,15 @@ entry.
   Caveats carried: degradation targets from single-seed E02; small per-fold n;
   conclusions restricted to feature-shift nuisances (weight-only = structural
   blind spot, E03).
+  **v2 (2026-08-10, targets = E02R multi-seed mean |ΔAUC|;
+  `results/tables/E04v2_geom_failure_multiseed.json`): H2 survives in
+  simple-sensor form.** Quantum MMD² → QK degradation ρ = 0.557 (p = 0.002);
+  → XGBoost degradation ρ = 0.682 (p = 10⁻⁴) — the transfer result
+  *strengthens* with cleaner targets. The multi-descriptor LONO ridge
+  collapses (pooled ρ ≈ 0) — definitively overfit; the manuscript presents
+  the univariate MMD² sensor only. RBF-28 geometry fails as a sensor with
+  clean targets (own-model ρ = −0.21 n.s.) — the quantum-kernel-as-better-
+  shift-sensor asymmetry replicates.
 
 ## E05 — Conditional auditor
 

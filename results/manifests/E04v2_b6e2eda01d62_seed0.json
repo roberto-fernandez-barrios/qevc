@@ -1,0 +1,83 @@
+{
+  "backend": {},
+  "config": {
+    "E04": {
+      "draws": {
+        "n_base_rows": 2500,
+        "seeds": [
+          71,
+          72,
+          73
+        ]
+      },
+      "experiment": "E04",
+      "inherits": [
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "kernel_model_map": {
+        "quantum": "A:qksvc",
+        "rbf": "A:rbf_svc"
+      },
+      "regression": {
+        "families": {
+          "combos": [
+            "combo"
+          ],
+          "jes": [
+            "jes"
+          ],
+          "soft_met": [
+            "soft_met"
+          ],
+          "tes": [
+            "tes"
+          ]
+        },
+        "features": [
+          "mmd2",
+          "eff_rank_ratio",
+          "mean_kst",
+          "mean_ktt",
+          "entropy_diff"
+        ],
+        "ridge_alpha": 1.0,
+        "target": "abs_delta_auc"
+      },
+      "top_eigs": 10,
+      "transfer_targets": [
+        "A:xgboost"
+      ]
+    },
+    "targets": "E02R"
+  },
+  "config_hash": "b6e2eda01d621120f85c886b3c9305066b2dea18faed42d652ca6e84f97d85cc",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E04v2",
+  "finished_at": 1786384279.0504405,
+  "git_commit": "4fb320146e3fe41c13fecf6c25b2998343879f65",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E04v2_geom_failure_multiseed.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 0,
+  "started_at": 1786384279.0503945,
+  "wall_seconds": 4.601478576660156e-05,
+  "warning": "git working tree dirty at run time"
+}
