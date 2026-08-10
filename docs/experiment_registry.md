@@ -93,6 +93,22 @@ entry.
   the evidence for H1 currently rests on the monotone grid trend and
   shared-population contrasts, not on per-env significance.
 
+## E02R — Multi-seed replication of E01/E02 (SAP §4)
+
+- **Question:** Do the nominal contrasts and the landscape patterns survive
+  partition + initialization variance?
+- **Hypothesis:** replication requirement for H1 and the E01 contrasts.
+- **Design:** 5 replication seeds; per seed a fresh five-role raw-row
+  partition (final_eval sealed), fresh tier-A subsample, fresh model init;
+  hyperparameters frozen from E01 (declared: tuning variance not covered);
+  focus models A:qksvc, A:rbf_svc, A:xgboost, A:lightgbm, B:xgboost over the
+  full E02 grid.
+- **Falsifier:** TES sign pattern of A:qksvc fails to replicate (monotone in
+  < 4/5 seeds) or nominal QK-vs-XGB contrast flips sign across seeds beyond
+  its std.
+- **Outputs:** `results/tables/E02R_multiseed.json`.
+- **Status:** specified + running (2026-08-10).
+
 ## E03 — Kernel geometry observatory
 
 - **Question:** How does quantum-kernel geometry move under physical systematics?
@@ -273,8 +289,14 @@ entry.
 - **Metric:** kernel estimation error, spectral distortion, PSD violations,
   classifier degradation, certificate flip rate vs K_exact.
 - **Falsifier:** no shots×θ interaction and zero certificate flips (negative H6).
-- **Outputs:** `results/tables/E09_shots.*`, Fig. 8 data.
-- **Status:** planned.
+- **Outputs:** `results/tables/E09_shots.json`, Fig. 8 data.
+- **Status:** specified (2026-08-10) — config `configs/experiments/E09.yaml`:
+  shots {128…4096} × 3 kernel seeds over {nominal, tes±2σ, soft_met=5,
+  combo3}; exact Grams computed once, shot configs resample the binomial law
+  (D-007); each configuration deploys its OWN calibration/threshold from its
+  source_val scores; auditor re-run per configuration (δ ∈ {−0.01, 0, 0.02,
+  0.05}, 10 replications) with verdict-flip counting vs the exact kernel;
+  TES-response deviation as the H6 interaction measure.
 
 ## E10 — Hardware validation
 

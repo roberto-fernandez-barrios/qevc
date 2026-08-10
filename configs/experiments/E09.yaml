@@ -1,0 +1,20 @@
+# E09 — Finite-shot kernels (registered in docs/experiment_registry.md; H6)
+experiment: E09
+inherits: [E01, E02, E05]
+shots_grid: [128, 256, 512, 1024, 2048, 4096]
+kernel_seeds: [1, 2, 3]
+# Predeclared environment subset: nominal + the strongest single-nuisance
+# shifts + the adverse corner (stochastic ones pinned to seed11).
+environments:
+  nominal: {}
+  "tes=0.98": {tes: 0.98}
+  "tes=1.02": {tes: 1.02}
+  "soft_met=5.0/seed11": {soft_met: 5.0, seed: 11}
+  "combo3/seed11": {tes: 0.98, jes: 0.98, soft_met: 5.0, ttbar_scale: 1.04,
+                    diboson_scale: 1.5, bkg_scale: 1.002, seed: 11}
+audit:
+  deltas: [-0.01, 0.0, 0.02, 0.05]
+  alpha: 0.05
+  n_max: 20000
+  audit_seeds: 10
+  seed_salt: "E09"

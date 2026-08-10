@@ -1,0 +1,13 @@
+# E02R — Multi-seed replication of E01 (nominal) + E02 (landscape)
+# SAP §4 requirement: ≥5 seeds for quantum-simulation pipelines.
+experiment: E02R
+inherits: [E01, E02]
+replication_seeds: [201, 202, 203, 204, 205]
+# Focus models (declared): the paper's primary contrasts. Hyperparameters are
+# FROZEN from E01 — replication measures partition + initialization variance,
+# not tuning variance (tuning variance would require nested retuning; noted).
+models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "A:lightgbm", "B:xgboost"]
+environments: full_E02_grid
+metrics: [auc, balanced_accuracy]
+checks:
+  tes_sign_pattern: "A:qksvc"   # replication test of the E02 monotone finding
