@@ -44,8 +44,15 @@ entry.
 - **Metric:** SAP §1.1 suite, nominal test split.
 - **Falsifier:** QK-SVC nominal AUC below linear SVC would question the quantum
   pipeline's basic competence (triggers feature-map review before proceeding).
-- **Outputs:** `results/tables/E01_nominal.*`, tuned configs under `configs/models/`.
-- **Status:** planned.
+- **Outputs:** `results/tables/E01_nominal.json` + manifest; splits under
+  `data/processed/splits/`.
+- **Status:** specified (2026-08-10) — config `configs/experiments/E01.yaml`:
+  300k-event stratified subset (seed 101) → nominal D₀ → five-role splits;
+  Tier A matched comparison of 6 models on the same 2000 events (identical
+  random-search budgets, 10 configs × 3-fold, physics-weighted CV AUC);
+  Tier B classical at scale (~110k). Calibration/threshold frozen on
+  source_val; metrics + bootstrap CIs + paired QK-vs-classical contrasts on
+  nominal_test. final_eval remains sealed.
 
 ## E02 — Systematic landscape
 

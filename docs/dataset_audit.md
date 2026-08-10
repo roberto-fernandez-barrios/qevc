@@ -64,8 +64,9 @@ competition pipeline is unaffected because it applies normalizations inside
 (three multiplications on `weights` keyed by `detailed_labels`) and calls
 `systematics()` only for feature-level shifts (TES/JES/soft-MET). E00 includes a
 regression test that reproduces both the bug and our workaround, so an upstream
-fix cannot silently change semantics. Upstream issue to be filed (pending
-author approval — external action).
+fix cannot silently change semantics. Reported upstream 2026-08-10:
+https://github.com/FAIR-Universe/HEP-Challenge/issues/184 (includes the
+280M/220M documentation question from §4).
 
 ### 1.4 D_θ regeneration API (execution-verified on Windows / Python 3.13)
 

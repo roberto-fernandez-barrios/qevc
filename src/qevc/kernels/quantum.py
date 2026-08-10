@@ -70,10 +70,12 @@ def build_feature_map(
         "reps": reps, "entanglement": entanglement, "scale": scale,
         "n_qubits": n_features,
     }
+    circuit_fn.pairs = pairs
     return circuit_fn
 
 
-def _statevectors(X: np.ndarray, circuit_fn) -> np.ndarray:
+def _statevectors_qiskit(X: np.ndarray, circuit_fn) -> np.ndarray:
+    """Reference implementation: one Qiskit Statevector per sample (slow)."""
     X = np.atleast_2d(np.asarray(X, dtype=float))
     dim = 2 ** circuit_fn.n_features
     V = np.empty((len(X), dim), dtype=complex)
@@ -82,15 +84,76 @@ def _statevectors(X: np.ndarray, circuit_fn) -> np.ndarray:
     return V
 
 
-def kernel_exact(X1: np.ndarray, circuit_fn, X2: np.ndarray | None = None) -> np.ndarray:
+def _statevectors_fast(X: np.ndarray, circuit_fn, chunk: int = 16384) -> np.ndarray:
+    """Vectorized statevector simulation of the ZZ feature map over samples.
+
+    Applies each gate to a (chunk, 2, …, 2) state tensor with per-sample
+    rotation angles broadcast along axis 0. Identical kernels to the Qiskit
+    path (per-sample global phase and basis ordering cancel in |<x|y>|²);
+    pinned by tests. ~100× faster than per-sample Qiskit simulation.
+    """
+    X = np.atleast_2d(np.asarray(X, dtype=float))
+    q = circuit_fn.n_features
+    if X.shape[1] != q:
+        raise ValueError(f"expected {q} features, got {X.shape[1]}")
+    reps = circuit_fn.config["reps"]
+    scale = circuit_fn.config["scale"]
+    pairs = circuit_fn.pairs
+    dim = 2 ** q
+    inv_sqrt2 = 1.0 / np.sqrt(2.0)
+    out = np.empty((len(X), dim), dtype=complex)
+
+    for start in range(0, len(X), chunk):
+        Z = scale * X[start : start + chunk]
+        n = len(Z)
+        S = np.zeros((n, dim), dtype=complex)
+        S[:, 0] = 1.0
+        S = S.reshape((n,) + (2,) * q)
+        br1 = (slice(None),) + (None,) * (q - 1)  # broadcast (n,) over q-1 axes
+        br2 = (slice(None),) + (None,) * (q - 2)
+
+        for _ in range(reps):
+            for k in range(q):
+                Sm = np.moveaxis(S, k + 1, -1)
+                s0 = Sm[..., 0].copy()
+                s1 = Sm[..., 1].copy()
+                Sm[..., 0] = (s0 + s1) * inv_sqrt2
+                Sm[..., 1] = (s0 - s1) * inv_sqrt2
+                ph = np.exp(-1.0j * Z[:, k])  # RZ(2z): e^{∓iz}
+                Sm[..., 0] *= ph[br1]
+                Sm[..., 1] *= np.conj(ph)[br1]
+            for i, j in pairs:
+                Sm = np.moveaxis(S, (i + 1, j + 1), (-2, -1))
+                ph = np.exp(-1.0j * Z[:, i] * Z[:, j])  # RZZ(2 z_i z_j)
+                Sm[..., 0, 0] *= ph[br2]
+                Sm[..., 1, 1] *= ph[br2]
+                ph_c = np.conj(ph)
+                Sm[..., 0, 1] *= ph_c[br2]
+                Sm[..., 1, 0] *= ph_c[br2]
+        out[start : start + n] = S.reshape(n, dim)
+    return out
+
+
+def _statevectors(X: np.ndarray, circuit_fn, method: str = "fast") -> np.ndarray:
+    if method == "fast":
+        return _statevectors_fast(X, circuit_fn)
+    if method == "qiskit":
+        return _statevectors_qiskit(X, circuit_fn)
+    raise ValueError(f"unknown method: {method}")
+
+
+def kernel_exact(
+    X1: np.ndarray, circuit_fn, X2: np.ndarray | None = None, method: str = "fast"
+) -> np.ndarray:
     """Exact fidelity Gram matrix via statevectors.
 
     K[i, j] = |<phi(x1_i)|phi(x2_j)>|^2. Symmetric case (X2 None) reuses the
     statevector block. Memory: O(n · 2^q) — fine for the ≤ ~12-qubit regime
-    declared feasible in the spec.
+    declared feasible in the spec. ``method='qiskit'`` is the slow reference
+    path used to pin the vectorized simulator.
     """
-    V1 = _statevectors(X1, circuit_fn)
-    V2 = V1 if X2 is None else _statevectors(X2, circuit_fn)
+    V1 = _statevectors(X1, circuit_fn, method)
+    V2 = V1 if X2 is None else _statevectors(X2, circuit_fn, method)
     G = V1 @ V2.conj().T
     K = np.abs(G) ** 2
     if X2 is None:

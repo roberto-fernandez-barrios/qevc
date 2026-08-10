@@ -121,3 +121,51 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   literature re-searches are re-run before submission and the matrix updated
   (watch items listed there).
 - **Status:** adopted.
+
+## D-010 — Subset weights renormalized per process
+
+- **Date:** 2026-08-10
+- **Decision:** when a subset of the full parquet is used, event weights are
+  rescaled per process: `w ← w · (Σw_process,full / Σw_process,subset)`, with
+  the full-file sums measured by the loader (cached).
+- **Alternatives:** official loader's global rescale (preserves total Σw only);
+  no rescale (subset yields unphysical).
+- **Rationale:** per-process rescaling preserves each σ×L exactly, so weighted
+  metrics and pseudo-experiment yields on subsets estimate the full-dataset
+  quantities without distorting the background composition. The official
+  global rescale distorts process fractions under stratified sampling.
+- **Status:** adopted.
+
+## D-011 — Quantum feature set v1 (8 features, predeclared)
+
+- **Date:** 2026-08-10
+- **Decision:** QK-SVC v1 encodes 8 features (one per qubit):
+  `DER_mass_transverse_met_lep, DER_mass_vis, DER_pt_ratio_lep_had,
+  DER_met_phi_centrality, DER_deltar_had_lep, DER_pt_h, DER_sum_pt, PRI_met`.
+- **Rationale:** expert HiggsML pathway of spec §8 — the DER variables with
+  highest documented discriminative power in HiggsML-style analyses, defined
+  for every event (no jet-dependent sentinel features in v1, avoiding sentinel
+  angles dominating the kernel). Fixed from source knowledge only; no target
+  information involved. Alternative pathways (statistical selection, PCA,
+  jet-inclusive sets) are the registered feature-selection ablation, not v1.
+- **Status:** adopted for E01; revisit only via a new decision entry.
+
+## D-012 — Training weights vs evaluation weights
+
+- **Date:** 2026-08-10
+- **Decision:** models train with **class-balanced physical weights**
+  (`w · 0.5 / Σw_class`, preserving within-class importance structure while
+  equalizing class mass), renormalized to mean 1 over the training set —
+  boosting split criteria and SVM regularization are not weight-scale
+  invariant, so O(1)-sum weights silently cripple them. All evaluation uses
+  raw physical weights (SAP §1.1).
+  MLP (no per-sample weight support in sklearn) trains on weight-proportional
+  resampled data with the same balanced weights, seeded.
+- **Alternatives:** raw physical weights in training (weighted signal fraction
+  ≈0.1% → degenerate reject-all classifiers); unweighted training (discards
+  within-class importance).
+- **Rationale:** training objective is an analyst choice; what is *predeclared*
+  is that evaluation is always physics-weighted and the training choice is
+  identical across quantum and classical models (fair-comparison rule §9).
+- **Status:** adopted.
+

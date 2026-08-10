@@ -1,0 +1,32 @@
+# E01 — Nominal baselines (registered in docs/experiment_registry.md)
+experiment: E01
+subset:
+  n_total: 300000
+  seed: 101
+splits:
+  fractions: {train: 0.40, source_val: 0.15, nominal_test: 0.15, auditor_dev: 0.15, final_eval: 0.15}
+  seed: 101
+features:
+  quantum:  # decision D-011 (8 features, one per qubit)
+    - DER_mass_transverse_met_lep
+    - DER_mass_vis
+    - DER_pt_ratio_lep_had
+    - DER_met_phi_centrality
+    - DER_deltar_had_lep
+    - DER_pt_h
+    - DER_sum_pt
+    - PRI_met
+tier_a:  # matched comparison: every model on the SAME events
+  n_train: 2000
+  seed: 404
+  models: [linear_svc, rbf_svc, xgboost, lightgbm, mlp, qksvc]
+tier_b:  # classical models at scale (context, not the quantum comparison)
+  models: [linear_svc, xgboost, lightgbm, mlp]
+tuning:
+  n_configs: 10
+  n_configs_overrides: {mlp: 5}
+  cv_folds: 3
+  seed: 202
+bootstrap:
+  n_resamples: 1000
+  seed: 303

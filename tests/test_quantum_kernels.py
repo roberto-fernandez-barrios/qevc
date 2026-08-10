@@ -65,6 +65,32 @@ def test_scale_controls_concentration():
     assert off[0.25] > off[1.0] > off[3.0]
 
 
+@pytest.mark.parametrize("ent", ["linear", "full", "none"])
+@pytest.mark.parametrize("reps", [1, 2, 3])
+def test_fast_simulator_matches_qiskit(ent, reps):
+    """The vectorized simulator must reproduce Qiskit kernels exactly."""
+    fm = build_feature_map(3, reps=reps, entanglement=ent, scale=0.8)
+    K_fast = kernel_exact(X, fm, method="fast")
+    K_ref = kernel_exact(X, fm, method="qiskit")
+    np.testing.assert_allclose(K_fast, K_ref, atol=1e-10)
+    X2 = RNG.uniform(-1, 1, size=(5, 3))
+    np.testing.assert_allclose(
+        kernel_exact(X, fm, X2, method="fast"),
+        kernel_exact(X, fm, X2, method="qiskit"),
+        atol=1e-10,
+    )
+
+
+def test_fast_simulator_chunking_consistent():
+    from qevc.kernels.quantum import _statevectors_fast
+
+    fm = build_feature_map(3, reps=2)
+    V_one = _statevectors_fast(X, fm, chunk=4)
+    V_all = _statevectors_fast(X, fm, chunk=10_000)
+    np.testing.assert_allclose(np.abs(V_one @ V_all.conj().T),
+                               np.abs(V_all @ V_all.conj().T), atol=1e-10)
+
+
 def test_input_validation():
     fm = build_feature_map(3)
     with pytest.raises(ValueError):
