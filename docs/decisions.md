@@ -187,3 +187,23 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   E01 was re-run under this scheme (v2 supersedes v1; both manifests kept).
 - **Status:** adopted.
 
+## D-014 — E05 v1 audit estimand: unweighted event correctness
+
+- **Date:** 2026-08-10
+- **Decision:** the conditional auditor's v1 estimand is **per-event
+  correctness at the frozen threshold under uniform sampling of the target
+  population** (bounded {0,1} draws → the EB confidence sequence applies
+  exactly; label draws are with replacement so each draw is IID
+  Bernoulli(M_T)). Claims are the degradation form
+  `M_T ≥ M_S − δ`, δ ∈ {0.02, 0.05, 0.10} predeclared, α = 0.05.
+  A single CS per stream resolves all three δ-claims **simultaneously**
+  (time-uniform coverage of M_T implies simultaneous validity over any set of
+  thresholds derived from the same CS).
+- **Deferred (registered extensions):** physics-weighted metrics need
+  weighted/importance CS machinery (SAP §3.1) — E05 v2; information set I3
+  (nuisance estimates) — E05 v2.
+- **Rationale:** starts the auditor on ground where the guarantee is exact
+  rather than approximate; weighted estimands change the martingale, not the
+  framework.
+- **Status:** adopted.
+

@@ -1,0 +1,24 @@
+# E04 — Geometry → failure prediction (registered in docs/experiment_registry.md)
+# Environments inherited from E02; kernel anchors from E01 (as E03).
+experiment: E04
+inherits: [E01, E02, E03]
+draws:
+  n_base_rows: 2500        # fixed raw test rows per draw, shared across ALL envs
+  seeds: [71, 72, 73]      # 3 independent draws (common random numbers per draw)
+regression:
+  # small predeclared descriptor set (n_train ~ 20-24 envs per LONO fold)
+  features: [mmd2, eff_rank_ratio, mean_kst, mean_ktt, entropy_diff]
+  ridge_alpha: 1.0
+  target: abs_delta_auc    # magnitude of E02 degradation
+  # LONO families; weight-only nuisances are EXCLUDED from regression and
+  # reported as the structural blind-spot set (E03 finding)
+  families:
+    tes: [tes]
+    jes: [jes]
+    soft_met: [soft_met]
+    combos: [combo]
+kernel_model_map:          # which E02 model each kernel's geometry should predict
+  quantum: "A:qksvc"
+  rbf: "A:rbf_svc"
+transfer_targets: ["A:xgboost"]  # non-kernel model as transfer test
+top_eigs: 10

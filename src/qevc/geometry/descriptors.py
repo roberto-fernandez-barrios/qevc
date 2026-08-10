@@ -30,25 +30,17 @@ def _center(K: np.ndarray) -> np.ndarray:
     return H @ K @ H
 
 
-def eigenspectrum(K: np.ndarray) -> np.ndarray:
-    """Descending eigenvalues, clipped at 0 (estimation noise can break PSD)."""
-    w = np.linalg.eigvalsh(_sym(K))[::-1]
-    return np.clip(w, 0.0, None)
+def raw_spectrum(K: np.ndarray) -> np.ndarray:
+    """Ascending unclipped eigenvalues — the single eigh every descriptor
+    can be derived from (compute once, reuse; eigh dominates cost at n≈10³)."""
+    return np.linalg.eigvalsh(_sym(K))
 
 
-def effective_rank(K: np.ndarray) -> float:
-    """exp(spectral entropy) of the normalized eigenvalue distribution."""
-    w = eigenspectrum(K)
-    s = w.sum()
-    if s <= 0:
-        return 0.0
-    p = w / s
-    p = p[p > 0]
-    return float(np.exp(-(p * np.log(p)).sum()))
+def _clip_desc(w_raw: np.ndarray) -> np.ndarray:
+    return np.clip(w_raw[::-1], 0.0, None)
 
 
-def spectral_entropy(K: np.ndarray) -> float:
-    w = eigenspectrum(K)
+def _entropy_from(w: np.ndarray) -> float:
     s = w.sum()
     if s <= 0:
         return 0.0
@@ -57,11 +49,28 @@ def spectral_entropy(K: np.ndarray) -> float:
     return float(-(p * np.log(p)).sum())
 
 
+def _psd_violation_from(w_raw: np.ndarray) -> float:
+    top = max(abs(w_raw[-1]), 1e-300)
+    return float(max(0.0, -w_raw[0]) / top)
+
+
+def eigenspectrum(K: np.ndarray) -> np.ndarray:
+    """Descending eigenvalues, clipped at 0 (estimation noise can break PSD)."""
+    return _clip_desc(raw_spectrum(K))
+
+
+def effective_rank(K: np.ndarray) -> float:
+    """exp(spectral entropy) of the normalized eigenvalue distribution."""
+    return float(np.exp(_entropy_from(eigenspectrum(K))))
+
+
+def spectral_entropy(K: np.ndarray) -> float:
+    return _entropy_from(eigenspectrum(K))
+
+
 def psd_violation(K: np.ndarray) -> float:
     """Magnitude of most-negative eigenvalue relative to largest (0 if PSD)."""
-    w = np.linalg.eigvalsh(_sym(K))
-    top = max(abs(w[-1]), 1e-300)
-    return float(max(0.0, -w[0]) / top)
+    return _psd_violation_from(raw_spectrum(K))
 
 
 def cka(K1: np.ndarray, K2: np.ndarray) -> float:
@@ -123,19 +132,26 @@ def describe_environment(
     K_st: np.ndarray,
     y_source: np.ndarray | None = None,
     top_eigs: int = 10,
+    source_spectrum: np.ndarray | None = None,
 ) -> dict[str, float]:
     """Full I1-level descriptor vector G_θ for one (kernel, environment) pair.
 
     Uses only: source data, unlabeled target data, and source labels if given.
+    ``source_spectrum``: optional precomputed ``raw_spectrum(K_ss)`` — pass it
+    when calling repeatedly with the same source Gram (one eigh per call
+    instead of two; the target-side eigh is unavoidable).
     """
     g: dict[str, float] = {}
-    w_ss, w_tt = eigenspectrum(K_ss), eigenspectrum(K_tt)
-    g["eff_rank_ss"] = effective_rank(K_ss)
-    g["eff_rank_tt"] = effective_rank(K_tt)
+    wr_ss = raw_spectrum(K_ss) if source_spectrum is None else source_spectrum
+    wr_tt = raw_spectrum(K_tt)
+    w_ss, w_tt = _clip_desc(wr_ss), _clip_desc(wr_tt)
+    ent_ss, ent_tt = _entropy_from(w_ss), _entropy_from(w_tt)
+    g["eff_rank_ss"] = float(np.exp(ent_ss))
+    g["eff_rank_tt"] = float(np.exp(ent_tt))
     g["eff_rank_ratio"] = g["eff_rank_tt"] / max(g["eff_rank_ss"], 1e-12)
-    g["spec_entropy_ss"] = spectral_entropy(K_ss)
-    g["spec_entropy_tt"] = spectral_entropy(K_tt)
-    g["psd_violation_tt"] = psd_violation(K_tt)
+    g["spec_entropy_ss"] = ent_ss
+    g["spec_entropy_tt"] = ent_tt
+    g["psd_violation_tt"] = _psd_violation_from(wr_tt)
     s_ss, s_tt = max(w_ss.sum(), 1e-300), max(w_tt.sum(), 1e-300)
     for i in range(min(top_eigs, len(w_ss))):
         g[f"eig{i}_frac_ss"] = float(w_ss[i] / s_ss)

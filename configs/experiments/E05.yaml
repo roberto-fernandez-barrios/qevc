@@ -1,0 +1,17 @@
+# E05 — Information-set conditional auditor (registered in docs/experiment_registry.md)
+# Scores come from the E02 archive; frozen models re-derived only for
+# thresholds and source reference accuracy. Estimand per decision D-014.
+experiment: E05
+inherits: [E01, E02, E03]
+models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+claims:
+  type: degradation_accuracy          # M_T >= M_S - delta  (D-014)
+  deltas: [0.02, 0.05, 0.10]
+alpha: 0.05
+n_max: 3000
+audit_seeds: 20                        # label-order replications per stream
+i1_alarm:
+  source: E03                          # geometry available without labels
+  kernel: quantum
+  descriptor: mmd2
+  rule: exceeds_max_over_weight_only_envs   # measured noise floor

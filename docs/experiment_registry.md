@@ -129,8 +129,14 @@ entry.
 - **Information set:** I1 (unlabeled target only).
 - **Metric:** leave-one-nuisance-out regression/rank metrics per SAP §2.
 - **Falsifier:** out-of-env rank correlation ≤ 0 or sign-unstable across seeds.
-- **Outputs:** `results/tables/E04_geom_failure.*`, Fig. 4 data.
-- **Status:** planned.
+- **Outputs:** `results/tables/E04_geom_failure.json`, Fig. 4 data.
+- **Status:** specified (2026-08-10) — config `configs/experiments/E04.yaml`:
+  common-random-number target draws (3 fixed 2500-row sets shared across all
+  41 environments), weight-only envs excluded from regression (blind-spot set;
+  used to measure the residual noise floor), LONO ridge on 5 predeclared
+  descriptors vs |ΔAUC| from E02, mmd2-only baseline, transfer test onto
+  A:xgboost. Target of quantum-kernel geometry = A:qksvc; of RBF geometry =
+  A:rbf_svc. Falsifier unchanged.
 
 ## E05 — Conditional auditor
 
@@ -141,8 +147,15 @@ entry.
 - **Falsifier:** empirical false certification > α (beyond binomial fluctuation)
   invalidates the implementation; auditor that never abstains under I0/I1
   invalidates fail-closed design.
-- **Outputs:** `results/tables/E05_auditor.*`.
-- **Status:** planned.
+- **Outputs:** `results/tables/E05_auditor.json`.
+- **Status:** specified (2026-08-10) — config `configs/experiments/E05.yaml`:
+  estimand per D-014 (unweighted correctness at frozen thresholds; exact IID
+  Bernoulli streams); claims M_T ≥ M_S − δ, δ ∈ {0.02, 0.05, 0.10}, α=0.05,
+  n_max=3000, 20 audit-seed replications; models A:qksvc, A:rbf_svc,
+  A:xgboost, B:xgboost over the 41 E02 environments (archived scores).
+  I0 = UNRESOLVED by construction; I1 = E03 quantum-MMD² alarm above the
+  weight-only noise floor, veto-only; I2 = EB confidence sequence. Truth used
+  only to score decisions. I3 and weighted estimands deferred to v2 (D-014).
 
 ## E06 — Partial-label certification landscape
 
