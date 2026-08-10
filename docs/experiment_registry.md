@@ -244,11 +244,25 @@ entry.
 - **Metric:** SAP §1.2 across environments; decoupling search per SAP §6.
 - **Falsifier:** no decoupling found on the full grid (negative result for H5).
 - **Outputs:** `results/tables/E08_physics.json`, Fig. 7 data.
-- **Status:** specified (2026-08-10) — config `configs/experiments/E08.yaml`,
-  estimator per D-015 (single-SR counting, per-model SR maximizing s/√b on
-  source_val with b ≥ 50, yields rescaled to 10 fb⁻¹, 2000 PEs ×
-  μ_true ∈ {0.5…3}, deployment-blind μ̂ = (N−b₀)/s₀ with Gaussian 68.27%
-  interval). Decoupling flags: |ΔAUC| < 0.005 with mean coverage < 0.6327.
+- **Status:** **complete** (2026-08-10; estimator per D-015). Results:
+  1. Internal validity: nominal coverage 0.679–0.687 ≈ 0.6827 for all four
+     models (the PE machinery is calibrated where beliefs are correct).
+  2. **H5 confirmed, decisively: 89 decoupled cells** (|ΔAUC| < 0.005 with
+     mean coverage < 0.6327), across EVERY nuisance family. Flagship:
+     A:xgboost at tes=0.98 has ΔAUC = +0.0002 (perfectly healthy classifier)
+     and coverage = 0.000 (bias −10 in μ units) — the background yield shift
+     (−5.8% of b₀ ≈ 23× σ_stat) is invisible to ranking metrics.
+  3. **The geometry-blind normalization nuisances break coverage too**
+     (ttbar_scale 12 cells, diboson_scale 11 down to cov 0.003, bkg_scale 6
+     down to 0.44): neither classifier metrics NOR label-free geometry
+     sensors carry the information that protects the physics — completing
+     the paper's central argument for information-set-conditional auditing.
+  4. Honest framing (carried into the manuscript): effect sizes are those of
+     the deployment-blind single-SR counting estimator with low-purity SRs
+     (s/b ≈ 0.2–7%); real profiled analyses degrade far more gracefully. The
+     demonstrated claim is that *validity depends on information the
+     classifier metrics do not carry*, not that H→ττ physics is hopeless.
+     Multi-bin/profiled estimator registered as E08 v2.
 
 ## E09 — Finite-shot kernels
 
