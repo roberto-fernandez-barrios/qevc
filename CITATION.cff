@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "qevc: Conditional Validity of Quantum Event Classifiers under Collider Systematics"
+type: software
+authors:
+  - family-names: "Fernández Barrios"
+    given-names: "Roberto"
+    email: "roberto.fernandez.barrios@gmail.com"
+year: 2026
+license: MIT
+abstract: >
+  Information-set conditional auditing framework for quantum and classical
+  collider event classifiers under experimental systematic uncertainties,
+  with partial-label certification and physics-level inference validation.
