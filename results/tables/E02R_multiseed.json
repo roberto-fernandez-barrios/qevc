@@ -1,0 +1,5603 @@
+{
+  "experiment": "E02R",
+  "hyperparams": "frozen from E01 (partition/init variance only)",
+  "summary": {
+    "A:qksvc": {
+      "nominal_auc_mean": 0.8478,
+      "nominal_auc_std": 0.02231,
+      "delta_auc": {
+        "tes=0.98": {
+          "mean": 0.00239,
+          "std": 0.00104,
+          "sign_consistent": true
+        },
+        "tes=0.99": {
+          "mean": 0.00098,
+          "std": 0.00039,
+          "sign_consistent": true
+        },
+        "tes=1.01": {
+          "mean": 0.00795,
+          "std": 0.01223,
+          "sign_consistent": false
+        },
+        "tes=1.02": {
+          "mean": 0.0075,
+          "std": 0.01264,
+          "sign_consistent": false
+        },
+        "jes=0.98": {
+          "mean": -0.00086,
+          "std": 0.00249,
+          "sign_consistent": false
+        },
+        "jes=0.99": {
+          "mean": -0.00025,
+          "std": 0.00118,
+          "sign_consistent": false
+        },
+        "jes=1.01": {
+          "mean": 0.00015,
+          "std": 0.00089,
+          "sign_consistent": false
+        },
+        "jes=1.02": {
+          "mean": -0.0003,
+          "std": 0.0025,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed11": {
+          "mean": 0.00491,
+          "std": 0.00927,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed12": {
+          "mean": 0.00044,
+          "std": 0.0121,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed13": {
+          "mean": 0.00916,
+          "std": 0.0138,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed11": {
+          "mean": 0.00773,
+          "std": 0.01329,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed12": {
+          "mean": 0.0008,
+          "std": 0.01401,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed13": {
+          "mean": 0.01,
+          "std": 0.01233,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed11": {
+          "mean": 0.01096,
+          "std": 0.01549,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed12": {
+          "mean": 0.00184,
+          "std": 0.00928,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed13": {
+          "mean": 0.01008,
+          "std": 0.01427,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed11": {
+          "mean": 0.01904,
+          "std": 0.01749,
+          "sign_consistent": true
+        },
+        "soft_met=5.0/seed12": {
+          "mean": 0.00517,
+          "std": 0.011,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed13": {
+          "mean": 0.00928,
+          "std": 0.01324,
+          "sign_consistent": false
+        },
+        "ttbar_scale=0.96": {
+          "mean": -0.00039,
+          "std": 0.00013,
+          "sign_consistent": true
+        },
+        "ttbar_scale=0.98": {
+          "mean": -0.00019,
+          "std": 6e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.02": {
+          "mean": 0.00019,
+          "std": 6e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.04": {
+          "mean": 0.00039,
+          "std": 0.00012,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.5": {
+          "mean": -0.00039,
+          "std": 0.00017,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.75": {
+          "mean": -0.00019,
+          "std": 9e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.25": {
+          "mean": 0.0002,
+          "std": 9e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.5": {
+          "mean": 0.00039,
+          "std": 0.00017,
+          "sign_consistent": true
+        },
+        "bkg_scale=0.998": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=0.999": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.001": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.002": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "combo0": {
+          "mean": 0.00202,
+          "std": 0.00331,
+          "sign_consistent": false
+        },
+        "combo1": {
+          "mean": 0.00777,
+          "std": 0.01276,
+          "sign_consistent": false
+        },
+        "combo2/seed11": {
+          "mean": 0.01397,
+          "std": 0.01693,
+          "sign_consistent": true
+        },
+        "combo2/seed12": {
+          "mean": 0.00245,
+          "std": 0.00971,
+          "sign_consistent": false
+        },
+        "combo2/seed13": {
+          "mean": 0.01222,
+          "std": 0.01469,
+          "sign_consistent": false
+        },
+        "combo3/seed11": {
+          "mean": 0.0253,
+          "std": 0.02367,
+          "sign_consistent": true
+        },
+        "combo3/seed12": {
+          "mean": 0.00864,
+          "std": 0.01089,
+          "sign_consistent": false
+        },
+        "combo3/seed13": {
+          "mean": 0.01251,
+          "std": 0.01604,
+          "sign_consistent": false
+        }
+      }
+    },
+    "A:rbf_svc": {
+      "nominal_auc_mean": 0.82759,
+      "nominal_auc_std": 0.01375,
+      "delta_auc": {
+        "tes=0.98": {
+          "mean": 0.00113,
+          "std": 0.00114,
+          "sign_consistent": true
+        },
+        "tes=0.99": {
+          "mean": 0.00049,
+          "std": 0.00062,
+          "sign_consistent": false
+        },
+        "tes=1.01": {
+          "mean": 0.00933,
+          "std": 0.01265,
+          "sign_consistent": false
+        },
+        "tes=1.02": {
+          "mean": 0.00942,
+          "std": 0.01251,
+          "sign_consistent": false
+        },
+        "jes=0.98": {
+          "mean": -0.00057,
+          "std": 0.00128,
+          "sign_consistent": false
+        },
+        "jes=0.99": {
+          "mean": -0.0005,
+          "std": 0.00023,
+          "sign_consistent": true
+        },
+        "jes=1.01": {
+          "mean": 0.00072,
+          "std": 0.0005,
+          "sign_consistent": true
+        },
+        "jes=1.02": {
+          "mean": 0.00115,
+          "std": 0.0009,
+          "sign_consistent": true
+        },
+        "soft_met=1.0/seed11": {
+          "mean": 0.00091,
+          "std": 0.00153,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed12": {
+          "mean": 0.00108,
+          "std": 0.00211,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed13": {
+          "mean": -0.0041,
+          "std": 0.00819,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed11": {
+          "mean": 0.00131,
+          "std": 0.0031,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed12": {
+          "mean": 0.00113,
+          "std": 0.00199,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed13": {
+          "mean": -0.0014,
+          "std": 0.00991,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed11": {
+          "mean": 0.0039,
+          "std": 0.00412,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed12": {
+          "mean": -0.00258,
+          "std": 0.01081,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed13": {
+          "mean": -0.00096,
+          "std": 0.01078,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed11": {
+          "mean": 0.0086,
+          "std": 0.00903,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed12": {
+          "mean": -0.00046,
+          "std": 0.01456,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed13": {
+          "mean": -0.00102,
+          "std": 0.01581,
+          "sign_consistent": false
+        },
+        "ttbar_scale=0.96": {
+          "mean": -0.00045,
+          "std": 0.00011,
+          "sign_consistent": true
+        },
+        "ttbar_scale=0.98": {
+          "mean": -0.00023,
+          "std": 6e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.02": {
+          "mean": 0.00023,
+          "std": 5e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.04": {
+          "mean": 0.00046,
+          "std": 0.00011,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.5": {
+          "mean": -0.00047,
+          "std": 0.00013,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.75": {
+          "mean": -0.00023,
+          "std": 7e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.25": {
+          "mean": 0.00024,
+          "std": 7e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.5": {
+          "mean": 0.00047,
+          "std": 0.00013,
+          "sign_consistent": true
+        },
+        "bkg_scale=0.998": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=0.999": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.001": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.002": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "combo0": {
+          "mean": 0.00036,
+          "std": 0.00159,
+          "sign_consistent": false
+        },
+        "combo1": {
+          "mean": 0.01056,
+          "std": 0.01272,
+          "sign_consistent": true
+        },
+        "combo2/seed11": {
+          "mean": 0.00546,
+          "std": 0.00319,
+          "sign_consistent": true
+        },
+        "combo2/seed12": {
+          "mean": 0.00351,
+          "std": 0.00674,
+          "sign_consistent": false
+        },
+        "combo2/seed13": {
+          "mean": 0.00069,
+          "std": 0.01185,
+          "sign_consistent": false
+        },
+        "combo3/seed11": {
+          "mean": 0.00974,
+          "std": 0.00975,
+          "sign_consistent": false
+        },
+        "combo3/seed12": {
+          "mean": 0.00041,
+          "std": 0.01537,
+          "sign_consistent": false
+        },
+        "combo3/seed13": {
+          "mean": 0.00032,
+          "std": 0.01507,
+          "sign_consistent": false
+        }
+      }
+    },
+    "A:xgboost": {
+      "nominal_auc_mean": 0.88307,
+      "nominal_auc_std": 0.01595,
+      "delta_auc": {
+        "tes=0.98": {
+          "mean": 0.00053,
+          "std": 0.00209,
+          "sign_consistent": false
+        },
+        "tes=0.99": {
+          "mean": -2e-05,
+          "std": 0.00185,
+          "sign_consistent": false
+        },
+        "tes=1.01": {
+          "mean": 0.01152,
+          "std": 0.01883,
+          "sign_consistent": false
+        },
+        "tes=1.02": {
+          "mean": 0.01123,
+          "std": 0.01729,
+          "sign_consistent": false
+        },
+        "jes=0.98": {
+          "mean": -0.00016,
+          "std": 0.00069,
+          "sign_consistent": false
+        },
+        "jes=0.99": {
+          "mean": 0.00017,
+          "std": 0.00077,
+          "sign_consistent": false
+        },
+        "jes=1.01": {
+          "mean": 0.0003,
+          "std": 0.00078,
+          "sign_consistent": false
+        },
+        "jes=1.02": {
+          "mean": 0.00057,
+          "std": 0.00084,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed11": {
+          "mean": -0.00114,
+          "std": 0.00132,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed12": {
+          "mean": 0.00089,
+          "std": 0.00483,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed13": {
+          "mean": 0.00011,
+          "std": 0.00126,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed11": {
+          "mean": -1e-05,
+          "std": 0.00307,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed12": {
+          "mean": -1e-05,
+          "std": 0.00468,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed13": {
+          "mean": 0.00164,
+          "std": 0.00139,
+          "sign_consistent": true
+        },
+        "soft_met=3.0/seed11": {
+          "mean": 0.00069,
+          "std": 0.00429,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed12": {
+          "mean": 0.001,
+          "std": 0.005,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed13": {
+          "mean": 0.00292,
+          "std": 0.00266,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed11": {
+          "mean": 0.00666,
+          "std": 0.00868,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed12": {
+          "mean": 0.00881,
+          "std": 0.00652,
+          "sign_consistent": true
+        },
+        "soft_met=5.0/seed13": {
+          "mean": 0.00376,
+          "std": 0.00513,
+          "sign_consistent": false
+        },
+        "ttbar_scale=0.96": {
+          "mean": -0.00028,
+          "std": 8e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=0.98": {
+          "mean": -0.00014,
+          "std": 4e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.02": {
+          "mean": 0.00014,
+          "std": 4e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.04": {
+          "mean": 0.00028,
+          "std": 8e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.5": {
+          "mean": -0.00032,
+          "std": 0.00012,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.75": {
+          "mean": -0.00016,
+          "std": 6e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.25": {
+          "mean": 0.00016,
+          "std": 6e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.5": {
+          "mean": 0.00032,
+          "std": 0.00012,
+          "sign_consistent": true
+        },
+        "bkg_scale=0.998": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=0.999": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.001": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.002": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "combo0": {
+          "mean": 0.00022,
+          "std": 0.00183,
+          "sign_consistent": false
+        },
+        "combo1": {
+          "mean": 0.01162,
+          "std": 0.01664,
+          "sign_consistent": false
+        },
+        "combo2/seed11": {
+          "mean": 0.00197,
+          "std": 0.00239,
+          "sign_consistent": false
+        },
+        "combo2/seed12": {
+          "mean": 0.00252,
+          "std": 0.00427,
+          "sign_consistent": false
+        },
+        "combo2/seed13": {
+          "mean": 0.00354,
+          "std": 0.00235,
+          "sign_consistent": true
+        },
+        "combo3/seed11": {
+          "mean": 0.00835,
+          "std": 0.00962,
+          "sign_consistent": true
+        },
+        "combo3/seed12": {
+          "mean": 0.00969,
+          "std": 0.00682,
+          "sign_consistent": true
+        },
+        "combo3/seed13": {
+          "mean": 0.00399,
+          "std": 0.00458,
+          "sign_consistent": false
+        }
+      }
+    },
+    "A:lightgbm": {
+      "nominal_auc_mean": 0.88106,
+      "nominal_auc_std": 0.01571,
+      "delta_auc": {
+        "tes=0.98": {
+          "mean": 0.0004,
+          "std": 0.00291,
+          "sign_consistent": false
+        },
+        "tes=0.99": {
+          "mean": -0.00021,
+          "std": 0.00239,
+          "sign_consistent": false
+        },
+        "tes=1.01": {
+          "mean": 0.01154,
+          "std": 0.01781,
+          "sign_consistent": false
+        },
+        "tes=1.02": {
+          "mean": 0.01198,
+          "std": 0.01861,
+          "sign_consistent": false
+        },
+        "jes=0.98": {
+          "mean": -0.00054,
+          "std": 0.0006,
+          "sign_consistent": false
+        },
+        "jes=0.99": {
+          "mean": -0.00052,
+          "std": 0.00075,
+          "sign_consistent": false
+        },
+        "jes=1.01": {
+          "mean": -0.00027,
+          "std": 0.00077,
+          "sign_consistent": false
+        },
+        "jes=1.02": {
+          "mean": -0.00044,
+          "std": 0.00082,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed11": {
+          "mean": -0.00101,
+          "std": 0.0031,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed12": {
+          "mean": -0.00011,
+          "std": 0.00383,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed13": {
+          "mean": -0.0,
+          "std": 0.00237,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed11": {
+          "mean": -0.00062,
+          "std": 0.00547,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed12": {
+          "mean": -0.00102,
+          "std": 0.0042,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed13": {
+          "mean": 0.00171,
+          "std": 0.00344,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed11": {
+          "mean": 0.0009,
+          "std": 0.00764,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed12": {
+          "mean": -0.00069,
+          "std": 0.00423,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed13": {
+          "mean": 0.00266,
+          "std": 0.00296,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed11": {
+          "mean": 0.00695,
+          "std": 0.01458,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed12": {
+          "mean": 0.00703,
+          "std": 0.00746,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed13": {
+          "mean": 0.00164,
+          "std": 0.00649,
+          "sign_consistent": false
+        },
+        "ttbar_scale=0.96": {
+          "mean": -0.0003,
+          "std": 7e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=0.98": {
+          "mean": -0.00015,
+          "std": 3e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.02": {
+          "mean": 0.00016,
+          "std": 3e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.04": {
+          "mean": 0.00031,
+          "std": 7e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.5": {
+          "mean": -0.00033,
+          "std": 0.0001,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.75": {
+          "mean": -0.00016,
+          "std": 5e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.25": {
+          "mean": 0.00017,
+          "std": 5e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.5": {
+          "mean": 0.00033,
+          "std": 0.00011,
+          "sign_consistent": true
+        },
+        "bkg_scale=0.998": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=0.999": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.001": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.002": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "combo0": {
+          "mean": 0.00043,
+          "std": 0.00321,
+          "sign_consistent": false
+        },
+        "combo1": {
+          "mean": 0.01228,
+          "std": 0.01824,
+          "sign_consistent": false
+        },
+        "combo2/seed11": {
+          "mean": 0.00273,
+          "std": 0.00647,
+          "sign_consistent": false
+        },
+        "combo2/seed12": {
+          "mean": 0.00167,
+          "std": 0.00484,
+          "sign_consistent": false
+        },
+        "combo2/seed13": {
+          "mean": 0.0042,
+          "std": 0.00187,
+          "sign_consistent": true
+        },
+        "combo3/seed11": {
+          "mean": 0.00835,
+          "std": 0.01402,
+          "sign_consistent": false
+        },
+        "combo3/seed12": {
+          "mean": 0.00838,
+          "std": 0.00806,
+          "sign_consistent": false
+        },
+        "combo3/seed13": {
+          "mean": 0.00228,
+          "std": 0.00576,
+          "sign_consistent": false
+        }
+      }
+    },
+    "B:xgboost": {
+      "nominal_auc_mean": 0.90865,
+      "nominal_auc_std": 0.01922,
+      "delta_auc": {
+        "tes=0.98": {
+          "mean": -0.0007,
+          "std": 0.00145,
+          "sign_consistent": false
+        },
+        "tes=0.99": {
+          "mean": -0.00098,
+          "std": 0.00047,
+          "sign_consistent": true
+        },
+        "tes=1.01": {
+          "mean": 0.01242,
+          "std": 0.01729,
+          "sign_consistent": false
+        },
+        "tes=1.02": {
+          "mean": 0.01168,
+          "std": 0.0173,
+          "sign_consistent": false
+        },
+        "jes=0.98": {
+          "mean": -0.00094,
+          "std": 0.00119,
+          "sign_consistent": false
+        },
+        "jes=0.99": {
+          "mean": -0.00028,
+          "std": 0.00076,
+          "sign_consistent": false
+        },
+        "jes=1.01": {
+          "mean": -9e-05,
+          "std": 0.00047,
+          "sign_consistent": false
+        },
+        "jes=1.02": {
+          "mean": 0.00035,
+          "std": 0.00054,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed11": {
+          "mean": -0.00018,
+          "std": 0.00169,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed12": {
+          "mean": -0.0006,
+          "std": 0.0029,
+          "sign_consistent": false
+        },
+        "soft_met=1.0/seed13": {
+          "mean": -0.00037,
+          "std": 0.00166,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed11": {
+          "mean": 0.00061,
+          "std": 0.00203,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed12": {
+          "mean": 0.00026,
+          "std": 0.00218,
+          "sign_consistent": false
+        },
+        "soft_met=2.0/seed13": {
+          "mean": 0.00225,
+          "std": 0.00389,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed11": {
+          "mean": 0.00156,
+          "std": 0.00341,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed12": {
+          "mean": 0.00029,
+          "std": 0.00574,
+          "sign_consistent": false
+        },
+        "soft_met=3.0/seed13": {
+          "mean": 0.00069,
+          "std": 0.00361,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed11": {
+          "mean": 0.00456,
+          "std": 0.00352,
+          "sign_consistent": true
+        },
+        "soft_met=5.0/seed12": {
+          "mean": 0.00335,
+          "std": 0.0049,
+          "sign_consistent": false
+        },
+        "soft_met=5.0/seed13": {
+          "mean": 0.00416,
+          "std": 0.00451,
+          "sign_consistent": false
+        },
+        "ttbar_scale=0.96": {
+          "mean": -0.00014,
+          "std": 1e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=0.98": {
+          "mean": -7e-05,
+          "std": 1e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.02": {
+          "mean": 7e-05,
+          "std": 1e-05,
+          "sign_consistent": true
+        },
+        "ttbar_scale=1.04": {
+          "mean": 0.00014,
+          "std": 1e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.5": {
+          "mean": -0.00029,
+          "std": 5e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=0.75": {
+          "mean": -0.00014,
+          "std": 3e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.25": {
+          "mean": 0.00015,
+          "std": 3e-05,
+          "sign_consistent": true
+        },
+        "diboson_scale=1.5": {
+          "mean": 0.00029,
+          "std": 5e-05,
+          "sign_consistent": true
+        },
+        "bkg_scale=0.998": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=0.999": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.001": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "bkg_scale=1.002": {
+          "mean": 0.0,
+          "std": 0.0,
+          "sign_consistent": false
+        },
+        "combo0": {
+          "mean": -0.00153,
+          "std": 0.0011,
+          "sign_consistent": true
+        },
+        "combo1": {
+          "mean": 0.01218,
+          "std": 0.0174,
+          "sign_consistent": false
+        },
+        "combo2/seed11": {
+          "mean": 0.00297,
+          "std": 0.00254,
+          "sign_consistent": false
+        },
+        "combo2/seed12": {
+          "mean": 0.00087,
+          "std": 0.00416,
+          "sign_consistent": false
+        },
+        "combo2/seed13": {
+          "mean": 0.00146,
+          "std": 0.00194,
+          "sign_consistent": false
+        },
+        "combo3/seed11": {
+          "mean": 0.00559,
+          "std": 0.00339,
+          "sign_consistent": true
+        },
+        "combo3/seed12": {
+          "mean": 0.00325,
+          "std": 0.0033,
+          "sign_consistent": false
+        },
+        "combo3/seed13": {
+          "mean": 0.00348,
+          "std": 0.00317,
+          "sign_consistent": false
+        }
+      }
+    }
+  },
+  "nominal_qk_minus_xgbA": {
+    "per_seed": [
+      -0.0395,
+      -0.04691,
+      -0.02865,
+      -0.04595,
+      -0.01535
+    ],
+    "mean": -0.03527,
+    "std": 0.0133
+  },
+  "tes_sign_pattern_qk": {
+    "tes=0.98": {
+      "mean": 0.00239,
+      "std": 0.00104,
+      "sign_consistent": true
+    },
+    "tes=0.99": {
+      "mean": 0.00098,
+      "std": 0.00039,
+      "sign_consistent": true
+    },
+    "tes=1.01": {
+      "mean": 0.00795,
+      "std": 0.01223,
+      "sign_consistent": false
+    },
+    "tes=1.02": {
+      "mean": 0.0075,
+      "std": 0.01264,
+      "sign_consistent": false
+    }
+  },
+  "tes_monotone_fraction_of_seeds": 0.4,
+  "per_seed": {
+    "201": {
+      "environments": {
+        "nominal": {
+          "A:qksvc": {
+            "auc": 0.8187,
+            "ba": 0.75551
+          },
+          "A:rbf_svc": {
+            "auc": 0.81437,
+            "ba": 0.74119
+          },
+          "A:xgboost": {
+            "auc": 0.8582,
+            "ba": 0.7761
+          },
+          "A:lightgbm": {
+            "auc": 0.85553,
+            "ba": 0.76568
+          },
+          "B:xgboost": {
+            "auc": 0.87724,
+            "ba": 0.81063
+          }
+        },
+        "tes=0.98": {
+          "A:qksvc": {
+            "auc": 0.81468,
+            "ba": 0.73834
+          },
+          "A:rbf_svc": {
+            "auc": 0.81373,
+            "ba": 0.74128
+          },
+          "A:xgboost": {
+            "auc": 0.85829,
+            "ba": 0.77706
+          },
+          "A:lightgbm": {
+            "auc": 0.85653,
+            "ba": 0.76693
+          },
+          "B:xgboost": {
+            "auc": 0.87736,
+            "ba": 0.7925
+          }
+        },
+        "tes=0.99": {
+          "A:qksvc": {
+            "auc": 0.8172,
+            "ba": 0.75728
+          },
+          "A:rbf_svc": {
+            "auc": 0.8142,
+            "ba": 0.74162
+          },
+          "A:xgboost": {
+            "auc": 0.85791,
+            "ba": 0.77674
+          },
+          "A:lightgbm": {
+            "auc": 0.85628,
+            "ba": 0.76694
+          },
+          "B:xgboost": {
+            "auc": 0.87894,
+            "ba": 0.81164
+          }
+        },
+        "tes=1.01": {
+          "A:qksvc": {
+            "auc": 0.81999,
+            "ba": 0.75407
+          },
+          "A:rbf_svc": {
+            "auc": 0.81421,
+            "ba": 0.74083
+          },
+          "A:xgboost": {
+            "auc": 0.864,
+            "ba": 0.77597
+          },
+          "A:lightgbm": {
+            "auc": 0.85919,
+            "ba": 0.76505
+          },
+          "B:xgboost": {
+            "auc": 0.87877,
+            "ba": 0.8088
+          }
+        },
+        "tes=1.02": {
+          "A:qksvc": {
+            "auc": 0.82084,
+            "ba": 0.75225
+          },
+          "A:rbf_svc": {
+            "auc": 0.81391,
+            "ba": 0.73991
+          },
+          "A:xgboost": {
+            "auc": 0.86397,
+            "ba": 0.79536
+          },
+          "A:lightgbm": {
+            "auc": 0.86092,
+            "ba": 0.78374
+          },
+          "B:xgboost": {
+            "auc": 0.88124,
+            "ba": 0.80724
+          }
+        },
+        "jes=0.98": {
+          "A:qksvc": {
+            "auc": 0.81764,
+            "ba": 0.71735
+          },
+          "A:rbf_svc": {
+            "auc": 0.81273,
+            "ba": 0.74201
+          },
+          "A:xgboost": {
+            "auc": 0.8587,
+            "ba": 0.77568
+          },
+          "A:lightgbm": {
+            "auc": 0.85596,
+            "ba": 0.76622
+          },
+          "B:xgboost": {
+            "auc": 0.87977,
+            "ba": 0.81192
+          }
+        },
+        "jes=0.99": {
+          "A:qksvc": {
+            "auc": 0.81814,
+            "ba": 0.75632
+          },
+          "A:rbf_svc": {
+            "auc": 0.81487,
+            "ba": 0.74153
+          },
+          "A:xgboost": {
+            "auc": 0.85848,
+            "ba": 0.77572
+          },
+          "A:lightgbm": {
+            "auc": 0.85604,
+            "ba": 0.76599
+          },
+          "B:xgboost": {
+            "auc": 0.87857,
+            "ba": 0.81143
+          }
+        },
+        "jes=1.01": {
+          "A:qksvc": {
+            "auc": 0.81914,
+            "ba": 0.75497
+          },
+          "A:rbf_svc": {
+            "auc": 0.81358,
+            "ba": 0.74065
+          },
+          "A:xgboost": {
+            "auc": 0.85767,
+            "ba": 0.7756
+          },
+          "A:lightgbm": {
+            "auc": 0.85502,
+            "ba": 0.76581
+          },
+          "B:xgboost": {
+            "auc": 0.87683,
+            "ba": 0.81041
+          }
+        },
+        "jes=1.02": {
+          "A:qksvc": {
+            "auc": 0.81913,
+            "ba": 0.75402
+          },
+          "A:rbf_svc": {
+            "auc": 0.81267,
+            "ba": 0.7401
+          },
+          "A:xgboost": {
+            "auc": 0.85664,
+            "ba": 0.77537
+          },
+          "A:lightgbm": {
+            "auc": 0.85462,
+            "ba": 0.76543
+          },
+          "B:xgboost": {
+            "auc": 0.87603,
+            "ba": 0.80935
+          }
+        },
+        "soft_met=1.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.79834,
+            "ba": 0.7557
+          },
+          "A:rbf_svc": {
+            "auc": 0.81499,
+            "ba": 0.74053
+          },
+          "A:xgboost": {
+            "auc": 0.86119,
+            "ba": 0.77699
+          },
+          "A:lightgbm": {
+            "auc": 0.86016,
+            "ba": 0.76577
+          },
+          "B:xgboost": {
+            "auc": 0.87985,
+            "ba": 0.81034
+          }
+        },
+        "soft_met=1.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.80318,
+            "ba": 0.75499
+          },
+          "A:rbf_svc": {
+            "auc": 0.81473,
+            "ba": 0.74088
+          },
+          "A:xgboost": {
+            "auc": 0.86235,
+            "ba": 0.77599
+          },
+          "A:lightgbm": {
+            "auc": 0.86101,
+            "ba": 0.76497
+          },
+          "B:xgboost": {
+            "auc": 0.88279,
+            "ba": 0.81094
+          }
+        },
+        "soft_met=1.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.794,
+            "ba": 0.75613
+          },
+          "A:rbf_svc": {
+            "auc": 0.81655,
+            "ba": 0.74049
+          },
+          "A:xgboost": {
+            "auc": 0.85703,
+            "ba": 0.77598
+          },
+          "A:lightgbm": {
+            "auc": 0.85497,
+            "ba": 0.76532
+          },
+          "B:xgboost": {
+            "auc": 0.87766,
+            "ba": 0.81002
+          }
+        },
+        "soft_met=2.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.78874,
+            "ba": 0.75497
+          },
+          "A:rbf_svc": {
+            "auc": 0.81601,
+            "ba": 0.7404
+          },
+          "A:xgboost": {
+            "auc": 0.86219,
+            "ba": 0.77638
+          },
+          "A:lightgbm": {
+            "auc": 0.86408,
+            "ba": 0.76523
+          },
+          "B:xgboost": {
+            "auc": 0.87842,
+            "ba": 0.80948
+          }
+        },
+        "soft_met=2.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.8053,
+            "ba": 0.75572
+          },
+          "A:rbf_svc": {
+            "auc": 0.81294,
+            "ba": 0.74133
+          },
+          "A:xgboost": {
+            "auc": 0.8626,
+            "ba": 0.77531
+          },
+          "A:lightgbm": {
+            "auc": 0.86215,
+            "ba": 0.7656
+          },
+          "B:xgboost": {
+            "auc": 0.87844,
+            "ba": 0.81019
+          }
+        },
+        "soft_met=2.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.79287,
+            "ba": 0.73503
+          },
+          "A:rbf_svc": {
+            "auc": 0.81661,
+            "ba": 0.73966
+          },
+          "A:xgboost": {
+            "auc": 0.85474,
+            "ba": 0.77561
+          },
+          "A:lightgbm": {
+            "auc": 0.85259,
+            "ba": 0.76503
+          },
+          "B:xgboost": {
+            "auc": 0.87563,
+            "ba": 0.8089
+          }
+        },
+        "soft_met=3.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.78127,
+            "ba": 0.73296
+          },
+          "A:rbf_svc": {
+            "auc": 0.81624,
+            "ba": 0.73953
+          },
+          "A:xgboost": {
+            "auc": 0.86349,
+            "ba": 0.77509
+          },
+          "A:lightgbm": {
+            "auc": 0.86527,
+            "ba": 0.76398
+          },
+          "B:xgboost": {
+            "auc": 0.87904,
+            "ba": 0.80807
+          }
+        },
+        "soft_met=3.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.80939,
+            "ba": 0.75468
+          },
+          "A:rbf_svc": {
+            "auc": 0.81376,
+            "ba": 0.74094
+          },
+          "A:xgboost": {
+            "auc": 0.86201,
+            "ba": 0.77465
+          },
+          "A:lightgbm": {
+            "auc": 0.86148,
+            "ba": 0.76507
+          },
+          "B:xgboost": {
+            "auc": 0.88487,
+            "ba": 0.80917
+          }
+        },
+        "soft_met=3.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.794,
+            "ba": 0.73313
+          },
+          "A:rbf_svc": {
+            "auc": 0.81887,
+            "ba": 0.74012
+          },
+          "A:xgboost": {
+            "auc": 0.85309,
+            "ba": 0.79392
+          },
+          "A:lightgbm": {
+            "auc": 0.85216,
+            "ba": 0.78461
+          },
+          "B:xgboost": {
+            "auc": 0.88124,
+            "ba": 0.80807
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.77839,
+            "ba": 0.72905
+          },
+          "A:rbf_svc": {
+            "auc": 0.818,
+            "ba": 0.73827
+          },
+          "A:xgboost": {
+            "auc": 0.85641,
+            "ba": 0.77277
+          },
+          "A:lightgbm": {
+            "auc": 0.85775,
+            "ba": 0.76071
+          },
+          "B:xgboost": {
+            "auc": 0.87713,
+            "ba": 0.78487
+          }
+        },
+        "soft_met=5.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.81321,
+            "ba": 0.75143
+          },
+          "A:rbf_svc": {
+            "auc": 0.81331,
+            "ba": 0.73887
+          },
+          "A:xgboost": {
+            "auc": 0.85644,
+            "ba": 0.7732
+          },
+          "A:lightgbm": {
+            "auc": 0.85708,
+            "ba": 0.76264
+          },
+          "B:xgboost": {
+            "auc": 0.87968,
+            "ba": 0.78597
+          }
+        },
+        "soft_met=5.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.7913,
+            "ba": 0.727
+          },
+          "A:rbf_svc": {
+            "auc": 0.81991,
+            "ba": 0.75757
+          },
+          "A:xgboost": {
+            "auc": 0.8571,
+            "ba": 0.79199
+          },
+          "A:lightgbm": {
+            "auc": 0.85966,
+            "ba": 0.78085
+          },
+          "B:xgboost": {
+            "auc": 0.87909,
+            "ba": 0.8048
+          }
+        },
+        "ttbar_scale=0.96": {
+          "A:qksvc": {
+            "auc": 0.81909,
+            "ba": 0.75606
+          },
+          "A:rbf_svc": {
+            "auc": 0.81477,
+            "ba": 0.74183
+          },
+          "A:xgboost": {
+            "auc": 0.85849,
+            "ba": 0.7763
+          },
+          "A:lightgbm": {
+            "auc": 0.85588,
+            "ba": 0.76599
+          },
+          "B:xgboost": {
+            "auc": 0.87739,
+            "ba": 0.81077
+          }
+        },
+        "ttbar_scale=0.98": {
+          "A:qksvc": {
+            "auc": 0.81889,
+            "ba": 0.75578
+          },
+          "A:rbf_svc": {
+            "auc": 0.81457,
+            "ba": 0.74151
+          },
+          "A:xgboost": {
+            "auc": 0.85834,
+            "ba": 0.7762
+          },
+          "A:lightgbm": {
+            "auc": 0.8557,
+            "ba": 0.76584
+          },
+          "B:xgboost": {
+            "auc": 0.87731,
+            "ba": 0.8107
+          }
+        },
+        "ttbar_scale=1.02": {
+          "A:qksvc": {
+            "auc": 0.81851,
+            "ba": 0.75523
+          },
+          "A:rbf_svc": {
+            "auc": 0.81416,
+            "ba": 0.74086
+          },
+          "A:xgboost": {
+            "auc": 0.85805,
+            "ba": 0.776
+          },
+          "A:lightgbm": {
+            "auc": 0.85535,
+            "ba": 0.76552
+          },
+          "B:xgboost": {
+            "auc": 0.87716,
+            "ba": 0.81055
+          }
+        },
+        "ttbar_scale=1.04": {
+          "A:qksvc": {
+            "auc": 0.81831,
+            "ba": 0.75496
+          },
+          "A:rbf_svc": {
+            "auc": 0.81396,
+            "ba": 0.74054
+          },
+          "A:xgboost": {
+            "auc": 0.8579,
+            "ba": 0.7759
+          },
+          "A:lightgbm": {
+            "auc": 0.85518,
+            "ba": 0.76537
+          },
+          "B:xgboost": {
+            "auc": 0.87709,
+            "ba": 0.81048
+          }
+        },
+        "diboson_scale=0.5": {
+          "A:qksvc": {
+            "auc": 0.81911,
+            "ba": 0.75602
+          },
+          "A:rbf_svc": {
+            "auc": 0.81481,
+            "ba": 0.74172
+          },
+          "A:xgboost": {
+            "auc": 0.85857,
+            "ba": 0.77638
+          },
+          "A:lightgbm": {
+            "auc": 0.8559,
+            "ba": 0.76604
+          },
+          "B:xgboost": {
+            "auc": 0.87755,
+            "ba": 0.81103
+          }
+        },
+        "diboson_scale=0.75": {
+          "A:qksvc": {
+            "auc": 0.8189,
+            "ba": 0.75576
+          },
+          "A:rbf_svc": {
+            "auc": 0.81459,
+            "ba": 0.74145
+          },
+          "A:xgboost": {
+            "auc": 0.85838,
+            "ba": 0.77624
+          },
+          "A:lightgbm": {
+            "auc": 0.85571,
+            "ba": 0.76586
+          },
+          "B:xgboost": {
+            "auc": 0.87739,
+            "ba": 0.81083
+          }
+        },
+        "diboson_scale=1.25": {
+          "A:qksvc": {
+            "auc": 0.81849,
+            "ba": 0.75525
+          },
+          "A:rbf_svc": {
+            "auc": 0.81415,
+            "ba": 0.74092
+          },
+          "A:xgboost": {
+            "auc": 0.85801,
+            "ba": 0.77596
+          },
+          "A:lightgbm": {
+            "auc": 0.85534,
+            "ba": 0.7655
+          },
+          "B:xgboost": {
+            "auc": 0.87708,
+            "ba": 0.81042
+          }
+        },
+        "diboson_scale=1.5": {
+          "A:qksvc": {
+            "auc": 0.81829,
+            "ba": 0.755
+          },
+          "A:rbf_svc": {
+            "auc": 0.81393,
+            "ba": 0.74066
+          },
+          "A:xgboost": {
+            "auc": 0.85783,
+            "ba": 0.77582
+          },
+          "A:lightgbm": {
+            "auc": 0.85516,
+            "ba": 0.76532
+          },
+          "B:xgboost": {
+            "auc": 0.87693,
+            "ba": 0.81022
+          }
+        },
+        "bkg_scale=0.998": {
+          "A:qksvc": {
+            "auc": 0.8187,
+            "ba": 0.75551
+          },
+          "A:rbf_svc": {
+            "auc": 0.81437,
+            "ba": 0.74119
+          },
+          "A:xgboost": {
+            "auc": 0.8582,
+            "ba": 0.7761
+          },
+          "A:lightgbm": {
+            "auc": 0.85553,
+            "ba": 0.76568
+          },
+          "B:xgboost": {
+            "auc": 0.87724,
+            "ba": 0.81063
+          }
+        },
+        "bkg_scale=0.999": {
+          "A:qksvc": {
+            "auc": 0.8187,
+            "ba": 0.75551
+          },
+          "A:rbf_svc": {
+            "auc": 0.81437,
+            "ba": 0.74119
+          },
+          "A:xgboost": {
+            "auc": 0.8582,
+            "ba": 0.7761
+          },
+          "A:lightgbm": {
+            "auc": 0.85553,
+            "ba": 0.76568
+          },
+          "B:xgboost": {
+            "auc": 0.87724,
+            "ba": 0.81063
+          }
+        },
+        "bkg_scale=1.001": {
+          "A:qksvc": {
+            "auc": 0.8187,
+            "ba": 0.75551
+          },
+          "A:rbf_svc": {
+            "auc": 0.81437,
+            "ba": 0.74119
+          },
+          "A:xgboost": {
+            "auc": 0.8582,
+            "ba": 0.7761
+          },
+          "A:lightgbm": {
+            "auc": 0.85553,
+            "ba": 0.76568
+          },
+          "B:xgboost": {
+            "auc": 0.87724,
+            "ba": 0.81063
+          }
+        },
+        "bkg_scale=1.002": {
+          "A:qksvc": {
+            "auc": 0.8187,
+            "ba": 0.75551
+          },
+          "A:rbf_svc": {
+            "auc": 0.81437,
+            "ba": 0.74119
+          },
+          "A:xgboost": {
+            "auc": 0.8582,
+            "ba": 0.7761
+          },
+          "A:lightgbm": {
+            "auc": 0.85553,
+            "ba": 0.76568
+          },
+          "B:xgboost": {
+            "auc": 0.87724,
+            "ba": 0.81063
+          }
+        },
+        "combo0": {
+          "A:qksvc": {
+            "auc": 0.8133,
+            "ba": 0.71909
+          },
+          "A:rbf_svc": {
+            "auc": 0.81502,
+            "ba": 0.74178
+          },
+          "A:xgboost": {
+            "auc": 0.85948,
+            "ba": 0.77692
+          },
+          "A:lightgbm": {
+            "auc": 0.85702,
+            "ba": 0.76768
+          },
+          "B:xgboost": {
+            "auc": 0.87945,
+            "ba": 0.79384
+          }
+        },
+        "combo1": {
+          "A:qksvc": {
+            "auc": 0.82137,
+            "ba": 0.75066
+          },
+          "A:rbf_svc": {
+            "auc": 0.81216,
+            "ba": 0.73945
+          },
+          "A:xgboost": {
+            "auc": 0.86244,
+            "ba": 0.7949
+          },
+          "A:lightgbm": {
+            "auc": 0.86034,
+            "ba": 0.78279
+          },
+          "B:xgboost": {
+            "auc": 0.87994,
+            "ba": 0.80626
+          }
+        },
+        "combo2/seed11": {
+          "A:qksvc": {
+            "auc": 0.77547,
+            "ba": 0.73336
+          },
+          "A:rbf_svc": {
+            "auc": 0.81369,
+            "ba": 0.73841
+          },
+          "A:xgboost": {
+            "auc": 0.85926,
+            "ba": 0.75444
+          },
+          "A:lightgbm": {
+            "auc": 0.8635,
+            "ba": 0.78465
+          },
+          "B:xgboost": {
+            "auc": 0.8716,
+            "ba": 0.78995
+          }
+        },
+        "combo2/seed12": {
+          "A:qksvc": {
+            "auc": 0.80406,
+            "ba": 0.75539
+          },
+          "A:rbf_svc": {
+            "auc": 0.814,
+            "ba": 0.73961
+          },
+          "A:xgboost": {
+            "auc": 0.86126,
+            "ba": 0.77549
+          },
+          "A:lightgbm": {
+            "auc": 0.8619,
+            "ba": 0.76584
+          },
+          "B:xgboost": {
+            "auc": 0.88147,
+            "ba": 0.78941
+          }
+        },
+        "combo2/seed13": {
+          "A:qksvc": {
+            "auc": 0.78547,
+            "ba": 0.75421
+          },
+          "A:rbf_svc": {
+            "auc": 0.81702,
+            "ba": 0.73863
+          },
+          "A:xgboost": {
+            "auc": 0.85211,
+            "ba": 0.77495
+          },
+          "A:lightgbm": {
+            "auc": 0.84994,
+            "ba": 0.76505
+          },
+          "B:xgboost": {
+            "auc": 0.87599,
+            "ba": 0.80892
+          }
+        },
+        "combo3/seed11": {
+          "A:qksvc": {
+            "auc": 0.77051,
+            "ba": 0.71168
+          },
+          "A:rbf_svc": {
+            "auc": 0.81681,
+            "ba": 0.73782
+          },
+          "A:xgboost": {
+            "auc": 0.85618,
+            "ba": 0.7522
+          },
+          "A:lightgbm": {
+            "auc": 0.8575,
+            "ba": 0.76249
+          },
+          "B:xgboost": {
+            "auc": 0.87287,
+            "ba": 0.76792
+          }
+        },
+        "combo3/seed12": {
+          "A:qksvc": {
+            "auc": 0.80522,
+            "ba": 0.75374
+          },
+          "A:rbf_svc": {
+            "auc": 0.81274,
+            "ba": 0.73811
+          },
+          "A:xgboost": {
+            "auc": 0.85802,
+            "ba": 0.77384
+          },
+          "A:lightgbm": {
+            "auc": 0.8572,
+            "ba": 0.7645
+          },
+          "B:xgboost": {
+            "auc": 0.87855,
+            "ba": 0.78826
+          }
+        },
+        "combo3/seed13": {
+          "A:qksvc": {
+            "auc": 0.78193,
+            "ba": 0.71099
+          },
+          "A:rbf_svc": {
+            "auc": 0.81997,
+            "ba": 0.75677
+          },
+          "A:xgboost": {
+            "auc": 0.85666,
+            "ba": 0.79222
+          },
+          "A:lightgbm": {
+            "auc": 0.85957,
+            "ba": 0.78361
+          },
+          "B:xgboost": {
+            "auc": 0.87796,
+            "ba": 0.80733
+          }
+        }
+      }
+    },
+    "202": {
+      "environments": {
+        "nominal": {
+          "A:qksvc": {
+            "auc": 0.84426,
+            "ba": 0.76084
+          },
+          "A:rbf_svc": {
+            "auc": 0.83552,
+            "ba": 0.77066
+          },
+          "A:xgboost": {
+            "auc": 0.89117,
+            "ba": 0.82296
+          },
+          "A:lightgbm": {
+            "auc": 0.89077,
+            "ba": 0.82073
+          },
+          "B:xgboost": {
+            "auc": 0.90386,
+            "ba": 0.83484
+          }
+        },
+        "tes=0.98": {
+          "A:qksvc": {
+            "auc": 0.84172,
+            "ba": 0.76176
+          },
+          "A:rbf_svc": {
+            "auc": 0.83239,
+            "ba": 0.77052
+          },
+          "A:xgboost": {
+            "auc": 0.8922,
+            "ba": 0.82524
+          },
+          "A:lightgbm": {
+            "auc": 0.89366,
+            "ba": 0.84239
+          },
+          "B:xgboost": {
+            "auc": 0.90543,
+            "ba": 0.81633
+          }
+        },
+        "tes=0.99": {
+          "A:qksvc": {
+            "auc": 0.84325,
+            "ba": 0.78104
+          },
+          "A:rbf_svc": {
+            "auc": 0.83395,
+            "ba": 0.77088
+          },
+          "A:xgboost": {
+            "auc": 0.89212,
+            "ba": 0.82396
+          },
+          "A:lightgbm": {
+            "auc": 0.89161,
+            "ba": 0.80158
+          },
+          "B:xgboost": {
+            "auc": 0.90437,
+            "ba": 0.83593
+          }
+        },
+        "tes=1.01": {
+          "A:qksvc": {
+            "auc": 0.82655,
+            "ba": 0.74644
+          },
+          "A:rbf_svc": {
+            "auc": 0.8124,
+            "ba": 0.75588
+          },
+          "A:xgboost": {
+            "auc": 0.86003,
+            "ba": 0.8039
+          },
+          "A:lightgbm": {
+            "auc": 0.85951,
+            "ba": 0.80397
+          },
+          "B:xgboost": {
+            "auc": 0.87459,
+            "ba": 0.83782
+          }
+        },
+        "tes=1.02": {
+          "A:qksvc": {
+            "auc": 0.82744,
+            "ba": 0.7462
+          },
+          "A:rbf_svc": {
+            "auc": 0.81239,
+            "ba": 0.75557
+          },
+          "A:xgboost": {
+            "auc": 0.86285,
+            "ba": 0.80124
+          },
+          "A:lightgbm": {
+            "auc": 0.85797,
+            "ba": 0.80269
+          },
+          "B:xgboost": {
+            "auc": 0.87532,
+            "ba": 0.83602
+          }
+        },
+        "jes=0.98": {
+          "A:qksvc": {
+            "auc": 0.84317,
+            "ba": 0.76326
+          },
+          "A:rbf_svc": {
+            "auc": 0.83723,
+            "ba": 0.77204
+          },
+          "A:xgboost": {
+            "auc": 0.89034,
+            "ba": 0.82447
+          },
+          "A:lightgbm": {
+            "auc": 0.89226,
+            "ba": 0.82223
+          },
+          "B:xgboost": {
+            "auc": 0.90488,
+            "ba": 0.83565
+          }
+        },
+        "jes=0.99": {
+          "A:qksvc": {
+            "auc": 0.8434,
+            "ba": 0.76187
+          },
+          "A:rbf_svc": {
+            "auc": 0.83636,
+            "ba": 0.77123
+          },
+          "A:xgboost": {
+            "auc": 0.89014,
+            "ba": 0.82399
+          },
+          "A:lightgbm": {
+            "auc": 0.89188,
+            "ba": 0.82137
+          },
+          "B:xgboost": {
+            "auc": 0.90384,
+            "ba": 0.8356
+          }
+        },
+        "jes=1.01": {
+          "A:qksvc": {
+            "auc": 0.84521,
+            "ba": 0.78055
+          },
+          "A:rbf_svc": {
+            "auc": 0.83397,
+            "ba": 0.77012
+          },
+          "A:xgboost": {
+            "auc": 0.8912,
+            "ba": 0.8223
+          },
+          "A:lightgbm": {
+            "auc": 0.89081,
+            "ba": 0.82037
+          },
+          "B:xgboost": {
+            "auc": 0.90457,
+            "ba": 0.83442
+          }
+        },
+        "jes=1.02": {
+          "A:qksvc": {
+            "auc": 0.84875,
+            "ba": 0.78008
+          },
+          "A:rbf_svc": {
+            "auc": 0.83526,
+            "ba": 0.76933
+          },
+          "A:xgboost": {
+            "auc": 0.89135,
+            "ba": 0.82163
+          },
+          "A:lightgbm": {
+            "auc": 0.89205,
+            "ba": 0.81983
+          },
+          "B:xgboost": {
+            "auc": 0.90382,
+            "ba": 0.83361
+          }
+        },
+        "soft_met=1.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.83753,
+            "ba": 0.76095
+          },
+          "A:rbf_svc": {
+            "auc": 0.83423,
+            "ba": 0.77109
+          },
+          "A:xgboost": {
+            "auc": 0.89049,
+            "ba": 0.82213
+          },
+          "A:lightgbm": {
+            "auc": 0.88682,
+            "ba": 0.80069
+          },
+          "B:xgboost": {
+            "auc": 0.90423,
+            "ba": 0.8547
+          }
+        },
+        "soft_met=1.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.84143,
+            "ba": 0.74062
+          },
+          "A:rbf_svc": {
+            "auc": 0.83357,
+            "ba": 0.77019
+          },
+          "A:xgboost": {
+            "auc": 0.89243,
+            "ba": 0.82187
+          },
+          "A:lightgbm": {
+            "auc": 0.8911,
+            "ba": 0.81973
+          },
+          "B:xgboost": {
+            "auc": 0.90455,
+            "ba": 0.85457
+          }
+        },
+        "soft_met=1.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.82045,
+            "ba": 0.76073
+          },
+          "A:rbf_svc": {
+            "auc": 0.83714,
+            "ba": 0.77052
+          },
+          "A:xgboost": {
+            "auc": 0.89168,
+            "ba": 0.8213
+          },
+          "A:lightgbm": {
+            "auc": 0.89099,
+            "ba": 0.81952
+          },
+          "B:xgboost": {
+            "auc": 0.90451,
+            "ba": 0.85465
+          }
+        },
+        "soft_met=2.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.83467,
+            "ba": 0.7799
+          },
+          "A:rbf_svc": {
+            "auc": 0.83316,
+            "ba": 0.77026
+          },
+          "A:xgboost": {
+            "auc": 0.88714,
+            "ba": 0.8205
+          },
+          "A:lightgbm": {
+            "auc": 0.88411,
+            "ba": 0.79916
+          },
+          "B:xgboost": {
+            "auc": 0.9028,
+            "ba": 0.83382
+          }
+        },
+        "soft_met=2.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.83486,
+            "ba": 0.73906
+          },
+          "A:rbf_svc": {
+            "auc": 0.83123,
+            "ba": 0.76992
+          },
+          "A:xgboost": {
+            "auc": 0.89297,
+            "ba": 0.82013
+          },
+          "A:lightgbm": {
+            "auc": 0.8906,
+            "ba": 0.81811
+          },
+          "B:xgboost": {
+            "auc": 0.90662,
+            "ba": 0.85417
+          }
+        },
+        "soft_met=2.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.82388,
+            "ba": 0.75929
+          },
+          "A:rbf_svc": {
+            "auc": 0.83071,
+            "ba": 0.77005
+          },
+          "A:xgboost": {
+            "auc": 0.88936,
+            "ba": 0.81954
+          },
+          "A:lightgbm": {
+            "auc": 0.88958,
+            "ba": 0.81777
+          },
+          "B:xgboost": {
+            "auc": 0.8957,
+            "ba": 0.85368
+          }
+        },
+        "soft_met=3.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.83403,
+            "ba": 0.75936
+          },
+          "A:rbf_svc": {
+            "auc": 0.83177,
+            "ba": 0.76935
+          },
+          "A:xgboost": {
+            "auc": 0.88498,
+            "ba": 0.81989
+          },
+          "A:lightgbm": {
+            "auc": 0.87958,
+            "ba": 0.79781
+          },
+          "B:xgboost": {
+            "auc": 0.90232,
+            "ba": 0.83284
+          }
+        },
+        "soft_met=3.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.83742,
+            "ba": 0.73818
+          },
+          "A:rbf_svc": {
+            "auc": 0.82758,
+            "ba": 0.76944
+          },
+          "A:xgboost": {
+            "auc": 0.89215,
+            "ba": 0.81822
+          },
+          "A:lightgbm": {
+            "auc": 0.8906,
+            "ba": 0.81703
+          },
+          "B:xgboost": {
+            "auc": 0.90555,
+            "ba": 0.8531
+          }
+        },
+        "soft_met=3.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.81761,
+            "ba": 0.73846
+          },
+          "A:rbf_svc": {
+            "auc": 0.82883,
+            "ba": 0.74914
+          },
+          "A:xgboost": {
+            "auc": 0.88658,
+            "ba": 0.81863
+          },
+          "A:lightgbm": {
+            "auc": 0.88564,
+            "ba": 0.81682
+          },
+          "B:xgboost": {
+            "auc": 0.90043,
+            "ba": 0.85301
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.80834,
+            "ba": 0.71402
+          },
+          "A:rbf_svc": {
+            "auc": 0.82332,
+            "ba": 0.76667
+          },
+          "A:xgboost": {
+            "auc": 0.87014,
+            "ba": 0.79306
+          },
+          "A:lightgbm": {
+            "auc": 0.85821,
+            "ba": 0.73319
+          },
+          "B:xgboost": {
+            "auc": 0.89654,
+            "ba": 0.83057
+          }
+        },
+        "soft_met=5.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.8345,
+            "ba": 0.75433
+          },
+          "A:rbf_svc": {
+            "auc": 0.81578,
+            "ba": 0.72681
+          },
+          "A:xgboost": {
+            "auc": 0.87663,
+            "ba": 0.79374
+          },
+          "A:lightgbm": {
+            "auc": 0.87333,
+            "ba": 0.79301
+          },
+          "B:xgboost": {
+            "auc": 0.90074,
+            "ba": 0.84953
+          }
+        },
+        "soft_met=5.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.82506,
+            "ba": 0.75381
+          },
+          "A:rbf_svc": {
+            "auc": 0.82579,
+            "ba": 0.74476
+          },
+          "A:xgboost": {
+            "auc": 0.88266,
+            "ba": 0.81273
+          },
+          "A:lightgbm": {
+            "auc": 0.88099,
+            "ba": 0.81306
+          },
+          "B:xgboost": {
+            "auc": 0.89884,
+            "ba": 0.84964
+          }
+        },
+        "ttbar_scale=0.96": {
+          "A:qksvc": {
+            "auc": 0.84458,
+            "ba": 0.76119
+          },
+          "A:rbf_svc": {
+            "auc": 0.83584,
+            "ba": 0.77128
+          },
+          "A:xgboost": {
+            "auc": 0.89141,
+            "ba": 0.82324
+          },
+          "A:lightgbm": {
+            "auc": 0.89105,
+            "ba": 0.82103
+          },
+          "B:xgboost": {
+            "auc": 0.90401,
+            "ba": 0.83499
+          }
+        },
+        "ttbar_scale=0.98": {
+          "A:qksvc": {
+            "auc": 0.84442,
+            "ba": 0.76102
+          },
+          "A:rbf_svc": {
+            "auc": 0.83568,
+            "ba": 0.77097
+          },
+          "A:xgboost": {
+            "auc": 0.89129,
+            "ba": 0.8231
+          },
+          "A:lightgbm": {
+            "auc": 0.89091,
+            "ba": 0.82088
+          },
+          "B:xgboost": {
+            "auc": 0.90394,
+            "ba": 0.83491
+          }
+        },
+        "ttbar_scale=1.02": {
+          "A:qksvc": {
+            "auc": 0.8441,
+            "ba": 0.76066
+          },
+          "A:rbf_svc": {
+            "auc": 0.83536,
+            "ba": 0.77034
+          },
+          "A:xgboost": {
+            "auc": 0.89105,
+            "ba": 0.82282
+          },
+          "A:lightgbm": {
+            "auc": 0.89062,
+            "ba": 0.82058
+          },
+          "B:xgboost": {
+            "auc": 0.90379,
+            "ba": 0.83476
+          }
+        },
+        "ttbar_scale=1.04": {
+          "A:qksvc": {
+            "auc": 0.84394,
+            "ba": 0.76049
+          },
+          "A:rbf_svc": {
+            "auc": 0.8352,
+            "ba": 0.77003
+          },
+          "A:xgboost": {
+            "auc": 0.89093,
+            "ba": 0.82268
+          },
+          "A:lightgbm": {
+            "auc": 0.89048,
+            "ba": 0.82043
+          },
+          "B:xgboost": {
+            "auc": 0.90371,
+            "ba": 0.83469
+          }
+        },
+        "diboson_scale=0.5": {
+          "A:qksvc": {
+            "auc": 0.84452,
+            "ba": 0.76111
+          },
+          "A:rbf_svc": {
+            "auc": 0.83584,
+            "ba": 0.77114
+          },
+          "A:xgboost": {
+            "auc": 0.89144,
+            "ba": 0.82321
+          },
+          "A:lightgbm": {
+            "auc": 0.89107,
+            "ba": 0.82099
+          },
+          "B:xgboost": {
+            "auc": 0.90415,
+            "ba": 0.83514
+          }
+        },
+        "diboson_scale=0.75": {
+          "A:qksvc": {
+            "auc": 0.84439,
+            "ba": 0.76097
+          },
+          "A:rbf_svc": {
+            "auc": 0.83568,
+            "ba": 0.7709
+          },
+          "A:xgboost": {
+            "auc": 0.8913,
+            "ba": 0.82308
+          },
+          "A:lightgbm": {
+            "auc": 0.89092,
+            "ba": 0.82086
+          },
+          "B:xgboost": {
+            "auc": 0.90401,
+            "ba": 0.83499
+          }
+        },
+        "diboson_scale=1.25": {
+          "A:qksvc": {
+            "auc": 0.84413,
+            "ba": 0.7607
+          },
+          "A:rbf_svc": {
+            "auc": 0.83536,
+            "ba": 0.77041
+          },
+          "A:xgboost": {
+            "auc": 0.89103,
+            "ba": 0.82284
+          },
+          "A:lightgbm": {
+            "auc": 0.89061,
+            "ba": 0.82059
+          },
+          "B:xgboost": {
+            "auc": 0.90372,
+            "ba": 0.83469
+          }
+        },
+        "diboson_scale=1.5": {
+          "A:qksvc": {
+            "auc": 0.844,
+            "ba": 0.76057
+          },
+          "A:rbf_svc": {
+            "auc": 0.8352,
+            "ba": 0.77017
+          },
+          "A:xgboost": {
+            "auc": 0.8909,
+            "ba": 0.82271
+          },
+          "A:lightgbm": {
+            "auc": 0.89046,
+            "ba": 0.82046
+          },
+          "B:xgboost": {
+            "auc": 0.90357,
+            "ba": 0.83454
+          }
+        },
+        "bkg_scale=0.998": {
+          "A:qksvc": {
+            "auc": 0.84426,
+            "ba": 0.76084
+          },
+          "A:rbf_svc": {
+            "auc": 0.83552,
+            "ba": 0.77066
+          },
+          "A:xgboost": {
+            "auc": 0.89117,
+            "ba": 0.82296
+          },
+          "A:lightgbm": {
+            "auc": 0.89077,
+            "ba": 0.82073
+          },
+          "B:xgboost": {
+            "auc": 0.90386,
+            "ba": 0.83484
+          }
+        },
+        "bkg_scale=0.999": {
+          "A:qksvc": {
+            "auc": 0.84426,
+            "ba": 0.76084
+          },
+          "A:rbf_svc": {
+            "auc": 0.83552,
+            "ba": 0.77066
+          },
+          "A:xgboost": {
+            "auc": 0.89117,
+            "ba": 0.82296
+          },
+          "A:lightgbm": {
+            "auc": 0.89077,
+            "ba": 0.82073
+          },
+          "B:xgboost": {
+            "auc": 0.90386,
+            "ba": 0.83484
+          }
+        },
+        "bkg_scale=1.001": {
+          "A:qksvc": {
+            "auc": 0.84426,
+            "ba": 0.76084
+          },
+          "A:rbf_svc": {
+            "auc": 0.83552,
+            "ba": 0.77066
+          },
+          "A:xgboost": {
+            "auc": 0.89117,
+            "ba": 0.82296
+          },
+          "A:lightgbm": {
+            "auc": 0.89077,
+            "ba": 0.82073
+          },
+          "B:xgboost": {
+            "auc": 0.90386,
+            "ba": 0.83484
+          }
+        },
+        "bkg_scale=1.002": {
+          "A:qksvc": {
+            "auc": 0.84426,
+            "ba": 0.76084
+          },
+          "A:rbf_svc": {
+            "auc": 0.83552,
+            "ba": 0.77066
+          },
+          "A:xgboost": {
+            "auc": 0.89117,
+            "ba": 0.82296
+          },
+          "A:lightgbm": {
+            "auc": 0.89077,
+            "ba": 0.82073
+          },
+          "B:xgboost": {
+            "auc": 0.90386,
+            "ba": 0.83484
+          }
+        },
+        "combo0": {
+          "A:qksvc": {
+            "auc": 0.83937,
+            "ba": 0.74351
+          },
+          "A:rbf_svc": {
+            "auc": 0.83234,
+            "ba": 0.77162
+          },
+          "A:xgboost": {
+            "auc": 0.89176,
+            "ba": 0.82704
+          },
+          "A:lightgbm": {
+            "auc": 0.89294,
+            "ba": 0.82389
+          },
+          "B:xgboost": {
+            "auc": 0.90608,
+            "ba": 0.83681
+          }
+        },
+        "combo1": {
+          "A:qksvc": {
+            "auc": 0.82992,
+            "ba": 0.745
+          },
+          "A:rbf_svc": {
+            "auc": 0.8119,
+            "ba": 0.75399
+          },
+          "A:xgboost": {
+            "auc": 0.86363,
+            "ba": 0.79918
+          },
+          "A:lightgbm": {
+            "auc": 0.85801,
+            "ba": 0.80159
+          },
+          "B:xgboost": {
+            "auc": 0.87497,
+            "ba": 0.83504
+          }
+        },
+        "combo2/seed11": {
+          "A:qksvc": {
+            "auc": 0.83184,
+            "ba": 0.75848
+          },
+          "A:rbf_svc": {
+            "auc": 0.83025,
+            "ba": 0.76832
+          },
+          "A:xgboost": {
+            "auc": 0.88737,
+            "ba": 0.82135
+          },
+          "A:lightgbm": {
+            "auc": 0.88372,
+            "ba": 0.7793
+          },
+          "B:xgboost": {
+            "auc": 0.90196,
+            "ba": 0.8339
+          }
+        },
+        "combo2/seed12": {
+          "A:qksvc": {
+            "auc": 0.84403,
+            "ba": 0.77643
+          },
+          "A:rbf_svc": {
+            "auc": 0.82039,
+            "ba": 0.76854
+          },
+          "A:xgboost": {
+            "auc": 0.88947,
+            "ba": 0.8196
+          },
+          "A:lightgbm": {
+            "auc": 0.88642,
+            "ba": 0.79847
+          },
+          "B:xgboost": {
+            "auc": 0.90605,
+            "ba": 0.81355
+          }
+        },
+        "combo2/seed13": {
+          "A:qksvc": {
+            "auc": 0.82226,
+            "ba": 0.75694
+          },
+          "A:rbf_svc": {
+            "auc": 0.8243,
+            "ba": 0.74847
+          },
+          "A:xgboost": {
+            "auc": 0.88936,
+            "ba": 0.82035
+          },
+          "A:lightgbm": {
+            "auc": 0.88789,
+            "ba": 0.8176
+          },
+          "B:xgboost": {
+            "auc": 0.90054,
+            "ba": 0.85383
+          }
+        },
+        "combo3/seed11": {
+          "A:qksvc": {
+            "auc": 0.79029,
+            "ba": 0.69591
+          },
+          "A:rbf_svc": {
+            "auc": 0.82234,
+            "ba": 0.74696
+          },
+          "A:xgboost": {
+            "auc": 0.86625,
+            "ba": 0.79923
+          },
+          "A:lightgbm": {
+            "auc": 0.85796,
+            "ba": 0.73634
+          },
+          "B:xgboost": {
+            "auc": 0.89841,
+            "ba": 0.83297
+          }
+        },
+        "combo3/seed12": {
+          "A:qksvc": {
+            "auc": 0.83122,
+            "ba": 0.73486
+          },
+          "A:rbf_svc": {
+            "auc": 0.81319,
+            "ba": 0.72701
+          },
+          "A:xgboost": {
+            "auc": 0.87769,
+            "ba": 0.79721
+          },
+          "A:lightgbm": {
+            "auc": 0.87222,
+            "ba": 0.79567
+          },
+          "B:xgboost": {
+            "auc": 0.90199,
+            "ba": 0.83187
+          }
+        },
+        "combo3/seed13": {
+          "A:qksvc": {
+            "auc": 0.82331,
+            "ba": 0.7555
+          },
+          "A:rbf_svc": {
+            "auc": 0.82404,
+            "ba": 0.74469
+          },
+          "A:xgboost": {
+            "auc": 0.88499,
+            "ba": 0.8168
+          },
+          "A:lightgbm": {
+            "auc": 0.88402,
+            "ba": 0.81569
+          },
+          "B:xgboost": {
+            "auc": 0.89919,
+            "ba": 0.85199
+          }
+        }
+      }
+    },
+    "203": {
+      "environments": {
+        "nominal": {
+          "A:qksvc": {
+            "auc": 0.87264,
+            "ba": 0.79071
+          },
+          "A:rbf_svc": {
+            "auc": 0.81216,
+            "ba": 0.72836
+          },
+          "A:xgboost": {
+            "auc": 0.90129,
+            "ba": 0.81051
+          },
+          "A:lightgbm": {
+            "auc": 0.8963,
+            "ba": 0.84347
+          },
+          "B:xgboost": {
+            "auc": 0.92007,
+            "ba": 0.84683
+          }
+        },
+        "tes=0.98": {
+          "A:qksvc": {
+            "auc": 0.87106,
+            "ba": 0.79439
+          },
+          "A:rbf_svc": {
+            "auc": 0.81128,
+            "ba": 0.73221
+          },
+          "A:xgboost": {
+            "auc": 0.89933,
+            "ba": 0.8165
+          },
+          "A:lightgbm": {
+            "auc": 0.89342,
+            "ba": 0.8477
+          },
+          "B:xgboost": {
+            "auc": 0.91874,
+            "ba": 0.85092
+          }
+        },
+        "tes=0.99": {
+          "A:qksvc": {
+            "auc": 0.87204,
+            "ba": 0.7925
+          },
+          "A:rbf_svc": {
+            "auc": 0.81184,
+            "ba": 0.73037
+          },
+          "A:xgboost": {
+            "auc": 0.90207,
+            "ba": 0.813
+          },
+          "A:lightgbm": {
+            "auc": 0.89768,
+            "ba": 0.8453
+          },
+          "B:xgboost": {
+            "auc": 0.92125,
+            "ba": 0.84859
+          }
+        },
+        "tes=1.01": {
+          "A:qksvc": {
+            "auc": 0.84819,
+            "ba": 0.77308
+          },
+          "A:rbf_svc": {
+            "auc": 0.78891,
+            "ba": 0.71068
+          },
+          "A:xgboost": {
+            "auc": 0.86873,
+            "ba": 0.78999
+          },
+          "A:lightgbm": {
+            "auc": 0.86567,
+            "ba": 0.82452
+          },
+          "B:xgboost": {
+            "auc": 0.88679,
+            "ba": 0.82808
+          }
+        },
+        "tes=1.02": {
+          "A:qksvc": {
+            "auc": 0.84757,
+            "ba": 0.77041
+          },
+          "A:rbf_svc": {
+            "auc": 0.78905,
+            "ba": 0.70839
+          },
+          "A:xgboost": {
+            "auc": 0.87009,
+            "ba": 0.78627
+          },
+          "A:lightgbm": {
+            "auc": 0.86492,
+            "ba": 0.82268
+          },
+          "B:xgboost": {
+            "auc": 0.88773,
+            "ba": 0.82583
+          }
+        },
+        "jes=0.98": {
+          "A:qksvc": {
+            "auc": 0.87753,
+            "ba": 0.81204
+          },
+          "A:rbf_svc": {
+            "auc": 0.81322,
+            "ba": 0.72997
+          },
+          "A:xgboost": {
+            "auc": 0.90153,
+            "ba": 0.81232
+          },
+          "A:lightgbm": {
+            "auc": 0.89613,
+            "ba": 0.84429
+          },
+          "B:xgboost": {
+            "auc": 0.92166,
+            "ba": 0.84945
+          }
+        },
+        "jes=0.99": {
+          "A:qksvc": {
+            "auc": 0.87471,
+            "ba": 0.7917
+          },
+          "A:rbf_svc": {
+            "auc": 0.81274,
+            "ba": 0.72925
+          },
+          "A:xgboost": {
+            "auc": 0.90202,
+            "ba": 0.81128
+          },
+          "A:lightgbm": {
+            "auc": 0.89769,
+            "ba": 0.84417
+          },
+          "B:xgboost": {
+            "auc": 0.92084,
+            "ba": 0.84851
+          }
+        },
+        "jes=1.01": {
+          "A:qksvc": {
+            "auc": 0.87141,
+            "ba": 0.78954
+          },
+          "A:rbf_svc": {
+            "auc": 0.81158,
+            "ba": 0.72745
+          },
+          "A:xgboost": {
+            "auc": 0.90031,
+            "ba": 0.80946
+          },
+          "A:lightgbm": {
+            "auc": 0.89596,
+            "ba": 0.84309
+          },
+          "B:xgboost": {
+            "auc": 0.91973,
+            "ba": 0.84544
+          }
+        },
+        "jes=1.02": {
+          "A:qksvc": {
+            "auc": 0.87093,
+            "ba": 0.78867
+          },
+          "A:rbf_svc": {
+            "auc": 0.80979,
+            "ba": 0.72667
+          },
+          "A:xgboost": {
+            "auc": 0.90052,
+            "ba": 0.8083
+          },
+          "A:lightgbm": {
+            "auc": 0.89679,
+            "ba": 0.84276
+          },
+          "B:xgboost": {
+            "auc": 0.91955,
+            "ba": 0.84453
+          }
+        },
+        "soft_met=1.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.87282,
+            "ba": 0.79046
+          },
+          "A:rbf_svc": {
+            "auc": 0.81163,
+            "ba": 0.72825
+          },
+          "A:xgboost": {
+            "auc": 0.90279,
+            "ba": 0.81006
+          },
+          "A:lightgbm": {
+            "auc": 0.89787,
+            "ba": 0.84344
+          },
+          "B:xgboost": {
+            "auc": 0.92035,
+            "ba": 0.84673
+          }
+        },
+        "soft_met=1.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.87207,
+            "ba": 0.78946
+          },
+          "A:rbf_svc": {
+            "auc": 0.81279,
+            "ba": 0.7288
+          },
+          "A:xgboost": {
+            "auc": 0.90045,
+            "ba": 0.8099
+          },
+          "A:lightgbm": {
+            "auc": 0.89563,
+            "ba": 0.84286
+          },
+          "B:xgboost": {
+            "auc": 0.91863,
+            "ba": 0.84681
+          }
+        },
+        "soft_met=1.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.87259,
+            "ba": 0.79055
+          },
+          "A:rbf_svc": {
+            "auc": 0.83068,
+            "ba": 0.74769
+          },
+          "A:xgboost": {
+            "auc": 0.90184,
+            "ba": 0.80957
+          },
+          "A:lightgbm": {
+            "auc": 0.89898,
+            "ba": 0.84322
+          },
+          "B:xgboost": {
+            "auc": 0.92301,
+            "ba": 0.84718
+          }
+        },
+        "soft_met=2.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.87536,
+            "ba": 0.78866
+          },
+          "A:rbf_svc": {
+            "auc": 0.81119,
+            "ba": 0.72628
+          },
+          "A:xgboost": {
+            "auc": 0.90315,
+            "ba": 0.80783
+          },
+          "A:lightgbm": {
+            "auc": 0.89771,
+            "ba": 0.84283
+          },
+          "B:xgboost": {
+            "auc": 0.92042,
+            "ba": 0.84646
+          }
+        },
+        "soft_met=2.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.87107,
+            "ba": 0.78792
+          },
+          "A:rbf_svc": {
+            "auc": 0.81329,
+            "ba": 0.72712
+          },
+          "A:xgboost": {
+            "auc": 0.89984,
+            "ba": 0.80913
+          },
+          "A:lightgbm": {
+            "auc": 0.89651,
+            "ba": 0.84253
+          },
+          "B:xgboost": {
+            "auc": 0.91875,
+            "ba": 0.84594
+          }
+        },
+        "soft_met=2.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.87226,
+            "ba": 0.78909
+          },
+          "A:rbf_svc": {
+            "auc": 0.83002,
+            "ba": 0.74737
+          },
+          "A:xgboost": {
+            "auc": 0.90102,
+            "ba": 0.80802
+          },
+          "A:lightgbm": {
+            "auc": 0.89816,
+            "ba": 0.84254
+          },
+          "B:xgboost": {
+            "auc": 0.9226,
+            "ba": 0.84634
+          }
+        },
+        "soft_met=3.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.87523,
+            "ba": 0.78644
+          },
+          "A:rbf_svc": {
+            "auc": 0.81021,
+            "ba": 0.72508
+          },
+          "A:xgboost": {
+            "auc": 0.9026,
+            "ba": 0.80648
+          },
+          "A:lightgbm": {
+            "auc": 0.8984,
+            "ba": 0.84187
+          },
+          "B:xgboost": {
+            "auc": 0.91968,
+            "ba": 0.84486
+          }
+        },
+        "soft_met=3.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.86916,
+            "ba": 0.78827
+          },
+          "A:rbf_svc": {
+            "auc": 0.83296,
+            "ba": 0.74524
+          },
+          "A:xgboost": {
+            "auc": 0.90077,
+            "ba": 0.80735
+          },
+          "A:lightgbm": {
+            "auc": 0.89819,
+            "ba": 0.84143
+          },
+          "B:xgboost": {
+            "auc": 0.91962,
+            "ba": 0.84455
+          }
+        },
+        "soft_met=3.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.87182,
+            "ba": 0.78762
+          },
+          "A:rbf_svc": {
+            "auc": 0.8299,
+            "ba": 0.74617
+          },
+          "A:xgboost": {
+            "auc": 0.90132,
+            "ba": 0.80694
+          },
+          "A:lightgbm": {
+            "auc": 0.8971,
+            "ba": 0.84183
+          },
+          "B:xgboost": {
+            "auc": 0.92204,
+            "ba": 0.84507
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.86547,
+            "ba": 0.78347
+          },
+          "A:rbf_svc": {
+            "auc": 0.80761,
+            "ba": 0.72166
+          },
+          "A:xgboost": {
+            "auc": 0.90209,
+            "ba": 0.80192
+          },
+          "A:lightgbm": {
+            "auc": 0.89802,
+            "ba": 0.83859
+          },
+          "B:xgboost": {
+            "auc": 0.91665,
+            "ba": 0.83935
+          }
+        },
+        "soft_met=5.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.86012,
+            "ba": 0.78531
+          },
+          "A:rbf_svc": {
+            "auc": 0.83304,
+            "ba": 0.76048
+          },
+          "A:xgboost": {
+            "auc": 0.89608,
+            "ba": 0.80239
+          },
+          "A:lightgbm": {
+            "auc": 0.89447,
+            "ba": 0.83818
+          },
+          "B:xgboost": {
+            "auc": 0.91855,
+            "ba": 0.83949
+          }
+        },
+        "soft_met=5.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.87035,
+            "ba": 0.78429
+          },
+          "A:rbf_svc": {
+            "auc": 0.83789,
+            "ba": 0.74318
+          },
+          "A:xgboost": {
+            "auc": 0.90064,
+            "ba": 0.80166
+          },
+          "A:lightgbm": {
+            "auc": 0.89788,
+            "ba": 0.81954
+          },
+          "B:xgboost": {
+            "auc": 0.91569,
+            "ba": 0.8393
+          }
+        },
+        "ttbar_scale=0.96": {
+          "A:qksvc": {
+            "auc": 0.87297,
+            "ba": 0.7913
+          },
+          "A:rbf_svc": {
+            "auc": 0.81271,
+            "ba": 0.72888
+          },
+          "A:xgboost": {
+            "auc": 0.90152,
+            "ba": 0.8108
+          },
+          "A:lightgbm": {
+            "auc": 0.89658,
+            "ba": 0.8438
+          },
+          "B:xgboost": {
+            "auc": 0.92021,
+            "ba": 0.84703
+          }
+        },
+        "ttbar_scale=0.98": {
+          "A:qksvc": {
+            "auc": 0.87281,
+            "ba": 0.791
+          },
+          "A:rbf_svc": {
+            "auc": 0.81244,
+            "ba": 0.72862
+          },
+          "A:xgboost": {
+            "auc": 0.90141,
+            "ba": 0.81066
+          },
+          "A:lightgbm": {
+            "auc": 0.89644,
+            "ba": 0.84363
+          },
+          "B:xgboost": {
+            "auc": 0.92014,
+            "ba": 0.84693
+          }
+        },
+        "ttbar_scale=1.02": {
+          "A:qksvc": {
+            "auc": 0.87248,
+            "ba": 0.79041
+          },
+          "A:rbf_svc": {
+            "auc": 0.81188,
+            "ba": 0.7281
+          },
+          "A:xgboost": {
+            "auc": 0.90117,
+            "ba": 0.81036
+          },
+          "A:lightgbm": {
+            "auc": 0.89616,
+            "ba": 0.84331
+          },
+          "B:xgboost": {
+            "auc": 0.91999,
+            "ba": 0.84674
+          }
+        },
+        "ttbar_scale=1.04": {
+          "A:qksvc": {
+            "auc": 0.87232,
+            "ba": 0.79012
+          },
+          "A:rbf_svc": {
+            "auc": 0.81161,
+            "ba": 0.72784
+          },
+          "A:xgboost": {
+            "auc": 0.90105,
+            "ba": 0.81022
+          },
+          "A:lightgbm": {
+            "auc": 0.89603,
+            "ba": 0.84315
+          },
+          "B:xgboost": {
+            "auc": 0.91992,
+            "ba": 0.84664
+          }
+        },
+        "diboson_scale=0.5": {
+          "A:qksvc": {
+            "auc": 0.87293,
+            "ba": 0.79113
+          },
+          "A:rbf_svc": {
+            "auc": 0.81265,
+            "ba": 0.72881
+          },
+          "A:xgboost": {
+            "auc": 0.9015,
+            "ba": 0.81087
+          },
+          "A:lightgbm": {
+            "auc": 0.89655,
+            "ba": 0.84381
+          },
+          "B:xgboost": {
+            "auc": 0.9203,
+            "ba": 0.84715
+          }
+        },
+        "diboson_scale=0.75": {
+          "A:qksvc": {
+            "auc": 0.87279,
+            "ba": 0.79092
+          },
+          "A:rbf_svc": {
+            "auc": 0.8124,
+            "ba": 0.72859
+          },
+          "A:xgboost": {
+            "auc": 0.90139,
+            "ba": 0.81069
+          },
+          "A:lightgbm": {
+            "auc": 0.89643,
+            "ba": 0.84364
+          },
+          "B:xgboost": {
+            "auc": 0.92018,
+            "ba": 0.84699
+          }
+        },
+        "diboson_scale=1.25": {
+          "A:qksvc": {
+            "auc": 0.8725,
+            "ba": 0.7905
+          },
+          "A:rbf_svc": {
+            "auc": 0.81191,
+            "ba": 0.72814
+          },
+          "A:xgboost": {
+            "auc": 0.90118,
+            "ba": 0.81033
+          },
+          "A:lightgbm": {
+            "auc": 0.89618,
+            "ba": 0.8433
+          },
+          "B:xgboost": {
+            "auc": 0.91995,
+            "ba": 0.84668
+          }
+        },
+        "diboson_scale=1.5": {
+          "A:qksvc": {
+            "auc": 0.87236,
+            "ba": 0.79029
+          },
+          "A:rbf_svc": {
+            "auc": 0.81167,
+            "ba": 0.72791
+          },
+          "A:xgboost": {
+            "auc": 0.90108,
+            "ba": 0.81015
+          },
+          "A:lightgbm": {
+            "auc": 0.89605,
+            "ba": 0.84313
+          },
+          "B:xgboost": {
+            "auc": 0.91983,
+            "ba": 0.84652
+          }
+        },
+        "bkg_scale=0.998": {
+          "A:qksvc": {
+            "auc": 0.87264,
+            "ba": 0.79071
+          },
+          "A:rbf_svc": {
+            "auc": 0.81216,
+            "ba": 0.72836
+          },
+          "A:xgboost": {
+            "auc": 0.90129,
+            "ba": 0.81051
+          },
+          "A:lightgbm": {
+            "auc": 0.8963,
+            "ba": 0.84347
+          },
+          "B:xgboost": {
+            "auc": 0.92007,
+            "ba": 0.84683
+          }
+        },
+        "bkg_scale=0.999": {
+          "A:qksvc": {
+            "auc": 0.87264,
+            "ba": 0.79071
+          },
+          "A:rbf_svc": {
+            "auc": 0.81216,
+            "ba": 0.72836
+          },
+          "A:xgboost": {
+            "auc": 0.90129,
+            "ba": 0.81051
+          },
+          "A:lightgbm": {
+            "auc": 0.8963,
+            "ba": 0.84347
+          },
+          "B:xgboost": {
+            "auc": 0.92007,
+            "ba": 0.84683
+          }
+        },
+        "bkg_scale=1.001": {
+          "A:qksvc": {
+            "auc": 0.87264,
+            "ba": 0.79071
+          },
+          "A:rbf_svc": {
+            "auc": 0.81216,
+            "ba": 0.72836
+          },
+          "A:xgboost": {
+            "auc": 0.90129,
+            "ba": 0.81051
+          },
+          "A:lightgbm": {
+            "auc": 0.8963,
+            "ba": 0.84347
+          },
+          "B:xgboost": {
+            "auc": 0.92007,
+            "ba": 0.84683
+          }
+        },
+        "bkg_scale=1.002": {
+          "A:qksvc": {
+            "auc": 0.87264,
+            "ba": 0.79071
+          },
+          "A:rbf_svc": {
+            "auc": 0.81216,
+            "ba": 0.72836
+          },
+          "A:xgboost": {
+            "auc": 0.90129,
+            "ba": 0.81051
+          },
+          "A:lightgbm": {
+            "auc": 0.8963,
+            "ba": 0.84347
+          },
+          "B:xgboost": {
+            "auc": 0.92007,
+            "ba": 0.84683
+          }
+        },
+        "combo0": {
+          "A:qksvc": {
+            "auc": 0.87541,
+            "ba": 0.79632
+          },
+          "A:rbf_svc": {
+            "auc": 0.81239,
+            "ba": 0.73395
+          },
+          "A:xgboost": {
+            "auc": 0.89991,
+            "ba": 0.81735
+          },
+          "A:lightgbm": {
+            "auc": 0.89268,
+            "ba": 0.82919
+          },
+          "B:xgboost": {
+            "auc": 0.92009,
+            "ba": 0.85316
+          }
+        },
+        "combo1": {
+          "A:qksvc": {
+            "auc": 0.84543,
+            "ba": 0.76839
+          },
+          "A:rbf_svc": {
+            "auc": 0.78684,
+            "ba": 0.7064
+          },
+          "A:xgboost": {
+            "auc": 0.86994,
+            "ba": 0.78453
+          },
+          "A:lightgbm": {
+            "auc": 0.86507,
+            "ba": 0.82172
+          },
+          "B:xgboost": {
+            "auc": 0.88676,
+            "ba": 0.82324
+          }
+        },
+        "combo2/seed11": {
+          "A:qksvc": {
+            "auc": 0.87221,
+            "ba": 0.7881
+          },
+          "A:rbf_svc": {
+            "auc": 0.80742,
+            "ba": 0.72765
+          },
+          "A:xgboost": {
+            "auc": 0.90077,
+            "ba": 0.81035
+          },
+          "A:lightgbm": {
+            "auc": 0.89469,
+            "ba": 0.84469
+          },
+          "B:xgboost": {
+            "auc": 0.91833,
+            "ba": 0.84626
+          }
+        },
+        "combo2/seed12": {
+          "A:qksvc": {
+            "auc": 0.86689,
+            "ba": 0.78856
+          },
+          "A:rbf_svc": {
+            "auc": 0.81116,
+            "ba": 0.72791
+          },
+          "A:xgboost": {
+            "auc": 0.89817,
+            "ba": 0.81115
+          },
+          "A:lightgbm": {
+            "auc": 0.89343,
+            "ba": 0.84404
+          },
+          "B:xgboost": {
+            "auc": 0.91835,
+            "ba": 0.84631
+          }
+        },
+        "combo2/seed13": {
+          "A:qksvc": {
+            "auc": 0.86861,
+            "ba": 0.78889
+          },
+          "A:rbf_svc": {
+            "auc": 0.83013,
+            "ba": 0.74828
+          },
+          "A:xgboost": {
+            "auc": 0.90039,
+            "ba": 0.8103
+          },
+          "A:lightgbm": {
+            "auc": 0.89295,
+            "ba": 0.82554
+          },
+          "B:xgboost": {
+            "auc": 0.92068,
+            "ba": 0.84562
+          }
+        },
+        "combo3/seed11": {
+          "A:qksvc": {
+            "auc": 0.8669,
+            "ba": 0.78722
+          },
+          "A:rbf_svc": {
+            "auc": 0.80735,
+            "ba": 0.72564
+          },
+          "A:xgboost": {
+            "auc": 0.89968,
+            "ba": 0.80897
+          },
+          "A:lightgbm": {
+            "auc": 0.89301,
+            "ba": 0.84243
+          },
+          "B:xgboost": {
+            "auc": 0.91642,
+            "ba": 0.84518
+          }
+        },
+        "combo3/seed12": {
+          "A:qksvc": {
+            "auc": 0.86005,
+            "ba": 0.80787
+          },
+          "A:rbf_svc": {
+            "auc": 0.83275,
+            "ba": 0.76497
+          },
+          "A:xgboost": {
+            "auc": 0.89334,
+            "ba": 0.80866
+          },
+          "A:lightgbm": {
+            "auc": 0.89338,
+            "ba": 0.84268
+          },
+          "B:xgboost": {
+            "auc": 0.91657,
+            "ba": 0.84572
+          }
+        },
+        "combo3/seed13": {
+          "A:qksvc": {
+            "auc": 0.87078,
+            "ba": 0.78825
+          },
+          "A:rbf_svc": {
+            "auc": 0.83461,
+            "ba": 0.74738
+          },
+          "A:xgboost": {
+            "auc": 0.90165,
+            "ba": 0.80878
+          },
+          "A:lightgbm": {
+            "auc": 0.89619,
+            "ba": 0.82372
+          },
+          "B:xgboost": {
+            "auc": 0.9177,
+            "ba": 0.8456
+          }
+        }
+      }
+    },
+    "204": {
+      "environments": {
+        "nominal": {
+          "A:qksvc": {
+            "auc": 0.83614,
+            "ba": 0.79166
+          },
+          "A:rbf_svc": {
+            "auc": 0.84371,
+            "ba": 0.76763
+          },
+          "A:xgboost": {
+            "auc": 0.88209,
+            "ba": 0.80169
+          },
+          "A:lightgbm": {
+            "auc": 0.87932,
+            "ba": 0.80231
+          },
+          "B:xgboost": {
+            "auc": 0.92499,
+            "ba": 0.85158
+          }
+        },
+        "tes=0.98": {
+          "A:qksvc": {
+            "auc": 0.83371,
+            "ba": 0.7743
+          },
+          "A:rbf_svc": {
+            "auc": 0.84337,
+            "ba": 0.77119
+          },
+          "A:xgboost": {
+            "auc": 0.88366,
+            "ba": 0.80334
+          },
+          "A:lightgbm": {
+            "auc": 0.88031,
+            "ba": 0.78561
+          },
+          "B:xgboost": {
+            "auc": 0.92747,
+            "ba": 0.85439
+          }
+        },
+        "tes=0.99": {
+          "A:qksvc": {
+            "auc": 0.83494,
+            "ba": 0.79285
+          },
+          "A:rbf_svc": {
+            "auc": 0.84371,
+            "ba": 0.76978
+          },
+          "A:xgboost": {
+            "auc": 0.8838,
+            "ba": 0.80288
+          },
+          "A:lightgbm": {
+            "auc": 0.88136,
+            "ba": 0.80379
+          },
+          "B:xgboost": {
+            "auc": 0.92574,
+            "ba": 0.85287
+          }
+        },
+        "tes=1.01": {
+          "A:qksvc": {
+            "auc": 0.83697,
+            "ba": 0.78945
+          },
+          "A:rbf_svc": {
+            "auc": 0.84341,
+            "ba": 0.76543
+          },
+          "A:xgboost": {
+            "auc": 0.87922,
+            "ba": 0.80049
+          },
+          "A:lightgbm": {
+            "auc": 0.87784,
+            "ba": 0.78067
+          },
+          "B:xgboost": {
+            "auc": 0.92489,
+            "ba": 0.85013
+          }
+        },
+        "tes=1.02": {
+          "A:qksvc": {
+            "auc": 0.83818,
+            "ba": 0.78765
+          },
+          "A:rbf_svc": {
+            "auc": 0.84311,
+            "ba": 0.76272
+          },
+          "A:xgboost": {
+            "auc": 0.87824,
+            "ba": 0.79871
+          },
+          "A:lightgbm": {
+            "auc": 0.87627,
+            "ba": 0.77932
+          },
+          "B:xgboost": {
+            "auc": 0.92504,
+            "ba": 0.84831
+          }
+        },
+        "jes=0.98": {
+          "A:qksvc": {
+            "auc": 0.83766,
+            "ba": 0.79234
+          },
+          "A:rbf_svc": {
+            "auc": 0.84453,
+            "ba": 0.76856
+          },
+          "A:xgboost": {
+            "auc": 0.88196,
+            "ba": 0.80209
+          },
+          "A:lightgbm": {
+            "auc": 0.87984,
+            "ba": 0.78383
+          },
+          "B:xgboost": {
+            "auc": 0.92487,
+            "ba": 0.85276
+          }
+        },
+        "jes=0.99": {
+          "A:qksvc": {
+            "auc": 0.83687,
+            "ba": 0.79214
+          },
+          "A:rbf_svc": {
+            "auc": 0.84407,
+            "ba": 0.76825
+          },
+          "A:xgboost": {
+            "auc": 0.88117,
+            "ba": 0.80173
+          },
+          "A:lightgbm": {
+            "auc": 0.87886,
+            "ba": 0.78322
+          },
+          "B:xgboost": {
+            "auc": 0.92438,
+            "ba": 0.85244
+          }
+        },
+        "jes=1.01": {
+          "A:qksvc": {
+            "auc": 0.83532,
+            "ba": 0.79041
+          },
+          "A:rbf_svc": {
+            "auc": 0.8434,
+            "ba": 0.76676
+          },
+          "A:xgboost": {
+            "auc": 0.88116,
+            "ba": 0.80126
+          },
+          "A:lightgbm": {
+            "auc": 0.88044,
+            "ba": 0.80221
+          },
+          "B:xgboost": {
+            "auc": 0.92515,
+            "ba": 0.85066
+          }
+        },
+        "jes=1.02": {
+          "A:qksvc": {
+            "auc": 0.83472,
+            "ba": 0.78961
+          },
+          "A:rbf_svc": {
+            "auc": 0.84337,
+            "ba": 0.76641
+          },
+          "A:xgboost": {
+            "auc": 0.88099,
+            "ba": 0.80115
+          },
+          "A:lightgbm": {
+            "auc": 0.87991,
+            "ba": 0.80154
+          },
+          "B:xgboost": {
+            "auc": 0.92485,
+            "ba": 0.85008
+          }
+        },
+        "soft_met=1.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.83811,
+            "ba": 0.77214
+          },
+          "A:rbf_svc": {
+            "auc": 0.84036,
+            "ba": 0.74812
+          },
+          "A:xgboost": {
+            "auc": 0.88317,
+            "ba": 0.82107
+          },
+          "A:lightgbm": {
+            "auc": 0.88075,
+            "ba": 0.8017
+          },
+          "B:xgboost": {
+            "auc": 0.92286,
+            "ba": 0.85117
+          }
+        },
+        "soft_met=1.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.85445,
+            "ba": 0.79072
+          },
+          "A:rbf_svc": {
+            "auc": 0.83932,
+            "ba": 0.74825
+          },
+          "A:xgboost": {
+            "auc": 0.87327,
+            "ba": 0.78137
+          },
+          "A:lightgbm": {
+            "auc": 0.87407,
+            "ba": 0.78313
+          },
+          "B:xgboost": {
+            "auc": 0.92365,
+            "ba": 0.85053
+          }
+        },
+        "soft_met=1.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.83794,
+            "ba": 0.79097
+          },
+          "A:rbf_svc": {
+            "auc": 0.8424,
+            "ba": 0.7481
+          },
+          "A:xgboost": {
+            "auc": 0.88039,
+            "ba": 0.80191
+          },
+          "A:lightgbm": {
+            "auc": 0.87569,
+            "ba": 0.80145
+          },
+          "B:xgboost": {
+            "auc": 0.92367,
+            "ba": 0.85109
+          }
+        },
+        "soft_met=2.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.83706,
+            "ba": 0.77106
+          },
+          "A:rbf_svc": {
+            "auc": 0.83768,
+            "ba": 0.74668
+          },
+          "A:xgboost": {
+            "auc": 0.88162,
+            "ba": 0.82063
+          },
+          "A:lightgbm": {
+            "auc": 0.88027,
+            "ba": 0.78054
+          },
+          "B:xgboost": {
+            "auc": 0.92105,
+            "ba": 0.85129
+          }
+        },
+        "soft_met=2.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.85879,
+            "ba": 0.80999
+          },
+          "A:rbf_svc": {
+            "auc": 0.84331,
+            "ba": 0.74765
+          },
+          "A:xgboost": {
+            "auc": 0.87465,
+            "ba": 0.78174
+          },
+          "A:lightgbm": {
+            "auc": 0.87462,
+            "ba": 0.7826
+          },
+          "B:xgboost": {
+            "auc": 0.92238,
+            "ba": 0.85029
+          }
+        },
+        "soft_met=2.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.83135,
+            "ba": 0.78979
+          },
+          "A:rbf_svc": {
+            "auc": 0.83628,
+            "ba": 0.74742
+          },
+          "A:xgboost": {
+            "auc": 0.87969,
+            "ba": 0.80142
+          },
+          "A:lightgbm": {
+            "auc": 0.87239,
+            "ba": 0.78211
+          },
+          "B:xgboost": {
+            "auc": 0.92192,
+            "ba": 0.85133
+          }
+        },
+        "soft_met=3.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.83066,
+            "ba": 0.77144
+          },
+          "A:rbf_svc": {
+            "auc": 0.83604,
+            "ba": 0.74539
+          },
+          "A:xgboost": {
+            "auc": 0.8807,
+            "ba": 0.78056
+          },
+          "A:lightgbm": {
+            "auc": 0.87655,
+            "ba": 0.78014
+          },
+          "B:xgboost": {
+            "auc": 0.91772,
+            "ba": 0.85015
+          }
+        },
+        "soft_met=3.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.85033,
+            "ba": 0.80787
+          },
+          "A:rbf_svc": {
+            "auc": 0.84548,
+            "ba": 0.7657
+          },
+          "A:xgboost": {
+            "auc": 0.87264,
+            "ba": 0.76081
+          },
+          "A:lightgbm": {
+            "auc": 0.87359,
+            "ba": 0.78045
+          },
+          "B:xgboost": {
+            "auc": 0.91684,
+            "ba": 0.8491
+          }
+        },
+        "soft_met=3.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.83672,
+            "ba": 0.78844
+          },
+          "A:rbf_svc": {
+            "auc": 0.83432,
+            "ba": 0.74622
+          },
+          "A:xgboost": {
+            "auc": 0.87722,
+            "ba": 0.78073
+          },
+          "A:lightgbm": {
+            "auc": 0.87365,
+            "ba": 0.77993
+          },
+          "B:xgboost": {
+            "auc": 0.92043,
+            "ba": 0.84969
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.83021,
+            "ba": 0.766
+          },
+          "A:rbf_svc": {
+            "auc": 0.82299,
+            "ba": 0.74001
+          },
+          "A:xgboost": {
+            "auc": 0.87386,
+            "ba": 0.7775
+          },
+          "A:lightgbm": {
+            "auc": 0.87467,
+            "ba": 0.77664
+          },
+          "B:xgboost": {
+            "auc": 0.91611,
+            "ba": 0.84669
+          }
+        },
+        "soft_met=5.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.85002,
+            "ba": 0.80405
+          },
+          "A:rbf_svc": {
+            "auc": 0.84795,
+            "ba": 0.75992
+          },
+          "A:xgboost": {
+            "auc": 0.86523,
+            "ba": 0.75714
+          },
+          "A:lightgbm": {
+            "auc": 0.86861,
+            "ba": 0.7563
+          },
+          "B:xgboost": {
+            "auc": 0.91396,
+            "ba": 0.84662
+          }
+        },
+        "soft_met=5.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.83605,
+            "ba": 0.78481
+          },
+          "A:rbf_svc": {
+            "auc": 0.82908,
+            "ba": 0.74129
+          },
+          "A:xgboost": {
+            "auc": 0.8721,
+            "ba": 0.79637
+          },
+          "A:lightgbm": {
+            "auc": 0.87186,
+            "ba": 0.77663
+          },
+          "B:xgboost": {
+            "auc": 0.91435,
+            "ba": 0.84676
+          }
+        },
+        "ttbar_scale=0.96": {
+          "A:qksvc": {
+            "auc": 0.83674,
+            "ba": 0.79227
+          },
+          "A:rbf_svc": {
+            "auc": 0.84429,
+            "ba": 0.76816
+          },
+          "A:xgboost": {
+            "auc": 0.8825,
+            "ba": 0.80215
+          },
+          "A:lightgbm": {
+            "auc": 0.87971,
+            "ba": 0.80279
+          },
+          "B:xgboost": {
+            "auc": 0.92511,
+            "ba": 0.85176
+          }
+        },
+        "ttbar_scale=0.98": {
+          "A:qksvc": {
+            "auc": 0.83644,
+            "ba": 0.79196
+          },
+          "A:rbf_svc": {
+            "auc": 0.844,
+            "ba": 0.7679
+          },
+          "A:xgboost": {
+            "auc": 0.8823,
+            "ba": 0.80192
+          },
+          "A:lightgbm": {
+            "auc": 0.87951,
+            "ba": 0.80255
+          },
+          "B:xgboost": {
+            "auc": 0.92505,
+            "ba": 0.85167
+          }
+        },
+        "ttbar_scale=1.02": {
+          "A:qksvc": {
+            "auc": 0.83584,
+            "ba": 0.79135
+          },
+          "A:rbf_svc": {
+            "auc": 0.84342,
+            "ba": 0.76737
+          },
+          "A:xgboost": {
+            "auc": 0.88188,
+            "ba": 0.80146
+          },
+          "A:lightgbm": {
+            "auc": 0.87912,
+            "ba": 0.80207
+          },
+          "B:xgboost": {
+            "auc": 0.92492,
+            "ba": 0.85149
+          }
+        },
+        "ttbar_scale=1.04": {
+          "A:qksvc": {
+            "auc": 0.83554,
+            "ba": 0.79104
+          },
+          "A:rbf_svc": {
+            "auc": 0.84312,
+            "ba": 0.7671
+          },
+          "A:xgboost": {
+            "auc": 0.88168,
+            "ba": 0.80123
+          },
+          "A:lightgbm": {
+            "auc": 0.87892,
+            "ba": 0.80183
+          },
+          "B:xgboost": {
+            "auc": 0.92486,
+            "ba": 0.8514
+          }
+        },
+        "diboson_scale=0.5": {
+          "A:qksvc": {
+            "auc": 0.83682,
+            "ba": 0.79231
+          },
+          "A:rbf_svc": {
+            "auc": 0.84439,
+            "ba": 0.76824
+          },
+          "A:xgboost": {
+            "auc": 0.8826,
+            "ba": 0.80222
+          },
+          "A:lightgbm": {
+            "auc": 0.87981,
+            "ba": 0.80285
+          },
+          "B:xgboost": {
+            "auc": 0.92535,
+            "ba": 0.85201
+          }
+        },
+        "diboson_scale=0.75": {
+          "A:qksvc": {
+            "auc": 0.83648,
+            "ba": 0.79198
+          },
+          "A:rbf_svc": {
+            "auc": 0.84405,
+            "ba": 0.76793
+          },
+          "A:xgboost": {
+            "auc": 0.88235,
+            "ba": 0.80195
+          },
+          "A:lightgbm": {
+            "auc": 0.87956,
+            "ba": 0.80258
+          },
+          "B:xgboost": {
+            "auc": 0.92517,
+            "ba": 0.85179
+          }
+        },
+        "diboson_scale=1.25": {
+          "A:qksvc": {
+            "auc": 0.8358,
+            "ba": 0.79133
+          },
+          "A:rbf_svc": {
+            "auc": 0.84337,
+            "ba": 0.76733
+          },
+          "A:xgboost": {
+            "auc": 0.88183,
+            "ba": 0.80142
+          },
+          "A:lightgbm": {
+            "auc": 0.87907,
+            "ba": 0.80204
+          },
+          "B:xgboost": {
+            "auc": 0.9248,
+            "ba": 0.85136
+          }
+        },
+        "diboson_scale=1.5": {
+          "A:qksvc": {
+            "auc": 0.83546,
+            "ba": 0.791
+          },
+          "A:rbf_svc": {
+            "auc": 0.84303,
+            "ba": 0.76703
+          },
+          "A:xgboost": {
+            "auc": 0.88158,
+            "ba": 0.80116
+          },
+          "A:lightgbm": {
+            "auc": 0.87882,
+            "ba": 0.80178
+          },
+          "B:xgboost": {
+            "auc": 0.92462,
+            "ba": 0.85114
+          }
+        },
+        "bkg_scale=0.998": {
+          "A:qksvc": {
+            "auc": 0.83614,
+            "ba": 0.79166
+          },
+          "A:rbf_svc": {
+            "auc": 0.84371,
+            "ba": 0.76763
+          },
+          "A:xgboost": {
+            "auc": 0.88209,
+            "ba": 0.80169
+          },
+          "A:lightgbm": {
+            "auc": 0.87932,
+            "ba": 0.80231
+          },
+          "B:xgboost": {
+            "auc": 0.92499,
+            "ba": 0.85158
+          }
+        },
+        "bkg_scale=0.999": {
+          "A:qksvc": {
+            "auc": 0.83614,
+            "ba": 0.79166
+          },
+          "A:rbf_svc": {
+            "auc": 0.84371,
+            "ba": 0.76763
+          },
+          "A:xgboost": {
+            "auc": 0.88209,
+            "ba": 0.80169
+          },
+          "A:lightgbm": {
+            "auc": 0.87932,
+            "ba": 0.80231
+          },
+          "B:xgboost": {
+            "auc": 0.92499,
+            "ba": 0.85158
+          }
+        },
+        "bkg_scale=1.001": {
+          "A:qksvc": {
+            "auc": 0.83614,
+            "ba": 0.79166
+          },
+          "A:rbf_svc": {
+            "auc": 0.84371,
+            "ba": 0.76763
+          },
+          "A:xgboost": {
+            "auc": 0.88209,
+            "ba": 0.80169
+          },
+          "A:lightgbm": {
+            "auc": 0.87932,
+            "ba": 0.80231
+          },
+          "B:xgboost": {
+            "auc": 0.92499,
+            "ba": 0.85158
+          }
+        },
+        "bkg_scale=1.002": {
+          "A:qksvc": {
+            "auc": 0.83614,
+            "ba": 0.79166
+          },
+          "A:rbf_svc": {
+            "auc": 0.84371,
+            "ba": 0.76763
+          },
+          "A:xgboost": {
+            "auc": 0.88209,
+            "ba": 0.80169
+          },
+          "A:lightgbm": {
+            "auc": 0.87932,
+            "ba": 0.80231
+          },
+          "B:xgboost": {
+            "auc": 0.92499,
+            "ba": 0.85158
+          }
+        },
+        "combo0": {
+          "A:qksvc": {
+            "auc": 0.83503,
+            "ba": 0.79488
+          },
+          "A:rbf_svc": {
+            "auc": 0.84401,
+            "ba": 0.77237
+          },
+          "A:xgboost": {
+            "auc": 0.88336,
+            "ba": 0.80383
+          },
+          "A:lightgbm": {
+            "auc": 0.88138,
+            "ba": 0.80567
+          },
+          "B:xgboost": {
+            "auc": 0.92749,
+            "ba": 0.85514
+          }
+        },
+        "combo1": {
+          "A:qksvc": {
+            "auc": 0.83639,
+            "ba": 0.78633
+          },
+          "A:rbf_svc": {
+            "auc": 0.84275,
+            "ba": 0.76184
+          },
+          "A:xgboost": {
+            "auc": 0.87742,
+            "ba": 0.79834
+          },
+          "A:lightgbm": {
+            "auc": 0.87583,
+            "ba": 0.79796
+          },
+          "B:xgboost": {
+            "auc": 0.9249,
+            "ba": 0.84621
+          }
+        },
+        "combo2/seed11": {
+          "A:qksvc": {
+            "auc": 0.82784,
+            "ba": 0.77224
+          },
+          "A:rbf_svc": {
+            "auc": 0.83615,
+            "ba": 0.74841
+          },
+          "A:xgboost": {
+            "auc": 0.88032,
+            "ba": 0.80135
+          },
+          "A:lightgbm": {
+            "auc": 0.87436,
+            "ba": 0.78277
+          },
+          "B:xgboost": {
+            "auc": 0.91937,
+            "ba": 0.85117
+          }
+        },
+        "combo2/seed12": {
+          "A:qksvc": {
+            "auc": 0.84823,
+            "ba": 0.80963
+          },
+          "A:rbf_svc": {
+            "auc": 0.84572,
+            "ba": 0.76778
+          },
+          "A:xgboost": {
+            "auc": 0.8732,
+            "ba": 0.76206
+          },
+          "A:lightgbm": {
+            "auc": 0.87313,
+            "ba": 0.78268
+          },
+          "B:xgboost": {
+            "auc": 0.91868,
+            "ba": 0.85118
+          }
+        },
+        "combo2/seed13": {
+          "A:qksvc": {
+            "auc": 0.83381,
+            "ba": 0.77064
+          },
+          "A:rbf_svc": {
+            "auc": 0.83372,
+            "ba": 0.74889
+          },
+          "A:xgboost": {
+            "auc": 0.87623,
+            "ba": 0.80099
+          },
+          "A:lightgbm": {
+            "auc": 0.87257,
+            "ba": 0.78234
+          },
+          "B:xgboost": {
+            "auc": 0.92143,
+            "ba": 0.85148
+          }
+        },
+        "combo3/seed11": {
+          "A:qksvc": {
+            "auc": 0.82598,
+            "ba": 0.76895
+          },
+          "A:rbf_svc": {
+            "auc": 0.81997,
+            "ba": 0.74472
+          },
+          "A:xgboost": {
+            "auc": 0.87412,
+            "ba": 0.77959
+          },
+          "A:lightgbm": {
+            "auc": 0.87276,
+            "ba": 0.77984
+          },
+          "B:xgboost": {
+            "auc": 0.91355,
+            "ba": 0.84973
+          }
+        },
+        "combo3/seed12": {
+          "A:qksvc": {
+            "auc": 0.84693,
+            "ba": 0.78743
+          },
+          "A:rbf_svc": {
+            "auc": 0.84747,
+            "ba": 0.76428
+          },
+          "A:xgboost": {
+            "auc": 0.86366,
+            "ba": 0.75999
+          },
+          "A:lightgbm": {
+            "auc": 0.86588,
+            "ba": 0.7798
+          },
+          "B:xgboost": {
+            "auc": 0.91739,
+            "ba": 0.84966
+          }
+        },
+        "combo3/seed13": {
+          "A:qksvc": {
+            "auc": 0.83209,
+            "ba": 0.76795
+          },
+          "A:rbf_svc": {
+            "auc": 0.82844,
+            "ba": 0.74541
+          },
+          "A:xgboost": {
+            "auc": 0.87114,
+            "ba": 0.78012
+          },
+          "A:lightgbm": {
+            "auc": 0.86955,
+            "ba": 0.781
+          },
+          "B:xgboost": {
+            "auc": 0.91705,
+            "ba": 0.84924
+          }
+        }
+      }
+    },
+    "205": {
+      "environments": {
+        "nominal": {
+          "A:qksvc": {
+            "auc": 0.86725,
+            "ba": 0.8014
+          },
+          "A:rbf_svc": {
+            "auc": 0.83219,
+            "ba": 0.75068
+          },
+          "A:xgboost": {
+            "auc": 0.8826,
+            "ba": 0.81763
+          },
+          "A:lightgbm": {
+            "auc": 0.88339,
+            "ba": 0.81883
+          },
+          "B:xgboost": {
+            "auc": 0.91708,
+            "ba": 0.859
+          }
+        },
+        "tes=0.98": {
+          "A:qksvc": {
+            "auc": 0.86586,
+            "ba": 0.80354
+          },
+          "A:rbf_svc": {
+            "auc": 0.83155,
+            "ba": 0.75076
+          },
+          "A:xgboost": {
+            "auc": 0.87921,
+            "ba": 0.79172
+          },
+          "A:lightgbm": {
+            "auc": 0.87939,
+            "ba": 0.79574
+          },
+          "B:xgboost": {
+            "auc": 0.91773,
+            "ba": 0.85988
+          }
+        },
+        "tes=0.99": {
+          "A:qksvc": {
+            "auc": 0.86667,
+            "ba": 0.803
+          },
+          "A:rbf_svc": {
+            "auc": 0.83181,
+            "ba": 0.75033
+          },
+          "A:xgboost": {
+            "auc": 0.87956,
+            "ba": 0.81719
+          },
+          "A:lightgbm": {
+            "auc": 0.87943,
+            "ba": 0.79438
+          },
+          "B:xgboost": {
+            "auc": 0.91785,
+            "ba": 0.85926
+          }
+        },
+        "tes=1.01": {
+          "A:qksvc": {
+            "auc": 0.86756,
+            "ba": 0.80028
+          },
+          "A:rbf_svc": {
+            "auc": 0.83238,
+            "ba": 0.75064
+          },
+          "A:xgboost": {
+            "auc": 0.88577,
+            "ba": 0.81725
+          },
+          "A:lightgbm": {
+            "auc": 0.88541,
+            "ba": 0.81776
+          },
+          "B:xgboost": {
+            "auc": 0.91608,
+            "ba": 0.85871
+          }
+        },
+        "tes=1.02": {
+          "A:qksvc": {
+            "auc": 0.86744,
+            "ba": 0.79871
+          },
+          "A:rbf_svc": {
+            "auc": 0.8324,
+            "ba": 0.75131
+          },
+          "A:xgboost": {
+            "auc": 0.88405,
+            "ba": 0.8168
+          },
+          "A:lightgbm": {
+            "auc": 0.88533,
+            "ba": 0.81553
+          },
+          "B:xgboost": {
+            "auc": 0.91551,
+            "ba": 0.85891
+          }
+        },
+        "jes=0.98": {
+          "A:qksvc": {
+            "auc": 0.86729,
+            "ba": 0.80272
+          },
+          "A:rbf_svc": {
+            "auc": 0.83308,
+            "ba": 0.75099
+          },
+          "A:xgboost": {
+            "auc": 0.88362,
+            "ba": 0.81688
+          },
+          "A:lightgbm": {
+            "auc": 0.88381,
+            "ba": 0.82001
+          },
+          "B:xgboost": {
+            "auc": 0.91675,
+            "ba": 0.85933
+          }
+        },
+        "jes=0.99": {
+          "A:qksvc": {
+            "auc": 0.86711,
+            "ba": 0.80207
+          },
+          "A:rbf_svc": {
+            "auc": 0.83241,
+            "ba": 0.7508
+          },
+          "A:xgboost": {
+            "auc": 0.8827,
+            "ba": 0.81697
+          },
+          "A:lightgbm": {
+            "auc": 0.88346,
+            "ba": 0.81942
+          },
+          "B:xgboost": {
+            "auc": 0.91703,
+            "ba": 0.85936
+          }
+        },
+        "jes=1.01": {
+          "A:qksvc": {
+            "auc": 0.86718,
+            "ba": 0.80163
+          },
+          "A:rbf_svc": {
+            "auc": 0.83183,
+            "ba": 0.75075
+          },
+          "A:xgboost": {
+            "auc": 0.8835,
+            "ba": 0.81765
+          },
+          "A:lightgbm": {
+            "auc": 0.88443,
+            "ba": 0.81833
+          },
+          "B:xgboost": {
+            "auc": 0.91739,
+            "ba": 0.85926
+          }
+        },
+        "jes=1.02": {
+          "A:qksvc": {
+            "auc": 0.86696,
+            "ba": 0.80101
+          },
+          "A:rbf_svc": {
+            "auc": 0.83111,
+            "ba": 0.75033
+          },
+          "A:xgboost": {
+            "auc": 0.883,
+            "ba": 0.81726
+          },
+          "A:lightgbm": {
+            "auc": 0.88416,
+            "ba": 0.81745
+          },
+          "B:xgboost": {
+            "auc": 0.91723,
+            "ba": 0.85934
+          }
+        },
+        "soft_met=1.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.86766,
+            "ba": 0.80111
+          },
+          "A:rbf_svc": {
+            "auc": 0.83217,
+            "ba": 0.74989
+          },
+          "A:xgboost": {
+            "auc": 0.8834,
+            "ba": 0.81639
+          },
+          "A:lightgbm": {
+            "auc": 0.88475,
+            "ba": 0.81789
+          },
+          "B:xgboost": {
+            "auc": 0.91685,
+            "ba": 0.85951
+          }
+        },
+        "soft_met=1.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.86568,
+            "ba": 0.80194
+          },
+          "A:rbf_svc": {
+            "auc": 0.83215,
+            "ba": 0.7508
+          },
+          "A:xgboost": {
+            "auc": 0.8824,
+            "ba": 0.81605
+          },
+          "A:lightgbm": {
+            "auc": 0.88407,
+            "ba": 0.81823
+          },
+          "B:xgboost": {
+            "auc": 0.91662,
+            "ba": 0.85923
+          }
+        },
+        "soft_met=1.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.86823,
+            "ba": 0.80157
+          },
+          "A:rbf_svc": {
+            "auc": 0.83166,
+            "ba": 0.75017
+          },
+          "A:xgboost": {
+            "auc": 0.88385,
+            "ba": 0.81736
+          },
+          "A:lightgbm": {
+            "auc": 0.8847,
+            "ba": 0.81774
+          },
+          "B:xgboost": {
+            "auc": 0.91626,
+            "ba": 0.85897
+          }
+        },
+        "soft_met=2.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.8645,
+            "ba": 0.80178
+          },
+          "A:rbf_svc": {
+            "auc": 0.83336,
+            "ba": 0.75045
+          },
+          "A:xgboost": {
+            "auc": 0.88128,
+            "ba": 0.81642
+          },
+          "A:lightgbm": {
+            "auc": 0.88224,
+            "ba": 0.81706
+          },
+          "B:xgboost": {
+            "auc": 0.91749,
+            "ba": 0.85943
+          }
+        },
+        "soft_met=2.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.86495,
+            "ba": 0.80195
+          },
+          "A:rbf_svc": {
+            "auc": 0.83151,
+            "ba": 0.75018
+          },
+          "A:xgboost": {
+            "auc": 0.88534,
+            "ba": 0.81616
+          },
+          "A:lightgbm": {
+            "auc": 0.88651,
+            "ba": 0.81743
+          },
+          "B:xgboost": {
+            "auc": 0.91573,
+            "ba": 0.85917
+          }
+        },
+        "soft_met=2.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.86865,
+            "ba": 0.80178
+          },
+          "A:rbf_svc": {
+            "auc": 0.83135,
+            "ba": 0.75006
+          },
+          "A:xgboost": {
+            "auc": 0.88235,
+            "ba": 0.81604
+          },
+          "A:lightgbm": {
+            "auc": 0.88405,
+            "ba": 0.8166
+          },
+          "B:xgboost": {
+            "auc": 0.91616,
+            "ba": 0.85858
+          }
+        },
+        "soft_met=3.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.86301,
+            "ba": 0.80065
+          },
+          "A:rbf_svc": {
+            "auc": 0.8242,
+            "ba": 0.72482
+          },
+          "A:xgboost": {
+            "auc": 0.88011,
+            "ba": 0.81645
+          },
+          "A:lightgbm": {
+            "auc": 0.88101,
+            "ba": 0.79161
+          },
+          "B:xgboost": {
+            "auc": 0.91666,
+            "ba": 0.85911
+          }
+        },
+        "soft_met=3.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.86348,
+            "ba": 0.80045
+          },
+          "A:rbf_svc": {
+            "auc": 0.83106,
+            "ba": 0.74944
+          },
+          "A:xgboost": {
+            "auc": 0.88279,
+            "ba": 0.81597
+          },
+          "A:lightgbm": {
+            "auc": 0.88489,
+            "ba": 0.81636
+          },
+          "B:xgboost": {
+            "auc": 0.91491,
+            "ba": 0.8592
+          }
+        },
+        "soft_met=3.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.86844,
+            "ba": 0.80068
+          },
+          "A:rbf_svc": {
+            "auc": 0.83085,
+            "ba": 0.74997
+          },
+          "A:xgboost": {
+            "auc": 0.88253,
+            "ba": 0.81537
+          },
+          "A:lightgbm": {
+            "auc": 0.88345,
+            "ba": 0.81684
+          },
+          "B:xgboost": {
+            "auc": 0.91567,
+            "ba": 0.85838
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "A:qksvc": {
+            "auc": 0.86139,
+            "ba": 0.79723
+          },
+          "A:rbf_svc": {
+            "auc": 0.82305,
+            "ba": 0.74822
+          },
+          "A:xgboost": {
+            "auc": 0.87954,
+            "ba": 0.81476
+          },
+          "A:lightgbm": {
+            "auc": 0.88192,
+            "ba": 0.81382
+          },
+          "B:xgboost": {
+            "auc": 0.91403,
+            "ba": 0.85646
+          }
+        },
+        "soft_met=5.0/seed12": {
+          "A:qksvc": {
+            "auc": 0.8553,
+            "ba": 0.79587
+          },
+          "A:rbf_svc": {
+            "auc": 0.83017,
+            "ba": 0.74862
+          },
+          "A:xgboost": {
+            "auc": 0.87691,
+            "ba": 0.81439
+          },
+          "A:lightgbm": {
+            "auc": 0.87666,
+            "ba": 0.81441
+          },
+          "B:xgboost": {
+            "auc": 0.91358,
+            "ba": 0.8578
+          }
+        },
+        "soft_met=5.0/seed13": {
+          "A:qksvc": {
+            "auc": 0.86985,
+            "ba": 0.79736
+          },
+          "A:rbf_svc": {
+            "auc": 0.83036,
+            "ba": 0.74715
+          },
+          "A:xgboost": {
+            "auc": 0.88406,
+            "ba": 0.8141
+          },
+          "A:lightgbm": {
+            "auc": 0.88674,
+            "ba": 0.81402
+          },
+          "B:xgboost": {
+            "auc": 0.91445,
+            "ba": 0.85489
+          }
+        },
+        "ttbar_scale=0.96": {
+          "A:qksvc": {
+            "auc": 0.86754,
+            "ba": 0.802
+          },
+          "A:rbf_svc": {
+            "auc": 0.8326,
+            "ba": 0.75136
+          },
+          "A:xgboost": {
+            "auc": 0.88283,
+            "ba": 0.81781
+          },
+          "A:lightgbm": {
+            "auc": 0.88361,
+            "ba": 0.81906
+          },
+          "B:xgboost": {
+            "auc": 0.91721,
+            "ba": 0.85915
+          }
+        },
+        "ttbar_scale=0.98": {
+          "A:qksvc": {
+            "auc": 0.86739,
+            "ba": 0.8017
+          },
+          "A:rbf_svc": {
+            "auc": 0.83239,
+            "ba": 0.75102
+          },
+          "A:xgboost": {
+            "auc": 0.88271,
+            "ba": 0.81772
+          },
+          "A:lightgbm": {
+            "auc": 0.8835,
+            "ba": 0.81894
+          },
+          "B:xgboost": {
+            "auc": 0.91715,
+            "ba": 0.85908
+          }
+        },
+        "ttbar_scale=1.02": {
+          "A:qksvc": {
+            "auc": 0.8671,
+            "ba": 0.8011
+          },
+          "A:rbf_svc": {
+            "auc": 0.83198,
+            "ba": 0.75034
+          },
+          "A:xgboost": {
+            "auc": 0.88249,
+            "ba": 0.81754
+          },
+          "A:lightgbm": {
+            "auc": 0.88327,
+            "ba": 0.81871
+          },
+          "B:xgboost": {
+            "auc": 0.91701,
+            "ba": 0.85893
+          }
+        },
+        "ttbar_scale=1.04": {
+          "A:qksvc": {
+            "auc": 0.86695,
+            "ba": 0.80081
+          },
+          "A:rbf_svc": {
+            "auc": 0.83178,
+            "ba": 0.75
+          },
+          "A:xgboost": {
+            "auc": 0.88237,
+            "ba": 0.81746
+          },
+          "A:lightgbm": {
+            "auc": 0.88316,
+            "ba": 0.8186
+          },
+          "B:xgboost": {
+            "auc": 0.91695,
+            "ba": 0.85886
+          }
+        },
+        "diboson_scale=0.5": {
+          "A:qksvc": {
+            "auc": 0.86756,
+            "ba": 0.80191
+          },
+          "A:rbf_svc": {
+            "auc": 0.8326,
+            "ba": 0.75121
+          },
+          "A:xgboost": {
+            "auc": 0.88283,
+            "ba": 0.81781
+          },
+          "A:lightgbm": {
+            "auc": 0.88363,
+            "ba": 0.81903
+          },
+          "B:xgboost": {
+            "auc": 0.91733,
+            "ba": 0.85927
+          }
+        },
+        "diboson_scale=0.75": {
+          "A:qksvc": {
+            "auc": 0.8674,
+            "ba": 0.80166
+          },
+          "A:rbf_svc": {
+            "auc": 0.83239,
+            "ba": 0.75094
+          },
+          "A:xgboost": {
+            "auc": 0.88272,
+            "ba": 0.81772
+          },
+          "A:lightgbm": {
+            "auc": 0.88351,
+            "ba": 0.81893
+          },
+          "B:xgboost": {
+            "auc": 0.91721,
+            "ba": 0.85914
+          }
+        },
+        "diboson_scale=1.25": {
+          "A:qksvc": {
+            "auc": 0.86709,
+            "ba": 0.80115
+          },
+          "A:rbf_svc": {
+            "auc": 0.83198,
+            "ba": 0.75041
+          },
+          "A:xgboost": {
+            "auc": 0.88248,
+            "ba": 0.81754
+          },
+          "A:lightgbm": {
+            "auc": 0.88327,
+            "ba": 0.81873
+          },
+          "B:xgboost": {
+            "auc": 0.91695,
+            "ba": 0.85887
+          }
+        },
+        "diboson_scale=1.5": {
+          "A:qksvc": {
+            "auc": 0.86694,
+            "ba": 0.8009
+          },
+          "A:rbf_svc": {
+            "auc": 0.83178,
+            "ba": 0.75015
+          },
+          "A:xgboost": {
+            "auc": 0.88237,
+            "ba": 0.81745
+          },
+          "A:lightgbm": {
+            "auc": 0.88315,
+            "ba": 0.81863
+          },
+          "B:xgboost": {
+            "auc": 0.91683,
+            "ba": 0.85874
+          }
+        },
+        "bkg_scale=0.998": {
+          "A:qksvc": {
+            "auc": 0.86725,
+            "ba": 0.8014
+          },
+          "A:rbf_svc": {
+            "auc": 0.83219,
+            "ba": 0.75068
+          },
+          "A:xgboost": {
+            "auc": 0.8826,
+            "ba": 0.81763
+          },
+          "A:lightgbm": {
+            "auc": 0.88339,
+            "ba": 0.81883
+          },
+          "B:xgboost": {
+            "auc": 0.91708,
+            "ba": 0.859
+          }
+        },
+        "bkg_scale=0.999": {
+          "A:qksvc": {
+            "auc": 0.86725,
+            "ba": 0.8014
+          },
+          "A:rbf_svc": {
+            "auc": 0.83219,
+            "ba": 0.75068
+          },
+          "A:xgboost": {
+            "auc": 0.8826,
+            "ba": 0.81763
+          },
+          "A:lightgbm": {
+            "auc": 0.88339,
+            "ba": 0.81883
+          },
+          "B:xgboost": {
+            "auc": 0.91708,
+            "ba": 0.859
+          }
+        },
+        "bkg_scale=1.001": {
+          "A:qksvc": {
+            "auc": 0.86725,
+            "ba": 0.8014
+          },
+          "A:rbf_svc": {
+            "auc": 0.83219,
+            "ba": 0.75068
+          },
+          "A:xgboost": {
+            "auc": 0.8826,
+            "ba": 0.81763
+          },
+          "A:lightgbm": {
+            "auc": 0.88339,
+            "ba": 0.81883
+          },
+          "B:xgboost": {
+            "auc": 0.91708,
+            "ba": 0.859
+          }
+        },
+        "bkg_scale=1.002": {
+          "A:qksvc": {
+            "auc": 0.86725,
+            "ba": 0.8014
+          },
+          "A:rbf_svc": {
+            "auc": 0.83219,
+            "ba": 0.75068
+          },
+          "A:xgboost": {
+            "auc": 0.8826,
+            "ba": 0.81763
+          },
+          "A:lightgbm": {
+            "auc": 0.88339,
+            "ba": 0.81883
+          },
+          "B:xgboost": {
+            "auc": 0.91708,
+            "ba": 0.859
+          }
+        },
+        "combo0": {
+          "A:qksvc": {
+            "auc": 0.86579,
+            "ba": 0.80446
+          },
+          "A:rbf_svc": {
+            "auc": 0.83238,
+            "ba": 0.74996
+          },
+          "A:xgboost": {
+            "auc": 0.87976,
+            "ba": 0.79108
+          },
+          "A:lightgbm": {
+            "auc": 0.87915,
+            "ba": 0.79688
+          },
+          "B:xgboost": {
+            "auc": 0.9178,
+            "ba": 0.85975
+          }
+        },
+        "combo1": {
+          "A:qksvc": {
+            "auc": 0.86702,
+            "ba": 0.79796
+          },
+          "A:rbf_svc": {
+            "auc": 0.83148,
+            "ba": 0.75117
+          },
+          "A:xgboost": {
+            "auc": 0.8838,
+            "ba": 0.84167
+          },
+          "A:lightgbm": {
+            "auc": 0.88464,
+            "ba": 0.8146
+          },
+          "B:xgboost": {
+            "auc": 0.91575,
+            "ba": 0.85828
+          }
+        },
+        "combo2/seed11": {
+          "A:qksvc": {
+            "auc": 0.86176,
+            "ba": 0.80076
+          },
+          "A:rbf_svc": {
+            "auc": 0.82315,
+            "ba": 0.72398
+          },
+          "A:xgboost": {
+            "auc": 0.87777,
+            "ba": 0.81615
+          },
+          "A:lightgbm": {
+            "auc": 0.87537,
+            "ba": 0.79194
+          },
+          "B:xgboost": {
+            "auc": 0.91712,
+            "ba": 0.86003
+          }
+        },
+        "combo2/seed12": {
+          "A:qksvc": {
+            "auc": 0.86352,
+            "ba": 0.80157
+          },
+          "A:rbf_svc": {
+            "auc": 0.82915,
+            "ba": 0.74941
+          },
+          "A:xgboost": {
+            "auc": 0.88067,
+            "ba": 0.81629
+          },
+          "A:lightgbm": {
+            "auc": 0.88209,
+            "ba": 0.81759
+          },
+          "B:xgboost": {
+            "auc": 0.91434,
+            "ba": 0.85987
+          }
+        },
+        "combo2/seed13": {
+          "A:qksvc": {
+            "auc": 0.86775,
+            "ba": 0.8017
+          },
+          "A:rbf_svc": {
+            "auc": 0.82933,
+            "ba": 0.74987
+          },
+          "A:xgboost": {
+            "auc": 0.87954,
+            "ba": 0.81638
+          },
+          "A:lightgbm": {
+            "auc": 0.88094,
+            "ba": 0.79221
+          },
+          "B:xgboost": {
+            "auc": 0.91731,
+            "ba": 0.85959
+          }
+        },
+        "combo3/seed11": {
+          "A:qksvc": {
+            "auc": 0.85881,
+            "ba": 0.79858
+          },
+          "A:rbf_svc": {
+            "auc": 0.8228,
+            "ba": 0.72271
+          },
+          "A:xgboost": {
+            "auc": 0.87737,
+            "ba": 0.81316
+          },
+          "A:lightgbm": {
+            "auc": 0.88233,
+            "ba": 0.81651
+          },
+          "B:xgboost": {
+            "auc": 0.91403,
+            "ba": 0.85757
+          }
+        },
+        "combo3/seed12": {
+          "A:qksvc": {
+            "auc": 0.85239,
+            "ba": 0.77209
+          },
+          "A:rbf_svc": {
+            "auc": 0.82976,
+            "ba": 0.74685
+          },
+          "A:xgboost": {
+            "auc": 0.8742,
+            "ba": 0.78814
+          },
+          "A:lightgbm": {
+            "auc": 0.87471,
+            "ba": 0.79153
+          },
+          "B:xgboost": {
+            "auc": 0.91248,
+            "ba": 0.85789
+          }
+        },
+        "combo3/seed13": {
+          "A:qksvc": {
+            "auc": 0.86833,
+            "ba": 0.80018
+          },
+          "A:rbf_svc": {
+            "auc": 0.82931,
+            "ba": 0.74633
+          },
+          "A:xgboost": {
+            "auc": 0.88098,
+            "ba": 0.81455
+          },
+          "A:lightgbm": {
+            "auc": 0.8846,
+            "ba": 0.81766
+          },
+          "B:xgboost": {
+            "auc": 0.91396,
+            "ba": 0.85648
+          }
+        }
+      }
+    }
+  },
+  "wall_seconds": 1643.7
+}

@@ -107,7 +107,29 @@ entry.
   < 4/5 seeds) or nominal QK-vs-XGB contrast flips sign across seeds beyond
   its std.
 - **Outputs:** `results/tables/E02R_multiseed.json`.
-- **Status:** specified + running (2026-08-10).
+- **Status:** **complete (2026-08-10) — falsifier PARTIALLY TRIGGERED; the
+  single-seed narrative is corrected as follows and these are the numbers
+  that gate the manuscript:**
+  1. **Nominal contrast:** QK-SVC 0.8478 ± 0.0223 vs A:XGBoost 0.8831 ±
+     0.0159; per-seed paired difference **negative in 5/5 seeds**
+     (−0.035 ± 0.013). The E01 "tie with XGBoost" was partition luck: with
+     replication, the trees are consistently ahead at matched budget; QK-SVC
+     remains above RBF (+0.02) and far above linear. Paper framing updates
+     to "competitive but below tuned trees" — fully compatible with the
+     spec's no-quantum-advantage philosophy.
+  2. **TES pattern:** down-shifts replicate (tes=0.98: +0.0024 ± 0.0010;
+     tes=0.99: +0.0010 ± 0.0004; sign-consistent 5/5) but are an order of
+     magnitude smaller than the single-seed estimate; the up-shift
+     "improvement" arm does NOT replicate (monotone ordering in only 2/5
+     seeds). H1 language weakened to: *small but replicated QK degradation
+     under TES down-shifts and adverse combinations* (combo3: +0.025 ±
+     0.024, positive 5/5).
+  3. **Partition variance (±0.015–0.022 AUC) dominates most single-nuisance
+     deltas** — 13/40 environments sign-consistent for QK. Single-seed
+     landscape values must never be quoted without E02R error bars.
+  4. **Consequence for E04 (registered follow-up):** its degradation targets
+     were single-seed; H2's ρ=0.761 must be re-estimated against E02R
+     multi-seed mean deltas before any manuscript claim (E04 v2).
 
 ## E03 — Kernel geometry observatory
 
