@@ -79,3 +79,19 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
 - **Rationale:** spec §4-H4, §13, §34: heuristics must never be laundered into
   certificates.
 - **Status:** adopted (frozen; changing this requires a new decision entry).
+
+## D-007 — Finite-shot kernels sampled from the exact binomial law
+
+- **Date:** 2026-08-10
+- **Decision:** `kernel_shots` draws each Gram entry from
+  Binomial(shots, K_exact)/shots instead of executing compute–uncompute circuits
+  on a shot-based simulator.
+- **Rationale:** for an ideal (noiseless) device, the all-zeros outcome of the
+  compute–uncompute protocol is exactly Bernoulli(K_exact) per shot, so the two
+  procedures are distributionally identical; direct sampling is orders of
+  magnitude cheaper, enabling the full shots × θ grid of E09. Device *noise* is
+  deliberately excluded here — that is E10's job with real hardware, keeping
+  H6's decomposition (shot noise vs hardware noise) clean.
+- **Consequence:** any statement about "hardware noise" must come from E10 runs,
+  never from E09.
+- **Status:** adopted.
