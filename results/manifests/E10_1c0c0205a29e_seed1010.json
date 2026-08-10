@@ -1,0 +1,61 @@
+{
+  "backend": {
+    "job_id": "d9t2jrvtfhrs73dtd8dg",
+    "name": "ibm_marrakesh"
+  },
+  "config": {
+    "E10": {
+      "backend_policy": "least_pending",
+      "comparison": {
+        "kernel_seeds_local": [
+          1,
+          2,
+          3
+        ]
+      },
+      "experiment": "E10",
+      "inherits": [
+        "E01",
+        "E09"
+      ],
+      "outputs_raw": "results/raw/E10_hw",
+      "shots": 2048,
+      "subset": {
+        "n_events": 32,
+        "seed": 1010
+      },
+      "transpile": {
+        "optimization_level": 1
+      }
+    }
+  },
+  "config_hash": "1c0c0205a29ec783e7e6260d5b642609cd5149e5f021435f393c255062686e6e",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E10",
+  "finished_at": 1786392194.8369617,
+  "git_commit": "6ddae574374ae58175dc6e279119668c47cac3ed",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E10_hardware.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 1010,
+  "started_at": 1786392194.8369088,
+  "wall_seconds": 5.2928924560546875e-05,
+  "warning": "git working tree dirty at run time"
+}

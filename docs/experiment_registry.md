@@ -351,14 +351,24 @@ entry.
   spec §19.
 - **Falsifier:** n/a — all outcomes (including failed runs) are reported.
 - **Outputs:** `results/raw/E10_hw/*` + provenance manifests.
-- **Status:** specified + submitted (2026-08-10) — config
-  `configs/experiments/E10.yaml`: 32 stratified tier-A events → 496
-  compute–uncompute circuits of the E01-frozen map, 2048 shots (E09 floor),
-  least-pending open-instance Heron, optimization_level 1, raw counts (no
-  mitigation), full provenance saved at submit time. Account: IBM open plan
-  (free tier; QPU budget of this run ~2–4 of the ~10 monthly minutes).
-  Analysis (K_ideal / K_shots / K_hw: Frobenius, PSD violation, effective
-  rank, per-entry scatter, LOO-CV agreement) runs on job completion.
+- **Status:** **complete** (2026-08-10; job `d9t2jrvtfhrs73dtd8dg` on
+  `ibm_marrakesh`, 496 compute–uncompute circuits × 2048 shots, 32 stratified
+  events, median transpiled depth 182 / ~54 2q gates, raw counts archived, no
+  mitigation). Results:
+  1. **Device noise dominates the estimation budget ~8×:** K_hw deviates
+     from K_ideal by 17.0% (Frobenius) vs 1.9% for pure shot noise at the
+     same budget → device-noise excess 15.1%. At this circuit depth, going
+     beyond ~2k shots buys almost nothing — mitigation or shallower maps are
+     the lever, not shots (connects to E09's shots-only curve).
+  2. Fidelities are biased DOWN (mean −0.010; worst entry −0.356) — noise
+     decays the all-zeros return; the deformation is diagonally-dominant-
+     preserving, so K_hw stayed PSD (violation 0.0) with mildly inflated
+     effective rank (29.4 → 30.9).
+  3. LOO-CV on 32 events: ideal 0.594 / shots ~0.56–0.59 / hardware 0.531 —
+     qualitative only (declared); no "hardware-validated" performance claims
+     are made from this scale (spec §34 discipline).
+  Full provenance in `results/raw/E10_hw/job_provenance.json`; K_ideal,
+  K_hw, and raw counts archived.
 
 ## E11 — CMS real-data fail-closed demonstration
 

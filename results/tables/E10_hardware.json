@@ -1,0 +1,86 @@
+{
+  "experiment": "E10",
+  "job_id": "d9t2jrvtfhrs73dtd8dg",
+  "backend": "ibm_marrakesh",
+  "shots": 2048,
+  "n_events": 32,
+  "provenance": {
+    "experiment": "E10",
+    "job_id": "d9t2jrvtfhrs73dtd8dg",
+    "backend": "ibm_marrakesh",
+    "shots": 2048,
+    "n_events": 32,
+    "n_circuits": 496,
+    "transpile": {
+      "optimization_level": 1,
+      "depth_median": 182,
+      "depth_min": 180,
+      "depth_max": 182,
+      "twoq_median": 54
+    },
+    "calibration": {
+      "backend": "ibm_marrakesh",
+      "num_qubits": 156,
+      "last_update_date": "2026-08-07 05:19:40+02:00"
+    },
+    "submitted_at_utc": "2026-08-10T19:43:43Z",
+    "qksvc_params": {
+      "C": "1.0",
+      "reps": "2",
+      "scale": "0.5",
+      "entanglement": "linear"
+    },
+    "mitigation": "none (raw counts; any mitigation would be reported)"
+  },
+  "kernels": {
+    "ideal": {
+      "eff_rank": 29.42,
+      "loo_acc": 0.5938
+    },
+    "shots_local": {
+      "stats_vs_ideal": [
+        {
+          "frob_rel_err": 0.01828,
+          "mean_abs_entry_err": 0.00207,
+          "max_abs_entry_err": 0.02225,
+          "mean_bias": -5e-05,
+          "psd_violation": 0.0,
+          "eff_rank": 29.42
+        },
+        {
+          "frob_rel_err": 0.02158,
+          "mean_abs_entry_err": 0.00236,
+          "max_abs_entry_err": 0.02743,
+          "mean_bias": 7e-05,
+          "psd_violation": 0.0,
+          "eff_rank": 29.38
+        },
+        {
+          "frob_rel_err": 0.0186,
+          "mean_abs_entry_err": 0.00218,
+          "max_abs_entry_err": 0.02254,
+          "mean_bias": -5e-05,
+          "psd_violation": 0.0,
+          "eff_rank": 29.44
+        }
+      ],
+      "loo_acc": [
+        0.5938,
+        0.5938,
+        0.5625
+      ]
+    },
+    "hardware": {
+      "stats_vs_ideal": {
+        "frob_rel_err": 0.17019,
+        "mean_abs_entry_err": 0.0133,
+        "max_abs_entry_err": 0.35627,
+        "mean_bias": -0.01036,
+        "psd_violation": 0.0,
+        "eff_rank": 30.87
+      },
+      "loo_acc": 0.5312
+    }
+  },
+  "device_noise_excess_frob": 0.1507
+}
