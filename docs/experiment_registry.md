@@ -351,7 +351,14 @@ entry.
   spec §19.
 - **Falsifier:** n/a — all outcomes (including failed runs) are reported.
 - **Outputs:** `results/raw/E10_hw/*` + provenance manifests.
-- **Status:** planned (last; depends on QPU access).
+- **Status:** specified + submitted (2026-08-10) — config
+  `configs/experiments/E10.yaml`: 32 stratified tier-A events → 496
+  compute–uncompute circuits of the E01-frozen map, 2048 shots (E09 floor),
+  least-pending open-instance Heron, optimization_level 1, raw counts (no
+  mitigation), full provenance saved at submit time. Account: IBM open plan
+  (free tier; QPU budget of this run ~2–4 of the ~10 monthly minutes).
+  Analysis (K_ideal / K_shots / K_hw: Frobenius, PSD violation, effective
+  rank, per-entry scatter, LOO-CV agreement) runs on job completion.
 
 ## E11 — CMS real-data fail-closed demonstration
 

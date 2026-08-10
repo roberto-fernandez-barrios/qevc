@@ -1,0 +1,14 @@
+# E10 — Quantum hardware validation (registered in docs/experiment_registry.md)
+# Hardware is complementary evidence, never the statistical backbone (spec §19).
+experiment: E10
+inherits: [E01, E09]
+subset:
+  n_events: 32          # -> 496 symmetric Gram pairs; QPU budget ~2-4 min (open plan)
+  seed: 1010            # stratified from tier-A train
+shots: 2048             # E09: >=2k needed for meaningful comparisons
+backend_policy: least_pending   # among open-instance Herons
+transpile:
+  optimization_level: 1
+comparison:
+  kernel_seeds_local: [1, 2, 3]   # K_shots replicas via the D-007 binomial law
+outputs_raw: results/raw/E10_hw
