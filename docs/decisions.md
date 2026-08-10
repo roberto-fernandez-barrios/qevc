@@ -95,3 +95,29 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
 - **Consequence:** any statement about "hardware noise" must come from E10 runs,
   never from E09.
 - **Status:** adopted.
+
+## D-008 — Dataset selections (Gate 1 / Gate 6)
+
+- **Date:** 2026-08-10
+- **Decision:** Level I = FAIR Universe HiggsML Uncertainty (Zenodo
+  10.5281/zenodo.15131565, systematics code pinned at commit `31816a0d`).
+  Level II = CMS Open Data H→ττ 2012 μτ_h (records 12350–12359, dev on the
+  root.cern 10% mirror), with Z→μμ (12365/12366 + 12353) as companion control
+  channel. Fallbacks: ATLAS HiggsML 2014 (Level I), 2015 POET series (Level II).
+- **Rationale:** full audit in `docs/dataset_audit.md`; decisive factor beyond
+  the spec §7 criteria is cross-level coherence — both levels are the same
+  physics process (H→ττ), removing the "different process" objection against
+  the sim-to-real demonstration.
+- **Known upstream defect handled:** norm-nuisance no-op bug in official
+  `systematics()`; weight scalings applied by `qevc.systematics` directly, with
+  an E00 regression test pinning semantics (audit §1.3).
+- **Status:** adopted.
+
+## D-009 — Claims discipline for novelty statements
+
+- **Date:** 2026-08-10
+- **Decision:** the paper claims exactly the four differentiators listed in
+  `docs/novelty_matrix.md` ("Differentiators to claim") and no others; targeted
+  literature re-searches are re-run before submission and the matrix updated
+  (watch items listed there).
+- **Status:** adopted.

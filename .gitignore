@@ -22,6 +22,9 @@ venv/
 # Large raw result artifacts are tracked via manifests, not git
 results/raw/
 
+# Vendored external repos (exact commits recorded in docs/dataset_audit.md)
+external/
+
 # OS
 Thumbs.db
 .DS_Store
