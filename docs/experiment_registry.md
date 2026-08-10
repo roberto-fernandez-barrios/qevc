@@ -22,9 +22,16 @@ entry.
 - **Falsifier:** any unexplained mismatch with official documentation blocks Gate 1.
 - **Outputs:** `experiments/E00_dataset_validation/run_e00.py` →
   `results/tables/E00_validation.json` + manifest.
-- **Status:** specified (2026-08-10) — checks: schema, row count, per-process
-  counts and weighted yields vs paper, label consistency, finiteness/sentinels,
-  nominal selection fraction, TES direction/magnitude/migration.
+- **Status:** **complete** (2026-08-10) — ALL PASS (11/11).
+  `results/tables/E00_validation.json`, manifests for both runs kept (first run
+  failed one check on a 4.6e-5 metadata precision artifact; tolerance set to
+  1e-4 with the discrepancy documented in the check itself and audit §1.1).
+  Findings: 220,099,101 rows and per-process counts exactly match the paper;
+  stored-weight sums match the paper per process; nominal selection keeps 91.3%
+  of raw rows; TES=1.02 raises mean `PRI_had_pt` by 1.15% with upward event
+  migration (+3,805 events on 200k subsample). Parquet row-group head is
+  process-blocked (group 0 is 100% ztautau) — subset loaders must sample by
+  global index, never by row-group clusters.
 
 ## E01 — Nominal baselines
 

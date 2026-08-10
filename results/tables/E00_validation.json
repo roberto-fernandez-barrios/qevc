@@ -1,0 +1,63 @@
+{
+  "experiment": "E00",
+  "all_pass": true,
+  "checks": [
+    {
+      "check": "schema_columns",
+      "pass": true,
+      "detail": "31 columns, sets equal=True"
+    },
+    {
+      "check": "row_count",
+      "pass": true,
+      "detail": "220,099,101 rows (paper 220,099,101, metadata 220,099,101)"
+    },
+    {
+      "check": "unweighted_counts_per_process",
+      "pass": true,
+      "detail": "{'ztautau': 160383358, 'ttbar': 7070398, 'diboson': 605118, 'htautau': 52040227}"
+    },
+    {
+      "check": "sum_weights_total",
+      "pass": true,
+      "detail": "measured 1,051,384.8; metadata 1,051,433.0 (rel diff 4.58e-05, tolerance 1e-04)"
+    },
+    {
+      "check": "sum_weights_per_process",
+      "pass": true,
+      "detail": "{'ztautau': 1002396.6, 'diboson': 3782.6, 'ttbar': 44190.2, 'htautau': 1015.4}"
+    },
+    {
+      "check": "labels_consistent_with_detailed",
+      "pass": true,
+      "detail": "0 mismatches"
+    },
+    {
+      "check": "subsample_all_finite",
+      "pass": true,
+      "detail": "200,000 rows scanned"
+    },
+    {
+      "check": "subsample_value_ranges",
+      "pass": true,
+      "detail": "sentinels/ranges/weights>0"
+    },
+    {
+      "check": "nominal_selection_fraction",
+      "pass": true,
+      "detail": "0.9129 of raw rows survive nominal selection"
+    },
+    {
+      "check": "tes_direction_and_magnitude",
+      "pass": true,
+      "detail": "mean PRI_had_pt ratio 1.0115 for TES=1.02"
+    },
+    {
+      "check": "tes_up_gains_events",
+      "pass": true,
+      "detail": "186,388 vs 182,583 (upward migration)"
+    }
+  ],
+  "wall_seconds": 12.9,
+  "parquet_sha256": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+}

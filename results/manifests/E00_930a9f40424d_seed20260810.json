@@ -1,0 +1,53 @@
+{
+  "backend": {},
+  "config": {
+    "dataset": "fair_universe_zenodo_15131565",
+    "expected_counts": {
+      "diboson": 605118,
+      "htautau": 52040227,
+      "ttbar": 7070398,
+      "ztautau": 160383358
+    },
+    "expected_rows": 220099101,
+    "expected_sum_weights_by_process": {
+      "diboson": 3783.0,
+      "htautau": 1015.0,
+      "ttbar": 44192.0,
+      "ztautau": 1002395.0
+    },
+    "expected_sum_weights_total": 1051433.0,
+    "experiment": "E00",
+    "subsample_rows": 200000,
+    "subsample_seed": 20260810,
+    "tes_check": 1.02,
+    "weight_sum_rtol": 0.005
+  },
+  "config_hash": "930a9f40424df63b1de25e63fcf7e2510122dd5b4d007750c2f9683de5e62236",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E00",
+  "finished_at": 1786367272.7425754,
+  "git_commit": "5abb62bfa7eaa420a6b799c9cf1c69624b530a6b",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E00_validation.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 20260810,
+  "started_at": 1786367272.7422833,
+  "wall_seconds": 0.00029206275939941406,
+  "warning": "git working tree dirty at run time"
+}

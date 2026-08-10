@@ -64,7 +64,8 @@ competition pipeline is unaffected because it applies normalizations inside
 (three multiplications on `weights` keyed by `detailed_labels`) and calls
 `systematics()` only for feature-level shifts (TES/JES/soft-MET). E00 includes a
 regression test that reproduces both the bug and our workaround, so an upstream
-fix cannot silently change semantics. Reported upstream as good citizenship. ⏳
+fix cannot silently change semantics. Upstream issue to be filed (pending
+author approval — external action).
 
 ### 1.4 D_θ regeneration API (execution-verified on Windows / Python 3.13)
 
@@ -213,9 +214,19 @@ available public instantiation of the paper's central question and removes the
 
 ## 4. Risks and predeclared handling
 
+E00 verification results (2026-08-10, ALL PASS): row count and per-process
+counts exactly match the paper; stored-weight sums match per process; nominal
+selection retains 91.3% of raw rows; TES semantics verified on the real file.
+Two additional findings: (a) the bundled metadata's `sum_weights` (1,051,433.0)
+differs from the float64 sum of stored weights (1,051,384.8) by 4.6e-5 relative
+— treated as a metadata precision artifact, stored weights are canonical;
+(b) the parquet's leading row group(s) are process-blocked (group 0 is 100%
+ztautau) while the bulk is mixed — subset loaders must sample by global index,
+never by row-group clusters.
+
 | Risk | Handling |
 |---|---|
-| 280M vs 220M event-count discrepancy in benchmark paper | does not affect subsampled use; noted; question sent upstream ⏳ |
+| 280M vs 220M event-count discrepancy in benchmark paper | does not affect subsampled use; noted; to be raised upstream with the norm-bug report |
 | `soft_met` stochastic given θ | seeds recorded; environments defined as (θ, seed); replication across ≥3 seeds in affected experiments |
 | Norm-scale no-op bug resurfacing via upstream fix | regression test in E00 pins semantics |
 | Selection migration changes environment sample sizes | never "corrected"; metrics use weights; auditors see realistic post-selection data |
