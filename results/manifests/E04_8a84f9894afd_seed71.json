@@ -1,0 +1,144 @@
+{
+  "backend": {},
+  "config": {
+    "E01": {
+      "bootstrap": {
+        "n_resamples": 1000,
+        "seed": 303
+      },
+      "experiment": "E01",
+      "features": {
+        "quantum": [
+          "DER_mass_transverse_met_lep",
+          "DER_mass_vis",
+          "DER_pt_ratio_lep_had",
+          "DER_met_phi_centrality",
+          "DER_deltar_had_lep",
+          "DER_pt_h",
+          "DER_sum_pt",
+          "PRI_met"
+        ]
+      },
+      "splits": {
+        "fractions": {
+          "auditor_dev": 0.15,
+          "final_eval": 0.15,
+          "nominal_test": 0.15,
+          "source_val": 0.15,
+          "train": 0.4
+        },
+        "scheme": "raw_row_v2",
+        "seed": 101
+      },
+      "subset": {
+        "n_total": 300000,
+        "seed": 101
+      },
+      "tier_a": {
+        "models": [
+          "linear_svc",
+          "rbf_svc",
+          "xgboost",
+          "lightgbm",
+          "mlp",
+          "qksvc"
+        ],
+        "n_train": 2000,
+        "seed": 404
+      },
+      "tier_b": {
+        "models": [
+          "linear_svc",
+          "xgboost",
+          "lightgbm",
+          "mlp"
+        ]
+      },
+      "tuning": {
+        "cv_folds": 3,
+        "n_configs": 10,
+        "n_configs_overrides": {
+          "mlp": 5
+        },
+        "seed": 202
+      }
+    },
+    "E04": {
+      "draws": {
+        "n_base_rows": 2500,
+        "seeds": [
+          71,
+          72,
+          73
+        ]
+      },
+      "experiment": "E04",
+      "inherits": [
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "kernel_model_map": {
+        "quantum": "A:qksvc",
+        "rbf": "A:rbf_svc"
+      },
+      "regression": {
+        "families": {
+          "combos": [
+            "combo"
+          ],
+          "jes": [
+            "jes"
+          ],
+          "soft_met": [
+            "soft_met"
+          ],
+          "tes": [
+            "tes"
+          ]
+        },
+        "features": [
+          "mmd2",
+          "eff_rank_ratio",
+          "mean_kst",
+          "mean_ktt",
+          "entropy_diff"
+        ],
+        "ridge_alpha": 1.0,
+        "target": "abs_delta_auc"
+      },
+      "top_eigs": 10,
+      "transfer_targets": [
+        "A:xgboost"
+      ]
+    }
+  },
+  "config_hash": "8a84f9894afdaa9ab49b80bef029a7f52c4dc5fe844dbb9b31748b35e389a78e",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E04",
+  "finished_at": 1786373915.5268145,
+  "git_commit": "c87c296be4239e1db21803e8c6e62866d24a2222",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E04_geom_failure.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 71,
+  "started_at": 1786373915.5267484,
+  "wall_seconds": 6.604194641113281e-05,
+  "warning": "git working tree dirty at run time"
+}

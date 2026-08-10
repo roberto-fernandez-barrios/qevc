@@ -130,13 +130,24 @@ entry.
 - **Metric:** leave-one-nuisance-out regression/rank metrics per SAP §2.
 - **Falsifier:** out-of-env rank correlation ≤ 0 or sign-unstable across seeds.
 - **Outputs:** `results/tables/E04_geom_failure.json`, Fig. 4 data.
-- **Status:** specified (2026-08-10) — config `configs/experiments/E04.yaml`:
-  common-random-number target draws (3 fixed 2500-row sets shared across all
-  41 environments), weight-only envs excluded from regression (blind-spot set;
-  used to measure the residual noise floor), LONO ridge on 5 predeclared
-  descriptors vs |ΔAUC| from E02, mmd2-only baseline, transfer test onto
-  A:xgboost. Target of quantum-kernel geometry = A:qksvc; of RBF geometry =
-  A:rbf_svc. Falsifier unchanged.
+- **Status:** **complete — first pass** (2026-08-10). **H2 falsifier NOT
+  triggered for the quantum kernel.** Out-of-environment (LONO) results on
+  the 28 feature-shift environments:
+  1. Quantum geometry → QK-SVC degradation: pooled ρ = 0.563 (p = 0.002);
+     **MMD² alone: ρ = 0.761 (p < 10⁻³)** — the simple sensor beats the
+     5-descriptor ridge (overfitting at n≈24 training envs; honest finding).
+     Folds: tes +0.8, soft_met +0.48, combos +0.74; jes −0.8 (n=4, JES ΔAUC
+     ~0.001–0.003 ≈ noise floor of the single-seed E02 targets).
+  2. Transfer: quantum geometry predicts XGBoost degradation too (ρ = 0.589)
+     — the sensor tracks the shift itself, not one model's quirks.
+  3. RBF-28-feature geometry is much weaker for its own model (pooled
+     ρ = 0.082; mmd2-only 0.471) — the bandwidth-limited fidelity kernel on
+     the 8 physics features is the better shift sensor in this setup.
+  4. CRN worked: quantum MMD² noise floor 7.6e-5 (vs ~2e-4 in E03's
+     independent-draw design).
+  Caveats carried: degradation targets from single-seed E02; small per-fold n;
+  conclusions restricted to feature-shift nuisances (weight-only = structural
+  blind spot, E03).
 
 ## E05 — Conditional auditor
 
