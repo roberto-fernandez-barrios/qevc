@@ -167,6 +167,27 @@ entry.
   I0 = UNRESOLVED by construction; I1 = E03 quantum-MMD² alarm above the
   weight-only noise floor, veto-only; I2 = EB confidence sequence. Truth used
   only to score decisions. I3 and weighted estimands deferred to v2 (D-014).
+  **v1.1 amendment (2026-08-10, registered before run 2):** run 1 found ALL
+  δ∈{0.02,0.05,0.10} claims true (worst unweighted-accuracy drop 0.0084 —
+  far below the AUC drops; threshold-level accuracy is shift-robust here), so
+  false certification had no stress cases. Added adversarial claims
+  δ ∈ {0, −0.005, −0.01} (τ at/above M_S), several genuinely false by
+  simulation truth. Falsifier unchanged.
+  **Complete (2026-08-10, run 2; 19,680 claim-streams).** Results:
+  1. **Empirical false certification 0.61% ≤ α=5%** (48/7820 streams on
+     genuinely false claims; misses concentrated at margins ≥ −0.003) —
+     falsifier NOT triggered; implementation validated end-to-end.
+  2. False refutation 0.03% (3/11,860).
+  3. Fail-closed dominates near the boundary: 98% of false-claim streams end
+     UNRESOLVED at n_max=3000 (margins −0.0001…−0.018 need more labels to
+     refute); refutation achieved in 108 streams at the larger margins.
+  4. Certification landscape (run 1, δ=0.02, margins ≈ +0.02): n* medians
+     250–2400 when resolved; majority abstain at 3000 — the E06 landscape's
+     first contour, measured.
+  5. I0 resolves nothing by construction; I1 alarm (8 envs) veto-only.
+  Finding for the paper: at frozen thresholds, unweighted accuracy is far
+  more shift-robust than ranking (AUC) — metric choice changes which claims
+  are at risk, reinforcing claim-explicit auditing.
 
 ## E06 — Partial-label certification landscape
 
