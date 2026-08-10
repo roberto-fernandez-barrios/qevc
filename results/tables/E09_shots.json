@@ -1,0 +1,1236 @@
+{
+  "experiment": "E09",
+  "exact": {
+    "m_source": 0.75912,
+    "envs": {
+      "nominal": {
+        "auc": 0.83724,
+        "m_target": 0.76197,
+        "verdicts": {
+          "-0.01": "UNRESOLVED",
+          "0.0": "UNRESOLVED",
+          "0.02": "SUPPORTED",
+          "0.05": "SUPPORTED"
+        }
+      },
+      "tes=0.98": {
+        "auc": 0.82845,
+        "m_target": 0.76374,
+        "verdicts": {
+          "-0.01": "UNRESOLVED",
+          "0.0": "UNRESOLVED",
+          "0.02": "SUPPORTED",
+          "0.05": "SUPPORTED"
+        }
+      },
+      "tes=1.02": {
+        "auc": 0.846,
+        "m_target": 0.75819,
+        "verdicts": {
+          "-0.01": "UNRESOLVED",
+          "0.0": "UNRESOLVED",
+          "0.02": "SUPPORTED",
+          "0.05": "SUPPORTED"
+        }
+      },
+      "soft_met=5.0/seed11": {
+        "auc": 0.83341,
+        "m_target": 0.75637,
+        "verdicts": {
+          "-0.01": "UNRESOLVED",
+          "0.0": "UNRESOLVED",
+          "0.02": "SUPPORTED",
+          "0.05": "SUPPORTED"
+        }
+      },
+      "combo3/seed11": {
+        "auc": 0.82678,
+        "m_target": 0.7613,
+        "verdicts": {
+          "-0.01": "UNRESOLVED",
+          "0.0": "UNRESOLVED",
+          "0.02": "SUPPORTED",
+          "0.05": "SUPPORTED"
+        }
+      }
+    },
+    "kernel": {
+      "eff_rank": 353.36,
+      "psd_violation": 0.0,
+      "frob_rel_err": 0.0
+    }
+  },
+  "configs": {
+    "shots128_seed1": {
+      "m_source": 0.72335,
+      "envs": {
+        "nominal": {
+          "auc": 0.82299,
+          "m_target": 0.72758,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.82797,
+          "m_target": 0.72831,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.83516,
+          "m_target": 0.72391,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.81105,
+          "m_target": 0.71797,
+          "verdicts": {
+            "-0.01": "REFUTED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.82702,
+          "m_target": 0.72182,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.13649,
+        "psd_violation": 0.009425,
+        "eff_rank": 488.13
+      },
+      "verdict_flips_vs_exact": 1,
+      "tes_response_deviation": {
+        "tes=0.98": -0.01377,
+        "tes=1.02": -0.00341
+      }
+    },
+    "shots128_seed2": {
+      "m_source": 0.78825,
+      "envs": {
+        "nominal": {
+          "auc": 0.84264,
+          "m_target": 0.79088,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.80334,
+          "m_target": 0.79,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.82401,
+          "m_target": 0.78785,
+          "verdicts": {
+            "-0.01": "REFUTED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.80027,
+          "m_target": 0.78459,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.82896,
+          "m_target": 0.78846,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.13669,
+        "psd_violation": 0.00943,
+        "eff_rank": 488.79
+      },
+      "verdict_flips_vs_exact": 1,
+      "tes_response_deviation": {
+        "tes=0.98": 0.03051,
+        "tes=1.02": 0.02739
+      }
+    },
+    "shots128_seed3": {
+      "m_source": 0.70888,
+      "envs": {
+        "nominal": {
+          "auc": 0.84013,
+          "m_target": 0.71121,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.81156,
+          "m_target": 0.718,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.84589,
+          "m_target": 0.7056,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83764,
+          "m_target": 0.70493,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.81751,
+          "m_target": 0.70995,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.13672,
+        "psd_violation": 0.009384,
+        "eff_rank": 489.14
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": 0.01978,
+        "tes=1.02": 0.003
+      }
+    },
+    "shots256_seed1": {
+      "m_source": 0.77925,
+      "envs": {
+        "nominal": {
+          "auc": 0.83763,
+          "m_target": 0.78373,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.83756,
+          "m_target": 0.78476,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.8498,
+          "m_target": 0.77903,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.84276,
+          "m_target": 0.77617,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.81949,
+          "m_target": 0.78066,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.09682,
+        "psd_violation": 0.006631,
+        "eff_rank": 455.26
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": -0.00872,
+        "tes=1.02": -0.00341
+      }
+    },
+    "shots256_seed2": {
+      "m_source": 0.71854,
+      "envs": {
+        "nominal": {
+          "auc": 0.82715,
+          "m_target": 0.72123,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.8352,
+          "m_target": 0.72637,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.86141,
+          "m_target": 0.71757,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.81669,
+          "m_target": 0.71449,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.82406,
+          "m_target": 0.72118,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.09671,
+        "psd_violation": 0.006586,
+        "eff_rank": 455.06
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": -0.01684,
+        "tes=1.02": -0.0255
+      }
+    },
+    "shots256_seed3": {
+      "m_source": 0.72454,
+      "envs": {
+        "nominal": {
+          "auc": 0.83682,
+          "m_target": 0.72471,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.81579,
+          "m_target": 0.73012,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.83997,
+          "m_target": 0.72114,
+          "verdicts": {
+            "-0.01": "REFUTED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.8371,
+          "m_target": 0.72081,
+          "verdicts": {
+            "-0.01": "REFUTED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.84496,
+          "m_target": 0.72702,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.09678,
+        "psd_violation": 0.006645,
+        "eff_rank": 455.47
+      },
+      "verdict_flips_vs_exact": 2,
+      "tes_response_deviation": {
+        "tes=0.98": 0.01224,
+        "tes=1.02": 0.00561
+      }
+    },
+    "shots512_seed1": {
+      "m_source": 0.79284,
+      "envs": {
+        "nominal": {
+          "auc": 0.83697,
+          "m_target": 0.79283,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.82505,
+          "m_target": 0.79341,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.84608,
+          "m_target": 0.79114,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83002,
+          "m_target": 0.78955,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.80105,
+          "m_target": 0.79323,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.06841,
+        "psd_violation": 0.004638,
+        "eff_rank": 428.37
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": 0.00313,
+        "tes=1.02": -0.00035
+      }
+    },
+    "shots512_seed2": {
+      "m_source": 0.75873,
+      "envs": {
+        "nominal": {
+          "auc": 0.85408,
+          "m_target": 0.76226,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.80954,
+          "m_target": 0.76434,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.84086,
+          "m_target": 0.75817,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.82651,
+          "m_target": 0.75533,
+          "verdicts": {
+            "-0.01": "REFUTED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.80415,
+          "m_target": 0.76041,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.06849,
+        "psd_violation": 0.004628,
+        "eff_rank": 428.11
+      },
+      "verdict_flips_vs_exact": 1,
+      "tes_response_deviation": {
+        "tes=0.98": 0.03575,
+        "tes=1.02": 0.02198
+      }
+    },
+    "shots512_seed3": {
+      "m_source": 0.78526,
+      "envs": {
+        "nominal": {
+          "auc": 0.84649,
+          "m_target": 0.78711,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.82998,
+          "m_target": 0.78819,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.8483,
+          "m_target": 0.78446,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83375,
+          "m_target": 0.78184,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.80041,
+          "m_target": 0.78536,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.06822,
+        "psd_violation": 0.004653,
+        "eff_rank": 428.13
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": 0.00772,
+        "tes=1.02": 0.00695
+      }
+    },
+    "shots1024_seed1": {
+      "m_source": 0.77706,
+      "envs": {
+        "nominal": {
+          "auc": 0.83479,
+          "m_target": 0.7787,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.82331,
+          "m_target": 0.77994,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.85126,
+          "m_target": 0.77667,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.82679,
+          "m_target": 0.77437,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.81499,
+          "m_target": 0.77716,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.04835,
+        "psd_violation": 0.003223,
+        "eff_rank": 407.78
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": 0.00269,
+        "tes=1.02": -0.00771
+      }
+    },
+    "shots1024_seed2": {
+      "m_source": 0.77193,
+      "envs": {
+        "nominal": {
+          "auc": 0.83965,
+          "m_target": 0.77493,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.82456,
+          "m_target": 0.77641,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.85205,
+          "m_target": 0.77013,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83881,
+          "m_target": 0.76797,
+          "verdicts": {
+            "-0.01": "REFUTED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.82338,
+          "m_target": 0.77234,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.04839,
+        "psd_violation": 0.003255,
+        "eff_rank": 407.69
+      },
+      "verdict_flips_vs_exact": 1,
+      "tes_response_deviation": {
+        "tes=0.98": 0.0063,
+        "tes=1.02": -0.00364
+      }
+    },
+    "shots1024_seed3": {
+      "m_source": 0.77035,
+      "envs": {
+        "nominal": {
+          "auc": 0.834,
+          "m_target": 0.77289,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.84197,
+          "m_target": 0.77487,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.849,
+          "m_target": 0.77037,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83389,
+          "m_target": 0.76751,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.81978,
+          "m_target": 0.77114,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.0484,
+        "psd_violation": 0.00326,
+        "eff_rank": 407.61
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": -0.01676,
+        "tes=1.02": -0.00624
+      }
+    },
+    "shots2048_seed1": {
+      "m_source": 0.74125,
+      "envs": {
+        "nominal": {
+          "auc": 0.8357,
+          "m_target": 0.74584,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.82121,
+          "m_target": 0.74863,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.84143,
+          "m_target": 0.741,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.82867,
+          "m_target": 0.73709,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.83039,
+          "m_target": 0.74391,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.03419,
+        "psd_violation": 0.002237,
+        "eff_rank": 392.07
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": 0.0057,
+        "tes=1.02": 0.00303
+      }
+    },
+    "shots2048_seed2": {
+      "m_source": 0.78832,
+      "envs": {
+        "nominal": {
+          "auc": 0.84731,
+          "m_target": 0.79081,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.8303,
+          "m_target": 0.79214,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.84997,
+          "m_target": 0.78828,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.82667,
+          "m_target": 0.78682,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.82886,
+          "m_target": 0.79015,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.03421,
+        "psd_violation": 0.002231,
+        "eff_rank": 392.37
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": 0.00822,
+        "tes=1.02": 0.0061
+      }
+    },
+    "shots2048_seed3": {
+      "m_source": 0.71511,
+      "envs": {
+        "nominal": {
+          "auc": 0.84683,
+          "m_target": 0.71838,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.81649,
+          "m_target": 0.72247,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.85102,
+          "m_target": 0.71494,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83265,
+          "m_target": 0.71113,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.8296,
+          "m_target": 0.71723,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.03414,
+        "psd_violation": 0.002252,
+        "eff_rank": 392.04
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": 0.02155,
+        "tes=1.02": 0.00457
+      }
+    },
+    "shots4096_seed1": {
+      "m_source": 0.74509,
+      "envs": {
+        "nominal": {
+          "auc": 0.83753,
+          "m_target": 0.74815,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.82964,
+          "m_target": 0.75094,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.8459,
+          "m_target": 0.74369,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83224,
+          "m_target": 0.7419,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.82647,
+          "m_target": 0.74637,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.02424,
+        "psd_violation": 0.001599,
+        "eff_rank": 380.76
+      },
+      "verdict_flips_vs_exact": 0,
+      "tes_response_deviation": {
+        "tes=0.98": -0.0009,
+        "tes=1.02": 0.00039
+      }
+    },
+    "shots4096_seed2": {
+      "m_source": 0.73128,
+      "envs": {
+        "nominal": {
+          "auc": 0.8354,
+          "m_target": 0.73582,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.83012,
+          "m_target": 0.73947,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.84539,
+          "m_target": 0.73099,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.83216,
+          "m_target": 0.72702,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "UNRESOLVED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.82468,
+          "m_target": 0.73276,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.02415,
+        "psd_violation": 0.001563,
+        "eff_rank": 380.55
+      },
+      "verdict_flips_vs_exact": 1,
+      "tes_response_deviation": {
+        "tes=0.98": -0.00351,
+        "tes=1.02": -0.00123
+      }
+    },
+    "shots4096_seed3": {
+      "m_source": 0.76145,
+      "envs": {
+        "nominal": {
+          "auc": 0.83057,
+          "m_target": 0.76435,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=0.98": {
+          "auc": 0.83032,
+          "m_target": 0.76518,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "tes=1.02": {
+          "auc": 0.84327,
+          "m_target": 0.76024,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "UNRESOLVED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "soft_met=5.0/seed11": {
+          "auc": 0.82885,
+          "m_target": 0.75846,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        },
+        "combo3/seed11": {
+          "auc": 0.8274,
+          "m_target": 0.76349,
+          "verdicts": {
+            "-0.01": "UNRESOLVED",
+            "0.0": "UNRESOLVED",
+            "0.02": "SUPPORTED",
+            "0.05": "SUPPORTED"
+          }
+        }
+      },
+      "kernel": {
+        "frob_rel_err": 0.02419,
+        "psd_violation": 0.001561,
+        "eff_rank": 380.69
+      },
+      "verdict_flips_vs_exact": 1,
+      "tes_response_deviation": {
+        "tes=0.98": -0.00854,
+        "tes=1.02": -0.00394
+      }
+    }
+  },
+  "wall_seconds": 620.3
+}

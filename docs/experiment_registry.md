@@ -321,13 +321,26 @@ entry.
   classifier degradation, certificate flip rate vs K_exact.
 - **Falsifier:** no shots×θ interaction and zero certificate flips (negative H6).
 - **Outputs:** `results/tables/E09_shots.json`, Fig. 8 data.
-- **Status:** specified (2026-08-10) — config `configs/experiments/E09.yaml`:
-  shots {128…4096} × 3 kernel seeds over {nominal, tes±2σ, soft_met=5,
-  combo3}; exact Grams computed once, shot configs resample the binomial law
-  (D-007); each configuration deploys its OWN calibration/threshold from its
-  source_val scores; auditor re-run per configuration (δ ∈ {−0.01, 0, 0.02,
-  0.05}, 10 replications) with verdict-flip counting vs the exact kernel;
-  TES-response deviation as the H6 interaction measure.
+- **Status:** **complete** (2026-08-10; config `configs/experiments/E09.yaml`;
+  18 configs = shots {128…4096} × 3 kernel seeds; falsifier NOT triggered —
+  H6 supported in a specific, bounded form). Results:
+  1. Kernel error scales as 1/√shots (Frobenius 13.7% → 2.4%, ratio 5.6 ≈
+     √32 — internal consistency ✓); PSD violations at every finite budget
+     (0.9% → 0.16%, measured, never repaired); **effective rank inflates
+     under shot noise** (353 exact → 489 at 128 shots): spurious spectral
+     mass is a measurable estimation artifact.
+  2. The classifier is shot-tolerant at n=2000: nominal AUC within ±0.01 of
+     exact even at 128 shots.
+  3. **Certificate stability: 8 verdict flips / 360 cells (2.2%),
+     concentrated at near-boundary claims** (mostly δ=−0.01 UNRESOLVED cells
+     and two δ=0.02 cells at the strongest shifts); comfortable-margin
+     certificates (δ=0.05) never flip; no shots-monotone flip pattern (flips
+     depend on where the noisy deployment's own M_S lands).
+  4. **Shots × systematics interaction:** the measured TES response deviates
+     from the exact kernel's by up to ±0.031 AUC at 128 shots, shrinking to
+     ±0.009 at 4096 — at low budgets shot noise SWAMPS the replicated TES
+     effect (+0.0024, E02R): measuring small systematic responses with
+     finite-shot kernels requires ≳2–4k shots. Direct E10 design input.
 
 ## E10 — Hardware validation
 
