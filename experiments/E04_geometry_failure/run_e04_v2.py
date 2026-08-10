@@ -34,6 +34,7 @@ WEIGHT_ONLY = ("ttbar_scale", "diboson_scale", "bkg_scale")
 KERNEL_TARGETS = {
     "quantum": ["A:qksvc", "A:xgboost"],
     "rbf": ["A:rbf_svc", "A:xgboost"],
+    "rbf8": ["A:rbf_svc_8f", "A:xgboost"],  # matched-kernel control (finding 3)
 }
 
 

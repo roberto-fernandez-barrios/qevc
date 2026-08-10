@@ -20,7 +20,9 @@ features:
 tier_a:  # matched comparison: every model on the SAME events
   n_train: 2000
   seed: 404
-  models: [linear_svc, rbf_svc, xgboost, lightgbm, mlp, qksvc]
+  # rbf_svc_8f = matched-kernel control on the SAME 8 quantum features
+  # (spec §23 mandatory ablation; added in Phase 10 review, finding 3)
+  models: [linear_svc, rbf_svc, rbf_svc_8f, xgboost, lightgbm, mlp, qksvc]
 tier_b:  # classical models at scale (context, not the quantum comparison)
   models: [linear_svc, xgboost, lightgbm, mlp]
 tuning:

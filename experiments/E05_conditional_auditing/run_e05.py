@@ -89,11 +89,13 @@ def frozen_thresholds_and_source_acc(raw, raw_splits) -> dict[str, dict]:
     seed = E01["tuning"]["seed"]
     q_cols = E01["features"]["quantum"]
     out: dict[str, dict] = {}
+    from qevc.pipeline.common import features_for  # noqa: PLC0415
+
     for key in E05["models"]:
         tier, name = key.split(":")
         params = parse_params(E01_RESULTS["tiers"][tier][name]["best_params"])
         train_df = df_a if tier == "A" else frames["train"]
-        cols = q_cols if name == "qksvc" else FEATURES_ALL
+        cols = features_for(name, q_cols, FEATURES_ALL)
         X = train_df[cols].to_numpy(float)
         y, w = train_df["labels"].to_numpy(), train_df["weights"].to_numpy()
         model = (qksvc_builder(params, seed) if name == "qksvc"

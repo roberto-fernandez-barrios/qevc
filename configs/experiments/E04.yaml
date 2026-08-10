@@ -20,5 +20,6 @@ regression:
 kernel_model_map:          # which E02 model each kernel's geometry should predict
   quantum: "A:qksvc"
   rbf: "A:rbf_svc"
+  rbf8: "A:rbf_svc_8f"     # matched-kernel control: same 8 features (finding 3)
 transfer_targets: ["A:xgboost"]  # non-kernel model as transfer test
 top_eigs: 10

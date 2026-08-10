@@ -1,5 +1,26 @@
 # Experiment Registry
 
+> **Phase 10 adversarial review (2026-08-10):** findings and dispositions in
+> `docs/decisions.md` D-016–D-018 and the annotations below. A clean-tree
+> regeneration campaign re-executes E00–E09, E02R, E04v2 and E11 from one
+> commit (D-016); numbers quoted below are superseded by the regenerated
+> tables where they differ (they should not, runs are seeded — the campaign
+> exists to make manifests honest, and to add the matched-kernel control).
+> Scoping corrections adopted: (i) I1 geometry evidence is *rate-free*
+> feature-distribution evidence — its blindness to normalization nuisances is
+> a statement about the benchmark's weight-only implementation and this
+> information set, NOT an impossibility claim for all label-free monitoring
+> (rate/CR monitoring does carry that information, as E11's C2 shows —
+> finding 2); (ii) "quantum kernel is the better sensor" is suspended until
+> the rbf8 matched-kernel control (finding 3) reports; (iii) H5 cell counts
+> are E02R-gated and deduplicated to unique θ (finding 4); (iv) E05's
+> pooled false-certification rate is over false-claim streams (48/7,820),
+> with per-cell max 2/20 (three near-boundary cells, within binomial
+> fluctuation of α); (v) E06 n* medians are conditional on resolution and
+> with-replacement draws (a WoR caveat applies at large budgets);
+> (vi) environment counts: 28 unique θ + seed replicates + nominal = 41
+> evaluations.
+
 Rule (spec §27, §38): an experiment is registered here — question, hypothesis,
 falsifier, planned outputs — **before** it is run. Status transitions:
 `planned → specified → running → complete | failed | abandoned(reason)`.

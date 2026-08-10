@@ -142,8 +142,10 @@ def main() -> int:
     y_a, w_a = df_a["labels"].to_numpy(), df_a["weights"].to_numpy()
     wb_a = class_balanced_weights(y_a, w_a)
 
+    from qevc.pipeline.common import features_for  # noqa: PLC0415
+
     for name in CONFIG["tier_a"]["models"]:
-        cols = q_cols if name == "qksvc" else FEATURES_ALL
+        cols = features_for(name, q_cols, FEATURES_ALL)
         X = df_a[cols].to_numpy(float)
         n_cfg = tuning["n_configs_overrides"].get(name, tuning["n_configs"])
         kwargs = ({"builder_override": qksvc_builder, "space_override": QKSVC_SPACE}

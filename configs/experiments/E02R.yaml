@@ -6,7 +6,7 @@ replication_seeds: [201, 202, 203, 204, 205]
 # Focus models (declared): the paper's primary contrasts. Hyperparameters are
 # FROZEN from E01 — replication measures partition + initialization variance,
 # not tuning variance (tuning variance would require nested retuning; noted).
-models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "A:lightgbm", "B:xgboost"]
+models: ["A:qksvc", "A:rbf_svc", "A:rbf_svc_8f", "A:xgboost", "A:lightgbm", "B:xgboost"]
 environments: full_E02_grid
 metrics: [auc, balanced_accuracy]
 checks:

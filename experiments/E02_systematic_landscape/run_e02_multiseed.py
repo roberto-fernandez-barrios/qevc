@@ -78,11 +78,13 @@ def main() -> int:
         y_sv, w_sv = sv_df["labels"].to_numpy(), sv_df["weights"].to_numpy()
 
         fitted: dict[str, tuple] = {}
+        from qevc.pipeline.common import features_for  # noqa: PLC0415
+
         for key in E02R["models"]:
             tier, name = key.split(":")
             params = parse_params(E01_RESULTS["tiers"][tier][name]["best_params"])
             train_df = df_a if tier == "A" else frames["train"]
-            cols = q_cols if name == "qksvc" else FEATURES_ALL
+            cols = features_for(name, q_cols, FEATURES_ALL)
             X = train_df[cols].to_numpy(float)
             y, w = train_df["labels"].to_numpy(), train_df["weights"].to_numpy()
             model = (qksvc_builder(params, s) if name == "qksvc"

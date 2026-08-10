@@ -237,11 +237,14 @@ def main() -> int:
     out_path = REPO / "results/tables/E11_cms_case_study.json"
     out_path.write_text(json.dumps(out, indent=2), encoding="utf-8")
 
+    from qevc.utils.repro import file_sha256  # noqa: PLC0415
+
     manifest = RunManifest(
         experiment_id="E11",
         config={"E11": E11, "effective_lumi_pb": EFFECTIVE_LUMI_PB},
         seed=E11["train"]["seed"],
-        dataset_hashes={"cms_mirror": "root.cern HiggsTauTauReduced (audit §2.1)"},
+        dataset_hashes={p.name: file_sha256(p)
+                        for p in sorted(CMS.glob("*.parquet"))},
     )
     manifest.finalize(outputs=[str(out_path.relative_to(REPO))])
     manifest.write(REPO / "results/manifests")

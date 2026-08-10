@@ -97,10 +97,12 @@ def train_frozen_models(frames: dict) -> dict[str, tuple]:
            [("B", n) for n in E01["tier_b"]["models"]]
     df_a = tier_a_frame(frames["train"], E01["tier_a"]["n_train"],
                         E01["tier_a"]["seed"])
+    from qevc.pipeline.common import features_for  # noqa: PLC0415
+
     for tier, name in jobs:
         params = parse_params(E01_RESULTS["tiers"][tier][name]["best_params"])
         train_df = df_a if tier == "A" else frames["train"]
-        cols = q_cols if name == "qksvc" else FEATURES_ALL
+        cols = features_for(name, q_cols, FEATURES_ALL)
         X = train_df[cols].to_numpy(float)
         y, w = train_df["labels"].to_numpy(), train_df["weights"].to_numpy()
         wb = class_balanced_weights(y, w)

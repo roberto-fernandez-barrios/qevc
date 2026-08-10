@@ -159,18 +159,33 @@ def main() -> int:
             out_envs[env_name]["models"][key] = entry
         log(f"{env_name}: done")
 
-    # Decoupling scan (SAP §6 / H5)
+    # Decoupling scan (SAP §6 / H5) — E02R-gated (Phase 10 finding 4):
+    # "classifier flat" requires the 5-seed replication evidence
+    # |mean ΔAUC| + std < threshold, never a single-seed point estimate.
+    # Seed-replicated environments (soft_met/combo seeds) are deduplicated to
+    # unique θ via their base name.
     flat = E08["decoupling"]["delta_auc_flat"]
     dmg = E08["decoupling"]["coverage_damaged_below"]
-    decoupled = []
+    e02r = json.loads(
+        (REPO / "results/tables/E02R_multiseed.json").read_text())["summary"]
+    decoupled, seen_theta = [], set()
     for env_name, v in out_envs.items():
         if env_name == "nominal":
             continue
+        base_theta = env_name.split("/")[0]
         for key, m in v["models"].items():
-            if abs(m["delta_auc"]) < flat and m["coverage_mean"] < dmg:
-                decoupled.append({"env": env_name, "model": key,
-                                  "delta_auc": m["delta_auc"],
-                                  "coverage_mean": m["coverage_mean"]})
+            rep = e02r.get(key, {}).get("delta_auc", {}).get(env_name)
+            if rep is None:
+                continue  # model not in the replication set -> not gated in
+            flat_replicated = abs(rep["mean"]) + rep["std"] < flat
+            if flat_replicated and m["coverage_mean"] < dmg:
+                decoupled.append({
+                    "env": env_name, "theta_unique": base_theta, "model": key,
+                    "delta_auc_e02r_mean": rep["mean"],
+                    "delta_auc_e02r_std": rep["std"],
+                    "coverage_mean": m["coverage_mean"],
+                })
+                seen_theta.add((base_theta, key))
 
     out = {
         "experiment": "E08",
@@ -178,6 +193,9 @@ def main() -> int:
         "nominal_expectations": {k: {"s0": round(v[0], 2), "b0": round(v[1], 2)}
                                  for k, v in nominal_exp.items()},
         "decoupled_cells_H5": decoupled,
+        "decoupled_unique_theta_model": sorted(
+            f"{t}|{k}" for t, k in seen_theta),
+        "decoupling_gate": "E02R |mean|+std < flat threshold (finding 4)",
         "environments": out_envs,
         "wall_seconds": round(time.time() - t0, 1),
     }

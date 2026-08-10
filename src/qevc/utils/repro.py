@@ -50,8 +50,14 @@ def git_commit(repo_root: str | Path | None = None) -> str:
 
 
 def git_is_dirty(repo_root: str | Path | None = None) -> bool:
+    """Dirtiness of the CODE state (code/configs/docs), excluding run outputs.
+
+    A run writing its own outputs under ``results/`` must not make the
+    recorded commit ambiguous about the code that produced them (D-016);
+    everything else counting as dirty is exactly the point.
+    """
     out = subprocess.run(
-        ["git", "status", "--porcelain"],
+        ["git", "status", "--porcelain", "--", ".", ":(exclude)results"],
         cwd=repo_root, capture_output=True, text=True, check=True,
     )
     return bool(out.stdout.strip())
@@ -110,7 +116,8 @@ class RunManifest:
         if d["git_dirty"]:
             # Allowed during development; final paper runs must be clean.
             d["warning"] = "git working tree dirty at run time"
-        name = f"{self.experiment_id}_{d['config_hash'][:12]}_seed{self.seed}.json"
+        name = (f"{self.experiment_id}_{d['config_hash'][:12]}_seed{self.seed}"
+                f"_{int(self.started_at)}.json")  # re-runs get their own manifest
         path = Path(manifests_dir) / name
         if path.exists():
             raise FileExistsError(

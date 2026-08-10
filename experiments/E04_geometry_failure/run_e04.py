@@ -100,7 +100,17 @@ def main() -> int:
     gamma = (1.0 / (Zc_src.shape[1] * Zc_src.var())
              if rp["gamma"] == "scale" else float(rp["gamma"]))
 
-    K_ss = {"quantum": kernel_exact(Zq_src, fm), "rbf": rbf_gram(Zc_src, Zc_src, gamma)}
+    # Matched-kernel control (finding 3): RBF on the SAME 8 features,
+    # mirroring the rbf_svc_8f model's StandardScaler pipeline.
+    std8 = StandardScaler().fit(df_a[q_cols].to_numpy(float))
+    Z8_src = std8.transform(df_a[q_cols].to_numpy(float))
+    r8 = parse_params(E01_RESULTS["tiers"]["A"]["rbf_svc_8f"]["best_params"])
+    gamma8 = (1.0 / (Z8_src.shape[1] * Z8_src.var())
+              if r8["gamma"] == "scale" else float(r8["gamma"]))
+
+    K_ss = {"quantum": kernel_exact(Zq_src, fm),
+            "rbf": rbf_gram(Zc_src, Zc_src, gamma),
+            "rbf8": rbf_gram(Z8_src, Z8_src, gamma8)}
     spec_ss = {k: raw_spectrum(v) for k, v in K_ss.items()}
     log(f"source anchors ready (n={len(df_a)})")
 
@@ -122,11 +132,15 @@ def main() -> int:
             sub = te[np.isin(row_ids_env, ids)]
             Zq_t = ang.transform(sub[q_cols].to_numpy(float))
             Zc_t = std.transform(sub[FEATURES_ALL].to_numpy(float))
-            for kern, (Zt, Ks, Kst) in {
-                "quantum": (Zq_t, K_ss["quantum"], kernel_exact(Zq_src, fm, Zq_t)),
-                "rbf": (Zc_t, K_ss["rbf"], rbf_gram(Zc_src, Zc_t, gamma)),
+            Z8_t = std8.transform(sub[q_cols].to_numpy(float))
+            for kern, (Zt, Ks, Kst, gam) in {
+                "quantum": (Zq_t, K_ss["quantum"],
+                            kernel_exact(Zq_src, fm, Zq_t), None),
+                "rbf": (Zc_t, K_ss["rbf"], rbf_gram(Zc_src, Zc_t, gamma), gamma),
+                "rbf8": (Z8_t, K_ss["rbf8"], rbf_gram(Z8_src, Z8_t, gamma8), gamma8),
             }.items():
-                Ktt = kernel_exact(Zt, fm) if kern == "quantum" else rbf_gram(Zt, Zt, gamma)
+                Ktt = (kernel_exact(Zt, fm) if kern == "quantum"
+                       else rbf_gram(Zt, Zt, gam))
                 g = describe_environment(Ks, Ktt, Kst, y_source=y_src,
                                          top_eigs=E04["top_eigs"],
                                          source_spectrum=spec_ss[kern])
@@ -152,11 +166,11 @@ def main() -> int:
         kern: {f: float(np.std([r[f] for r in records
                                 if r["env"] in wo_envs and r["kernel"] == kern]))
                for f in feats}
-        for kern in ("quantum", "rbf")
+        for kern in ("quantum", "rbf", "rbf8")
     }
 
     analysis: dict = {"noise_floor_weight_only": noise, "lono": {}}
-    for kern in ("quantum", "rbf"):
+    for kern in ("quantum", "rbf", "rbf8"):
         targets = [E04["kernel_model_map"][kern]] + E04["transfer_targets"]
         X_all = np.array([[avg_desc(e, kern)[f] for f in feats] for e in shift_envs])
         for target in targets:

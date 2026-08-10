@@ -25,14 +25,17 @@ degradations under tau-energy-scale shifts and adverse nuisance
 combinations; (ii) show that a label-free
 quantum-kernel geometry sensor (MMD²) predicts degradation magnitude
 out-of-environment (Spearman ρ = 0.56–0.68 against multi-seed targets) while
-being *provably blind* to normalization nuisances that nevertheless destroy
-physics-level inference; (iii) construct a fail-closed, information-set-
-conditional auditor based on anytime-valid confidence sequences whose
-empirical false-certification rate is 0.61% at a nominal α = 5% over 19,680
-claim-streams, and measure the label budget n*(θ, C) at which claims resolve;
-(iv) demonstrate that classifier metrics and inference validity decouple:
-89 environment–model cells combine |ΔAUC| < 0.005 with μ-interval coverage
-below 0.63 — including coverage 0.000 at ΔAUC = +0.0002; and (v) deploy the
+being blind — by the rate-free nature of feature-distribution evidence — to
+the benchmark's weight-only normalization nuisances, which nevertheless
+destroy physics-level inference; (iii) construct a fail-closed,
+information-set-conditional auditor based on anytime-valid confidence
+sequences whose empirical false-certification rate is 0.61% of 7,820
+genuinely-false claim-streams at a nominal α = 5% (per-cell maximum 2/20,
+within binomial fluctuation), and measure the label budget n*(θ, C) at which
+claims resolve; (iv) demonstrate that classifier metrics and inference
+validity decouple: replication-gated cells combine ΔAUC consistent with zero
+at the ±0.01 partition-variance precision with μ-interval coverage collapse
+(to 0.000 in the flagship tau-energy-scale cell); and (v) deploy the
 framework end-to-end on real CMS Open Data collisions, where it certifies
 control-region claims, detects the simulation-to-data shift, and — by
 construction — refuses to certify event-level accuracy without labels.
@@ -100,12 +103,20 @@ in robotics; no information-set hierarchy, no physics inference).
 FAIR Universe (Zenodo 15131565, 220,099,101 events verified; norm-nuisance
 no-op defect in the official code found, worked around, and reported upstream
 as FAIR-Universe/HEP-Challenge#184); 300k-event subset; raw-row five-role
-partitions with sealed final_eval; 41 environments (±1σ/±2σ grids ×
-{TES, JES, soft-MET, 3 normalizations} + 4 combos); model suite with
-identical tuning budgets (10 configs × 3-fold, physics-weighted CV AUC);
-statistical protocol per the predeclared SAP (10⁴-resample bootstrap CIs;
-5-seed replication gates every reported number; predeclared relevance
-thresholds).
+partitions (each partition seals its own final_eval; the primary partition's
+final_eval was untouched by all single-partition results, while the
+replication partitions overlap it — no globally-untouched holdout remains,
+and the primary final_eval rows are frozen as the global holdout going
+forward, D-018); 28 unique nuisance points θ (±1σ/±2σ grids ×
+{TES, JES, soft-MET, 3 normalizations} + 4 combos), evaluated as 41
+environment datasets including seed replicates of the stochastic soft-MET
+shift and nominal; model suite with comparable, predeclared tuning budgets
+(10 random-search configs × 3-fold physics-weighted CV AUC; MLP 5 configs);
+statistical protocol per the predeclared SAP with logged deviations (D-017:
+10³/5×10²-resample descriptive bootstrap CIs; 5-seed replication gates the
+nominal contrasts and the TES/combination degradation claims — descriptor,
+auditor-error and coverage numbers are single-partition with audit-seed
+replication only).
 
 ## 6. Results
 
@@ -113,7 +124,12 @@ thresholds).
 Matched 2000-event budget, 5-seed replication: QK-SVC 0.848 ± 0.022 —
 consistently above RBF-SVC and linear SVC, consistently below tuned trees
 (QK − XGB = −0.035 ± 0.013, negative in 5/5 seeds). The single-seed "tie"
-with XGBoost did not survive replication and is reported as such.
+with XGBoost did not survive replication and is reported as such. Feature
+asymmetry stated plainly: the QK-SVC encodes 8 predeclared sentinel-free
+features (one per qubit, D-011) while the classical baselines consume all
+28; the rbf_svc_8f matched-kernel control (identical 8 features) isolates
+model-family effects from feature-set effects in every QK-vs-RBF contrast
+[numbers from the regeneration campaign].
 
 ### 6.2 Behavior under systematics (E02 + E02R; Fig. 2)
 TES down-shifts degrade the QK-SVC in 5/5 seeds (+0.0024 ± 0.0010 at −2σ);
@@ -124,24 +140,39 @@ scaling — an internal consistency check).
 
 ### 6.3 Kernel geometry (E03 + E04v2; Fig. 4)
 The label-free quantum-kernel MMD² predicts replicated degradation
-out-of-environment: ρ_S = 0.56 (own model, p = 0.002), 0.68 (transfer to
-XGBoost, p = 10⁻⁴). The RBF-28 sensor does not (ρ_S = −0.21, n.s.).
-Multivariate descriptor regressions overfit at this environment count and
-underperform the single sensor. Geometry is categorically blind to
-normalization nuisances (weight-only shifts move no feature) — measured via
-the noise-floor construction.
+out-of-environment: ρ_S = 0.56 (own model), 0.68 (transfer to XGBoost). The
+RBF sensor on the full 28-feature set does not (ρ_S = −0.21, n.s.);
+[whether the asymmetry is quantum-ness or the feature set is resolved by the
+matched rbf8 control on the identical 8 features — regeneration campaign].
+The 28 grid environments are family-correlated, so we lean on the
+predeclared falsifier (out-of-environment ρ ≤ 0, comfortably cleared), not
+on the nominal p-values. Multivariate descriptor regressions overfit at this
+environment count and underperform the single sensor. Feature-distribution
+geometry is rate-free by construction and therefore blind to the benchmark's
+weight-only implementation of normalization nuisances — measured via the
+noise-floor construction; rate/control-region monitoring is the label-free
+channel that does carry that information (§8), which is precisely the
+information-set point.
 
 ### 6.4 Conditional certification (E05; Fig. 5 data)
-19,680 claim-streams: empirical false certification 0.61% ≤ α = 5%; false
-refutation 0.03%; 98% of near-boundary false claims end UNRESOLVED at
+Across 19,680 claim-streams, of which 7,820 carry genuinely false claims:
+empirical false certification 48/7,820 = 0.61% ≤ α = 5% (per-cell maximum
+2/20, three near-boundary cells, within binomial fluctuation of α); false
+refutation 3/11,860; 98% of near-boundary false claims end UNRESOLVED at
 n = 3,000 (fail-closed). Threshold-level accuracy proves far more
-shift-robust than ranking (worst accuracy drop 0.008 vs AUC drops up to
-0.035): *the metric named in the claim changes which claims are at risk*.
+shift-robust than ranking (worst accuracy drop 0.008 vs replicated AUC drops
+up to +0.025 ± 0.024 at the adverse combination): *the metric named in the
+claim changes which claims are at risk*.
 
 ### 6.5 Label efficiency (E06 + E07; Figs. 5–6)
-n* is sharply margin-driven: ~180 labels at |margin| ≥ 0.08; ~870 at
-0.04–0.08; ~13,000 at 0.01–0.02; fail-closed UNRESOLVED below 0.01 even at
-20,000. Uncertainty-guided acquisition **loses** to uniform sampling
+n* is sharply margin-driven (medians over resolved streams; 100% resolve at
+|margin| ≥ 0.04): ~180 labels at |margin| ≥ 0.08; ~870 at 0.04–0.08;
+~13,000 at 0.01–0.02 where 58% resolve by 20,000; below 0.01 only 2–9%
+resolve and the fail-closed UNRESOLVED verdict dominates. Streams draw
+labels with replacement (the CS is then exactly valid); for budgets
+approaching the target-population size a without-replacement CS would
+tighten these numbers — the quoted large-budget n* are conservative as
+distinct-label counts. Uncertainty-guided acquisition **loses** to uniform sampling
 (median n* ratio 1.55; better in 10% of cells) — the ×2 importance-weight
 range halves effective margins and errors are not concentrated at the frozen
 threshold. Random labeling is near-optimal here; reported as a primary
@@ -149,12 +180,17 @@ threshold. Random labeling is near-optimal here; reported as a primary
 
 ### 6.6 Physics-level validity (E08; Fig. 7)
 With a deployment-blind counting estimator (nominal coverage verified at
-0.68), 89 environment–model cells combine |ΔAUC| < 0.005 with coverage
-< 0.633 — flagship: ΔAUC = +0.0002 with coverage = 0.000 (background shift
-23× the statistical uncertainty, invisible to ranking metrics). The
-geometry-blind normalization nuisances also break coverage (diboson down to
-0.003). Neither classifier metrics nor label-free geometry carry the
-information that protects inference.
+0.68), decoupled cells — replication-gated: E02R |mean ΔAUC| + s.d. below
+0.005, deduplicated to unique θ [counts from the regeneration campaign] —
+combine a classifier indistinguishable from nominal at partition-variance
+precision with coverage < 0.633; flagship: the TES −2σ cell where XGBoost's
+replicated ΔAUC is consistent with zero while coverage = 0.000 (background
+shift 23× the statistical uncertainty, invisible to ranking metrics). The
+normalization nuisances — invisible to rate-free feature-space geometry —
+also break coverage (diboson down to 0.003). Within the I0/I1
+(feature-distribution) information sets, neither classifier metrics nor
+geometry carry the information that protects inference; rate monitoring
+(§8) and labeled evidence (I2) do.
 
 ## 7. Quantum Realism
 
@@ -168,8 +204,10 @@ response — measuring small systematic effects requires ≳2–4k shots.
 ### 7.2 Hardware (E10; Fig. 8)
 ibm_marrakesh (Heron r2), 496 compute–uncompute circuits × 2048 shots, raw
 counts, no mitigation, 276 s QPU: K_hw deviates 17.0% (Frobenius) vs 1.9%
-for pure shot noise — device-noise excess 15.1% (~8×); fidelities biased
-down (−0.010); K_hw remained PSD. Classifier-level comparisons at n = 32 are
+for pure shot noise at the same budget — a ~9× ratio (defining the excess by
+linear subtraction gives 15.1%; under an independent-sources quadrature
+decomposition, 16.9% — the device term dominates either way); fidelities
+biased down (−0.010); K_hw remained PSD. Classifier-level comparisons at n = 32 are
 reported as qualitative only. [E10 v2 under BasQ access — proposal in
 `docs/basq_e10v2_proposal.md` — would run the full certification pipeline on
 hardware kernels and quantify the mitigation-recoverable fraction.]
@@ -208,12 +246,14 @@ rather than guessing.
 ## 10. Discussion
 
 The narrative the evidence selected is spec §37's composite: the quantum
-model is competitive but not superior; its kernel geometry is a genuinely
-better label-free shift sensor than the classical comparator; and the
-validity question is dominated not by the model family but by *what
-information the deployment possesses* — with certification cheap when claims
-have margin, impossible when they don't, and physics inference at risk
-precisely where every label-free signal is blind. This is an argument for
+model is competitive but not superior; its kernel MMD² is an effective
+label-free shift sensor where the full-feature RBF sensor is not (whether
+that asymmetry is quantum-ness or feature-set conditioning is settled by the
+matched control); and the validity question is dominated not by the model
+family but by *what information the deployment possesses* — certification is
+cheap when claims have margin, impossible when they don't, and physics
+inference is at risk precisely where feature-distribution evidence is blind
+and only rate monitoring or labels can see. This is an argument for
 information-set-conditional auditing as standard practice for ML-based
 physics analyses, quantum or classical.
 
@@ -227,6 +267,13 @@ physics analyses, quantum or classical.
 
 All experiments are configuration-driven with immutable run manifests (git
 commit, config hash, dataset SHA-256, seeds, package versions, backend
-metadata); the five-role partition seals a final-evaluation split untouched
-by every result reported here; raw QPU counts and full provenance are
-archived. Code, configs, and result tables will be released with a DOI.
+metadata). All simulation results were regenerated in a single clean-tree
+campaign so every manifest's commit identifies the exact code state (D-016);
+development-era manifests are retained alongside. Each partition seals its
+own final-evaluation split; single-partition results never touched the
+primary final_eval, replication partitions overlap it, and the primary
+final_eval rows are frozen as the global holdout for all future work
+(D-018). Raw QPU counts and full hardware provenance are archived (the QPU
+job itself is not re-executable; its job id, calibration snapshot, and raw
+counts stand as its record). Code, configs, and result tables will be
+released with a DOI.

@@ -227,3 +227,57 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   first; refinements change power, not the logic of the demonstration.
 - **Status:** adopted for E08 v1.
 
+## D-016 — Clean-tree regeneration campaign; manifest semantics fixed
+
+- **Date:** 2026-08-10 (Phase 10 review, finding 1 — BLOCKER)
+- **Problem:** all prior manifests recorded `git_dirty: true` (development
+  runs), so the recorded commit did not identify the code that produced any
+  result table.
+- **Decision:** (a) `git_is_dirty` now measures the CODE state only
+  (`results/` excluded — a run writing its own outputs does not make the
+  code ambiguous); (b) manifest filenames include the run start time, so
+  clean re-runs of identical configs get their own immutable manifest;
+  (c) all simulation experiments (E00–E09, E02R, E04v2, E11) are re-executed
+  in one sequential campaign from a single clean commit; superseded dirty
+  manifests are retained. E10's QPU job cannot be re-executed; its
+  provenance is captured independently by the archived job id, raw counts,
+  and submission metadata, and this is disclosed.
+- **Status:** adopted; campaign scripted in `scripts/regenerate_all.ps1`.
+
+## D-017 — SAP deviations, logged (Phase 10 findings 5, 11, 15)
+
+- **Date:** 2026-08-10
+- **Deviations from the predeclared SAP, now recorded:**
+  1. Bootstrap resamples: 10³ (E01) / 5×10² (E02) instead of SAP §5's 10⁴ —
+     compute trade-off; descriptive CIs only, effect sizes dwarf CI-of-CI
+     precision. Kept as-is; SAP note added.
+  2. Multi-nuisance design: 4 physics-motivated corners instead of a Latin
+     hypercube (SAP §4) — LHC design deferred to a follow-up pass.
+  3. Replication depth: 5 seeds for all replicated pipelines (SAP §4 said 10
+     for cheap classical) — E02R covers classical and quantum identically.
+  4. H1 primary analysis: across-seed sign-consistency and mean ± std
+     replaced the per-environment paired bootstrap of Δ_θ (stronger against
+     partition variance, which proved dominant); recorded as an amendment.
+  5. ∂μ̂/∂θ nuisance-sensitivity (SAP §1.2) not implemented in E08 v1;
+     deferred to E08 v2 (multi-bin/profiled).
+  6. Tuning budgets are *comparable*, not identical (MLP: 5 configs vs 10,
+     predeclared in E01.yaml) — manuscript language corrected accordingly.
+- **Status:** adopted; manuscript §5 rewritten to match reality.
+
+## D-018 — Global holdout after E02R (Phase 10 finding 6)
+
+- **Date:** 2026-08-10
+- **Problem:** E02R's fresh per-seed partitions overlap the primary
+  partition's `final_eval` rows, so no globally-untouched holdout survived
+  replication.
+- **Decision:** the seed-101 `final_eval` raw-row set is declared the global
+  holdout going forward: no future run (including E02R extensions) may
+  train, calibrate, tune, or evaluate on those rows without a new decision
+  entry. Manuscript and registry language corrected to: "each partition
+  seals its own final_eval; single-partition results never touched the
+  primary final_eval; E02R's replication partitions overlap it, so no
+  globally-untouched holdout remains for the results reported here."
+  `auditor_dev` (unused to date) is likewise reserved for future
+  auditor-development choices, documented as such (finding 12).
+- **Status:** adopted.
+

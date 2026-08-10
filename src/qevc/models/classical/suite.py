@@ -94,6 +94,17 @@ REGISTRY: dict[str, tuple[Callable[[dict, int], SkModel], dict[str, list]]] = {
          "learning_rate": [0.03, 0.05, 0.1, 0.2], "subsample": [0.7, 0.9, 1.0],
          "colsample_bytree": [0.7, 0.9, 1.0], "reg_lambda": [0.5, 1.0, 3.0]},
     ),
+    # Matched-kernel control (spec §23; review finding 3): identical RBF-SVC
+    # builder, but the experiment pipelines feed it the SAME 8 features as the
+    # quantum kernel, isolating quantum-ness from feature-set effects.
+    "rbf_svc_8f": (
+        lambda p, s: SkModel(Pipeline([
+            ("sc", StandardScaler()),
+            ("clf", SVC(kernel="rbf", C=p["C"], gamma=p["gamma"], cache_size=500)),
+        ])),
+        {"C": [0.1, 0.3, 1.0, 3.0, 10.0, 30.0],
+         "gamma": ["scale", 0.01, 0.03, 0.1, 0.3]},
+    ),
     "mlp": (
         lambda p, s: SkModel(Pipeline([
             ("sc", StandardScaler()),

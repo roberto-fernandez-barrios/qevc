@@ -63,6 +63,15 @@ def build_environment_dataset(
     return df.reset_index(drop=True)
 
 
+QUANTUM_FEATURE_MODELS = {"qksvc", "rbf_svc_8f"}
+
+
+def features_for(model_name: str, q_cols: list[str], all_cols: list[str]) -> list[str]:
+    """Which feature set a model consumes (matched-kernel control uses the
+    quantum 8-feature set; everything else the full 28)."""
+    return q_cols if model_name in QUANTUM_FEATURE_MODELS else all_cols
+
+
 def tier_a_frame(train_df: pd.DataFrame, n: int, seed: int) -> pd.DataFrame:
     """Label-stratified matched-comparison subset of the training role."""
     rng = np.random.default_rng(seed)
