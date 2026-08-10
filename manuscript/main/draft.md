@@ -23,11 +23,14 @@ distribution shift of the inputs (prior work folds only rate-type
 normalization uncertainty into final limits) — finding small but replicated
 degradations under tau-energy-scale shifts and adverse nuisance
 combinations; (ii) show that a label-free
-quantum-kernel geometry sensor (MMD²) predicts degradation magnitude
-out-of-environment (Spearman ρ = 0.56–0.68 against multi-seed targets) while
-being blind — by the rate-free nature of feature-distribution evidence — to
-the benchmark's weight-only normalization nuisances, which nevertheless
-destroy physics-level inference; (iii) construct a fail-closed,
+kernel-geometry sensor (MMD² of a bandwidth-limited kernel over compact
+physics features — quantum and matched classical alike, Spearman ρ =
+0.56–0.73 against multi-seed targets; a full-feature RBF sensor fails,
+identifying feature conditioning rather than quantumness as the active
+ingredient) predicts degradation magnitude out-of-environment, while being
+blind — by the rate-free nature of feature-distribution evidence — to the
+benchmark's weight-only normalization nuisances, which nevertheless destroy
+physics-level inference; (iii) construct a fail-closed,
 information-set-conditional auditor based on anytime-valid confidence
 sequences whose empirical false-certification rate is 0.61% of 7,820
 genuinely-false claim-streams at a nominal α = 5% (per-cell maximum 2/20,
@@ -125,11 +128,13 @@ Matched 2000-event budget, 5-seed replication: QK-SVC 0.848 ± 0.022 —
 consistently above RBF-SVC and linear SVC, consistently below tuned trees
 (QK − XGB = −0.035 ± 0.013, negative in 5/5 seeds). The single-seed "tie"
 with XGBoost did not survive replication and is reported as such. Feature
-asymmetry stated plainly: the QK-SVC encodes 8 predeclared sentinel-free
-features (one per qubit, D-011) while the classical baselines consume all
-28; the rbf_svc_8f matched-kernel control (identical 8 features) isolates
-model-family effects from feature-set effects in every QK-vs-RBF contrast
-[numbers from the regeneration campaign].
+asymmetry stated plainly and resolved by the matched-kernel control
+(spec §23): the QK-SVC encodes 8 predeclared sentinel-free features (one per
+qubit, D-011) while most classical baselines consume all 28; the RBF-SVC on
+the identical 8 features reaches 0.859 ± 0.016 — statistically
+indistinguishable from the QK-SVC (per-seed difference sign-unstable) and at
+the tuned-tree level. The earlier "QK above RBF" contrast was a feature-set
+effect (sentinel dilution of the 28-feature RBF), not quantumness.
 
 ### 6.2 Behavior under systematics (E02 + E02R; Fig. 2)
 TES down-shifts degrade the QK-SVC in 5/5 seeds (+0.0024 ± 0.0010 at −2σ);
@@ -138,15 +143,19 @@ adverse combination degrades the QK-SVC in 5/5 seeds (+0.025 ± 0.024).
 Weight-only nuisances leave AUC invariant (exactly, for uniform background
 scaling — an internal consistency check).
 
-### 6.3 Kernel geometry (E03 + E04v2; Fig. 4)
+### 6.3 Kernel geometry (E03 + E04v2 + matched control; Fig. 4)
 The label-free quantum-kernel MMD² predicts replicated degradation
 out-of-environment: ρ_S = 0.56 (own model), 0.68 (transfer to XGBoost). The
-RBF sensor on the full 28-feature set does not (ρ_S = −0.21, n.s.);
-[whether the asymmetry is quantum-ness or the feature set is resolved by the
-matched rbf8 control on the identical 8 features — regeneration campaign].
-The 28 grid environments are family-correlated, so we lean on the
-predeclared falsifier (out-of-environment ρ ≤ 0, comfortably cleared), not
-on the nominal p-values. Multivariate descriptor regressions overfit at this
+RBF sensor on the full 28-feature set does not (ρ_S = −0.21, n.s.) — but the
+matched RBF sensor on the identical 8 features does, and best of all
+(ρ_S = 0.73 own model, 0.60 transfer). The active ingredient is therefore
+*feature conditioning and kernel bandwidth*, not quantumness: a
+bandwidth-limited kernel over compact, sentinel-free physics features is an
+effective label-free shift sensor whether quantum or classical — a
+practically useful, model-agnostic recipe, and an honest negative for
+quantum-specific sensing. The 28 grid environments are family-correlated,
+so we lean on the predeclared falsifier (out-of-environment ρ ≤ 0,
+comfortably cleared), not on the nominal p-values. Multivariate descriptor regressions overfit at this
 environment count and underperform the single sensor. Feature-distribution
 geometry is rate-free by construction and therefore blind to the benchmark's
 weight-only implementation of normalization nuisances — measured via the
@@ -180,10 +189,10 @@ threshold. Random labeling is near-optimal here; reported as a primary
 
 ### 6.6 Physics-level validity (E08; Fig. 7)
 With a deployment-blind counting estimator (nominal coverage verified at
-0.68), decoupled cells — replication-gated: E02R |mean ΔAUC| + s.d. below
-0.005, deduplicated to unique θ [counts from the regeneration campaign] —
-combine a classifier indistinguishable from nominal at partition-variance
-precision with coverage < 0.633; flagship: the TES −2σ cell where XGBoost's
+0.68), 73 decoupled cells — replication-gated (E02R |mean ΔAUC| + s.d.
+< 0.005), spanning 65 unique (θ, model) pairs over 23 distinct nuisance
+points — combine a classifier indistinguishable from nominal at
+partition-variance precision with coverage < 0.633; flagship: the TES −2σ cell where XGBoost's
 replicated ΔAUC is consistent with zero while coverage = 0.000 (background
 shift 23× the statistical uncertainty, invisible to ranking metrics). The
 normalization nuisances — invisible to rate-free feature-space geometry —
@@ -245,12 +254,12 @@ rather than guessing.
 
 ## 10. Discussion
 
-The narrative the evidence selected is spec §37's composite: the quantum
-model is competitive but not superior; its kernel MMD² is an effective
-label-free shift sensor where the full-feature RBF sensor is not (whether
-that asymmetry is quantum-ness or feature-set conditioning is settled by the
-matched control); and the validity question is dominated not by the model
-family but by *what information the deployment possesses* — certification is
+The narrative the evidence selected is spec §37's composite, sharpened by
+the matched control: the quantum model is competitive but not superior, and
+nothing in our sensing or certification results is quantum-specific — the
+matched classical kernel matches both the classifier and the sensor. What
+remains is arguably more useful: the validity question is dominated not by
+the model family but by *what information the deployment possesses* — certification is
 cheap when claims have margin, impossible when they don't, and physics
 inference is at risk precisely where feature-distribution evidence is blind
 and only rate monitoring or labels can see. This is an argument for

@@ -6,6 +6,19 @@
 > commit (D-016); numbers quoted below are superseded by the regenerated
 > tables where they differ (they should not, runs are seeded — the campaign
 > exists to make manifests honest, and to add the matched-kernel control).
+> **Regeneration campaign complete (2026-08-11, commit 627796d):** all 13
+> simulation experiments re-executed clean (`git_dirty: false`); seed-101
+> numbers reproduced exactly (determinism verified). **Matched-kernel control
+> verdicts (finding 3, decisive):** RBF-SVC on the identical 8 features =
+> 0.8598 nominal / 0.8588 ± 0.0160 replicated — indistinguishable from
+> QK-SVC (per-seed difference sign-unstable) and at tuned-tree level; the
+> rbf8 MMD² sensor achieves ρ_S = 0.730 own-model / 0.601 transfer —
+> *better* than the quantum sensor. "QK above RBF" and
+> "quantum-kernel-as-better-sensor" were feature-set effects; both claims
+> retired from the manuscript, replaced by the model-agnostic recipe
+> (bandwidth-limited kernel on compact sentinel-free physics features).
+> **E08 gated decoupling:** 73 cells / 65 unique (θ, model) pairs / 23
+> distinct θ survive the E02R gate (was 89 raw single-seed cells).
 > Scoping corrections adopted: (i) I1 geometry evidence is *rate-free*
 > feature-distribution evidence — its blindness to normalization nuisances is
 > a statement about the benchmark's weight-only implementation and this

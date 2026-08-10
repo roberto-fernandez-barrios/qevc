@@ -58,6 +58,6 @@
       "detail": "186,388 vs 182,583 (upward migration)"
     }
   ],
-  "wall_seconds": 12.9,
+  "wall_seconds": 12.7,
   "parquet_sha256": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
 }

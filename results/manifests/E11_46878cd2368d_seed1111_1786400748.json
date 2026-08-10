@@ -1,0 +1,79 @@
+{
+  "backend": {},
+  "config": {
+    "E11": {
+      "alpha": 0.05,
+      "claims": {
+        "C1_event_accuracy": {
+          "requires": "I2 (target labels)",
+          "text": "event-level accuracy of f on collision data >= M_S - 0.05"
+        },
+        "C2_w_norm": {
+          "mt_cut": 70.0,
+          "requires": "I1 + control-region aggregates",
+          "text": "W+jets normalization consistent with MC within 30% in the high-mT CR",
+          "tolerance": 0.3
+        },
+        "C3_no_shift": {
+          "requires": "I1 (unlabeled target)",
+          "text": "no MC->data shift detectable at the QK-MMD2 sensor noise floor"
+        },
+        "C4_ss_qcd": {
+          "requires": "I1 + control-region aggregates",
+          "text": "SS control region shows a significant data excess over MC (QCD)"
+        }
+      },
+      "experiment": "E11",
+      "inherits": [
+        "E01"
+      ],
+      "sensor": {
+        "n_noise_draws": 20,
+        "n_sample": 2000,
+        "seed": 1112
+      },
+      "train": {
+        "qksvc_n_train": 2000,
+        "seed": 1111,
+        "val_fraction": 0.3
+      }
+    },
+    "effective_lumi_pb": 1147.8466999999998
+  },
+  "config_hash": "46878cd2368d6b1ccbf66f117847dd0a4a3b1294d28e88dcd9f0e3cf289cf22d",
+  "dataset_hashes": {
+    "DYJetsToLL.parquet": "ee86872b280e81f2a6520a5b62c4e2bd9e8cade22eb27103827cf46f956939c1",
+    "GluGluToHToTauTau.parquet": "10bb288639fbc25f0a1909ee0648af1ae8e617f163b4633ecceeaff008bc3280",
+    "Run2012B_TauPlusX.parquet": "b49660d41f4aa8df679912853d0d3df0817723387554230888bac94105a03d54",
+    "Run2012C_TauPlusX.parquet": "fdfe8fee06f7550b7d4846f6825a56277c739fe316d750480defbc96209b617f",
+    "TTbar.parquet": "2c3e60341923dc770bb9ed7c6d4d98c7a2cc538bc2bf4384e1886b9a5a395c29",
+    "VBF_HToTauTau.parquet": "f0886b3ef275f47fd62448bee059aae68523b28b2c887cd175374a4b063858ae",
+    "W1JetsToLNu.parquet": "63c6fbe20eb7adfaef584e33bc279cf08fda108b28e4f5951a22900c91803959",
+    "W2JetsToLNu.parquet": "7c9e08782337afc71e1beab786213f9f1f293cc98974631e81b9ca9a2bebf51c",
+    "W3JetsToLNu.parquet": "754345b77b2bc8e0cc04f5acf22e527b3cefd4e46751d538434c32aaffb9af01"
+  },
+  "experiment_id": "E11",
+  "finished_at": 1786400748.9944766,
+  "git_commit": "627796d003d8abc56f2c90504792733eb7b56ab7",
+  "git_dirty": false,
+  "outputs": [
+    "results\\tables\\E11_cms_case_study.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 1111,
+  "started_at": 1786400748.9944105,
+  "wall_seconds": 6.604194641113281e-05
+}

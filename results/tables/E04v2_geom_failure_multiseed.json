@@ -114,6 +114,62 @@
       "pooled_p": 0.3238,
       "mmd2_only_rho": 0.451,
       "mmd2_only_p": 0.0159
+    },
+    "rbf8->A:rbf_svc_8f": {
+      "per_fold": {
+        "tes": {
+          "n": 4,
+          "rho": -0.6,
+          "p": 0.4
+        },
+        "jes": {
+          "n": 4,
+          "rho": 0.8,
+          "p": 0.2
+        },
+        "soft_met": {
+          "n": 12,
+          "rho": 0.615,
+          "p": 0.0332
+        },
+        "combos": {
+          "n": 8,
+          "rho": 0.238,
+          "p": 0.5702
+        }
+      },
+      "pooled_rho": 0.664,
+      "pooled_p": 0.0001,
+      "mmd2_only_rho": 0.73,
+      "mmd2_only_p": 0.0
+    },
+    "rbf8->A:xgboost": {
+      "per_fold": {
+        "tes": {
+          "n": 4,
+          "rho": 0.6,
+          "p": 0.4
+        },
+        "jes": {
+          "n": 4,
+          "rho": -1.0,
+          "p": 0.0
+        },
+        "soft_met": {
+          "n": 12,
+          "rho": 0.613,
+          "p": 0.0341
+        },
+        "combos": {
+          "n": 8,
+          "rho": 0.833,
+          "p": 0.0102
+        }
+      },
+      "pooled_rho": 0.304,
+      "pooled_p": 0.1163,
+      "mmd2_only_rho": 0.601,
+      "mmd2_only_p": 0.0007
     }
   },
   "wall_seconds": 0.0
