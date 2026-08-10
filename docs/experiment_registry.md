@@ -20,8 +20,11 @@ entry.
   sanity plots; systematics round-trip checks (θ=0 shift is identity; ±1σ moves
   the documented observables in the documented direction).
 - **Falsifier:** any unexplained mismatch with official documentation blocks Gate 1.
-- **Outputs:** `experiments/E00_dataset_validation/` report + `results/tables/E00_*`.
-- **Status:** planned.
+- **Outputs:** `experiments/E00_dataset_validation/run_e00.py` →
+  `results/tables/E00_validation.json` + manifest.
+- **Status:** specified (2026-08-10) — checks: schema, row count, per-process
+  counts and weighted yields vs paper, label consistency, finiteness/sentinels,
+  nominal selection fraction, TES direction/magnitude/migration.
 
 ## E01 — Nominal baselines
 

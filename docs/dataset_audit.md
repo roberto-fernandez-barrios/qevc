@@ -17,7 +17,7 @@ verified locally is marked ⏳ and blocks the affected item, not the gate.
 | Canonical release | Zenodo record 15131565, DOI `10.5281/zenodo.15131565` (concept `10.5281/zenodo.15131564`), published 2025-04-03 |
 | File | `FAIR_Universe_HiggsML_data.zip`, 15.14 GB → one parquet (~16 GB) + metadata JSON |
 | License / access | CC-BY-4.0, open, no registration |
-| Local copy | `data/raw/fair_universe/` — SHA-256 recorded on download completion ⏳ |
+| Local copy | `data/raw/fair_universe/FAIR_Universe_HiggsML_data.parquet` (16.80 GB, 220,099,101 rows × 31 cols verified; bundled metadata JSON declares sum_weights 1,051,433 @ 10 fb⁻¹). Zip SHA-256 `adaa3dd81a02663051aa93f960bc1c5ee67a78d25c091015bb020b1f9cd7dcb5`, deleted after verified extraction (disk budget, §4) |
 | Systematics code | github.com/FAIR-Universe/HEP-Challenge, vendored at `external/HEP-Challenge`, commit `31816a0d8c8dda03d4b28d9e824674821756962b`, `systematics.py __version__ = 4.0` |
 | Physics | H→ττ (τ had-lep) vs Z→ττ, ttbar, diboson; Pythia 8.2 + Delphes 3.5.0; luminosity convention 10 fb⁻¹ |
 | Size | ~220M generated events in the public parquet (paper abstract says 280M; discrepancy noted, does not affect us — we subsample); 120M private hold-out (not needed) |
@@ -41,6 +41,14 @@ After TES/JES/soft-MET the official `postprocess()` re-applies event selection
 (`PRI_had_pt` ≥ 26 GeV; jets < 26 GeV deleted with `PRI_n_jets` decrement):
 **shifted environments lose events — selection migration is part of the physics
 and must not be "fixed".**
+
+**Finding (pinned by tests):** the raw parquet carries a *looser* preselection
+than the analysis selection — `postprocess()` drops ~7.5% of raw events even at
+nominal θ (verified on the bundled official sample: 1000 → 925). Therefore the
+nominal analysis dataset D₀ is `apply_environment(raw, NOMINAL)`, never the raw
+file; all splits and models operate downstream of nominal post-selection, and
+sub-threshold raw events exist precisely so upward shifts can migrate events
+*into* the selection.
 
 ### 1.3 Verified defect in official code (must work around)
 
