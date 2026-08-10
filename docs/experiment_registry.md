@@ -70,12 +70,28 @@ entry.
 - **Falsifier:** Δ_θ CIs include 0 everywhere → H1 unsupported; report as such.
 - **Outputs:** `results/tables/E02_landscape.json` + per-env score arrays in
   `results/raw/E02_scores/` (reused by E03–E05).
-- **Status:** specified (2026-08-10) — config `configs/experiments/E02.yaml`:
-  24 single-nuisance environments (grids at ±1σ/±2σ; soft_met at
-  {1,2,3,5} GeV × 3 seeds) + 4 predeclared combos. Models retrained from
-  E01-frozen best_params (no re-tuning); calibration + thresholds frozen on
-  nominal source_val; test population = D_θ over the same raw test rows
-  (D-013, migration included). Nothing is refitted per environment.
+- **Status:** **complete — first pass** (2026-08-10; single model-training
+  seed; the multi-seed replication required by SAP §4 and paired-Δ CIs are the
+  registered follow-up pass before any paper claim). 41 environments × 10
+  frozen models. Observed patterns:
+  1. **TES: clean monotone, sign-antisymmetric response of QK-SVC**
+     (ΔAUC +0.0088/+0.0044/−0.0044/−0.0088 across 0.98→1.02) — ~4× the
+     sensitivity of matched tier-A XGBoost (±0.003, non-monotone) on the same
+     events; RBF shows the same shape at ~2/3 amplitude (kernel-geometry
+     signature, feeds H2).
+  2. QK-SVC has the largest tier-A worst-case degradation (+0.0345,
+     all-worst combo3) — consistent with spec §37's "unusually sensitive
+     despite competitive nominal performance" alternative story.
+  3. soft_met: strong seed variance (stochastic smearing); consistent
+     degradation at 5 GeV, largest for tier-B models (+0.028 XGBoost) —
+     scale-trained models exploit MET fine structure and lose more.
+  4. Norm nuisances ≈ AUC-invariant (bkg_scale exactly 0 — internal
+     consistency check passed: uniform background weight scaling cannot move
+     weighted AUC); their effect is deferred to physics-level E08 (H5 design
+     confirmed).
+  Caveat logged: tier-A per-env AUC CIs (~±0.04) exceed single-env deltas;
+  the evidence for H1 currently rests on the monotone grid trend and
+  shared-population contrasts, not on per-env significance.
 
 ## E03 — Kernel geometry observatory
 
@@ -85,8 +101,12 @@ entry.
   alignment, margin stats, RKHS class separation…) across the E02 grid.
 - **Falsifier:** descriptors statistically flat across θ while E02 shows material
   degradation (records a *negative* geometry result).
-- **Outputs:** `results/tables/E03_geometry.*`, Fig. 3 data.
-- **Status:** planned.
+- **Outputs:** `results/tables/E03_geometry.json`, Fig. 3 data.
+- **Status:** specified (2026-08-10) — config `configs/experiments/E03.yaml`:
+  same environment list as E02; quantum kernel anchored to E01's frozen QK-SVC
+  (feature map + AngleScaler on tier-A train) with an RBF comparator anchored
+  to E01's frozen RBF-SVC; unlabeled 2000-event target samples per env from
+  the test role (I1 discipline — no target labels touched).
 
 ## E04 — Geometry → failure prediction
 

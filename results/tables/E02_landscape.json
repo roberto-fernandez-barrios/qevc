@@ -1,0 +1,5611 @@
+{
+  "experiment": "E02",
+  "environments": {
+    "tes=0.98": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 40248,
+      "sum_weights": 138629.2268024031,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71412,
+          "auc_ci95": [
+            0.65656,
+            0.76616
+          ],
+          "balanced_accuracy": 0.65731,
+          "pr_auc": 0.00242,
+          "ece": 0.000316,
+          "brier": 0.000978
+        },
+        "A:rbf_svc": {
+          "auc": 0.78261,
+          "auc_ci95": [
+            0.69341,
+            0.8509
+          ],
+          "balanced_accuracy": 0.74892,
+          "pr_auc": 0.00457,
+          "ece": 0.000315,
+          "brier": 0.000981
+        },
+        "A:xgboost": {
+          "auc": 0.85948,
+          "auc_ci95": [
+            0.8034,
+            0.90158
+          ],
+          "balanced_accuracy": 0.80773,
+          "pr_auc": 0.01214,
+          "ece": 0.000203,
+          "brier": 0.000973
+        },
+        "A:lightgbm": {
+          "auc": 0.84646,
+          "auc_ci95": [
+            0.78061,
+            0.89734
+          ],
+          "balanced_accuracy": 0.8082,
+          "pr_auc": 0.01385,
+          "ece": 0.000449,
+          "brier": 0.000975
+        },
+        "A:mlp": {
+          "auc": 0.77597,
+          "auc_ci95": [
+            0.70192,
+            0.83895
+          ],
+          "balanced_accuracy": 0.70778,
+          "pr_auc": 0.00779,
+          "ece": 0.000588,
+          "brier": 0.000977
+        },
+        "A:qksvc": {
+          "auc": 0.82845,
+          "auc_ci95": [
+            0.76812,
+            0.87453
+          ],
+          "balanced_accuracy": 0.73138,
+          "pr_auc": 0.00839,
+          "ece": 0.000402,
+          "brier": 0.000975
+        },
+        "B:linear_svc": {
+          "auc": 0.79829,
+          "auc_ci95": [
+            0.7589,
+            0.83851
+          ],
+          "balanced_accuracy": 0.69725,
+          "pr_auc": 0.00316,
+          "ece": 0.000728,
+          "brier": 0.000979
+        },
+        "B:xgboost": {
+          "auc": 0.90484,
+          "auc_ci95": [
+            0.87628,
+            0.92531
+          ],
+          "balanced_accuracy": 0.83893,
+          "pr_auc": 0.02453,
+          "ece": 0.000216,
+          "brier": 0.00097
+        },
+        "B:lightgbm": {
+          "auc": 0.90736,
+          "auc_ci95": [
+            0.8793,
+            0.9276
+          ],
+          "balanced_accuracy": 0.84557,
+          "pr_auc": 0.02286,
+          "ece": 0.000239,
+          "brier": 0.000969
+        },
+        "B:mlp": {
+          "auc": 0.87634,
+          "auc_ci95": [
+            0.85162,
+            0.89969
+          ],
+          "balanced_accuracy": 0.80845,
+          "pr_auc": 0.0121,
+          "ece": 0.000419,
+          "brier": 0.000974
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00237,
+        "A:rbf_svc": 0.00637,
+        "A:xgboost": 0.00023,
+        "A:lightgbm": 0.00704,
+        "A:mlp": 0.00359,
+        "A:qksvc": 0.00879,
+        "B:linear_svc": 0.003,
+        "B:xgboost": 0.00426,
+        "B:lightgbm": 0.00098,
+        "B:mlp": 0.00072
+      }
+    },
+    "tes=0.99": {
+      "theta": {
+        "tes": 0.99,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 40641,
+      "sum_weights": 140200.24795476394,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.7157,
+          "auc_ci95": [
+            0.66648,
+            0.76193
+          ],
+          "balanced_accuracy": 0.6582,
+          "pr_auc": 0.00247,
+          "ece": 0.000313,
+          "brier": 0.000969
+        },
+        "A:rbf_svc": {
+          "auc": 0.78511,
+          "auc_ci95": [
+            0.70307,
+            0.84633
+          ],
+          "balanced_accuracy": 0.74877,
+          "pr_auc": 0.00457,
+          "ece": 0.000278,
+          "brier": 0.000973
+        },
+        "A:xgboost": {
+          "auc": 0.86024,
+          "auc_ci95": [
+            0.80452,
+            0.90029
+          ],
+          "balanced_accuracy": 0.80705,
+          "pr_auc": 0.01256,
+          "ece": 0.000218,
+          "brier": 0.000965
+        },
+        "A:lightgbm": {
+          "auc": 0.85189,
+          "auc_ci95": [
+            0.7906,
+            0.89619
+          ],
+          "balanced_accuracy": 0.80691,
+          "pr_auc": 0.01457,
+          "ece": 0.000465,
+          "brier": 0.000967
+        },
+        "A:mlp": {
+          "auc": 0.77776,
+          "auc_ci95": [
+            0.7012,
+            0.83945
+          ],
+          "balanced_accuracy": 0.70639,
+          "pr_auc": 0.00794,
+          "ece": 0.000594,
+          "brier": 0.000968
+        },
+        "A:qksvc": {
+          "auc": 0.8328,
+          "auc_ci95": [
+            0.78025,
+            0.87265
+          ],
+          "balanced_accuracy": 0.75284,
+          "pr_auc": 0.00834,
+          "ece": 0.000442,
+          "brier": 0.000967
+        },
+        "B:linear_svc": {
+          "auc": 0.79992,
+          "auc_ci95": [
+            0.75883,
+            0.83478
+          ],
+          "balanced_accuracy": 0.69785,
+          "pr_auc": 0.00317,
+          "ece": 0.000743,
+          "brier": 0.00097
+        },
+        "B:xgboost": {
+          "auc": 0.90884,
+          "auc_ci95": [
+            0.88624,
+            0.92549
+          ],
+          "balanced_accuracy": 0.83777,
+          "pr_auc": 0.02479,
+          "ece": 0.000192,
+          "brier": 0.000961
+        },
+        "B:lightgbm": {
+          "auc": 0.90573,
+          "auc_ci95": [
+            0.87949,
+            0.9251
+          ],
+          "balanced_accuracy": 0.84503,
+          "pr_auc": 0.02212,
+          "ece": 0.000225,
+          "brier": 0.000961
+        },
+        "B:mlp": {
+          "auc": 0.87652,
+          "auc_ci95": [
+            0.85171,
+            0.8983
+          ],
+          "balanced_accuracy": 0.80708,
+          "pr_auc": 0.01203,
+          "ece": 0.000424,
+          "brier": 0.000965
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00079,
+        "A:rbf_svc": 0.00387,
+        "A:xgboost": -0.00053,
+        "A:lightgbm": 0.00161,
+        "A:mlp": 0.0018,
+        "A:qksvc": 0.00444,
+        "B:linear_svc": 0.00137,
+        "B:xgboost": 0.00026,
+        "B:lightgbm": 0.00261,
+        "B:mlp": 0.00054
+      }
+    },
+    "tes=1.01": {
+      "theta": {
+        "tes": 1.01,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41547,
+      "sum_weights": 143777.08977311524,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71758,
+          "auc_ci95": [
+            0.66767,
+            0.76806
+          ],
+          "balanced_accuracy": 0.65814,
+          "pr_auc": 0.00244,
+          "ece": 0.000306,
+          "brier": 0.000951
+        },
+        "A:rbf_svc": {
+          "auc": 0.79263,
+          "auc_ci95": [
+            0.71916,
+            0.85743
+          ],
+          "balanced_accuracy": 0.74613,
+          "pr_auc": 0.00472,
+          "ece": 0.000372,
+          "brier": 0.000955
+        },
+        "A:xgboost": {
+          "auc": 0.86295,
+          "auc_ci95": [
+            0.81314,
+            0.90178
+          ],
+          "balanced_accuracy": 0.80458,
+          "pr_auc": 0.01213,
+          "ece": 0.000334,
+          "brier": 0.000947
+        },
+        "A:lightgbm": {
+          "auc": 0.85131,
+          "auc_ci95": [
+            0.7932,
+            0.89791
+          ],
+          "balanced_accuracy": 0.80488,
+          "pr_auc": 0.01504,
+          "ece": 0.000417,
+          "brier": 0.000949
+        },
+        "A:mlp": {
+          "auc": 0.78117,
+          "auc_ci95": [
+            0.7109,
+            0.84186
+          ],
+          "balanced_accuracy": 0.70367,
+          "pr_auc": 0.00821,
+          "ece": 0.000595,
+          "brier": 0.00095
+        },
+        "A:qksvc": {
+          "auc": 0.84167,
+          "auc_ci95": [
+            0.79458,
+            0.88054
+          ],
+          "balanced_accuracy": 0.77451,
+          "pr_auc": 0.00787,
+          "ece": 0.000324,
+          "brier": 0.000949
+        },
+        "B:linear_svc": {
+          "auc": 0.80261,
+          "auc_ci95": [
+            0.76524,
+            0.84038
+          ],
+          "balanced_accuracy": 0.69906,
+          "pr_auc": 0.00316,
+          "ece": 0.000727,
+          "brier": 0.000953
+        },
+        "B:xgboost": {
+          "auc": 0.90854,
+          "auc_ci95": [
+            0.87879,
+            0.9308
+          ],
+          "balanced_accuracy": 0.83406,
+          "pr_auc": 0.02617,
+          "ece": 0.000259,
+          "brier": 0.000943
+        },
+        "B:lightgbm": {
+          "auc": 0.90767,
+          "auc_ci95": [
+            0.87697,
+            0.92958
+          ],
+          "balanced_accuracy": 0.84324,
+          "pr_auc": 0.02343,
+          "ece": 0.000286,
+          "brier": 0.000943
+        },
+        "B:mlp": {
+          "auc": 0.87748,
+          "auc_ci95": [
+            0.85253,
+            0.90272
+          ],
+          "balanced_accuracy": 0.80466,
+          "pr_auc": 0.01209,
+          "ece": 0.000472,
+          "brier": 0.000947
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00109,
+        "A:rbf_svc": -0.00365,
+        "A:xgboost": -0.00324,
+        "A:lightgbm": 0.00219,
+        "A:mlp": -0.00161,
+        "A:qksvc": -0.00443,
+        "B:linear_svc": -0.00132,
+        "B:xgboost": 0.00056,
+        "B:lightgbm": 0.00067,
+        "B:mlp": -0.00042
+      }
+    },
+    "tes=1.02": {
+      "theta": {
+        "tes": 1.02,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41946,
+      "sum_weights": 145337.81821068004,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71871,
+          "auc_ci95": [
+            0.66859,
+            0.76619
+          ],
+          "balanced_accuracy": 0.65802,
+          "pr_auc": 0.00238,
+          "ece": 0.000303,
+          "brier": 0.000944
+        },
+        "A:rbf_svc": {
+          "auc": 0.79438,
+          "auc_ci95": [
+            0.72169,
+            0.85758
+          ],
+          "balanced_accuracy": 0.74524,
+          "pr_auc": 0.00473,
+          "ece": 0.000375,
+          "brier": 0.000949
+        },
+        "A:xgboost": {
+          "auc": 0.86061,
+          "auc_ci95": [
+            0.81346,
+            0.89888
+          ],
+          "balanced_accuracy": 0.80443,
+          "pr_auc": 0.01072,
+          "ece": 0.000363,
+          "brier": 0.00094
+        },
+        "A:lightgbm": {
+          "auc": 0.85561,
+          "auc_ci95": [
+            0.80085,
+            0.89714
+          ],
+          "balanced_accuracy": 0.78257,
+          "pr_auc": 0.01462,
+          "ece": 0.000435,
+          "brier": 0.000942
+        },
+        "A:mlp": {
+          "auc": 0.78249,
+          "auc_ci95": [
+            0.71292,
+            0.84664
+          ],
+          "balanced_accuracy": 0.70213,
+          "pr_auc": 0.00835,
+          "ece": 0.000524,
+          "brier": 0.000943
+        },
+        "A:qksvc": {
+          "auc": 0.846,
+          "auc_ci95": [
+            0.80696,
+            0.88355
+          ],
+          "balanced_accuracy": 0.79508,
+          "pr_auc": 0.00782,
+          "ece": 0.000314,
+          "brier": 0.000942
+        },
+        "B:linear_svc": {
+          "auc": 0.80402,
+          "auc_ci95": [
+            0.76991,
+            0.84058
+          ],
+          "balanced_accuracy": 0.70004,
+          "pr_auc": 0.00316,
+          "ece": 0.000721,
+          "brier": 0.000945
+        },
+        "B:xgboost": {
+          "auc": 0.90681,
+          "auc_ci95": [
+            0.8797,
+            0.92782
+          ],
+          "balanced_accuracy": 0.83271,
+          "pr_auc": 0.02522,
+          "ece": 0.000168,
+          "brier": 0.000936
+        },
+        "B:lightgbm": {
+          "auc": 0.90615,
+          "auc_ci95": [
+            0.87872,
+            0.92759
+          ],
+          "balanced_accuracy": 0.84115,
+          "pr_auc": 0.0226,
+          "ece": 0.000276,
+          "brier": 0.000936
+        },
+        "B:mlp": {
+          "auc": 0.8779,
+          "auc_ci95": [
+            0.85545,
+            0.9019
+          ],
+          "balanced_accuracy": 0.80325,
+          "pr_auc": 0.01206,
+          "ece": 0.000482,
+          "brier": 0.00094
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00222,
+        "A:rbf_svc": -0.0054,
+        "A:xgboost": -0.0009,
+        "A:lightgbm": -0.00211,
+        "A:mlp": -0.00293,
+        "A:qksvc": -0.00876,
+        "B:linear_svc": -0.00273,
+        "B:xgboost": 0.00229,
+        "B:lightgbm": 0.00219,
+        "B:mlp": -0.00084
+      }
+    },
+    "jes=0.98": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 0.98,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71731,
+          "auc_ci95": [
+            0.66982,
+            0.76165
+          ],
+          "balanced_accuracy": 0.65889,
+          "pr_auc": 0.00239,
+          "ece": 0.000309,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.79075,
+          "auc_ci95": [
+            0.71124,
+            0.85679
+          ],
+          "balanced_accuracy": 0.749,
+          "pr_auc": 0.0048,
+          "ece": 0.000243,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.86177,
+          "auc_ci95": [
+            0.81144,
+            0.90603
+          ],
+          "balanced_accuracy": 0.80652,
+          "pr_auc": 0.01187,
+          "ece": 0.000306,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.85658,
+          "auc_ci95": [
+            0.79863,
+            0.90363
+          ],
+          "balanced_accuracy": 0.80681,
+          "pr_auc": 0.01337,
+          "ece": 0.00039,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.77771,
+          "auc_ci95": [
+            0.7066,
+            0.84614
+          ],
+          "balanced_accuracy": 0.70529,
+          "pr_auc": 0.00813,
+          "ece": 0.000578,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.84002,
+          "auc_ci95": [
+            0.79293,
+            0.87716
+          ],
+          "balanced_accuracy": 0.77653,
+          "pr_auc": 0.00825,
+          "ece": 0.000437,
+          "brier": 0.000957
+        },
+        "B:linear_svc": {
+          "auc": 0.80306,
+          "auc_ci95": [
+            0.76511,
+            0.83989
+          ],
+          "balanced_accuracy": 0.69928,
+          "pr_auc": 0.00319,
+          "ece": 0.000736,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90975,
+          "auc_ci95": [
+            0.8851,
+            0.92948
+          ],
+          "balanced_accuracy": 0.83804,
+          "pr_auc": 0.02425,
+          "ece": 0.000189,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90871,
+          "auc_ci95": [
+            0.87848,
+            0.92928
+          ],
+          "balanced_accuracy": 0.84525,
+          "pr_auc": 0.0221,
+          "ece": 0.000306,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87661,
+          "auc_ci95": [
+            0.85368,
+            0.89939
+          ],
+          "balanced_accuracy": 0.80642,
+          "pr_auc": 0.01193,
+          "ece": 0.000458,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00082,
+        "A:rbf_svc": -0.00177,
+        "A:xgboost": -0.00206,
+        "A:lightgbm": -0.00308,
+        "A:mlp": 0.00185,
+        "A:qksvc": -0.00278,
+        "B:linear_svc": -0.00177,
+        "B:xgboost": -0.00065,
+        "B:lightgbm": -0.00037,
+        "B:mlp": 0.00045
+      }
+    },
+    "jes=0.99": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 0.99,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71696,
+          "auc_ci95": [
+            0.66953,
+            0.76157
+          ],
+          "balanced_accuracy": 0.65843,
+          "pr_auc": 0.00245,
+          "ece": 0.000309,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78993,
+          "auc_ci95": [
+            0.71067,
+            0.85609
+          ],
+          "balanced_accuracy": 0.74827,
+          "pr_auc": 0.00472,
+          "ece": 0.000248,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.86115,
+          "auc_ci95": [
+            0.80837,
+            0.90648
+          ],
+          "balanced_accuracy": 0.80632,
+          "pr_auc": 0.01288,
+          "ece": 0.00031,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.85606,
+          "auc_ci95": [
+            0.79789,
+            0.90351
+          ],
+          "balanced_accuracy": 0.80688,
+          "pr_auc": 0.0152,
+          "ece": 0.000395,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.7786,
+          "auc_ci95": [
+            0.70865,
+            0.84657
+          ],
+          "balanced_accuracy": 0.70554,
+          "pr_auc": 0.00801,
+          "ece": 0.000585,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.83865,
+          "auc_ci95": [
+            0.79018,
+            0.87697
+          ],
+          "balanced_accuracy": 0.77597,
+          "pr_auc": 0.0083,
+          "ece": 0.000429,
+          "brier": 0.000957
+        },
+        "B:linear_svc": {
+          "auc": 0.80225,
+          "auc_ci95": [
+            0.76422,
+            0.83949
+          ],
+          "balanced_accuracy": 0.69871,
+          "pr_auc": 0.00318,
+          "ece": 0.000735,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90905,
+          "auc_ci95": [
+            0.88328,
+            0.9294
+          ],
+          "balanced_accuracy": 0.83654,
+          "pr_auc": 0.02643,
+          "ece": 0.000188,
+          "brier": 0.000951
+        },
+        "B:lightgbm": {
+          "auc": 0.90795,
+          "auc_ci95": [
+            0.87689,
+            0.92896
+          ],
+          "balanced_accuracy": 0.84504,
+          "pr_auc": 0.02249,
+          "ece": 0.000298,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87691,
+          "auc_ci95": [
+            0.85413,
+            0.89964
+          ],
+          "balanced_accuracy": 0.80626,
+          "pr_auc": 0.01208,
+          "ece": 0.00046,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00047,
+        "A:rbf_svc": -0.00095,
+        "A:xgboost": -0.00144,
+        "A:lightgbm": -0.00256,
+        "A:mlp": 0.00096,
+        "A:qksvc": -0.00141,
+        "B:linear_svc": -0.00096,
+        "B:xgboost": 5e-05,
+        "B:lightgbm": 0.00039,
+        "B:mlp": 0.00015
+      }
+    },
+    "jes=1.01": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.01,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71597,
+          "auc_ci95": [
+            0.6677,
+            0.76084
+          ],
+          "balanced_accuracy": 0.65772,
+          "pr_auc": 0.00244,
+          "ece": 0.000306,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78814,
+          "auc_ci95": [
+            0.70872,
+            0.85363
+          ],
+          "balanced_accuracy": 0.74705,
+          "pr_auc": 0.00455,
+          "ece": 0.000295,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.85869,
+          "auc_ci95": [
+            0.80374,
+            0.90514
+          ],
+          "balanced_accuracy": 0.80551,
+          "pr_auc": 0.01289,
+          "ece": 0.000325,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.85257,
+          "auc_ci95": [
+            0.79157,
+            0.90139
+          ],
+          "balanced_accuracy": 0.80596,
+          "pr_auc": 0.01414,
+          "ece": 0.000408,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.78033,
+          "auc_ci95": [
+            0.71168,
+            0.84689
+          ],
+          "balanced_accuracy": 0.70456,
+          "pr_auc": 0.00801,
+          "ece": 0.000602,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.8357,
+          "auc_ci95": [
+            0.78231,
+            0.87638
+          ],
+          "balanced_accuracy": 0.774,
+          "pr_auc": 0.00792,
+          "ece": 0.00042,
+          "brier": 0.000957
+        },
+        "B:linear_svc": {
+          "auc": 0.80049,
+          "auc_ci95": [
+            0.76226,
+            0.83774
+          ],
+          "balanced_accuracy": 0.69818,
+          "pr_auc": 0.00315,
+          "ece": 0.000733,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90975,
+          "auc_ci95": [
+            0.88647,
+            0.92885
+          ],
+          "balanced_accuracy": 0.83495,
+          "pr_auc": 0.02819,
+          "ece": 0.000177,
+          "brier": 0.000951
+        },
+        "B:lightgbm": {
+          "auc": 0.90877,
+          "auc_ci95": [
+            0.87939,
+            0.92969
+          ],
+          "balanced_accuracy": 0.84388,
+          "pr_auc": 0.02394,
+          "ece": 0.000294,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.87709,
+          "auc_ci95": [
+            0.85468,
+            0.89981
+          ],
+          "balanced_accuracy": 0.80526,
+          "pr_auc": 0.01186,
+          "ece": 0.000429,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00052,
+        "A:rbf_svc": 0.00084,
+        "A:xgboost": 0.00102,
+        "A:lightgbm": 0.00093,
+        "A:mlp": -0.00077,
+        "A:qksvc": 0.00154,
+        "B:linear_svc": 0.0008,
+        "B:xgboost": -0.00065,
+        "B:lightgbm": -0.00043,
+        "B:mlp": -3e-05
+      }
+    },
+    "jes=1.02": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.02,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.7299,
+          "auc_ci95": [
+            0.67633,
+            0.7739
+          ],
+          "balanced_accuracy": 0.67893,
+          "pr_auc": 0.0026,
+          "ece": 0.000333,
+          "brier": 0.000959
+        },
+        "A:rbf_svc": {
+          "auc": 0.79024,
+          "auc_ci95": [
+            0.70929,
+            0.85557
+          ],
+          "balanced_accuracy": 0.74675,
+          "pr_auc": 0.00489,
+          "ece": 0.000312,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.85756,
+          "auc_ci95": [
+            0.80331,
+            0.90377
+          ],
+          "balanced_accuracy": 0.80468,
+          "pr_auc": 0.01219,
+          "ece": 0.000334,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.8516,
+          "auc_ci95": [
+            0.7895,
+            0.90112
+          ],
+          "balanced_accuracy": 0.80516,
+          "pr_auc": 0.01355,
+          "ece": 0.000419,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.78331,
+          "auc_ci95": [
+            0.71336,
+            0.84906
+          ],
+          "balanced_accuracy": 0.70444,
+          "pr_auc": 0.00816,
+          "ece": 0.000523,
+          "brier": 0.000958
+        },
+        "A:qksvc": {
+          "auc": 0.83622,
+          "auc_ci95": [
+            0.78143,
+            0.87772
+          ],
+          "balanced_accuracy": 0.77336,
+          "pr_auc": 0.00779,
+          "ece": 0.000329,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.80403,
+          "auc_ci95": [
+            0.76348,
+            0.84087
+          ],
+          "balanced_accuracy": 0.69809,
+          "pr_auc": 0.00319,
+          "ece": 0.00076,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.91093,
+          "auc_ci95": [
+            0.88604,
+            0.92988
+          ],
+          "balanced_accuracy": 0.83406,
+          "pr_auc": 0.02818,
+          "ece": 0.000172,
+          "brier": 0.000951
+        },
+        "B:lightgbm": {
+          "auc": 0.90873,
+          "auc_ci95": [
+            0.87858,
+            0.92962
+          ],
+          "balanced_accuracy": 0.84338,
+          "pr_auc": 0.02448,
+          "ece": 0.000286,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.87906,
+          "auc_ci95": [
+            0.85688,
+            0.90084
+          ],
+          "balanced_accuracy": 0.80487,
+          "pr_auc": 0.01186,
+          "ece": 0.000434,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.01341,
+        "A:rbf_svc": -0.00126,
+        "A:xgboost": 0.00215,
+        "A:lightgbm": 0.0019,
+        "A:mlp": -0.00375,
+        "A:qksvc": 0.00102,
+        "B:linear_svc": -0.00274,
+        "B:xgboost": -0.00183,
+        "B:lightgbm": -0.00039,
+        "B:mlp": -0.002
+      }
+    },
+    "soft_met=1.0/seed11": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 1.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 11
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71632,
+          "auc_ci95": [
+            0.66769,
+            0.76156
+          ],
+          "balanced_accuracy": 0.6584,
+          "pr_auc": 0.00246,
+          "ece": 0.000234,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78813,
+          "auc_ci95": [
+            0.7091,
+            0.85422
+          ],
+          "balanced_accuracy": 0.74758,
+          "pr_auc": 0.00462,
+          "ece": 0.000294,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.86522,
+          "auc_ci95": [
+            0.81615,
+            0.90772
+          ],
+          "balanced_accuracy": 0.80621,
+          "pr_auc": 0.01308,
+          "ece": 0.000235,
+          "brier": 0.000954
+        },
+        "A:lightgbm": {
+          "auc": 0.85706,
+          "auc_ci95": [
+            0.79785,
+            0.90681
+          ],
+          "balanced_accuracy": 0.8063,
+          "pr_auc": 0.01689,
+          "ece": 0.00031,
+          "brier": 0.000956
+        },
+        "A:mlp": {
+          "auc": 0.77891,
+          "auc_ci95": [
+            0.70814,
+            0.84686
+          ],
+          "balanced_accuracy": 0.70513,
+          "pr_auc": 0.00778,
+          "ece": 0.000592,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.8408,
+          "auc_ci95": [
+            0.79527,
+            0.87601
+          ],
+          "balanced_accuracy": 0.77582,
+          "pr_auc": 0.00797,
+          "ece": 0.00037,
+          "brier": 0.000957
+        },
+        "B:linear_svc": {
+          "auc": 0.8007,
+          "auc_ci95": [
+            0.76227,
+            0.83834
+          ],
+          "balanced_accuracy": 0.69849,
+          "pr_auc": 0.00317,
+          "ece": 0.000736,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90556,
+          "auc_ci95": [
+            0.87441,
+            0.92838
+          ],
+          "balanced_accuracy": 0.83635,
+          "pr_auc": 0.02707,
+          "ece": 0.000185,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90354,
+          "auc_ci95": [
+            0.86959,
+            0.92669
+          ],
+          "balanced_accuracy": 0.84442,
+          "pr_auc": 0.02247,
+          "ece": 0.000213,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87463,
+          "auc_ci95": [
+            0.84914,
+            0.89857
+          ],
+          "balanced_accuracy": 0.80622,
+          "pr_auc": 0.01165,
+          "ece": 0.000413,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00017,
+        "A:rbf_svc": 0.00085,
+        "A:xgboost": -0.00551,
+        "A:lightgbm": -0.00356,
+        "A:mlp": 0.00065,
+        "A:qksvc": -0.00356,
+        "B:linear_svc": 0.00059,
+        "B:xgboost": 0.00354,
+        "B:lightgbm": 0.0048,
+        "B:mlp": 0.00243
+      }
+    },
+    "soft_met=1.0/seed12": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 1.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 12
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71484,
+          "auc_ci95": [
+            0.66635,
+            0.75987
+          ],
+          "balanced_accuracy": 0.65761,
+          "pr_auc": 0.00243,
+          "ece": 0.000231,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.79141,
+          "auc_ci95": [
+            0.70922,
+            0.85831
+          ],
+          "balanced_accuracy": 0.74787,
+          "pr_auc": 0.00473,
+          "ece": 0.000369,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.86019,
+          "auc_ci95": [
+            0.80735,
+            0.90438
+          ],
+          "balanced_accuracy": 0.80571,
+          "pr_auc": 0.01291,
+          "ece": 0.000232,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.8506,
+          "auc_ci95": [
+            0.7887,
+            0.8998
+          ],
+          "balanced_accuracy": 0.80601,
+          "pr_auc": 0.00987,
+          "ece": 0.000396,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.77823,
+          "auc_ci95": [
+            0.70786,
+            0.84649
+          ],
+          "balanced_accuracy": 0.70431,
+          "pr_auc": 0.00797,
+          "ece": 0.0006,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.84946,
+          "auc_ci95": [
+            0.81793,
+            0.87845
+          ],
+          "balanced_accuracy": 0.77593,
+          "pr_auc": 0.00802,
+          "ece": 0.000415,
+          "brier": 0.000957
+        },
+        "B:linear_svc": {
+          "auc": 0.79963,
+          "auc_ci95": [
+            0.75985,
+            0.8375
+          ],
+          "balanced_accuracy": 0.69797,
+          "pr_auc": 0.00314,
+          "ece": 0.000656,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90535,
+          "auc_ci95": [
+            0.8756,
+            0.92661
+          ],
+          "balanced_accuracy": 0.83502,
+          "pr_auc": 0.0258,
+          "ece": 0.000189,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.9038,
+          "auc_ci95": [
+            0.87031,
+            0.92652
+          ],
+          "balanced_accuracy": 0.84452,
+          "pr_auc": 0.02186,
+          "ece": 0.000214,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87606,
+          "auc_ci95": [
+            0.85368,
+            0.89903
+          ],
+          "balanced_accuracy": 0.80544,
+          "pr_auc": 0.01168,
+          "ece": 0.000429,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00165,
+        "A:rbf_svc": -0.00243,
+        "A:xgboost": -0.00048,
+        "A:lightgbm": 0.0029,
+        "A:mlp": 0.00133,
+        "A:qksvc": -0.01222,
+        "B:linear_svc": 0.00166,
+        "B:xgboost": 0.00375,
+        "B:lightgbm": 0.00454,
+        "B:mlp": 0.001
+      }
+    },
+    "soft_met=1.0/seed13": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 1.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 13
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71655,
+          "auc_ci95": [
+            0.66871,
+            0.76165
+          ],
+          "balanced_accuracy": 0.65807,
+          "pr_auc": 0.00245,
+          "ece": 0.00031,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78947,
+          "auc_ci95": [
+            0.70926,
+            0.85493
+          ],
+          "balanced_accuracy": 0.74742,
+          "pr_auc": 0.00463,
+          "ece": 0.000249,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.86014,
+          "auc_ci95": [
+            0.80404,
+            0.90593
+          ],
+          "balanced_accuracy": 0.80632,
+          "pr_auc": 0.01202,
+          "ece": 0.000238,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.85222,
+          "auc_ci95": [
+            0.79348,
+            0.90142
+          ],
+          "balanced_accuracy": 0.80571,
+          "pr_auc": 0.01304,
+          "ece": 0.000311,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.77604,
+          "auc_ci95": [
+            0.70962,
+            0.84434
+          ],
+          "balanced_accuracy": 0.70454,
+          "pr_auc": 0.00777,
+          "ece": 0.000598,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.83461,
+          "auc_ci95": [
+            0.78079,
+            0.87517
+          ],
+          "balanced_accuracy": 0.77544,
+          "pr_auc": 0.00724,
+          "ece": 0.00043,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.8015,
+          "auc_ci95": [
+            0.76393,
+            0.8379
+          ],
+          "balanced_accuracy": 0.69863,
+          "pr_auc": 0.00314,
+          "ece": 0.000732,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.9099,
+          "auc_ci95": [
+            0.88491,
+            0.9295
+          ],
+          "balanced_accuracy": 0.83651,
+          "pr_auc": 0.02895,
+          "ece": 0.000268,
+          "brier": 0.000951
+        },
+        "B:lightgbm": {
+          "auc": 0.90922,
+          "auc_ci95": [
+            0.87862,
+            0.92983
+          ],
+          "balanced_accuracy": 0.84429,
+          "pr_auc": 0.0229,
+          "ece": 0.000298,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.87699,
+          "auc_ci95": [
+            0.85479,
+            0.89922
+          ],
+          "balanced_accuracy": 0.80637,
+          "pr_auc": 0.01115,
+          "ece": 0.000473,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -6e-05,
+        "A:rbf_svc": -0.00049,
+        "A:xgboost": -0.00043,
+        "A:lightgbm": 0.00128,
+        "A:mlp": 0.00352,
+        "A:qksvc": 0.00263,
+        "B:linear_svc": -0.00021,
+        "B:xgboost": -0.0008,
+        "B:lightgbm": -0.00088,
+        "B:mlp": 7e-05
+      }
+    },
+    "soft_met=2.0/seed11": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 2.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 11
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71566,
+          "auc_ci95": [
+            0.66638,
+            0.76173
+          ],
+          "balanced_accuracy": 0.65803,
+          "pr_auc": 0.00246,
+          "ece": 0.000233,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78751,
+          "auc_ci95": [
+            0.70886,
+            0.85343
+          ],
+          "balanced_accuracy": 0.74696,
+          "pr_auc": 0.0046,
+          "ece": 0.000248,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.86504,
+          "auc_ci95": [
+            0.81814,
+            0.90643
+          ],
+          "balanced_accuracy": 0.80573,
+          "pr_auc": 0.0129,
+          "ece": 0.000241,
+          "brier": 0.000954
+        },
+        "A:lightgbm": {
+          "auc": 0.8548,
+          "auc_ci95": [
+            0.79593,
+            0.9057
+          ],
+          "balanced_accuracy": 0.80556,
+          "pr_auc": 0.01476,
+          "ece": 0.000308,
+          "brier": 0.000956
+        },
+        "A:mlp": {
+          "auc": 0.77737,
+          "auc_ci95": [
+            0.70469,
+            0.84595
+          ],
+          "balanced_accuracy": 0.70452,
+          "pr_auc": 0.00755,
+          "ece": 0.000599,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.84093,
+          "auc_ci95": [
+            0.7995,
+            0.8759
+          ],
+          "balanced_accuracy": 0.77495,
+          "pr_auc": 0.00772,
+          "ece": 0.000358,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.80025,
+          "auc_ci95": [
+            0.76177,
+            0.83811
+          ],
+          "balanced_accuracy": 0.6988,
+          "pr_auc": 0.00318,
+          "ece": 0.000733,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90225,
+          "auc_ci95": [
+            0.86641,
+            0.92764
+          ],
+          "balanced_accuracy": 0.83592,
+          "pr_auc": 0.02436,
+          "ece": 0.000185,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.89867,
+          "auc_ci95": [
+            0.85823,
+            0.92632
+          ],
+          "balanced_accuracy": 0.84402,
+          "pr_auc": 0.02177,
+          "ece": 0.000207,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87144,
+          "auc_ci95": [
+            0.84297,
+            0.89711
+          ],
+          "balanced_accuracy": 0.80524,
+          "pr_auc": 0.01143,
+          "ece": 0.000415,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00083,
+        "A:rbf_svc": 0.00147,
+        "A:xgboost": -0.00533,
+        "A:lightgbm": -0.0013,
+        "A:mlp": 0.00219,
+        "A:qksvc": -0.00369,
+        "B:linear_svc": 0.00104,
+        "B:xgboost": 0.00685,
+        "B:lightgbm": 0.00967,
+        "B:mlp": 0.00562
+      }
+    },
+    "soft_met=2.0/seed12": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 2.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 12
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.70876,
+          "auc_ci95": [
+            0.65888,
+            0.75634
+          ],
+          "balanced_accuracy": 0.63535,
+          "pr_auc": 0.00238,
+          "ece": 0.000308,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.79143,
+          "auc_ci95": [
+            0.70868,
+            0.85832
+          ],
+          "balanced_accuracy": 0.74766,
+          "pr_auc": 0.00478,
+          "ece": 0.000304,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.85984,
+          "auc_ci95": [
+            0.81072,
+            0.9032
+          ],
+          "balanced_accuracy": 0.806,
+          "pr_auc": 0.01274,
+          "ece": 0.000325,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.84951,
+          "auc_ci95": [
+            0.78673,
+            0.9006
+          ],
+          "balanced_accuracy": 0.80568,
+          "pr_auc": 0.01276,
+          "ece": 0.000395,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.77137,
+          "auc_ci95": [
+            0.69447,
+            0.84503
+          ],
+          "balanced_accuracy": 0.70314,
+          "pr_auc": 0.00784,
+          "ece": 0.000602,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.84805,
+          "auc_ci95": [
+            0.81666,
+            0.87848
+          ],
+          "balanced_accuracy": 0.77495,
+          "pr_auc": 0.00719,
+          "ece": 0.000409,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.79427,
+          "auc_ci95": [
+            0.74923,
+            0.83447
+          ],
+          "balanced_accuracy": 0.69808,
+          "pr_auc": 0.0031,
+          "ece": 0.000784,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.89466,
+          "auc_ci95": [
+            0.84779,
+            0.9247
+          ],
+          "balanced_accuracy": 0.83463,
+          "pr_auc": 0.0286,
+          "ece": 0.00016,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90165,
+          "auc_ci95": [
+            0.86751,
+            0.92522
+          ],
+          "balanced_accuracy": 0.84378,
+          "pr_auc": 0.02297,
+          "ece": 0.000216,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87082,
+          "auc_ci95": [
+            0.8425,
+            0.89573
+          ],
+          "balanced_accuracy": 0.80513,
+          "pr_auc": 0.0116,
+          "ece": 0.000412,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00773,
+        "A:rbf_svc": -0.00245,
+        "A:xgboost": -0.00013,
+        "A:lightgbm": 0.00399,
+        "A:mlp": 0.00819,
+        "A:qksvc": -0.01081,
+        "B:linear_svc": 0.00702,
+        "B:xgboost": 0.01444,
+        "B:lightgbm": 0.00669,
+        "B:mlp": 0.00624
+      }
+    },
+    "soft_met=2.0/seed13": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 2.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 13
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71281,
+          "auc_ci95": [
+            0.66423,
+            0.75891
+          ],
+          "balanced_accuracy": 0.63578,
+          "pr_auc": 0.00243,
+          "ece": 0.000233,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78422,
+          "auc_ci95": [
+            0.70091,
+            0.85173
+          ],
+          "balanced_accuracy": 0.7247,
+          "pr_auc": 0.00459,
+          "ece": 0.000272,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.86071,
+          "auc_ci95": [
+            0.80407,
+            0.90598
+          ],
+          "balanced_accuracy": 0.80614,
+          "pr_auc": 0.01209,
+          "ece": 0.000245,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.8514,
+          "auc_ci95": [
+            0.79101,
+            0.90158
+          ],
+          "balanced_accuracy": 0.80543,
+          "pr_auc": 0.01319,
+          "ece": 0.000318,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.75587,
+          "auc_ci95": [
+            0.66142,
+            0.84076
+          ],
+          "balanced_accuracy": 0.70338,
+          "pr_auc": 0.00741,
+          "ece": 0.000592,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.83023,
+          "auc_ci95": [
+            0.7738,
+            0.87137
+          ],
+          "balanced_accuracy": 0.77526,
+          "pr_auc": 0.00689,
+          "ece": 0.000424,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.80034,
+          "auc_ci95": [
+            0.76328,
+            0.83561
+          ],
+          "balanced_accuracy": 0.69876,
+          "pr_auc": 0.00308,
+          "ece": 0.00079,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90562,
+          "auc_ci95": [
+            0.87757,
+            0.92535
+          ],
+          "balanced_accuracy": 0.83535,
+          "pr_auc": 0.02791,
+          "ece": 0.000265,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90854,
+          "auc_ci95": [
+            0.87703,
+            0.92984
+          ],
+          "balanced_accuracy": 0.84412,
+          "pr_auc": 0.02348,
+          "ece": 0.000296,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.88106,
+          "auc_ci95": [
+            0.86298,
+            0.90084
+          ],
+          "balanced_accuracy": 0.82736,
+          "pr_auc": 0.011,
+          "ece": 0.000438,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00368,
+        "A:rbf_svc": 0.00476,
+        "A:xgboost": -0.001,
+        "A:lightgbm": 0.0021,
+        "A:mlp": 0.02369,
+        "A:qksvc": 0.00701,
+        "B:linear_svc": 0.00095,
+        "B:xgboost": 0.00348,
+        "B:lightgbm": -0.0002,
+        "B:mlp": -0.004
+      }
+    },
+    "soft_met=3.0/seed11": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 3.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 11
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71476,
+          "auc_ci95": [
+            0.66453,
+            0.76141
+          ],
+          "balanced_accuracy": 0.65777,
+          "pr_auc": 0.00245,
+          "ece": 0.000236,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78873,
+          "auc_ci95": [
+            0.71419,
+            0.85248
+          ],
+          "balanced_accuracy": 0.74614,
+          "pr_auc": 0.00456,
+          "ece": 0.000251,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.865,
+          "auc_ci95": [
+            0.8186,
+            0.90632
+          ],
+          "balanced_accuracy": 0.80445,
+          "pr_auc": 0.01226,
+          "ece": 0.000328,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.85649,
+          "auc_ci95": [
+            0.8038,
+            0.9035
+          ],
+          "balanced_accuracy": 0.80412,
+          "pr_auc": 0.01363,
+          "ece": 0.000311,
+          "brier": 0.000956
+        },
+        "A:mlp": {
+          "auc": 0.77586,
+          "auc_ci95": [
+            0.70352,
+            0.84436
+          ],
+          "balanced_accuracy": 0.70347,
+          "pr_auc": 0.00702,
+          "ece": 0.000597,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.84248,
+          "auc_ci95": [
+            0.80828,
+            0.8774
+          ],
+          "balanced_accuracy": 0.77353,
+          "pr_auc": 0.00745,
+          "ece": 0.000406,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.80062,
+          "auc_ci95": [
+            0.76155,
+            0.83811
+          ],
+          "balanced_accuracy": 0.69893,
+          "pr_auc": 0.00319,
+          "ece": 0.000714,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.89563,
+          "auc_ci95": [
+            0.85334,
+            0.92588
+          ],
+          "balanced_accuracy": 0.8339,
+          "pr_auc": 0.02679,
+          "ece": 0.000159,
+          "brier": 0.000951
+        },
+        "B:lightgbm": {
+          "auc": 0.89694,
+          "auc_ci95": [
+            0.85205,
+            0.92701
+          ],
+          "balanced_accuracy": 0.84302,
+          "pr_auc": 0.02268,
+          "ece": 0.000206,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.86565,
+          "auc_ci95": [
+            0.8284,
+            0.89539
+          ],
+          "balanced_accuracy": 0.80353,
+          "pr_auc": 0.01134,
+          "ece": 0.000416,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00173,
+        "A:rbf_svc": 0.00025,
+        "A:xgboost": -0.00529,
+        "A:lightgbm": -0.00299,
+        "A:mlp": 0.0037,
+        "A:qksvc": -0.00524,
+        "B:linear_svc": 0.00067,
+        "B:xgboost": 0.01347,
+        "B:lightgbm": 0.0114,
+        "B:mlp": 0.01141
+      }
+    },
+    "soft_met=3.0/seed12": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 3.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 12
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.70351,
+          "auc_ci95": [
+            0.65333,
+            0.75313
+          ],
+          "balanced_accuracy": 0.63448,
+          "pr_auc": 0.00234,
+          "ece": 0.000333,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.79472,
+          "auc_ci95": [
+            0.71808,
+            0.85876
+          ],
+          "balanced_accuracy": 0.74749,
+          "pr_auc": 0.00478,
+          "ece": 0.000244,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.84881,
+          "auc_ci95": [
+            0.78245,
+            0.90048
+          ],
+          "balanced_accuracy": 0.80443,
+          "pr_auc": 0.01213,
+          "ece": 0.000405,
+          "brier": 0.000956
+        },
+        "A:lightgbm": {
+          "auc": 0.84101,
+          "auc_ci95": [
+            0.76454,
+            0.89956
+          ],
+          "balanced_accuracy": 0.80511,
+          "pr_auc": 0.01391,
+          "ece": 0.000398,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.76665,
+          "auc_ci95": [
+            0.68674,
+            0.84301
+          ],
+          "balanced_accuracy": 0.70116,
+          "pr_auc": 0.0076,
+          "ece": 0.000595,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.81851,
+          "auc_ci95": [
+            0.73752,
+            0.87349
+          ],
+          "balanced_accuracy": 0.75271,
+          "pr_auc": 0.00685,
+          "ece": 0.000374,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.79045,
+          "auc_ci95": [
+            0.73969,
+            0.83208
+          ],
+          "balanced_accuracy": 0.6979,
+          "pr_auc": 0.00307,
+          "ece": 0.000702,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.88616,
+          "auc_ci95": [
+            0.82876,
+            0.92173
+          ],
+          "balanced_accuracy": 0.83398,
+          "pr_auc": 0.02986,
+          "ece": 0.000209,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.89759,
+          "auc_ci95": [
+            0.85997,
+            0.92351
+          ],
+          "balanced_accuracy": 0.84367,
+          "pr_auc": 0.02209,
+          "ece": 0.000181,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.8554,
+          "auc_ci95": [
+            0.80228,
+            0.89388
+          ],
+          "balanced_accuracy": 0.80337,
+          "pr_auc": 0.0113,
+          "ece": 0.000416,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.01298,
+        "A:rbf_svc": -0.00574,
+        "A:xgboost": 0.0109,
+        "A:lightgbm": 0.01249,
+        "A:mlp": 0.01291,
+        "A:qksvc": 0.01873,
+        "B:linear_svc": 0.01084,
+        "B:xgboost": 0.02294,
+        "B:lightgbm": 0.01075,
+        "B:mlp": 0.02166
+      }
+    },
+    "soft_met=3.0/seed13": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 3.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 13
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.7108,
+          "auc_ci95": [
+            0.6616,
+            0.75742
+          ],
+          "balanced_accuracy": 0.63545,
+          "pr_auc": 0.00242,
+          "ece": 0.000308,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78316,
+          "auc_ci95": [
+            0.69935,
+            0.85215
+          ],
+          "balanced_accuracy": 0.72455,
+          "pr_auc": 0.00455,
+          "ece": 0.000313,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.85738,
+          "auc_ci95": [
+            0.80149,
+            0.90361
+          ],
+          "balanced_accuracy": 0.80562,
+          "pr_auc": 0.01245,
+          "ece": 0.000242,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.85127,
+          "auc_ci95": [
+            0.79268,
+            0.90063
+          ],
+          "balanced_accuracy": 0.78332,
+          "pr_auc": 0.01073,
+          "ece": 0.000318,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.755,
+          "auc_ci95": [
+            0.65741,
+            0.84005
+          ],
+          "balanced_accuracy": 0.72306,
+          "pr_auc": 0.00715,
+          "ece": 0.000573,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.82527,
+          "auc_ci95": [
+            0.7652,
+            0.86882
+          ],
+          "balanced_accuracy": 0.77529,
+          "pr_auc": 0.00672,
+          "ece": 0.000414,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.79961,
+          "auc_ci95": [
+            0.76277,
+            0.83423
+          ],
+          "balanced_accuracy": 0.69861,
+          "pr_auc": 0.00305,
+          "ece": 0.000794,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90395,
+          "auc_ci95": [
+            0.87571,
+            0.92438
+          ],
+          "balanced_accuracy": 0.83445,
+          "pr_auc": 0.02832,
+          "ece": 0.000181,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.9075,
+          "auc_ci95": [
+            0.87616,
+            0.92862
+          ],
+          "balanced_accuracy": 0.84312,
+          "pr_auc": 0.02383,
+          "ece": 0.000294,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.88131,
+          "auc_ci95": [
+            0.86313,
+            0.90074
+          ],
+          "balanced_accuracy": 0.82598,
+          "pr_auc": 0.01101,
+          "ece": 0.000481,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00569,
+        "A:rbf_svc": 0.00582,
+        "A:xgboost": 0.00233,
+        "A:lightgbm": 0.00223,
+        "A:mlp": 0.02456,
+        "A:qksvc": 0.01197,
+        "B:linear_svc": 0.00168,
+        "B:xgboost": 0.00515,
+        "B:lightgbm": 0.00084,
+        "B:mlp": -0.00425
+      }
+    },
+    "soft_met=5.0/seed11": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 5.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 11
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71447,
+          "auc_ci95": [
+            0.66188,
+            0.76366
+          ],
+          "balanced_accuracy": 0.65607,
+          "pr_auc": 0.0024,
+          "ece": 0.000308,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.79442,
+          "auc_ci95": [
+            0.72989,
+            0.85148
+          ],
+          "balanced_accuracy": 0.74497,
+          "pr_auc": 0.00453,
+          "ece": 0.000244,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.85779,
+          "auc_ci95": [
+            0.80282,
+            0.90543
+          ],
+          "balanced_accuracy": 0.80277,
+          "pr_auc": 0.01437,
+          "ece": 0.000246,
+          "brier": 0.000954
+        },
+        "A:lightgbm": {
+          "auc": 0.84518,
+          "auc_ci95": [
+            0.7748,
+            0.90186
+          ],
+          "balanced_accuracy": 0.80331,
+          "pr_auc": 0.01184,
+          "ece": 0.000395,
+          "brier": 0.000956
+        },
+        "A:mlp": {
+          "auc": 0.76797,
+          "auc_ci95": [
+            0.68777,
+            0.83998
+          ],
+          "balanced_accuracy": 0.70048,
+          "pr_auc": 0.00658,
+          "ece": 0.000602,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.83341,
+          "auc_ci95": [
+            0.7908,
+            0.87211
+          ],
+          "balanced_accuracy": 0.77219,
+          "pr_auc": 0.00687,
+          "ece": 0.000348,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.79853,
+          "auc_ci95": [
+            0.75759,
+            0.83753
+          ],
+          "balanced_accuracy": 0.69826,
+          "pr_auc": 0.00319,
+          "ece": 0.000712,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.88117,
+          "auc_ci95": [
+            0.81251,
+            0.92346
+          ],
+          "balanced_accuracy": 0.83034,
+          "pr_auc": 0.03034,
+          "ece": 0.000186,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.88976,
+          "auc_ci95": [
+            0.83585,
+            0.9245
+          ],
+          "balanced_accuracy": 0.84055,
+          "pr_auc": 0.02311,
+          "ece": 0.000253,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.85494,
+          "auc_ci95": [
+            0.80521,
+            0.89283
+          ],
+          "balanced_accuracy": 0.79964,
+          "pr_auc": 0.01108,
+          "ece": 0.000418,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00202,
+        "A:rbf_svc": -0.00544,
+        "A:xgboost": 0.00192,
+        "A:lightgbm": 0.00832,
+        "A:mlp": 0.01159,
+        "A:qksvc": 0.00383,
+        "B:linear_svc": 0.00276,
+        "B:xgboost": 0.02793,
+        "B:lightgbm": 0.01858,
+        "B:mlp": 0.02212
+      }
+    },
+    "soft_met=5.0/seed12": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 5.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 12
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.70262,
+          "auc_ci95": [
+            0.65436,
+            0.75057
+          ],
+          "balanced_accuracy": 0.63311,
+          "pr_auc": 0.00232,
+          "ece": 0.000526,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.79696,
+          "auc_ci95": [
+            0.72543,
+            0.85869
+          ],
+          "balanced_accuracy": 0.74486,
+          "pr_auc": 0.00476,
+          "ece": 0.000246,
+          "brier": 0.000963
+        },
+        "A:xgboost": {
+          "auc": 0.83902,
+          "auc_ci95": [
+            0.76408,
+            0.89473
+          ],
+          "balanced_accuracy": 0.80202,
+          "pr_auc": 0.01119,
+          "ece": 0.000493,
+          "brier": 0.000956
+        },
+        "A:lightgbm": {
+          "auc": 0.83912,
+          "auc_ci95": [
+            0.76752,
+            0.89585
+          ],
+          "balanced_accuracy": 0.80281,
+          "pr_auc": 0.01206,
+          "ece": 0.00048,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.75925,
+          "auc_ci95": [
+            0.68042,
+            0.83655
+          ],
+          "balanced_accuracy": 0.69678,
+          "pr_auc": 0.00687,
+          "ece": 0.000614,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.82807,
+          "auc_ci95": [
+            0.7661,
+            0.87596
+          ],
+          "balanced_accuracy": 0.74987,
+          "pr_auc": 0.00651,
+          "ece": 0.000269,
+          "brier": 0.000959
+        },
+        "B:linear_svc": {
+          "auc": 0.79008,
+          "auc_ci95": [
+            0.73984,
+            0.83286
+          ],
+          "balanced_accuracy": 0.69829,
+          "pr_auc": 0.00306,
+          "ece": 0.000647,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.88216,
+          "auc_ci95": [
+            0.8247,
+            0.91823
+          ],
+          "balanced_accuracy": 0.82975,
+          "pr_auc": 0.03241,
+          "ece": 0.000232,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.89352,
+          "auc_ci95": [
+            0.85396,
+            0.92082
+          ],
+          "balanced_accuracy": 0.84027,
+          "pr_auc": 0.02081,
+          "ece": 0.00017,
+          "brier": 0.000953
+        },
+        "B:mlp": {
+          "auc": 0.85249,
+          "auc_ci95": [
+            0.79492,
+            0.8958
+          ],
+          "balanced_accuracy": 0.79917,
+          "pr_auc": 0.01103,
+          "ece": 0.000329,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.01387,
+        "A:rbf_svc": -0.00798,
+        "A:xgboost": 0.02069,
+        "A:lightgbm": 0.01438,
+        "A:mlp": 0.02031,
+        "A:qksvc": 0.00917,
+        "B:linear_svc": 0.01121,
+        "B:xgboost": 0.02694,
+        "B:lightgbm": 0.01482,
+        "B:mlp": 0.02457
+      }
+    },
+    "soft_met=5.0/seed13": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 5.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 13
+      },
+      "n_events": 41116,
+      "sum_weights": 142087.27992086345,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.70823,
+          "auc_ci95": [
+            0.65931,
+            0.75641
+          ],
+          "balanced_accuracy": 0.63325,
+          "pr_auc": 0.00242,
+          "ece": 0.000285,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.784,
+          "auc_ci95": [
+            0.69955,
+            0.85384
+          ],
+          "balanced_accuracy": 0.72281,
+          "pr_auc": 0.00461,
+          "ece": 0.000317,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.85112,
+          "auc_ci95": [
+            0.79179,
+            0.90078
+          ],
+          "balanced_accuracy": 0.78244,
+          "pr_auc": 0.01052,
+          "ece": 0.000238,
+          "brier": 0.000955
+        },
+        "A:lightgbm": {
+          "auc": 0.84622,
+          "auc_ci95": [
+            0.78759,
+            0.89569
+          ],
+          "balanced_accuracy": 0.78063,
+          "pr_auc": 0.00949,
+          "ece": 0.000403,
+          "brier": 0.000957
+        },
+        "A:mlp": {
+          "auc": 0.75512,
+          "auc_ci95": [
+            0.66069,
+            0.83801
+          ],
+          "balanced_accuracy": 0.7194,
+          "pr_auc": 0.00651,
+          "ece": 0.000584,
+          "brier": 0.000959
+        },
+        "A:qksvc": {
+          "auc": 0.8127,
+          "auc_ci95": [
+            0.7441,
+            0.86138
+          ],
+          "balanced_accuracy": 0.74985,
+          "pr_auc": 0.00645,
+          "ece": 0.000381,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.79854,
+          "auc_ci95": [
+            0.76337,
+            0.83235
+          ],
+          "balanced_accuracy": 0.6981,
+          "pr_auc": 0.00302,
+          "ece": 0.000739,
+          "brier": 0.000961
+        },
+        "B:xgboost": {
+          "auc": 0.90087,
+          "auc_ci95": [
+            0.87116,
+            0.92333
+          ],
+          "balanced_accuracy": 0.83138,
+          "pr_auc": 0.02777,
+          "ece": 0.000146,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90274,
+          "auc_ci95": [
+            0.87209,
+            0.92467
+          ],
+          "balanced_accuracy": 0.83955,
+          "pr_auc": 0.02359,
+          "ece": 0.000208,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87761,
+          "auc_ci95": [
+            0.85924,
+            0.89693
+          ],
+          "balanced_accuracy": 0.82085,
+          "pr_auc": 0.01033,
+          "ece": 0.000435,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00826,
+        "A:rbf_svc": 0.00498,
+        "A:xgboost": 0.00859,
+        "A:lightgbm": 0.00728,
+        "A:mlp": 0.02444,
+        "A:qksvc": 0.02454,
+        "B:linear_svc": 0.00275,
+        "B:xgboost": 0.00823,
+        "B:lightgbm": 0.0056,
+        "B:mlp": -0.00055
+      }
+    },
+    "ttbar_scale=0.96": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 0.96,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 141839.84172851496,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71694,
+          "auc_ci95": [
+            0.66908,
+            0.76174
+          ],
+          "balanced_accuracy": 0.65849,
+          "pr_auc": 0.00246,
+          "ece": 0.000308,
+          "brier": 0.000961
+        },
+        "A:rbf_svc": {
+          "auc": 0.78952,
+          "auc_ci95": [
+            0.71034,
+            0.85528
+          ],
+          "balanced_accuracy": 0.74832,
+          "pr_auc": 0.00467,
+          "ece": 0.000287,
+          "brier": 0.000965
+        },
+        "A:xgboost": {
+          "auc": 0.85989,
+          "auc_ci95": [
+            0.80591,
+            0.90569
+          ],
+          "balanced_accuracy": 0.80595,
+          "pr_auc": 0.0132,
+          "ece": 0.000312,
+          "brier": 0.000957
+        },
+        "A:lightgbm": {
+          "auc": 0.85374,
+          "auc_ci95": [
+            0.79303,
+            0.90238
+          ],
+          "balanced_accuracy": 0.80646,
+          "pr_auc": 0.01431,
+          "ece": 0.000398,
+          "brier": 0.000959
+        },
+        "A:mlp": {
+          "auc": 0.77971,
+          "auc_ci95": [
+            0.71022,
+            0.84706
+          ],
+          "balanced_accuracy": 0.70526,
+          "pr_auc": 0.00812,
+          "ece": 0.000596,
+          "brier": 0.00096
+        },
+        "A:qksvc": {
+          "auc": 0.8377,
+          "auc_ci95": [
+            0.78714,
+            0.8772
+          ],
+          "balanced_accuracy": 0.77566,
+          "pr_auc": 0.00815,
+          "ece": 0.000427,
+          "brier": 0.000959
+        },
+        "B:linear_svc": {
+          "auc": 0.80209,
+          "auc_ci95": [
+            0.76389,
+            0.83927
+          ],
+          "balanced_accuracy": 0.69885,
+          "pr_auc": 0.0032,
+          "ece": 0.000737,
+          "brier": 0.000962
+        },
+        "B:xgboost": {
+          "auc": 0.90926,
+          "auc_ci95": [
+            0.88371,
+            0.92936
+          ],
+          "balanced_accuracy": 0.83613,
+          "pr_auc": 0.02642,
+          "ece": 0.000186,
+          "brier": 0.000953
+        },
+        "B:lightgbm": {
+          "auc": 0.90851,
+          "auc_ci95": [
+            0.87881,
+            0.92954
+          ],
+          "balanced_accuracy": 0.84434,
+          "pr_auc": 0.02287,
+          "ece": 0.000301,
+          "brier": 0.000953
+        },
+        "B:mlp": {
+          "auc": 0.87728,
+          "auc_ci95": [
+            0.85455,
+            0.89999
+          ],
+          "balanced_accuracy": 0.80634,
+          "pr_auc": 0.01215,
+          "ece": 0.000461,
+          "brier": 0.000957
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00045,
+        "A:rbf_svc": -0.00054,
+        "A:xgboost": -0.00018,
+        "A:lightgbm": -0.00024,
+        "A:mlp": -0.00015,
+        "A:qksvc": -0.00046,
+        "B:linear_svc": -0.0008,
+        "B:xgboost": -0.00016,
+        "B:lightgbm": -0.00017,
+        "B:mlp": -0.00022
+      }
+    },
+    "ttbar_scale=0.98": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 0.98,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 141963.56082468922,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71671,
+          "auc_ci95": [
+            0.66885,
+            0.76154
+          ],
+          "balanced_accuracy": 0.65833,
+          "pr_auc": 0.00245,
+          "ece": 0.000308,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78925,
+          "auc_ci95": [
+            0.71005,
+            0.85502
+          ],
+          "balanced_accuracy": 0.74802,
+          "pr_auc": 0.00466,
+          "ece": 0.000288,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.8598,
+          "auc_ci95": [
+            0.80582,
+            0.9056
+          ],
+          "balanced_accuracy": 0.80588,
+          "pr_auc": 0.01317,
+          "ece": 0.000313,
+          "brier": 0.000956
+        },
+        "A:lightgbm": {
+          "auc": 0.85362,
+          "auc_ci95": [
+            0.7929,
+            0.90228
+          ],
+          "balanced_accuracy": 0.80637,
+          "pr_auc": 0.01428,
+          "ece": 0.0004,
+          "brier": 0.000958
+        },
+        "A:mlp": {
+          "auc": 0.77964,
+          "auc_ci95": [
+            0.71016,
+            0.84699
+          ],
+          "balanced_accuracy": 0.70518,
+          "pr_auc": 0.00809,
+          "ece": 0.000597,
+          "brier": 0.00096
+        },
+        "A:qksvc": {
+          "auc": 0.83747,
+          "auc_ci95": [
+            0.78687,
+            0.87701
+          ],
+          "balanced_accuracy": 0.77536,
+          "pr_auc": 0.00813,
+          "ece": 0.000426,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.80169,
+          "auc_ci95": [
+            0.76349,
+            0.83887
+          ],
+          "balanced_accuracy": 0.69861,
+          "pr_auc": 0.00318,
+          "ece": 0.000734,
+          "brier": 0.000962
+        },
+        "B:xgboost": {
+          "auc": 0.90918,
+          "auc_ci95": [
+            0.88362,
+            0.92929
+          ],
+          "balanced_accuracy": 0.83604,
+          "pr_auc": 0.02633,
+          "ece": 0.000185,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90843,
+          "auc_ci95": [
+            0.8787,
+            0.92946
+          ],
+          "balanced_accuracy": 0.84425,
+          "pr_auc": 0.02281,
+          "ece": 0.0003,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87717,
+          "auc_ci95": [
+            0.85443,
+            0.89989
+          ],
+          "balanced_accuracy": 0.80624,
+          "pr_auc": 0.01212,
+          "ece": 0.000462,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00022,
+        "A:rbf_svc": -0.00027,
+        "A:xgboost": -9e-05,
+        "A:lightgbm": -0.00012,
+        "A:mlp": -8e-05,
+        "A:qksvc": -0.00023,
+        "B:linear_svc": -0.0004,
+        "B:xgboost": -8e-05,
+        "B:lightgbm": -9e-05,
+        "B:mlp": -0.00011
+      }
+    },
+    "ttbar_scale=1.02": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.02,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142210.99901703768,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71626,
+          "auc_ci95": [
+            0.66839,
+            0.76113
+          ],
+          "balanced_accuracy": 0.65802,
+          "pr_auc": 0.00244,
+          "ece": 0.000308,
+          "brier": 0.000959
+        },
+        "A:rbf_svc": {
+          "auc": 0.7887,
+          "auc_ci95": [
+            0.70946,
+            0.85449
+          ],
+          "balanced_accuracy": 0.74741,
+          "pr_auc": 0.00465,
+          "ece": 0.000291,
+          "brier": 0.000962
+        },
+        "A:xgboost": {
+          "auc": 0.85962,
+          "auc_ci95": [
+            0.80564,
+            0.90544
+          ],
+          "balanced_accuracy": 0.80574,
+          "pr_auc": 0.0131,
+          "ece": 0.000316,
+          "brier": 0.000954
+        },
+        "A:lightgbm": {
+          "auc": 0.85339,
+          "auc_ci95": [
+            0.79264,
+            0.90209
+          ],
+          "balanced_accuracy": 0.80619,
+          "pr_auc": 0.01423,
+          "ece": 0.000401,
+          "brier": 0.000956
+        },
+        "A:mlp": {
+          "auc": 0.77949,
+          "auc_ci95": [
+            0.71005,
+            0.84683
+          ],
+          "balanced_accuracy": 0.70504,
+          "pr_auc": 0.00803,
+          "ece": 0.000599,
+          "brier": 0.000958
+        },
+        "A:qksvc": {
+          "auc": 0.83701,
+          "auc_ci95": [
+            0.78635,
+            0.87664
+          ],
+          "balanced_accuracy": 0.77477,
+          "pr_auc": 0.00811,
+          "ece": 0.000425,
+          "brier": 0.000956
+        },
+        "B:linear_svc": {
+          "auc": 0.80089,
+          "auc_ci95": [
+            0.7627,
+            0.83808
+          ],
+          "balanced_accuracy": 0.69812,
+          "pr_auc": 0.00314,
+          "ece": 0.000731,
+          "brier": 0.00096
+        },
+        "B:xgboost": {
+          "auc": 0.90902,
+          "auc_ci95": [
+            0.88344,
+            0.92914
+          ],
+          "balanced_accuracy": 0.83586,
+          "pr_auc": 0.02616,
+          "ece": 0.000182,
+          "brier": 0.000951
+        },
+        "B:lightgbm": {
+          "auc": 0.90826,
+          "auc_ci95": [
+            0.87849,
+            0.92932
+          ],
+          "balanced_accuracy": 0.84408,
+          "pr_auc": 0.02271,
+          "ece": 0.000297,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.87695,
+          "auc_ci95": [
+            0.85419,
+            0.8997
+          ],
+          "balanced_accuracy": 0.80604,
+          "pr_auc": 0.01205,
+          "ece": 0.000463,
+          "brier": 0.000955
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00023,
+        "A:rbf_svc": 0.00028,
+        "A:xgboost": 9e-05,
+        "A:lightgbm": 0.00011,
+        "A:mlp": 7e-05,
+        "A:qksvc": 0.00023,
+        "B:linear_svc": 0.0004,
+        "B:xgboost": 8e-05,
+        "B:lightgbm": 8e-05,
+        "B:mlp": 0.00011
+      }
+    },
+    "ttbar_scale=1.04": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.04,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142334.71811321194,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71604,
+          "auc_ci95": [
+            0.66815,
+            0.76092
+          ],
+          "balanced_accuracy": 0.65786,
+          "pr_auc": 0.00243,
+          "ece": 0.000306,
+          "brier": 0.000958
+        },
+        "A:rbf_svc": {
+          "auc": 0.78843,
+          "auc_ci95": [
+            0.70916,
+            0.85423
+          ],
+          "balanced_accuracy": 0.74711,
+          "pr_auc": 0.00464,
+          "ece": 0.000291,
+          "brier": 0.000962
+        },
+        "A:xgboost": {
+          "auc": 0.85953,
+          "auc_ci95": [
+            0.80554,
+            0.90536
+          ],
+          "balanced_accuracy": 0.80568,
+          "pr_auc": 0.01307,
+          "ece": 0.000317,
+          "brier": 0.000953
+        },
+        "A:lightgbm": {
+          "auc": 0.85327,
+          "auc_ci95": [
+            0.79251,
+            0.902
+          ],
+          "balanced_accuracy": 0.8061,
+          "pr_auc": 0.01421,
+          "ece": 0.000402,
+          "brier": 0.000955
+        },
+        "A:mlp": {
+          "auc": 0.77941,
+          "auc_ci95": [
+            0.70999,
+            0.84676
+          ],
+          "balanced_accuracy": 0.70497,
+          "pr_auc": 0.00801,
+          "ece": 0.0006,
+          "brier": 0.000957
+        },
+        "A:qksvc": {
+          "auc": 0.83678,
+          "auc_ci95": [
+            0.78608,
+            0.87645
+          ],
+          "balanced_accuracy": 0.77447,
+          "pr_auc": 0.00809,
+          "ece": 0.000425,
+          "brier": 0.000956
+        },
+        "B:linear_svc": {
+          "auc": 0.80049,
+          "auc_ci95": [
+            0.76231,
+            0.83768
+          ],
+          "balanced_accuracy": 0.69787,
+          "pr_auc": 0.00312,
+          "ece": 0.00073,
+          "brier": 0.000959
+        },
+        "B:xgboost": {
+          "auc": 0.90894,
+          "auc_ci95": [
+            0.88335,
+            0.92907
+          ],
+          "balanced_accuracy": 0.83576,
+          "pr_auc": 0.02607,
+          "ece": 0.000181,
+          "brier": 0.00095
+        },
+        "B:lightgbm": {
+          "auc": 0.90817,
+          "auc_ci95": [
+            0.87838,
+            0.92924
+          ],
+          "balanced_accuracy": 0.844,
+          "pr_auc": 0.02265,
+          "ece": 0.000297,
+          "brier": 0.00095
+        },
+        "B:mlp": {
+          "auc": 0.87684,
+          "auc_ci95": [
+            0.85407,
+            0.89961
+          ],
+          "balanced_accuracy": 0.80594,
+          "pr_auc": 0.01201,
+          "ece": 0.000464,
+          "brier": 0.000954
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00045,
+        "A:rbf_svc": 0.00055,
+        "A:xgboost": 0.00018,
+        "A:lightgbm": 0.00023,
+        "A:mlp": 0.00015,
+        "A:qksvc": 0.00046,
+        "B:linear_svc": 0.0008,
+        "B:xgboost": 0.00016,
+        "B:lightgbm": 0.00017,
+        "B:mlp": 0.00022
+      }
+    },
+    "diboson_scale=0.5": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 0.5,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 141832.2865868085,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71679,
+          "auc_ci95": [
+            0.66897,
+            0.76164
+          ],
+          "balanced_accuracy": 0.65839,
+          "pr_auc": 0.00246,
+          "ece": 0.000308,
+          "brier": 0.000961
+        },
+        "A:rbf_svc": {
+          "auc": 0.78951,
+          "auc_ci95": [
+            0.71035,
+            0.85525
+          ],
+          "balanced_accuracy": 0.74828,
+          "pr_auc": 0.00468,
+          "ece": 0.000287,
+          "brier": 0.000965
+        },
+        "A:xgboost": {
+          "auc": 0.85992,
+          "auc_ci95": [
+            0.80595,
+            0.90571
+          ],
+          "balanced_accuracy": 0.806,
+          "pr_auc": 0.01329,
+          "ece": 0.000313,
+          "brier": 0.000957
+        },
+        "A:lightgbm": {
+          "auc": 0.85378,
+          "auc_ci95": [
+            0.79307,
+            0.90245
+          ],
+          "balanced_accuracy": 0.80652,
+          "pr_auc": 0.0143,
+          "ece": 0.000398,
+          "brier": 0.000959
+        },
+        "A:mlp": {
+          "auc": 0.77981,
+          "auc_ci95": [
+            0.71029,
+            0.84716
+          ],
+          "balanced_accuracy": 0.70529,
+          "pr_auc": 0.00819,
+          "ece": 0.000594,
+          "brier": 0.00096
+        },
+        "A:qksvc": {
+          "auc": 0.83772,
+          "auc_ci95": [
+            0.78717,
+            0.87722
+          ],
+          "balanced_accuracy": 0.77565,
+          "pr_auc": 0.00815,
+          "ece": 0.000427,
+          "brier": 0.000959
+        },
+        "B:linear_svc": {
+          "auc": 0.80194,
+          "auc_ci95": [
+            0.76378,
+            0.83918
+          ],
+          "balanced_accuracy": 0.69877,
+          "pr_auc": 0.00319,
+          "ece": 0.000736,
+          "brier": 0.000962
+        },
+        "B:xgboost": {
+          "auc": 0.90937,
+          "auc_ci95": [
+            0.88388,
+            0.9294
+          ],
+          "balanced_accuracy": 0.83632,
+          "pr_auc": 0.02632,
+          "ece": 0.000186,
+          "brier": 0.000953
+        },
+        "B:lightgbm": {
+          "auc": 0.90858,
+          "auc_ci95": [
+            0.87889,
+            0.92954
+          ],
+          "balanced_accuracy": 0.84447,
+          "pr_auc": 0.02282,
+          "ece": 0.000301,
+          "brier": 0.000953
+        },
+        "B:mlp": {
+          "auc": 0.87748,
+          "auc_ci95": [
+            0.85479,
+            0.90014
+          ],
+          "balanced_accuracy": 0.80647,
+          "pr_auc": 0.01215,
+          "ece": 0.00046,
+          "brier": 0.000957
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.0003,
+        "A:rbf_svc": -0.00053,
+        "A:xgboost": -0.00021,
+        "A:lightgbm": -0.00028,
+        "A:mlp": -0.00025,
+        "A:qksvc": -0.00048,
+        "B:linear_svc": -0.00065,
+        "B:xgboost": -0.00027,
+        "B:lightgbm": -0.00024,
+        "B:mlp": -0.00042
+      }
+    },
+    "diboson_scale=0.75": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 0.75,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 141959.78325383598,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71664,
+          "auc_ci95": [
+            0.6688,
+            0.76148
+          ],
+          "balanced_accuracy": 0.65828,
+          "pr_auc": 0.00245,
+          "ece": 0.000308,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78924,
+          "auc_ci95": [
+            0.71005,
+            0.855
+          ],
+          "balanced_accuracy": 0.748,
+          "pr_auc": 0.00467,
+          "ece": 0.000289,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.85981,
+          "auc_ci95": [
+            0.80584,
+            0.90562
+          ],
+          "balanced_accuracy": 0.80591,
+          "pr_auc": 0.01321,
+          "ece": 0.000313,
+          "brier": 0.000956
+        },
+        "A:lightgbm": {
+          "auc": 0.85364,
+          "auc_ci95": [
+            0.79292,
+            0.90232
+          ],
+          "balanced_accuracy": 0.8064,
+          "pr_auc": 0.01428,
+          "ece": 0.0004,
+          "brier": 0.000958
+        },
+        "A:mlp": {
+          "auc": 0.77968,
+          "auc_ci95": [
+            0.7102,
+            0.84703
+          ],
+          "balanced_accuracy": 0.7052,
+          "pr_auc": 0.00813,
+          "ece": 0.000596,
+          "brier": 0.00096
+        },
+        "A:qksvc": {
+          "auc": 0.83748,
+          "auc_ci95": [
+            0.78689,
+            0.87702
+          ],
+          "balanced_accuracy": 0.77536,
+          "pr_auc": 0.00813,
+          "ece": 0.000426,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.80161,
+          "auc_ci95": [
+            0.76344,
+            0.83883
+          ],
+          "balanced_accuracy": 0.69857,
+          "pr_auc": 0.00317,
+          "ece": 0.000734,
+          "brier": 0.000962
+        },
+        "B:xgboost": {
+          "auc": 0.90924,
+          "auc_ci95": [
+            0.88371,
+            0.92931
+          ],
+          "balanced_accuracy": 0.83613,
+          "pr_auc": 0.02628,
+          "ece": 0.000185,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90846,
+          "auc_ci95": [
+            0.87874,
+            0.92947
+          ],
+          "balanced_accuracy": 0.84432,
+          "pr_auc": 0.02279,
+          "ece": 0.0003,
+          "brier": 0.000952
+        },
+        "B:mlp": {
+          "auc": 0.87727,
+          "auc_ci95": [
+            0.85455,
+            0.89997
+          ],
+          "balanced_accuracy": 0.80631,
+          "pr_auc": 0.01212,
+          "ece": 0.000461,
+          "brier": 0.000956
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00015,
+        "A:rbf_svc": -0.00026,
+        "A:xgboost": -0.0001,
+        "A:lightgbm": -0.00014,
+        "A:mlp": -0.00012,
+        "A:qksvc": -0.00024,
+        "B:linear_svc": -0.00032,
+        "B:xgboost": -0.00014,
+        "B:lightgbm": -0.00012,
+        "B:mlp": -0.00021
+      }
+    },
+    "diboson_scale=1.25": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.25,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142214.77658789093,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71634,
+          "auc_ci95": [
+            0.66844,
+            0.76118
+          ],
+          "balanced_accuracy": 0.65806,
+          "pr_auc": 0.00244,
+          "ece": 0.000308,
+          "brier": 0.000959
+        },
+        "A:rbf_svc": {
+          "auc": 0.78871,
+          "auc_ci95": [
+            0.70945,
+            0.8545
+          ],
+          "balanced_accuracy": 0.74743,
+          "pr_auc": 0.00464,
+          "ece": 0.000291,
+          "brier": 0.000962
+        },
+        "A:xgboost": {
+          "auc": 0.8596,
+          "auc_ci95": [
+            0.80562,
+            0.90543
+          ],
+          "balanced_accuracy": 0.80572,
+          "pr_auc": 0.01305,
+          "ece": 0.000315,
+          "brier": 0.000954
+        },
+        "A:lightgbm": {
+          "auc": 0.85336,
+          "auc_ci95": [
+            0.79262,
+            0.90206
+          ],
+          "balanced_accuracy": 0.80616,
+          "pr_auc": 0.01423,
+          "ece": 0.000401,
+          "brier": 0.000956
+        },
+        "A:mlp": {
+          "auc": 0.77944,
+          "auc_ci95": [
+            0.71002,
+            0.84679
+          ],
+          "balanced_accuracy": 0.70502,
+          "pr_auc": 0.008,
+          "ece": 0.0006,
+          "brier": 0.000958
+        },
+        "A:qksvc": {
+          "auc": 0.837,
+          "auc_ci95": [
+            0.78633,
+            0.87663
+          ],
+          "balanced_accuracy": 0.77477,
+          "pr_auc": 0.00811,
+          "ece": 0.000425,
+          "brier": 0.000956
+        },
+        "B:linear_svc": {
+          "auc": 0.80096,
+          "auc_ci95": [
+            0.76276,
+            0.83812
+          ],
+          "balanced_accuracy": 0.69816,
+          "pr_auc": 0.00314,
+          "ece": 0.000731,
+          "brier": 0.00096
+        },
+        "B:xgboost": {
+          "auc": 0.90897,
+          "auc_ci95": [
+            0.88336,
+            0.92911
+          ],
+          "balanced_accuracy": 0.83576,
+          "pr_auc": 0.02621,
+          "ece": 0.000182,
+          "brier": 0.000951
+        },
+        "B:lightgbm": {
+          "auc": 0.90822,
+          "auc_ci95": [
+            0.87845,
+            0.9293
+          ],
+          "balanced_accuracy": 0.84402,
+          "pr_auc": 0.02273,
+          "ece": 0.000298,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.87685,
+          "auc_ci95": [
+            0.85408,
+            0.89963
+          ],
+          "balanced_accuracy": 0.80598,
+          "pr_auc": 0.01205,
+          "ece": 0.000464,
+          "brier": 0.000955
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00015,
+        "A:rbf_svc": 0.00027,
+        "A:xgboost": 0.00011,
+        "A:lightgbm": 0.00014,
+        "A:mlp": 0.00012,
+        "A:qksvc": 0.00024,
+        "B:linear_svc": 0.00033,
+        "B:xgboost": 0.00013,
+        "B:lightgbm": 0.00012,
+        "B:mlp": 0.00021
+      }
+    },
+    "diboson_scale=1.5": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.5,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142342.2732549184,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71619,
+          "auc_ci95": [
+            0.66826,
+            0.76101
+          ],
+          "balanced_accuracy": 0.65795,
+          "pr_auc": 0.00244,
+          "ece": 0.000307,
+          "brier": 0.000958
+        },
+        "A:rbf_svc": {
+          "auc": 0.78845,
+          "auc_ci95": [
+            0.70916,
+            0.85425
+          ],
+          "balanced_accuracy": 0.74715,
+          "pr_auc": 0.00463,
+          "ece": 0.000291,
+          "brier": 0.000962
+        },
+        "A:xgboost": {
+          "auc": 0.85949,
+          "auc_ci95": [
+            0.8055,
+            0.90533
+          ],
+          "balanced_accuracy": 0.80562,
+          "pr_auc": 0.01298,
+          "ece": 0.000317,
+          "brier": 0.000953
+        },
+        "A:lightgbm": {
+          "auc": 0.85323,
+          "auc_ci95": [
+            0.79247,
+            0.90192
+          ],
+          "balanced_accuracy": 0.80604,
+          "pr_auc": 0.01421,
+          "ece": 0.000402,
+          "brier": 0.000955
+        },
+        "A:mlp": {
+          "auc": 0.77932,
+          "auc_ci95": [
+            0.70992,
+            0.84666
+          ],
+          "balanced_accuracy": 0.70494,
+          "pr_auc": 0.00794,
+          "ece": 0.000601,
+          "brier": 0.000957
+        },
+        "A:qksvc": {
+          "auc": 0.83676,
+          "auc_ci95": [
+            0.78605,
+            0.87643
+          ],
+          "balanced_accuracy": 0.77448,
+          "pr_auc": 0.00809,
+          "ece": 0.000425,
+          "brier": 0.000956
+        },
+        "B:linear_svc": {
+          "auc": 0.80063,
+          "auc_ci95": [
+            0.76242,
+            0.83777
+          ],
+          "balanced_accuracy": 0.69796,
+          "pr_auc": 0.00313,
+          "ece": 0.000731,
+          "brier": 0.000959
+        },
+        "B:xgboost": {
+          "auc": 0.90883,
+          "auc_ci95": [
+            0.88319,
+            0.929
+          ],
+          "balanced_accuracy": 0.83558,
+          "pr_auc": 0.02617,
+          "ece": 0.000181,
+          "brier": 0.00095
+        },
+        "B:lightgbm": {
+          "auc": 0.90811,
+          "auc_ci95": [
+            0.8783,
+            0.92921
+          ],
+          "balanced_accuracy": 0.84387,
+          "pr_auc": 0.0227,
+          "ece": 0.000297,
+          "brier": 0.00095
+        },
+        "B:mlp": {
+          "auc": 0.87665,
+          "auc_ci95": [
+            0.85389,
+            0.89945
+          ],
+          "balanced_accuracy": 0.80581,
+          "pr_auc": 0.01202,
+          "ece": 0.000465,
+          "brier": 0.000954
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.0003,
+        "A:rbf_svc": 0.00053,
+        "A:xgboost": 0.00022,
+        "A:lightgbm": 0.00027,
+        "A:mlp": 0.00024,
+        "A:qksvc": 0.00048,
+        "B:linear_svc": 0.00066,
+        "B:xgboost": 0.00027,
+        "B:lightgbm": 0.00023,
+        "B:mlp": 0.00041
+      }
+    },
+    "bkg_scale=0.998": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 0.998,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 141803.37841512804,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71649,
+          "auc_ci95": [
+            0.66862,
+            0.76133
+          ],
+          "balanced_accuracy": 0.65817,
+          "pr_auc": 0.00245,
+          "ece": 0.000309,
+          "brier": 0.000961
+        },
+        "A:rbf_svc": {
+          "auc": 0.78898,
+          "auc_ci95": [
+            0.70975,
+            0.85475
+          ],
+          "balanced_accuracy": 0.74772,
+          "pr_auc": 0.00466,
+          "ece": 0.000289,
+          "brier": 0.000965
+        },
+        "A:xgboost": {
+          "auc": 0.85971,
+          "auc_ci95": [
+            0.80573,
+            0.90552
+          ],
+          "balanced_accuracy": 0.80581,
+          "pr_auc": 0.01316,
+          "ece": 0.000314,
+          "brier": 0.000957
+        },
+        "A:lightgbm": {
+          "auc": 0.8535,
+          "auc_ci95": [
+            0.79277,
+            0.90219
+          ],
+          "balanced_accuracy": 0.80628,
+          "pr_auc": 0.01428,
+          "ece": 0.0004,
+          "brier": 0.000959
+        },
+        "A:mlp": {
+          "auc": 0.77956,
+          "auc_ci95": [
+            0.71011,
+            0.84691
+          ],
+          "balanced_accuracy": 0.70511,
+          "pr_auc": 0.00807,
+          "ece": 0.000599,
+          "brier": 0.000961
+        },
+        "A:qksvc": {
+          "auc": 0.83724,
+          "auc_ci95": [
+            0.78661,
+            0.87682
+          ],
+          "balanced_accuracy": 0.77506,
+          "pr_auc": 0.00813,
+          "ece": 0.000426,
+          "brier": 0.000959
+        },
+        "B:linear_svc": {
+          "auc": 0.80129,
+          "auc_ci95": [
+            0.7631,
+            0.83847
+          ],
+          "balanced_accuracy": 0.69836,
+          "pr_auc": 0.00317,
+          "ece": 0.000734,
+          "brier": 0.000963
+        },
+        "B:xgboost": {
+          "auc": 0.9091,
+          "auc_ci95": [
+            0.88353,
+            0.92921
+          ],
+          "balanced_accuracy": 0.83595,
+          "pr_auc": 0.02629,
+          "ece": 0.000184,
+          "brier": 0.000953
+        },
+        "B:lightgbm": {
+          "auc": 0.90834,
+          "auc_ci95": [
+            0.8786,
+            0.92939
+          ],
+          "balanced_accuracy": 0.84417,
+          "pr_auc": 0.0228,
+          "ece": 0.0003,
+          "brier": 0.000953
+        },
+        "B:mlp": {
+          "auc": 0.87706,
+          "auc_ci95": [
+            0.85431,
+            0.8998
+          ],
+          "balanced_accuracy": 0.80614,
+          "pr_auc": 0.01211,
+          "ece": 0.000462,
+          "brier": 0.000958
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.0,
+        "A:rbf_svc": 0.0,
+        "A:xgboost": 0.0,
+        "A:lightgbm": 0.0,
+        "A:mlp": 0.0,
+        "A:qksvc": 0.0,
+        "B:linear_svc": 0.0,
+        "B:xgboost": 0.0,
+        "B:lightgbm": 0.0,
+        "B:mlp": 0.0
+      }
+    },
+    "bkg_scale=0.999": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 0.999,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 141945.32916799572,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71649,
+          "auc_ci95": [
+            0.66862,
+            0.76133
+          ],
+          "balanced_accuracy": 0.65817,
+          "pr_auc": 0.00245,
+          "ece": 0.000308,
+          "brier": 0.00096
+        },
+        "A:rbf_svc": {
+          "auc": 0.78898,
+          "auc_ci95": [
+            0.70975,
+            0.85475
+          ],
+          "balanced_accuracy": 0.74772,
+          "pr_auc": 0.00466,
+          "ece": 0.000289,
+          "brier": 0.000964
+        },
+        "A:xgboost": {
+          "auc": 0.85971,
+          "auc_ci95": [
+            0.80573,
+            0.90552
+          ],
+          "balanced_accuracy": 0.80581,
+          "pr_auc": 0.01315,
+          "ece": 0.000314,
+          "brier": 0.000956
+        },
+        "A:lightgbm": {
+          "auc": 0.8535,
+          "auc_ci95": [
+            0.79277,
+            0.90219
+          ],
+          "balanced_accuracy": 0.80628,
+          "pr_auc": 0.01427,
+          "ece": 0.0004,
+          "brier": 0.000958
+        },
+        "A:mlp": {
+          "auc": 0.77956,
+          "auc_ci95": [
+            0.71011,
+            0.84691
+          ],
+          "balanced_accuracy": 0.70511,
+          "pr_auc": 0.00807,
+          "ece": 0.000599,
+          "brier": 0.00096
+        },
+        "A:qksvc": {
+          "auc": 0.83724,
+          "auc_ci95": [
+            0.78661,
+            0.87682
+          ],
+          "balanced_accuracy": 0.77506,
+          "pr_auc": 0.00813,
+          "ece": 0.000426,
+          "brier": 0.000958
+        },
+        "B:linear_svc": {
+          "auc": 0.80129,
+          "auc_ci95": [
+            0.7631,
+            0.83847
+          ],
+          "balanced_accuracy": 0.69836,
+          "pr_auc": 0.00316,
+          "ece": 0.000733,
+          "brier": 0.000962
+        },
+        "B:xgboost": {
+          "auc": 0.9091,
+          "auc_ci95": [
+            0.88353,
+            0.92921
+          ],
+          "balanced_accuracy": 0.83595,
+          "pr_auc": 0.02627,
+          "ece": 0.000184,
+          "brier": 0.000952
+        },
+        "B:lightgbm": {
+          "auc": 0.90834,
+          "auc_ci95": [
+            0.8786,
+            0.92939
+          ],
+          "balanced_accuracy": 0.84417,
+          "pr_auc": 0.02278,
+          "ece": 0.000299,
+          "brier": 0.000953
+        },
+        "B:mlp": {
+          "auc": 0.87706,
+          "auc_ci95": [
+            0.85431,
+            0.8998
+          ],
+          "balanced_accuracy": 0.80614,
+          "pr_auc": 0.0121,
+          "ece": 0.000462,
+          "brier": 0.000957
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.0,
+        "A:rbf_svc": 0.0,
+        "A:xgboost": 0.0,
+        "A:lightgbm": 0.0,
+        "A:mlp": 0.0,
+        "A:qksvc": 0.0,
+        "B:linear_svc": 0.0,
+        "B:xgboost": 0.0,
+        "B:lightgbm": 0.0,
+        "B:mlp": 0.0
+      }
+    },
+    "bkg_scale=1.001": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.001,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142229.23067373113,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71649,
+          "auc_ci95": [
+            0.66862,
+            0.76133
+          ],
+          "balanced_accuracy": 0.65817,
+          "pr_auc": 0.00245,
+          "ece": 0.000307,
+          "brier": 0.000959
+        },
+        "A:rbf_svc": {
+          "auc": 0.78898,
+          "auc_ci95": [
+            0.70975,
+            0.85475
+          ],
+          "balanced_accuracy": 0.74772,
+          "pr_auc": 0.00465,
+          "ece": 0.00029,
+          "brier": 0.000962
+        },
+        "A:xgboost": {
+          "auc": 0.85971,
+          "auc_ci95": [
+            0.80573,
+            0.90552
+          ],
+          "balanced_accuracy": 0.80581,
+          "pr_auc": 0.01312,
+          "ece": 0.000315,
+          "brier": 0.000954
+        },
+        "A:lightgbm": {
+          "auc": 0.8535,
+          "auc_ci95": [
+            0.79277,
+            0.90219
+          ],
+          "balanced_accuracy": 0.80628,
+          "pr_auc": 0.01425,
+          "ece": 0.000401,
+          "brier": 0.000956
+        },
+        "A:mlp": {
+          "auc": 0.77956,
+          "auc_ci95": [
+            0.71011,
+            0.84691
+          ],
+          "balanced_accuracy": 0.70511,
+          "pr_auc": 0.00806,
+          "ece": 0.000599,
+          "brier": 0.000958
+        },
+        "A:qksvc": {
+          "auc": 0.83724,
+          "auc_ci95": [
+            0.78661,
+            0.87682
+          ],
+          "balanced_accuracy": 0.77506,
+          "pr_auc": 0.00811,
+          "ece": 0.000425,
+          "brier": 0.000956
+        },
+        "B:linear_svc": {
+          "auc": 0.80129,
+          "auc_ci95": [
+            0.7631,
+            0.83847
+          ],
+          "balanced_accuracy": 0.69836,
+          "pr_auc": 0.00316,
+          "ece": 0.000732,
+          "brier": 0.00096
+        },
+        "B:xgboost": {
+          "auc": 0.9091,
+          "auc_ci95": [
+            0.88353,
+            0.92921
+          ],
+          "balanced_accuracy": 0.83595,
+          "pr_auc": 0.02622,
+          "ece": 0.000183,
+          "brier": 0.00095
+        },
+        "B:lightgbm": {
+          "auc": 0.90834,
+          "auc_ci95": [
+            0.8786,
+            0.92939
+          ],
+          "balanced_accuracy": 0.84417,
+          "pr_auc": 0.02274,
+          "ece": 0.000298,
+          "brier": 0.000951
+        },
+        "B:mlp": {
+          "auc": 0.87706,
+          "auc_ci95": [
+            0.85431,
+            0.8998
+          ],
+          "balanced_accuracy": 0.80614,
+          "pr_auc": 0.01207,
+          "ece": 0.000463,
+          "brier": 0.000955
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.0,
+        "A:rbf_svc": 0.0,
+        "A:xgboost": 0.0,
+        "A:lightgbm": 0.0,
+        "A:mlp": 0.0,
+        "A:qksvc": 0.0,
+        "B:linear_svc": 0.0,
+        "B:xgboost": 0.0,
+        "B:lightgbm": 0.0,
+        "B:mlp": 0.0
+      }
+    },
+    "bkg_scale=1.002": {
+      "theta": {
+        "tes": 1.0,
+        "jes": 1.0,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.002,
+        "seed": 31415
+      },
+      "n_events": 41116,
+      "sum_weights": 142371.18142659887,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71649,
+          "auc_ci95": [
+            0.66862,
+            0.76133
+          ],
+          "balanced_accuracy": 0.65817,
+          "pr_auc": 0.00244,
+          "ece": 0.000307,
+          "brier": 0.000958
+        },
+        "A:rbf_svc": {
+          "auc": 0.78898,
+          "auc_ci95": [
+            0.70975,
+            0.85475
+          ],
+          "balanced_accuracy": 0.74772,
+          "pr_auc": 0.00465,
+          "ece": 0.00029,
+          "brier": 0.000961
+        },
+        "A:xgboost": {
+          "auc": 0.85971,
+          "auc_ci95": [
+            0.80573,
+            0.90552
+          ],
+          "balanced_accuracy": 0.80581,
+          "pr_auc": 0.01311,
+          "ece": 0.000315,
+          "brier": 0.000953
+        },
+        "A:lightgbm": {
+          "auc": 0.8535,
+          "auc_ci95": [
+            0.79277,
+            0.90219
+          ],
+          "balanced_accuracy": 0.80628,
+          "pr_auc": 0.01424,
+          "ece": 0.000401,
+          "brier": 0.000955
+        },
+        "A:mlp": {
+          "auc": 0.77956,
+          "auc_ci95": [
+            0.71011,
+            0.84691
+          ],
+          "balanced_accuracy": 0.70511,
+          "pr_auc": 0.00805,
+          "ece": 0.000599,
+          "brier": 0.000957
+        },
+        "A:qksvc": {
+          "auc": 0.83724,
+          "auc_ci95": [
+            0.78661,
+            0.87682
+          ],
+          "balanced_accuracy": 0.77506,
+          "pr_auc": 0.00811,
+          "ece": 0.000424,
+          "brier": 0.000955
+        },
+        "B:linear_svc": {
+          "auc": 0.80129,
+          "auc_ci95": [
+            0.7631,
+            0.83847
+          ],
+          "balanced_accuracy": 0.69836,
+          "pr_auc": 0.00315,
+          "ece": 0.000731,
+          "brier": 0.000959
+        },
+        "B:xgboost": {
+          "auc": 0.9091,
+          "auc_ci95": [
+            0.88353,
+            0.92921
+          ],
+          "balanced_accuracy": 0.83595,
+          "pr_auc": 0.0262,
+          "ece": 0.000182,
+          "brier": 0.00095
+        },
+        "B:lightgbm": {
+          "auc": 0.90834,
+          "auc_ci95": [
+            0.8786,
+            0.92939
+          ],
+          "balanced_accuracy": 0.84417,
+          "pr_auc": 0.02273,
+          "ece": 0.000297,
+          "brier": 0.00095
+        },
+        "B:mlp": {
+          "auc": 0.87706,
+          "auc_ci95": [
+            0.85431,
+            0.8998
+          ],
+          "balanced_accuracy": 0.80614,
+          "pr_auc": 0.01206,
+          "ece": 0.000463,
+          "brier": 0.000954
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.0,
+        "A:rbf_svc": 0.0,
+        "A:xgboost": 0.0,
+        "A:lightgbm": 0.0,
+        "A:mlp": 0.0,
+        "A:qksvc": 0.0,
+        "B:linear_svc": 0.0,
+        "B:xgboost": 0.0,
+        "B:lightgbm": 0.0,
+        "B:mlp": 0.0
+      }
+    },
+    "combo0": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 0.98,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 40248,
+      "sum_weights": 138629.2268024031,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71506,
+          "auc_ci95": [
+            0.65758,
+            0.7665
+          ],
+          "balanced_accuracy": 0.65848,
+          "pr_auc": 0.00242,
+          "ece": 0.000317,
+          "brier": 0.000978
+        },
+        "A:rbf_svc": {
+          "auc": 0.7843,
+          "auc_ci95": [
+            0.69484,
+            0.8527
+          ],
+          "balanced_accuracy": 0.75021,
+          "pr_auc": 0.00477,
+          "ece": 0.000333,
+          "brier": 0.00098
+        },
+        "A:xgboost": {
+          "auc": 0.86079,
+          "auc_ci95": [
+            0.80507,
+            0.9027
+          ],
+          "balanced_accuracy": 0.80791,
+          "pr_auc": 0.01275,
+          "ece": 0.000222,
+          "brier": 0.000973
+        },
+        "A:lightgbm": {
+          "auc": 0.84831,
+          "auc_ci95": [
+            0.78411,
+            0.89811
+          ],
+          "balanced_accuracy": 0.80856,
+          "pr_auc": 0.01317,
+          "ece": 0.000438,
+          "brier": 0.000975
+        },
+        "A:mlp": {
+          "auc": 0.77381,
+          "auc_ci95": [
+            0.69761,
+            0.83838
+          ],
+          "balanced_accuracy": 0.70767,
+          "pr_auc": 0.00782,
+          "ece": 0.000574,
+          "brier": 0.000977
+        },
+        "A:qksvc": {
+          "auc": 0.83232,
+          "auc_ci95": [
+            0.78085,
+            0.87421
+          ],
+          "balanced_accuracy": 0.75479,
+          "pr_auc": 0.00864,
+          "ece": 0.000411,
+          "brier": 0.000975
+        },
+        "B:linear_svc": {
+          "auc": 0.80006,
+          "auc_ci95": [
+            0.76051,
+            0.83977
+          ],
+          "balanced_accuracy": 0.69811,
+          "pr_auc": 0.00319,
+          "ece": 0.000751,
+          "brier": 0.000979
+        },
+        "B:xgboost": {
+          "auc": 0.90707,
+          "auc_ci95": [
+            0.88191,
+            0.92571
+          ],
+          "balanced_accuracy": 0.84018,
+          "pr_auc": 0.02094,
+          "ece": 0.00023,
+          "brier": 0.00097
+        },
+        "B:lightgbm": {
+          "auc": 0.90762,
+          "auc_ci95": [
+            0.87986,
+            0.92707
+          ],
+          "balanced_accuracy": 0.84671,
+          "pr_auc": 0.0224,
+          "ece": 0.000262,
+          "brier": 0.00097
+        },
+        "B:mlp": {
+          "auc": 0.87587,
+          "auc_ci95": [
+            0.85067,
+            0.89911
+          ],
+          "balanced_accuracy": 0.80912,
+          "pr_auc": 0.01193,
+          "ece": 0.000416,
+          "brier": 0.000974
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00143,
+        "A:rbf_svc": 0.00468,
+        "A:xgboost": -0.00108,
+        "A:lightgbm": 0.00519,
+        "A:mlp": 0.00575,
+        "A:qksvc": 0.00492,
+        "B:linear_svc": 0.00123,
+        "B:xgboost": 0.00203,
+        "B:lightgbm": 0.00072,
+        "B:mlp": 0.00119
+      }
+    },
+    "combo1": {
+      "theta": {
+        "tes": 1.02,
+        "jes": 1.02,
+        "soft_met": 0.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 31415
+      },
+      "n_events": 41946,
+      "sum_weights": 145337.81821068004,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.73154,
+          "auc_ci95": [
+            0.67736,
+            0.77631
+          ],
+          "balanced_accuracy": 0.67842,
+          "pr_auc": 0.00258,
+          "ece": 0.000391,
+          "brier": 0.000944
+        },
+        "A:rbf_svc": {
+          "auc": 0.79491,
+          "auc_ci95": [
+            0.72414,
+            0.85994
+          ],
+          "balanced_accuracy": 0.7442,
+          "pr_auc": 0.00493,
+          "ece": 0.000328,
+          "brier": 0.000949
+        },
+        "A:xgboost": {
+          "auc": 0.85821,
+          "auc_ci95": [
+            0.80945,
+            0.89755
+          ],
+          "balanced_accuracy": 0.80276,
+          "pr_auc": 0.01073,
+          "ece": 0.000374,
+          "brier": 0.00094
+        },
+        "A:lightgbm": {
+          "auc": 0.85306,
+          "auc_ci95": [
+            0.79721,
+            0.89496
+          ],
+          "balanced_accuracy": 0.78156,
+          "pr_auc": 0.01217,
+          "ece": 0.000449,
+          "brier": 0.000942
+        },
+        "A:mlp": {
+          "auc": 0.78578,
+          "auc_ci95": [
+            0.71792,
+            0.84832
+          ],
+          "balanced_accuracy": 0.70118,
+          "pr_auc": 0.00837,
+          "ece": 0.000535,
+          "brier": 0.000943
+        },
+        "A:qksvc": {
+          "auc": 0.84567,
+          "auc_ci95": [
+            0.80454,
+            0.8842
+          ],
+          "balanced_accuracy": 0.79382,
+          "pr_auc": 0.00749,
+          "ece": 0.000299,
+          "brier": 0.000942
+        },
+        "B:linear_svc": {
+          "auc": 0.80643,
+          "auc_ci95": [
+            0.77292,
+            0.84345
+          ],
+          "balanced_accuracy": 0.72055,
+          "pr_auc": 0.00319,
+          "ece": 0.000746,
+          "brier": 0.000945
+        },
+        "B:xgboost": {
+          "auc": 0.90958,
+          "auc_ci95": [
+            0.88568,
+            0.92843
+          ],
+          "balanced_accuracy": 0.83069,
+          "pr_auc": 0.02622,
+          "ece": 0.000173,
+          "brier": 0.000935
+        },
+        "B:lightgbm": {
+          "auc": 0.90712,
+          "auc_ci95": [
+            0.87958,
+            0.92883
+          ],
+          "balanced_accuracy": 0.84014,
+          "pr_auc": 0.02469,
+          "ece": 0.000268,
+          "brier": 0.000936
+        },
+        "B:mlp": {
+          "auc": 0.87989,
+          "auc_ci95": [
+            0.85752,
+            0.90363
+          ],
+          "balanced_accuracy": 0.80195,
+          "pr_auc": 0.01184,
+          "ece": 0.00041,
+          "brier": 0.00094
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.01505,
+        "A:rbf_svc": -0.00593,
+        "A:xgboost": 0.0015,
+        "A:lightgbm": 0.00044,
+        "A:mlp": -0.00622,
+        "A:qksvc": -0.00843,
+        "B:linear_svc": -0.00514,
+        "B:xgboost": -0.00048,
+        "B:lightgbm": 0.00122,
+        "B:mlp": -0.00283
+      }
+    },
+    "combo2/seed11": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 1.02,
+        "soft_met": 3.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 11
+      },
+      "n_events": 40248,
+      "sum_weights": 138629.2268024031,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.72576,
+          "auc_ci95": [
+            0.66595,
+            0.77465
+          ],
+          "balanced_accuracy": 0.67842,
+          "pr_auc": 0.00255,
+          "ece": 0.000267,
+          "brier": 0.000978
+        },
+        "A:rbf_svc": {
+          "auc": 0.78412,
+          "auc_ci95": [
+            0.69582,
+            0.85384
+          ],
+          "balanced_accuracy": 0.74694,
+          "pr_auc": 0.00475,
+          "ece": 0.000415,
+          "brier": 0.000981
+        },
+        "A:xgboost": {
+          "auc": 0.86493,
+          "auc_ci95": [
+            0.81765,
+            0.90255
+          ],
+          "balanced_accuracy": 0.80566,
+          "pr_auc": 0.01321,
+          "ece": 0.000229,
+          "brier": 0.000973
+        },
+        "A:lightgbm": {
+          "auc": 0.85018,
+          "auc_ci95": [
+            0.78955,
+            0.89911
+          ],
+          "balanced_accuracy": 0.80546,
+          "pr_auc": 0.01292,
+          "ece": 0.000391,
+          "brier": 0.000974
+        },
+        "A:mlp": {
+          "auc": 0.77514,
+          "auc_ci95": [
+            0.69649,
+            0.83973
+          ],
+          "balanced_accuracy": 0.70495,
+          "pr_auc": 0.00667,
+          "ece": 0.000526,
+          "brier": 0.000977
+        },
+        "A:qksvc": {
+          "auc": 0.83412,
+          "auc_ci95": [
+            0.79019,
+            0.87412
+          ],
+          "balanced_accuracy": 0.75126,
+          "pr_auc": 0.00682,
+          "ece": 0.000372,
+          "brier": 0.000976
+        },
+        "B:linear_svc": {
+          "auc": 0.79934,
+          "auc_ci95": [
+            0.75634,
+            0.83849
+          ],
+          "balanced_accuracy": 0.69705,
+          "pr_auc": 0.0032,
+          "ece": 0.000697,
+          "brier": 0.000979
+        },
+        "B:xgboost": {
+          "auc": 0.89404,
+          "auc_ci95": [
+            0.84921,
+            0.92374
+          ],
+          "balanced_accuracy": 0.83509,
+          "pr_auc": 0.02409,
+          "ece": 0.00017,
+          "brier": 0.000969
+        },
+        "B:lightgbm": {
+          "auc": 0.89625,
+          "auc_ci95": [
+            0.85232,
+            0.92517
+          ],
+          "balanced_accuracy": 0.8211,
+          "pr_auc": 0.02413,
+          "ece": 0.000285,
+          "brier": 0.00097
+        },
+        "B:mlp": {
+          "auc": 0.86881,
+          "auc_ci95": [
+            0.83502,
+            0.89791
+          ],
+          "balanced_accuracy": 0.78347,
+          "pr_auc": 0.01169,
+          "ece": 0.000419,
+          "brier": 0.000973
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00927,
+        "A:rbf_svc": 0.00486,
+        "A:xgboost": -0.00522,
+        "A:lightgbm": 0.00332,
+        "A:mlp": 0.00442,
+        "A:qksvc": 0.00312,
+        "B:linear_svc": 0.00195,
+        "B:xgboost": 0.01506,
+        "B:lightgbm": 0.01209,
+        "B:mlp": 0.00825
+      }
+    },
+    "combo2/seed12": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 1.02,
+        "soft_met": 3.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 12
+      },
+      "n_events": 40248,
+      "sum_weights": 138629.2268024031,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71572,
+          "auc_ci95": [
+            0.65418,
+            0.76634
+          ],
+          "balanced_accuracy": 0.65503,
+          "pr_auc": 0.00244,
+          "ece": 0.000347,
+          "brier": 0.000978
+        },
+        "A:rbf_svc": {
+          "auc": 0.78972,
+          "auc_ci95": [
+            0.70136,
+            0.85988
+          ],
+          "balanced_accuracy": 0.74668,
+          "pr_auc": 0.00485,
+          "ece": 0.000254,
+          "brier": 0.000981
+        },
+        "A:xgboost": {
+          "auc": 0.8496,
+          "auc_ci95": [
+            0.78571,
+            0.89557
+          ],
+          "balanced_accuracy": 0.80578,
+          "pr_auc": 0.01203,
+          "ece": 0.000472,
+          "brier": 0.000974
+        },
+        "A:lightgbm": {
+          "auc": 0.83939,
+          "auc_ci95": [
+            0.76403,
+            0.89557
+          ],
+          "balanced_accuracy": 0.80605,
+          "pr_auc": 0.0129,
+          "ece": 0.000553,
+          "brier": 0.000975
+        },
+        "A:mlp": {
+          "auc": 0.76503,
+          "auc_ci95": [
+            0.67938,
+            0.83454
+          ],
+          "balanced_accuracy": 0.70305,
+          "pr_auc": 0.00703,
+          "ece": 0.000612,
+          "brier": 0.000977
+        },
+        "A:qksvc": {
+          "auc": 0.81784,
+          "auc_ci95": [
+            0.73746,
+            0.87554
+          ],
+          "balanced_accuracy": 0.75155,
+          "pr_auc": 0.00665,
+          "ece": 0.000377,
+          "brier": 0.000977
+        },
+        "B:linear_svc": {
+          "auc": 0.79024,
+          "auc_ci95": [
+            0.74451,
+            0.83445
+          ],
+          "balanced_accuracy": 0.69648,
+          "pr_auc": 0.00309,
+          "ece": 0.000664,
+          "brier": 0.000979
+        },
+        "B:xgboost": {
+          "auc": 0.88488,
+          "auc_ci95": [
+            0.83304,
+            0.92046
+          ],
+          "balanced_accuracy": 0.81176,
+          "pr_auc": 0.02796,
+          "ece": 0.000175,
+          "brier": 0.00097
+        },
+        "B:lightgbm": {
+          "auc": 0.89711,
+          "auc_ci95": [
+            0.85747,
+            0.92388
+          ],
+          "balanced_accuracy": 0.82176,
+          "pr_auc": 0.02281,
+          "ece": 0.000277,
+          "brier": 0.00097
+        },
+        "B:mlp": {
+          "auc": 0.85914,
+          "auc_ci95": [
+            0.80959,
+            0.8954
+          ],
+          "balanced_accuracy": 0.80505,
+          "pr_auc": 0.01123,
+          "ece": 0.000414,
+          "brier": 0.000974
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00077,
+        "A:rbf_svc": -0.00074,
+        "A:xgboost": 0.01011,
+        "A:lightgbm": 0.01411,
+        "A:mlp": 0.01453,
+        "A:qksvc": 0.0194,
+        "B:linear_svc": 0.01105,
+        "B:xgboost": 0.02422,
+        "B:lightgbm": 0.01123,
+        "B:mlp": 0.01792
+      }
+    },
+    "combo2/seed13": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 1.02,
+        "soft_met": 3.0,
+        "ttbar_scale": 1.0,
+        "diboson_scale": 1.0,
+        "bkg_scale": 1.0,
+        "seed": 13
+      },
+      "n_events": 40248,
+      "sum_weights": 138629.2268024031,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.72244,
+          "auc_ci95": [
+            0.6669,
+            0.77326
+          ],
+          "balanced_accuracy": 0.656,
+          "pr_auc": 0.00258,
+          "ece": 0.000348,
+          "brier": 0.000978
+        },
+        "A:rbf_svc": {
+          "auc": 0.7802,
+          "auc_ci95": [
+            0.69122,
+            0.85219
+          ],
+          "balanced_accuracy": 0.72461,
+          "pr_auc": 0.00469,
+          "ece": 0.000306,
+          "brier": 0.000982
+        },
+        "A:xgboost": {
+          "auc": 0.8568,
+          "auc_ci95": [
+            0.79975,
+            0.90028
+          ],
+          "balanced_accuracy": 0.80637,
+          "pr_auc": 0.01095,
+          "ece": 0.000214,
+          "brier": 0.000974
+        },
+        "A:lightgbm": {
+          "auc": 0.84258,
+          "auc_ci95": [
+            0.77581,
+            0.89562
+          ],
+          "balanced_accuracy": 0.7843,
+          "pr_auc": 0.00974,
+          "ece": 0.00047,
+          "brier": 0.000975
+        },
+        "A:mlp": {
+          "auc": 0.75588,
+          "auc_ci95": [
+            0.65801,
+            0.83672
+          ],
+          "balanced_accuracy": 0.72502,
+          "pr_auc": 0.00706,
+          "ece": 0.000521,
+          "brier": 0.000977
+        },
+        "A:qksvc": {
+          "auc": 0.81539,
+          "auc_ci95": [
+            0.73878,
+            0.86977
+          ],
+          "balanced_accuracy": 0.75129,
+          "pr_auc": 0.00651,
+          "ece": 0.000378,
+          "brier": 0.000976
+        },
+        "B:linear_svc": {
+          "auc": 0.79973,
+          "auc_ci95": [
+            0.7631,
+            0.83559
+          ],
+          "balanced_accuracy": 0.6967,
+          "pr_auc": 0.00308,
+          "ece": 0.000698,
+          "brier": 0.000979
+        },
+        "B:xgboost": {
+          "auc": 0.89961,
+          "auc_ci95": [
+            0.86976,
+            0.9218
+          ],
+          "balanced_accuracy": 0.83558,
+          "pr_auc": 0.02541,
+          "ece": 0.000189,
+          "brier": 0.00097
+        },
+        "B:lightgbm": {
+          "auc": 0.90633,
+          "auc_ci95": [
+            0.87615,
+            0.9272
+          ],
+          "balanced_accuracy": 0.84418,
+          "pr_auc": 0.02408,
+          "ece": 0.000218,
+          "brier": 0.000969
+        },
+        "B:mlp": {
+          "auc": 0.88295,
+          "auc_ci95": [
+            0.86188,
+            0.90189
+          ],
+          "balanced_accuracy": 0.82909,
+          "pr_auc": 0.0113,
+          "ece": 0.000437,
+          "brier": 0.000974
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": -0.00595,
+        "A:rbf_svc": 0.00878,
+        "A:xgboost": 0.00291,
+        "A:lightgbm": 0.01092,
+        "A:mlp": 0.02368,
+        "A:qksvc": 0.02185,
+        "B:linear_svc": 0.00156,
+        "B:xgboost": 0.00949,
+        "B:lightgbm": 0.00201,
+        "B:mlp": -0.00589
+      }
+    },
+    "combo3/seed11": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 0.98,
+        "soft_met": 5.0,
+        "ttbar_scale": 1.04,
+        "diboson_scale": 1.5,
+        "bkg_scale": 1.002,
+        "seed": 11
+      },
+      "n_events": 40248,
+      "sum_weights": 139403.89126351906,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.71223,
+          "auc_ci95": [
+            0.65156,
+            0.76698
+          ],
+          "balanced_accuracy": 0.65624,
+          "pr_auc": 0.00234,
+          "ece": 0.000312,
+          "brier": 0.000972
+        },
+        "A:rbf_svc": {
+          "auc": 0.79068,
+          "auc_ci95": [
+            0.72653,
+            0.85075
+          ],
+          "balanced_accuracy": 0.74634,
+          "pr_auc": 0.00455,
+          "ece": 0.00026,
+          "brier": 0.000976
+        },
+        "A:xgboost": {
+          "auc": 0.85513,
+          "auc_ci95": [
+            0.79568,
+            0.90138
+          ],
+          "balanced_accuracy": 0.80388,
+          "pr_auc": 0.01298,
+          "ece": 0.000202,
+          "brier": 0.000967
+        },
+        "A:lightgbm": {
+          "auc": 0.83967,
+          "auc_ci95": [
+            0.76451,
+            0.89719
+          ],
+          "balanced_accuracy": 0.80495,
+          "pr_auc": 0.0114,
+          "ece": 0.000273,
+          "brier": 0.000969
+        },
+        "A:mlp": {
+          "auc": 0.76107,
+          "auc_ci95": [
+            0.67441,
+            0.83181
+          ],
+          "balanced_accuracy": 0.70181,
+          "pr_auc": 0.00632,
+          "ece": 0.000569,
+          "brier": 0.000972
+        },
+        "A:qksvc": {
+          "auc": 0.82678,
+          "auc_ci95": [
+            0.78358,
+            0.86825
+          ],
+          "balanced_accuracy": 0.72872,
+          "pr_auc": 0.00718,
+          "ece": 0.000408,
+          "brier": 0.00097
+        },
+        "B:linear_svc": {
+          "auc": 0.7955,
+          "auc_ci95": [
+            0.75349,
+            0.83636
+          ],
+          "balanced_accuracy": 0.69707,
+          "pr_auc": 0.00315,
+          "ece": 0.000713,
+          "brier": 0.000973
+        },
+        "B:xgboost": {
+          "auc": 0.87574,
+          "auc_ci95": [
+            0.80811,
+            0.91886
+          ],
+          "balanced_accuracy": 0.81189,
+          "pr_auc": 0.023,
+          "ece": 0.000187,
+          "brier": 0.000965
+        },
+        "B:lightgbm": {
+          "auc": 0.88879,
+          "auc_ci95": [
+            0.83458,
+            0.9231
+          ],
+          "balanced_accuracy": 0.82038,
+          "pr_auc": 0.02226,
+          "ece": 0.00029,
+          "brier": 0.000964
+        },
+        "B:mlp": {
+          "auc": 0.85093,
+          "auc_ci95": [
+            0.79396,
+            0.89226
+          ],
+          "balanced_accuracy": 0.78145,
+          "pr_auc": 0.01103,
+          "ece": 0.000418,
+          "brier": 0.000968
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.00426,
+        "A:rbf_svc": -0.0017,
+        "A:xgboost": 0.00458,
+        "A:lightgbm": 0.01383,
+        "A:mlp": 0.01849,
+        "A:qksvc": 0.01046,
+        "B:linear_svc": 0.00579,
+        "B:xgboost": 0.03336,
+        "B:lightgbm": 0.01955,
+        "B:mlp": 0.02613
+      }
+    },
+    "combo3/seed12": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 0.98,
+        "soft_met": 5.0,
+        "ttbar_scale": 1.04,
+        "diboson_scale": 1.5,
+        "bkg_scale": 1.002,
+        "seed": 12
+      },
+      "n_events": 40248,
+      "sum_weights": 139403.89126351906,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.70049,
+          "auc_ci95": [
+            0.64335,
+            0.75392
+          ],
+          "balanced_accuracy": 0.63239,
+          "pr_auc": 0.00226,
+          "ece": 0.000524,
+          "brier": 0.000972
+        },
+        "A:rbf_svc": {
+          "auc": 0.79301,
+          "auc_ci95": [
+            0.71698,
+            0.85696
+          ],
+          "balanced_accuracy": 0.74621,
+          "pr_auc": 0.00482,
+          "ece": 0.000266,
+          "brier": 0.000975
+        },
+        "A:xgboost": {
+          "auc": 0.83725,
+          "auc_ci95": [
+            0.75976,
+            0.89182
+          ],
+          "balanced_accuracy": 0.80396,
+          "pr_auc": 0.01091,
+          "ece": 0.000451,
+          "brier": 0.000969
+        },
+        "A:lightgbm": {
+          "auc": 0.83392,
+          "auc_ci95": [
+            0.75421,
+            0.89215
+          ],
+          "balanced_accuracy": 0.80466,
+          "pr_auc": 0.01225,
+          "ece": 0.000535,
+          "brier": 0.00097
+        },
+        "A:mlp": {
+          "auc": 0.75237,
+          "auc_ci95": [
+            0.66378,
+            0.82551
+          ],
+          "balanced_accuracy": 0.69823,
+          "pr_auc": 0.00652,
+          "ece": 0.000574,
+          "brier": 0.000972
+        },
+        "A:qksvc": {
+          "auc": 0.82158,
+          "auc_ci95": [
+            0.75834,
+            0.86956
+          ],
+          "balanced_accuracy": 0.75072,
+          "pr_auc": 0.00671,
+          "ece": 0.000401,
+          "brier": 0.000971
+        },
+        "B:linear_svc": {
+          "auc": 0.78739,
+          "auc_ci95": [
+            0.74011,
+            0.83181
+          ],
+          "balanced_accuracy": 0.69629,
+          "pr_auc": 0.00302,
+          "ece": 0.000574,
+          "brier": 0.000973
+        },
+        "B:xgboost": {
+          "auc": 0.88308,
+          "auc_ci95": [
+            0.83482,
+            0.91789
+          ],
+          "balanced_accuracy": 0.81171,
+          "pr_auc": 0.02374,
+          "ece": 0.000194,
+          "brier": 0.000964
+        },
+        "B:lightgbm": {
+          "auc": 0.89392,
+          "auc_ci95": [
+            0.85442,
+            0.92133
+          ],
+          "balanced_accuracy": 0.81982,
+          "pr_auc": 0.02189,
+          "ece": 0.000207,
+          "brier": 0.000965
+        },
+        "B:mlp": {
+          "auc": 0.85086,
+          "auc_ci95": [
+            0.79049,
+            0.89244
+          ],
+          "balanced_accuracy": 0.77959,
+          "pr_auc": 0.01113,
+          "ece": 0.000322,
+          "brier": 0.000969
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.016,
+        "A:rbf_svc": -0.00403,
+        "A:xgboost": 0.02246,
+        "A:lightgbm": 0.01958,
+        "A:mlp": 0.02719,
+        "A:qksvc": 0.01566,
+        "B:linear_svc": 0.0139,
+        "B:xgboost": 0.02602,
+        "B:lightgbm": 0.01442,
+        "B:mlp": 0.0262
+      }
+    },
+    "combo3/seed13": {
+      "theta": {
+        "tes": 0.98,
+        "jes": 0.98,
+        "soft_met": 5.0,
+        "ttbar_scale": 1.04,
+        "diboson_scale": 1.5,
+        "bkg_scale": 1.002,
+        "seed": 13
+      },
+      "n_events": 40248,
+      "sum_weights": 139403.89126351906,
+      "models": {
+        "A:linear_svc": {
+          "auc": 0.70554,
+          "auc_ci95": [
+            0.64938,
+            0.75841
+          ],
+          "balanced_accuracy": 0.63376,
+          "pr_auc": 0.00236,
+          "ece": 0.000357,
+          "brier": 0.000972
+        },
+        "A:rbf_svc": {
+          "auc": 0.77936,
+          "auc_ci95": [
+            0.68902,
+            0.85464
+          ],
+          "balanced_accuracy": 0.72338,
+          "pr_auc": 0.00462,
+          "ece": 0.000291,
+          "brier": 0.000976
+        },
+        "A:xgboost": {
+          "auc": 0.85004,
+          "auc_ci95": [
+            0.79116,
+            0.89623
+          ],
+          "balanced_accuracy": 0.78264,
+          "pr_auc": 0.01053,
+          "ece": 0.000186,
+          "brier": 0.000968
+        },
+        "A:lightgbm": {
+          "auc": 0.83875,
+          "auc_ci95": [
+            0.77153,
+            0.89313
+          ],
+          "balanced_accuracy": 0.78186,
+          "pr_auc": 0.00954,
+          "ece": 0.000453,
+          "brier": 0.000969
+        },
+        "A:mlp": {
+          "auc": 0.74886,
+          "auc_ci95": [
+            0.65371,
+            0.82926
+          ],
+          "balanced_accuracy": 0.72202,
+          "pr_auc": 0.00617,
+          "ece": 0.000579,
+          "brier": 0.000972
+        },
+        "A:qksvc": {
+          "auc": 0.80276,
+          "auc_ci95": [
+            0.73601,
+            0.85708
+          ],
+          "balanced_accuracy": 0.72877,
+          "pr_auc": 0.00681,
+          "ece": 0.000428,
+          "brier": 0.000971
+        },
+        "B:linear_svc": {
+          "auc": 0.79565,
+          "auc_ci95": [
+            0.75958,
+            0.83471
+          ],
+          "balanced_accuracy": 0.69635,
+          "pr_auc": 0.00298,
+          "ece": 0.000662,
+          "brier": 0.000973
+        },
+        "B:xgboost": {
+          "auc": 0.89587,
+          "auc_ci95": [
+            0.86754,
+            0.91674
+          ],
+          "balanced_accuracy": 0.83466,
+          "pr_auc": 0.02001,
+          "ece": 0.00034,
+          "brier": 0.000965
+        },
+        "B:lightgbm": {
+          "auc": 0.90175,
+          "auc_ci95": [
+            0.87153,
+            0.92315
+          ],
+          "balanced_accuracy": 0.84266,
+          "pr_auc": 0.02163,
+          "ece": 0.000223,
+          "brier": 0.000965
+        },
+        "B:mlp": {
+          "auc": 0.87678,
+          "auc_ci95": [
+            0.85498,
+            0.8961
+          ],
+          "balanced_accuracy": 0.82491,
+          "pr_auc": 0.0102,
+          "ece": 0.000426,
+          "brier": 0.000969
+        }
+      },
+      "delta_auc": {
+        "A:linear_svc": 0.01095,
+        "A:rbf_svc": 0.00962,
+        "A:xgboost": 0.00967,
+        "A:lightgbm": 0.01475,
+        "A:mlp": 0.0307,
+        "A:qksvc": 0.03448,
+        "B:linear_svc": 0.00564,
+        "B:xgboost": 0.01323,
+        "B:lightgbm": 0.00659,
+        "B:mlp": 0.00028
+      }
+    }
+  },
+  "nominal": {
+    "theta": {
+      "tes": 1.0,
+      "jes": 1.0,
+      "soft_met": 0.0,
+      "ttbar_scale": 1.0,
+      "diboson_scale": 1.0,
+      "bkg_scale": 1.0,
+      "seed": 31415
+    },
+    "n_events": 41116,
+    "sum_weights": 142087.27992086345,
+    "models": {
+      "A:linear_svc": {
+        "auc": 0.71649,
+        "auc_ci95": [
+          0.66862,
+          0.76133
+        ],
+        "balanced_accuracy": 0.65817,
+        "pr_auc": 0.00245,
+        "ece": 0.000308,
+        "brier": 0.00096
+      },
+      "A:rbf_svc": {
+        "auc": 0.78898,
+        "auc_ci95": [
+          0.70975,
+          0.85475
+        ],
+        "balanced_accuracy": 0.74772,
+        "pr_auc": 0.00465,
+        "ece": 0.00029,
+        "brier": 0.000963
+      },
+      "A:xgboost": {
+        "auc": 0.85971,
+        "auc_ci95": [
+          0.80573,
+          0.90552
+        ],
+        "balanced_accuracy": 0.80581,
+        "pr_auc": 0.01313,
+        "ece": 0.000315,
+        "brier": 0.000955
+      },
+      "A:lightgbm": {
+        "auc": 0.8535,
+        "auc_ci95": [
+          0.79277,
+          0.90219
+        ],
+        "balanced_accuracy": 0.80628,
+        "pr_auc": 0.01426,
+        "ece": 0.0004,
+        "brier": 0.000957
+      },
+      "A:mlp": {
+        "auc": 0.77956,
+        "auc_ci95": [
+          0.71011,
+          0.84691
+        ],
+        "balanced_accuracy": 0.70511,
+        "pr_auc": 0.00806,
+        "ece": 0.000599,
+        "brier": 0.000959
+      },
+      "A:qksvc": {
+        "auc": 0.83724,
+        "auc_ci95": [
+          0.78661,
+          0.87682
+        ],
+        "balanced_accuracy": 0.77506,
+        "pr_auc": 0.00812,
+        "ece": 0.000425,
+        "brier": 0.000957
+      },
+      "B:linear_svc": {
+        "auc": 0.80129,
+        "auc_ci95": [
+          0.7631,
+          0.83847
+        ],
+        "balanced_accuracy": 0.69836,
+        "pr_auc": 0.00316,
+        "ece": 0.000733,
+        "brier": 0.000961
+      },
+      "B:xgboost": {
+        "auc": 0.9091,
+        "auc_ci95": [
+          0.88353,
+          0.92921
+        ],
+        "balanced_accuracy": 0.83595,
+        "pr_auc": 0.02624,
+        "ece": 0.000183,
+        "brier": 0.000951
+      },
+      "B:lightgbm": {
+        "auc": 0.90834,
+        "auc_ci95": [
+          0.8786,
+          0.92939
+        ],
+        "balanced_accuracy": 0.84417,
+        "pr_auc": 0.02276,
+        "ece": 0.000299,
+        "brier": 0.000952
+      },
+      "B:mlp": {
+        "auc": 0.87706,
+        "auc_ci95": [
+          0.85431,
+          0.8998
+        ],
+        "balanced_accuracy": 0.80614,
+        "pr_auc": 0.01208,
+        "ece": 0.000462,
+        "brier": 0.000956
+      }
+    }
+  },
+  "wall_seconds": 1632.7
+}

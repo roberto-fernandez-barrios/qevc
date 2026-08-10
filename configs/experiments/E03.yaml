@@ -1,0 +1,12 @@
+# E03 — Kernel geometry observatory (registered in docs/experiment_registry.md)
+# Environments inherited from E02; kernels anchored to E01 frozen models.
+experiment: E03
+inherits: [E01, E02]
+samples:
+  n_source: 2000     # tier A training events (the QK-SVC's own training world)
+  n_target_per_env: 2000
+  target_seed: 606
+kernels:
+  quantum: from_E01   # QK-SVC best_params (feature map + AngleScaler on tier A)
+  rbf: from_E01       # RBF-SVC best_params (StandardScaler on tier A)
+top_eigs: 10
