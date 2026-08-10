@@ -1,0 +1,17 @@
+# E08 — Physics-level inference (registered in docs/experiment_registry.md)
+# Estimator design per decision D-015 (single-SR counting analysis).
+experiment: E08
+inherits: [E01, E02, E05]
+models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+signal_region:
+  objective: s_over_sqrt_b        # maximized on source_val (10 fb^-1 rescaled)
+  b_floor: 50.0                   # minimum rescaled background yield in SR
+  threshold_grid_quantiles: 200   # candidate t_SR = score quantiles
+mu_true_grid: [0.5, 1.0, 1.5, 2.0, 3.0]
+pseudo_experiments: 2000
+ci_level: 0.6827
+seed: 808
+# Decoupling flags (SAP paragraph 6)
+decoupling:
+  delta_auc_flat: 0.005           # |dAUC| below this = "classifier looks fine"
+  coverage_damaged_below: 0.6327  # nominal 0.6827 minus 5 points

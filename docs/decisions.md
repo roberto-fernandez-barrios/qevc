@@ -207,3 +207,23 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   framework.
 - **Status:** adopted.
 
+## D-015 — E08 v1 physics estimator: single-signal-region counting analysis
+
+- **Date:** 2026-08-10
+- **Decision:** E08 v1 measures μ with the simplest deployable estimator:
+  a per-model signal region (calibrated score ≥ t_SR, t_SR chosen on
+  source_val to maximize s/√b with a floor b ≥ 50 rescaled events), yields
+  rescaled from the test role to 10 fb⁻¹ with per-process factors computed at
+  nominal, pseudo-experiments N ~ Poisson(μ·s(θ) + b(θ)), and the
+  deployment-blind estimator μ̂ = (N − b₀)/s₀, σ̂ = √N/s₀, 68.27% Gaussian
+  interval — the deployment believes the NOMINAL expectations (s₀, b₀).
+- **Known limitations (registered, not hidden):** one counting bin discards
+  shape information (real analyses profile nuisances over score bins);
+  s₀/b₀ derive from the same simulation subset as the θ-truth yields
+  (independent-MC split deferred to v2); Gaussian interval adequate for the
+  SR count scale here (checked in-run).
+- **Rationale:** the H5 question — can classifier metrics survive while
+  inference validity fails — needs the *cleanest possible* propagation chain
+  first; refinements change power, not the logic of the demonstration.
+- **Status:** adopted for E08 v1.
+

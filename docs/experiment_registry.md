@@ -223,12 +223,18 @@ entry.
   acquisition (must stay ≤ α).
 - **Falsifier:** no strategy beats random → reported as a primary negative result.
 - **Outputs:** `results/tables/E07_active.json`, Fig. 6 data.
-- **Status:** specified (2026-08-10) — config `configs/experiments/E07.yaml`:
-  uniform baseline vs uncertainty-mixture importance sampling
-  (q = 0.5·uniform + 0.5·closeness-to-threshold; importance weights bounded
-  by 2 → rescaled stream stays in [0,1] and the EB-CS remains exactly valid
-  by construction). Same claim grid/budgets as E06, 20 replications, salt
-  "E07". Empirical Type-I re-checked per strategy on the false claims.
+- **Status:** **complete — negative result, reported as primary** (2026-08-10).
+  Uncertainty-mixture importance sampling LOSES to uniform: median n* ratio
+  active/uniform = 1.55 (IQR 1.22–1.92) over 480 jointly-resolved cells;
+  active strictly better in only 10%; resolves fewer cells at 20k (0.49 vs
+  0.53). Type-I controlled under both (0.45% / 0.10% ≤ α). Interpretation:
+  the ×2 importance-weight range halves the effective claim margin on the
+  rescaled scale, and misclassification is not concentrated near the frozen
+  threshold enough for the variance reduction to compensate. Matches the
+  spec §37 alternative story: *simple random target labeling is already
+  near-optimal under the tested conditions* — a practically useful, simpler
+  protocol. Smarter estimators (LURE-style control variates, stratified
+  WoR) registered as candidate v2 before declaring the question closed.
 
 ## E08 — Physics-level inference
 
@@ -237,8 +243,12 @@ entry.
 - **Hypothesis:** H5.
 - **Metric:** SAP §1.2 across environments; decoupling search per SAP §6.
 - **Falsifier:** no decoupling found on the full grid (negative result for H5).
-- **Outputs:** `results/tables/E08_physics.*`, Fig. 7 data.
-- **Status:** planned.
+- **Outputs:** `results/tables/E08_physics.json`, Fig. 7 data.
+- **Status:** specified (2026-08-10) — config `configs/experiments/E08.yaml`,
+  estimator per D-015 (single-SR counting, per-model SR maximizing s/√b on
+  source_val with b ≥ 50, yields rescaled to 10 fb⁻¹, 2000 PEs ×
+  μ_true ∈ {0.5…3}, deployment-blind μ̂ = (N−b₀)/s₀ with Gaussian 68.27%
+  interval). Decoupling flags: |ΔAUC| < 0.005 with mean coverage < 0.6327.
 
 ## E09 — Finite-shot kernels
 
