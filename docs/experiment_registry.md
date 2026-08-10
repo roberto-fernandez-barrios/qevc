@@ -195,8 +195,24 @@ entry.
 - **Hypothesis:** H3.
 - **Metric:** n* distributions over seeds; certification landscape regions.
 - **Falsifier:** n* ≳ full labeling everywhere (certification adds nothing).
-- **Outputs:** `results/tables/E06_nstar.*`, Fig. 5 data.
-- **Status:** planned.
+- **Outputs:** `results/tables/E06_nstar.json`, Fig. 5 data.
+- **Status:** **complete** (2026-08-10; config `configs/experiments/E06.yaml`:
+  E05 claim grid, n_max=20,000, salt "E06", 20 replications). The
+  certification landscape is sharply margin-driven (984 claim-cells):
+  | \|margin\| | resolved@20k | median n* |
+  |---|---|---|
+  | <0.005 | 2% | — (UNRESOLVED region) |
+  | 0.005–0.01 | 9% | — |
+  | 0.01–0.02 | 58% | ~12,700 |
+  | 0.02–0.04 | 92% | ~7,100 |
+  | 0.04–0.08 | 100% | ~870 |
+  | ≥0.08 | 100% | ~180 |
+  Validity holds at 20k: false certification 0.72% ≤ α=5%; false refutation
+  0.025%. **H3 supported, falsifier not triggered**: claims with ≥0.04
+  margins certify with a few hundred labels — far below full labeling; the
+  fail-closed UNRESOLVED region is confined to |margin| ≲ 0.01. Environment
+  severity enters through the margin (e.g. A:qksvc δ=0.02: nominal n*₅₀=6.4k
+  → soft_met=5 n*₅₀=18.8k), giving Fig. 5 its severity axis.
 
 ## E07 — Active auditing
 
@@ -206,8 +222,13 @@ entry.
 - **Metric:** n* ratio active/random with CIs; empirical Type-I under active
   acquisition (must stay ≤ α).
 - **Falsifier:** no strategy beats random → reported as a primary negative result.
-- **Outputs:** `results/tables/E07_active.*`, Fig. 6 data.
-- **Status:** planned.
+- **Outputs:** `results/tables/E07_active.json`, Fig. 6 data.
+- **Status:** specified (2026-08-10) — config `configs/experiments/E07.yaml`:
+  uniform baseline vs uncertainty-mixture importance sampling
+  (q = 0.5·uniform + 0.5·closeness-to-threshold; importance weights bounded
+  by 2 → rescaled stream stays in [0,1] and the EB-CS remains exactly valid
+  by construction). Same claim grid/budgets as E06, 20 replications, salt
+  "E07". Empirical Type-I re-checked per strategy on the false claims.
 
 ## E08 — Physics-level inference
 
