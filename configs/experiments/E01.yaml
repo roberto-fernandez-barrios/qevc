@@ -4,6 +4,7 @@ subset:
   n_total: 300000
   seed: 101
 splits:
+  scheme: raw_row_v2  # decision D-013: partition raw pre-selection rows
   fractions: {train: 0.40, source_val: 0.15, nominal_test: 0.15, auditor_dev: 0.15, final_eval: 0.15}
   seed: 101
 features:

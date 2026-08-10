@@ -159,6 +159,21 @@ def test_upstream_norm_path_is_still_a_noop(dset_raw):
     np.testing.assert_allclose(out["weights"][ttbar], base["weights"][ttbar])
 
 
+def test_row_id_passthrough_survives_selection(dset_raw, raw_df):
+    """D-013: provenance ids ride through shifting + row-dropping selection."""
+    dset = dict(dset_raw)
+    dset["row_id"] = np.arange(len(raw_df))
+    out = apply_environment(dset, Environment(tes=0.97))
+    assert "row_id" in out
+    assert len(out["row_id"]) == len(out["data"]) < 1000
+    # surviving ids reference rows that indeed pass the shifted selection
+    survivors = out["row_id"]
+    np.testing.assert_allclose(
+        np.sort(0.97 * raw_df["PRI_had_pt"].to_numpy()[survivors])[:1].min(),
+        out["data"]["PRI_had_pt"].min(), atol=1e-3)
+    assert (0.97 * raw_df["PRI_had_pt"].to_numpy()[survivors] >= 26 - 1e-3).all()
+
+
 def test_environment_validation_and_identity():
     with pytest.raises(ValueError):
         Environment(tes=1.2)

@@ -1,0 +1,25 @@
+# E02 — Systematic landscape (registered in docs/experiment_registry.md)
+# Models and data protocol inherit from E01 (frozen best_params from
+# results/tables/E01_nominal.json; same subset, raw-row splits, features).
+experiment: E02
+inherits: E01
+# Predeclared single-nuisance grids: ±1σ, ±2σ of the official priors
+# (audit §1.2). soft_met has no Gaussian σ: grid predeclared on [0,5] GeV
+# support; stochastic given θ → replicated over env_seeds.
+grid:
+  tes: [0.98, 0.99, 1.01, 1.02]
+  jes: [0.98, 0.99, 1.01, 1.02]
+  soft_met: [1.0, 2.0, 3.0, 5.0]
+  ttbar_scale: [0.96, 0.98, 1.02, 1.04]
+  diboson_scale: [0.5, 0.75, 1.25, 1.5]
+  bkg_scale: [0.998, 0.999, 1.001, 1.002]
+combos:  # physics-motivated multi-nuisance corners (predeclared)
+  - {tes: 0.98, jes: 0.98}
+  - {tes: 1.02, jes: 1.02}
+  - {tes: 0.98, jes: 1.02, soft_met: 3.0}
+  - {tes: 0.98, jes: 0.98, soft_met: 5.0, ttbar_scale: 1.04, diboson_scale: 1.5, bkg_scale: 1.002}
+env_seeds: [11, 12, 13]  # replication for stochastic soft_met environments
+bootstrap:
+  n_resamples: 500
+  seed: 505
+save_scores: true  # per-env model scores kept for E03-E05 reuse (spec §38)

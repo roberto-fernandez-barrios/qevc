@@ -156,7 +156,10 @@ def _norm_weight_scale(weights, labels, detailed_labels, env: Environment):
 def apply_environment(dset: dict, env: Environment) -> dict:
     """Produce D_θ from a nominal dataset dict.
 
-    ``dset`` = {"data": PRI DataFrame, "weights", "labels", "detailed_labels"}.
+    ``dset`` = {"data": PRI DataFrame, "weights", "labels", "detailed_labels"},
+    plus optional extra per-row arrays (e.g. ``row_id`` for raw-row partition
+    provenance, decision D-013) which ride through the official pipeline as
+    columns and survive post-selection row drops.
     Returns the same structure with shifted primaries, recomputed DER features,
     official post-selection applied (rows may drop), and norm-scaled weights.
     """
@@ -165,7 +168,7 @@ def apply_environment(dset: dict, env: Environment) -> dict:
             raise ValueError(f"dset missing key '{key}'")
     official = _official_systematics()
     shifted = official(
-        data_set={k: dset[k] for k in ("data", "weights", "labels", "detailed_labels")},
+        data_set={k: v for k, v in dset.items() if k != "settings"},
         tes=env.tes,
         jes=env.jes,
         soft_met=env.soft_met,

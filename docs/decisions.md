@@ -169,3 +169,21 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   identical across quantum and classical models (fair-comparison rule §9).
 - **Status:** adopted.
 
+## D-013 — Partitions are defined on RAW pre-selection rows
+
+- **Date:** 2026-08-10
+- **Decision:** the five-role partition (spec §10) is defined on raw
+  pre-selection rows of the subset, carried through every environment via a
+  `row_id` column that survives the official systematics pipeline. For any
+  environment θ (nominal included), the role dataset is
+  `apply_environment(raw[role_rows], θ)` — selection migration happens *inside*
+  the role.
+- **Alternatives:** partitioning the nominal post-selection dataset D₀ (E01
+  v1 did this).
+- **Rationale:** under upward shifts, events migrate INTO the selection; a
+  D₀-based partition has no role assignment for them, so shifted test sets
+  would either drop them (unphysical) or leak unassigned rows. Raw-row
+  partitioning gives every environment a consistent, closed test population.
+  E01 was re-run under this scheme (v2 supersedes v1; both manifests kept).
+- **Status:** adopted.
+

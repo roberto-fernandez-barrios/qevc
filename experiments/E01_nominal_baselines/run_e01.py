@@ -49,46 +49,60 @@ def log(msg: str) -> None:
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
 
 
-def build_nominal_dataset() -> pd.DataFrame:
+def load_raw_subset() -> pd.DataFrame:
     loader = FairUniverseLoader(PARQUET, REPO / "data/interim/fair_universe")
     raw = loader.load_subset(CONFIG["subset"]["n_total"], CONFIG["subset"]["seed"])
     log(f"raw subset: {len(raw):,} rows")
-    d0 = apply_environment(split_columns(raw), Environment())
-    df = d0["data"].copy()
-    df["weights"] = d0["weights"]
-    df["labels"] = d0["labels"].astype(int)
-    df["detailed_labels"] = d0["detailed_labels"]
-    log(f"nominal D0: {len(df):,} rows after selection")
+    return raw
+
+
+def build_environment_dataset(raw: pd.DataFrame, env: Environment) -> pd.DataFrame:
+    """D_θ with raw-row provenance (D-013): row_id survives selection."""
+    dset = split_columns(raw)
+    dset["row_id"] = np.arange(len(raw))
+    d = apply_environment(dset, env)
+    df = d["data"].copy()
+    df["weights"] = d["weights"]
+    df["labels"] = np.asarray(d["labels"]).astype(int)
+    df["detailed_labels"] = d["detailed_labels"]
+    df["row_id"] = np.asarray(d["row_id"]).astype(int)
     return df.reset_index(drop=True)
 
 
-def get_splits(df: pd.DataFrame) -> dict[str, np.ndarray]:
+def get_raw_splits(raw: pd.DataFrame) -> dict[str, np.ndarray]:
+    """Five-role partition of RAW pre-selection rows (D-013)."""
     spec = SplitSpec(CONFIG["splits"]["fractions"], seed=CONFIG["splits"]["seed"])
-    path = REPO / "data/processed/splits" / f"E01_seed{spec.seed}_n{len(df)}.json"
+    path = (REPO / "data/processed/splits" /
+            f"E01_{CONFIG['splits']['scheme']}_seed{spec.seed}_n{len(raw)}.json")
     if path.exists():
         return load_splits(path)
-    splits = make_splits(len(df), spec, y=df["labels"].to_numpy())
+    splits = make_splits(len(raw), spec, y=raw["labels"].to_numpy())
     save_splits(splits, spec, path)
     return load_splits(path)  # final_eval stays sealed
 
 
-def tier_a_indices(train_idx: np.ndarray, y: np.ndarray) -> np.ndarray:
+def role_frame(d_env: pd.DataFrame, raw_ids: np.ndarray) -> pd.DataFrame:
+    return d_env[np.isin(d_env["row_id"].to_numpy(), raw_ids)]
+
+
+def tier_a_frame(train_df: pd.DataFrame) -> pd.DataFrame:
     n, seed = CONFIG["tier_a"]["n_train"], CONFIG["tier_a"]["seed"]
     rng = np.random.default_rng(seed)
-    pools = [train_idx[y[train_idx] == c] for c in (0, 1)]
-    fracs = [len(p) / len(train_idx) for p in pools]
+    y = train_df["labels"].to_numpy()
+    idx = np.arange(len(train_df))
+    pools = [idx[y == c] for c in (0, 1)]
+    fracs = [len(p) / len(idx) for p in pools]
     picks = [rng.choice(p, size=round(n * f), replace=False)
              for p, f in zip(pools, fracs)]
-    return np.sort(np.concatenate(picks))
+    return train_df.iloc[np.sort(np.concatenate(picks))]
 
 
-def evaluate_model(name, model, df, splits, X_cols, results, bs_seed):
+def evaluate_model(name, model, sv_df, te_df, X_cols, results, bs_seed):
     """Calibrate on source_val, freeze threshold, evaluate on nominal_test."""
-    sv, te = splits["source_val"], splits["nominal_test"]
-    X_sv = df.loc[sv, X_cols].to_numpy(float)
-    X_te = df.loc[te, X_cols].to_numpy(float)
-    y_sv, w_sv = df.loc[sv, "labels"].to_numpy(), df.loc[sv, "weights"].to_numpy()
-    y_te, w_te = df.loc[te, "labels"].to_numpy(), df.loc[te, "weights"].to_numpy()
+    X_sv = sv_df[X_cols].to_numpy(float)
+    X_te = te_df[X_cols].to_numpy(float)
+    y_sv, w_sv = sv_df["labels"].to_numpy(), sv_df["weights"].to_numpy()
+    y_te, w_te = te_df["labels"].to_numpy(), te_df["weights"].to_numpy()
 
     s_sv = model.scores(X_sv)
     cal = PlattCalibrator().fit(s_sv, y_sv, w_sv)
@@ -109,42 +123,44 @@ def evaluate_model(name, model, df, splits, X_cols, results, bs_seed):
 
 def main() -> int:
     t0 = time.time()
-    df = build_nominal_dataset()
-    splits = get_splits(df)
-    y_all = df["labels"].to_numpy()
-    w_all = df["weights"].to_numpy()
+    raw = load_raw_subset()
+    raw_splits = get_raw_splits(raw)
+    d0 = build_environment_dataset(raw, Environment())
+    log(f"nominal D0: {len(d0):,} rows after selection")
+    frames = {role: role_frame(d0, ids) for role, ids in raw_splits.items()}
+    sv_df, te_df = frames["source_val"], frames["nominal_test"]
     out: dict = {"experiment": "E01", "tiers": {"A": {}, "B": {}}, "sizes": {}}
     tuning = CONFIG["tuning"]
 
     # ---- Tier A: matched 2000-event comparison ----------------------------
-    idx_a = tier_a_indices(splits["train"], y_all)
-    out["sizes"] = {r: int(len(v)) for r, v in splits.items()} | {"tier_a": len(idx_a)}
-    log(f"tier A: {len(idx_a)} matched events; models {CONFIG['tier_a']['models']}")
+    df_a = tier_a_frame(frames["train"])
+    out["sizes"] = ({r: int(len(v)) for r, v in frames.items()}
+                    | {"raw": len(raw), "tier_a": len(df_a)})
+    log(f"tier A: {len(df_a)} matched events; models {CONFIG['tier_a']['models']}")
     q_cols = CONFIG["features"]["quantum"]
     test_probs: dict[str, np.ndarray] = {}
+    y_a, w_a = df_a["labels"].to_numpy(), df_a["weights"].to_numpy()
+    wb_a = class_balanced_weights(y_a, w_a)
 
     for name in CONFIG["tier_a"]["models"]:
         cols = q_cols if name == "qksvc" else FEATURES_ALL
-        X = df.loc[idx_a, cols].to_numpy(float)
-        y = y_all[idx_a]
-        wb = class_balanced_weights(y, w_all[idx_a])
+        X = df_a[cols].to_numpy(float)
         n_cfg = tuning["n_configs_overrides"].get(name, tuning["n_configs"])
         kwargs = ({"builder_override": qksvc_builder, "space_override": QKSVC_SPACE}
                   if name == "qksvc" else {})
-        res = tune(name, X, y, wb, w_all[idx_a], n_configs=n_cfg,
+        res = tune(name, X, y_a, wb_a, w_a, n_configs=n_cfg,
                    cv_folds=tuning["cv_folds"], seed=tuning["seed"], **kwargs)
         model = (qksvc_builder(res.best_params, tuning["seed"]) if name == "qksvc"
                  else build(name, res.best_params, tuning["seed"]))
-        model.fit(X, y, sample_weight=wb)
+        model.fit(X, y_a, sample_weight=wb_a)
         entry = {"best_params": {k: str(v) for k, v in res.best_params.items()},
                  "cv_auc": round(res.best_cv_auc, 5), "features": len(cols)}
         test_probs[name] = evaluate_model(
-            name, model, df, splits, cols, entry, CONFIG["bootstrap"]["seed"])
+            name, model, sv_df, te_df, cols, entry, CONFIG["bootstrap"]["seed"])
         out["tiers"]["A"][name] = entry
 
     # Paired contrasts vs QK-SVC on shared test events
-    te = splits["nominal_test"]
-    y_te, w_te = y_all[te], w_all[te]
+    y_te, w_te = te_df["labels"].to_numpy(), te_df["weights"].to_numpy()
     out["paired_auc_diff_qksvc_minus"] = {}
     for name in CONFIG["tier_a"]["models"]:
         if name == "qksvc":
@@ -157,20 +173,20 @@ def main() -> int:
             "point": round(ci.point, 5), "ci95": [round(ci.lower, 5), round(ci.upper, 5)]}
 
     # ---- Tier B: classical at scale ---------------------------------------
-    tr = splits["train"]
-    log(f"tier B: {len(tr):,} training events; models {CONFIG['tier_b']['models']}")
+    tr_df = frames["train"]
+    log(f"tier B: {len(tr_df):,} training events; models {CONFIG['tier_b']['models']}")
+    y_tr, w_tr = tr_df["labels"].to_numpy(), tr_df["weights"].to_numpy()
+    wb_tr = class_balanced_weights(y_tr, w_tr)
     for name in CONFIG["tier_b"]["models"]:
-        X = df.loc[tr, FEATURES_ALL].to_numpy(float)
-        y = y_all[tr]
-        wb = class_balanced_weights(y, w_all[tr])
+        X = tr_df[FEATURES_ALL].to_numpy(float)
         n_cfg = tuning["n_configs_overrides"].get(name, tuning["n_configs"])
-        res = tune(name, X, y, wb, w_all[tr], n_configs=n_cfg,
+        res = tune(name, X, y_tr, wb_tr, w_tr, n_configs=n_cfg,
                    cv_folds=tuning["cv_folds"], seed=tuning["seed"])
         model = build(name, res.best_params, tuning["seed"])
-        model.fit(X, y, sample_weight=wb)
+        model.fit(X, y_tr, sample_weight=wb_tr)
         entry = {"best_params": {k: str(v) for k, v in res.best_params.items()},
                  "cv_auc": round(res.best_cv_auc, 5), "features": len(FEATURES_ALL)}
-        evaluate_model(name, model, df, splits, FEATURES_ALL, entry,
+        evaluate_model(name, model, sv_df, te_df, FEATURES_ALL, entry,
                        CONFIG["bootstrap"]["seed"] + 1)
         out["tiers"]["B"][name] = entry
 

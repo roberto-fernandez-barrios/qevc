@@ -46,13 +46,20 @@ entry.
   pipeline's basic competence (triggers feature-map review before proceeding).
 - **Outputs:** `results/tables/E01_nominal.json` + manifest; splits under
   `data/processed/splits/`.
-- **Status:** specified (2026-08-10) — config `configs/experiments/E01.yaml`:
-  300k-event stratified subset (seed 101) → nominal D₀ → five-role splits;
-  Tier A matched comparison of 6 models on the same 2000 events (identical
-  random-search budgets, 10 configs × 3-fold, physics-weighted CV AUC);
-  Tier B classical at scale (~110k). Calibration/threshold frozen on
-  source_val; metrics + bootstrap CIs + paired QK-vs-classical contrasts on
-  nominal_test. final_eval remains sealed.
+- **Status:** **complete** (2026-08-10, v2 under raw-row partitioning D-013;
+  v1 manifest kept, superseded). 300k subset seed 101 → D₀ 274,004 rows;
+  roles: train 109,699 / source_val 41,128 / nominal_test 41,116 /
+  auditor_dev 41,001 (final_eval sealed). Tier A (matched 2000 events,
+  physics-weighted test AUC [95% CI]): QK-SVC 0.8372 [0.782, 0.876] —
+  reps 2, scale 0.5, linear entanglement, C=1; XGBoost 0.8597; LightGBM
+  0.8535; RBF-SVC 0.7890; MLP 0.7796; linear SVC 0.7165. Paired ΔAUC
+  (QK − other): beats linear (+0.121 [0.066, 0.170]), RBF (+0.048
+  [0.000, 0.099]) and MLP (+0.058 [0.001, 0.114]); tied with XGBoost
+  (−0.022 [−0.053, +0.004]) and LightGBM (−0.016 [−0.046, +0.011]).
+  Tier B (train 109,699): XGBoost 0.9091, LightGBM 0.9083, MLP 0.8771,
+  linear 0.8013 — scale gap ~5 AUC points over tier A, reported as context.
+  **Falsifier check: passed** (QK-SVC ≫ linear SVC; quantum pipeline
+  competent at nominal).
 
 ## E02 — Systematic landscape
 
@@ -61,8 +68,14 @@ entry.
 - **Environments:** per-nuisance {−2σ…+2σ} + predeclared LHC combinations.
 - **Metric:** `M(θ)`, `Δ_θ` per SAP §1.1; paired quantum–classical contrasts.
 - **Falsifier:** Δ_θ CIs include 0 everywhere → H1 unsupported; report as such.
-- **Outputs:** `results/tables/E02_landscape.*`, Fig. 2 data.
-- **Status:** planned.
+- **Outputs:** `results/tables/E02_landscape.json` + per-env score arrays in
+  `results/raw/E02_scores/` (reused by E03–E05).
+- **Status:** specified (2026-08-10) — config `configs/experiments/E02.yaml`:
+  24 single-nuisance environments (grids at ±1σ/±2σ; soft_met at
+  {1,2,3,5} GeV × 3 seeds) + 4 predeclared combos. Models retrained from
+  E01-frozen best_params (no re-tuning); calibration + thresholds frozen on
+  nominal source_val; test population = D_θ over the same raw test rows
+  (D-013, migration included). Nothing is refitted per environment.
 
 ## E03 — Kernel geometry observatory
 
