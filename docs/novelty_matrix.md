@@ -78,8 +78,9 @@ physics-level inference (μ, intervals, coverage) · **Real**: real collision da
 | Zrnic & Candès 2024, ICML (active inference) arXiv:2403.03208 | · | · | · | · | · | ✓ | ✓ | · | · |
 | Park+ 2022, ICLR (PAC sets, covariate shift) arXiv:2106.09848 | · | · | · | ✓ | · | · | ✓ | · | · |
 | Tibshirani+ 2019, NeurIPS (weighted conformal) arXiv:1904.06019 | · | · | · | ✓ | · | · | ✓ | · | · |
-| CELEUS 2026 (e-process LLM eval) arXiv:2606.20820 ⏳ | · | · | · | · | · | ✓ | ✓ | · | · |
-| Kim 2026 (fail-closed deployment gating) arXiv:2606.24996 ⏳ | · | · | · | ~ | · | · | ✓ | · | · |
+| CELEUS 2026 (e-process LLM eval) arXiv:2606.20820 | · | · | · | · | · | ✓ | ✓ | · | · |
+| Kim 2026 (fail-closed deployment gating) arXiv:2606.24996 | · | · | · | ~ | · | · | ✓ | · | · |
+| Chen & Weng 2026 (sim-to-real betting e-process, robotics) arXiv:2606.24038 | · | · | · | ✓ | · | · | ✓ | · | ~ |
 | Rabanser+ 2019, NeurIPS (failing loudly) arXiv:1810.11953 | · | · | · | ✓ | ~ | · | ~ | · | · |
 | Kornblith+ 2019, ICML (CKA) arXiv:1905.00414 | · | · | · | · | ✓ | · | · | · | · |
 
@@ -114,7 +115,11 @@ Sweep conclusion (searches enumerated in the survey logs, August 2026):
 ### Differentiators to claim (and nothing more)
 
 - First evaluation of quantum-kernel event classifiers under parameterized
-  physical collider systematics (nuisance-induced distribution shift).
+  physical collider systematics as **nuisance-induced (shape-level)
+  distribution shift** of the inputs. (Sharpened 2026-08-10: Ait Haddou+
+  PTEP 2026 folds rate-only background-normalization uncertainty into final
+  limits without evaluating the classifier under shift — cite and
+  distinguish.)
 - First information-set-conditional, fail-closed certification framework
   (SUPPORTED/REFUTED/UNRESOLVED with anytime-valid error control) applied to
   collider classifiers, quantum and classical.
@@ -133,10 +138,21 @@ design discipline and expected failure modes (concentration under shift).
 ### Watch items (fast-moving threats)
 
 - Yang/Zhang/Yue muon-collider group (quantum methods drifting toward
-  physics-level statistics).
-- Ait Haddou group PTEP follow-ups.
+  physics-level statistics). [2026-08-10: JHEP 01 (2026) 023 published —
+  cite published form; no systematics-aware follow-up found.]
+- Ait Haddou group PTEP follow-ups. [2026-08-10: none beyond PTEP 2026(6)
+  063C02.]
 - Any second-round FAIR Universe competition attracting a quantum entry.
+  [2026-08-10: none for HiggsML; the new track is Weak Lensing Phase 2
+  (NeurIPS 2026, arXiv:2604.14451) — cosmology, evidence the paradigm is
+  expanding, not a threat.]
+- Nearest methodological neighbor found 2026-08-10: Chen & Weng
+  arXiv:2606.24038 (betting e-process certification of sim-to-real transfer,
+  robotics) — cite and differentiate: no information-set hierarchy, no
+  collider physics, no physics-level inference.
 - Re-run targeted searches before submission (spec §31: continuous review).
+- **Verification status (2026-08-10): all 12 previously-flagged arXiv IDs
+  verified correct; venue data recorded in the sweep log.**
 
 ## Gate 0 verdict
 

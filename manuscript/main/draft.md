@@ -17,9 +17,12 @@ event classifier remain justified when collider systematics shift the
 deployment distribution, and under what experimentally available information?*
 Using the FAIR Universe HiggsML Uncertainty benchmark (H→ττ with six
 parameterized nuisance sources), we (i) map the behavior of quantum-kernel
-classifiers under physical systematics — to our knowledge the first such
-evaluation — finding small but replicated degradations under tau-energy-scale
-shifts and adverse nuisance combinations; (ii) show that a label-free
+classifiers under physical systematics — to our knowledge the first
+evaluation of quantum classifiers under nuisance-induced, shape-level
+distribution shift of the inputs (prior work folds only rate-type
+normalization uncertainty into final limits) — finding small but replicated
+degradations under tau-energy-scale shifts and adverse nuisance
+combinations; (ii) show that a label-free
 quantum-kernel geometry sensor (MMD²) predicts degradation magnitude
 out-of-environment (Spearman ρ = 0.56–0.68 against multi-seed targets) while
 being *provably blind* to normalization nuisances that nevertheless destroy
@@ -54,12 +57,17 @@ classical models identically and is fail-closed by design.
 
 ## 2. Related Work
 
-Condensed from `docs/novelty_matrix.md` (five clusters, 40+ works):
-QML-for-HEP; quantum-kernel theory and trust; QML validity/monitoring;
-systematics-aware classical HEP ML; certification and label-efficient
-evaluation. Gap statement: no work combines quantum models + physical
-collider systematics + information-conditional certification + physics-level
-inference; nearest neighbors and their gaps as tabulated.
+Condensed from `docs/novelty_matrix.md` (five clusters, 40+ works; all
+flagged arXiv IDs verified 2026-08-10): QML-for-HEP; quantum-kernel theory
+and trust; QML validity/monitoring; systematics-aware classical HEP ML;
+certification and label-efficient evaluation. Gap statement: no work
+combines quantum models + physical collider systematics +
+information-conditional certification + physics-level inference. Nearest
+neighbors to cite and distinguish explicitly: Ait Haddou et al. (PTEP 2026,
+arXiv:2511.15672 — rate-only normalization uncertainty entering final
+limits, classifier itself unaudited under shift) and Chen & Weng
+(arXiv:2606.24038 — betting e-process certification of sim-to-real transfer
+in robotics; no information-set hierarchy, no physics inference).
 
 ## 3. Problem Formulation
 
