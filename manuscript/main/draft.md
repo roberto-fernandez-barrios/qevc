@@ -1,9 +1,12 @@
 # When Can Quantum Event Classifiers Be Trusted? Conditional Validity under Collider Systematics
 
-**Draft v0.1 — 2026-08-10.** Structure per research spec §33; language per the
-claims discipline of §34. All numbers come from the registered experiments
-(`docs/experiment_registry.md`); nothing here exceeds what the evidence
-supports. TODO markers indicate sections needing prose expansion.
+**Draft v0.2 — 2026-08-11.** Structure per research spec §33; language per
+the claims discipline of §34. All numbers come from the clean-tree
+regenerated experiments (`docs/experiment_registry.md`, commit 627796d);
+nothing here exceeds what the evidence supports. Remaining before
+submission: Related Work expanded to full cited prose at LaTeX conversion
+(bibliography from `docs/novelty_matrix.md`), venue formatting, and final
+number-by-number verification against the result tables.
 
 ---
 
@@ -50,16 +53,70 @@ classical models identically and is fail-closed by design.
 
 ## 1. Introduction
 
-- Validation-deployment gap in collider ML; systematics as distribution shift.
-- QML-for-HEP literature evaluates on nominal simulation only (novelty matrix);
-  robustness in QML means hardware/adversarial noise, never physical
-  systematics.
-- Contributions C1–C7 (spec §5), mapped to experiments E01–E11.
-- Explicitly NOT a quantum-advantage paper (spec §2); all four outcome
-  scenarios of §37 are scientifically reportable; we report which one the
-  evidence selected.
+Machine-learned event classifiers are now standard components of collider
+analyses, and quantum machine-learning (QML) classifiers are increasingly
+proposed as their successors. Both are validated the same way: on nominal
+simulation, under the exact conditions the simulation happened to assume.
+Deployment is different. The real experiment operates under uncertain
+calibrations — tau and jet energy scales, soft missing-energy activity,
+background normalizations — collectively the *systematic uncertainties* of
+the measurement. Each nuisance configuration θ defines a slightly different
+data distribution D_θ, and the classifier that was validated at θ = 0 is
+deployed, unavoidably, at some unknown θ ≠ 0. For classical models this
+validation–deployment gap is studied under headings like decorrelation,
+systematics-aware training, and uncertainty-aware inference. For quantum
+models it has, to our knowledge, never been studied at all: the QML-for-HEP
+literature evaluates on fixed nominal simulation, and "robustness" in QML
+means hardware noise, shot noise, or adversarial perturbations — never the
+physically parameterized distribution shifts that collider deployment
+actually presents (Sec. 2).
 
-**TODO:** full prose; framework figure (Fig. 1).
+This paper asks a deliberately conditional question: *which claims about a
+(quantum) event classifier remain justified when collider systematics shift
+the deployment distribution — and under what experimentally available
+information?* The framing separates three things that benchmarking
+conflates: what is true about deployment performance, what is observable
+about it, and what is certifiable from those observations. We formalize the
+observable side as an information-set hierarchy — source data only (I0),
+plus unlabeled target data (I1), plus n target labels (I2(n)) — and require
+of any verdict that it be *fail-closed*: a claim is SUPPORTED or REFUTED
+only when the declared information suffices at a declared error rate, and
+UNRESOLVED otherwise. Heuristic signals may veto certification; they may
+never grant it.
+
+We instantiate this program end-to-end (Fig. 1) on the FAIR Universe
+HiggsML Uncertainty benchmark — H→ττ classification with six physically
+parameterized nuisance sources and official systematics tooling — with a
+quantum-kernel classifier alongside matched classical baselines, and we
+propagate every question to physics-level inference (signal-strength
+intervals and their coverage). Five findings organize the paper. First,
+quantum-kernel classifiers exhibit small but replicated degradations under
+tau-energy-scale shifts and adverse nuisance combinations — the first
+measurement of QML behavior under shape-level physical systematics —
+though partition variance dominates most single-nuisance effects, a
+caution we quantify rather than hide. Second, a label-free kernel-geometry
+sensor predicts degradation magnitude out of environment; a matched-kernel
+control shows the active ingredient is bandwidth and feature conditioning,
+not quantumness — an honest negative for quantum-specific sensing that
+yields a model-agnostic recipe. Third, an anytime-valid conditional auditor
+certifies claims with empirically verified error control and measures the
+label budget n* at which claims resolve — sharply margin-driven, from
+hundreds of labels to fail-closed abstention. Fourth, classifier metrics
+and inference validity decouple: dozens of replication-gated environments
+combine a classifier indistinguishable from nominal with destroyed interval
+coverage, including under normalization nuisances that no
+feature-distribution signal can see. Fifth, deployed on real CMS Open Data
+collisions, the framework certifies control-region claims, detects the
+simulation-to-data shift, and refuses — by construction — to certify
+event-level accuracy without labels.
+
+None of this requires, assumes, or concludes quantum advantage. The study
+was predeclared to be reportable under every outcome (registered
+falsifiers, five-seed replication gates, logged protocol deviations), and
+two of its own headline single-seed patterns did not survive replication —
+we report both the corrected numbers and the correction process, because a
+framework about trustworthy validation should itself be validated
+trustworthily.
 
 ## 2. Related Work
 
@@ -77,29 +134,90 @@ in robotics; no information-set hierarchy, no physics inference).
 
 ## 3. Problem Formulation
 
-- Collider event classification with event weights; nuisance-parameterized
-  environments D_θ (official FAIR Universe semantics; selection migration is
-  physics, D-013).
-- Quantum fidelity kernels; frozen-deployment discipline (nothing retunes
-  per environment).
-- Claims C(M, τ) and degradation form; information sets I0 ⊂ I1 ⊂ I2(n) ⊂ I3;
-- Conditional validity: SUPPORTED / REFUTED / UNRESOLVED with fail-closed
-  semantics (D-006): heuristics can veto, never certify.
+**Events and environments.** An event is a feature vector x ∈ R^d with label
+y ∈ {0, 1} (signal = 1) and physical weight w (cross-section × luminosity /
+N_generated). A nuisance vector θ indexes environments P_θ(x, y): feature-
+level nuisances (energy scales, soft missing energy) transform x and
+re-apply the event selection — so environments gain and lose events, which
+we treat as physics, not as a nuisance of bookkeeping (partitions are
+defined on pre-selection rows and carried through every environment) —
+while normalization nuisances rescale weights only. Validation happens at
+θ = 0; deployment at unknown θ.
+
+**Frozen deployment.** A deployment is the tuple (features, model f,
+calibration, decision threshold), fitted and frozen using θ = 0 training
+and validation data only. Nothing is retuned per environment: every
+evaluation below asks what happens to *this* deployment, not to a
+hypothetical re-optimized one.
+
+**Quantum kernels.** The quantum model is a support-vector classifier over
+the fidelity kernel K_Q(x, x′) = |⟨φ(x)|φ(x′)⟩|², with |φ(x)⟩ prepared by a
+ZZ feature map (one qubit per feature, entangling repetitions, a global
+bandwidth scale on the encoded angles) acting on standardized inputs. Exact
+(statevector), finite-shot (the compute–uncompute sampling law), and
+hardware estimates of the same kernel are compared in Sec. 7.
+
+**Claims and information sets.** A claim is a statement C(M, τ): M_T(f) ≥ τ
+about a bounded target-environment metric, used here in the degradation
+form τ = M_S − δ with M_S measured on labeled source validation data. The
+auditor operates under a declared information set: I0 = {source data, f};
+I1 = I0 ∪ {unlabeled target features}; I2(n) = I1 ∪ {n target labels};
+I3 adds nuisance estimates (deferred here). Unsupervised accuracy
+estimation is unidentifiable without shift assumptions, so I0/I1 can never
+certify; this impossibility is a design input, not an inconvenience.
+
+**Conditional validity.** For confidence bounds [L_t, U_t] on M_T valid
+uniformly over the labeling time t, the verdict is SUPPORTED iff L_t ≥ τ,
+REFUTED iff U_t < τ, and UNRESOLVED otherwise; heuristic sensors may demote
+SUPPORTED to UNRESOLVED and may prioritize labeling, but cannot create
+certification (fail-closed semantics, frozen before any experiment ran).
+The first budget at which a claim leaves UNRESOLVED defines n*(θ, C).
 
 ## 4. Method
 
-- 4.1 Geometry observatory (E03/E04): descriptors; the univariate MMD²
-  sensor; the structural blind spot to weight-only nuisances (measured, and a
-  *feature* of the argument: label-free sensors cannot protect physics).
-- 4.2 Conditional auditor: empirical-Bernstein confidence sequences
-  (anytime-valid ⇒ n* is a legitimate stopping time); one CS resolves all
-  thresholds simultaneously; decision rule frozen (D-006); estimand D-014.
-- 4.3 Partial-label certification: n*(θ, C) as survival curves over budgets.
-- 4.4 Acquisition: uniform vs bounded-importance uncertainty mixture (validity
-  preserved by construction).
-- 4.5 Physics-level inference: deployment-blind single-SR counting estimator
-  (D-015; limitations stated — profiled analyses degrade more gracefully; the
-  demonstrated claim is about information, not about H→ττ being hopeless).
+**4.1 Geometry observatory (I1).** For each kernel and environment we
+compute label-free descriptors of the source Gram, an unlabeled target
+Gram, and their cross Gram — spectra, effective rank, alignment, and the
+squared maximum mean discrepancy MMD² in the kernel's RKHS. Descriptors are
+*risk sensors*: their only powers are to flag shift and to veto
+certification. Two structural facts are measured, not assumed: (i) at
+finite target-sample size the sensor has a noise floor, which we estimate
+from environments whose feature distribution is exactly nominal; (ii)
+feature-distribution evidence is rate-free, hence blind to weight-only
+normalization nuisances — the label-free channel that does carry that
+information is rate/control-region monitoring, which the real-data case
+study uses (Sec. 8).
+
+**4.2 Conditional auditor (I2).** Labeled target draws are uniform with
+replacement, so each per-event correctness indicator is an exact
+Bernoulli(M_T) observation, and we track it with an empirical-Bernstein
+confidence sequence (predictable plug-in construction). Time-uniform
+validity makes n* a legitimate stopping time and makes one sequence
+simultaneously valid for every threshold derived from it; the decision rule
+of Sec. 3 then inherits per-claim Type-I control at level α by
+construction, which we additionally verify empirically against simulation
+truth (Sec. 6.4).
+
+**4.3 Certification landscapes.** Sweeping claims (δ grid, including
+adversarially false claims with τ at or above M_S) across environments and
+replicated label streams yields the survival curves of n* over budgets —
+the certification landscape whose axes the framework predicts: claim
+margin, not model family, is the controlling variable.
+
+**4.4 Acquisition.** Against the uniform baseline we test an
+uncertainty-guided mixture proposal with bounded importance weights; the
+rescaled stream stays in [0, 1], so validity is preserved by construction
+and the comparison isolates pure variance effects. The result is negative
+(uniform wins) and is reported as such.
+
+**4.5 Physics-level inference.** A deployment-blind counting estimator —
+per-model signal region chosen on source validation, nominal expectations
+(s₀, b₀), pseudo-experiments drawn under shifted truth, μ̂ = (N − b₀)/s₀
+with Gaussian 68.27% intervals — propagates classifier behavior to bias,
+width, and empirical coverage. Its known limitations (single bin, no
+profiling, shared-simulation expectations) are declared; profiled analyses
+degrade more gracefully, and the demonstrated claim concerns *information*,
+not the health of H→ττ physics.
 
 ## 5. Experimental Design
 
@@ -268,7 +386,29 @@ physics analyses, quantum or classical.
 
 ## 11. Conclusion
 
-**TODO:** prose.
+We asked when a quantum event classifier can be trusted under the
+experimental conditions that collider deployment actually presents, and we
+answered conditionally, which is the only honest way to answer it. Under
+nuisance-induced distribution shift, the quantum-kernel classifier behaves
+like a competitive member of the model family it belongs to — small,
+replicated degradations; no special fragility; no special robustness; and,
+after a matched-kernel control, no quantum-specific advantage in label-free
+shift sensing either. What the study establishes instead is a validation
+discipline: an information-set-conditional, fail-closed auditor with
+anytime-valid error control that certifies what the available evidence can
+support, quantifies the label budget at which claims resolve, and abstains
+— loudly and by construction — where evidence cannot reach, including on
+real collision data where event-level truth does not exist. The
+demonstration that healthy classifier metrics coexist with destroyed
+physics-level coverage, precisely where feature-distribution evidence is
+blind, is our strongest argument that such auditing should accompany any
+learned classifier — quantum or classical — placed inside a physics
+measurement. The framework's components are deliberately generic; nothing
+in them is specific to H→ττ, to kernels, or to quantum models. Hardware
+experiments bound where quantum estimation noise perturbs certificates
+(only near claim boundaries, with device noise dominating shot noise ~9×
+at practical depths), and a proposed hardware campaign would close the loop
+by running the full certification pipeline on QPU-estimated kernels.
 
 ---
 
