@@ -99,3 +99,22 @@ def test_input_validation():
         build_feature_map(3, entanglement="ring")
     with pytest.raises(ValueError):
         kernel_shots(X, fm, shots=0, seed=1)
+
+
+def test_qksvc_shot_noise_independent_per_call_but_deterministic():
+    """D-022: successive Gram evaluations draw independent noise (like a
+    device), while two identically-seeded models remain reproducible."""
+    from qevc.models.quantum.qksvc import QKSVC
+
+    rng = np.random.default_rng(3)
+    Xtr = rng.uniform(0, 1, size=(30, 3))
+    ytr = (rng.random(30) < 0.5).astype(int)
+    Xte = rng.uniform(0, 1, size=(10, 3))
+
+    m1 = QKSVC(C=1.0, reps=1, scale=0.5, shots=64, seed=7).fit(Xtr, ytr)
+    s_a = m1.scores(Xte)
+    s_b = m1.scores(Xte)
+    assert not np.allclose(s_a, s_b)  # independent noise per evaluation
+
+    m2 = QKSVC(C=1.0, reps=1, scale=0.5, shots=64, seed=7).fit(Xtr, ytr)
+    np.testing.assert_allclose(m2.scores(Xte), s_a)  # same call order -> same

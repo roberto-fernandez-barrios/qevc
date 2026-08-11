@@ -167,6 +167,43 @@ time). Consequently:
 E13 implements and validates the fixed-weight machinery (this document);
 E14 owns the θ̂-uncertain extension and its experiments.
 
+## 4b. E14 addendum — formal unidentifiability proposition (added
+2026-08-11, before any E14 run)
+
+**Proposition (weight-only unidentifiability).** Let θ be a weight-only
+nuisance: the environment modifies only the event-weight map, with
+P_θ(X) = P_0(X) and the correctness process c(X) unchanged.
+
+(i) Any I1 statistic T(X_1,…,X_m) computed from unlabeled target draws has
+identical law under θ and under 0; hence any size-α test of H₀: θ = 0 from
+I1 evidence has power exactly α.
+
+(ii) The same holds at I2 with nominal weights: the labeled stream
+(c_i, y_i, w_i⁰) drawn uniformly has θ-invariant law.
+
+(iii) Consequently any claim whose truth value differs between θ and 0
+(normalization/rate claims; the true-weighted metric A_w^{(θ)}) is
+unresolvable at I0–I2: an auditor that issues SUPPORTED with probability
+> α under one hypothesis falsely certifies with the same probability under
+the other, so a fail-closed auditor must return UNRESOLVED.
+
+(iv) A control-region count N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0) gives a
+test with non-trivial power — I3 restores identifiability precisely
+because rate evidence enters the information set.
+
+*Proof.* (i)–(ii): immediate from equality of the sampling laws — every
+event of the form {auditor output = SUPPORTED} has the same probability
+under θ and 0. (iii): apply (i)–(ii) to the SUPPORTED event and invoke the
+error-control requirement. (iv): standard Poisson hypothesis testing. ∎
+
+Alpha budget for I3-conditional weighted verdicts (D-024(ii)): the
+(s_ttbar, s_bkg) confidence box is built from per-parameter
+profile-likelihood CIs at α/4 each; diboson is bounded by its official
+clip range (prior knowledge, no data term); the corner-wise confidence
+sequences run at α/2; the union bound gives total level α. Diboson's
+unidentifiability from these control regions is expected and reported —
+its clip range enters the worst case.
+
 ## 5. Validation protocol (Monte Carlo, predeclared)
 
 All checks use synthetic populations with known truth plus benchmark-derived

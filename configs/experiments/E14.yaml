@@ -1,0 +1,29 @@
+# E14 — Information set I3 (registered in docs/experiment_registry.md; D-024)
+# Formal proposition + alpha budget in docs/weighted_certification_spec.md §4b.
+# Development world: seed-101 archives only (never E12 rows).
+experiment: E14
+inherits: [E01, E02, E13]
+models: ["A:qksvc", "A:xgboost"]        # representative pair (kernel + tree)
+control_regions:
+  design_role: auditor_dev              # D-021: CR boundaries frozen here
+  cr_ttbar: {feature: DER_sum_pt, quantile: 0.90}   # ttbar-enriched tail
+  # CR_rest = complement; total = union. Diboson has no viable CR in this
+  # feature space -> expected UNRESOLVED at I3 (finding, not failure).
+environments:                            # weight-only family + combo3 + nominal
+  weight_only: true                      # all 12 E02 weight-only envs
+  combos: ["combo3/seed11", "combo3/seed12", "combo3/seed13"]
+rate_claims:
+  - {param: s_tt, band: 0.05}            # |s_ttbar - 1| <= 0.05
+  - {param: s_tt, band: 0.02}
+  - {param: s_bkg, band: 0.005}
+  - {param: s_db, band: 0.5}             # expected UNRESOLVED (unidentified)
+rate_mc:
+  n_rep: 400
+  alpha: 0.05
+  seed_salt: "E14R"
+weighted_chain:
+  deltas: [0.0, 0.02]                    # tau = M_S^w - delta (E13 refs)
+  audit_seeds: 20
+  n_max: 3000
+  alpha_total: 0.05                      # split per spec §4b
+  seed_salt: "E14W"

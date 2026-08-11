@@ -35,11 +35,15 @@ class QKSVC:
         self._fm = None
         self._svc: SVC | None = None
         self._X_train: np.ndarray | None = None
+        # D-022: each Gram evaluation draws an INDEPENDENT substream, as a
+        # physical device would; deterministic given (seed, call order).
+        self._shot_seq = np.random.SeedSequence(seed)
 
     def _gram(self, A: np.ndarray, B: np.ndarray | None = None) -> np.ndarray:
         if self.shots is None:
             return kernel_exact(A, self._fm, B)
-        return kernel_shots(A, self._fm, shots=self.shots, seed=self.seed, X2=B)
+        call_seed = int(self._shot_seq.spawn(1)[0].generate_state(1)[0])
+        return kernel_shots(A, self._fm, shots=self.shots, seed=call_seed, X2=B)
 
     def fit(self, X, y, sample_weight=None) -> "QKSVC":
         X = np.asarray(X, dtype=float)
