@@ -286,5 +286,5 @@
     }
   },
   "scale_statement": "claims resolvable at micro-scale are wide-margin by construction; near-margin claims abstain (fail-closed on hardware)",
-  "wall_seconds": 30.3
+  "wall_seconds": 15.5
 }

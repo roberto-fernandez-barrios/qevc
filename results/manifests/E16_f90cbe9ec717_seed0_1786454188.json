@@ -1,0 +1,95 @@
+{
+  "backend": {},
+  "config": {
+    "E16": {
+      "alpha": 0.05,
+      "audit_seeds": 10,
+      "claims": {
+        "deltas": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.02,
+          0.05,
+          0.1
+        ],
+        "families": [
+          "unweighted",
+          "weighted"
+        ]
+      },
+      "environments": [
+        "nominal",
+        "tes=0.98",
+        "tes=1.02",
+        "soft_met=5.0/seed11",
+        "combo3/seed11"
+      ],
+      "experiment": "E16",
+      "hardware": {
+        "backend_preference": "least_pending_heron",
+        "n_test": 24,
+        "n_train": 48,
+        "policy": "open_plan_budget",
+        "shots": 1024
+      },
+      "inherits": [
+        "E01",
+        "E02",
+        "E05",
+        "E09",
+        "E13"
+      ],
+      "kernel_seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "margin_strata": {
+        "far": 0.04,
+        "near": 0.01
+      },
+      "n_max": 20000,
+      "noise_model": "binomial_compute_uncompute",
+      "seed_salt": "E16",
+      "shots_grid": [
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096
+      ]
+    }
+  },
+  "config_hash": "f90cbe9ec717e50908b4292fbbad9bead49bd597783c5c501c525a7d7a803ef1",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E16",
+  "finished_at": 1786454188.9671504,
+  "git_commit": "1ea71d15617e500905ee329b9d88bceb8376c336",
+  "git_dirty": false,
+  "outputs": [
+    "results\\tables\\E16_quantum_uncertainty.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 0,
+  "started_at": 1786454188.9670815,
+  "wall_seconds": 6.890296936035156e-05
+}
