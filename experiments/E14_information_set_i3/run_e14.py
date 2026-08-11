@@ -129,6 +129,8 @@ def main() -> int:
         return out
 
     tmpl, tmpl_var = cr_yields(ad, f_ad, with_var=True)  # analyst belief
+    tmpl_total = sum(tmpl.values())
+    tmpl_rel_err = np.sqrt(tmpl_var) / tmpl_total
     purity_tt = tmpl["ttbar"][0] / sum(v[0] for v in tmpl.values())
     log(f"CR_ttbar purity (ttbar fraction): {purity_tt:.3f}; "
         f"yields sig={tmpl['sig']}, tt={tmpl['ttbar']}, db={tmpl['diboson']}, "
@@ -157,6 +159,9 @@ def main() -> int:
         lam_true = sum(lam_true_by_grp.values())
         s_true = true_scales(env)
         cover = {"s_tt": 0, "s_bkg": 0}
+        cover_a4 = {"s_tt": 0, "s_bkg": 0}
+        n_a4 = 100          # audit fix: the I3 chain consumes alpha/4 CIs —
+        sat_bkg = 0         # validate those too, and report clip saturation
         verdict_counts = {f"{c['param']}|{c['band']}":
                           {"SUPPORTED": 0, "REFUTED": 0, "UNRESOLVED": 0}
                           for c in E14["rate_claims"]}
@@ -172,6 +177,17 @@ def main() -> int:
             bias_bkg.append(fit["s_bkg_hat"] - s_true["s_bkg"])
             wid_tt.append(fit["ci_tt"][1] - fit["ci_tt"][0])
             wid_bkg.append(fit["ci_bkg"][1] - fit["ci_bkg"][0])
+            if fit["ci_bkg"][1] - fit["ci_bkg"][0] >= 0.02 - 1e-9:
+                sat_bkg += 1     # CI == entire official clip: uninformative
+            if r < n_a4:
+                fit4 = fit_norm_scales(counts, tmpl["sig"], tmpl["ttbar"],
+                                       tmpl["diboson"], tmpl["other"],
+                                       alpha=E14["weighted_chain"]["alpha_total"] / 4,
+                                       template_var=tmpl_var)
+                if fit4["ci_tt"][0] <= s_true["s_tt"] <= fit4["ci_tt"][1]:
+                    cover_a4["s_tt"] += 1
+                if fit4["ci_bkg"][0] <= s_true["s_bkg"] <= fit4["ci_bkg"][1]:
+                    cover_a4["s_bkg"] += 1
             if fit["ci_tt"][0] <= s_true["s_tt"] <= fit["ci_tt"][1]:
                 cover["s_tt"] += 1
             if fit["ci_bkg"][0] <= s_true["s_bkg"] <= fit["ci_bkg"][1]:
@@ -203,6 +219,8 @@ def main() -> int:
         return env_name, {
             "s_true": s_true,
             "ci_coverage": {k: v / mc["n_rep"] for k, v in cover.items()},
+            "ci_coverage_alpha4": {k: v / n_a4 for k, v in cover_a4.items()},
+            "s_bkg_ci_clip_saturated_frac": round(sat_bkg / mc["n_rep"], 4),
             "s_hat_bias": {"s_tt": round(float(np.mean(bias_tt)), 5),
                            "s_bkg": round(float(np.mean(bias_bkg)), 6)},
             "ci_width_mean": {"s_tt": round(float(np.mean(wid_tt)), 4),
@@ -216,7 +234,8 @@ def main() -> int:
     # falsifier: CI coverage on weight-only + nominal envs (no contamination)
     wo_names = [e for e in env_names if e == "nominal"
                 or any(e.startswith(p) for p in WEIGHT_ONLY)]
-    slack = 3 * np.sqrt(0.05 * 0.95 / mc["n_rep"])
+    a = mc["alpha"]
+    slack = 3 * np.sqrt(a * (1 - a) / mc["n_rep"])
     cov_ok = all(rate_out[e]["ci_coverage"][p] >= 1 - mc["alpha"] - slack
                  for e in wo_names for p in ("s_tt", "s_bkg"))
     log(f"rate CI coverage falsifier: {'PASS' if cov_ok else 'FAIL'}")
@@ -322,10 +341,13 @@ def main() -> int:
     table = {
         "classifier_performance_unweighted": {
             "I0": "UNRESOLVED (impossibility)", "I1": "veto only",
-            "I2": "resolvable (E05: fc 0.61%)", "I3": "resolvable"},
+            "I2": "resolvable (E05: fc 0.61% of un-vetoed false-claim "
+                  "streams, no I1 veto in denominator)", "I3": "resolvable"},
         "classifier_performance_weighted_nominal_estimand": {
             "I0": "UNRESOLVED", "I1": "veto only",
-            "I2": "resolvable (E13: fc 0.02%)", "I3": "resolvable"},
+            "I2": "resolvable (E13 v2, nominal-weight estimand: fc 0.02%; "
+                  "streams share draws across the delta grid, so pooled "
+                  "denominators are correlated ~6:1)", "I3": "resolvable"},
         "true_weighted_performance_under_theta_norm": {
             "I0": "UNRESOLVED", "I1": "UNRESOLVED (proposition 4b)",
             "I2": f"WRONG ESTIMAND (measured fc {i2_fc_total}/{n_false_streams})",
@@ -351,7 +373,11 @@ def main() -> int:
         "control_region": {"feature": feat, "threshold": round(thr_cr, 3),
                            "purity_ttbar": round(float(purity_tt), 4),
                            "templates": {k: [round(x, 2) for x in v]
-                                         for k, v in tmpl.items()}},
+                                         for k, v in tmpl.items()},
+                           "template_variance": [round(float(v), 2)
+                                                 for v in tmpl_var],
+                           "template_rel_err": [round(float(v), 5)
+                                                for v in tmpl_rel_err]},
         "rate_claims": rate_out,
         "rate_ci_coverage_falsifier_pass": bool(cov_ok),
         "i1_blindness_weight_only": i1_blind,

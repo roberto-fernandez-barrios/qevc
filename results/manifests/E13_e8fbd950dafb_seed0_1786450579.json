@@ -1,0 +1,160 @@
+{
+  "backend": {},
+  "config": {
+    "E01": {
+      "bootstrap": {
+        "n_resamples": 1000,
+        "seed": 303
+      },
+      "experiment": "E01",
+      "features": {
+        "quantum": [
+          "DER_mass_transverse_met_lep",
+          "DER_mass_vis",
+          "DER_pt_ratio_lep_had",
+          "DER_met_phi_centrality",
+          "DER_deltar_had_lep",
+          "DER_pt_h",
+          "DER_sum_pt",
+          "PRI_met"
+        ]
+      },
+      "splits": {
+        "fractions": {
+          "auditor_dev": 0.15,
+          "final_eval": 0.15,
+          "nominal_test": 0.15,
+          "source_val": 0.15,
+          "train": 0.4
+        },
+        "scheme": "raw_row_v2",
+        "seed": 101
+      },
+      "subset": {
+        "n_total": 300000,
+        "seed": 101
+      },
+      "tier_a": {
+        "models": [
+          "linear_svc",
+          "rbf_svc",
+          "rbf_svc_8f",
+          "xgboost",
+          "lightgbm",
+          "mlp",
+          "qksvc"
+        ],
+        "n_train": 2000,
+        "seed": 404
+      },
+      "tier_b": {
+        "models": [
+          "linear_svc",
+          "xgboost",
+          "lightgbm",
+          "mlp"
+        ]
+      },
+      "tuning": {
+        "cv_folds": 3,
+        "n_configs": 10,
+        "n_configs_overrides": {
+          "mlp": 5
+        },
+        "seed": 202
+      }
+    },
+    "E13": {
+      "benchmark": {
+        "alpha": 0.05,
+        "audit_seeds": 20,
+        "class_conditional_deltas": [
+          0.02,
+          0.05
+        ],
+        "deltas": [
+          -0.01,
+          -0.005,
+          0.0,
+          0.02,
+          0.05,
+          0.1
+        ],
+        "models": [
+          "A:qksvc",
+          "A:rbf_svc",
+          "A:xgboost",
+          "B:xgboost"
+        ],
+        "n_max": 3000,
+        "seed_salt": "E13"
+      },
+      "experiment": "E13",
+      "monte_carlo": {
+        "a_w_levels": [
+          0.72,
+          0.9
+        ],
+        "coverage_a_w": [
+          0.55,
+          0.72,
+          0.85,
+          0.95
+        ],
+        "coverage_n_rep": 400,
+        "margins": [
+          -0.05,
+          -0.02,
+          -0.01,
+          -0.005,
+          -0.002,
+          0.002,
+          0.005,
+          0.01,
+          0.02,
+          0.05
+        ],
+        "n_max": 5000,
+        "n_rep": 400,
+        "population_n": 50000,
+        "profiles": [
+          "uniform",
+          "benchmark",
+          "heavy"
+        ],
+        "seed_salt": "E13MC"
+      },
+      "w_max": {
+        "kappa_norm": 2.05
+      }
+    }
+  },
+  "config_hash": "e8fbd950dafbaf6ddb9db6a46c8ac5cdf5a9f64e33755680b7aaf5c4c8f64897",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E13",
+  "finished_at": 1786450579.93584,
+  "git_commit": "f3e081ddf3787018f95cbd3df6cb86b2f63dcf05",
+  "git_dirty": false,
+  "outputs": [
+    "results\\tables\\E13_weighted_cs.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 0,
+  "started_at": 1786450579.9357731,
+  "wall_seconds": 6.67572021484375e-05
+}
