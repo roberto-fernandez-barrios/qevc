@@ -199,10 +199,6 @@ trustworthily.
 
 ## 2. Related Work
 
-*(Full prose; bibliography keys resolve against `docs/novelty_matrix.md`,
-whose arXiv IDs were re-verified 2026-08-10. BibTeX at LaTeX
-conversion.)*
-
 **2.1 Quantum machine learning in collider physics.** Since the quantum
 annealing Higgs classification of Mott et al. (Nature 550, 2017), the
 QML-for-HEP program has produced variational and kernel classifiers for
@@ -1080,7 +1076,7 @@ full-data, and statistically hardened analyses (§8).
 **Table 3 (frozen deployment).** Models, features, and frozen
 hyperparameters (§5.2).
 
-### Reproducibility statement (draft)
+### Reproducibility statement
 
 All experiments are configuration-driven with immutable run manifests
 (git commit, config hash, dataset SHA-256, seeds, package versions,
@@ -1088,7 +1084,28 @@ backend metadata). The campaign adds: a frozen deployment snapshot
 committed before the confirmatory draw; archived global row-index sets
 with SHA-256s making subset disjointness a checkable artifact; preserved
 first-run tables wherever a registered falsifier forced a re-run
-(`*_v1_*.json`); pre- and post-campaign falsification audits with every
-finding dispositioned in `docs/audits/`; and raw QPU counts with full
-provenance and post-job usage for both hardware jobs. Code, configs, and
-result tables will be released with a DOI.
+(`*_v1_*.json`); pre-campaign, post-campaign and pre-submission
+falsification audits with every finding dispositioned in
+`docs/audits/`; and raw QPU counts with full provenance and post-job
+usage for both hardware jobs. The full simulation program re-executes
+from one clean commit on a single workstation in under a day.
+
+### Data and code availability
+
+The FAIR Universe HiggsML Uncertainty benchmark is public (Zenodo,
+DOI 10.5281/zenodo.15131565, CC-BY-4.0); the CMS Open Data samples are
+public (opendata.cern.ch records 12350–12359, CC0). Code,
+configurations, result tables, and the complete governance trail
+(registry, decision log, audits) are archived at Zenodo
+[DOI reserved by the author at submission; D-030] and developed at the
+repository referenced in `CITATION.cff`.
+
+### Acknowledgements
+
+We acknowledge the use of IBM Quantum services for this work (Open
+plan; backend ibm_marrakesh). The views expressed are those of the
+author and do not reflect the official policy or position of IBM or the
+IBM Quantum team. We thank the FAIR Universe collaboration for the
+public HiggsML Uncertainty benchmark (a defect report was filed
+upstream during dataset validation) and the CMS collaboration and CERN
+Open Data portal for the public Run 2012 samples.
