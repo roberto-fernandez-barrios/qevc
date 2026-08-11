@@ -1,0 +1,134 @@
+{
+  "backend": {},
+  "config": {
+    "E12": {
+      "acceptance": {
+        "flagship_cells": [
+          {
+            "env": "tes=0.98",
+            "model": "A:xgboost"
+          },
+          {
+            "env": "diboson_scale=0.5",
+            "model": "A:xgboost"
+          },
+          {
+            "env": "diboson_scale=0.5",
+            "model": "A:qksvc"
+          }
+        ],
+        "flagship_coverage_below": 0.633,
+        "flagship_delta_auc_max": 0.01,
+        "nominal_contrast_sigma": 3.0
+      },
+      "auditor": {
+        "audit_seeds": 20,
+        "models": [
+          "A:qksvc",
+          "A:rbf_svc",
+          "A:xgboost",
+          "B:xgboost"
+        ],
+        "n_max": 3000,
+        "seed_salt": "E12"
+      },
+      "exclusions": {
+        "e00_row_groups": [
+          34,
+          65,
+          146,
+          184
+        ],
+        "seed101_subset": true
+      },
+      "experiment": "E12",
+      "frozen_source": "configs/frozen/frozen_deployment_v1.yaml",
+      "geometry": {
+        "draw_seeds": [
+          122,
+          123,
+          124
+        ],
+        "n_base_rows": 2500,
+        "targets": [
+          "A:qksvc",
+          "A:rbf_svc_8f",
+          "A:xgboost"
+        ]
+      },
+      "landscape": {
+        "bootstrap_nominal_only": {
+          "n_resamples": 1000,
+          "seed": 1203
+        },
+        "save_scores": true
+      },
+      "models": {
+        "tier_a": [
+          "qksvc",
+          "rbf_svc_8f",
+          "rbf_svc",
+          "xgboost",
+          "lightgbm"
+        ],
+        "tier_b": [
+          "xgboost"
+        ]
+      },
+      "physics": {
+        "models": [
+          "A:qksvc",
+          "A:rbf_svc",
+          "A:xgboost",
+          "B:xgboost"
+        ],
+        "seed": 1212
+      },
+      "splits": {
+        "fractions": {
+          "auditor_dev": 0.15,
+          "final_eval": 0.15,
+          "nominal_test": 0.15,
+          "source_val": 0.15,
+          "train": 0.4
+        },
+        "scheme": "raw_row_v2",
+        "seed": 121
+      },
+      "subset": {
+        "n_total": 300000,
+        "seed": 121,
+        "tag": "e12"
+      },
+      "tier_a_seed": 121
+    }
+  },
+  "config_hash": "cf01be08b8392847a93e029d11b87ad2609a8f0d264664cb149f77db4af005ba",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E12d",
+  "finished_at": 1786436178.4817905,
+  "git_commit": "6585d2e2a399ff561c217597014b723db1466971",
+  "git_dirty": false,
+  "outputs": [
+    "results\\tables\\E12_diagnostic.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 0,
+  "started_at": 1786436178.4817326,
+  "wall_seconds": 5.793571472167969e-05
+}

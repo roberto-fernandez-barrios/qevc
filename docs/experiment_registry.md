@@ -504,7 +504,45 @@ entry.
   does not get hidden: each arm's outcome enters the manuscript as-is.
 - **Expected outputs:** `results/tables/E12_confirmatory.json` (+ index
   archives under `data/processed/used_rows/`, split file, manifest).
-- **Status:** specified (2026-08-11).
+- **Status:** **complete (2026-08-11) — 4/5 acceptance arms pass; arm (e)
+  partially triggered; all outcomes reported.** Details:
+  1. Disjointness proof clean: seed-101 draw reconstructed and verified
+     against the cached subset; 4,488,506 excluded rows; E12∩(prior rows)
+     = 0; SHA-256 of all index archives recorded in the table.
+  2. **Arm (a) PASS:** QK−XGB = −0.0389 (E02R: −0.0353 ± 0.0119);
+     QK−RBF8 = −0.0080 (E02R: −0.0110 ± 0.0174).
+  3. **Arm (b) PASS:** tes=0.98 ΔAUC(QK) = +0.0011; combo3 mean +0.0081.
+  4. **Arm (c) PASS:** sensor ρ_S out-of-partition: quantum→own 0.39
+     (p=0.04), rbf8→own 0.54 (p=0.003) — weaker than seed-101 (0.56/0.73)
+     but sign-correct and significant.
+  5. **Arm (d) PASS:** false certification 21/7,700 = 0.27% ≤ α; false
+     refutation 4/11,980; nominal physics coverage 0.678–0.685 ≈ 0.6827.
+  6. **Arm (e) PARTIAL FAIL (kept):** the tes=0.98 flagship decoupling
+     reproduces exactly (|ΔAUC| = 0.0036, coverage 0.027) and E12 shows 74
+     decoupled-like cells with every tes/jes environment collapsing to
+     coverage 0.0 at flat AUC — **but the normalization-nuisance coverage
+     damage does NOT reproduce** (diboson/ttbar/bkg coverages 0.65–0.68 ≈
+     nominal). E08's norm-nuisance collapse was driven by the accidental
+     ttbar/diboson content of that draw's signal regions (E12's SRs sit at
+     different thresholds with b₀ 3.9k vs 37.9k) — the *mechanism* is real
+     but its magnitude is SR-composition- and draw-fragile. Manuscript
+     framing must demote the norm-collapse cells from "decisive" to
+     "possible, composition-dependent" and lean on the robust
+     selection-migration decoupling.
+  7. **Level-shift diagnostic (`run_e12_diagnostic.py`,
+     `results/tables/E12_diagnostic.json`):** absolute weighted AUCs sit
+     0.06–0.09 below the seed-101 world for every model, but the models ×
+     data cross-grid shows unweighted AUC identical everywhere
+     (0.839/0.875 both worlds, both model sets) while weighted AUC follows
+     the data only. Cause: signal weights are extremely heavy-tailed
+     (htautau max/mean ≈ 420, ESS ratio 0.0047 → ≈46 effective signal
+     events in a 41k test role), so *absolute* physics-weighted metrics
+     carry ±0.05 subset-draw variance that partition-level replication
+     (E02R) structurally understates. Paired contrasts, degradation signs,
+     rank structure and error control — everything the paper's claims rest
+     on — replicate. New quantified caution for the manuscript (and for
+     the field's matched-budget benchmark practice); feeds E13's expected
+     n* inflation for weighted claims (signal-side ESS ≈ 0.5%).
 
 ## E13 — Weighted anytime-valid certification
 

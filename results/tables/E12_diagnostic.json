@@ -1,0 +1,371 @@
+{
+  "experiment": "E12_diagnostic",
+  "purpose": "factorize the E12 nominal-level shift (models x data)",
+  "grid": {
+    "models[s101]-data[s101]|A:qksvc": {
+      "auc_weighted": 0.83724,
+      "auc_weighted_ci95": [
+        0.78423,
+        0.87822
+      ],
+      "auc_unweighted": 0.8147
+    },
+    "models[s101]-data[s101]|A:rbf_svc_8f": {
+      "auc_weighted": 0.85984,
+      "auc_weighted_ci95": [
+        0.8084,
+        0.89148
+      ],
+      "auc_unweighted": 0.81582
+    },
+    "models[s101]-data[s101]|A:xgboost": {
+      "auc_weighted": 0.85971,
+      "auc_weighted_ci95": [
+        0.7975,
+        0.89931
+      ],
+      "auc_unweighted": 0.84459
+    },
+    "models[s101]-data[s101]|B:xgboost": {
+      "auc_weighted": 0.9091,
+      "auc_weighted_ci95": [
+        0.88201,
+        0.92733
+      ],
+      "auc_unweighted": 0.87661
+    },
+    "models[s101]-data[e12]|A:qksvc": {
+      "auc_weighted": 0.75465,
+      "auc_weighted_ci95": [
+        0.66068,
+        0.84256
+      ],
+      "auc_unweighted": 0.81476
+    },
+    "models[s101]-data[e12]|A:rbf_svc_8f": {
+      "auc_weighted": 0.79006,
+      "auc_weighted_ci95": [
+        0.71305,
+        0.85187
+      ],
+      "auc_unweighted": 0.81161
+    },
+    "models[s101]-data[e12]|A:xgboost": {
+      "auc_weighted": 0.81406,
+      "auc_weighted_ci95": [
+        0.76217,
+        0.86207
+      ],
+      "auc_unweighted": 0.84003
+    },
+    "models[s101]-data[e12]|B:xgboost": {
+      "auc_weighted": 0.83506,
+      "auc_weighted_ci95": [
+        0.77962,
+        0.88562
+      ],
+      "auc_unweighted": 0.87541
+    },
+    "models[e12]-data[s101]|A:qksvc": {
+      "auc_weighted": 0.87222,
+      "auc_weighted_ci95": [
+        0.83566,
+        0.89881
+      ],
+      "auc_unweighted": 0.8214
+    },
+    "models[e12]-data[s101]|A:rbf_svc_8f": {
+      "auc_weighted": 0.87078,
+      "auc_weighted_ci95": [
+        0.83769,
+        0.89762
+      ],
+      "auc_unweighted": 0.80394
+    },
+    "models[e12]-data[s101]|A:xgboost": {
+      "auc_weighted": 0.87423,
+      "auc_weighted_ci95": [
+        0.84255,
+        0.89934
+      ],
+      "auc_unweighted": 0.83944
+    },
+    "models[e12]-data[s101]|B:xgboost": {
+      "auc_weighted": 0.90182,
+      "auc_weighted_ci95": [
+        0.86705,
+        0.92516
+      ],
+      "auc_unweighted": 0.87689
+    },
+    "models[e12]-data[e12]|A:qksvc": {
+      "auc_weighted": 0.75358,
+      "auc_weighted_ci95": [
+        0.66846,
+        0.83011
+      ],
+      "auc_unweighted": 0.81877
+    },
+    "models[e12]-data[e12]|A:rbf_svc_8f": {
+      "auc_weighted": 0.76158,
+      "auc_weighted_ci95": [
+        0.67949,
+        0.8235
+      ],
+      "auc_unweighted": 0.79835
+    },
+    "models[e12]-data[e12]|A:xgboost": {
+      "auc_weighted": 0.79243,
+      "auc_weighted_ci95": [
+        0.72694,
+        0.8534
+      ],
+      "auc_unweighted": 0.83924
+    },
+    "models[e12]-data[e12]|B:xgboost": {
+      "auc_weighted": 0.83014,
+      "auc_weighted_ci95": [
+        0.76039,
+        0.89048
+      ],
+      "auc_unweighted": 0.87526
+    }
+  },
+  "weight_anatomy": {
+    "s101": {
+      "overall": {
+        "ess_ratio": 0.716767,
+        "max_over_mean": 2.07
+      },
+      "diboson": {
+        "n": 825,
+        "sum": 3782.64,
+        "mean": 4.585016,
+        "min": 2.79097605,
+        "max": 7.2641,
+        "max_over_mean": 1.58,
+        "ess_ratio": 0.929612,
+        "constant_within_process": false
+      },
+      "htautau": {
+        "n": 70932,
+        "sum": 1015.37,
+        "mean": 0.014315,
+        "min": 0.0055527,
+        "max": 5.9865,
+        "max_over_mean": 418.21,
+        "ess_ratio": 0.004679,
+        "constant_within_process": false
+      },
+      "ttbar": {
+        "n": 9637,
+        "sum": 44190.17,
+        "mean": 4.58547,
+        "min": 3.23404932,
+        "max": 6.1131,
+        "max_over_mean": 1.33,
+        "ess_ratio": 0.937469,
+        "constant_within_process": false
+      },
+      "ztautau": {
+        "n": 218606,
+        "sum": 1002396.5,
+        "mean": 4.585402,
+        "min": 3.67284083,
+        "max": 6.1214,
+        "max_over_mean": 1.33,
+        "ess_ratio": 0.937501,
+        "constant_within_process": false
+      },
+      "nominal_test_ess_ratio": 0.70747,
+      "nominal_test_n": 41116
+    },
+    "e12": {
+      "overall": {
+        "ess_ratio": 0.716776,
+        "max_over_mean": 2.06
+      },
+      "diboson": {
+        "n": 825,
+        "sum": 3782.64,
+        "mean": 4.585017,
+        "min": 2.77564359,
+        "max": 7.2242,
+        "max_over_mean": 1.58,
+        "ess_ratio": 0.933034,
+        "constant_within_process": false
+      },
+      "htautau": {
+        "n": 70932,
+        "sum": 1015.37,
+        "mean": 0.014315,
+        "min": 0.00586328,
+        "max": 6.3213,
+        "max_over_mean": 441.6,
+        "ess_ratio": 0.004682,
+        "constant_within_process": false
+      },
+      "ttbar": {
+        "n": 9637,
+        "sum": 44190.17,
+        "mean": 4.58547,
+        "min": 3.23257446,
+        "max": 6.1104,
+        "max_over_mean": 1.33,
+        "ess_ratio": 0.937469,
+        "constant_within_process": false
+      },
+      "ztautau": {
+        "n": 218606,
+        "sum": 1002396.69,
+        "mean": 4.585403,
+        "min": 3.66480207,
+        "max": 6.108,
+        "max_over_mean": 1.33,
+        "ess_ratio": 0.937501,
+        "constant_within_process": false
+      },
+      "nominal_test_ess_ratio": 0.70668,
+      "nominal_test_n": 40905
+    }
+  },
+  "feature_ks_between_subsets": {
+    "htautau": {
+      "DER_mass_transverse_met_lep": {
+        "ks": 0.00489,
+        "p": 0.36286
+      },
+      "DER_mass_vis": {
+        "ks": 0.00508,
+        "p": 0.31935
+      },
+      "DER_pt_ratio_lep_had": {
+        "ks": 0.00647,
+        "p": 0.10213
+      },
+      "DER_met_phi_centrality": {
+        "ks": 0.00709,
+        "p": 0.05622
+      },
+      "DER_deltar_had_lep": {
+        "ks": 0.00949,
+        "p": 0.00335
+      },
+      "DER_pt_h": {
+        "ks": 0.00699,
+        "p": 0.06204
+      },
+      "DER_sum_pt": {
+        "ks": 0.00856,
+        "p": 0.01103
+      },
+      "PRI_met": {
+        "ks": 0.004,
+        "p": 0.61892
+      }
+    },
+    "ztautau": {
+      "DER_mass_transverse_met_lep": {
+        "ks": 0.00323,
+        "p": 0.20258
+      },
+      "DER_mass_vis": {
+        "ks": 0.00253,
+        "p": 0.48788
+      },
+      "DER_pt_ratio_lep_had": {
+        "ks": 0.00455,
+        "p": 0.02172
+      },
+      "DER_met_phi_centrality": {
+        "ks": 0.00259,
+        "p": 0.45324
+      },
+      "DER_deltar_had_lep": {
+        "ks": 0.00294,
+        "p": 0.30013
+      },
+      "DER_pt_h": {
+        "ks": 0.00207,
+        "p": 0.73506
+      },
+      "DER_sum_pt": {
+        "ks": 0.00269,
+        "p": 0.40702
+      },
+      "PRI_met": {
+        "ks": 0.0022,
+        "p": 0.66691
+      }
+    },
+    "ttbar": {
+      "DER_mass_transverse_met_lep": {
+        "ks": 0.0165,
+        "p": 0.14507
+      },
+      "DER_mass_vis": {
+        "ks": 0.01318,
+        "p": 0.37266
+      },
+      "DER_pt_ratio_lep_had": {
+        "ks": 0.01307,
+        "p": 0.38237
+      },
+      "DER_met_phi_centrality": {
+        "ks": 0.01473,
+        "p": 0.24634
+      },
+      "DER_deltar_had_lep": {
+        "ks": 0.01588,
+        "p": 0.17612
+      },
+      "DER_pt_h": {
+        "ks": 0.01712,
+        "p": 0.11859
+      },
+      "DER_sum_pt": {
+        "ks": 0.01712,
+        "p": 0.11859
+      },
+      "PRI_met": {
+        "ks": 0.00789,
+        "p": 0.9254
+      }
+    },
+    "diboson": {
+      "DER_mass_transverse_met_lep": {
+        "ks": 0.02424,
+        "p": 0.96878
+      },
+      "DER_mass_vis": {
+        "ks": 0.06182,
+        "p": 0.08546
+      },
+      "DER_pt_ratio_lep_had": {
+        "ks": 0.0303,
+        "p": 0.84349
+      },
+      "DER_met_phi_centrality": {
+        "ks": 0.02667,
+        "p": 0.93124
+      },
+      "DER_deltar_had_lep": {
+        "ks": 0.05576,
+        "p": 0.15383
+      },
+      "DER_pt_h": {
+        "ks": 0.03273,
+        "p": 0.76924
+      },
+      "DER_sum_pt": {
+        "ks": 0.03636,
+        "p": 0.64678
+      },
+      "PRI_met": {
+        "ks": 0.02909,
+        "p": 0.87647
+      }
+    }
+  },
+  "wall_seconds": 110.2
+}
