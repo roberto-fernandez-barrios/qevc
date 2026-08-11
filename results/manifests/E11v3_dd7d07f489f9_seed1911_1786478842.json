@@ -1,0 +1,102 @@
+{
+  "backend": {},
+  "config": {
+    "E11v3": {
+      "alpha": 0.05,
+      "base_config": "configs/experiments/E11v2.yaml",
+      "claims": [
+        "C2_w_norm",
+        "C3_no_shift",
+        "C4_ss_qcd"
+      ],
+      "experiment": "E11v3",
+      "mc_stat": {
+        "method": "delta_sqrt_sum_w2"
+      },
+      "sensor_calibration": {
+        "n_null_draws": 200,
+        "n_obs_draws": 20,
+        "n_permutations": 999,
+        "seed": 1911
+      }
+    },
+    "base": {
+      "alpha": 0.05,
+      "claims": {
+        "C1_event_accuracy": {
+          "requires": "I2 (target labels)",
+          "text": "event-level accuracy of f on collision data >= M_S - 0.05"
+        },
+        "C2_w_norm": {
+          "mt_cut": 70.0,
+          "requires": "I1 + control-region aggregates",
+          "text": "W+jets normalization consistent with MC within 30% in the high-mT CR",
+          "tolerance": 0.3
+        },
+        "C3_no_shift": {
+          "requires": "I1 (unlabeled target)",
+          "text": "no MC->data shift detectable at the QK-MMD2 sensor noise floor"
+        },
+        "C4_ss_qcd": {
+          "requires": "I1 + control-region aggregates",
+          "text": "SS control region shows a significant data excess over MC (QCD)"
+        }
+      },
+      "cms_interim": "data/interim/cms_full",
+      "compare_to_v1": "results/tables/E11_cms_case_study.json",
+      "experiment": "E11v2",
+      "inherits": [
+        "E01",
+        "E11"
+      ],
+      "lumi_mode": "full",
+      "sensor": {
+        "n_noise_draws": 20,
+        "n_sample": 2000,
+        "seed": 1112
+      },
+      "train": {
+        "qksvc_n_train": 2000,
+        "seed": 1111,
+        "val_fraction": 0.3
+      }
+    }
+  },
+  "config_hash": "dd7d07f489f9b32b09186058746a3a51348c4353189c86a1018260dd4f4bdc7e",
+  "dataset_hashes": {
+    "DYJetsToLL.parquet": "2c8794e5428549a117ad399e0bc24d0bf910c6269deed240c68f2debf28291dc",
+    "GluGluToHToTauTau.parquet": "8a6b1598f39f528770333829c9a98df16223cc96a08aeeda5c5ad9cebd20d0c3",
+    "Run2012B_TauPlusX.parquet": "a9025165c77cfa9f1525c2e0190fcf466f962c286e27e9ef07f9b3b4727f1138",
+    "Run2012C_TauPlusX.parquet": "bc5753ecf9212f482682e758ea623467c8091f5c9dccc5624085efb2886c8287",
+    "TTbar.parquet": "b02f1e095f31773937e2b4bbdc93af33cb9a4b2228c28188b35a8c20581dbd5e",
+    "VBF_HToTauTau.parquet": "27891929ff787b583f524e04c70cc832fa8242bf96510e3b4534de54126fb9d8",
+    "W1JetsToLNu.parquet": "7e5dd0019aa337f7b513fa093da3099fe69f48a562969eb874d428409872b31c",
+    "W2JetsToLNu.parquet": "6310adb85e42860e9eed518b142547784d1d1cd6a63f5d2c4e4e971a55e1cf40",
+    "W3JetsToLNu.parquet": "b75a8c0819ea0225fb461dd2db970b233452835f2359854c2f6df55438fc79e9"
+  },
+  "experiment_id": "E11v3",
+  "finished_at": 1786478842.0618002,
+  "git_commit": "efb7e76533cb0887654061bb9162dde3a2e42d5a",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E11v3_cms_stats.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 1911,
+  "started_at": 1786478842.0617018,
+  "wall_seconds": 9.846687316894531e-05,
+  "warning": "git working tree dirty at run time"
+}

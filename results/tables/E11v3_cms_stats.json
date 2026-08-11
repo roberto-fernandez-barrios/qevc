@@ -1,0 +1,183 @@
+{
+ "experiment": "E11v3",
+ "declared_status": "re-analysis of archived E11v2 inputs (bidirectional falsifier frozen; D-028)",
+ "claims_ledger": {
+  "C1_event_accuracy": {
+   "verdict": "UNRESOLVED",
+   "reason": "fail-closed by construction (unchanged)"
+  },
+  "C2_w_norm": {
+   "evidence": {
+    "data_yield": 23008,
+    "mc_yield": 24230.8,
+    "ratio": 0.9495,
+    "ratio_ci95_data_only": [
+     0.9373,
+     0.9619
+    ],
+    "mc_relerr": 0.02408,
+    "ratio_ci95_with_mc_stat": [
+     0.9042,
+     0.9972
+    ]
+   },
+   "verdict": "SUPPORTED"
+  },
+  "C3_no_shift": {
+   "evidence": {
+    "v2_replayed_mmd2": 0.0028047,
+    "null_mean": 0.0009787,
+    "null_q95": 0.0011439,
+    "null_max": 0.0012663,
+    "obs_draws": [
+     {
+      "mmd2": 0.002249,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0030073,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0021813,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0030329,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0025885,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0032432,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0030908,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.002605,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0027246,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0037084,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0028193,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0030695,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0028689,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0034322,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0028421,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0031319,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0033132,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0035018,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.002773,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     },
+     {
+      "mmd2": 0.0029947,
+      "p_null": 0.00498,
+      "p_perm": 0.001
+     }
+    ],
+    "p_null_median": 0.00498,
+    "p_perm_median": 0.001
+   },
+   "decision_rule": "REFUTED iff median p <= alpha under BOTH calibrations (fixed pre-run)",
+   "verdict": "REFUTED"
+  },
+  "C4_ss_qcd": {
+   "evidence": {
+    "data_ss": 29349,
+    "mc_ss": 19181.9,
+    "excess": 10167.1,
+    "z_data_only": 59.35,
+    "z_with_mc_stat": 18.78
+   },
+   "verdict": "SUPPORTED"
+  }
+ },
+ "v1_v2_v3_comparison": {
+  "C1_event_accuracy": {
+   "v1": "UNRESOLVED",
+   "v2": "UNRESOLVED",
+   "v3": "UNRESOLVED",
+   "verdict_stable": true
+  },
+  "C2_w_norm": {
+   "v1": "SUPPORTED",
+   "v2": "SUPPORTED",
+   "v3": "SUPPORTED",
+   "verdict_stable": true
+  },
+  "C3_no_shift": {
+   "v1": "REFUTED",
+   "v2": "REFUTED",
+   "v3": "REFUTED",
+   "verdict_stable": true
+  },
+  "C4_ss_qcd": {
+   "v1": "SUPPORTED",
+   "v2": "SUPPORTED",
+   "v3": "SUPPORTED",
+   "verdict_stable": true
+  }
+ },
+ "falsifier": {
+  "c3_direction": "refuted_stands_on_calibrated_grounds",
+  "c2_verdict_changed": false,
+  "c4_z_below_5": false
+ },
+ "wall_seconds": 189.4
+}

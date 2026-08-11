@@ -1122,8 +1122,36 @@ entry.
   published regardless of outcome.
 - **Expected outputs:** `results/tables/E17_worlds.json` (+ index
   archives under `data/processed/used_rows/`, split files, manifests).
-- **Status:** specified (2026-08-11) — config
-  `configs/experiments/E17.yaml`.
+- **Status:** **complete (2026-08-11) — falsifier arm (b) TRIGGERED;
+  arms (a) and (c) pass; all outcomes reported.** Both worlds drawn with
+  clean disjointness proofs (all overlaps 0; SHA-256 archived in-table).
+  1. **Arm (a) PASS:** QK−XGB negative in all four worlds (seed101
+     −0.0225, seed121 −0.0389, e17a −0.0763, e17b −0.0433;
+     between-world std 0.0226). QK−RBF8 is sign-inconsistent across
+     worlds (−0.0226, −0.0080, −0.0129, **+0.0051**) — consistent with
+     the manuscript's "statistically indistinguishable" reading.
+  2. **Arm (b) TRIGGERED (kept):** the small degradation signs that
+     replicated 5/5 within the development world (E02R) and in E12 do
+     NOT replicate across fresh worlds: e17a combo3 mean ΔAUC(QK) =
+     **−0.0090** (improvement), e17b tes=0.98 ΔAUC(QK) = **−0.0050**
+     and combo3 −0.0009. Per the frozen falsifier, the cross-world
+     degradation-sign claim is **downgraded to draw-dependent**: the
+     replicated TES/combo degradations are within-world effects at the
+     |Δ| ≈ 0.001–0.01 scale, below the between-world variability of the
+     paired contrasts themselves (±0.02). Manuscript finding (i) is
+     re-scoped accordingly — which sharpens, not weakens, the paper's
+     thesis that benchmark deltas do not certify deployments.
+  3. **Arm (c) PASS + reporting rule → caveat CONFIRMED as quantified
+     finding:** between-world std of absolute weighted AUC = 0.0298
+     (lightgbm) to 0.0499 (rbf_svc), ranges up to 0.121; the E12
+     diagnostic's ±0.05 inference is now a measured cross-world fact
+     (heavy-tailed signal weights; mechanism unchanged). M6 closure: the
+     E12 arm-(a) consistency band gains the between-world component
+     (contrast std 0.0226 vs E02R re-partition std 0.0133 — the E02R
+     std understates total variance by ~2×, as the audit suspected).
+  4. Norm-env coverage vs SR composition across four worlds recorded in
+     `between_world.norm_env_coverage_by_world` (manuscript §6.7 uses
+     it for the SR-composition mechanism).
 
 ## E19 — Fresh-world validity replication (archived E12 scores)
 
@@ -1258,8 +1286,24 @@ entry.
 - **Acceptance criterion:** ledger v3 table with per-claim v1/v2/v3
   comparison rows.
 - **Expected outputs:** `results/tables/E11v3_cms_stats.json` + manifest.
-- **Status:** specified (2026-08-11) — config
-  `configs/experiments/E11v3.yaml`.
+- **Status:** **complete (2026-08-11) — all four verdicts stable
+  v1→v2→v3; both M8 limitations closed with no verdict change.**
+  1. **C3 REFUTED on calibrated grounds:** the exact v2 observation draw
+     was replayed and reproduced (integrity anchor); against 200
+     MC-vs-MC null draws, every one of the 20 fresh MC-vs-data
+     observation draws exceeds the entire null (p_null = 1/201 ≈ 0.005
+     each; median 0.005); the pooled permutation test gives p_perm =
+     1/1000 = 0.001 in every draw. The sim-to-real shift detection no
+     longer rests on a single draw against a 20-draw max-floor.
+  2. **C2 SUPPORTED with MC-side statistics:** MC template rel-err
+     propagated via log-delta into the ratio interval; the widened CI
+     remains inside the 30% tolerance band (the C2 margin dwarfs
+     MC-stat, as the audit predicted — now measured, not argued).
+  3. **C4 SUPPORTED with MC-side statistics:** z recomputed with the
+     Σw² MC term in the denominator; remains far above 3 (and above 5).
+  4. Bidirectional falsifier outcome: `refuted_stands_on_calibrated_
+     grounds`; no §8 verdict revision required — the ledger's
+     statistical basis is upgraded in place.
 
 ## E07v2 — Principled active acquisition (priority B)
 
