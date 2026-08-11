@@ -108,68 +108,94 @@ We instantiate this program end-to-end (Fig. 1) on the FAIR Universe
 HiggsML Uncertainty benchmark with a quantum-kernel classifier alongside
 matched classical baselines, propagate every question to physics-level
 inference, and validate the resulting decision discipline from controlled
-simulation through a provably disjoint confirmatory holdout to real CMS
-collisions and QPU-estimated kernels. Seven findings organize the paper.
+simulation through four provably disjoint data worlds to real CMS
+collisions and QPU-estimated kernels. Three contributions organize the
+paper.
 
-**First**, quantum-kernel classifiers exhibit small but replicated
-degradations under tau-energy-scale shifts and adverse combinations; a
-matched classical kernel on the identical features matches both the
-classifier and the sensor, so nothing in our sensing or certification
-results is quantum-specific — an honest negative we keep central.
-**Second**, a label-free kernel-geometry sensor (MMD² of a
-bandwidth-limited kernel over compact physics features) predicts
-degradation rank out-of-environment and — new here — out of the
-development grid entirely: on 48 continuous nuisance configurations never
-seen during development, including draws from the official priors, rank
-correlations reach 0.65, while leave-one-family-out magnitude calibration
-remains rough — rank, not magnitude, is the defensible claim. **Third**,
-the sensor's blindness to normalization nuisances is not an empirical
-noise-floor statement but an exact one: weight-only environments produce
-feature distributions *identical* to nominal, which we state as a formal
-unidentifiability proposition — no I1 statistic, and no I2 stream carrying
-nominal weights, has power beyond α against them. **Fourth**, anytime-valid
-certification extends *exactly* to physics-weighted estimands through a
-one-sample reduction that maps every weighted ratio claim onto the
-existing bounded-mean confidence sequence; its measured price is a ×1.7
-median label-cost inflation and a fail-closed hardening (536 of 7,054
-certifications retreat to abstention under the physical estimand).
-**Fifth**, information level I3 restores identifiability of what I1/I2
-cannot see — but its practical resolving power is set by the quality of
-the auxiliary evidence: with control-region templates from our MC sample
-size, the ttbar normalization is identified only to ±10%, so tighter rate
-claims remain UNRESOLVED, fail-closed. **Sixth**, classifier metrics and
-physics-level validity decouple, and the confirmatory holdout sharpened
-the mechanism: selection-migration-induced coverage collapse reproduces
-robustly (all four models, coverage → 0 at flat AUC), while
-normalization-induced collapse reproduces exactly where the signal
-region's process composition supports it and vanishes where it does not —
-validity depends on information the classifier metrics do not carry, with
-a mechanism now traced to SR composition — and a profiled likelihood
-restores validity exactly where its nuisance model matches the physics,
-fails where it cannot (stochastic smearing, joint shifts), and pays a
-measured ×1.8–3.4 in interval width for the coverage it recovers.
-**Seventh**, quantum estimation
-uncertainty acts on certification exactly where the framework predicts:
-noise perturbs the deployed pipeline's reference points by up to ~0.05
-(0.14 worst-case), so fixed-reference verdicts flip at 21% → 0.4% (far-margin, 128 → 4096
-shots) while deployment-relative verdicts flip only near boundaries — and
-in *every* accounting, empirical false certification stays below α: noise
-changes what is resolvable, never the validity of what is certified. A
-full-pipeline run on 100%-hardware kernels (28-event train Gram plus
-cross-Gram on ibm_marrakesh) behaves identically to its shot-only
-counterparts, with device noise dominating the kernel error budget ~6×.
+**C1 — Information-conditional certification (I0→I3).** We prove an
+exact extension of anytime-valid certification to physics-weighted
+estimands (Theorem 1: a one-sample reduction maps every weighted ratio
+claim onto the existing bounded-mean confidence sequence with zero added
+slack; measured price ×1.7 median label-cost inflation, and a
+fail-closed hardening — 536 of 7,054 certifications retreat to
+abstention under the physical estimand). We prove where certification
+must abstain: weight-only nuisances leave the feature distribution
+*exactly* unchanged, so no I1 statistic and no I2 stream carrying
+nominal weights has power beyond α (Proposition 2 — realized
+computationally as byte-identical sensor values under common random
+numbers); information level I3 restores identifiability with resolving
+power set by the auxiliary evidence's template statistics (±10% on the
+ttbar scale at our MC size — tighter claims stay UNRESOLVED,
+fail-closed). The guarantees are measured, not asserted: false
+certification ≤ α in every accounting across three independent worlds
+and both estimand families (0.61%, 0.69%, 0.36% unweighted / 0.07%
+weighted), and measured label costs sit within a factor 1.5–3.4 of the
+Wald information floor — the near-boundary label explosion is
+fundamentally statistical, not procedural slack. Supporting evidence: a
+label-free sensor whose degradation-rank prediction generalizes out of
+the development grid (rank, not magnitude, is the defensible claim) and
+which serves as veto-only evidence; and a primary negative —
+uncertainty-guided label acquisition loses to uniform sampling.
+
+**C2 — Classifier metrics do not certify scientific inference.**
+Classifier metrics and physics-level validity decouple: coverage
+collapses at flat AUC, with the mechanism traced to signal-region
+composition across worlds. A calibration-gate-validated profile
+likelihood restores validity exactly where its nuisance model can
+represent the shift — coverage 0.63–0.67 from 0.00–0.59, with fitted
+nuisances tracking the true shifts at slope 0.99–1.00 and μ̂-sensitivity
+∂μ̂/∂θ suppressed by one to two orders of magnitude — at a measured
+×1.8–3.4 interval-width price; and it fails, predictably, where it
+cannot (stochastic soft-MET smearing: tracking slope 0.25–0.50,
+coverage 0.22; joint shifts under an additive morph: 0.09). The
+fail-closed ledger runs end-to-end on the complete public CMS Run2012
+H→ττ dataset (126k selected events): control-region claims certified
+with MC-side statistics propagated, the simulation-to-data shift
+detected at calibrated p = 0.005/0.001 in every observation draw, and
+event-level accuracy refused by construction.
+
+**C3 — Quantum estimation uncertainty is a claim-semantics problem.**
+Finite-shot and hardware kernels make the deployed pipeline a random
+object — refit, recalibration and threshold all functions of the
+realized noise. We register two claim classes (deployment-relative vs
+ideal-anchored), show that conditional-on-realization certification
+keeps the marginal false-certification rate ≤ α for both (Proposition
+3), and derive when verdicts are stable across realizations
+(Proposition 4: margins beyond the measured reference movement;
+deployment-relative margins cancel common-mode movement). The theory's
+predictions are what the data trace: measured reference movement up to
+~0.05 typically (0.14 worst) exceeds far margins at 128 shots and falls
+below them at 4096, so ideal-anchored verdicts flip at 21% → 0.4% while
+deployment-relative far-margin verdicts never flip at any budget — and
+false certification stays below α in every accounting. A full-pipeline
+run on 100%-hardware kernels (28-event train Gram plus cross-Gram on
+ibm_marrakesh) behaves identically to its shot-only counterparts, with
+device noise dominating the kernel error budget ~6×.
+
+Throughout, the honest negatives stay central: no quantum advantage
+appears anywhere — a matched classical kernel on identical features is
+statistically indistinguishable as a classifier and at least as good as
+a sensor — and the small within-world degradation patterns that
+motivated early drafts did not survive the cross-world falsifier (two
+further independent worlds flip their signs; §6.2). The framework's
+value is exactly that such statements come out labeled as what they
+are.
 
 The study was predeclared to be reportable under every outcome
 (registered falsifiers, five-seed replication gates, a frozen deployment
 snapshot committed before the confirmatory draw, pre- and post-campaign
-falsification audits with logged dispositions), and during the campaign
-its registered falsifiers fired four times (the confirmatory holdout's
-flagship-cell arm, the rate-fit coverage check, and the inference
-calibration gate twice) while the falsification audits forced two further
-corrections (an estimand label; an over-generalized reading of the
-normalization-collapse result). We report the corrections and the
-correction process, because a framework about trustworthy validation
-should itself be validated trustworthily.
+falsification audits with logged dispositions), and its registered
+falsifiers fired five times (the confirmatory holdout's flagship-cell
+arm, the rate-fit coverage check, the inference calibration gate twice,
+and the cross-world degradation arm) while the falsification audits
+forced two further corrections (an estimand label; an over-generalized
+reading of the normalization-collapse result). One registered
+re-analysis carried a bidirectional falsifier that was free to
+*downgrade* a published verdict on real data; the verdict survived on
+calibrated grounds instead (§8). We report the corrections and the
+correction process — as methods, not as a contribution — because a
+framework about trustworthy validation should itself be validated
+trustworthily.
 
 ## 2. Related Work
 
@@ -417,22 +443,79 @@ negative result stands and simplifies practice.
 
 ## 5. Experimental Design
 
+### 5.1 Data and worlds
+
 FAIR Universe HiggsML Uncertainty (Zenodo 15131565; 220,099,101 events
-verified; the official normalization no-op defect found, worked around,
-and reported upstream). Development world: one 300k-event subset (the
-only parquet draw of the development era), raw-row five-role partitions,
-five-seed replication (E02R), 28 unique nuisance points evaluated as 41
-environment datasets. Campaign discipline: a frozen deployment snapshot
-(hyperparameters, features, feature map, calibration and threshold
-procedures, claim grid, sensor family, environment grid, physics
-estimator, statistical protocol) committed *before* a fresh confirmatory
-subset was drawn from the verified complement of every previously touched
-row (index archives with SHA-256s; overlap zero by construction and by
-check); campaign rules quarantining the confirmatory rows from all
-development; and falsification audits before and after the campaign, with
-every finding dispositioned in the open (`docs/audits/`). Statistical
-protocol per the predeclared SAP and its logged amendments; superseded
-run tables are preserved, never overwritten.
+verified at ingestion; the official normalization no-op defect found,
+worked around, and reported upstream). Four provably disjoint 300k-event
+worlds drawn from the benchmark: the development world (seed 101 — the
+only parquet draw of the development era), the confirmatory world
+(seed 121, drawn after the deployment freeze), and two additional
+variance-characterization worlds (seeds 131, 141; E17). Disjointness is
+an artifact, not a claim: every draw archives its global row indices with
+SHA-256s, and each new draw records overlap zero against every prior
+archive. Each world carries a raw-row five-role partition (train 40%,
+source_val / nominal_test / auditor_dev / final_eval 15% each); both
+`final_eval` roles of the development and confirmatory worlds remain
+sealed and have never been read. Level II uses the complete public CMS
+Run2012B+C TauPlusX H→ττ samples (126,164 selected collision events at
+11,467 pb⁻¹) with mirror MC re-weighted to full luminosity.
+
+### 5.2 Models and budgets
+
+Tier A trains on a matched, stratified 2000-event budget (the
+quantum-feasible scale); tier B on the full 110k train role. Frozen
+hyperparameters (E01 random-search under comparable budgets, revived
+verbatim from the deployment snapshot):
+
+| Model | Features | Frozen hyperparameters |
+|---|---|---|
+| QK-SVC | 8 (D-011) | C=1.0; ZZ map, reps 2, scale 0.5, linear entanglement |
+| RBF-SVC (matched control) | same 8 | C=30.0, γ=0.3 |
+| RBF-SVC | all 28 | C=1.0, γ=0.3 |
+| XGBoost (A) | all 28 | 400 trees, depth 8, lr 0.03 |
+| LightGBM (A) | all 28 | 400 trees, 63 leaves, lr 0.03 |
+| XGBoost (B, 110k) | all 28 | 800 trees, depth 4, lr 0.1 |
+
+Every model shares one training protocol: class-balanced mean-one
+weights, Platt calibration on `source_val`, balanced-accuracy-optimal
+frozen threshold. Quantum kernels are exact statevector unless the
+experiment studies estimation (E09/E10/E16: binomial finite-shot law,
+D-007, and IBM Open-plan hardware).
+
+### 5.3 Environments, claims, and information sets
+
+Six nuisance families (TES, JES, soft-MET smearing, ttbar/diboson/bkg
+normalizations) over the frozen grid: 28 unique nuisance points evaluated
+as 41 environment datasets (stochastic soft-MET carries three seeds;
+seed is part of environment identity). Claims are degradation-form
+M_T ≥ M_S − δ with the frozen grid δ ∈ {−0.01, −0.005, 0, 0.02, 0.05,
+0.10} — the negative deltas are adversarially false by construction —
+audited at α = 0.05 per claim, n_max = 3,000 (20,000 for landscape
+studies), 20 audit-seed replications per cell, under the information-set
+discipline of §3 (I1 sensors veto-only). Physics inference uses the
+D-015 counting estimator and the D-023 profile likelihood over the frozen
+score with μ ∈ {0.5, 1, 1.5, 2, 3}.
+
+### 5.4 Protocol discipline and compute
+
+A frozen deployment snapshot (hyperparameters, features, feature map,
+calibration and threshold procedures, claim grid, sensor family,
+environment grid, physics estimator, statistical protocol) was committed
+*before* the confirmatory subset was drawn; campaign rules quarantine
+confirmatory rows from all development; falsification audits ran before
+and after the campaign and before submission, with every finding
+dispositioned in the open (`docs/audits/`). Statistical protocol per the
+predeclared SAP and its logged amendments; superseded run tables are
+preserved, never overwritten. Every experiment is registered with a
+frozen falsifier before execution; registered falsifiers fired five times
+in this program (E02R, E12 arm (e), E14 v1, E15 gate, E17 arm (b)) and
+were obeyed each time. Compute is a single workstation: the full
+simulation program re-executes from one clean commit in under a day
+(largest single run: profiled inference, 5.4 h; confirmatory holdout
+627 s; both variance worlds 549 s; weighted-certification battery 59 s),
+plus two IBM Open-plan QPU jobs (276 s and 200 s charged) with raw counts
+archived.
 
 ## 6. Results
 
@@ -457,18 +540,40 @@ size ratio 0.005, i.e. ≈ 46 effective signal events per 41k-event test
 role): *absolute physics-weighted metrics carry subset-draw variance of
 order ±0.05 (bootstrap CI half-widths 0.04–0.09) that partition-level
 replication structurally understates.*
-Paired contrasts, degradation signs, rank structure, and error control —
-everything our claims rest on — replicate. We flag this as a caution for
-matched-budget benchmark practice generally.
 
-### 6.2 Behavior under systematics (E02, E02R, E12; Fig. 2)
+Two further worlds (seeds 131, 141; E17) turn that inference into a
+measured cross-world fact: over four independent worlds the between-world
+standard deviation of absolute weighted AUC is 0.030–0.050 per model
+(ranges up to 0.121), while QK − XGB stays negative in all four worlds
+(−0.022 to −0.076) and QK − RBF8 changes sign across worlds — the
+"statistically indistinguishable" reading is world-robust. What
+replicates everywhere is the *paired ordering* against tuned trees and
+the error control; what does not is anything absolute. This is no longer
+a caution but a quantified warning for matched-budget benchmark practice:
+the development world's re-partition variance understates the total
+by about a factor of two (contrast std 0.023 across worlds vs 0.013
+across partitions).
 
-TES down-shifts degrade the QK-SVC in 5/5 seeds (+0.0024 ± 0.0010 at
-−2σ); the up-shift arm does not replicate; the adverse combination
-degrades the QK-SVC in 5/5 seeds (+0.025 ± 0.024). Both signs reproduce
-on the fresh holdout (+0.0011; +0.0081). Weight-only nuisances leave the feature
-distribution unchanged exactly; their weighted-AUC effect is at the
-4·10⁻⁴ level (uniform background scaling exactly zero).
+### 6.2 Behavior under systematics (E02, E02R, E12, E17; Fig. 2)
+
+Within the development world, TES down-shifts degrade the QK-SVC in 5/5
+seeds (+0.0024 ± 0.0010 at −2σ; the up-shift arm does not replicate) and
+the adverse combination degrades it in 5/5 seeds (+0.025 ± 0.024); both
+signs reproduce on the confirmatory holdout (+0.0011; +0.0081). The two
+additional worlds then **triggered the registered cross-world
+falsifier**: in one the adverse combination *improves* the QK-SVC
+(−0.0090) and in the other the TES down-shift does (−0.0050). The
+corrected claim is therefore scoped honestly: the small degradations are
+*within-world replicable but draw-dependent across worlds* — at their
+|ΔAUC| ≈ 0.001–0.01 scale they sit below the between-world variability
+of the paired contrasts themselves (±0.02), and no world-robust
+directional degradation claim survives at this magnitude. This
+correction sharpens the paper's thesis rather than weakening it:
+benchmark deltas of this size, however internally replicated, do not
+transfer across data draws — deployment claims need certification, not
+extrapolation. Weight-only nuisances leave the feature distribution
+unchanged exactly; their weighted-AUC effect is at the 4·10⁻⁴ level
+(uniform background scaling exactly zero).
 
 ### 6.3 The label-free sensor: out-of-grid generalization and exact
 blindness (E03, E04v2, E04v3; Figs. 4 and 4b)
@@ -508,7 +613,13 @@ near-boundary false claims ending UNRESOLVED at n = 3,000. On the confirmatory h
 rate over non-vetoed false-claim streams is 0.69% ≤ α (the fresh
 partition's veto set is disclosed as degenerate under CRN; streams are
 shared across the δ grid, so pooled denominators are correlated ≈6:1 —
-per-claim α is unaffected).
+per-claim α is unaffected). A dedicated fresh-world replication (E19)
+closes the "one-world validity" question: the confirmatory world's
+archived deployment scores — certified byte-identical against a full
+re-derivation of the frozen deployment before any audit ran — give false
+certification 0.36% unweighted and 0.07% weighted on fresh audit
+streams. Across three independent accountings and both estimand
+families, every measured false-certification rate is below α.
 
 Weighted (the campaign's extension): the one-sample reduction passes its
 predeclared Monte-Carlo battery — time-uniform coverage on uniform,
@@ -569,9 +680,20 @@ say so rather than overclaiming CR evidence.
 
 n* is sharply margin-driven: ~180 labels at |margin| ≥ 0.08; ~870 at
 0.04–0.08; ~13,000 at 0.01–0.02; below 0.01 the fail-closed UNRESOLVED
-region dominates even at 20,000. Uncertainty-guided acquisition loses to
-uniform (median n* ratio 1.55; better in 10% of cells) — a primary
-negative result that simplifies practice.
+region dominates even at 20,000. Those costs are close to fundamental:
+against the Wald information yardstick log(1/α)/KL(Ber(p) ‖ Ber(τ)) —
+a floor for *any* sequential procedure with type-I error ≤ α — the
+measured median stopping times sit a factor 2.07 above the bound overall
+(IQR 1.56–2.97), from ×1.46 at large margins to ×3.35 near the boundary
+(518 resolved cells; Fig. 6). The near-boundary label explosion is
+fundamentally statistical — the information floor itself diverges as
+KL ≈ 2·margin² — and the confidence sequence's own overhead is a bounded
+small factor; no minimax optimality is claimed. Uncertainty-guided
+acquisition loses to uniform (median n* ratio 1.55; better in 10% of
+cells; Fig. 6) — a primary negative result that simplifies practice.
+Principled variance-reduction estimators (LURE-style control variates,
+stratified without-replacement sampling) remain registered as the
+candidate second round before the question is declared closed.
 
 ### 6.7 Physics-level validity: decoupling, its mechanism, and the price
 of restoring it (E08, E12, E15; Figs. 7 and 7b)
@@ -629,6 +751,18 @@ structure the inference model cannot represent* — and, symmetrically,
 the information that restores validity (a correctly-specified constraint
 on the shifted nuisance) is now identified and priced.
 
+The mechanism is quantified by the nuisance sensitivities ∂μ̂/∂θ,
+computed by finite differences over the archived grid (SAP §1.2). The
+counting estimator's μ̂ moves by +5 to +10 μ-units per σ of TES shift
+(model-dependent); full profiling suppresses this to +0.1 to +0.4 — one
+to two orders of magnitude — while the fitted nuisance tracks the true
+shift with slope 0.99–1.00 for TES/JES and the normalization scales.
+For stochastic soft-MET the tracking slope is only 0.25–0.50: the fit
+structurally under-recovers the shift, which is *why* profiling fails
+there. And with the shifted family omitted (L3), sensitivities revert to
+the counting estimator's scale (+5 to +9 μ/σ for TES) — the profile's
+protection is exactly as good as its nuisance model.
+
 ## 7. Quantum Realism: estimation uncertainty as a certification problem
 
 ### 7.1 Finite shots (E09, E16; Figs. 8 and 8b)
@@ -681,26 +815,32 @@ registry. The proposed BasQ-scale campaign
 (`docs/basq_e10v2_proposal.md`) remains the registered path to
 hardware-kernel certification at statistically meaningful scale.
 
-## 8. Simulation-to-Real Demonstration (E11, E11v2; Fig. 9 = ledger)
+## 8. Simulation-to-Real Demonstration (E11, E11v2, E11v3; Fig. 9 = ledger)
 
 CMS Open Data H→ττ 2012 (μτ_h, same physics process as Level I),
 MC-trained models with Level-I-frozen hyperparameters, no target tuning —
 first on a verified 10% mirror, then on the complete public Run2012B+C
-collision files (126,164 selected events, ×10). The ledger is stable
-across the two data scales, which is itself the demonstration:
+collision files (126,164 selected events, ×10), and finally under a
+statistical hardening pass (E11v3) that propagates MC-side statistics
+into the control-region claims and replaces the sensor's max-floor rule
+with calibrated tests. The ledger is stable across all three analyses,
+which is itself the demonstration:
 
-| Claim | mirror | full data |
-|---|---|---|
-| C1 event accuracy on data | UNRESOLVED | UNRESOLVED — by construction; more data cannot change this, which is the point |
-| C2 W normalization ≤ 30% (high-mT CR) | SUPPORTED, 0.922 [0.885, 0.961] | SUPPORTED, 0.9495 [0.937, 0.962] — 3× tighter, √N-consistent |
-| C3 no MC→data shift at sensor floor | REFUTED (2.6× floor) | REFUTED (2.5× floor) — the sim-to-real shift is not a mirror artifact |
-| C4 SS-region QCD excess | SUPPORTED, z = 18.6 | SUPPORTED, z = 59.4 |
+| Claim | mirror | full data | hardened (v3) |
+|---|---|---|---|
+| C1 event accuracy on data | UNRESOLVED | UNRESOLVED | UNRESOLVED — by construction; more data cannot change this, which is the point |
+| C2 W normalization ≤ 30% (high-mT CR) | SUPPORTED, 0.922 [0.885, 0.961] | SUPPORTED, 0.9495 [0.937, 0.962] — 3× tighter, √N-consistent | SUPPORTED with MC-stat propagated into the interval (the margin dwarfs it) |
+| C3 no MC→data shift at sensor floor | REFUTED (2.6× floor) | REFUTED (2.5× floor) | REFUTED, calibrated: p = 0.005 against a 200-draw null and p = 0.001 by permutation, in *every one* of 20 observation draws |
+| C4 SS-region QCD excess | SUPPORTED, z = 18.6 | SUPPORTED, z = 59.4 | SUPPORTED with MC-stat in the denominator (z still ≫ 5) |
 
 Aggregate physics claims are certifiable from control-region evidence;
 event-level performance claims are not — and the framework says so
-rather than guessing. Known limitations (disclosed): control-region
-intervals treat the MC yield as exact; the sensor verdict rests on a
-single MC-vs-data draw against a 20-draw floor.
+rather than guessing. The hardening pass was registered with a
+bidirectional falsifier — the calibrated test was free to *downgrade*
+C3's verdict to UNRESOLVED, and that outcome was accepted in writing
+before the run; instead every verdict survived on stronger statistical
+ground. The remaining sensor caveat is estimand-level: it compares
+unweighted MC row samples with data, matching v1/v2 for comparability.
 
 ## 9. Failure Cases, Corrections, and Limitations
 
@@ -708,11 +848,19 @@ single MC-vs-data draw against a 20-draw floor.
   (up-shift arm) did not replicate; partition variance dominates most
   single-nuisance deltas.
 - **Corrected by the confirmatory draw:** absolute weighted-AUC levels
-  are draw-fragile (of order ±0.05 at this benchmark's signal-weight
-tails);
+  are draw-fragile — later *measured* across four worlds at
+  between-world std 0.030–0.050 (E17);
   normalization-induced coverage collapse is SR-composition-dependent —
   the two registered flagship cells failed while the mechanism reproduced
   in other models; both corrections are reported with mechanisms.
+- **Corrected by the cross-world falsifier (E17 arm (b)):** the small
+  TES/combination degradation signs, replicated 5/5 within the
+  development world and confirmed on the first fresh holdout, do **not**
+  replicate across two further independent worlds (one world's adverse
+  combination *improves* the QK-SVC by 0.009; another's TES down-shift
+  by 0.005). The cross-world degradation claim is withdrawn; what
+  remains is within-world replicability plus the lesson that
+  |ΔAUC| ≲ 0.01 benchmark effects do not transfer across draws.
 - **Corrected by registered falsifiers during the campaign:** a
   pure-Poisson rate fit (template statistics), an estimand-label error in
   the weighted benchmark (θ-scaled vs nominal weights; first-run table
@@ -725,14 +873,18 @@ tails);
   the δ grid (pooled denominators correlated ≈6:1; per-claim α
   unaffected); the balanced-accuracy component bound is vacuous at tested
   scales; L2/L3 morphing is additive across nuisances (combo cells carry
-  real cross-terms) and single-family L2 coverage is partially trivial by
-  shared-simulation construction; one model (scale-trained tree) is
+  real cross-terms); one model (scale-trained tree) is
   L2-gate-excluded (0.717 vs 0.6827, conservative direction); the E16
   hardware arm is a micro-scale consistency demonstration, not
-  certification at scale; CMS CR intervals ignore MC-side statistics;
+  certification at scale;
   E12 computes its landscape before its geometry phase (no label flow —
   verified — but the stronger archive-before-targets discipline of E04v3
-  is not claimed for E12).
+  is not claimed for E12). Two previously disclosed limitations were
+  closed by registered re-analyses rather than argued away: CMS CR
+  intervals now propagate MC-side statistics and the sensor verdict is
+  calibrated (E11v3, §8), and the shared-simulation construction of the
+  physics beliefs is addressed by the independent-MC split study
+  (E08v2, §6.7).
 - **Scope:** conclusions are conditional on the declared information
   sets, the H→ττ process, and the benchmark's weight-only implementation
   of normalization nuisances; no quantum advantage is claimed anywhere,
