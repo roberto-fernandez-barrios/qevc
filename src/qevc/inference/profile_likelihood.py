@@ -124,26 +124,91 @@ class TemplateSet:
         slope = d_m2 - d_m1
         return d_m1 + (-a - 1.0) * slope
 
+    def _shape_delta_grad(self, nuisance: str, alpha: float,
+                          proc: str) -> np.ndarray:
+        """d(shape delta)/d(alpha) — piecewise, matching _shape_delta."""
+        anchors = self.shape_anchors.get(nuisance, {})
+        if not anchors:
+            return np.zeros(self.n_bins)
+        nom = self.nominal[proc]
+        if nuisance == "soft_met":
+            xs = np.array(sorted(anchors))
+            grid = np.concatenate(([0.0], xs))
+            a = min(max(float(alpha), SOFTMET_BOUND[0]), SOFTMET_BOUND[1])
+            deltas = np.vstack([np.zeros(self.n_bins)]
+                               + [anchors[x][proc] - nom for x in xs])
+            if a >= grid[-1]:
+                return np.zeros(self.n_bins)
+            i = int(np.searchsorted(grid, a, side="right") - 1)
+            i = min(max(i, 0), len(grid) - 2)
+            return (deltas[i + 1] - deltas[i]) / (grid[i + 1] - grid[i])
+        d_p1 = anchors[1.0][proc] - nom
+        d_m1 = anchors[-1.0][proc] - nom
+        d_p2 = anchors.get(2.0, {}).get(proc, 2.0 * d_p1) - (
+            nom if 2.0 in anchors else np.zeros(self.n_bins))
+        d_m2 = anchors.get(-2.0, {}).get(proc, 2.0 * d_m1) - (
+            nom if -2.0 in anchors else np.zeros(self.n_bins))
+        a = min(max(float(alpha), -TESJES_ALPHA_BOUND), TESJES_ALPHA_BOUND)
+        if abs(a) <= 1.0:
+            return (d_p1 - d_m1) / 2.0 + a * (d_p1 + d_m1)
+        if a > 1.0:
+            return d_p2 - d_p1
+        return -(d_m2 - d_m1)
+
     def expected(self, mu: float, shape_alphas: dict[str, float],
-                 norm_scales: dict[str, float]) -> np.ndarray:
-        """lambda_b(mu, theta): morphed, norm-scaled expected yields."""
+                 norm_scales: dict[str, float],
+                 with_grad: bool = False):
+        """lambda_b(mu, theta): morphed, norm-scaled expected yields.
+
+        ``with_grad`` additionally returns d(lambda)/d(param) for the
+        ordered parameter list [mu, *shape_alphas, *norm_scales] (analytic
+        gradient — the numerical-gradient path made E15 infeasible)."""
+        shape_names = list(shape_alphas)
+        norm_names = list(norm_scales)
         lam = np.zeros(self.n_bins)
+        grads = (np.zeros((1 + len(shape_names) + len(norm_names),
+                           self.n_bins)) if with_grad else None)
         for proc in self.processes:
             y = self.nominal[proc].copy()
+            dy = {}
             for nui, a in shape_alphas.items():
                 y = y + self._shape_delta(nui, a, proc)
+                if with_grad:
+                    dy[nui] = self._shape_delta_grad(nui, a, proc)
+            clipped = y < 1e-9
             y = np.clip(y, 1e-9, None)
-            f = 1.0
+            if with_grad:
+                for nui in dy:
+                    dy[nui] = np.where(clipped, 0.0, dy[nui])
             if proc not in self.signal_processes:
-                if proc == "ttbar":
-                    f *= norm_scales.get("ttbar_scale", 1.0)
-                if proc == "diboson":
-                    f *= norm_scales.get("diboson_scale", 1.0)
-                f *= norm_scales.get("bkg_scale", 1.0)
+                f_tt = norm_scales.get("ttbar_scale", 1.0) if proc == "ttbar" else 1.0
+                f_db = norm_scales.get("diboson_scale", 1.0) if proc == "diboson" else 1.0
+                f_bkg = norm_scales.get("bkg_scale", 1.0)
+                f = f_tt * f_db * f_bkg
                 lam = lam + f * y
+                if with_grad:
+                    for j, nui in enumerate(shape_names):
+                        grads[1 + j] += f * dy[nui]
+                    for j, nrm in enumerate(norm_names):
+                        k = 1 + len(shape_names) + j
+                        if nrm == "ttbar_scale" and proc == "ttbar":
+                            grads[k] += f_db * f_bkg * y
+                        elif nrm == "diboson_scale" and proc == "diboson":
+                            grads[k] += f_tt * f_bkg * y
+                        elif nrm == "bkg_scale":
+                            grads[k] += f_tt * f_db * y
             else:
                 lam = lam + mu * y
-        return np.clip(lam, 1e-9, None)
+                if with_grad:
+                    grads[0] += y
+                    for j, nui in enumerate(shape_names):
+                        grads[1 + j] += mu * dy[nui]
+        lam_clipped = lam < 1e-9
+        lam = np.clip(lam, 1e-9, None)
+        if with_grad:
+            grads[:, lam_clipped] = 0.0
+            return lam, grads
+        return lam
 
 
 @dataclass(frozen=True)
@@ -176,29 +241,41 @@ class ProfileLikelihood:
             norm_scales[nrm] = x[k]; k += 1
         return mu, shape_alphas, norm_scales
 
-    def nll(self, x: np.ndarray, n_obs: np.ndarray,
-            aux: dict | None = None) -> float:
-        """-log L. ``aux`` holds the auxiliary constraint centers θ̃ (D-023
-        amendment 2, unconditional ensemble): tes/jes in sigma units
-        (default 0), norm scales in scale units (default 1). soft_met has
-        no constraint term (flat on [0,5])."""
+    def nll_and_grad(self, x: np.ndarray, n_obs: np.ndarray,
+                     aux: dict | None = None) -> tuple[float, np.ndarray]:
+        """-log L and its analytic gradient. ``aux`` holds the auxiliary
+        constraint centers θ̃ (D-023 amendment 2, unconditional ensemble):
+        tes/jes in sigma units (default 0), norm scales in scale units
+        (default 1). soft_met has no constraint term (flat on [0,5]).
+
+        Saturated-model deviance form: identical minimizer and q(mu) as the
+        raw Poisson nll (differs by a constant in the parameters) but O(10)
+        magnitude, so L-BFGS-B's RELATIVE ftol has absolute meaning — the
+        raw form (~1e7) made the optimizer stop ~0.02 above the optimum,
+        flattening profiles (found via the E15 calibration gate)."""
         mu, shape_alphas, norm_scales = self._unpack(x)
-        lam = self.t.expected(mu, shape_alphas, norm_scales)
-        # Saturated-model deviance form: identical minimizer and q(mu) as the
-        # raw Poisson nll (differs by a constant in the parameters) but O(10)
-        # magnitude, so L-BFGS-B's RELATIVE ftol has absolute meaning — the
-        # raw form (~1e7) made the optimizer stop ~0.02 above the optimum,
-        # flattening profiles (found via the E15 calibration gate).
+        lam, glam = self.t.expected(mu, shape_alphas, norm_scales,
+                                    with_grad=True)
         n_safe = np.maximum(n_obs, 1e-12)
         val = float(np.sum(lam - n_obs + n_obs * np.log(n_safe / lam)))
+        grad = glam @ (1.0 - n_obs / lam)
+        k = 1
         for s in self.shapes:
             if s in ("tes", "jes"):
                 a0 = 0.0 if aux is None else float(aux.get(s, 0.0))
-                val += 0.5 * (shape_alphas[s] - a0) ** 2
+                val += 0.5 * (x[k] - a0) ** 2
+                grad[k] += x[k] - a0
+            k += 1
         for nrm in self.norms:
             a0 = 1.0 if aux is None else float(aux.get(nrm, 1.0))
-            val += 0.5 * ((norm_scales[nrm] - a0) / NORM_SIGMA[nrm]) ** 2
-        return val
+            val += 0.5 * ((x[k] - a0) / NORM_SIGMA[nrm]) ** 2
+            grad[k] += (x[k] - a0) / NORM_SIGMA[nrm] ** 2
+            k += 1
+        return val, grad
+
+    def nll(self, x: np.ndarray, n_obs: np.ndarray,
+            aux: dict | None = None) -> float:
+        return self.nll_and_grad(x, n_obs, aux)[0]
 
     def _bounds(self, mu_bounds):
         bounds = [mu_bounds]
@@ -223,8 +300,8 @@ class ProfileLikelihood:
         if fix_mu is not None:
             x0[0] = fix_mu
             bounds = [(fix_mu, fix_mu)] + bounds[1:]
-        res = optimize.minimize(self.nll, x0, args=(n_obs, aux),
-                                method="L-BFGS-B", bounds=bounds,
+        res = optimize.minimize(self.nll_and_grad, x0, args=(n_obs, aux),
+                                jac=True, method="L-BFGS-B", bounds=bounds,
                                 options={"ftol": 1e-12, "gtol": 1e-9,
                                          "maxiter": 2000, "maxfun": 20000})
         return res

@@ -248,10 +248,26 @@ def main() -> int:
         log("CALIBRATION GATE FAILED — shifted environments not interpreted")
 
     # ---- L2 / L3 over the full grid ----------------------------------------
+    if not all(g["pass"] for g in gate.values()):
+        # M5 audit fix: the gate GATES — no shifted-environment table is
+        # produced on a failed calibration.
+        out = {"experiment": "E15", "calibration_gate": gate,
+               "gate_all_pass": False,
+               "note": "gate failed; grid not run (registry falsifier)"}
+        out_path = REPO / "results/tables/E15_inference.json"
+        out_path.write_text(json.dumps(out, indent=2), encoding="utf-8")
+        log("gate failed -> wrote gate-only table and stopped")
+        return 1
+
     jobs, meta = [], []
     for env_name, env in env_list:
         fam = env_family(env_name)
         omit = E15["profile"]["l3_omit_by_family"][fam]
+        if fam == "combo" and env.soft_met == 0.0:
+            # M3 audit fix (registered): combo0/combo1 shift tes+jes only —
+            # omitting the inactive soft_met would not be a misspecification
+            # stress. Omit tes (shifted in every combo) instead.
+            omit = "tes"
         l3_shapes = [s for s in l2_shapes if s != omit]
         l3_norms = [n for n in l2_norms if n != omit]
         tt = true_theta_of(env)
@@ -296,7 +312,17 @@ def main() -> int:
     out = {
         "experiment": "E15",
         "levels": {"L1": "E08 counting (reused)", "L2": "full profile",
-                   "L3": "profile minus shifted family (predeclared)"},
+                   "L3": "profile minus shifted family (predeclared; "
+                         "combo0/1 omit tes — M3 audit fix)"},
+        "interpretation_notes": [
+            "single-family environments: the fit's anchors coincide with the "
+            "truth histograms (shared-simulation), so L2 coverage there does "
+            "not test morphing error — combos are the real morphing test",
+            "the morphing model is additive across nuisances; combo truth "
+            "applies them jointly (cross-terms real) — combo L2 "
+            "undercoverage, if any, is morphing misspecification, not "
+            "statistics",
+        ],
         "calibration_gate": gate,
         "gate_all_pass": bool(all(g["pass"] for g in gate.values())),
         "bin_edges": {k: [round(float(e), 5) for e in v]

@@ -85,6 +85,15 @@ def main() -> int:
     if "DONE" not in status.upper():
         log("job not complete — aborting analysis (rerun later)")
         return 1
+    try:  # archive post-job QPU usage (number audit NF1)
+        metrics = job.metrics()
+        (RAW_DIR / "job_usage_post.json").write_text(
+            json.dumps({"usage": metrics.get("usage"),
+                        "timestamps": metrics.get("timestamps")},
+                       indent=2, default=str), encoding="utf-8")
+        log(f"QPU usage archived: {metrics.get('usage')}")
+    except Exception as e:
+        log(f"job.metrics() unavailable: {e}")
     result = job.result()
     fidelities = []
     raw_counts = []

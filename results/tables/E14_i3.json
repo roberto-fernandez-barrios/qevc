@@ -22,7 +22,15 @@
         29291.67,
         973104.97
       ]
-    }
+    },
+    "template_variance": [
+      2221820.8,
+      35915201.04
+    ],
+    "template_rel_err": [
+      0.02396,
+      0.00606
+    ]
   },
   "rate_claims": {
     "nominal": {
@@ -35,6 +43,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.9925,
       "s_hat_bias": {
         "s_tt": 0.06535,
         "s_bkg": -0.005618
@@ -96,6 +109,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 1.0,
       "s_hat_bias": {
         "s_tt": 0.07274,
         "s_bkg": -0.003295
@@ -157,6 +175,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.9925,
       "s_hat_bias": {
         "s_tt": 0.06761,
         "s_bkg": -0.00512
@@ -218,6 +241,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.9925,
       "s_hat_bias": {
         "s_tt": 0.0645,
         "s_bkg": -0.005457
@@ -279,6 +307,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.995,
       "s_hat_bias": {
         "s_tt": 0.06727,
         "s_bkg": -0.004523
@@ -340,6 +373,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.865,
       "s_hat_bias": {
         "s_tt": 0.06274,
         "s_bkg": -0.005808
@@ -401,6 +439,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.965,
       "s_hat_bias": {
         "s_tt": 0.06334,
         "s_bkg": -0.005792
@@ -462,6 +505,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 1.0,
       "s_hat_bias": {
         "s_tt": 0.06831,
         "s_bkg": -0.004815
@@ -523,6 +571,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 1.0,
       "s_hat_bias": {
         "s_tt": 0.07376,
         "s_bkg": -0.003378
@@ -584,6 +637,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.735,
       "s_hat_bias": {
         "s_tt": 0.06889,
         "s_bkg": -0.004033
@@ -645,6 +703,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.92,
       "s_hat_bias": {
         "s_tt": 0.0685,
         "s_bkg": -0.004966
@@ -706,6 +769,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 1.0,
       "s_hat_bias": {
         "s_tt": 0.06548,
         "s_bkg": -0.005591
@@ -767,6 +835,11 @@
         "s_tt": 1.0,
         "s_bkg": 1.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 1.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 1.0,
       "s_hat_bias": {
         "s_tt": 0.0692,
         "s_bkg": -0.004465
@@ -828,6 +901,11 @@
         "s_tt": 1.0,
         "s_bkg": 0.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 0.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.0,
       "s_hat_bias": {
         "s_tt": 0.0077,
         "s_bkg": -0.012
@@ -889,6 +967,11 @@
         "s_tt": 1.0,
         "s_bkg": 0.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 0.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.0,
       "s_hat_bias": {
         "s_tt": 0.00767,
         "s_bkg": -0.012
@@ -950,6 +1033,11 @@
         "s_tt": 1.0,
         "s_bkg": 0.0
       },
+      "ci_coverage_alpha4": {
+        "s_tt": 1.0,
+        "s_bkg": 0.0
+      },
+      "s_bkg_ci_clip_saturated_frac": 0.0,
       "s_hat_bias": {
         "s_tt": 0.00724,
         "s_bkg": -0.012
@@ -2379,13 +2467,13 @@
     "classifier_performance_unweighted": {
       "I0": "UNRESOLVED (impossibility)",
       "I1": "veto only",
-      "I2": "resolvable (E05: fc 0.61%)",
+      "I2": "resolvable (E05: fc 0.61% of un-vetoed false-claim streams, no I1 veto in denominator)",
       "I3": "resolvable"
     },
     "classifier_performance_weighted_nominal_estimand": {
       "I0": "UNRESOLVED",
       "I1": "veto only",
-      "I2": "resolvable (E13: fc 0.02%)",
+      "I2": "resolvable (E13 v2, nominal-weight estimand: fc 0.02%; streams share draws across the delta grid, so pooled denominators are correlated ~6:1)",
       "I3": "resolvable"
     },
     "true_weighted_performance_under_theta_norm": {
@@ -2407,5 +2495,5 @@
       "I3": "requires inference procedure consuming theta-hat (E15)"
     }
   },
-  "wall_seconds": 206.7
+  "wall_seconds": 217.1
 }

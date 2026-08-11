@@ -169,7 +169,13 @@ def main() -> int:
 
     alpha = E16["alpha"]
 
-    def build_and_audit(K_tr_d, K_sv_d, K_env_d, tag: str) -> tuple:
+    def build_and_audit(K_tr_d, K_sv_d, K_env_d, tag: str,
+                        fixed_refs: dict | None = None) -> tuple:
+        """Build the deployment; audit under its OWN refrozen claim grid
+        (tau = own M_S - delta) and, if given, ALSO under the ideal
+        deployment's FIXED taus — the same-claim comparison the flip
+        analysis needs (post-campaign audit H1: the own-tau flip rate mixes
+        claim-definition changes with resolution changes)."""
         svc = SVC(kernel="precomputed", C=float(qp["C"]))
         svc.fit(K_tr_d, y_tr, sample_weight=wb_tr)
         s_sv = svc.decision_function(K_sv_d.T)
@@ -185,11 +191,17 @@ def main() -> int:
             correct[e] = ((p >= thr).astype(int) == d["y"]).astype(float)
             weights[e] = d["w"]
             aucs[e] = float(weighted_auc(d["y"], p, sample_weight=d["w"]))
-        audit = audit_deployment(correct, weights, m_s_unw, m_s_w, alpha)
-        return audit, aucs, {"m_s_unw": m_s_unw, "m_s_w": m_s_w, "thr": thr}
+        audit_own = audit_deployment(correct, weights, m_s_unw, m_s_w, alpha)
+        audit_fixed = None
+        if fixed_refs is not None:
+            audit_fixed = audit_deployment(correct, weights,
+                                           fixed_refs["m_s_unw"],
+                                           fixed_refs["m_s_w"], alpha)
+        return audit_own, audit_fixed, aucs, {"m_s_unw": m_s_unw,
+                                              "m_s_w": m_s_w, "thr": thr}
 
-    ideal_audit, ideal_aucs, ideal_refs = build_and_audit(K_tr, K_sv, K_env,
-                                                          "ideal")
+    ideal_audit, _, ideal_aucs, ideal_refs = build_and_audit(K_tr, K_sv,
+                                                             K_env, "ideal")
     log(f"C_ideal done: nominal AUC {ideal_aucs['nominal']:.4f}")
 
     # stratum of each claim cell, by the IDEAL margin
@@ -205,8 +217,9 @@ def main() -> int:
             K_sv_d = sample_gram(K_sv, shots, rng, symmetric=False)
             K_env_d = {e: sample_gram(K, shots, rng, symmetric=False)
                        for e, K in K_env.items()}
-            audit, aucs, refs = build_and_audit(K_tr_d, K_sv_d, K_env_d,
-                                                f"s{shots}k{ks}")
+            audit, audit_fixed, aucs, refs = build_and_audit(
+                K_tr_d, K_sv_d, K_env_d, f"s{shots}k{ks}",
+                fixed_refs=ideal_refs)
             frob = float(np.linalg.norm(K_tr_d - K_tr) / np.linalg.norm(K_tr))
             entry = {
                 "kernel": {
@@ -229,6 +242,14 @@ def main() -> int:
                     continue
                 flips = sum(audit[k]["verdict"] != ideal_audit[k]["verdict"]
                             for k in keys)
+                flips_fixed = sum(
+                    audit_fixed[k]["verdict"] != ideal_audit[k]["verdict"]
+                    for k in keys)
+                fc_fixed = sum(1 for k in keys
+                               if not audit_fixed[k]["truth"]
+                               and audit_fixed[k]["verdict"] == "SUPPORTED")
+                nfalse_fixed = sum(1 for k in keys
+                                   if not audit_fixed[k]["truth"])
                 unres = sum(audit[k]["verdict"] == "UNRESOLVED" for k in keys)
                 unres_ideal = sum(ideal_audit[k]["verdict"] == "UNRESOLVED"
                                   for k in keys)
@@ -240,16 +261,20 @@ def main() -> int:
                           for k in keys
                           if audit[k]["n_star"] and ideal_audit[k]["n_star"]]
                 entry["strata"][st] = {
-                    "n_cells": n, "flip_rate": round(flips / n, 4),
+                    "n_cells": n,
+                    "flip_rate_own_tau": round(flips / n, 4),
+                    "flip_rate_fixed_tau": round(flips_fixed / n, 4),
                     "abstention": round(unres / n, 4),
                     "abstention_ideal": round(unres_ideal / n, 4),
                     "false_cert": fc, "n_claim_false": nfalse,
+                    "false_cert_fixed_tau": fc_fixed,
+                    "n_claim_false_fixed_tau": nfalse_fixed,
                     "n_star_ratio_median": (round(float(np.median(ratios)), 3)
                                             if ratios else None)}
             results["configs"][f"shots{shots}|k{ks}"] = entry
             log(f"shots={shots} seed={ks}: frob={frob:.4f} "
-                f"flips far/mod/near = "
-                f"{[entry['strata'].get(s, {}).get('flip_rate') for s in ('far', 'moderate', 'near')]}")
+                f"fixed-tau flips far/mod/near = "
+                f"{[entry['strata'].get(s, {}).get('flip_rate_fixed_tau') for s in ('far', 'moderate', 'near')]}")
 
     # aggregate per shots level
     agg = {}
@@ -262,14 +287,20 @@ def main() -> int:
             if not cells:
                 continue
             agg[str(shots)][st] = {
-                "flip_rate_mean": round(float(np.mean(
-                    [c["flip_rate"] for c in cells])), 4),
+                "flip_rate_own_tau_mean": round(float(np.mean(
+                    [c["flip_rate_own_tau"] for c in cells])), 4),
+                "flip_rate_fixed_tau_mean": round(float(np.mean(
+                    [c["flip_rate_fixed_tau"] for c in cells])), 4),
                 "abstention_mean": round(float(np.mean(
                     [c["abstention"] for c in cells])), 4),
                 "abstention_ideal": cells[0]["abstention_ideal"],
                 "false_cert_total": int(sum(c["false_cert"] for c in cells)),
                 "n_claim_false_total": int(sum(c["n_claim_false"]
-                                               for c in cells))}
+                                               for c in cells)),
+                "false_cert_fixed_tau_total": int(sum(
+                    c["false_cert_fixed_tau"] for c in cells)),
+                "n_claim_false_fixed_tau_total": int(sum(
+                    c["n_claim_false_fixed_tau"] for c in cells))}
     out = {
         "experiment": "E16",
         "arm": "simulation",
