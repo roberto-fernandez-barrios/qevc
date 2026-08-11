@@ -1,0 +1,44 @@
+# E12 — Fresh confirmatory holdout (registered in docs/experiment_registry.md)
+# Post-development confirmatory evidence: every analysis choice frozen in
+# configs/frozen/frozen_deployment_v1.yaml (D-020) BEFORE this subset is drawn.
+# Nothing here is tuned, selected, or thresholded on E12 data.
+experiment: E12
+frozen_source: configs/frozen/frozen_deployment_v1.yaml
+subset:
+  n_total: 300000
+  seed: 121
+  tag: e12            # cache/index tag; draw excludes all archived used rows
+exclusions:           # provably disjoint from (D-020):
+  seed101_subset: true          # the only prior parquet draw (300k, seed 101)
+  e00_row_groups: [34, 65, 146, 184]   # E00 validation subsample source groups
+splits:
+  scheme: raw_row_v2
+  fractions: {train: 0.40, source_val: 0.15, nominal_test: 0.15, auditor_dev: 0.15, final_eval: 0.15}
+  seed: 121
+tier_a_seed: 121      # fresh partition -> fresh tier-A subsample (as E02R per-seed)
+models:
+  tier_a: [qksvc, rbf_svc_8f, rbf_svc, xgboost, lightgbm]
+  tier_b: [xgboost]
+landscape:
+  save_scores: true   # results/raw/E12_scores/ (post-hoc checks only; not dev data)
+  bootstrap_nominal_only: {n_resamples: 1000, seed: 1203}
+geometry:             # frozen sensor family (D-025): quantum + rbf8 MMD^2
+  n_base_rows: 2500
+  draw_seeds: [122, 123, 124]   # CRN draws from the E12 auditor_dev role (D-021)
+  targets: ["A:qksvc", "A:rbf_svc_8f", "A:xgboost"]
+auditor:              # E05 v1.1 protocol, frozen claim grid
+  models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+  n_max: 3000
+  audit_seeds: 20
+  seed_salt: "E12"
+physics:              # D-015 estimator, frozen procedure
+  models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+  seed: 1212
+acceptance:           # falsifier arms (frozen in the registry entry)
+  nominal_contrast_sigma: 3.0     # |E12 diff - E02R mean| <= 3 * E02R std
+  flagship_cells:
+    - {env: "tes=0.98", model: "A:xgboost"}
+    - {env: "diboson_scale=0.5", model: "A:xgboost"}
+    - {env: "diboson_scale=0.5", model: "A:qksvc"}
+  flagship_delta_auc_max: 0.01
+  flagship_coverage_below: 0.633

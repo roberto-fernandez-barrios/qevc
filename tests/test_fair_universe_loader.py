@@ -90,3 +90,47 @@ def test_load_rows_validation(synthetic):
         loader.load_rows(np.array([5, 5, 6]))  # duplicates
     with pytest.raises(ValueError):
         loader.load_rows(np.array([], dtype=int))
+
+
+def test_exclusion_draw_disjoint_and_default_path_unchanged(synthetic):
+    """D-020: exclusion draws are provably disjoint; exclude=None is
+    byte-identical to the historical implementation (seed reproduction)."""
+    path, _, root = synthetic
+    loader = FairUniverseLoader(path, root / "cache")
+    base = loader.stratified_indices(3000, seed=5)
+    # exclude=None must reproduce the historical draw exactly
+    np.testing.assert_array_equal(base, loader.stratified_indices(3000, seed=5,
+                                                                  exclude=None))
+    fresh = loader.stratified_indices(3000, seed=9, exclude=base)
+    assert len(fresh) == 3000 and np.all(np.diff(fresh) > 0)
+    assert np.intersect1d(fresh, base).size == 0
+    # exclusion changes the draw even at the same seed
+    assert not np.array_equal(fresh, loader.stratified_indices(3000, seed=9))
+
+
+def test_exclusion_pool_exhaustion_raises(synthetic):
+    path, df, root = synthetic
+    loader = FairUniverseLoader(path, root / "cache")
+    # Excluding every diboson row makes any allocation with diboson impossible
+    # at full-file scale; ask for a subset large enough to need diboson rows.
+    codes = loader.label_codes()
+    diboson = np.flatnonzero(codes == 3)
+    with pytest.raises(ValueError, match="pool exhausted"):
+        loader.stratified_indices(11000, seed=1, exclude=diboson)
+
+
+def test_exclusion_subset_requires_tag_and_persists_indices(synthetic):
+    path, df, root = synthetic
+    loader = FairUniverseLoader(path, root / "cache")
+    base = loader.stratified_indices(2000, seed=3)
+    with pytest.raises(ValueError, match="tag"):
+        loader.load_subset(1000, seed=7, exclude=base)
+    sub = loader.load_subset(1000, seed=7, exclude=base, tag="t12")
+    assert len(sub) == 1000
+    idx_file = root / "cache" / "subsets" / "subset_n1000_seed7_renorm_t12.indices.npy"
+    assert idx_file.exists()
+    saved = np.load(idx_file)
+    assert np.intersect1d(saved, base).size == 0
+    # cache hit returns identical frame
+    pd.testing.assert_frame_equal(sub, loader.load_subset(1000, seed=7,
+                                                          exclude=base, tag="t12"))

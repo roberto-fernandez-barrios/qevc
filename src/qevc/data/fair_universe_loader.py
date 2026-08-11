@@ -73,8 +73,17 @@ class FairUniverseLoader:
 
     # -- sampling -----------------------------------------------------------
 
-    def stratified_indices(self, n_total: int, seed: int) -> np.ndarray:
-        """Sorted global row indices, stratified at the file's process mix."""
+    def stratified_indices(self, n_total: int, seed: int,
+                           exclude: np.ndarray | None = None) -> np.ndarray:
+        """Sorted global row indices, stratified at the file's process mix.
+
+        ``exclude`` (D-020): optional array of global row indices removed from
+        every per-process pool BEFORE sampling, so the draw is provably
+        disjoint from previously used rows. Allocation proportions are always
+        computed on the full file, so the subset keeps the file's process mix.
+        With ``exclude=None`` the code path (and hence any historical draw's
+        reproduction) is byte-identical to the original implementation.
+        """
         codes = self.label_codes()
         if not 0 < n_total <= len(codes):
             raise ValueError("n_total out of range")
@@ -86,12 +95,24 @@ class FairUniverseLoader:
         remainder = n_total - sum(alloc.values())
         for c in sorted(props, key=lambda c: -(n_total * props[c]) % 1)[:remainder]:
             alloc[c] += 1
+        excl = None
+        if exclude is not None:
+            excl = np.unique(np.asarray(exclude, dtype=np.int64))
         for c, k in alloc.items():
             if k == 0:
                 continue
             pool = np.flatnonzero(codes == c)
+            if excl is not None:
+                pool = pool[~np.isin(pool, excl, assume_unique=True)]
+                if k > len(pool):
+                    raise ValueError(
+                        f"process {CODE_TO_PROCESS[c]}: pool exhausted after "
+                        f"exclusion ({len(pool)} < {k})")
             picks.append(rng.choice(pool, size=k, replace=False))
-        return np.sort(np.concatenate(picks))
+        out = np.sort(np.concatenate(picks))
+        if excl is not None:
+            assert not np.any(np.isin(out, excl, assume_unique=True))
+        return out
 
     def load_rows(self, indices: np.ndarray) -> pd.DataFrame:
         """Gather rows by sorted global indices (reads only needed row groups)."""
@@ -112,17 +133,29 @@ class FairUniverseLoader:
 
     # -- public API ---------------------------------------------------------
 
-    def load_subset(self, n_total: int, seed: int, renormalize: bool = True) -> pd.DataFrame:
+    def load_subset(self, n_total: int, seed: int, renormalize: bool = True,
+                    exclude: np.ndarray | None = None,
+                    tag: str | None = None) -> pd.DataFrame:
         """Stratified subset with per-process weight renormalization (D-010).
 
         Cached: repeated calls with the same (n_total, seed, renormalize)
         return the cached parquet, with provenance JSON alongside.
+
+        D-020 extension: with ``exclude`` the draw avoids the given global
+        indices and a distinguishing ``tag`` is REQUIRED (the cache key must
+        not collide with unexcluded draws). Fresh draws (cache misses) also
+        persist their global indices as ``<cache>.indices.npy`` so
+        disjointness is a stored, checkable artifact.
         """
-        tag = f"subset_n{n_total}_seed{seed}{'_renorm' if renormalize else ''}"
-        cache = self.cache_dir / "subsets" / f"{tag}.parquet"
+        if exclude is not None and not tag:
+            raise ValueError("an exclusion draw requires an explicit tag (D-020)")
+        stem = f"subset_n{n_total}_seed{seed}{'_renorm' if renormalize else ''}"
+        if tag:
+            stem += f"_{tag}"
+        cache = self.cache_dir / "subsets" / f"{stem}.parquet"
         if cache.exists():
             return pd.read_parquet(cache)
-        idx = self.stratified_indices(n_total, seed)
+        idx = self.stratified_indices(n_total, seed, exclude=exclude)
         df = self.load_rows(idx)
         factors: dict[str, float] = {}
         if renormalize:
@@ -132,13 +165,19 @@ class FairUniverseLoader:
                 df.loc[df["detailed_labels"] == proc, "weights"] *= factors[proc]
         cache.parent.mkdir(parents=True, exist_ok=True)
         df.to_parquet(cache, index=False)
+        idx_path = cache.with_suffix(".indices.npy")
+        np.save(idx_path, idx.astype(np.int64))
         prov = {
             "source": str(self.parquet_path),
             "n_total": n_total,
             "seed": seed,
             "renormalize": renormalize,
             "renorm_factors": factors,
-            "indices_sha_input": f"stratified_indices(n={n_total}, seed={seed})",
+            "indices_sha_input": (
+                f"stratified_indices(n={n_total}, seed={seed}"
+                f"{', exclude=<archived>' if exclude is not None else ''})"),
+            "indices_file": idx_path.name,
+            "n_excluded": 0 if exclude is None else int(np.unique(np.asarray(exclude)).size),
         }
         cache.with_suffix(".json").write_text(json.dumps(prov, indent=2), encoding="utf-8")
         return df

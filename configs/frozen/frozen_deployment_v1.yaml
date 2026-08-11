@@ -1,0 +1,105 @@
+# Frozen deployment snapshot v1 — D-020 (committed BEFORE any E12 row is drawn)
+#
+# This file is the campaign's single source of truth for every frozen analysis
+# quantity. Values are copied VERBATIM from their historical sources (noted per
+# section); param values keep E01's stringified encoding and are revived with
+# the same parse_params semantics, so no transcription/typing drift is
+# possible. Changing anything here requires a new decisions.md entry and a new
+# version of this file (v2, ...) — v1 is immutable once committed.
+version: 1
+frozen_at: "2026-08-11"
+sources:
+  hyperparameters: results/tables/E01_nominal.json (tuning seed 202, E01)
+  features: configs/experiments/E01.yaml (D-011)
+  environment_grid: configs/experiments/E02.yaml
+  claim_grid: configs/experiments/E05.yaml (v1.1 amendment)
+  sensor: configs/experiments/E05.yaml + D-025 (family frozen)
+  physics_estimator: configs/experiments/E08.yaml (D-015)
+
+features:
+  quantum:  # D-011: 8 features, one per qubit
+    - DER_mass_transverse_met_lep
+    - DER_mass_vis
+    - DER_pt_ratio_lep_had
+    - DER_met_phi_centrality
+    - DER_deltar_had_lep
+    - DER_pt_h
+    - DER_sum_pt
+    - PRI_met
+  # all-feature models use PRI_COLUMNS + DER_COLUMNS (16 + 12 = 28)
+
+feature_map:  # QK-SVC / statevector fidelity kernel
+  n_qubits: 8
+  reps: 2
+  scale: 0.5
+  entanglement: linear
+  angle_scaler: {q_low: 0.005, q_high: 0.995, sentinel_angle: -pi}
+
+hyperparameters:  # verbatim (stringified) from E01_nominal.json best_params
+  tier_a:
+    linear_svc: {C: "0.01"}
+    rbf_svc: {C: "1.0", gamma: "0.3"}
+    rbf_svc_8f: {C: "30.0", gamma: "0.3"}   # matched-kernel control, 8 features
+    xgboost: {n_estimators: "400", max_depth: "8", learning_rate: "0.03",
+              subsample: "1.0", colsample_bytree: "0.9", reg_lambda: "1.0"}
+    lightgbm: {n_estimators: "400", num_leaves: "63", learning_rate: "0.03",
+               subsample: "0.9", colsample_bytree: "1.0", reg_lambda: "0.5"}
+    mlp: {hidden: "(64, 32)", alpha: "0.0001", lr: "0.01"}
+    qksvc: {C: "1.0", reps: "2", scale: "0.5", entanglement: "linear"}
+  tier_b:
+    linear_svc: {C: "10.0"}
+    xgboost: {n_estimators: "800", max_depth: "4", learning_rate: "0.1",
+              subsample: "0.9", colsample_bytree: "0.9", reg_lambda: "0.5"}
+    lightgbm: {n_estimators: "400", num_leaves: "63", learning_rate: "0.03",
+               subsample: "1.0", colsample_bytree: "0.9", reg_lambda: "1.0"}
+    mlp: {hidden: "(32,)", alpha: "0.0001", lr: "0.003"}
+
+training_protocol:
+  tier_a_budget: {n_train: 2000, stratified: true}   # matched-events comparison
+  training_weights: class_balanced_mean1             # D-012
+  init_seed: 202                                     # E01 tuning seed, frozen
+  calibration: platt_on_source_val                   # weighted sigmoid
+  threshold: ba_optimal_on_source_val                # frozen operating point
+  evaluation_weights: raw_physical                   # SAP §1.1
+
+environment_grid:  # verbatim from configs/experiments/E02.yaml
+  grid:
+    tes: [0.98, 0.99, 1.01, 1.02]
+    jes: [0.98, 0.99, 1.01, 1.02]
+    soft_met: [1.0, 2.0, 3.0, 5.0]
+    ttbar_scale: [0.96, 0.98, 1.02, 1.04]
+    diboson_scale: [0.5, 0.75, 1.25, 1.5]
+    bkg_scale: [0.998, 0.999, 1.001, 1.002]
+  combos:
+    - {tes: 0.98, jes: 0.98}
+    - {tes: 1.02, jes: 1.02}
+    - {tes: 0.98, jes: 1.02, soft_met: 3.0}
+    - {tes: 0.98, jes: 0.98, soft_met: 5.0, ttbar_scale: 1.04,
+       diboson_scale: 1.5, bkg_scale: 1.002}
+  env_seeds: [11, 12, 13]
+
+claims:  # E05 v1.1 grid — degradation form M_T >= M_S - delta, D-014 estimand
+  type: degradation_accuracy
+  deltas: [-0.01, -0.005, 0.0, 0.02, 0.05, 0.10]
+  alpha: 0.05
+
+sensor:  # D-025: family frozen — nothing else may be promoted to veto duty
+  descriptors: [mmd2]
+  kernels: [quantum, rbf8]     # fidelity kernel + matched rbf on same 8 features
+  floor_rule: exceeds_max_over_weight_only_envs
+  veto_semantics: demote_supported_to_unresolved_only   # D-006
+
+physics_estimator:  # D-015 counting analysis, verbatim from E08.yaml
+  signal_region: {objective: s_over_sqrt_b, b_floor: 50.0,
+                  threshold_grid_quantiles: 200}
+  mu_true_grid: [0.5, 1.0, 1.5, 2.0, 3.0]
+  pseudo_experiments: 2000
+  ci_level: 0.6827
+  decoupling: {delta_auc_flat: 0.005, coverage_damaged_below: 0.6327}
+
+statistical_protocol:
+  confidence_sequence: empirical-bernstein-wsr   # predictable plug-in, [0,1]
+  alpha: 0.05
+  decision_rule: D-006 fail-closed (lower>=tau SUPPORTED / upper<tau REFUTED)
+  references: [docs/statistical_analysis_plan.md, docs/decisions.md D-017,
+               docs/weighted_certification_spec.md]
