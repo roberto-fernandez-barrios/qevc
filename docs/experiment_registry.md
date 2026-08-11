@@ -869,7 +869,28 @@ entry.
   false-cert rates and n* inflation; hardware provenance complete.
 - **Expected outputs:** `results/tables/E16_quantum_uncertainty.json`;
   `results/raw/E16_hw/*` if the hardware arm runs; Fig. 8 upgrade data.
-- **Status:** specified (2026-08-11).
+- **Status:** **simulation arm complete (2026-08-11) — falsifier NOT
+  triggered; hardware arm submitted (job `d9tdubopdb6s73e73o20`,
+  ibm_marrakesh, 714 circuits × 1024 shots, ladder-sized to the live Open
+  budget per D-027), analysis pending job completion.** Simulation results
+  (30 full noisy deployments × 5 envs × 2 claim families × 6 δ × 10
+  paired streams):
+  1. **Far-margin claims (|m| ≥ 0.04): verdict flip rate 0.0 at every
+     shot budget 128–4096, abstention unchanged, false certifications 0.**
+     The margin-concentration hypothesis holds in its strongest form.
+  2. Moderate margins (0.01–0.04): flip rate 15.8% at 128 shots → 6.7% at
+     4096 (declining with budget); abstention comparable to ideal
+     (0.32–0.39 vs 0.36).
+  3. Near-boundary (|m| < 0.01): abstention 92–94% under every regime —
+     fail-closed dominates; flips 4–7%; false certification totals 4–11
+     per shots level over ~850 false-claim cells (0.5–1.3% ≤ α): **the
+     auditor's error control survives quantum estimation noise**, with
+     abstention (not false certification) the dominant response — the
+     registered hypothesis, confirmed.
+  4. Weighted (D-019) and unweighted (D-014) claim families behave
+     consistently; kernel diagnostics per config (Frobenius 1/√shots
+     scaling, rank inflation, PSD violations) reproduce E09 under the
+     D-022 independent-noise semantics.
 
 ## E11v2 — Strengthened CMS real-data demonstration
 

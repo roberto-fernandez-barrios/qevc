@@ -34,7 +34,7 @@ sys.path.insert(0, str(REPO / "src"))
 from sklearn.svm import SVC  # noqa: E402
 
 from qevc.auditing.claims import Claim, Verdict, resolve_claim  # noqa: E402
-from qevc.geometry.descriptors import effective_rank, psd_violation, raw_spectrum  # noqa: E402
+from qevc.geometry.descriptors import effective_rank, psd_violation  # noqa: E402
 from qevc.kernels.quantum import build_feature_map, kernel_exact  # noqa: E402
 from qevc.metrics.classifier import weighted_auc  # noqa: E402
 from qevc.models.common import (  # noqa: E402
@@ -164,8 +164,7 @@ def main() -> int:
     K_sv = kernel_exact(Z_tr, fm, Z_sv).astype(np.float32)
     K_env = {e: kernel_exact(Z_tr, fm, d["Z"]).astype(np.float32)
              for e, d in env_data.items()}
-    spec_exact = raw_spectrum(K_tr)
-    eff_exact = effective_rank(np.clip(spec_exact[::-1], 0, None))
+    eff_exact = effective_rank(K_tr)
     log("exact Grams ready")
 
     alpha = E16["alpha"]
@@ -209,12 +208,11 @@ def main() -> int:
             audit, aucs, refs = build_and_audit(K_tr_d, K_sv_d, K_env_d,
                                                 f"s{shots}k{ks}")
             frob = float(np.linalg.norm(K_tr_d - K_tr) / np.linalg.norm(K_tr))
-            spec_d = raw_spectrum(K_tr_d)
             entry = {
                 "kernel": {
                     "frob_rel_err": round(frob, 5),
                     "eff_rank": round(float(effective_rank(
-                        np.clip(spec_d[::-1], 0, None))), 2),
+                        K_tr_d.astype(np.float64))), 2),
                     "eff_rank_exact": round(float(eff_exact), 2),
                     "psd_violation": round(float(psd_violation(K_tr_d)), 6)},
                 "nominal_auc": round(aucs["nominal"], 5),
