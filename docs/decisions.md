@@ -490,3 +490,90 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   "hardware-validated" inflation).
 - **Status:** adopted.
 
+## D-028 — Post-campaign extension: scope, rules, and dispositions
+
+- **Date:** 2026-08-11
+- **Context:** the E12–E16 campaign and the post-campaign audit are closed
+  (manuscript v0.3, commit fa95e8a). An extension prepares arXiv v1. Scope
+  decided *against* maximal experiment accumulation: the remaining ceiling
+  lies in (i) elevating existing results to formal statements, (ii) a small
+  set of targeted hardening experiments, and (iii) restructuring the
+  manuscript around three contributions — not in new grids.
+- **Decision (rules, binding for every extension experiment):**
+  1. Registration before execution with frozen falsifiers (spec §27/§38),
+     no exceptions — including re-analyses of archived artifacts (E19,
+     E11v3) and re-analyses that could *weaken* published verdicts.
+  2. Fresh subsets draw only from the verified complement of ALL archived
+     index sets (`data/processed/used_rows/`); index archives + SHA-256 +
+     overlap-zero checks recorded in the result table itself (E12 pattern,
+     D-020).
+  3. The sealed `final_eval` roles (seed-101 global holdout per D-018;
+     seed-121) remain sealed through arXiv v1; any spend requires its own
+     decision entry. The endgame disposition is recorded at submission.
+  4. Superseded tables preserved (`*_v1_*`); manifests append-only.
+  5. E19 reuses `results/raw/E12_scores/*.npz`: the scores are archived
+     *outputs* of the frozen deployment (config comment: "post-hoc checks
+     only; not dev data"), not development inputs; labels and weights are
+     reconstructed deterministically from the archived E12 subset indices
+     + the frozen environment grid, with row_id alignment asserted against
+     each archive. This reuse is declared here, before execution.
+- **Dispositions (registered deferrals NOT run in this extension):**
+  - Latin-hypercube multi-nuisance design (SAP §4; D-017 deviation 3):
+    remains deferred. It would refine the disclosed additive-morphing /
+    cross-term limitation (E15) without changing any verdict; revisited
+    only if E08v2 raises a concrete question it can answer.
+  - Classical-only seed top-up 5→10 (SAP §4; D-017 deviation 2): declined.
+    The headline contrasts are per-seed *paired*; topping up only the
+    cheap classical arms cannot tighten them and would introduce an
+    asymmetric replication depth across the comparison.
+  - Bootstrap 10⁴ (D-017 deviation 1): unchanged; stands as a documented
+    deviation.
+  - E10v2/BasQ scaled hardware: unchanged (D-027; allocation not
+    granted). The DD-on/off Open-plan micro-split (E16 priority (b)) may
+    run only if the 28-day window resets before the submission freeze;
+    it is never on the critical path.
+- **Manuscript direction (recorded, not a run):** restructure around three
+  contributions — information-conditional certification; scientific-
+  inference validity; quantum deployment uncertainty. The §3
+  unidentifiability result and the §4.3 weighted reduction are elevated to
+  formal Proposition/Theorem with proofs; the deployment-relative vs
+  ideal-anchored claim taxonomy is registered as D-029. Governance/audit
+  discipline is presented as methods/reproducibility evidence, not as a
+  headline contribution.
+- **Status:** adopted.
+
+## D-029 — Claim semantics under estimated (random) deployments
+
+- **Date:** 2026-08-11
+- **Context:** with finite-shot or hardware kernels the deployed pipeline
+  is itself estimated: the trained model, Platt calibrator, and operating
+  threshold are functions of the realized kernel noise ω (E16 refits,
+  recalibrates and re-freezes per realization). E16's dual accounting
+  (post-audit H1) already measures two distinct claim families; this entry
+  fixes their semantics for the manuscript's formal treatment.
+- **Decision:** two registered claim classes for estimated deployments:
+  - **Deployment-relative** C_dep(ω): M_T(f̃_ω) ≥ M_S(f̃_ω) − δ — both
+    sides refer to the realized deployment; the reference is recalibrated
+    per realization (E16 "own-τ" accounting).
+  - **Ideal-anchored** C_ideal(ω): M_T(f̃_ω) ≥ M_S(f⋆) − δ — the
+    reference is the ideal exact-kernel deployment (E16 "fixed-τ"
+    accounting).
+  Formal consequence to be stated in the manuscript with proof: if the
+  certification procedure controls false certification at level α
+  conditionally on every realized ω — which the confidence sequence
+  guarantees, being applied to the realized pipeline's own label stream —
+  then the marginal false-certification rate over deployment randomness is
+  ≤ α by the tower property, for BOTH classes. Deployment randomness
+  changes *which* claims are true and resolvable (reference movement,
+  margin erosion), never the validity of what is certified. The result is
+  presented as a claim-semantics clarification whose mathematics is
+  deliberately elementary; it is the formal counterpart of E16's measured
+  "noise changes what is resolvable, never the validity of what is
+  certified". Any stability-margin bound (|margin| > ε_Q + ε_stat ⇒
+  verdict stability across realizations) enters the manuscript only if
+  its assumptions can be stated cleanly; otherwise it appears as an
+  assumption-explicit proposition calibrated against the archived
+  per-configuration E16 kernel diagnostics. No experiment consumes new
+  randomness under this entry.
+- **Status:** adopted.
+

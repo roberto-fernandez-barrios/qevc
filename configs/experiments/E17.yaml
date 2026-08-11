@@ -1,0 +1,54 @@
+# E17 — Additional confirmatory worlds (registered in docs/experiment_registry.md)
+# Between-world variance characterization: post-audit M6 (missing between-subset
+# variance component) + the E12 diagnostic's ±0.05 absolute-weighted-AUC scale +
+# SR-composition dependence of norm-nuisance coverage damage (arm-(e) reading).
+# Every analysis choice frozen in configs/frozen/frozen_deployment_v1.yaml
+# BEFORE these subsets are drawn. Nothing is tuned on E17 data (D-028).
+experiment: E17
+frozen_source: configs/frozen/frozen_deployment_v1.yaml
+worlds:                 # two fresh worlds; per-world split/tier-A seed = world seed
+  - {seed: 131, tag: e17a}
+  - {seed: 141, tag: e17b}
+subset:
+  n_total: 300000
+exclusions:             # provably disjoint from (D-020/D-028 rule 2):
+  seed101_subset: true                  # 300k, seed 101
+  e00_row_groups: [34, 65, 146, 184]    # E00 validation subsample source groups
+  e12_subset: true                      # 300k, seed 121
+  # worlds also verified disjoint from each other; all overlaps recorded = 0
+splits:
+  scheme: raw_row_v2
+  fractions: {train: 0.40, source_val: 0.15, nominal_test: 0.15, auditor_dev: 0.15, final_eval: 0.15}
+models:
+  tier_a: [qksvc, rbf_svc_8f, rbf_svc, xgboost, lightgbm]
+  tier_b: [xgboost]
+environments:           # registered compute-bounded subset (17 evaluations/world);
+  include:              # full 41-env landscape NOT run here (registry entry, protocol 3)
+    - nominal
+    - "tes=0.98"
+    - "combo3/seed11"
+    - "combo3/seed12"
+    - "combo3/seed13"
+    - "ttbar_scale=0.96"
+    - "ttbar_scale=0.98"
+    - "ttbar_scale=1.02"
+    - "ttbar_scale=1.04"
+    - "diboson_scale=0.5"
+    - "diboson_scale=0.75"
+    - "diboson_scale=1.25"
+    - "diboson_scale=1.5"
+    - "bkg_scale=0.998"
+    - "bkg_scale=0.999"
+    - "bkg_scale=1.001"
+    - "bkg_scale=1.002"
+nominal_diagnostic:     # E12-diagnostic bootstrap CIs on absolute levels
+  n_resamples: 1000
+  seed: 1701
+physics:                # D-015 estimator, frozen procedure, audit-model list
+  models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+  seed: 1712
+between_world:          # derived analysis over {seed-101, seed-121, e17a, e17b}
+  prior_worlds:
+    seed101: results/tables/E01_nominal.json
+    seed121: results/tables/E12_confirmatory.json
+  report_corrected_arm_a_band: true   # M6: 4-world std, dof=3, disclosed as crude

@@ -1,0 +1,20 @@
+# E11v3 — CMS ledger statistical hardening (registered in docs/experiment_registry.md)
+# Re-analysis of the archived E11v2 inputs only: frozen skims, frozen
+# hyperparameters, frozen SR/CR definitions. No re-ingestion, no new selection
+# choices. Closes the two disclosed M8 limitations: MC-side statistics in
+# CR intervals / C4 z, and the single-draw max-floor sensor rule.
+# Falsifier is BIDIRECTIONAL and frozen in the registry entry: the calibrated
+# test may weaken C3 (REFUTED -> UNRESOLVED, published) or confirm it.
+experiment: E11v3
+base_config: configs/experiments/E11v2.yaml
+claims: [C2_w_norm, C3_no_shift, C4_ss_qcd]
+mc_stat:
+  method: delta_sqrt_sum_w2   # per-process sqrt(sum w^2) on MC expected yields
+sensor_calibration:
+  n_null_draws: 200           # MC-vs-MC null (was 20 max-floor draws)
+  n_obs_draws: 20             # MC-vs-data observation draws (was 1)
+  n_permutations: 999         # pooled MC/data permutation test
+  seed: 1911
+  # estimand unchanged from v1/v2: unweighted row samples (comparability);
+  # the weighting caveat remains disclosed in the manuscript.
+alpha: 0.05

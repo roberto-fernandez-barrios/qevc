@@ -1,0 +1,28 @@
+# E19 — Fresh-world validity replication (registered in docs/experiment_registry.md)
+# Re-runs the frozen auditor protocols on the archived E12 deployment scores
+# (results/raw/E12_scores/ — archived OUTPUTS of the frozen deployment, not dev
+# data; reuse declared in D-028 rule 5 before execution). Labels/weights are
+# reconstructed deterministically from the archived E12 subset indices + frozen
+# environment grid; row_id alignment asserted per archive (E08 pattern).
+experiment: E19
+frozen_source: configs/frozen/frozen_deployment_v1.yaml
+scores_dir: results/raw/E12_scores
+world_source: configs/experiments/E12.yaml   # subset seed 121 + split recipe
+auditor:                # E05 v1.1 protocol, frozen claim grid (incl. adversarial δ)
+  models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+  n_max: 3000
+  audit_seeds: 20
+  seed_salt: "E19"
+weighted:               # E13 Part-B benchmark protocol, identical draws
+  source_config: configs/experiments/E13.yaml   # δ grid, n_max, w_max rule frozen there
+  seed_salt: "E19W"
+landscape:              # E06-style n* summary
+  n_max: 20000
+  audit_seeds: 20
+  seed_salt: "E19L"
+accounting:
+  # E12 corrected arm-(d) pattern: primary rate on non-vetoed false-claim
+  # streams; all-streams rate reported alongside (frozen I1 floor degenerates
+  # under CRN — disclosed, not hidden).
+  report_vetoed_and_nonvetoed: true
+alpha: 0.05

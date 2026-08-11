@@ -1,0 +1,35 @@
+# E08v2 — Independent-MC beliefs (registered in docs/experiment_registry.md)
+# Closes the D-015 deferral and the shared-simulation caveat: E08 computes
+# (s0, b0) and PE truth from the SAME nominal_test rows (run_e08.py:114-136);
+# E15 builds templates from those same rows (run_e15.py:83,107). This config
+# splits the analyst-side MC so beliefs/templates are row-independent of truth.
+experiment: E08v2
+frozen_source: configs/frozen/frozen_deployment_v1.yaml
+base_counting: configs/experiments/E08.yaml    # mu grid, PE count, SR procedure
+base_profile: configs/experiments/E15.yaml     # binning, anchors, D-023 protocol
+split:
+  role: nominal_test
+  halves: {belief: 0.5, truth: 0.5}
+  stratify_by: detailed_labels
+  seed_salt: "E08V2"
+counting:               # full frozen 41-env grid, three accountings
+  accountings:
+    - shared_truth_half        # (i) baseline re-derived on B_truth (halved stats)
+    - independent_naive        # (ii) beliefs from B_belief, pure-Poisson interval
+    - independent_bb           # (iii) + delta-method MC-stat term (sqrt(sum w^2),
+                               #     belief half; D-024 BB-lite logic on counting)
+  models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+  seed: 1812
+profile_spotcheck:      # registered bounded arm; templates from B_belief,
+  n_pe: 500             # PE truth yields from B_truth; D-023 otherwise frozen
+  cells:
+    - {env: "tes=0.98", model: xgboost}          # flagship
+    - {env: "ttbar_scale=1.04", model: xgboost}
+    - {env: "diboson_scale=0.5", model: rbf_svc}
+    - {env: nominal, model: qksvc}               # calibration checks
+    - {env: nominal, model: rbf_svc}
+    - {env: nominal, model: xgboost}
+  seed: 1815
+acceptance:             # falsifier arms frozen in the registry entry
+  gate_band: 0.02                 # (iii) nominal coverage within 0.6827 ± 0.02
+  flagship_coverage_below: 0.633  # (b) independent-template L2 flagship threshold

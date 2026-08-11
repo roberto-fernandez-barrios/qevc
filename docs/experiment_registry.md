@@ -1052,3 +1052,284 @@ entry.
   ignores MC-side error, and C3 rests on a single MC-vs-data sensor draw
   against a 20-draw MC-vs-MC floor (a ~1/21-level rule, as in v1).
   `data/README.md` Level II registration added (audit gap closed).
+
+---
+
+> **Extension campaign (D-028, 2026-08-11):** E17, E19, E08v2, E11v3
+> (mandatory) and E07v2, E13v2 (priority B — run only if the mandatory set
+> completes on schedule; falsifiers frozen now regardless). Rules: D-028.
+> Deferred-and-not-run items are dispositioned in D-028, not silently
+> dropped.
+
+## E17 — Additional confirmatory worlds (between-world variance)
+
+- **Question:** How large is the between-world (subset-draw) variance of
+  the paper's absolute physics-weighted metrics and of the norm-nuisance
+  coverage damage, and do the paired contrasts and degradation signs
+  replicate in additional independent worlds?
+- **Hypothesis:** paired contrasts (QK−XGB sign; QK−RBF8 level),
+  degradation signs (tes=0.98, combo3) and nominal physics calibration
+  replicate in every world; absolute weighted AUC varies at the ±0.05
+  scale the E12 diagnostic inferred from the heavy-tailed-weight mechanism
+  (htautau ESS ratio ≈ 0.005); norm-nuisance coverage collapse tracks each
+  world's SR composition (b₀), per the corrected E12 arm-(e) reading.
+- **Estimand(s):** identical to E01/E02R/E08/E12 definitions. New derived
+  quantity: between-world standard deviations over the four worlds
+  {seed-101, seed-121, seed-131, seed-141} of (i) absolute weighted and
+  unweighted tier-A AUC per model, (ii) the paired contrasts, (iii)
+  per-norm-env coverage, alongside each world's SR composition (s₀, b₀).
+  This supplies the between-subset variance component that post-audit M6
+  found missing from E12's arm-(a) threshold.
+- **Information set:** as in the source experiments; nothing new.
+- **Status of this evidence (declared):** post-development confirmatory
+  evidence, as E12; every analysis choice is frozen
+  (`configs/frozen/frozen_deployment_v1.yaml`) and predates the draws.
+- **Protocol:**
+  1. Draw two fresh 300k stratified subsets (seeds 131, 141) from the
+     verified complement of ALL archived index sets (seed-101 subset, E00
+     row groups, E12 subset); archive indices + SHA-256; record
+     intersection = 0 against every prior archive and against each other
+     in the E17 table itself. Fresh five-role partitions per world;
+     `final_eval` sealed and never read (D-028 rule 3).
+  2. Frozen deployment only; nothing tuned, selected or thresholded on
+     E17 data.
+  3. Per world, the registered compute-bounded evaluation subset:
+     tier-A nominal (frozen model list) with weighted + unweighted AUC and
+     the E12-diagnostic bootstrap CIs; environments {nominal, tes=0.98,
+     combo3 (3 seeds), ttbar_scale ×4, diboson_scale ×4, bkg_scale ×4}
+     (17 evaluations); E08 counting inference (frozen D-015 SR procedure,
+     audit-model list) on those environments. The full 41-env landscape,
+     geometry and auditor arms are NOT run here (E19 covers auditor
+     validity; E04v3 already validated the sensor across two worlds).
+  4. Derived analysis: between-world tables per estimand; corrected
+     arm-(a)-style consistency band including the between-world component
+     (four worlds, dof = 3, disclosed as a crude but honest estimate);
+     norm-env coverage vs SR-composition (b₀) characterization.
+- **Falsifier (frozen):** (a) paired QK−XGB > 0 in any world → the
+  nominal-ordering replication is world-fragile → manuscript claim
+  weakened accordingly; (b) tes=0.98 ΔAUC(QK) < 0 or combo3 mean
+  ΔAUC(QK) < 0 in any world → the degradation-sign replication is
+  downgraded to draw-dependent; (c) between-world std of absolute
+  weighted AUC > 0.10 (double the E12-inferred scale) → the heavy-tailed
+  weight mechanism is an insufficient explanation → investigated and
+  reported before manuscript integration. Predeclared *reporting rule*
+  (not a falsifier): between-world std ≤ 0.02 → the manuscript's ±0.05
+  caution is replaced by the measured bound; > 0.02 → the caution is
+  confirmed as a quantified finding. Both branches are publishable and
+  will be published.
+- **Acceptance criterion:** both worlds drawn with clean disjointness
+  proofs; all registered evaluations complete; between-world table
+  published regardless of outcome.
+- **Expected outputs:** `results/tables/E17_worlds.json` (+ index
+  archives under `data/processed/used_rows/`, split files, manifests).
+- **Status:** specified (2026-08-11) — config
+  `configs/experiments/E17.yaml`.
+
+## E19 — Fresh-world validity replication (archived E12 scores)
+
+- **Question:** Do the auditor's validity guarantees (false certification
+  ≤ α, fail-closed behavior) and the weighted-certification results
+  replicate in the confirmatory world, using the archived E12 deployment
+  scores?
+- **Hypothesis:** empirical false certification ≤ α in the fresh world for
+  both the unweighted (D-014) and weighted (D-019) estimand families;
+  n* structure consistent with the E05/E06/E13 landscapes.
+- **Estimand(s):** D-014 unweighted correctness claims (E05 v1.1 grid,
+  including the adversarial δ arm) and D-019 weighted claims (E13 Part-B
+  grid), on E12-world streams. No new estimand.
+- **Information set:** I2(n). I1 veto handling: E12's frozen floor
+  degenerates under CRN (24/41 envs vetoed); as in E12's corrected arm-(d)
+  accounting, the primary rate uses non-vetoed false-claim streams and the
+  all-streams rate is reported alongside.
+- **Protocol:** reconstruct per-environment labels and weights
+  deterministically from the archived E12 subset indices + the frozen
+  environment grid, with row_id alignment asserted against each
+  `results/raw/E12_scores/*.npz` archive (E08's alignment pattern);
+  scores from the archives (D-028 rule 5 — archived outputs of the frozen
+  deployment, not development data); run (i) the frozen E05 v1.1 auditor
+  protocol (α = 0.05, n_max = 3,000, 20 audit seeds, seed salt "E19"),
+  (ii) the E13 Part-B weighted-vs-unweighted benchmark on identical
+  draws (frozen w_max rule; seed salt "E19W"), and (iii) an E06-style n*
+  landscape summary at n_max = 20,000 (salt "E19L"), all over the 41
+  archived environments × the four audit models.
+- **Falsifier (frozen):** empirical false certification > α + 3σ binomial
+  in the fresh world — in either estimand family, on the honest
+  non-vetoed denominator — falsifies the validity-replication claim: the
+  finding is registered, §6.4's validity claims are re-scoped to the
+  development world, and the discrepancy is investigated before
+  submission. (Validity is expected to replicate because the guarantee is
+  distribution-free; a failure would indicate an implementation or
+  stream-construction error, which is exactly what this experiment is
+  able to catch.)
+- **Acceptance criterion:** complete verdict/n* tables for both estimand
+  families; explicit comparison rows against the E05/E06/E13 numbers.
+- **Expected outputs:** `results/tables/E19_fresh_world_validity.json`
+  + manifest.
+- **Status:** specified (2026-08-11) — config
+  `configs/experiments/E19.yaml`.
+
+## E08v2 — Independent-MC beliefs (counting + profile templates)
+
+- **Question:** Do the physics-inference results survive when the
+  deployment's beliefs — counting expectations (s₀, b₀) and profile
+  templates — come from MC statistically independent of the
+  pseudo-experiment truth, closing the D-015 deferral and the
+  "shared-simulation construction" caveat (E15/manuscript §9)?
+- **Hypothesis:** nominal coverage stays ≈ 0.6827 once the belief-side
+  MC-statistical uncertainty is propagated (Barlow–Beeston-style term);
+  the naive shared-MC construction overstates calibration by an amount
+  this experiment measures; decoupling cells persist under independent
+  beliefs; the flagship L2 restoration survives independent templates.
+- **Estimand(s):** D-015 counting estimator and D-023 L2 profile
+  likelihood, with beliefs/templates rebuilt from an independent MC
+  split. Verified fact motivating this entry: E08 computes (s₀, b₀) and
+  the PE truth from the SAME `nominal_test` rows
+  (`run_e08.py:114–136`), and E15 builds its templates from those same
+  rows (`run_e15.py:83,107`) — the sharing is literal, row-level.
+- **Information set:** unchanged (the split concerns analyst-side MC
+  only).
+- **Protocol:**
+  1. Seeded stratified half-split of the `nominal_test` role rows (salt
+     "E08V2"): belief half B_belief and truth half B_truth; per-process
+     lumi rescale factors computed on each half separately (unbiased
+     expectations at doubled MC-stat).
+  2. Counting arm over the full frozen 41-env grid × audit models × μ
+     grid: three accountings — (i) shared-MC baseline re-derived entirely
+     on B_truth (calibration reference at halved statistics), (ii)
+     independent-naive: beliefs from B_belief, pure-Poisson interval as
+     D-015, (iii) independent-corrected: as (ii) with a delta-method
+     MC-stat term from per-process √(Σw²) of the belief half added to
+     the interval variance (the E14/D-024 Barlow–Beeston-lite logic
+     applied to the counting estimator).
+  3. Profile arm (registered, bounded): E15-L2 spot-check cells
+     {tes=0.98 × A:xgboost (flagship); ttbar_scale=1.04 × A:xgboost;
+     diboson_scale=0.5 × A:rbf_svc; nominal × each gated model} with
+     templates rebuilt from B_belief while PE truth yields come from
+     B_truth; 500 PEs per cell; D-023 protocol otherwise frozen.
+- **Falsifier (frozen):** (a) accounting (iii) nominal-env coverage
+  outside 0.6827 ± 0.02 (the E15 gate band) for ≥ 2 gated models → the
+  corrected estimator implementation is invalid → blocked until fixed
+  and re-registered; (b) flagship tes=0.98 × A:xgboost L2 coverage with
+  independent templates < 0.633 → "profiling restores validity" is
+  downgraded to shared-simulation-conditional and §6.7 revised. The
+  *expected* coverage dip of accounting (ii) relative to (i) is a
+  finding (the measured price of ignoring belief-side MC-stat), not a
+  falsifier. All outcomes published.
+- **Acceptance criterion:** all three counting accountings + the profile
+  spot-check complete; explicit shared-vs-independent comparison table.
+- **Expected outputs:** `results/tables/E08v2_independent_mc.json`
+  + manifest.
+- **Status:** specified (2026-08-11) — config
+  `configs/experiments/E08v2.yaml`.
+
+## E11v3 — CMS ledger statistical hardening
+
+- **Question:** Do the CMS ledger verdicts survive when (i) CR intervals
+  and the C4 z-score include MC-side statistical uncertainty and (ii) the
+  sensor verdict rests on a calibrated test instead of a max-floor rule
+  on a single draw — closing the two disclosed M8 limitations without new
+  data?
+- **Hypothesis:** C2/C4 stable (the audit argued their margins dwarf
+  MC-stat); C3's shift detection survives calibration (observed MMD² was
+  2.5–2.6× the 20-draw floor max in v1/v2 — suggestive, but exactly what
+  the calibrated test decides).
+- **Estimand(s):** C2 data/MC ratio with an MC-stat-propagated interval
+  (per-process √(Σw²) on the MC expected yield, delta method); C4 excess
+  z-score including MC-side error; C3 as calibrated evidence: (a)
+  null-calibrated p-value from ≥ 200 MC-vs-MC draws, (b) permutation test
+  (≥ 999 permutations) pooling the drawn MC and data samples, (c) 20
+  MC-vs-data observation draws reported (closing the single-draw caveat).
+  The sensor stays on unweighted row samples — identical estimand to
+  v1/v2 for comparability; the weighting caveat remains disclosed.
+- **Information set:** unchanged (I1 + CR aggregates).
+- **Protocol:** re-analysis of the archived E11v2 inputs (frozen skims,
+  frozen hyperparameters, frozen SR/CR definitions); no re-ingestion, no
+  new selection choices; kernel machinery and BB-lite variance logic
+  reused from `src/qevc/` (D-024).
+- **Falsifier (frozen, bidirectional — both directions accepted in
+  writing before the run):** (a) calibrated C3 p-value > α = 0.05 under
+  either calibration → the ledger's C3 REFUTED verdict is corrected to
+  UNRESOLVED and published as the fail-closed framework self-correcting
+  on real data; p ≤ α under both → REFUTED stands on calibrated grounds;
+  (b) C2's MC-stat-widened interval crossing the 30% tolerance boundary,
+  or corrected C4 z < 5 → the affected verdict is corrected and
+  published. Any verdict change triggers §8 manuscript revision — that
+  consequence is accepted now, not negotiated after the numbers exist.
+- **Acceptance criterion:** ledger v3 table with per-claim v1/v2/v3
+  comparison rows.
+- **Expected outputs:** `results/tables/E11v3_cms_stats.json` + manifest.
+- **Status:** specified (2026-08-11) — config
+  `configs/experiments/E11v3.yaml`.
+
+## E07v2 — Principled active acquisition (priority B)
+
+- **Question:** Do principled adaptive estimators — LURE-style control
+  variates; stratified without-replacement sampling — reduce n* below
+  uniform where naive uncertainty-mixture importance sampling failed
+  (E07, ratio 1.55), while preserving anytime validity?
+- **Hypothesis:** exploratory. E07's mechanism analysis (the ×2
+  importance-weight range halves effective margins) predicts that
+  stratified WoR *without* importance reweighting is the stronger
+  candidate; LURE-style corrections test whether variance reduction can
+  outrun the margin cost.
+- **Estimand(s):** D-014 claims on the E07 grid; per-strategy n* ratio vs
+  uniform on jointly resolved cells; empirical Type-I per strategy.
+- **Information set:** I2(n) with adaptive acquisition.
+- **Protocol:** implement the estimators in `src/qevc/acquisition/`
+  (library code + tests, not runner-local); WoR streams use a
+  WoR-valid empirical-Bernstein confidence sequence (Waudby-Smith &
+  Ramdas finite-population form), not the IID CS; benchmark on the E07
+  configuration (claim grid, 41 environments, 4 audit models,
+  n_max = 20,000, 20 replications, salt "E07V2") paired against uniform
+  on identical claim cells.
+- **Falsifier (frozen, two-sided):** validity arm — any strategy with
+  empirical Type-I > α + 3σ binomial is invalid and excluded from
+  efficiency claims (and reported as such). Efficiency arm — best valid
+  v2 strategy's median n* ratio vs uniform ≥ 1 over jointly resolved
+  cells → the E07 negative *closes* ("simple random labeling is
+  near-optimal" upgraded from 'under the tested conditions' to cover
+  principled alternatives); ratio < 1 → the E07 negative is re-scoped to
+  naive importance sampling. Both outcomes are publishable; placement is
+  the supplement by default (D-028), promoted to the main text only if
+  the outcome is methodologically decisive in either direction. The
+  abstract does not branch on this experiment.
+- **Acceptance criterion:** validity table + paired n* table for every
+  implemented strategy; comparison row against E07.
+- **Expected outputs:** `results/tables/E07v2_active.json` + manifest;
+  new module + tests.
+- **Status:** specified (2026-08-11) — priority B; runs only if the
+  mandatory extension set completes on schedule (D-028). Falsifier frozen
+  now, before any implementation work.
+
+## E13v2 — BA_w pre-split component allocation (priority B)
+
+- **Question:** Does a sharper pre-split component allocation make BA_w
+  claims resolvable at physics margins, where the ratio-CS component
+  bound was measured vacuous (radius ≈ 0.28 in BA units at
+  n_max = 5,000; post-audit H3)?
+- **Hypothesis:** allocating α and the label budget to the TPR_w/TNR_w
+  components ahead of time — each certified through its own sharp
+  one-sample reduction on class-conditional streams — tightens the BA_w
+  bound by a factor large enough to matter, or demonstrably cannot.
+- **Estimand(s):** BA_w = (TPR_w + TNR_w)/2 via pre-split component
+  claims; unchanged component estimands (D-019).
+- **Information set:** I2(n).
+- **Protocol:** derive the allocation rule (written before
+  implementation, appended to `docs/weighted_certification_spec.md`);
+  implement in `src/qevc/statistics/weighted.py` + tests; re-run ONLY the
+  BA_w block of the E13 MC validation battery (n_max = 5,000, same
+  margins 0.02–0.05, salt "E13V2"); no benchmark re-run unless the
+  battery resolves claims.
+- **Falsifier (frozen):** (a) validity — any battery cell with false
+  certification > α + 3σ MC slack invalidates the allocation and blocks
+  it; (b) if the sharpened bound still leaves ALL true BA_w claims at
+  margins 0.02–0.05 UNRESOLVED at n_max = 5,000 → the BA_w path is
+  published as quantitatively impractical at physics weight dispersion —
+  the current manuscript limitation upgraded to a measured impossibility
+  at these scales. Both outcomes publishable.
+- **Acceptance criterion:** battery table with per-margin resolution
+  rates; spec appendix with the allocation derivation.
+- **Expected outputs:** `results/tables/E13v2_baw_allocation.json`
+  + manifest; spec amendment.
+- **Status:** specified (2026-08-11) — priority B (D-028). Falsifier
+  frozen now, before any implementation work.
