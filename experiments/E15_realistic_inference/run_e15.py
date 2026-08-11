@@ -33,6 +33,7 @@ sys.path.insert(0, str(REPO / "src"))
 
 from qevc.data.fair_universe_loader import FairUniverseLoader  # noqa: E402
 from qevc.inference.profile_likelihood import (  # noqa: E402
+    NORM_SIGMA,
     ProfileLikelihood,
     TemplateSet,
     score_bin_edges,
@@ -153,7 +154,6 @@ def run_cell(templates: TemplateSet, profile_shapes, profile_norms,
     """One (env, model, mu, level) cell. D-023 amendment 2: each PE draws
     the auxiliary constraint centers around the environment's TRUE nuisance
     values (unconditional ensemble)."""
-    from qevc.inference.profile_likelihood import NORM_SIGMA  # noqa: PLC0415
     pl = ProfileLikelihood(templates, profile_shapes, profile_norms)
     rng = np.random.default_rng(seed)
     lam = mu_true * s_true + b_true

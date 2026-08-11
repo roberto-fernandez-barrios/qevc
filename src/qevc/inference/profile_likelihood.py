@@ -101,7 +101,7 @@ class TemplateSet:
         if nuisance == "soft_met":  # piecewise linear on the GeV grid incl. 0
             xs = np.array(sorted(anchors))
             grid = np.concatenate(([0.0], xs))
-            a = float(np.clip(alpha, *SOFTMET_BOUND))
+            a = min(max(float(alpha), SOFTMET_BOUND[0]), SOFTMET_BOUND[1])
             deltas = np.vstack([np.zeros(self.n_bins)]
                                + [anchors[x][proc] - nom for x in xs])
             out = np.empty(self.n_bins)
@@ -115,7 +115,7 @@ class TemplateSet:
             nom if 2.0 in anchors else np.zeros(self.n_bins))
         d_m2 = anchors.get(-2.0, {}).get(proc, 2.0 * d_m1) - (
             nom if -2.0 in anchors else np.zeros(self.n_bins))
-        a = float(np.clip(alpha, -TESJES_ALPHA_BOUND, TESJES_ALPHA_BOUND))
+        a = min(max(float(alpha), -TESJES_ALPHA_BOUND), TESJES_ALPHA_BOUND)
         if abs(a) <= 1.0:
             return a * (d_p1 - d_m1) / 2.0 + a * a * (d_p1 + d_m1) / 2.0
         if a > 1.0:
