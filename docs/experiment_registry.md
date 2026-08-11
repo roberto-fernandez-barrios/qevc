@@ -938,4 +938,16 @@ entry.
   mirror-vs-full comparison row per claim.
 - **Expected outputs:** `results/tables/E11v2_cms_full.json` + manifest;
   updated `data/README.md`.
-- **Status:** specified (2026-08-11).
+- **Status:** **complete (2026-08-11) — ledger stable mirror→full; both
+  falsifiers clear.** With the full Run2012B+C files (126,164 selected
+  collision events, ×10 the mirror; MC frozen, re-weighted to
+  L = 11,467 pb⁻¹ per D-026):
+  | Claim | v1 (mirror) | v2 (full) |
+  |---|---|---|
+  | C1 event accuracy | UNRESOLVED | **UNRESOLVED** (by construction — more data cannot change this, which is the point) |
+  | C2 W norm ≤30% | SUPPORTED, 0.922 [0.885, 0.961] | **SUPPORTED, 0.9495 [0.937, 0.962]** (3× tighter; consistent with v1) |
+  | C3 no shift at floor | REFUTED (2.6× floor) | **REFUTED (2.5× floor)** — the sim-to-real shift is not a mirror artifact |
+  | C4 SS QCD excess | SUPPORTED, z = 18.6 | **SUPPORTED, z = 59.4** |
+  The mirror-based conclusions were not sample-fragile; the C2 interval
+  narrows exactly as √N predicts and stays inside the v1 interval.
+  `data/README.md` Level II registration added (audit gap closed).
