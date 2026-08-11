@@ -268,13 +268,20 @@ def part_b() -> dict:
     flips = {"verdict_pairs": {}, "n_star_ratios": []}
     per_env: dict = {}
 
+    w0_all = raw["weights"].to_numpy()
     for env_name, env in env_list:
         te = build_environment_dataset(raw, env, row_ids=test_ids)
         npz = np.load(SCORES_DIR / f"{env_name.replace('/', '_').replace('=', '_')}.npz")
-        if not np.array_equal(npz["row_id"], te["row_id"].to_numpy()):
+        rid = te["row_id"].to_numpy()
+        if not np.array_equal(npz["row_id"], rid):
             raise RuntimeError(f"row alignment mismatch in {env_name}")
-        w_env = te["weights"].to_numpy()          # NOMINAL per-event weights
-        y_env = labels_raw[te["row_id"].to_numpy()]
+        # NOMINAL weights of the surviving rows (audit C1 fix, 2026-08-11):
+        # build_environment_dataset applies norm scalings to te["weights"],
+        # so the environment frame's weights are w(theta), NOT the nominal
+        # weights the oracle reveals. Index the raw subset instead (as E14
+        # does). First-run table preserved as *_v1_theta_weights.json.
+        w_env = w0_all[rid]
+        y_env = labels_raw[rid]
         ess = effective_sample_size_ratio(w_env)
         per_env[env_name] = {"ess_ratio": round(ess, 4), "models": {}}
         for key in bm["models"]:

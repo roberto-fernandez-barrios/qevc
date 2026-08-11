@@ -184,7 +184,13 @@ class ProfileLikelihood:
         no constraint term (flat on [0,5])."""
         mu, shape_alphas, norm_scales = self._unpack(x)
         lam = self.t.expected(mu, shape_alphas, norm_scales)
-        val = float(np.sum(lam - n_obs * np.log(lam)))
+        # Saturated-model deviance form: identical minimizer and q(mu) as the
+        # raw Poisson nll (differs by a constant in the parameters) but O(10)
+        # magnitude, so L-BFGS-B's RELATIVE ftol has absolute meaning — the
+        # raw form (~1e7) made the optimizer stop ~0.02 above the optimum,
+        # flattening profiles (found via the E15 calibration gate).
+        n_safe = np.maximum(n_obs, 1e-12)
+        val = float(np.sum(lam - n_obs + n_obs * np.log(n_safe / lam)))
         for s in self.shapes:
             if s in ("tes", "jes"):
                 a0 = 0.0 if aux is None else float(aux.get(s, 0.0))
@@ -218,7 +224,9 @@ class ProfileLikelihood:
             x0[0] = fix_mu
             bounds = [(fix_mu, fix_mu)] + bounds[1:]
         res = optimize.minimize(self.nll, x0, args=(n_obs, aux),
-                                method="L-BFGS-B", bounds=bounds)
+                                method="L-BFGS-B", bounds=bounds,
+                                options={"ftol": 1e-12, "gtol": 1e-9,
+                                         "maxiter": 2000, "maxfun": 20000})
         return res
 
     def fit(self, n_obs: np.ndarray, z: float = 1.0,
@@ -236,15 +244,25 @@ class ProfileLikelihood:
             best = alt
         mu_hat, nll_hat = float(best.x[0]), float(best.fun)
         q_target = z * z
+        # Monotone safeguard: if any fixed-mu fit ever lands below the
+        # "global" minimum, refit globally from that point (guards against
+        # residual local-minimum escapes; q(mu) must never be negative).
+        state = {"nll_hat": nll_hat, "mu_hat": mu_hat, "x_hat": best.x}
 
         def q(mu_val, x_warm):
             r = self._minimize(n_obs, mu_bounds, fix_mu=mu_val, x0=x_warm,
                                aux=aux)
-            return 2.0 * (float(r.fun) - nll_hat), r.x
+            if float(r.fun) < state["nll_hat"] - 1e-9:
+                g = self._minimize(n_obs, mu_bounds, x0=r.x, aux=aux)
+                if float(g.fun) < state["nll_hat"]:
+                    state["nll_hat"] = float(g.fun)
+                    state["mu_hat"] = float(g.x[0])
+                    state["x_hat"] = g.x
+            return 2.0 * max(float(r.fun) - state["nll_hat"], 0.0), r.x
 
         def endpoint(direction: int) -> float:
             step = 0.25
-            mu_a, x_warm = mu_hat, best.x
+            mu_a, x_warm = state["mu_hat"], state["x_hat"]
             q_a = 0.0
             for _ in range(60):
                 mu_b = mu_a + direction * step
@@ -272,7 +290,14 @@ class ProfileLikelihood:
 
         lo = endpoint(-1)
         hi = endpoint(+1)
-        _mu, shape_alphas, norm_scales = self._unpack(best.x)
-        return FitResult(mu_hat=mu_hat, nll_hat=nll_hat, interval=(lo, hi),
+        # if the safeguard found a better global minimum during the scans,
+        # the endpoints were computed against a stale reference: redo once.
+        if state["nll_hat"] < nll_hat - 1e-6:
+            nll_hat, mu_hat = state["nll_hat"], state["mu_hat"]
+            lo = endpoint(-1)
+            hi = endpoint(+1)
+        _mu, shape_alphas, norm_scales = self._unpack(state["x_hat"])
+        return FitResult(mu_hat=state["mu_hat"], nll_hat=state["nll_hat"],
+                         interval=(lo, hi),
                          nuisance_hat={**shape_alphas, **norm_scales},
                          converged=bool(best.success))

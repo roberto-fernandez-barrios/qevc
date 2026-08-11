@@ -395,6 +395,19 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   The gate is re-run after the fix; shifted environments are interpreted
   only if it passes. First-run output not retained as a results table
   (the run was aborted mid-grid at the gate failure, by design).
+- **Amendment 3 (2026-08-11, second gate failure — numerical, found by
+  q-scan diagnosis):** the raw Poisson nll has magnitude ~10⁷, so
+  L-BFGS-B's *relative* ftol (2.2·10⁻⁹) terminated ~0.02 above the true
+  minimum: profiles came out artificially flat (q(μ) even negative), μ̂
+  frozen near its starting point, intervals ~×40 too wide, coverage → 1.
+  Fixes: (i) saturated-model deviance form of the nll (identical q(μ),
+  O(10) magnitude); (ii) explicit ftol=10⁻¹², gtol=10⁻⁹; (iii) monotone
+  global-minimum safeguard during endpoint scans (q clamped ≥ 0, endpoints
+  recomputed once if the reference improves). Post-fix diagnosis on real
+  templates: q(μ) smooth and non-negative, σ(μ̂) ≈ 1.06 consistent with
+  interval half-widths — the profiled-systematics inflation of μ (vs
+  σ_stat ≈ 0.45) is genuine physics at s/b ≤ 0.7% per bin, and is itself
+  an E15 finding (the price of validity).
 
 ## D-024 — Information set I3: definition and evidence channels (E14)
 
