@@ -1,0 +1,51 @@
+{
+  "experiment": "E15",
+  "calibration_gate": {
+    "A:qksvc": {
+      "coverage_mean": 0.6821,
+      "per_mu": [
+        0.6765,
+        0.7015,
+        0.6705,
+        0.683,
+        0.679
+      ],
+      "pass": true
+    },
+    "A:rbf_svc": {
+      "coverage_mean": 0.6799,
+      "per_mu": [
+        0.681,
+        0.696,
+        0.685,
+        0.6685,
+        0.669
+      ],
+      "pass": true
+    },
+    "A:xgboost": {
+      "coverage_mean": 0.6581,
+      "per_mu": [
+        0.665,
+        0.6555,
+        0.6575,
+        0.648,
+        0.6645
+      ],
+      "pass": true
+    },
+    "B:xgboost": {
+      "coverage_mean": 0.7167,
+      "per_mu": [
+        0.72,
+        0.715,
+        0.726,
+        0.719,
+        0.7035
+      ],
+      "pass": false
+    }
+  },
+  "gate_all_pass": false,
+  "note": "gate failed; grid not run (registry falsifier)"
+}

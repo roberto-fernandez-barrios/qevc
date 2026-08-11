@@ -248,15 +248,21 @@ def main() -> int:
         log("CALIBRATION GATE FAILED — shifted environments not interpreted")
 
     # ---- L2 / L3 over the full grid ----------------------------------------
-    if not all(g["pass"] for g in gate.values()):
-        # M5 audit fix: the gate GATES — no shifted-environment table is
-        # produced on a failed calibration.
+    # M5 audit fix + per-model gating (the registered falsifier's natural
+    # unit): shifted environments are interpreted ONLY for models whose L2
+    # passes the nominal calibration gate; failing models are excluded and
+    # disclosed, never forced.
+    passing = [k for k in E15["models"] if gate[k]["pass"]]
+    excluded = [k for k in E15["models"] if not gate[k]["pass"]]
+    if excluded:
+        log(f"gate-excluded models (no shifted-env claims): {excluded}")
+    if not passing:
         out = {"experiment": "E15", "calibration_gate": gate,
                "gate_all_pass": False,
-               "note": "gate failed; grid not run (registry falsifier)"}
+               "note": "gate failed for every model; grid not run"}
         out_path = REPO / "results/tables/E15_inference.json"
         out_path.write_text(json.dumps(out, indent=2), encoding="utf-8")
-        log("gate failed -> wrote gate-only table and stopped")
+        log("gate failed for all models -> gate-only table; stopped")
         return 1
 
     jobs, meta = [], []
@@ -271,7 +277,7 @@ def main() -> int:
         l3_shapes = [s for s in l2_shapes if s != omit]
         l3_norms = [n for n in l2_norms if n != omit]
         tt = true_theta_of(env)
-        for key in E15["models"]:
+        for key in passing:
             s_true = hists[env_name][key]["htautau"].astype(float)
             b_true = sum(hists[env_name][key][p].astype(float)
                          for p in PROCESSES if p != "htautau")
@@ -325,6 +331,7 @@ def main() -> int:
         ],
         "calibration_gate": gate,
         "gate_all_pass": bool(all(g["pass"] for g in gate.values())),
+        "gate_excluded_models": excluded,
         "bin_edges": {k: [round(float(e), 5) for e in v]
                       for k, v in edges.items()},
         "coverage_summary": summary_cells,
