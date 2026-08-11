@@ -154,8 +154,34 @@ design discipline and expected failure modes (concentration under shift).
 - **Verification status (2026-08-10): all 12 previously-flagged arXiv IDs
   verified correct; venue data recorded in the sweep log.**
 
+## Pre-submission re-sweep (2026-08-11; spec §31)
+
+Four targeted searches (QML×HEP×shift; anytime-valid certification under
+deployment shift; FAIR Universe quantum entries; nuisance-aware classifier
+validity in HEP). **No new work combines the paper's axes; the four
+differentiators stand.** Adjacent items to cite-and-differentiate at the
+bibliography stage:
+
+- arXiv:2512.07074 (Profile OmniFold — ML unfolding with nuisance
+  parameters, CMS case studies): cluster D; nuisance-aware *measurement*,
+  no claim certification, no information-set conditioning, no QML.
+- arXiv:2602.22248 (ML-HEQUPP review — ML on heterogeneous/edge/quantum
+  hardware for particle physics): cluster A context; survey, no validity
+  framework.
+- arXiv:2606.11949 (online shift detection + conformal adaptation):
+  cluster E; monitoring/adaptation, not fail-closed claim certification,
+  no physics inference, no label-budget n*.
+- arXiv:2606.14028 (anytime-valid confirmation of label-shift
+  corrections): cluster E; nearest in statistical machinery, but
+  label-shift-specific, no information-set hierarchy, no collider
+  systematics, no downstream inference validity.
+- FAIR Universe challenge results paper (arXiv:2509.22247) confirms the
+  leaderboard remains free of quantum entries — gap statement #2
+  unchanged.
+
 ## Gate 0 verdict
 
 **GO.** The combination remains materially underexplored on every pairing that
 defines the contribution; the paper does not rely on quantum advantage and
-survives all four alternative outcomes of spec §37.
+survives all four alternative outcomes of spec §37. Re-confirmed by the
+2026-08-11 pre-submission sweep above.
