@@ -1,0 +1,36 @@
+# E15 — Realistic physics inference (registered in docs/experiment_registry.md)
+# Inference levels per D-023 (+ dated amendment): L1 = E08 counting table
+# (reused, not re-run); L2 = full profile likelihood; L3 = predeclared
+# misspecified profile (omit the actually-shifted family).
+experiment: E15
+inherits: [E01, E02, E08]
+models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+binning:
+  n_bins: 10
+  b_floor: 25.0            # rescaled background events per bin, on source_val
+mu_true_grid: [0.5, 1.0, 1.5, 2.0, 3.0]
+pseudo_experiments:
+  l2_l3: 500               # D-023 amendment (i)
+  calibration_gate: 2000   # nominal-environment L2 gate
+ci_z: 1.0                  # 68.27% interval via q(mu) <= z^2
+seed_salt: "E15"
+anchors:
+  tes: {0.98: -2.0, 0.99: -1.0, 1.01: 1.0, 1.02: 2.0}   # env -> alpha (sigma)
+  jes: {0.98: -2.0, 0.99: -1.0, 1.01: 1.0, 1.02: 2.0}
+  soft_met: [1.0, 2.0, 3.0, 5.0]   # GeV anchors; seed replicates averaged
+profile:
+  l2_shapes: [tes, jes, soft_met]
+  l2_norms: [ttbar_scale, diboson_scale, bkg_scale]
+  # L3: omit the actually-shifted family (D-023 amendment iii)
+  l3_omit_by_family:
+    tes: tes
+    jes: jes
+    soft_met: soft_met
+    combo: soft_met
+    ttbar_scale: ttbar_scale
+    diboson_scale: diboson_scale
+    bkg_scale: bkg_scale
+    nominal: soft_met
+calibration_gate:
+  target: 0.6827
+  tolerance: 0.02          # + 3-sigma MC term in quadrature (D-023 amendment i)

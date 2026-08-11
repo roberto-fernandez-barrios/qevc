@@ -368,6 +368,20 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   misspecification surface), pyhf/HistFactory dependency (declined:
   scipy-based implementation keeps the morphing explicit and testable).
 - **Status:** adopted.
+- **Amendment (2026-08-11, before any E15 run):** (i) pseudo-experiment
+  counts: L1 keeps E08's 2000 (its table is reused as the baseline, not
+  re-run); L2/L3 use 500 PEs per (env, model, μ) — coverage precision
+  ±2.2% amply resolves the effects of interest (0.68 vs collapse) at 4×
+  less compute; the L2 nominal calibration gate stays at 2000 PEs with its
+  0.6827 ± 0.02 criterion widened by the MC term in quadrature.
+  (ii) soft_met's official LogNormal(0,1) prior has no density at the
+  nominal soft_met = 0 (support s > 0): soft_met is profiled as a bounded
+  free parameter in [0, 5] with NO constraint term (flat prior) —
+  conservative (wider intervals), pathology-free, documented.
+  (iii) L3's omitted family per environment is predeclared in E15.yaml:
+  the actually-shifted family for single-nuisance environments; soft_met
+  for the combo environments; the shifted norm scale for weight-only
+  environments.
 
 ## D-024 — Information set I3: definition and evidence channels (E14)
 
