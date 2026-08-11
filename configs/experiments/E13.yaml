@@ -1,0 +1,31 @@
+# E13 — Weighted anytime-valid certification (registered in docs/experiment_registry.md)
+# Estimands and guarantees per docs/weighted_certification_spec.md (D-019).
+# Development uses ONLY synthetic populations and the seed-101 archives —
+# never E12 rows (campaign quarantine rule).
+experiment: E13
+w_max:
+  kappa_norm: 2.05      # compound clip bound (spec §3.4, amended 2026-08-11)
+  # base = max per-event D-010-rescaled weight in the seed-101 subset at
+  # nominal; per-process constancy verified and recorded in-run.
+monte_carlo:            # Part A — validation battery (spec §5)
+  profiles: [uniform, benchmark, heavy]
+  a_w_levels: [0.72, 0.90]
+  margins: [-0.05, -0.02, -0.01, -0.005, -0.002, 0.002, 0.005, 0.01, 0.02, 0.05]
+  n_rep: 400
+  n_max: 5000
+  population_n: 50000
+  coverage_a_w: [0.55, 0.72, 0.85, 0.95]
+  coverage_n_rep: 400
+  seed_salt: "E13MC"
+benchmark:              # Part B — seed-101 archives, weighted vs unweighted
+  models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+  deltas: [-0.01, -0.005, 0.0, 0.02, 0.05, 0.10]   # frozen E05 v1.1 grid
+  class_conditional_deltas: [0.02, 0.05]           # TPR_w / TNR_w claims
+  alpha: 0.05
+  n_max: 3000
+  audit_seeds: 20
+  seed_salt: "E13"
+  # Estimand note (D-019 §4): every environment is audited with NOMINAL
+  # per-event weights (the oracle cannot know theta_norm). For feature-shift
+  # environments this is the true weighted estimand; for weight-only
+  # environments the true-weight gap is E14's demonstration.

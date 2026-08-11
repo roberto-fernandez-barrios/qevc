@@ -134,10 +134,14 @@ bound on the increments. We set
     w_max = (max over processes of the D-010-rescaled per-event weight
              in the audited subset at nominal)  ×  κ_norm,
 
-with κ_norm = 2.0, the largest official normalization clip factor
-(diboson_scale ∈ [0, 2]; ttbar ∈ [0.8, 1.2]; bkg ∈ [0.99, 1.01]) — so w_max
+with κ_norm = 2.05 — covering the largest *compound* per-event scale under
+the official clip ranges: a diboson event receives diboson_scale × bkg_scale
+≤ 2.0 × 1.01 = 2.02 (ttbar events at most 1.2 × 1.01 = 1.212) — so w_max
 remains a valid bound under every admissible weight-only nuisance
-configuration. w_max is process metadata (σ·L/N_gen and official clip
+configuration, including combined scalings. *(Amended 2026-08-11, before any
+E13 implementation or run: v1.0 said κ_norm = 2.0 citing the diboson clip
+alone, which misses the compound diboson × bkg worst case by 1%. No
+experiment had consumed the old value.)* w_max is process metadata (σ·L/N_gen and official clip
 ranges), not event-level information: declaring it does not leak labels.
 Looseness in w_max costs only statistical efficiency (wider CS), never
 validity; the measured cost appears in the §5 comparison.
