@@ -1096,9 +1096,9 @@ The FAIR Universe HiggsML Uncertainty benchmark is public (Zenodo,
 DOI 10.5281/zenodo.15131565, CC-BY-4.0); the CMS Open Data samples are
 public (opendata.cern.ch records 12350–12359, CC0). Code,
 configurations, result tables, and the complete governance trail
-(registry, decision log, audits) are archived at Zenodo
-[DOI reserved by the author at submission; D-030] and developed at the
-repository referenced in `CITATION.cff`.
+(registry, decision log, audits) are archived at Zenodo,
+DOI 10.5281/zenodo.21894292 (reserved; published with this preprint),
+and developed at the repository referenced in `CITATION.cff`.
 
 ### Acknowledgements
 

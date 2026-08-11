@@ -24,5 +24,7 @@ keywords:
   - anytime-valid inference
   - collider physics
   - certification
-# preferred-citation will point to the arXiv record once the preprint is
-# announced (kept as software-only until then; see docs/decisions.md D-030).
+doi: "10.5281/zenodo.21894292"
+# The Zenodo deposit is reserved (D-030) and will be published with the
+# arXiv preprint; preferred-citation will point to the arXiv record once
+# the preprint is announced (kept as software-only until then).

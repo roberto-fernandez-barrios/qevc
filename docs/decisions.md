@@ -600,8 +600,11 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   result tables + governing docs) is reserved by the author before the
   manuscript's data-availability text freezes, and published at
   submission; deposit hashes recorded.
-- **Status:** adopted; (v) is author-gated (requires the Zenodo
-  account).
+- **Status:** adopted. (v) executed 2026-08-11 with an author-provided
+  API token: Zenodo deposition **21894292** created as an unsubmitted
+  draft with prereserved DOI **10.5281/zenodo.21894292**; the deposit is
+  populated and published at arXiv submission time (F8), never before.
+  The token lives in the gitignored `.env` only.
 - **Amendment (2026-08-11, figure/table numbering):** at LaTeX
   conversion the companion figures Xb become subfigure (b) of Figure X
   (4/4b, 7/7b, 8/8b — prose references keep their identity as
