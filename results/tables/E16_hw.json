@@ -1,0 +1,290 @@
+{
+  "experiment": "E16_hw",
+  "job_id": "d9tdubopdb6s73e73o20",
+  "backend": "ibm_marrakesh",
+  "shots": 1024,
+  "n_train": 28,
+  "n_test": 12,
+  "kernel_diagnostics": {
+    "train_frob_rel_err": 0.12715,
+    "cross_frob_rel_err": 0.48078,
+    "train_mean_bias": -0.00495,
+    "psd_violation": 0.0,
+    "eff_rank_hw": 27.22,
+    "eff_rank_ideal": 26.37,
+    "shot_only_frob_mean": 0.02119,
+    "device_excess_frob": 0.10596
+  },
+  "auditor_verdicts": {
+    "ideal": {
+      "nominal|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 6,
+          "UNRESOLVED": 4
+        }
+      },
+      "nominal|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "nominal|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 9,
+          "UNRESOLVED": 1
+        }
+      },
+      "tes=0.98|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      }
+    },
+    "hardware": {
+      "nominal|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 6,
+          "UNRESOLVED": 4
+        }
+      },
+      "nominal|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "nominal|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 9,
+          "UNRESOLVED": 1
+        }
+      },
+      "tes=0.98|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      }
+    },
+    "shots_s1": {
+      "nominal|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 6,
+          "UNRESOLVED": 4
+        }
+      },
+      "nominal|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "nominal|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 9,
+          "UNRESOLVED": 1
+        }
+      },
+      "tes=0.98|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      }
+    },
+    "shots_s2": {
+      "nominal|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 6,
+          "UNRESOLVED": 4
+        }
+      },
+      "nominal|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "nominal|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 9,
+          "UNRESOLVED": 1
+        }
+      },
+      "tes=0.98|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      }
+    },
+    "shots_s3": {
+      "nominal|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 6,
+          "UNRESOLVED": 4
+        }
+      },
+      "nominal|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "nominal|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.55": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 9,
+          "UNRESOLVED": 1
+        }
+      },
+      "tes=0.98|tau0.65": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      },
+      "tes=0.98|tau0.75": {
+        "m_target": 0.5,
+        "verdicts": {
+          "SUPPORTED": 0,
+          "REFUTED": 10,
+          "UNRESOLVED": 0
+        }
+      }
+    }
+  },
+  "verdict_flips_vs_ideal": {
+    "hardware": {
+      "cells": 6,
+      "majority_verdict_flips": 0
+    },
+    "shots_s1": {
+      "cells": 6,
+      "majority_verdict_flips": 0
+    },
+    "shots_s2": {
+      "cells": 6,
+      "majority_verdict_flips": 0
+    },
+    "shots_s3": {
+      "cells": 6,
+      "majority_verdict_flips": 0
+    }
+  },
+  "scale_statement": "claims resolvable at micro-scale are wide-margin by construction; near-margin claims abstain (fail-closed on hardware)",
+  "wall_seconds": 30.3
+}

@@ -869,12 +869,9 @@ entry.
   false-cert rates and n* inflation; hardware provenance complete.
 - **Expected outputs:** `results/tables/E16_quantum_uncertainty.json`;
   `results/raw/E16_hw/*` if the hardware arm runs; Fig. 8 upgrade data.
-- **Status:** **simulation arm complete (2026-08-11) — falsifier NOT
-  triggered; hardware arm submitted (job `d9tdubopdb6s73e73o20`,
-  ibm_marrakesh, 714 circuits × 1024 shots, ladder-sized to the live Open
-  budget per D-027), analysis pending job completion.** Simulation results
-  (30 full noisy deployments × 5 envs × 2 claim families × 6 δ × 10
-  paired streams):
+- **Status:** **complete (2026-08-11), both arms — falsifier NOT
+  triggered.** Simulation results (30 full noisy deployments × 5 envs × 2
+  claim families × 6 δ × 10 paired streams):
   1. **Far-margin claims (|m| ≥ 0.04): verdict flip rate 0.0 at every
      shot budget 128–4096, abstention unchanged, false certifications 0.**
      The margin-concentration hypothesis holds in its strongest form.
@@ -891,6 +888,26 @@ entry.
      consistently; kernel diagnostics per config (Frobenius 1/√shots
      scaling, rank inflation, PSD violations) reproduce E09 under the
      D-022 independent-noise semantics.
+  **Hardware arm (job `d9tdubopdb6s73e73o20`, ibm_marrakesh, 714 circuits
+  × 1024 shots, 200 s QPU charged; raw counts archived, no mitigation —
+  the DD split did not fit the Open window and is reported as not-run):**
+  5. First 100%-hardware *deployment* Grams in the project: 28-event train
+     Gram + 28×12 cross Gram (test half nominal / half tes=0.98). Kernel
+     diagnostics: train Frobenius 12.7% vs 2.1% shot-only at the same
+     budget → device excess 10.6% (≈6×, consistent with E10 v1's ~8× at
+     2048 shots); mean fidelity bias −0.005; K_hw stayed PSD; eff. rank
+     26.4 → 27.2. Cross-Gram relative error 48% — off-diagonal entries
+     are small and deep-circuit noise dominates them; reported as
+     measured.
+  6. **End-to-end auditor consistency on device: 0 majority-verdict flips
+     in all 6 claim cells across hardware and the three same-budget
+     shot-only deployments, and 0 false certifications.** Honest scale
+     statement: the n_train = 28 micro-deployment is at chance
+     (M_T = 0.50, as E10 v1's LOO 0.53–0.59 anticipated at this scale),
+     so the demonstrated property is *verdict stability and fail-closed
+     behavior of the full pipeline on real hardware* — REFUTED/UNRESOLVED
+     where they should be, never certified — not any hardware performance
+     claim (spec §34 discipline).
 
 ## E11v2 — Strengthened CMS real-data demonstration
 

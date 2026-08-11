@@ -33,7 +33,6 @@ from qevc.auditing.claims import Claim, resolve_claim  # noqa: E402
 from qevc.geometry.descriptors import (  # noqa: E402
     effective_rank,
     psd_violation,
-    raw_spectrum,
 )
 from qevc.models.common import class_balanced_weights  # noqa: E402
 from qevc.statistics.confidence_sequences import empirical_bernstein_cs  # noqa: E402
@@ -119,10 +118,8 @@ def main() -> int:
         "train_mean_bias": round(float(np.mean(
             (K_hw_tr - K_ideal_tr)[np.triu_indices(n_tr, 1)])), 5),
         "psd_violation": round(float(psd_violation(K_hw_tr)), 6),
-        "eff_rank_hw": round(float(effective_rank(
-            np.clip(raw_spectrum(K_hw_tr)[::-1], 0, None))), 2),
-        "eff_rank_ideal": round(float(effective_rank(
-            np.clip(raw_spectrum(K_ideal_tr)[::-1], 0, None))), 2),
+        "eff_rank_hw": round(float(effective_rank(K_hw_tr)), 2),
+        "eff_rank_ideal": round(float(effective_rank(K_ideal_tr)), 2),
     }
     # shot-only comparators at the same budget (D-007 law)
     shot_frobs = []
