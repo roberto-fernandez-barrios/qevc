@@ -756,7 +756,36 @@ entry.
   the run script (sensor archived before targets exist).
 - **Expected outputs:** `results/tables/E04v3_out_of_grid.json`, Fig. 4
   upgrade data.
-- **Status:** specified (2026-08-11).
+- **Status:** **complete (2026-08-11) — falsifier NOT triggered; the
+  sensor generalizes out-of-grid in rank terms, with world- and
+  family-dependent detail reported honestly.** Results (48 out-of-grid
+  shift environments per world; sensor archived before targets, SHA-256 in
+  table):
+  1. **Pooled out-of-grid ρ_S, primary (seed-101) world:** quantum→own
+     0.654 (p < 10⁻⁴), rbf8→own 0.559 (p = 4·10⁻⁵); transfers to XGBoost
+     0.302 / 0.220. **Secondary (E12) world:** quantum→own 0.389
+     (p = 0.006), rbf8→own 0.219 (n.s.), transfers 0.567 / 0.615 —
+     positive everywhere, but which target a sensor predicts best is
+     world-dependent (E12's tiny tes/jes target magnitudes ≈ 0.0005 sit at
+     partition noise).
+  2. **Per-family:** TES generalizes best (ρ up to 0.96); soft_met strong
+     (0.67–0.72); official-prior multi-nuisance draws 0.50–0.66 in the
+     primary world; JES weak/unstable (its |ΔAUC| targets are at the noise
+     floor) — matches the E04-era caveat.
+  3. **Magnitude calibration (LOFO isotonic):** MAE 0.002–0.009 on targets
+     whose means are 0.0005–0.012 — magnitude prediction is rough;
+     *rank* prediction is the defensible claim, stated as such.
+  4. **CRN identity finding (registered amendment + floor addendum):**
+     under common random numbers the weight-only environments produce
+     MMD² *identical* to nominal — the blindness proposition in its exact
+     computational form (stronger than "below noise floor") — but the
+     frozen max-over-weight-only floor rule degenerates (it equals the
+     nominal point). The operative veto floor is re-based on 20
+     independent auditor_dev nominal draws (`run_e04_v3_floor2.py`):
+     null std ≈ 7·10⁻⁵ (quantum), floor_max alarming 4–8/48 out-of-grid
+     envs — only soft_met-family and strong prior draws, consistently
+     across worlds and kernels; TES/JES at official ±2σ stay below alarm
+     (coherent: their degradations are also below material size).
 
 ## E16 — Quantum estimation uncertainty → certification
 
