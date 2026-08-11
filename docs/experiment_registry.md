@@ -783,7 +783,53 @@ entry.
   nuisance family when modeled vs omitted).
 - **Expected outputs:** `results/tables/E15_inference.json`, Fig. 7
   replacement data; `qevc.inference` module + tests.
-- **Status:** specified (2026-08-11).
+- **Status:** **complete (2026-08-11) — after the calibration gate fired
+  twice and was obeyed both times (D-023 amendments 2–3: unconditional
+  ensemble; numerical conditioning + analytic gradient). Neither
+  direction was forced; both registered outcomes materialized, cleanly
+  split by nuisance type.** Gate: A:qksvc 0.6821 / A:rbf_svc 0.6799 /
+  A:xgboost 0.6581 pass; B:xgboost 0.7167 fails by 0.0001 past tolerance
+  (conservative direction) → **gate-excluded from every shifted-env
+  claim, disclosed**. Grid: 3 models × 42 envs × 5 μ × L2/L3 × 500 PEs
+  (5.4 h). Mean coverage by family (L1 counting / L2 full profile / L3
+  leave-shifted-family-out):
+  | family | L1 | L2 | L3 |
+  |---|---|---|---|
+  | nominal | 0.684 | 0.676 | 0.659 |
+  | tes | 0.000 | **0.653** | 0.000 |
+  | jes | 0.002 | **0.629** | 0.073 |
+  | ttbar_scale | 0.280 | 0.671 | 0.655 |
+  | diboson_scale | 0.267 | 0.672 | 0.659 |
+  | bkg_scale | 0.590 | 0.674 | 0.646 |
+  | soft_met | 0.177 | **0.217** | 0.146 |
+  | combos | 0.000 | **0.089** | 0.029 |
+  1. **What restores validity, quantified:** profiling with
+     correctly-specified constraints restores coverage for the scale and
+     normalization families (0.63–0.67 from counting's 0.00–0.59).
+     Flagship cell tes=0.98/A:xgboost: L1 0.000 → **L2 0.719** → L3
+     0.000, with the fitted TES pull −2.007 (the profile finds the true
+     −2σ shift) and μ̂ bias 0.004. Omitting the shifted shape family (L3)
+     re-collapses tes/jes (0.00/0.07) while small norm shifts remain
+     absorbable by the remaining freedom.
+  2. **The price:** L2 interval widths 1.74–4.76 in μ units vs L1's
+     0.99–1.38 (×1.8–3.4) at these signal-to-background ratios — validity
+     is bought with statistical power, now measured.
+  3. **Where a reasonable treatment still fails (the registered key
+     question, answered affirmatively without forcing):** the stochastic
+     soft-MET family (L2 0.217) and the multi-nuisance combinations (L2
+     0.089) are NOT restored by profiling: the deterministic seed-averaged
+     template morph cannot represent a specific smearing realization (the
+     fit leaves the soft_met parameter near 0.1 when truth is 5, then
+     absorbs nothing: μ̂ bias −6.0 at width 0.066) and the additive morph
+     misses real combo cross-terms (both effects predeclared in the run's
+     interpretation notes). **Classifier metrics can look stable while
+     physics inference stays invalid even after a reasonable profiled
+     treatment — for nuisances whose structure the inference model cannot
+     represent.**
+  4. Diagnostic notes: `converged_frac` records only the first global
+     fit's optimizer flag (0.41–0.44) — the monotone safeguard + gate
+     calibration validate the delivered minima; per-μ tables carry bias,
+     width, coverage, and mean nuisance pulls for all cells.
 
 ## E04v3 — Out-of-grid generalization of the geometry sensor
 

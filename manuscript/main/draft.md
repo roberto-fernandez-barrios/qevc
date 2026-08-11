@@ -6,12 +6,11 @@ discipline of §34. All numbers come from the audited result tables
 (`docs/experiment_registry.md` campaign section; the ~172-value
 number audit and the adversarial code audit are in
 `docs/audits/post_campaign_audit_2026-08-11.md`; superseded first-run
-tables are preserved under `*_v1_*.json` names). [E15-PENDING] marks the
-one subsection awaiting the profile-likelihood grid that is completing at
-draft time. Remaining before submission: Related Work expanded to full
-cited prose at LaTeX conversion (bibliography from
-`docs/novelty_matrix.md`), figure regeneration for the new tables, venue
-formatting, and a final number-by-number verification pass.
+tables are preserved under `*_v1_*.json` names). Remaining before
+submission: Related Work expanded to full cited prose at LaTeX conversion
+(bibliography from `docs/novelty_matrix.md`), figure regeneration for the
+new tables, venue formatting, and a final number-by-number verification
+pass.
 
 ---
 
@@ -49,10 +48,13 @@ nuisances — together with its resolution at information level I3
 (control-region rates), whose practical resolving power we show is set by
 the auxiliary evidence's template statistics (±10% on the ttbar scale at
 our MC size); (v) propagation to signal-strength inference through three
-inference levels, from a deployment-blind counting estimator whose
-coverage collapses under invisible shifts to a
-calibration-gate-validated profile likelihood [E15-PENDING: quantified
-restoration/misspecification results]; (vi) a quantum-estimation-
+inference levels, showing that a calibration-gate-validated profile
+likelihood restores the coverage that a deployment-blind estimator loses
+under scale and normalization shifts (0.63–0.67 from 0.00–0.59) at a
+measured ×1.8–3.4 interval-width price — while stochastic soft-MET
+smearing and multi-nuisance combinations defeat even the profiled
+treatment (coverage 0.22 and 0.09), because their structure is not
+representable by deterministic template morphing; (vi) a quantum-estimation-
 uncertainty study showing that noise moves the deployed pipeline's own
 reference points by up to 0.05, flipping fixed-reference verdicts at
 rates from 21% (far-margin, 128 shots) to 0.4% (4096 shots) while false
@@ -143,8 +145,11 @@ robustly (all four models, coverage → 0 at flat AUC), while
 normalization-induced collapse reproduces exactly where the signal
 region's process composition supports it and vanishes where it does not —
 validity depends on information the classifier metrics do not carry, with
-a mechanism now traced to SR composition. [E15-PENDING: profiled-inference
-restoration/misspecification results.] **Seventh**, quantum estimation
+a mechanism now traced to SR composition — and a profiled likelihood
+restores validity exactly where its nuisance model matches the physics,
+fails where it cannot (stochastic smearing, joint shifts), and pays a
+measured factor 2–3 in interval width for the coverage it recovers.
+**Seventh**, quantum estimation
 uncertainty acts on certification exactly where the framework predicts:
 noise perturbs the deployed pipeline's reference points by up to 0.05, so
 fixed-reference verdicts flip at 21% → 0.4% (far-margin, 128 → 4096
@@ -492,15 +497,40 @@ thereby sharper than the development-world summary, and precisely
 documents that classifier-level evidence does not carry the information
 that protects inference.
 
-[E15-PENDING] The three-level inference study (L1 counting baseline; L2
-calibration-gated profile likelihood, three of four models passing the
-nominal gate at coverage 0.658–0.682 with the fourth excluded and
-disclosed; L3 leave-shifted-family-out misspecification) completes at
-draft time; this subsection will report μ̂ bias, interval width, empirical
-coverage, and nuisance pulls per level, and quantify which nuisance
-families profiling restores and at what interval-width price
-(σ_stat ≈ 0.45 at these signal-to-background ratios, roughly doubling
-under full profiling in pre-run diagnostics).
+The three-level inference study then asks the reviewer-proof version of
+the question: does the decoupling survive a physically defensible
+inference chain? L2 — a score-binned profile likelihood with all six
+nuisances profiled, validated by a per-model nominal calibration gate
+(A:qksvc 0.682, A:rbf_svc 0.680, A:xgboost 0.658 pass; the scale-trained
+tree overcovers marginally at 0.717 and is gate-excluded from every
+shifted-environment claim) — cleanly splits the answer by nuisance type.
+Where the nuisance model matches the physics, profiling restores
+validity: mean coverage rises from 0.000/0.002 (counting) to 0.653/0.629
+for TES/JES and from 0.27–0.59 to 0.67 for the three normalization
+scales; in the flagship cell (TES −2σ, A:xgboost) coverage goes
+0.000 → 0.719 with the fitted TES pull −2.007 — the profile *finds* the
+true shift — and μ̂ bias 0.004. The restoration is bought with
+statistical power: L2 intervals are ×1.8–3.4 wider than the counting
+estimator's (1.74–4.76 vs 0.99–1.38 in μ units at these
+signal-to-background ratios). Omitting the actually-shifted family from
+the profile (L3, the realistic misspecification) re-collapses TES/JES
+coverage to 0.000/0.073 — in the flagship cell μ̂ biases to −5.9 with a
+seven-times-narrower interval, the confident-and-wrong failure mode —
+while small normalization shifts remain absorbable by the remaining
+freedom. And two nuisance families defeat even the correctly-configured
+profile: stochastic soft-MET smearing (L2 coverage 0.217; the fit leaves
+the soft-MET parameter near 0.1 when truth is 5 GeV, because a
+deterministic, seed-averaged template morph cannot represent a specific
+smearing realization, and μ̂ absorbs the difference: bias −6.0 at width
+0.066) and the multi-nuisance combinations (L2 coverage 0.089; the
+additive morph misses real cross-terms — both failure modes predeclared
+in the run's interpretation notes). The answer to the registered
+question is therefore affirmative without having been forced: *a
+classifier can look stable while physics inference remains invalid even
+after a reasonable profiled treatment — precisely for nuisances whose
+structure the inference model cannot represent* — and, symmetrically,
+the information that restores validity (a correctly-specified constraint
+on the shifted nuisance) is now identified and priced.
 
 ## 7. Quantum Realism: estimation uncertainty as a certification problem
 
@@ -619,8 +649,10 @@ information the deployment possesses (certification is cheap at margin,
 impossible without labels, and physics inference is at risk exactly where
 feature-distribution evidence is provably blind); the information's
 *quality* (I3 restores identifiability in principle, with resolving power
-set by template statistics; profiling restores coverage at a quantified
-interval-width price [E15-PENDING]); and the information's *stability
+set by template statistics; profiling restores coverage exactly where its
+nuisance model matches the physics, at a ×1.8–3.4 interval-width price,
+and fails against the stochastic and joint shifts it cannot represent);
+and the information's *stability
 under estimation noise* (quantum uncertainty moves the deployed
 pipeline's reference points, flipping fixed-reference verdicts until shot
 budgets reach thousands — while never breaking error control). This is an
