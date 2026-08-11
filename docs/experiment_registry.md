@@ -509,40 +509,62 @@ entry.
   1. Disjointness proof clean: seed-101 draw reconstructed and verified
      against the cached subset; 4,488,506 excluded rows; E12∩(prior rows)
      = 0; SHA-256 of all index archives recorded in the table.
-  2. **Arm (a) PASS:** QK−XGB = −0.0389 (E02R: −0.0353 ± 0.0119);
-     QK−RBF8 = −0.0080 (E02R: −0.0110 ± 0.0174).
+  2. **Arm (a) PASS:** QK−XGB = −0.0389 (E02R per-seed paired diffs: mean
+     −0.0353, sample std (ddof=1) 0.0133 / population std 0.0119 — E12's
+     stored value is the population std; either convention passes the 3σ
+     arm); QK−RBF8 = −0.0080 (E02R: −0.0110, sample std 0.0195 /
+     population 0.0174). *Caveat (post-audit M6): the E02R std measures
+     re-partition variance of one subset; E12 adds between-subset variance
+     not represented in this threshold — the arm is a consistency check,
+     not a calibrated test.*
   3. **Arm (b) PASS:** tes=0.98 ΔAUC(QK) = +0.0011; combo3 mean +0.0081.
   4. **Arm (c) PASS:** sensor ρ_S out-of-partition: quantum→own 0.39
      (p=0.04), rbf8→own 0.54 (p=0.003) — weaker than seed-101 (0.56/0.73)
      but sign-correct and significant.
-  5. **Arm (d) PASS:** false certification 21/7,700 = 0.27% ≤ α; false
-     refutation 4/11,980; nominal physics coverage 0.678–0.685 ≈ 0.6827.
-  6. **Arm (e) PARTIAL FAIL (kept):** the tes=0.98 flagship decoupling
-     reproduces exactly (|ΔAUC| = 0.0036, coverage 0.027) and E12 shows 74
-     decoupled-like cells with every tes/jes environment collapsing to
-     coverage 0.0 at flat AUC — **but the normalization-nuisance coverage
-     damage does NOT reproduce** (diboson/ttbar/bkg coverages 0.65–0.68 ≈
-     nominal). E08's norm-nuisance collapse was driven by the accidental
-     ttbar/diboson content of that draw's signal regions (E12's SRs sit at
-     different thresholds with b₀ 3.9k vs 37.9k) — the *mechanism* is real
-     but its magnitude is SR-composition- and draw-fragile. Manuscript
-     framing must demote the norm-collapse cells from "decisive" to
-     "possible, composition-dependent" and lean on the robust
-     selection-migration decoupling.
+  5. **Arm (d) PASS, corrected accounting (post-audit H2):** the headline
+     21/7,700 = 0.27% divides by ALL false-claim streams, but E12's frozen
+     max-over-weight-only I1 floor degenerates under CRN (weight-only MMD²
+     ≡ nominal), alarming 24/41 envs where the veto makes SUPPORTED
+     structurally impossible. Over the non-vetoed false-claim streams the
+     rate is 21/3,060 = **0.69% ≤ α** (the honest comparator to E05/E13);
+     note also that nominal + the 12 weight-only envs share one identical
+     correct-array population, and streams are shared across the δ grid
+     (M1: pooled denominators correlated ≈6:1; the 3σ slack is
+     conservative for the pass verdict). False refutation 4/11,980;
+     nominal physics coverage 0.678–0.685 ≈ 0.6827.
+  6. **Arm (e) PARTIAL FAIL (kept) — corrected reading (post-audit M2/M3):**
+     the tes=0.98 flagship reproduces exactly (|ΔAUC| = 0.0036, coverage
+     0.027); 74 decoupled-like cells under the gate |ΔAUC| < 0.005 ∧
+     coverage < 0.6327 (recorded here — the table does not store the
+     gate), with 18/32 tes/jes cells at exactly coverage 0.0 (not all:
+     e.g. tes=1.01/A:xgboost is nominal-like at 0.693). **The
+     normalization-nuisance coverage damage is SR-composition-dependent,
+     and DOES reproduce for two of four models:** A:rbf_svc collapses in
+     10/12 norm envs (down to 0.008) and B:xgboost degrades to 0.51–0.59,
+     while A:qksvc/A:xgboost (whose E12 SRs hold little ttbar/diboson;
+     b₀ 3.9k vs 37.9k in the seed-101 world) stay nominal-like at
+     0.65–0.68. The mechanism is real and reproducible where the SR
+     composition supports it; its magnitude is composition- and
+     draw-dependent. The registered flagship cells (fixed to A:qksvc /
+     A:xgboost at diboson_scale=0.5) failed — that is the honest arm-(e)
+     verdict — while the corrected per-model reading strengthens, not
+     weakens, the norm-collapse phenomenon.
   7. **Level-shift diagnostic (`run_e12_diagnostic.py`,
      `results/tables/E12_diagnostic.json`):** absolute weighted AUCs sit
-     0.06–0.09 below the seed-101 world for every model, but the models ×
-     data cross-grid shows unweighted AUC identical everywhere
-     (0.839/0.875 both worlds, both model sets) while weighted AUC follows
-     the data only. Cause: signal weights are extremely heavy-tailed
-     (htautau max/mean ≈ 420, ESS ratio 0.0047 → ≈46 effective signal
-     events in a 41k test role), so *absolute* physics-weighted metrics
-     carry ±0.05 subset-draw variance that partition-level replication
-     (E02R) structurally understates. Paired contrasts, degradation signs,
-     rank structure and error control — everything the paper's claims rest
-     on — replicate. New quantified caution for the manuscript (and for
-     the field's matched-budget benchmark practice); feeds E13's expected
-     n* inflation for weighted claims (signal-side ESS ≈ 0.5%).
+     0.067–0.098 below the seed-101 world (per model: qksvc 0.084, rbf8
+     0.098, A:xgb 0.067, B:xgb 0.079), while the models × data cross-grid
+     shows unweighted AUC data- and model-world-invariant for the tree
+     models (0.839–0.845 / 0.875–0.877; rbf8's unweighted spread is
+     0.018) and weighted AUC following the data only. Cause: signal
+     weights are extremely heavy-tailed (htautau max/mean ≈ 420, ESS
+     ratio 0.0047 → ≈46 effective signal events in a 41k test role), so
+     *absolute* physics-weighted metrics carry subset-draw variance of
+     order ±0.05 (bootstrap CI half-widths 0.04–0.09) that partition-level
+     replication (E02R) structurally understates. Paired contrasts,
+     degradation signs, rank structure and error control — everything the
+     paper's claims rest on — replicate. New quantified caution for the
+     manuscript (and for the field's matched-budget benchmark practice);
+     feeds E13's expected n* inflation for weighted claims.
 
 ## E13 — Weighted anytime-valid certification
 
@@ -583,32 +605,43 @@ entry.
   comparison table complete with n* ratios and verdict-flip counts.
 - **Expected outputs:** `results/tables/E13_weighted_cs.json`; new module
   + tests under `tests/`; SAP amendment note.
-- **Status:** **complete (2026-08-11) — falsifier NOT triggered;
-  implementation valid.** Results:
+- **Status:** **complete (2026-08-11; v2 after the post-campaign audit's
+  C1 fix — v1 audited θ-scaled weights on the 15 norm-affected
+  environments while declaring the nominal-weight estimand; v1 table
+  preserved as `E13_weighted_cs_v1_theta_weights.json`) — falsifier NOT
+  triggered; implementation valid.** v2 verifies the estimand
+  computationally: all weight-only environments now give byte-identical
+  m_t_w (0.76382 for A:qksvc), the nominal-weight invariance the
+  proposition demands. Results (v2):
   1. **Validation battery:** time-uniform miscoverage within α + 3σ slack
      in every profile × level cell; worst MC false-certification cell 1.5%
      (slack threshold 8.3% at n_rep 400); adversarial optional stopping
      breaks the naive Wald rule (27.8% false certification) while the CS
      holds at 0.0% — the guarantee, demonstrated.
   2. **Benchmark (identical draws, 41 envs × 4 models × claim grid):**
-     weighted false certification 2/8,900 = 0.02% ≤ α; weighted false
+     weighted false certification 2/8,580 = 0.02% ≤ α; weighted false
      refutation 0; class-conditional (TPR_w/TNR_w) false certification
-     0/4,700.
+     0/4,700. (M1 caveat: streams are shared across the δ grid — pooled
+     denominators correlated ≈6:1; per-claim α is unaffected.)
   3. **Label cost of physics-weighted certification:** n*_w / n*_unw
-     median 1.67 (IQR 1.11–3.01, 6,575 resolved pairs); verdict-flip
-     table: 543 SUPPORTED→UNRESOLVED (fail-closed hardens under the
-     physical estimand), 218 UNRESOLVED→SUPPORTED, 272
+     median 1.66 (IQR 1.11–3.00, 6,582 resolved pairs); verdict-flip
+     table: 536 SUPPORTED→UNRESOLVED (fail-closed hardens under the
+     physical estimand), 226 UNRESOLVED→SUPPORTED, 271
      UNRESOLVED→REFUTED, and 1 SUPPORTED→REFUTED — the weighted and
      unweighted estimands genuinely disagree about deployment health,
      sharpening the "metric named in the claim" finding.
   4. Per-process weights are NOT constant (htautau spans ×1000; matches
      the E12 diagnostic): the weighted machinery is necessary, not
      decorative. w_max = 7.264 × 2.05 = 14.89 (predeclared rule).
-  5. **BA_w component bound is severely conservative at n_max = 3,000**
-     (all BA claims UNRESOLVED, true and false alike): reported as the
-     honest cost of the α/4-per-component union bound; BA claims should be
-     stated per component (the physics quantities) — manuscript
-     limitation.
+  5. **The BA_w bound as implemented (ratio-CS components) never resolves
+     at the MC battery's n_max = 5,000** (all BA claims UNRESOLVED, true
+     and false alike; post-audit H3: the component ratio-CS radius ≈ 0.28
+     in BA units dwarfs the tested 0.02–0.05 margins, so the block
+     measures the vacuity of that path rather than mild conservatism).
+     BA claims should be stated per component (the physics quantities),
+     where the sharp one-sample reduction applies — manuscript
+     limitation, and a sharper pre-split component allocation is noted as
+     future work.
 
 ## E14 — Information set I3
 
@@ -764,11 +797,13 @@ entry.
   family with ρ > 0.
 - **Estimand:** Spearman ρ (and sign-consistency) between sensor value and
   frozen-model |ΔAUC| over (a) 36 off-grid single-nuisance environments
-  (six per family where physical: TES/JES 6 new values each inside the
-  official clip range, soft_met 4 new values × 2 seeds, norm families for
-  floor/blindness checks only), and (b) 24 multi-nuisance draws from the
-  official priors (seeded, predeclared in the config before execution) —
-  60 new environments total, none coinciding with any E02 grid point.
+  (as frozen in `configs/experiments/E04v3.yaml`: TES/JES **7** new values
+  each inside the official clip range, soft_met **5** new values × 2
+  seeds, 12 norm-family points for floor/blindness checks only —
+  correcting this entry's original "6/6/4×2" sketch, which predated the
+  committed config), and (b) 24 multi-nuisance draws from the official
+  priors (seeded, predeclared in the config before execution) — 60 new
+  environments total, none coinciding with any E02 grid point.
 - **Information set:** I1 strictly — sensor sees unlabeled target draws
   only (from `auditor_dev`, D-021); degradation targets are computed once,
   after sensor values are archived, from the frozen seed-101 deployment
@@ -807,9 +842,11 @@ entry.
      (0.67–0.72); official-prior multi-nuisance draws 0.50–0.66 in the
      primary world; JES weak/unstable (its |ΔAUC| targets are at the noise
      floor) — matches the E04-era caveat.
-  3. **Magnitude calibration (LOFO isotonic):** MAE 0.002–0.009 on targets
-     whose means are 0.0005–0.012 — magnitude prediction is rough;
-     *rank* prediction is the defensible claim, stated as such.
+  3. **Magnitude calibration (LOFO isotonic):** MAE 0.0005–0.012 on
+     targets whose means are 0.0003–0.012 — at the high end the MAE
+     exceeds its own target mean (e12 soft_met fold: 0.0120 vs 0.0103) —
+     magnitude prediction is rough; *rank* prediction is the defensible
+     claim, stated as such.
   4. **CRN identity finding (registered amendment + floor addendum):**
      under common random numbers the weight-only environments produce
      MMD² *identical* to nominal — the blindness proposition in its exact
@@ -949,5 +986,12 @@ entry.
   | C3 no shift at floor | REFUTED (2.6× floor) | **REFUTED (2.5× floor)** — the sim-to-real shift is not a mirror artifact |
   | C4 SS QCD excess | SUPPORTED, z = 18.6 | **SUPPORTED, z = 59.4** |
   The mirror-based conclusions were not sample-fragile; the C2 interval
-  narrows exactly as √N predicts and stays inside the v1 interval.
+  narrows as √N predicts (3.1× vs predicted 3.2×) and overlaps the v1
+  interval with the upper bound essentially unchanged (0.9619 vs 0.9613 —
+  strictly 0.0006 outside; consistency under combined uncertainties
+  holds). Known limitations carried from v1 and disclosed (post-audit
+  M8): CR intervals treat the MC yield as exact (MC-stat error not
+  propagated; the C2 margin to the 30% band dwarfs it), the C4 z-score
+  ignores MC-side error, and C3 rests on a single MC-vs-data sensor draw
+  against a 20-draw MC-vs-MC floor (a ~1/21-level rule, as in v1).
   `data/README.md` Level II registration added (audit gap closed).
