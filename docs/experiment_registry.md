@@ -1193,8 +1193,25 @@ entry.
   families; explicit comparison rows against the E05/E06/E13 numbers.
 - **Expected outputs:** `results/tables/E19_fresh_world_validity.json`
   + manifest.
-- **Status:** specified (2026-08-11) — config
-  `configs/experiments/E19.yaml`.
+- **Status:** **complete (2026-08-11) — falsifier NOT triggered; validity
+  replicates in the fresh world.**
+  1. **Integrity:** the E12 world was reconstructed (indices match the
+     D-020 archive) and the frozen deployment re-derived with E12's own
+     protocol; the archived score files were certified **byte-identical**
+     on 12/12 (model × check-env) comparisons before any audit ran.
+  2. **Unweighted (E05 v1.1 protocol, salt "E19"):** false certification
+     **11/3,060 = 0.36% ≤ α** on the honest non-vetoed denominator
+     (all-streams 11/7,700 = 0.14%); false refutation 1/12,260.
+  3. **Weighted (E13 Part-B protocol, identical draws, salt "E19W";
+     w_max = E12-world base × 2.05 recorded in-table):** false
+     certification **6/8,060 = 0.07% ≤ α**; false refutation 0.03%.
+  4. Cross-accounting comparison now spans three independent worlds and
+     two estimand families, all ≤ α: E05 0.61% (dev), E12 0.69%
+     (confirmatory, own protocol), E19 0.36% unweighted / 0.07% weighted
+     (fresh world, archived scores). The "validity measured in one world"
+     caveat is closed.
+  5. E06-style n* landscape at n_max = 20,000 stored in
+     `landscape_cells` (984 cells) for the §6.6 comparison.
 
 ## E08v2 — Independent-MC beliefs (counting + profile templates)
 

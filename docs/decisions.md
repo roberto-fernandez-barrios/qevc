@@ -577,3 +577,29 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   randomness under this entry.
 - **Status:** adopted.
 
+## D-030 — Release hygiene for arXiv v1
+
+- **Date:** 2026-08-11
+- **Decision:** (i) the root-level `collider_qml_q1_research_spec.md`
+  (verified byte-identical duplicate of `docs/research_spec.md`) is
+  collapsed to a pointer stub; the canonical copy is the one under
+  `docs/`, which every governing document already references. (ii)
+  `README.md` and `CITATION.cff` are brought current with the extended
+  registry (E00–E19), the three-contribution framing, and the
+  self-correction record; `CITATION.cff` stays `type: software` with a
+  `preferred-citation` to be added when the arXiv record exists. (iii) A
+  GitHub Actions workflow runs the test suite on `windows-latest`
+  (Python 3.13, pinned lockfile — the development platform) and
+  best-effort on `ubuntu-latest` (`continue-on-error`); data-dependent
+  test modules already skip when the benchmark parquet is absent, so CI
+  exercises the guarantee suite. (iv) A best-effort Linux container
+  recipe is added under `environment/containers/` with an honest header:
+  the pinned Windows lockfile is the reproducibility instrument of
+  record; the manifests (commit + config hash + dataset SHA-256 + seeds)
+  are the scientific one. (v) The Zenodo deposit (code + configs +
+  result tables + governing docs) is reserved by the author before the
+  manuscript's data-availability text freezes, and published at
+  submission; deposit hashes recorded.
+- **Status:** adopted; (v) is author-gated (requires the Zenodo
+  account).
+

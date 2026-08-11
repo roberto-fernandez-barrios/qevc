@@ -1,0 +1,42 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  windows-pinned:
+    # The development platform of record (D-003): Windows + Python 3.13 with
+    # the fully pinned lockfile. Data-dependent test modules skip themselves
+    # when the FAIR Universe parquet is absent (guarantee suite still runs).
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install pinned environment
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r environment/requirements-lock.txt
+          pip install -e . --no-deps
+      - name: Run test suite
+        run: pytest -q
+
+  linux-best-effort:
+    # Best-effort cross-platform check (D-030): floors-only install; allowed
+    # to fail informatively without blocking (the lockfile is Windows-pinned).
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install (floors)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[quantum,dev]
+      - name: Run test suite
+        run: pytest -q
