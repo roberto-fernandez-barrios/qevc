@@ -321,8 +321,16 @@ happens at θ = 0; deployment at unknown θ.
 calibration, decision threshold), fitted and frozen on θ = 0 training and
 validation data. Nothing is retuned per environment. Under finite-shot or
 hardware kernel estimation the deployment is additionally a *random*
-tuple: each estimation realization owns its own refit, recalibration, and
-refrozen threshold.
+tuple: each estimation realization ω owns its own refit, recalibration,
+and refrozen threshold — write f̃_ω for the realized deployment and f⋆
+for its ideal exact-kernel counterpart. For such estimated deployments
+two claim classes must be distinguished (they are conflated at the
+community's peril): **deployment-relative**, C_dep(ω):
+M_T(f̃_ω) ≥ M_S(f̃_ω) − δ, holding the realized pipeline to its own
+recalibrated reference; and **ideal-anchored**, C_ideal(ω):
+M_T(f̃_ω) ≥ M_S(f⋆) − δ, holding it to the ideal deployment's. Section 7
+proves that certification validity survives deployment randomness for
+both classes and shows which class is stable.
 
 **Quantum kernels.** The quantum model is a support-vector classifier
 over the fidelity kernel K_Q(x, x′) = |⟨φ(x)|φ(x′)⟩|², with |φ(x)⟩
@@ -346,19 +354,26 @@ features}; I2(n) = I1 ∪ {n target labels (with their weights)}; I3 =
 I2(n) ∪ {control-region counts and yields from unlabeled target data,
 nuisance estimates θ̂ derived from them, with declared uncertainties}.
 
-**Unidentifiability at I0–I2 (formal).** For weight-only θ:
-(i) any I1 statistic has identical law under θ and 0, so any size-α test
-has power exactly α; (ii) the same holds at I2 with nominal weights;
-(iii) hence any claim whose truth value differs between θ and 0 — rate
-claims, the true-weighted metric A_w^{(θ)} — is unresolvable at I0–I2,
-and a fail-closed auditor must return UNRESOLVED; (iv) a control-region
-count N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0) has non-trivial power — I3
-restores identifiability precisely because rate evidence enters. (Proof:
-equality of sampling laws applied to the SUPPORTED event; standard
-Poisson testing. Full statement:
-`docs/weighted_certification_spec.md` §4b.) The campaign realizes (i)
-computationally: under common random numbers the weight-only
-environments' sensor values are byte-identical to nominal's.
+**Proposition 2 (weight-only unidentifiability at I0–I2; I3
+restoration).** *For weight-only θ (P_θ(X) = P_0(X), correctness process
+unchanged): (i) any I1 statistic has identical law under θ and 0, so any
+size-α test has power exactly α; (ii) the same holds at I2 with nominal
+weights; (iii) hence any claim whose truth value differs between θ and
+0 — rate claims, the true-weighted metric A_w^{(θ)} — is unresolvable at
+I0–I2, and a fail-closed auditor must return UNRESOLVED; (iv) a
+control-region count N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0) has non-trivial
+power — I3 restores identifiability precisely because rate evidence
+enters the information set.* Proof: equality of sampling laws applied to
+the SUPPORTED event; the error-control requirement; standard Poisson
+testing (registered before any I3 run;
+`docs/weighted_certification_spec.md` §4b). **Corollary.** The power
+that (iv) restores is bounded by the auxiliary evidence's own
+statistics: with template-variance σ²_c = Σ_g (relerr·λ)², rate scales
+are identified only to the order of the template noise, and tighter
+claims remain UNRESOLVED — fail-closed degradation, measured in §6.5.
+The campaign realizes (i) computationally: under common random numbers
+the weight-only environments' sensor values are byte-identical to
+nominal's (Fig. 3).
 
 **Conditional validity.** For confidence bounds [L_t, U_t] on the claim
 metric valid uniformly over labeling time t, the verdict is SUPPORTED iff
@@ -388,15 +403,26 @@ empirical-Bernstein confidence sequence; the decision rule inherits
 per-claim Type-I control at level α by construction and is verified
 empirically against simulation truth.
 
-**4.3 Weighted certification (I2).** Every physics-weighted ratio claim
-R ≥ τ with R = E[u·c]/E[u] (u = w for A_w; u = w·1[y=1] for TPR_w;
-u = w·1[y=0] for TNR_w) reduces to a bounded-mean claim through the
-one-sample transform Z_i(τ) = (u_i(c_i − τ) + τ·w_max)/w_max ∈ [0, 1]
-with R ≥ τ ⟺ E[Z(τ)] ≥ τ, where w_max is a predeclared bound from
-process metadata and the official nuisance clip ranges. The existing
-confidence sequence applies *verbatim* — with u ≡ 1 the stream is
-byte-identical to the unweighted one — so time-uniform validity and
-optional stopping carry over exactly. Balanced accuracy, a
+**4.3 Weighted certification (I2).**
+
+**Theorem 1 (exact weighted anytime-valid certification).** *Let
+(c_i, u_i) be IID with c_i ∈ {0,1}, u_i ∈ [0, w_max] for a predeclared
+nonrandom bound w_max, and E[u] > 0; let R = E[u·c]/E[u] and, for a
+claim R ≥ τ, define Z_i(τ) = (u_i(c_i − τ) + τ·w_max)/w_max. Then
+(a) Z_i(τ) ∈ [0,1] and R ≥ τ ⟺ E[Z(τ)] ≥ τ — an equivalence, not an
+approximation; (b) any time-uniform level-(1−α) confidence sequence for
+a bounded mean, applied to the Z-stream with the fail-closed rule,
+satisfies P(∃n: SUPPORTED issued ∧ R < τ) ≤ α simultaneously over all
+stopping rules; (c) the unweighted system is the special case u ≡ 1,
+w_max = 1.* Proof: boundedness and the equivalence are four lines of
+algebra using E[u] > 0; a false certification then requires a coverage
+violation of the CS at some n, an event of probability ≤ α by
+time-uniformity; substitution gives (c)
+(`docs/formal_results.md`). The reduction adds *zero slack of its own*:
+the label price of weighting is paid in the variance of Z (effective
+sample size Σw²/(Σw)²), never in validity. Here u = w for A_w;
+u = w·1[y=1] for TPR_w; u = w·1[y=0] for TNR_w; w_max comes from process
+metadata and the official nuisance clip ranges. Balanced accuracy, a
 ratio-of-ratios, gets only a conservative component bound; we audit the
 components (the physics quantities) directly instead.
 
@@ -765,6 +791,44 @@ protection is exactly as good as its nuisance model.
 
 ## 7. Quantum Realism: estimation uncertainty as a certification problem
 
+The claim semantics of Section 3 (C_dep vs C_ideal) carry two formal
+consequences, both deliberately elementary — their content is the
+semantics, and the fact that this section's measurements instantiate
+them.
+
+**Proposition 3 (validity under estimated deployments).** *If the
+certification procedure, applied to the realized pipeline's own label
+stream, controls false certification at level α conditionally on every
+realization ω — which is Theorem 1 at fixed ω, the claim threshold being
+a constant given ω — then the marginal false-certification rate over
+deployment randomness satisfies P(false certification) =
+E_ω[P(false certification | ω)] ≤ α, for both claim classes.* Proof:
+tower property. Deployment randomness moves which claims are *true* and
+*resolvable* (through τ(ω) and M_T(f̃_ω)); it never touches the validity
+of what is certified. This is where the quantum setting genuinely
+differs from the classical one: classical training randomness is
+seed-controllable, while estimated kernels make the deployed object
+physically random — irreducibly so on hardware — and the certification
+layer must be, and is, indifferent to that.
+
+**Proposition 4 (verdict stability under bounded movement).** *With
+signed movements ΔM_T(ω), ΔM_S(ω) of the realized deployment's target
+and source metrics, the realized margin obeys |m(ω) − m⋆| ≤ |ΔM_T| for
+C_ideal and |m(ω) − m⋆| ≤ |ΔM_T − ΔM_S| for C_dep; if the ideal margin
+exceeds the relevant movement bound and the audit resolves, the realized
+verdict equals the ideal one. When movement is common-mode (refit and
+recalibration shift source and target together), C_dep margins cancel it
+while C_ideal margins absorb ΔM_T in full — deployment-relative claims
+are structurally the stabler class.* Proof: triangle inequality plus the
+determinism of the fail-closed rule given the CS bounds
+(`docs/formal_results.md`). The movement magnitudes are *measured, not
+derived* — per-budget distributions from the 30 archived noisy
+deployments (Fig. S16) — and they predict what follows: at 128 shots the
+measured reference movement (typically up to ~0.05; worst 0.139) exceeds
+the far-margin band |m| ≥ 0.04, so C_ideal far verdicts must flip and
+C_dep far verdicts must not; at 4096 shots the movement falls below the
+band and both stabilize.
+
 ### 7.1 Finite shots (E09, E16; Figs. 8 and 8b)
 
 Kernel error scales as 1/√shots (13.7% → 2.4% Frobenius); effective rank
@@ -940,6 +1004,81 @@ campaign and were obeyed every time — which is, we believe,
 the property a validation framework should be most eager to demonstrate.
 
 ---
+
+## Figure and table captions (working section; becomes floats at LaTeX conversion)
+
+Numbering plan (D-030 amendment): companion figures Xb become subfigure
+(b) of Figure X at conversion (4/4b, 7/7b, 8/8b); the former "Fig. 9"
+ledger is Table 2; the claim × information-set table is Table 1; the
+frozen-model table in §5.2 is Table 3; Fig. S16 is supplementary.
+
+**Figure 1 (framework).** The information-set hierarchy I0→I3 and the
+fail-closed decision rule. Claims about a frozen deployment are audited
+under declared information; heuristic sensors may veto certification but
+never grant it; SUPPORTED/REFUTED verdicts carry anytime-valid per-claim
+error control; everything else remains UNRESOLVED.
+
+**Figure 2 (systematics response).** Replicated tier-A degradation
+ΔAUC under the frozen environment grid (five training seeds,
+development world). Within-world sign replication at the 10⁻³ level for
+TES down-shifts and adverse combinations; the cross-world falsifier
+(E17) later shows these signs are draw-dependent across worlds (§6.2).
+
+**Figure 3 (family response and exact blindness).** Label-free sensor
+response by nuisance family: ΔMMD² relative to the same CRN draw's
+nominal value, mean over three draws, quantum and matched-rbf8 sensors.
+Weight-only families sit at exactly zero — every environment, every
+draw (Proposition 2 realized computationally) — while shape-level
+response grows with severity; the gray band is the CRN draw-noise ±1σ.
+
+**Figure 4 (sensor generalization; (a) development grid, (b)
+out-of-grid).** (a) MMD² vs replicated |ΔAUC| over 28 shift
+environments (LONO). (b) The frozen sensors on 48 never-seen
+environments per world (off-grid values and official-prior draws),
+sensor values archived before targets existed: pooled rank correlation
+positive in both worlds and for both sensors; rank, not magnitude, is
+the claim.
+
+**Figure 5 (certification landscape).** n*(θ, C) across the claim grid:
+resolution fraction and median stopping time by claim margin, with the
+severity axis entering through the margin. The fail-closed UNRESOLVED
+region is confined to |margin| ≲ 0.01.
+
+**Figure 6 (label economics).** (a) Paired n* ratio of
+uncertainty-guided acquisition vs uniform sampling over 480 jointly
+resolved cells (ECDF): the median ratio 1.55 is a primary negative
+result. (b) Measured median stopping times against the Wald information
+floor log(1/α)/KL by margin bucket: certification costs sit a small
+factor (1.46–3.35) above a bound no sequential procedure can beat.
+
+**Figure 7 (physics decoupling; (a) counting, (b) inference levels).**
+(a) Coverage vs |ΔAUC| for the deployment-blind counting estimator:
+validity collapses at flat AUC. (b) Coverage by nuisance family at
+L1/L2/L3: profiling restores validity where the nuisance model can
+represent the shift and fails where it cannot (soft-MET, combinations);
+omitting the shifted family (L3) re-collapses it.
+
+**Figure 8 (estimation uncertainty; (a) kernels and hardware, (b)
+verdict stability).** (a) Kernel estimation error vs shot budget with
+the hardware point (device excess over the shot floor). (b) Verdict
+flips under the two claim anchorings per shot budget: deployment-
+relative far-margin verdicts never flip; ideal-anchored far-margin flips
+disappear once the measured reference movement falls below the margin
+(Proposition 4's prediction traced by the data).
+
+**Figure S16 (supplementary; estimation diagnostics).** Per-configuration
+kernel diagnostics for the 30 noisy deployments: Frobenius error
+following 1/√shots, effective-rank inflation, and the reference
+movement |ΔM_S| whose per-budget distribution calibrates Proposition 4.
+
+**Table 1 (claim × information set).** What each information level can
+resolve, with measured error rates (§6.5).
+
+**Table 2 (CMS fail-closed ledger).** Claims C1–C4 across the mirror,
+full-data, and statistically hardened analyses (§8).
+
+**Table 3 (frozen deployment).** Models, features, and frozen
+hyperparameters (§5.2).
 
 ### Reproducibility statement (draft)
 

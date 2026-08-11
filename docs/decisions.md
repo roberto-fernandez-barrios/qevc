@@ -602,4 +602,15 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   submission; deposit hashes recorded.
 - **Status:** adopted; (v) is author-gated (requires the Zenodo
   account).
+- **Amendment (2026-08-11, figure/table numbering):** at LaTeX
+  conversion the companion figures Xb become subfigure (b) of Figure X
+  (4/4b, 7/7b, 8/8b — prose references keep their identity as
+  "Fig. 4b" → "Fig. 4(b)"); the former "Fig. 9" ledger is typeset as
+  Table 2; the claim × information-set table is Table 1; the
+  frozen-deployment table (§5.2) is Table 3; the estimation-diagnostics
+  figure is supplementary (S16). The registry's historical "Fig. N
+  data" output labels are unaffected (they name data products, not
+  float numbers). New figures: Fig. 3 (family response / exact
+  blindness — the registry's E03 "Fig. 3 data" promise, finally drawn)
+  and Fig. 6 (label economics — closes the dangling §6.6 reference).
 
