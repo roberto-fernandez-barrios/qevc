@@ -1,0 +1,25 @@
+# E16 — Quantum estimation uncertainty -> certification (registry E16; D-022, D-027)
+# Simulation arm: C_ideal vs C_shots with margin-stratified verdict analysis.
+# Hardware arm sized to the Open plan at execution (D-027), separate scripts.
+experiment: E16
+inherits: [E01, E02, E05, E09, E13]
+environments: ["nominal", "tes=0.98", "tes=1.02", "soft_met=5.0/seed11", "combo3/seed11"]
+shots_grid: [128, 256, 512, 1024, 2048, 4096]
+kernel_seeds: [1, 2, 3, 4, 5]
+claims:
+  deltas: [-0.01, -0.005, 0.0, 0.02, 0.05, 0.10]   # frozen E05 v1.1 grid
+  families: [unweighted, weighted]                  # weighted = E13 machinery
+alpha: 0.05
+n_max: 20000                                        # E09-comparable
+audit_seeds: 10
+seed_salt: "E16"
+margin_strata:                                      # by |margin| of C_ideal
+  far: 0.04        # |m| >= far
+  near: 0.01       # |m| < near; moderate in between
+noise_model: binomial_compute_uncompute             # D-007; independent per matrix (D-022)
+hardware:
+  policy: open_plan_budget                          # D-027 priorities (a)>(b)>(c)
+  backend_preference: least_pending_heron
+  shots: 1024
+  n_train: 48                                       # full-pipeline micro-demo
+  n_test: 24
