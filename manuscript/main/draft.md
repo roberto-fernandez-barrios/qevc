@@ -6,11 +6,9 @@ discipline of §34. All numbers come from the audited result tables
 (`docs/experiment_registry.md` campaign section; the ~172-value
 number audit and the adversarial code audit are in
 `docs/audits/post_campaign_audit_2026-08-11.md`; superseded first-run
-tables are preserved under `*_v1_*.json` names). Remaining before
-submission: Related Work expanded to full cited prose at LaTeX conversion
-(bibliography from `docs/novelty_matrix.md`), figure regeneration for the
-new tables, venue formatting, and a final number-by-number verification
-pass.
+tables are preserved under `*_v1_*.json` names). Remaining before submission: BibTeX bibliography and venue formatting at
+LaTeX conversion (citation keys already in §2; sources in
+`docs/novelty_matrix.md`).
 
 ---
 
@@ -172,21 +170,112 @@ trustworthy validation should itself be validated trustworthily.
 
 ## 2. Related Work
 
-Condensed from `docs/novelty_matrix.md` (five clusters, 40+ works; all
-flagged arXiv IDs verified 2026-08-10): QML-for-HEP; quantum-kernel
-theory and trust; QML validity/monitoring; systematics-aware classical
-HEP ML; certification and label-efficient evaluation. Gap statement: no
-work combines quantum models + physical collider systematics +
-information-conditional certification + physics-level inference; none
-treats quantum estimation noise as a certification problem. Nearest
-neighbors to cite and distinguish explicitly: Ait Haddou et al. (PTEP
-2026 — rate-only normalization uncertainty entering final limits,
-classifier unaudited under shift) and Chen & Weng (arXiv:2606.24038 —
-betting e-process certification of sim-to-real transfer in robotics; no
-information-set hierarchy, no physics inference). Statistical
-infrastructure consumed: Waudby-Smith–Ramdas confidence sequences;
-Barlow–Beeston template-statistics treatment; standard profile-likelihood
-toy conventions (unconditional ensembles).
+*(Full prose; bibliography keys resolve against `docs/novelty_matrix.md`,
+whose arXiv IDs were re-verified 2026-08-10. BibTeX at LaTeX
+conversion.)*
+
+**2.1 Quantum machine learning in collider physics.** Since the quantum
+annealing Higgs classification of Mott et al. (Nature 550, 2017), the
+QML-for-HEP program has produced variational and kernel classifiers for
+ttH (Wu et al., PRR 3, 2021, arXiv:2104.05059), CEPC Higgs analyses
+(Fadol et al., IJMPA 2024, arXiv:2209.12788), continuum benchmarks
+(Terashi et al., CSBS 2021, arXiv:2002.09935; Maier et al., EPJ QT 2026,
+arXiv:2510.13994) and unsupervised anomaly detection (Woźniak, Belis et
+al., Commun. Phys. 2024, arXiv:2301.10780). All of these evaluate on
+fixed nominal simulation; Alvi, Bauer and Nachman (JHEP 2023,
+arXiv:2206.08391) provide the critical-validation counterpoint but do not
+touch systematics. The closest work to ours, Ait Haddou et al. (PTEP
+2026, arXiv:2511.15672), folds background-normalization uncertainty into
+a final quantum-classifier limit — rate-type uncertainty entering
+downstream only, with the classifier itself never audited under
+distribution shift. To our knowledge no QML paper evaluates classifiers
+under parameterized, shape-level collider systematics, and none uses the
+FAIR Universe HiggsML Uncertainty benchmark.
+
+**2.2 Quantum-kernel theory and trust.** Fidelity-kernel classification
+(Havlíček et al., Nature 567, 2019, arXiv:1804.11326) comes with a
+maturing trust literature: potential and limits of quantum kernels from
+data (Huang et al., Nat. Commun. 2021, arXiv:2011.01938), inductive-bias
+analyses (Kübler et al., NeurIPS 2021, arXiv:2106.03747), exponential
+concentration as a failure mode (Thanasilp et al., Nat. Commun. 2024,
+arXiv:2208.11060), bandwidth as the controlling hyperparameter (Canatar
+et al., TMLR 2023, arXiv:2206.06686), noise-aware NISQ kernels (Wang et
+al., Quantum 2021, arXiv:2103.16774), and benchmark scrutiny (Schnabel &
+Roth, QMI 2025, arXiv:2409.04406). We consume this theory as design
+discipline — our bandwidth-limited map and the matched-kernel control
+descend from it — and add what it lacks: the deployment-shift and
+certification questions.
+
+**2.3 QML validity, robustness, and monitoring.** Certification in the
+quantum literature means hypothesis-test certificates for devices (Weber
+et al., npj QI 2021, arXiv:2009.10064), formal verification of circuits
+(Guan et al., CAV 2021, arXiv:2008.07230), out-of-distribution guarantees
+for learning dynamics (Caro et al., Nat. Commun. 2023, arXiv:2204.10268),
+and conformal prediction for quantum models (Park & Simeone, IEEE TQE
+2024, arXiv:2304.03398; Spencer et al. 2026, arXiv:2511.18225, which
+adapts to hardware drift). Q-SafeML (2026, arXiv:2509.04536) monitors
+distributional drift of quantum classifiers, and Kempkes et al. (MLST
+2026, arXiv:2504.03315) study underdetermination in parameterized
+circuits. None of these connects to physically parameterized deployment
+shift, information-set conditioning, or a downstream scientific
+estimand; none treats the estimated kernel as part of the *claim* being
+certified, as our Sec. 7 does.
+
+**2.4 Systematics-aware machine learning in HEP.** The classical
+community has long confronted nuisance-dependent deployment: adversarial
+decorrelation (Louppe et al., NeurIPS 2017, arXiv:1611.01046),
+inference-aware learning (INFERNO — de Castro & Dorigo, CPC 2019,
+arXiv:1806.04743), uncertainty-aware networks (Ghosh, Nachman &
+Whiteson, PRD 2021, arXiv:2105.08742), cautionary analyses of
+decorrelation itself (Ghosh & Nachman, EPJC 2022, arXiv:2109.08159),
+neural simulation-based inference at experiment scale (ATLAS NSBI, Rep.
+Prog. Phys. 2024/25, arXiv:2412.01600), and searches for hidden
+systematics sensitivity in networks (Flek et al. 2026, arXiv:2605.07470).
+The FAIR Universe program (arXiv:2410.02867; results overview
+arXiv:2509.22247) supplies the benchmark infrastructure we build on —
+parameterized nuisances with official semantics and a μ-inference
+protocol — but scores empirically, without certified auditing, and drew
+no quantum entries. Our E15 sits deliberately downstream of this line:
+we do not propose a better systematics-aware learner; we quantify which
+*inference* treatments restore claim validity for a *frozen* learner.
+
+**2.5 Certification, shift, and label-efficient evaluation.** Outside
+physics, unsupervised accuracy estimation under shift is known to be
+impossible without assumptions (Garg et al., ICLR 2022, arXiv:2201.04234)
+and bounded only under uncheckable conditions (Rosenfeld & Garg, NeurIPS
+2023, arXiv:2306.00312) — the impossibility our I0/I1 levels encode by
+construction. Label-efficient evaluation (active testing — Kossen et al.,
+ICML 2021, arXiv:2103.05331; LURE — Farquhar et al., ICLR 2021,
+arXiv:2101.11665; prediction-powered inference — Angelopoulos et al.,
+Science 2023, arXiv:2301.09633; Zrnic & Candès, ICML 2024,
+arXiv:2403.03208) optimizes estimator variance but carries no shift
+semantics or claim verdicts. Anytime-valid inference (Waudby-Smith &
+Ramdas, JRSS-B 2024, arXiv:2010.09686) supplies our statistical backbone,
+as it does for sequential risk monitoring (Podkopaev & Ramdas, ICLR 2022,
+arXiv:2110.06177), fairness auditing by betting (Chugg et al., NeurIPS
+2023, arXiv:2305.17570), and e-process LLM evaluation (CELEUS 2026,
+arXiv:2606.20820). Weighted-conformal and PAC prediction sets under
+covariate shift (Tibshirani et al., NeurIPS 2019, arXiv:1904.06019; Park
+et al., ICLR 2022, arXiv:2106.09848) target set coverage rather than
+claim verdicts; fail-closed deployment gating (Kim 2026,
+arXiv:2606.24996) shares our semantics without the information-set
+hierarchy or a scientific downstream task. The nearest methodological
+neighbor, Chen & Weng (2026, arXiv:2606.24038), certifies sim-to-real
+transfer in robotics with betting e-processes — no information-set
+conditioning, no physics inference, no estimation-noise axis. Our
+statistical additions to this line are the exact one-sample reduction for
+weighted ratio claims (Sec. 4.3) and the worst-case-over-nuisance-box
+composition with rate evidence (Sec. 4.4); our template-statistics
+treatment follows Barlow & Beeston, and our toy conventions the standard
+unconditional-ensemble practice of profile-likelihood analyses.
+
+**2.6 The gap.** No prior work combines quantum models, physically
+parameterized collider systematics, information-conditional
+error-controlled certification, and physics-level inference — and none
+poses quantum estimation noise as a certification problem in which the
+deployed pipeline is itself the random object. That combination, each
+axis of which is individually grounded in the literatures above, is this
+paper's contribution.
 
 ## 3. Problem Formulation
 
