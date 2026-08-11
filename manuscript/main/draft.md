@@ -376,7 +376,7 @@ on the fresh holdout (+0.0011; +0.0081). Weight-only nuisances leave AUC
 invariant exactly.
 
 ### 6.3 The label-free sensor: out-of-grid generalization and exact
-blindness (E03, E04v2, E04v3; Fig. 4)
+blindness (E03, E04v2, E04v3; Figs. 4 and 4b)
 
 On the development grid, the frozen MMD² sensors predict replicated
 degradation out-of-environment (quantum ρ_S = 0.56 own-model, 0.68
@@ -477,7 +477,7 @@ uniform (median n* ratio 1.55; better in 10% of cells) — a primary
 negative result that simplifies practice.
 
 ### 6.7 Physics-level validity: decoupling, its mechanism, and the price
-of restoring it (E08, E12, E15; Fig. 7)
+of restoring it (E08, E12, E15; Figs. 7 and 7b)
 
 With the deployment-blind counting estimator (nominal coverage verified
 at 0.68 in both worlds), classifier metrics and inference validity
@@ -534,7 +534,7 @@ on the shifted nuisance) is now identified and priced.
 
 ## 7. Quantum Realism: estimation uncertainty as a certification problem
 
-### 7.1 Finite shots (E09, E16; Fig. 8)
+### 7.1 Finite shots (E09, E16; Figs. 8 and 8b)
 
 Kernel error scales as 1/√shots (13.7% → 2.4% Frobenius); effective rank
 inflates under shot noise; the classifier is shot-tolerant at n = 2000
