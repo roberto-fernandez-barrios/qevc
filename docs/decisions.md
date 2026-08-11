@@ -281,3 +281,156 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   auditor-development choices, documented as such (finding 12).
 - **Status:** adopted.
 
+## D-019 — Weighted certification estimands and guarantees (E13)
+
+- **Date:** 2026-08-11
+- **Decision:** the weighted auditor implements exactly the estimands and
+  machinery predeclared in `docs/weighted_certification_spec.md`: weighted
+  accuracy A_w and weighted class-conditional rates TPR_w/TNR_w as primary
+  claims via the one-sample reduction Z_i(τ) = (u_i(c_i − τ) + τ·w_max)/w_max
+  on the existing empirical-Bernstein CS (exact, time-uniform); BA_w only as
+  the conservative α/2-per-component bound; weighted AUC stays on fixed-n
+  checkpoints (never CS). Per-event weights are revealed only at labeling
+  time (they are label-equivalent in this benchmark — granting them on
+  unlabeled events would leak labels into I1). The a priori bound
+  w_max = (max per-event D-010-rescaled weight at nominal) × 2.0 (largest
+  official normalization clip factor), predeclared, loose-but-valid.
+- **Alternatives considered:** weight-proportional label sampling (exact
+  Bernoulli reduction, rejected: requires pre-labeling weights = label
+  leakage); direct ratio-CS as primary (rejected as primary: strictly more
+  conservative per claim; kept as the simultaneous-in-τ secondary);
+  betting-CS re-derivation (unnecessary: the reduction reuses the tested
+  EB-CS unchanged).
+- **Status:** adopted; falsifiers frozen in the E13 registry entry.
+
+## D-020 — Campaign freeze artifact and row-index archival (E12)
+
+- **Date:** 2026-08-11
+- **Decision:** (a) all frozen analysis quantities (E01 hyperparameters,
+  feature sets, feature-map config, scaler recipe, calibration/threshold
+  procedure, claim grid, sensor definition, environment grid, E08
+  estimator, statistical protocol references) are snapshotted into
+  `configs/frozen/frozen_deployment_v1.yaml`, committed BEFORE any E12 row
+  is drawn; downstream campaign code reads the snapshot, not
+  `results/tables/E01_nominal.json` (which remains as the historical
+  record — pre-campaign audit F6). (b) Every parquet row draw archives its
+  global indices under `data/processed/used_rows/` (seed-101 subset and
+  E00's validation row groups 34/65/146/184 reconstructed and archived
+  retroactively; E12 and all future draws archived at draw time), so
+  disjointness is a stored, checkable artifact (audit F1). (c) The E12
+  subset (seed 121) is drawn from the verified complement of all archived
+  indices and its rows are quarantined from E13–E16 development.
+- **Status:** adopted.
+
+## D-021 — auditor_dev becomes the sensor role for all new experiments
+
+- **Date:** 2026-08-11
+- **Problem (audit F2):** E03/E05 computed I1 sensor draws on the same
+  `nominal_test` events that feed I2 label streams; the veto-only design
+  keeps Type-I honest, but sensor operating characteristics were measured
+  on dependent data, while `auditor_dev` (45,000 rows) sat reserved.
+- **Decision:** from E13 on, every sensor calibration/evaluation draw
+  (geometry floors, CR boundary definitions, noise-floor bootstraps) uses
+  the `auditor_dev` role; `nominal_test` remains the claim population.
+  Existing results stand with the dependence disclosed in the manuscript's
+  limitations.
+- **Status:** adopted.
+
+## D-022 — Independent per-call shot noise in QKSVC (before E16)
+
+- **Date:** 2026-08-11
+- **Problem (audit F5):** `QKSVC._gram` seeds an identical RNG on every
+  call, so train/test Grams receive correlated noise and re-scoring
+  reproduces the identical realization — unphysical for a device.
+- **Decision:** `QKSVC(shots=...)` draws per-call independent substreams
+  via `numpy.random.SeedSequence(seed).spawn(...)` with a call counter;
+  regression test added. E09's published numbers are unaffected (its
+  resampling was performed externally per configuration with distinct
+  seeds); the difference is documented rather than retrofitted.
+- **Status:** adopted.
+
+## D-023 — E15 inference levels and likelihood definition
+
+- **Date:** 2026-08-11
+- **Decision:** three predeclared inference levels per environment/model:
+  L1 = D-015 deployment-blind counting (unchanged baseline); L2 = binned
+  Poisson profile likelihood over the frozen classifier score,
+  L(μ,θ) = Π_b Pois(n_b | μ s_b(θ) + b_b(θ)) · Π_j N(θ̃_j; θ_j, σ_j), with
+  per-nuisance template morphing anchored at the official ±1σ/±2σ points
+  (piecewise linear-quadratic vertical morphing), all six benchmark
+  nuisances profiled, intervals from the profile likelihood ratio;
+  L3 = L2 with a predeclared leave-one-family-out nuisance model
+  (realistic misspecification). L2 must pass a nominal-environment
+  coverage calibration gate (0.6827 ± 0.02, 2000 pseudo-experiments)
+  before any shifted-environment number is reported. Neither direction of
+  the coverage outcome is privileged; both are findings.
+- **Alternatives:** unbinned likelihoods (unnecessary power, higher
+  misspecification surface), pyhf/HistFactory dependency (declined:
+  scipy-based implementation keeps the morphing explicit and testable).
+- **Status:** adopted.
+
+## D-024 — Information set I3: definition and evidence channels (E14)
+
+- **Date:** 2026-08-11
+- **Decision:** I3 = I2(n) ∪ {control-region counts/yields computed from
+  unlabeled target data in predeclared, frozen regions; nuisance estimates
+  θ̂ derived from them with declared uncertainties}. Two guarantee-bearing
+  channels: (i) rate claims |s_p − 1| ≤ x resolved from CR counts with
+  exact Poisson-based bounds (anytime-valid e-process if sequential,
+  fixed-n exact otherwise — declared per run config); (ii) true-weighted
+  metric claims A_w^{(θ)} via reweighted label streams bounded worst-case
+  over the θ̂ confidence set (fail-closed: insufficient θ̂ precision →
+  UNRESOLVED). The weight-only unidentifiability at I1/I2-nominal is
+  stated as a formal proposition (P_θ(X) = P_0(X) ⇒ no label-free test
+  has power beyond α) — proved, not asserted.
+- **Status:** adopted.
+
+## D-025 — Sensor family frozen; out-of-grid validation protocol (E04v3)
+
+- **Date:** 2026-08-11
+- **Problem (audit F3/F4):** the sensor identity (MMD²) was selected after
+  E03's descriptor tables existed, and its veto floor is an
+  uncertainty-free max over 12 weight-only environments.
+- **Decision:** the sensor family is frozen as {quantum-kernel MMD²,
+  matched-rbf8 MMD²}; no other descriptor may be promoted to veto duty in
+  this paper. E04v3 validates the frozen sensors on 60 out-of-grid
+  environments (36 off-grid single-nuisance + 24 official-prior draws,
+  config committed before execution) with leave-one-family-out
+  calibration, sensor values archived BEFORE degradation targets are
+  computed, and the veto floor re-estimated on `auditor_dev` draws with
+  bootstrap uncertainty and a predeclared quantile rule.
+- **Status:** adopted.
+
+## D-026 — E11v2 luminosity and sample policy
+
+- **Date:** 2026-08-11
+- **Decision:** the real-data side moves to the full opendata.cern.ch
+  Run2012B+C TauPlusX files (sequential download → skim → delete raw,
+  disk budget ~60 GB free); MC remains on the verified mirror files —
+  statistically valid because MC weights normalize by the ingested file's
+  own N_generated (w = σ·L/N_ingested), so a 10% MC sample yields unbiased
+  expectations with larger MC-stat uncertainty, which is reported. With
+  full data, DATA_LUMI_FRACTION = 1.0 and L = 11,467 pb⁻¹ for both data
+  and MC weights. E11 v1 (mirror) results are retained; the ledger gets a
+  mirror-vs-full comparison row per claim. `data/README.md` gains the
+  missing Level II registration (audit note).
+- **Status:** adopted.
+
+## D-027 — E16 hardware arm scoped to the IBM Open plan
+
+- **Date:** 2026-08-11
+- **Context:** the BasQ allocation (`ibm_basquecountry`, E10v2 proposal)
+  has not been granted; the account's only instance is the free Open plan
+  (verified 2026-08-11: backends ibm_fez / ibm_marrakesh / ibm_kingston,
+  ~10 min QPU per 28-day window; E10 v1 consumed 276 s for 496 circuits ×
+  2048 shots).
+- **Decision:** E16's hardware arm is sized to the measured Open-plan
+  budget with priorities frozen in the registry entry: (a) full-pipeline
+  micro-demonstration (fresh train Gram n≈48–64 + cross-Gram, auditor
+  end-to-end on 100%-hardware kernels), (b) DD on/off mitigation split if
+  budget allows, (c) drift sessions only if (a)+(b) fit. The E10v2 BasQ
+  workload remains registered as the scaled version contingent on access;
+  the paper claims only what the achievable scale supports (spec §34: no
+  "hardware-validated" inflation).
+- **Status:** adopted.
+

@@ -432,3 +432,345 @@ entry.
   ×10 MC normalization bug (full-lumi weights vs the mirror's ~10% data
   luminosity) — fixed in `qevc.data.cms_htautau` (EFFECTIVE_LUMI_PB), both
   manifests kept.
+
+---
+
+# Final campaign — E12–E16, E04v3, E11v2 (registered 2026-08-11)
+
+> Directive: deepen where the evidence says the real contribution is —
+> information-conditional validity + sequential guarantees + physical
+> systematics + physics inference + quantum estimation uncertainty + real
+> CMS/QPU evidence. No quantum-advantage hunting; the matched-kernel
+> negative result is retained. Pre-campaign falsification audit:
+> `docs/audits/pre_campaign_audit_2026-08-11.md`; its dispositions are
+> D-019–D-027. **Campaign-wide rules:** (i) the E12 confirmatory rows are
+> quarantined — no E13–E16 development touches them; (ii) all new sensor
+> calibration/evaluation draws use the `auditor_dev` role (D-021), the
+> claim population stays `nominal_test`; (iii) every new row draw archives
+> its global indices (D-020); (iv) frozen quantities live in
+> `configs/frozen/` (D-020), committed before E12 data is drawn.
+> **Execution order:** freeze → E12 → E13 → E14 → E15 → E04v3 → E16 →
+> E11v2 → post-campaign audit → manuscript rebuild.
+
+## E12 — Fresh confirmatory holdout
+
+- **Question:** Do the paper's headline results reproduce on a completely
+  virgin subset of the benchmark, with every analysis choice frozen in
+  advance?
+- **Hypothesis:** confirmatory replication of: (a) nominal ordering
+  QK ≈ matched-RBF8 < tuned trees at matched budget; (b) TES −2σ
+  degradation sign for QK-SVC; (c) adverse-combination (combo3)
+  degradation; (d) MMD²(quantum, rbf8) → degradation rank prediction;
+  (e) auditor error control (false certification ≤ α on adversarial
+  claims); (f) classifier/physics decoupling in the flagship cells.
+- **Estimand(s):** identical to E01/E02/E04v2/E05/E08 definitions — no new
+  estimand is introduced by this experiment.
+- **Information set:** as in the source experiments (I0/I1/I2 as
+  applicable); E12 grants nothing new.
+- **Status of this evidence (declared):** *post-development confirmatory
+  evidence*, not preregistration — every protocol choice predates the data
+  draw, but the choices themselves were developed on the seed-101 world.
+- **Protocol:**
+  1. Freeze artifact `configs/frozen/frozen_deployment_v1.yaml` (D-020):
+     hyperparameters (from E01), feature sets, feature-map config,
+     AngleScaler recipe, tier-A budget (2000, matched), calibration +
+     threshold procedure, claim grid (E05 v1.1), α=0.05, EB-CS, sensor
+     definition (quantum-MMD² and rbf8-MMD², weight-only max floor),
+     environment grid (the 41 E02 evaluations), E08 estimator (D-015),
+     statistical protocol (SAP + D-017 amendments). Committed before any
+     E12 row is read.
+  2. Reconstruct and archive seed-101 global indices + E00 validation row
+     groups; draw a fresh 300k stratified subset (seed 121) from the
+     verified complement; archive its indices; verify and record
+     `intersection = 0` in the E12 table itself.
+  3. Fresh five-role partition (seed 121) on the new subset, persisted to
+     `data/processed/splits/`; `final_eval` sealed and never read.
+  4. Re-run, with frozen settings only: E01-nominal (tier A: qksvc,
+     rbf_svc_8f, rbf_svc, xgboost, lightgbm; tier B xgboost), the 41-env
+     landscape for those models, geometry MMD² per env (CRN draws from the
+     E12 auditor_dev role), E05 auditor protocol (all claims, 20 audit
+     seeds), E08 physics inference (all envs, frozen SR procedure).
+  5. No quantity is tuned, selected, or thresholded on E12 data. Anything
+     that fails is reported as failed.
+- **Falsifier (frozen):** any of — (a) nominal per-seed-style contrast
+  QK−XGB positive or QK−RBF8 outside ±3× the E02R across-seed std;
+  (b) tes=0.98 ΔAUC(QK) < 0 (improvement) or combo3 mean ΔAUC(QK) < 0;
+  (c) pooled Spearman ρ(MMD² → |ΔAUC|) ≤ 0 for both frozen sensors over
+  the 28 shift environments; (d) empirical false certification > α + 3σ
+  binomial on the adversarial claim family; (e) the two flagship
+  decoupling cells (A:xgboost @ tes=0.98; diboson_scale=0.5 family) fail
+  to reproduce (|ΔAUC| ≥ 0.01 or coverage ≥ 0.633).
+- **Acceptance criterion:** all five falsifier arms clear. Partial failure
+  does not get hidden: each arm's outcome enters the manuscript as-is.
+- **Expected outputs:** `results/tables/E12_confirmatory.json` (+ index
+  archives under `data/processed/used_rows/`, split file, manifest).
+- **Status:** specified (2026-08-11).
+
+## E13 — Weighted anytime-valid certification
+
+- **Question:** Can the fail-closed auditor certify *physics-weighted*
+  claims with the same anytime-valid guarantees, and at what label cost
+  relative to unweighted claims?
+- **Hypothesis:** the one-sample reduction (D-019) preserves time-uniform
+  Type-I control exactly under weighted estimands; weighted n* exceeds
+  unweighted n* by a factor driven by the weight dispersion (effective
+  sample size Σw²/(Σw)² and the a priori bound w_max).
+- **Estimand(s):** exactly as predeclared in
+  `docs/weighted_certification_spec.md` (D-019): weighted accuracy A_w,
+  weighted TPR_w/TNR_w as primary claims; BA_w only via the conservative
+  component bound; weighted AUC explicitly out of CS scope. Claims are the
+  degradation form M_T ≥ M_S − δ on the weighted scale, δ grid as E05
+  v1.1 (including adversarially false claims).
+- **Information set:** I2(n) — uniform-with-replacement label draws
+  revealing (y_i, w_i) at labeling time; per-event weights are *never*
+  available pre-labeling (they are label-equivalent in this benchmark —
+  spec §2 of D-019). Sensor draws (if any) from `auditor_dev` (D-021).
+- **Protocol:** implement `weighted` module in `qevc.statistics` (Z-stream
+  transform + ratio-CS secondary); Monte Carlo validation battery per
+  D-019 §5 (time-uniform coverage, false cert/refutation at margins,
+  adversarial optional stopping, BA_w conservatism); then benchmark study
+  on the seed-101 archives (E02 scores + weights): weighted vs unweighted
+  verdicts and n* on identical draws over the 41 envs × 4 audit models ×
+  δ grid; report weight-only environments separately — under nominal
+  weights they now carry *different weighted estimands* only when the true
+  weights are known, which I2 alone does not grant (the E14 bridge,
+  measured here as the nominal-weight limitation).
+- **Falsifier (frozen):** any Monte Carlo configuration with time-uniform
+  miscoverage or false certification > α beyond 3σ MC slack falsifies the
+  implementation and blocks downstream use until fixed and re-registered.
+  If weighted n* > 20k for every claim with |margin| ≥ 0.04 on benchmark
+  populations, weighted certification is reported as impractical at
+  physics weights (negative result, published).
+- **Acceptance criterion:** validation battery passes; weighted/unweighted
+  comparison table complete with n* ratios and verdict-flip counts.
+- **Expected outputs:** `results/tables/E13_weighted_cs.json`; new module
+  + tests under `tests/`; SAP amendment note.
+- **Status:** specified (2026-08-11).
+
+## E14 — Information set I3
+
+- **Question:** Which claims that are unidentifiable from
+  feature-distribution evidence (I0/I1) or labels-with-nominal-weights
+  (I2) become certifiable when the information set contains the
+  experimentally available aggregate physics — nuisance estimates, rates,
+  yields, control regions?
+- **Hypothesis:** (a) weight-only (normalization) nuisances are *formally*
+  unidentifiable from any I1 statistic — P_θ(X) = P_0(X) exactly, so no
+  label-free test has power beyond α (stated and proved as a proposition);
+  (b) they are also invisible to I2 with nominal weights (the labeled
+  stream's distribution is θ-invariant); (c) control-region rate evidence
+  (I3) identifies the normalization scales and turns rate claims and
+  true-weighted-metric claims certifiable, with anytime-valid error
+  control; (d) the physics-validity claim (interval coverage) requires I3
+  *plus* an inference procedure that consumes it (E15).
+- **Estimand(s):** (i) normalization scale s_p per process family
+  (ttbar_scale, diboson_scale, bkg_scale) — claims of the form
+  |s_p − 1| ≤ x; (ii) true-weighted accuracy A_w^{(θ)} under the
+  environment's actual weights (D-019 §4: reweighted stream with
+  worst-case-over-θ̂-confidence-set bounding, fail-closed); (iii) the
+  claim × information-set resolvability table over
+  {classifier performance, normalization/rate, physics-level validity} ×
+  {I0, I1, I2(n), I3}.
+- **Information set:** I3 = I2(n) ∪ {control-region counts and yields from
+  the *unlabeled* target environment, nuisance estimates θ̂ derived from
+  them, and their declared uncertainties}. CRs are predeclared, label-free
+  score/feature regions (defined on `auditor_dev`-frozen boundaries):
+  background-dominated low-score region per model + per-process-enriched
+  regions where the benchmark's features support them; CR definitions are
+  frozen before any E14 evaluation run.
+- **Protocol:** (1) write the formal proposition + proof sketch
+  (manuscript-ready); (2) implement CR yield extraction and normalization
+  estimation with Poisson/Gaussian uncertainty; anytime-valid e-process or
+  conservative fixed-n bounds for rate claims (method predeclared in the
+  run config before execution); (3) evaluate over the 12 weight-only
+  environments + combo3 family + nominal: verdict tables under I1, I2,
+  I3; empirical false-certification against simulation truth; (4) the
+  A_w^{(θ)} chain: θ̂ from CRs → reweighted worst-case stream → verdict;
+  compare against the I2-nominal-weight verdict to exhibit the
+  identifiability boundary experimentally.
+- **Falsifier (frozen):** if I3 verdicts on genuinely false rate claims
+  exceed α false certification (beyond binomial slack), the I3 machinery
+  is invalid. If CR-based θ̂ cannot identify the normalization scales the
+  benchmark actually varies (coverage of the θ̂ intervals < nominal on
+  simulation truth), hypothesis (c) fails and is reported as a negative
+  result — the table then documents *unresolvable-even-at-I3* cells.
+- **Acceptance criterion:** proposition stated; table complete with
+  measured error rates per cell; every I3-certified claim carries an
+  explicit statistical guarantee (nothing heuristic is called a
+  certificate).
+- **Expected outputs:** `results/tables/E14_i3.json` + the claim ×
+  information-set table (paper table); formal statement in
+  `docs/weighted_certification_spec.md` addendum or manuscript directly.
+- **Status:** specified (2026-08-11).
+
+## E15 — Realistic physics inference
+
+- **Question:** Does the classifier-vs-physics decoupling survive a
+  physically defensible inference chain — and exactly which information or
+  procedure restores validity where it does not?
+- **Hypothesis:** H5 refined: (a) the deployment-blind counting estimator
+  (E08, kept as baseline) overstates the practical damage; (b) a
+  profile-likelihood fit that models the *right* nuisances restores
+  coverage — quantifying the information that protects inference; (c) a
+  profiled fit that omits the actually-shifted nuisance family (realistic
+  misspecification) still loses coverage while classifier metrics stay
+  healthy — the decoupling claim in its reviewer-proof form. (b) and (c)
+  are both acceptable outcomes wherever the data lands; nothing is forced.
+- **Estimand(s):** signal strength μ; bias of μ̂, interval width, empirical
+  68.27% coverage, nuisance pulls (θ̂ − θ_true)/σ_θ; all per (environment,
+  model, inference level).
+- **Information set:** the inference levels *are* information sets over
+  nuisances: L1 = frozen nominal beliefs (D-015 counting, unchanged
+  baseline); L2 = binned profile likelihood over the frozen classifier
+  score, Poisson per bin, L(μ, θ) = Π_b Pois(n_b | μ·s_b(θ) + b_b(θ)) ·
+  Π_j N(θ̃_j; θ_j, σ_j), with template morphing in θ from the official
+  systematics code at predeclared anchor points, profiling all six
+  benchmark nuisances; L3 = same machinery with a predeclared *incomplete*
+  nuisance model (leave-one-family-out of the profile, e.g. fit models
+  TES/JES/norms but truth shifts soft_met) — "systematics-aware but
+  misspecified", the realistic failure mode.
+- **Protocol:** score-binned templates (bins frozen from source_val;
+  b ≥ floor per bin); anchors at ±1σ, ±2σ per nuisance from the official
+  systematics pipeline; piecewise-linear/quadratic vertical morphing;
+  profile via numerical minimization; intervals from the profile
+  likelihood ratio (Wilks; validated at nominal against pseudo-experiment
+  coverage before use — internal calibration gate); 2000
+  pseudo-experiments per (env, model, μ_true ∈ {0.5, 1, 1.5, 2, 3});
+  models: A:qksvc, A:rbf_svc_8f, A:xgboost, B:xgboost; environments: the
+  E08 grid (all 41), attention on the E02R-gated decoupled cells.
+- **Falsifier (frozen):** if L2 fails its *nominal-environment* coverage
+  calibration gate (coverage outside 0.6827 ± 0.02 with 2000 PEs at θ=0),
+  the implementation is invalid — fix before any shifted-environment
+  claim. Hypotheses (b)/(c) have no falsifier because both directions are
+  reportable findings; what is falsifiable is the decoupling claim itself:
+  if under L2-complete *and* L3-misspecified the previously decoupled
+  cells all regain coverage, H5 in its strong form is retired and the
+  manuscript says so.
+- **Acceptance criterion:** calibration gate passed; bias/width/coverage/
+  pull tables for L1/L2/L3 across the grid; explicit
+  "what-restores-validity" summary quantified (coverage recovered per
+  nuisance family when modeled vs omitted).
+- **Expected outputs:** `results/tables/E15_inference.json`, Fig. 7
+  replacement data; `qevc.inference` module + tests.
+- **Status:** specified (2026-08-11).
+
+## E04v3 — Out-of-grid generalization of the geometry sensor
+
+- **Question:** Does the frozen label-free sensor (MMD² of the quantum and
+  matched-rbf8 kernels) predict degradation on *continuous, out-of-grid*
+  nuisance configurations and across nuisance families it never saw — or
+  does it merely interpolate the development grid?
+- **Hypothesis:** H2 in generalization form: rank prediction transfers to
+  off-grid single-nuisance values and to prior-sampled multi-nuisance
+  configurations; leave-one-family-out calibration predicts the held-out
+  family with ρ > 0.
+- **Estimand:** Spearman ρ (and sign-consistency) between sensor value and
+  frozen-model |ΔAUC| over (a) 36 off-grid single-nuisance environments
+  (six per family where physical: TES/JES 6 new values each inside the
+  official clip range, soft_met 4 new values × 2 seeds, norm families for
+  floor/blindness checks only), and (b) 24 multi-nuisance draws from the
+  official priors (seeded, predeclared in the config before execution) —
+  60 new environments total, none coinciding with any E02 grid point.
+- **Information set:** I1 strictly — sensor sees unlabeled target draws
+  only (from `auditor_dev`, D-021); degradation targets are computed once,
+  after sensor values are archived, from the frozen seed-101 deployment
+  (single-partition targets declared; E02R told us their precision, and
+  the E12 deployment provides a cross-partition secondary check).
+- **Protocol:** (1) commit the 60-environment config; (2) compute sensor
+  values (CRN draws, floor re-estimated on auditor_dev with bootstrap
+  uncertainty per F4); (3) only then score frozen models and compute
+  |ΔAUC|; (4) leave-one-nuisance-family-out: any calibration map
+  (monotone/isotonic) fit on the other families, evaluated on the held-out
+  family — repeated for TES, JES, soft_met, combos; (5) out-of-grid
+  pooled ρ with family-blocked bootstrap CIs.
+- **Falsifier (frozen):** pooled out-of-grid ρ ≤ 0 for both frozen
+  sensors, or any leave-one-family-out fold with ρ sign-unstable across
+  the CRN draws for both sensors — reported as "the sensor interpolates,
+  it does not generalize", which retires the sensor claim from the
+  manuscript (the information-set thesis survives without it).
+- **Acceptance criterion:** table of per-fold and pooled ρ with CIs;
+  floor distribution with uncertainty; explicit no-labels attestation in
+  the run script (sensor archived before targets exist).
+- **Expected outputs:** `results/tables/E04v3_out_of_grid.json`, Fig. 4
+  upgrade data.
+- **Status:** specified (2026-08-11).
+
+## E16 — Quantum estimation uncertainty → certification
+
+- **Question:** When does quantum-kernel estimation uncertainty —
+  finite shots and hardware noise — change a scientific validity verdict?
+- **Hypothesis:** H6 sharpened: verdict changes concentrate at claim
+  margins comparable to the estimation-induced metric perturbation;
+  far-margin certificates are stable at practical budgets; near-boundary
+  claims flip or abstain, and abstention (not false certification) is the
+  dominant failure mode — fail-closed under quantum noise.
+- **Estimand(s):** per (kernel regime, environment, claim): verdict in
+  {SUPPORTED, REFUTED, UNRESOLVED}; flip rate vs C_ideal; abstention
+  inflation; empirical false-certification against simulation truth;
+  n* inflation; supporting diagnostics: kernel Frobenius error, spectral
+  distortion (eff-rank), PSD violation, ΔAUC vs exact, M_S shift, margin
+  shift. Claim strata predeclared by ideal-kernel margin: far (|m| ≥
+  0.04), moderate (0.01–0.04), near (< 0.01).
+- **Information set:** I2(n) as E05/E13 (both unweighted and weighted
+  claim families — E16 consumes E13's machinery); the kernel regime is
+  part of the *deployment*, not the information set.
+- **Protocol:** (1) D-022 fix (independent per-call shot noise) with
+  regression test; (2) simulation arm: shots ∈ {128, 256, 512, 1024,
+  2048, 4096} × 5 kernel seeds × environments {nominal, tes=0.98,
+  tes=1.02, soft_met=5.0/seed11, combo3/seed11} × full E05 claim grid;
+  each noisy deployment owns its pipeline (refit, recalibrate, re-freeze
+  threshold — as E09); C_shots vs C_ideal tables by margin stratum;
+  (3) hardware arm (Open-plan budget, D-027): scope decided by measured
+  quota — priority order (a) full-pipeline micro-demonstration: fresh
+  QPU train Gram (n ≈ 48–64 events) + cross-Gram to a held-out test set,
+  auditor run end-to-end on 100%-hardware kernels (C_hw), raw counts
+  archived; (b) if budget allows, a dynamical-decoupling on/off split at
+  identical shots for a mitigation-recoverable-fraction estimate;
+  (c) drift/session replication only if (a)+(b) fit comfortably. Archived
+  E10 v1 Gram is reused for cross-checks, never silently mixed with new
+  sessions. All jobs, calibration snapshots, transpiled depths, and raw
+  counts archived; failed jobs reported.
+- **Falsifier (frozen):** if verdict flips are *not* margin-concentrated
+  (far-margin flip rate ≥ moderate-margin flip rate at any budget ≥ 1024
+  shots), the "estimation noise only bites near boundaries" claim is
+  false and the manuscript's Quantum Realism section is rewritten
+  accordingly. If empirical false certification under noisy kernels
+  exceeds α beyond binomial slack, the fail-closed claim under quantum
+  uncertainty is falsified — a central negative result if it occurs.
+- **Acceptance criterion:** complete C_ideal/C_shots (and C_hw at
+  achievable scale) comparison tables with per-stratum flip/abstention/
+  false-cert rates and n* inflation; hardware provenance complete.
+- **Expected outputs:** `results/tables/E16_quantum_uncertainty.json`;
+  `results/raw/E16_hw/*` if the hardware arm runs; Fig. 8 upgrade data.
+- **Status:** specified (2026-08-11).
+
+## E11v2 — Strengthened CMS real-data demonstration
+
+- **Question:** Does the fail-closed ledger hold, with tighter aggregate
+  evidence, when the real-data side uses the full public Run2012B+C
+  samples instead of the 10% development mirror?
+- **Hypothesis:** H4 in deployment conditions, unchanged; CR-based claims
+  gain precision (narrower intervals), the sim-to-real sensor alarm
+  persists, and event-level accuracy remains UNRESOLVED by construction.
+- **Estimand(s):** the E11 ledger claims C1–C4 with identical definitions;
+  CR data/MC ratios with their intervals; sensor MMD² vs re-estimated
+  floor.
+- **Information set:** I1 + control-region aggregates (unchanged); MC
+  hyperparameters remain E01-frozen; no target tuning.
+- **Protocol:** download full opendata.cern.ch files for the two real-data
+  samples (Run2012B/C TauPlusX, ~27 GB; sequential download → skim →
+  delete raw per file under the disk budget); MC stays on the verified
+  mirror files (statistically valid: MC weights normalize by ingested
+  N_generated; D-026 sets DATA_LUMI_FRACTION → 1.0 with the full-data
+  path); re-run the E11 pipeline frozen; register `data/README.md`
+  Level II provenance (audit gap); ledger + diagnostics regenerated; the
+  mirror-based E11 v1 results are retained for comparison.
+- **Falsifier (frozen):** unchanged from E11 — certifying C1 would be a
+  design failure. Additionally: if the full-data CR ratios move outside
+  the mirror-based intervals by more than their combined uncertainties,
+  the mirror-based conclusions were sample-fragile — reported either way.
+- **Acceptance criterion:** ledger reproduced on full data; explicit
+  mirror-vs-full comparison row per claim.
+- **Expected outputs:** `results/tables/E11v2_cms_full.json` + manifest;
+  updated `data/README.md`.
+- **Status:** specified (2026-08-11).
