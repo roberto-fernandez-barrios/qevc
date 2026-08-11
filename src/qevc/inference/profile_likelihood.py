@@ -176,16 +176,22 @@ class ProfileLikelihood:
             norm_scales[nrm] = x[k]; k += 1
         return mu, shape_alphas, norm_scales
 
-    def nll(self, x: np.ndarray, n_obs: np.ndarray) -> float:
+    def nll(self, x: np.ndarray, n_obs: np.ndarray,
+            aux: dict | None = None) -> float:
+        """-log L. ``aux`` holds the auxiliary constraint centers θ̃ (D-023
+        amendment 2, unconditional ensemble): tes/jes in sigma units
+        (default 0), norm scales in scale units (default 1). soft_met has
+        no constraint term (flat on [0,5])."""
         mu, shape_alphas, norm_scales = self._unpack(x)
         lam = self.t.expected(mu, shape_alphas, norm_scales)
         val = float(np.sum(lam - n_obs * np.log(lam)))
         for s in self.shapes:
-            if s in ("tes", "jes"):          # unit Gaussian in sigma units
-                val += 0.5 * shape_alphas[s] ** 2
-            # soft_met: flat on [0,5] (D-023 amendment ii) — no term
+            if s in ("tes", "jes"):
+                a0 = 0.0 if aux is None else float(aux.get(s, 0.0))
+                val += 0.5 * (shape_alphas[s] - a0) ** 2
         for nrm in self.norms:
-            val += 0.5 * ((norm_scales[nrm] - 1.0) / NORM_SIGMA[nrm]) ** 2
+            a0 = 1.0 if aux is None else float(aux.get(nrm, 1.0))
+            val += 0.5 * ((norm_scales[nrm] - a0) / NORM_SIGMA[nrm]) ** 2
         return val
 
     def _bounds(self, mu_bounds):
@@ -205,32 +211,35 @@ class ProfileLikelihood:
             x0.append(1.0)
         return np.array(x0)
 
-    def _minimize(self, n_obs, mu_bounds, fix_mu=None, x0=None):
+    def _minimize(self, n_obs, mu_bounds, fix_mu=None, x0=None, aux=None):
         bounds = self._bounds(mu_bounds)
         x0 = self._x0() if x0 is None else np.asarray(x0, dtype=float).copy()
         if fix_mu is not None:
             x0[0] = fix_mu
             bounds = [(fix_mu, fix_mu)] + bounds[1:]
-        res = optimize.minimize(self.nll, x0, args=(n_obs,), method="L-BFGS-B",
-                                bounds=bounds)
+        res = optimize.minimize(self.nll, x0, args=(n_obs, aux),
+                                method="L-BFGS-B", bounds=bounds)
         return res
 
     def fit(self, n_obs: np.ndarray, z: float = 1.0,
-            mu_bounds: tuple[float, float] = (-5.0, 15.0)) -> FitResult:
+            mu_bounds: tuple[float, float] = (-5.0, 15.0),
+            aux: dict | None = None) -> FitResult:
         """Global fit + profile-likelihood-ratio interval at +-z (q = z^2)."""
         n_obs = np.asarray(n_obs, dtype=float)
-        best = self._minimize(n_obs, mu_bounds)
+        best = self._minimize(n_obs, mu_bounds, aux=aux)
         # one refinement from a second start (robustness against local minima)
         alt = self._minimize(n_obs, mu_bounds,
                              x0=self._x0(mu0=float(np.clip(best.x[0] * 0.5 + 0.5,
-                                                           *mu_bounds))))
+                                                           *mu_bounds))),
+                             aux=aux)
         if alt.fun < best.fun:
             best = alt
         mu_hat, nll_hat = float(best.x[0]), float(best.fun)
         q_target = z * z
 
         def q(mu_val, x_warm):
-            r = self._minimize(n_obs, mu_bounds, fix_mu=mu_val, x0=x_warm)
+            r = self._minimize(n_obs, mu_bounds, fix_mu=mu_val, x0=x_warm,
+                               aux=aux)
             return 2.0 * (float(r.fun) - nll_hat), r.x
 
         def endpoint(direction: int) -> float:

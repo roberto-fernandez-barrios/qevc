@@ -148,14 +148,27 @@ def make_templates(hists, edges, key) -> TemplateSet:
 
 def run_cell(templates: TemplateSet, profile_shapes, profile_norms,
              s_true: np.ndarray, b_true: np.ndarray, mu_true: float,
-             n_pe: int, seed: int, z: float) -> dict:
+             n_pe: int, seed: int, z: float,
+             true_theta: dict | None = None) -> dict:
+    """One (env, model, mu, level) cell. D-023 amendment 2: each PE draws
+    the auxiliary constraint centers around the environment's TRUE nuisance
+    values (unconditional ensemble)."""
+    from qevc.inference.profile_likelihood import NORM_SIGMA  # noqa: PLC0415
     pl = ProfileLikelihood(templates, profile_shapes, profile_norms)
     rng = np.random.default_rng(seed)
     lam = mu_true * s_true + b_true
+    true_theta = true_theta or {}
     mu_hats, widths, cover, pulls, n_conv = [], [], 0, [], 0
     for _ in range(n_pe):
         n_obs = rng.poisson(lam)
-        res = pl.fit(n_obs, z=z)
+        aux = {}
+        for s in profile_shapes:
+            if s in ("tes", "jes"):
+                aux[s] = float(rng.normal(true_theta.get(s, 0.0), 1.0))
+        for nrm in profile_norms:
+            aux[nrm] = float(rng.normal(true_theta.get(nrm, 1.0),
+                                        NORM_SIGMA[nrm]))
+        res = pl.fit(n_obs, z=z, aux=aux)
         mu_hats.append(res.mu_hat)
         lo, hi = res.interval
         widths.append(hi - lo)
@@ -192,7 +205,13 @@ def main() -> int:
     hists, edges = build_histogram_store(raw, raw_splits, models, factors)
 
     templates = {key: make_templates(hists, edges, key) for key in E15["models"]}
-    env_list = [("nominal", None)] + [(e, None) for e, _ in environments()]
+    env_list = [("nominal", Environment())] + environments()
+
+    def true_theta_of(env: Environment) -> dict:
+        return {"tes": (env.tes - 1.0) / 0.01, "jes": (env.jes - 1.0) / 0.01,
+                "soft_met": env.soft_met, "ttbar_scale": env.ttbar_scale,
+                "diboson_scale": env.diboson_scale,
+                "bkg_scale": env.bkg_scale}
     z = E15["ci_z"]
     l2_shapes = E15["profile"]["l2_shapes"]
     l2_norms = E15["profile"]["l2_norms"]
@@ -208,7 +227,8 @@ def main() -> int:
             gate_jobs.append((key, mu, delayed(run_cell)(
                 templates[key], l2_shapes, l2_norms, s_true, b_true, mu,
                 E15["pseudo_experiments"]["calibration_gate"],
-                stable_seed(E15["seed_salt"], "gate", key, mu), z)))
+                stable_seed(E15["seed_salt"], "gate", key, mu), z,
+                true_theta_of(Environment()))))
     log(f"calibration gate: {len(gate_jobs)} cells x "
         f"{E15['pseudo_experiments']['calibration_gate']} PEs")
     gate_res = Parallel(n_jobs=-1)(j for _, _, j in gate_jobs)
@@ -229,11 +249,12 @@ def main() -> int:
 
     # ---- L2 / L3 over the full grid ----------------------------------------
     jobs, meta = [], []
-    for env_name, _ in env_list:
+    for env_name, env in env_list:
         fam = env_family(env_name)
         omit = E15["profile"]["l3_omit_by_family"][fam]
         l3_shapes = [s for s in l2_shapes if s != omit]
         l3_norms = [n for n in l2_norms if n != omit]
+        tt = true_theta_of(env)
         for key in E15["models"]:
             s_true = hists[env_name][key]["htautau"].astype(float)
             b_true = sum(hists[env_name][key][p].astype(float)
@@ -246,7 +267,7 @@ def main() -> int:
                         templates[key], shp, nrm, s_true, b_true, mu,
                         E15["pseudo_experiments"]["l2_l3"],
                         stable_seed(E15["seed_salt"], level, env_name, key, mu),
-                        z))
+                        z, tt))
     log(f"L2/L3 grid: {len(jobs)} cells x {E15['pseudo_experiments']['l2_l3']} PEs")
     results = Parallel(n_jobs=-1, verbose=1)(jobs)
 

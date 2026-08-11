@@ -382,6 +382,19 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   the actually-shifted family for single-nuisance environments; soft_met
   for the combo environments; the shifted norm scale for weight-only
   environments.
+- **Amendment 2 (2026-08-11, after the registered calibration gate
+  TRIGGERED on the first E15 run — coverage 0.93–0.98 vs 0.6827, all four
+  models):** cause identified as the conditional-ensemble error: pseudo-
+  experiments fluctuated only the Poisson counts while the Gaussian
+  constraint centers stayed fixed at nominal, anchoring the profiled
+  nuisances more strongly than the likelihood's constraint widths assume
+  and over-widening the PLR intervals. Fix (standard unconditional
+  ensemble): each pseudo-experiment also draws the auxiliary constraint
+  centers θ̃_j ~ N(θ_j^true, σ_j) (tes/jes in σ units, norm scales in
+  scale units; soft_met has no constraint term and thus no auxiliary).
+  The gate is re-run after the fix; shifted environments are interpreted
+  only if it passes. First-run output not retained as a results table
+  (the run was aborted mid-grid at the gate failure, by design).
 
 ## D-024 — Information set I3: definition and evidence channels (E14)
 

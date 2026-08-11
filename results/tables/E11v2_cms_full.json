@@ -1,0 +1,103 @@
+{
+  "experiment": "E11v2",
+  "lumi_pb": 11467.0,
+  "samples": {
+    "mc_selected": 12445,
+    "data_selected": 126164,
+    "mc_sr": 10396,
+    "data_sr": 96815,
+    "mc_ss": 2049,
+    "data_ss": 29349
+  },
+  "claims_ledger": {
+    "C1_event_accuracy": {
+      "text": "event-level accuracy of f on collision data >= M_S - 0.05",
+      "requires": "I2 (target labels)",
+      "verdict": "UNRESOLVED",
+      "reason": "no event-level truth exists on collision data \u2014 fail-closed by construction (unchanged from v1; more data cannot change this, which is the point)"
+    },
+    "C2_w_norm": {
+      "text": "W+jets normalization consistent with MC within 30% in the high-mT CR",
+      "requires": "I1 + control-region aggregates",
+      "evidence": {
+        "data_yield": 23008,
+        "mc_yield": 24230.8,
+        "ratio": 0.9495,
+        "ratio_ci95": [
+          0.9373,
+          0.9619
+        ]
+      },
+      "verdict": "SUPPORTED"
+    },
+    "C3_no_shift": {
+      "text": "no MC->data shift detectable at the QK-MMD2 sensor noise floor",
+      "requires": "I1 (unlabeled target)",
+      "evidence": {
+        "mmd2_mc_vs_data": 0.002805,
+        "noise_floor_max": 0.001136,
+        "noise_floor_median": 0.000983
+      },
+      "verdict": "REFUTED"
+    },
+    "C4_ss_qcd": {
+      "text": "SS control region shows a significant data excess over MC (QCD)",
+      "requires": "I1 + control-region aggregates",
+      "evidence": {
+        "data_ss": 29349,
+        "mc_ss": 19181.9,
+        "excess": 10167.1,
+        "z": 59.35
+      },
+      "verdict": "SUPPORTED"
+    }
+  },
+  "mirror_vs_full_comparison": {
+    "C1_event_accuracy": {
+      "v1_verdict": "UNRESOLVED",
+      "v2_verdict": "UNRESOLVED",
+      "verdict_stable": true
+    },
+    "C2_w_norm": {
+      "v1_verdict": "SUPPORTED",
+      "v2_verdict": "SUPPORTED",
+      "verdict_stable": true,
+      "v1_ratio": 0.9223,
+      "v2_ratio": 0.9495,
+      "consistent": true
+    },
+    "C3_no_shift": {
+      "v1_verdict": "REFUTED",
+      "v2_verdict": "REFUTED",
+      "verdict_stable": true,
+      "v1_mmd2": 0.002972,
+      "v2_mmd2": 0.002805
+    },
+    "C4_ss_qcd": {
+      "v1_verdict": "SUPPORTED",
+      "v2_verdict": "SUPPORTED",
+      "verdict_stable": true,
+      "v1_z": 18.61,
+      "v2_z": 59.35
+    }
+  },
+  "deployment_diagnostics": {
+    "qksvc": {
+      "auc_mc_val": 0.7357,
+      "m_source": 0.6652,
+      "score_ks_data_vs_mcval": {
+        "stat": 0.0711,
+        "p": 9.899919673446847e-14
+      }
+    },
+    "xgboost": {
+      "auc_mc_val": 0.8508,
+      "m_source": 0.7928,
+      "score_ks_data_vs_mcval": {
+        "stat": 0.076,
+        "p": 1.232193469276261e-15
+      }
+    }
+  },
+  "wall_seconds": 193.6
+}

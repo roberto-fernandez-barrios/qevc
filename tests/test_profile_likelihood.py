@@ -65,6 +65,8 @@ def test_norm_nuisances_exact():
 
 
 def test_fit_recovers_mu_and_coverage():
+    """Unconditional ensemble (D-023 amendment 2): PEs draw both the counts
+    and the auxiliary constraint centers around truth."""
     t = make_templates()
     pl = ProfileLikelihood(t, profile_shapes=[], profile_norms=["bkg_scale"])
     lam_true = t.expected(1.0, {}, {})
@@ -72,7 +74,8 @@ def test_fit_recovers_mu_and_coverage():
     n_pe = 120
     for r in range(n_pe):
         n_obs = RNG.poisson(lam_true)
-        res = pl.fit(n_obs)
+        aux = {"bkg_scale": float(RNG.normal(1.0, 0.001))}
+        res = pl.fit(n_obs, aux=aux)
         mu_hats.append(res.mu_hat)
         lo, hi = res.interval
         if lo <= 1.0 <= hi:
@@ -80,6 +83,17 @@ def test_fit_recovers_mu_and_coverage():
     bias = float(np.mean(mu_hats)) - 1.0
     assert abs(bias) < 0.15, bias
     assert 0.53 <= cover / n_pe <= 0.83, cover / n_pe  # ~0.6827 +- MC slack
+
+
+def test_aux_centers_shift_constraint():
+    t = make_templates(with_tes=True)
+    pl = ProfileLikelihood(t, profile_shapes=["tes"], profile_norms=[])
+    lam = t.expected(1.0, {"tes": 1.5}, {})
+    n_obs = np.round(lam)
+    res0 = pl.fit(n_obs, aux={"tes": 0.0})
+    res1 = pl.fit(n_obs, aux={"tes": 1.5})
+    # with the auxiliary centered at truth, the fitted alpha sits closer to it
+    assert abs(res1.nuisance_hat["tes"] - 1.5) < abs(res0.nuisance_hat["tes"] - 1.5) + 0.2
 
 
 def test_profiling_restores_validity_under_shape_shift():
