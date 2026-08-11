@@ -106,22 +106,29 @@ def main() -> int:
                                E14["control_regions"]["cr_ttbar"]["quantile"]))
     log(f"CR_ttbar: {feat} > {thr_cr:.2f} (q90 on auditor_dev)")
 
-    def cr_yields(df, factors):
-        """Per-CR (cr_tt, cr_rest) yields for sig / ttbar / diboson / other."""
+    def cr_yields(df, factors, with_var: bool = False):
+        """Per-CR (cr_tt, cr_rest) yields for sig / ttbar / diboson / other.
+        ``with_var`` also returns the per-CR template-MC-stat variance
+        Σ_g Σ_i w_i² (D-024 amendment; Barlow–Beeston-lite)."""
         w = df["weights"].to_numpy(copy=True)
         dl = df["detailed_labels"].to_numpy()
         for proc, f in factors.items():
             w[dl == proc] *= f
         in_tt = df[feat].to_numpy() > thr_cr
         out = {}
+        var = np.zeros(2)
         for grp, mask_p in (("sig", dl == "htautau"), ("ttbar", dl == "ttbar"),
                             ("diboson", dl == "diboson"),
                             ("other", dl == "ztautau")):
             out[grp] = np.array([float(w[in_tt & mask_p].sum()),
                                  float(w[~in_tt & mask_p].sum())])
+            var += np.array([float((w[in_tt & mask_p] ** 2).sum()),
+                             float((w[~in_tt & mask_p] ** 2).sum())])
+        if with_var:
+            return out, var
         return out
 
-    tmpl = cr_yields(ad, f_ad)      # analyst belief (auditor_dev MC)
+    tmpl, tmpl_var = cr_yields(ad, f_ad, with_var=True)  # analyst belief
     purity_tt = tmpl["ttbar"][0] / sum(v[0] for v in tmpl.values())
     log(f"CR_ttbar purity (ttbar fraction): {purity_tt:.3f}; "
         f"yields sig={tmpl['sig']}, tt={tmpl['ttbar']}, db={tmpl['diboson']}, "
@@ -159,7 +166,7 @@ def main() -> int:
             counts = rng.poisson(lam_true)
             fit = fit_norm_scales(counts, tmpl["sig"], tmpl["ttbar"],
                                   tmpl["diboson"], tmpl["other"],
-                                  alpha=mc["alpha"])
+                                  alpha=mc["alpha"], template_var=tmpl_var)
             bias_tt.append(fit["s_tt_hat"] - s_true["s_tt"])
             bias_bkg.append(fit["s_bkg_hat"] - s_true["s_bkg"])
             if fit["ci_tt"][0] <= s_true["s_tt"] <= fit["ci_tt"][1]:
@@ -275,7 +282,7 @@ def main() -> int:
                     counts = rng.poisson(lam_true)
                     fit = fit_norm_scales(counts, tmpl["sig"], tmpl["ttbar"],
                                           tmpl["diboson"], tmpl["other"],
-                                          alpha=a_par)
+                                          alpha=a_par, template_var=tmpl_var)
                     boxes = {"ttbar": fit["ci_tt"], "diboson": (0.0, 2.0),
                              "bkg": fit["ci_bkg"]}
                     r3 = worst_case_weighted_verdict(

@@ -48,27 +48,40 @@ def garwood_poisson_ci(n: int, alpha: float = 0.05) -> tuple[float, float]:
 
 
 def _neg_loglike(params, counts, lam_sig, lam_ttbar, lam_diboson, lam_other,
-                 s_db):
+                 s_db, template_var=None):
     """-log L over CRs for (s_tt, s_bkg) at fixed diboson scale s_db.
 
     lam_* are per-CR expected nominal yields; model per CR:
         lam = lam_sig + s_bkg * (s_tt*lam_ttbar + s_db*lam_diboson + lam_other)
+
+    ``template_var`` (D-024 amendment, Barlow–Beeston-lite): per-CR variance
+    of the expected count from template MC statistics. When given, the
+    Gaussian-regime likelihood (counts here are 10^3–10^6) uses variance
+    lam + template_var, so template noise cannot masquerade as a scale
+    shift. When None, pure Poisson (the v1 model whose CI-coverage
+    falsifier triggered).
     """
     s_tt, s_bkg = params
     lam = lam_sig + s_bkg * (s_tt * lam_ttbar + s_db * lam_diboson + lam_other)
     lam = np.clip(lam, 1e-9, None)
-    return float(np.sum(lam - counts * np.log(lam)))
+    if template_var is None:
+        return float(np.sum(lam - counts * np.log(lam)))
+    var = lam + np.asarray(template_var, dtype=float)
+    return float(np.sum((counts - lam) ** 2 / (2.0 * var)
+                        + 0.5 * np.log(var)))
 
 
 def fit_norm_scales(counts: np.ndarray, lam_sig: np.ndarray,
                     lam_ttbar: np.ndarray, lam_diboson: np.ndarray,
                     lam_other: np.ndarray, alpha: float = 0.05,
-                    clip_tt=(0.8, 1.2), clip_bkg=(0.99, 1.01)) -> dict:
+                    clip_tt=(0.8, 1.2), clip_bkg=(0.99, 1.01),
+                    template_var: np.ndarray | None = None) -> dict:
     """Joint MLE for (s_ttbar, s_bkg); diboson profiled over its clip range.
 
     Returns point estimates and profile-likelihood-ratio CIs (1 dof, level
     1-alpha per parameter). Coverage is Monte-Carlo-validated in the E14 run
-    before any verdict is issued (registry falsifier).
+    before any verdict is issued (registry falsifier). ``template_var``
+    activates the D-024-amended template-statistics-aware likelihood.
     """
     counts = np.asarray(counts, dtype=float)
     db_grid = np.linspace(*DIBOSON_CLIP, 9)
@@ -80,26 +93,28 @@ def fit_norm_scales(counts: np.ndarray, lam_sig: np.ndarray,
         for s_db in db_grid:
             if s_tt_fix is not None and s_bkg_fix is not None:
                 val = _neg_loglike((s_tt_fix, s_bkg_fix), counts, lam_sig,
-                                   lam_ttbar, lam_diboson, lam_other, s_db)
+                                   lam_ttbar, lam_diboson, lam_other, s_db,
+                                   template_var)
                 par = (s_tt_fix, s_bkg_fix)
             elif s_tt_fix is not None:
                 r = optimize.minimize_scalar(
                     lambda b: _neg_loglike((s_tt_fix, b), counts, lam_sig,
                                            lam_ttbar, lam_diboson, lam_other,
-                                           s_db),
+                                           s_db, template_var),
                     bounds=clip_bkg, method="bounded")
                 val, par = float(r.fun), (s_tt_fix, float(r.x))
             elif s_bkg_fix is not None:
                 r = optimize.minimize_scalar(
                     lambda t: _neg_loglike((t, s_bkg_fix), counts, lam_sig,
                                            lam_ttbar, lam_diboson, lam_other,
-                                           s_db),
+                                           s_db, template_var),
                     bounds=clip_tt, method="bounded")
                 val, par = float(r.fun), (float(r.x), s_bkg_fix)
             else:
                 r = optimize.minimize(
                     lambda p: _neg_loglike(p, counts, lam_sig, lam_ttbar,
-                                           lam_diboson, lam_other, s_db),
+                                           lam_diboson, lam_other, s_db,
+                                           template_var),
                     [1.0, 1.0], method="L-BFGS-B",
                     bounds=[clip_tt, clip_bkg])
                 val, par = float(r.fun), (float(r.x[0]), float(r.x[1]))

@@ -398,6 +398,22 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   stated as a formal proposition (P_θ(X) = P_0(X) ⇒ no label-free test
   has power beyond α) — proved, not asserted.
 - **Status:** adopted.
+- **Amendment (2026-08-11, after the E14 v1 run TRIGGERED the registered
+  CI-coverage falsifier — v1 table preserved as
+  `E14_i3_v1_template_naive.json`):** the pure-Poisson CR fit ignores
+  template MC statistics: analyst templates (auditor_dev role) differ from
+  the target population (nominal_test role) by ~5% relative in the ttbar
+  CR tail, which the fit misreads as a scale shift (ŝ_tt bias +0.07,
+  CI coverage 0.0). Amended model (Barlow–Beeston-lite, Gaussian regime —
+  counts are 10³–10⁶): per-CR expected-count variance gains the
+  template-statistical term σ²_c = Σ_g (relerr_{g,c}·λ_{g,c})² with
+  relerr from the template role's √(Σw²)/Σw; PLR CIs on the Gaussianized
+  likelihood. Predicted consequence, embraced as a finding: s_tt is
+  identified only to roughly ± the template noise (~±10% at 300k-subset
+  statistics), so claims tighter than that remain UNRESOLVED — I3
+  resolvability is real but quantitatively limited by auxiliary-evidence
+  (template) quality; s_bkg (dominated by the high-statistics ztautau
+  template) stays sharply resolvable.
 
 ## D-025 — Sensor family frozen; out-of-grid validation protocol (E04v3)
 

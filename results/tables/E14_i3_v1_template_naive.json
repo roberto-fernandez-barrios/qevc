@@ -1,0 +1,2347 @@
+{
+  "experiment": "E14",
+  "proposition": "docs/weighted_certification_spec.md \u00a74b",
+  "control_region": {
+    "feature": "DER_sum_pt",
+    "threshold": 241.399,
+    "purity_ttbar": 0.5176,
+    "templates": {
+      "sig": [
+        230.0,
+        785.36
+      ],
+      "ttbar": [
+        32205.8,
+        11984.37
+      ],
+      "diboson": [
+        488.53,
+        3294.11
+      ],
+      "other": [
+        29291.67,
+        973104.97
+      ]
+    }
+  },
+  "rate_claims": {
+    "nominal": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 1.0,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.9825
+      },
+      "s_hat_bias": {
+        "s_tt": 0.0724,
+        "s_bkg": -0.003029
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.37,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 148,
+            "UNRESOLVED": 252
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 1,
+            "REFUTED": 0,
+            "UNRESOLVED": 399
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "ttbar_scale=0.96": {
+      "s_true": {
+        "s_tt": 0.96,
+        "s_db": 1.0,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.99
+      },
+      "s_hat_bias": {
+        "s_tt": 0.07406,
+        "s_bkg": -0.002819
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 229,
+            "REFUTED": 0,
+            "UNRESOLVED": 171
+          }
+        },
+        "s_tt|0.02": {
+          "truth": false,
+          "false_cert_rate": 0.0,
+          "false_refute_rate": null,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 26,
+            "UNRESOLVED": 374
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "ttbar_scale=0.98": {
+      "s_true": {
+        "s_tt": 0.98,
+        "s_db": 1.0,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.975
+      },
+      "s_hat_bias": {
+        "s_tt": 0.07344,
+        "s_bkg": -0.002991
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.01,
+          "verdicts": {
+            "SUPPORTED": 10,
+            "REFUTED": 4,
+            "UNRESOLVED": 386
+          }
+        },
+        "s_tt|0.02": {
+          "truth": false,
+          "false_cert_rate": 0.0,
+          "false_refute_rate": null,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 338,
+            "UNRESOLVED": 62
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 2,
+            "REFUTED": 0,
+            "UNRESOLVED": 398
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "ttbar_scale=1.02": {
+      "s_true": {
+        "s_tt": 1.02,
+        "s_db": 1.0,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.9875
+      },
+      "s_hat_bias": {
+        "s_tt": 0.07128,
+        "s_bkg": -0.002951
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.975,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 390,
+            "UNRESOLVED": 10
+          }
+        },
+        "s_tt|0.02": {
+          "truth": false,
+          "false_cert_rate": 0.0,
+          "false_refute_rate": null,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 2,
+            "REFUTED": 0,
+            "UNRESOLVED": 398
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "ttbar_scale=1.04": {
+      "s_true": {
+        "s_tt": 1.04,
+        "s_db": 1.0,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.985
+      },
+      "s_hat_bias": {
+        "s_tt": 0.06967,
+        "s_bkg": -0.003634
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_tt|0.02": {
+          "truth": false,
+          "false_cert_rate": 0.0,
+          "false_refute_rate": null,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 2,
+            "REFUTED": 0,
+            "UNRESOLVED": 398
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "diboson_scale=0.5": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 0.5,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.78
+      },
+      "s_hat_bias": {
+        "s_tt": 0.06519,
+        "s_bkg": -0.004912
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.135,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 54,
+            "UNRESOLVED": 346
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "diboson_scale=0.75": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 0.75,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.91
+      },
+      "s_hat_bias": {
+        "s_tt": 0.06868,
+        "s_bkg": -0.003833
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.24,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 96,
+            "UNRESOLVED": 304
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "diboson_scale=1.25": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 1.25,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 1.0
+      },
+      "s_hat_bias": {
+        "s_tt": 0.07676,
+        "s_bkg": -0.001706
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.5175,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 207,
+            "UNRESOLVED": 193
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 11,
+            "REFUTED": 0,
+            "UNRESOLVED": 389
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "diboson_scale=1.5": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 1.5,
+        "s_bkg": 1.0
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 1.0
+      },
+      "s_hat_bias": {
+        "s_tt": 0.08081,
+        "s_bkg": -0.000779
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.68,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 272,
+            "UNRESOLVED": 128
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 34,
+            "REFUTED": 0,
+            "UNRESOLVED": 366
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "bkg_scale=0.998": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 1.0,
+        "s_bkg": 0.998
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.98
+      },
+      "s_hat_bias": {
+        "s_tt": 0.07032,
+        "s_bkg": -0.00351
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.345,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 138,
+            "UNRESOLVED": 262
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "bkg_scale=0.999": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 1.0,
+        "s_bkg": 0.999
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.985
+      },
+      "s_hat_bias": {
+        "s_tt": 0.07266,
+        "s_bkg": -0.00344
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.4525,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 181,
+            "UNRESOLVED": 219
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "bkg_scale=1.001": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 1.0,
+        "s_bkg": 1.001
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.9875
+      },
+      "s_hat_bias": {
+        "s_tt": 0.0739,
+        "s_bkg": -0.002493
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.38,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 152,
+            "UNRESOLVED": 248
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 15,
+            "REFUTED": 0,
+            "UNRESOLVED": 385
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "bkg_scale=1.002": {
+      "s_true": {
+        "s_tt": 1.0,
+        "s_db": 1.0,
+        "s_bkg": 1.002
+      },
+      "ci_coverage": {
+        "s_tt": 0.0,
+        "s_bkg": 0.985
+      },
+      "s_hat_bias": {
+        "s_tt": 0.0753,
+        "s_bkg": -0.002219
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.4025,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 161,
+            "UNRESOLVED": 239
+          }
+        },
+        "s_tt|0.02": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 49,
+            "REFUTED": 0,
+            "UNRESOLVED": 351
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "combo3/seed11": {
+      "s_true": {
+        "s_tt": 1.04,
+        "s_db": 1.5,
+        "s_bkg": 1.002
+      },
+      "ci_coverage": {
+        "s_tt": 0.8575,
+        "s_bkg": 0.0
+      },
+      "s_hat_bias": {
+        "s_tt": 0.00753,
+        "s_bkg": -0.012
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0075,
+          "verdicts": {
+            "SUPPORTED": 147,
+            "REFUTED": 3,
+            "UNRESOLVED": 250
+          }
+        },
+        "s_tt|0.02": {
+          "truth": false,
+          "false_cert_rate": 0.0,
+          "false_refute_rate": null,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 381,
+            "UNRESOLVED": 19
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "combo3/seed12": {
+      "s_true": {
+        "s_tt": 1.04,
+        "s_db": 1.5,
+        "s_bkg": 1.002
+      },
+      "ci_coverage": {
+        "s_tt": 0.8,
+        "s_bkg": 0.0
+      },
+      "s_hat_bias": {
+        "s_tt": 0.0075,
+        "s_bkg": -0.012
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0175,
+          "verdicts": {
+            "SUPPORTED": 151,
+            "REFUTED": 7,
+            "UNRESOLVED": 242
+          }
+        },
+        "s_tt|0.02": {
+          "truth": false,
+          "false_cert_rate": 0.0,
+          "false_refute_rate": null,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 374,
+            "UNRESOLVED": 26
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    },
+    "combo3/seed13": {
+      "s_true": {
+        "s_tt": 1.04,
+        "s_db": 1.5,
+        "s_bkg": 1.002
+      },
+      "ci_coverage": {
+        "s_tt": 0.8275,
+        "s_bkg": 0.0
+      },
+      "s_hat_bias": {
+        "s_tt": 0.00707,
+        "s_bkg": -0.012
+      },
+      "claims": {
+        "s_tt|0.05": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.005,
+          "verdicts": {
+            "SUPPORTED": 148,
+            "REFUTED": 2,
+            "UNRESOLVED": 250
+          }
+        },
+        "s_tt|0.02": {
+          "truth": false,
+          "false_cert_rate": 0.0,
+          "false_refute_rate": null,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 372,
+            "UNRESOLVED": 28
+          }
+        },
+        "s_bkg|0.005": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 1.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 400,
+            "UNRESOLVED": 0
+          }
+        },
+        "s_db|0.5": {
+          "truth": true,
+          "false_cert_rate": null,
+          "false_refute_rate": 0.0,
+          "verdicts": {
+            "SUPPORTED": 0,
+            "REFUTED": 0,
+            "UNRESOLVED": 400
+          }
+        }
+      }
+    }
+  },
+  "rate_ci_coverage_falsifier_pass": false,
+  "i1_blindness_weight_only": {
+    "ttbar_scale=0.96": {
+      "mmd2": 0.0009348264023777003,
+      "above_floor": false
+    },
+    "ttbar_scale=0.98": {
+      "mmd2": 0.0008396094097859325,
+      "above_floor": false
+    },
+    "ttbar_scale=1.02": {
+      "mmd2": 0.0008349657451742071,
+      "above_floor": false
+    },
+    "ttbar_scale=1.04": {
+      "mmd2": 0.0008953684429932468,
+      "above_floor": false
+    },
+    "diboson_scale=0.5": {
+      "mmd2": 0.0008997662294243508,
+      "above_floor": false
+    },
+    "diboson_scale=0.75": {
+      "mmd2": 0.0008566002116934257,
+      "above_floor": false
+    },
+    "diboson_scale=1.25": {
+      "mmd2": 0.0010600322162115927,
+      "above_floor": false
+    },
+    "diboson_scale=1.5": {
+      "mmd2": 0.001142245620170318,
+      "above_floor": false
+    },
+    "bkg_scale=0.998": {
+      "mmd2": 0.0010373168805755395,
+      "above_floor": false
+    },
+    "bkg_scale=0.999": {
+      "mmd2": 0.001080614529918103,
+      "above_floor": false
+    },
+    "bkg_scale=1.001": {
+      "mmd2": 0.0009290493305375153,
+      "above_floor": false
+    },
+    "bkg_scale=1.002": {
+      "mmd2": 0.0009589389866034442,
+      "above_floor": false
+    }
+  },
+  "weighted_chain": {
+    "ttbar_scale=0.96": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76579,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00221,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02221,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 3,
+                "REFUTED": 0,
+                "UNRESOLVED": 17
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86687,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00675,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01325,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "ttbar_scale=0.98": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.7652,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00162,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02162,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 4,
+                "REFUTED": 0,
+                "UNRESOLVED": 16
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86673,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00689,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01311,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "ttbar_scale=1.02": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.764,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00042,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02042,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86645,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00717,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01283,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "ttbar_scale=1.04": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76341,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": false,
+              "margin_theta": -0.00017,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.01983,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86632,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.0073,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 1,
+                "UNRESOLVED": 19
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.0127,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "diboson_scale=0.5": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76577,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00219,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02219,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 5,
+                "REFUTED": 0,
+                "UNRESOLVED": 15
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86697,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00665,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01335,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "diboson_scale=0.75": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76518,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.0016,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.0216,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86678,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00684,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01316,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "diboson_scale=1.25": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76402,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00044,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02044,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 7,
+                "REFUTED": 0,
+                "UNRESOLVED": 13
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.8664,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00722,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01278,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "diboson_scale=1.5": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76343,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": false,
+              "margin_theta": -0.00015,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.01985,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 3,
+                "REFUTED": 0,
+                "UNRESOLVED": 17
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86621,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00741,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01259,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 4,
+                "REFUTED": 0,
+                "UNRESOLVED": 16
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "bkg_scale=0.998": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.7646,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00102,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02102,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 3,
+                "REFUTED": 0,
+                "UNRESOLVED": 17
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86659,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00703,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01297,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 4,
+                "REFUTED": 0,
+                "UNRESOLVED": 16
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "bkg_scale=0.999": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.7646,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00102,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02102,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 6,
+                "REFUTED": 0,
+                "UNRESOLVED": 14
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86659,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00703,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01297,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "bkg_scale=1.001": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.7646,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00102,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02102,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 4,
+                "REFUTED": 0,
+                "UNRESOLVED": 16
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86659,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00703,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01297,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "bkg_scale=1.002": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.7646,
+          "a_w_nominal_est": 0.7646,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00102,
+              "margin_nominal": 0.00102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02102,
+              "margin_nominal": 0.02102,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.86659,
+          "a_w_nominal_est": 0.86659,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00703,
+              "margin_nominal": -0.00703,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01297,
+              "margin_nominal": 0.01297,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 5,
+                "REFUTED": 0,
+                "UNRESOLVED": 15
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 2,
+                "REFUTED": 0,
+                "UNRESOLVED": 18
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "combo3/seed11": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.7637,
+          "a_w_nominal_est": 0.76611,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.00012,
+              "margin_nominal": 0.00253,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.02012,
+              "margin_nominal": 0.02253,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 3,
+                "REFUTED": 0,
+                "UNRESOLVED": 17
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.87137,
+          "a_w_nominal_est": 0.87202,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00225,
+              "margin_nominal": -0.0016,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01775,
+              "margin_nominal": 0.0184,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "combo3/seed12": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76488,
+          "a_w_nominal_est": 0.76732,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": true,
+              "margin_theta": 0.0013,
+              "margin_nominal": 0.00374,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.0213,
+              "margin_nominal": 0.02374,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 5,
+                "REFUTED": 0,
+                "UNRESOLVED": 15
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.87249,
+          "a_w_nominal_est": 0.8731,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00113,
+              "margin_nominal": -0.00052,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01887,
+              "margin_nominal": 0.01948,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 5,
+                "REFUTED": 0,
+                "UNRESOLVED": 15
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 1,
+                "REFUTED": 0,
+                "UNRESOLVED": 19
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    },
+    "combo3/seed13": {
+      "models": {
+        "A:qksvc": {
+          "a_w_theta": 0.76326,
+          "a_w_nominal_est": 0.76566,
+          "claims": {
+            "0.0": {
+              "tau": 0.76358,
+              "truth_theta": false,
+              "margin_theta": -0.00032,
+              "margin_nominal": 0.00208,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.74358,
+              "truth_theta": true,
+              "margin_theta": 0.01968,
+              "margin_nominal": 0.02208,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 3,
+                "REFUTED": 0,
+                "UNRESOLVED": 17
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        },
+        "A:xgboost": {
+          "a_w_theta": 0.87319,
+          "a_w_nominal_est": 0.8739,
+          "claims": {
+            "0.0": {
+              "tau": 0.87362,
+              "truth_theta": false,
+              "margin_theta": -0.00043,
+              "margin_nominal": 0.00028,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 0,
+                "REFUTED": 0,
+                "UNRESOLVED": 20
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            },
+            "0.02": {
+              "tau": 0.85362,
+              "truth_theta": true,
+              "margin_theta": 0.01957,
+              "margin_nominal": 0.02028,
+              "i2_nominal_verdicts": {
+                "SUPPORTED": 8,
+                "REFUTED": 0,
+                "UNRESOLVED": 12
+              },
+              "i3_verdicts": {
+                "SUPPORTED": 6,
+                "REFUTED": 0,
+                "UNRESOLVED": 14
+              },
+              "i2_false_cert": 0,
+              "i3_false_cert": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "claim_information_table": {
+    "classifier_performance_unweighted": {
+      "I0": "UNRESOLVED (impossibility)",
+      "I1": "veto only",
+      "I2": "resolvable (E05: fc 0.61%)",
+      "I3": "resolvable"
+    },
+    "classifier_performance_weighted_nominal_estimand": {
+      "I0": "UNRESOLVED",
+      "I1": "veto only",
+      "I2": "resolvable (E13: fc 0.02%)",
+      "I3": "resolvable"
+    },
+    "true_weighted_performance_under_theta_norm": {
+      "I0": "UNRESOLVED",
+      "I1": "UNRESOLVED (proposition 4b)",
+      "I2": "WRONG ESTIMAND (measured fc 0/360)",
+      "I3": "resolvable worst-case (fc 0/360)"
+    },
+    "normalization_rate_claims": {
+      "I0": "UNRESOLVED",
+      "I1": "UNRESOLVED (proposition 4b)",
+      "I2": "UNRESOLVED (nominal-weight stream theta-invariant)",
+      "I3": "resolvable for s_tt/s_bkg (MC-validated CIs); s_db UNIDENTIFIED (no CR) -> UNRESOLVED"
+    },
+    "physics_level_validity": {
+      "I0": "UNRESOLVED",
+      "I1": "UNRESOLVED",
+      "I2": "insufficient (E08/E12: decoupling)",
+      "I3": "requires inference procedure consuming theta-hat (E15)"
+    }
+  },
+  "wall_seconds": 184.1
+}
