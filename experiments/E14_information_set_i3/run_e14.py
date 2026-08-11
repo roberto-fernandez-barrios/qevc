@@ -161,6 +161,7 @@ def main() -> int:
                           {"SUPPORTED": 0, "REFUTED": 0, "UNRESOLVED": 0}
                           for c in E14["rate_claims"]}
         bias_tt, bias_bkg = [], []
+        wid_tt, wid_bkg = [], []
         for r in range(mc["n_rep"]):
             rng = stable_rng(mc["seed_salt"], env_name, r)
             counts = rng.poisson(lam_true)
@@ -169,6 +170,8 @@ def main() -> int:
                                   alpha=mc["alpha"], template_var=tmpl_var)
             bias_tt.append(fit["s_tt_hat"] - s_true["s_tt"])
             bias_bkg.append(fit["s_bkg_hat"] - s_true["s_bkg"])
+            wid_tt.append(fit["ci_tt"][1] - fit["ci_tt"][0])
+            wid_bkg.append(fit["ci_bkg"][1] - fit["ci_bkg"][0])
             if fit["ci_tt"][0] <= s_true["s_tt"] <= fit["ci_tt"][1]:
                 cover["s_tt"] += 1
             if fit["ci_bkg"][0] <= s_true["s_bkg"] <= fit["ci_bkg"][1]:
@@ -202,6 +205,8 @@ def main() -> int:
             "ci_coverage": {k: v / mc["n_rep"] for k, v in cover.items()},
             "s_hat_bias": {"s_tt": round(float(np.mean(bias_tt)), 5),
                            "s_bkg": round(float(np.mean(bias_bkg)), 6)},
+            "ci_width_mean": {"s_tt": round(float(np.mean(wid_tt)), 4),
+                              "s_bkg": round(float(np.mean(wid_bkg)), 5)},
             "claims": errors}
 
     log(f"rate MC: {len(env_names)} envs x {mc['n_rep']} reps")
@@ -328,8 +333,12 @@ def main() -> int:
         "normalization_rate_claims": {
             "I0": "UNRESOLVED", "I1": "UNRESOLVED (proposition 4b)",
             "I2": "UNRESOLVED (nominal-weight stream theta-invariant)",
-            "I3": "resolvable for s_tt/s_bkg (MC-validated CIs); s_db "
-                  "UNIDENTIFIED (no CR) -> UNRESOLVED"},
+            "I3": "resolvable IN PRINCIPLE with MC-validated CIs, at the "
+                  "resolution set by auxiliary-evidence quality: at this "
+                  "template statistics the CI widths (reported per env) "
+                  "exceed the predeclared bands, so tight claims stay "
+                  "UNRESOLVED (fail-closed) and only clear violations "
+                  "refute; s_db UNIDENTIFIED (no CR) -> UNRESOLVED"},
         "physics_level_validity": {
             "I0": "UNRESOLVED", "I1": "UNRESOLVED",
             "I2": "insufficient (E08/E12: decoupling)",

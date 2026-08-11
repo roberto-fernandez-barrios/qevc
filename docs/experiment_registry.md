@@ -664,7 +664,42 @@ entry.
 - **Expected outputs:** `results/tables/E14_i3.json` + the claim ×
   information-set table (paper table); formal statement in
   `docs/weighted_certification_spec.md` addendum or manuscript directly.
-- **Status:** specified (2026-08-11).
+- **Status:** **complete (2026-08-11), in two runs — the registered
+  falsifier did its job.** Results:
+  1. **v1 (pure-Poisson CR fit) TRIGGERED the CI-coverage falsifier:**
+     ŝ_ttbar bias +0.07 with CI coverage 0.0 — analyst templates
+     (auditor_dev) differ from the target role by ~5% template MC
+     statistics in the ttbar CR tail, which a pure-Poisson fit misreads as
+     a scale shift. v1 table preserved
+     (`E14_i3_v1_template_naive.json`); D-024 amendment (Barlow–
+     Beeston-lite template-variance likelihood) registered before the
+     re-run.
+  2. **v2 (template-statistics-aware) PASSES coverage** (s_tt/s_bkg = 1.0
+     on nominal + weight-only envs; conservative). Measured resolution of
+     the CR evidence at 300k-subset template statistics: s_tt CI width
+     ≈ 0.19–0.20 (±10%), s_bkg ≈ 0.02 (±1%) — **wider than the
+     predeclared bands, so tight rate claims stay UNRESOLVED (fail-closed)
+     and only clear violations refute** (ttbar_scale=1.04's false
+     |s_tt−1|≤0.02 claim: 12/400 REFUTED, 0 falsely certified). The
+     paper-level finding: I3 restores identifiability *in principle*
+     (proposition §4b), and its practical resolving power scales with the
+     auxiliary-evidence (template) quality — a quantified refinement of
+     the information-conditional thesis. s_db has no viable CR in this
+     feature space → UNRESOLVED, as predicted.
+  3. **combo3 contamination stress (registered):** under simultaneous
+     feature shifts the CR yields move by selection migration; ŝ_bkg
+     biased (−0.012, CI coverage 0.0 for its ±clip-tight parameter) —
+     joint treatment belongs to profiling (E15), stated as such.
+  4. **Weighted chain:** at official normalization magnitudes the
+     estimand gap |A_w^θ − A_w^{nominal-est}| ≤ 0.003 sits below the
+     certification resolution at n = 3,000, so the wrong-estimand risk is
+     structural (proposition) but unrealized empirically: I2-nominal false
+     certs 0/360, I3 worst-case 0/360, with I3 strictly more abstinent
+     (SUPPORTED counts drop, e.g. 5→2) — the worst-case box hardens
+     fail-closed behavior as designed.
+  5. **I1 blindness recorded computationally:** weight-only envs' archived
+     sensor values sit at/below the floor (and E04v3 showed the CRN-exact
+     identity) — the proposition's empirical face.
 
 ## E15 — Realistic physics inference
 
