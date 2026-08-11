@@ -54,8 +54,9 @@ smearing and multi-nuisance combinations defeat even the profiled
 treatment (coverage 0.22 and 0.09), because their structure is not
 representable by deterministic template morphing; (vi) a quantum-estimation-
 uncertainty study showing that noise moves the deployed pipeline's own
-reference points by up to 0.05, flipping fixed-reference verdicts at
-rates from 21% (far-margin, 128 shots) to 0.4% (4096 shots) while false
+reference points by up to 0.05 typically (0.14 in the worst
+configuration), flipping fixed-reference verdicts at rates from 21%
+(far-margin, 128 shots) to 0.4% (4096 shots) while false
 certification stays below α in every accounting — noise changes what is
 resolvable, never the validity of what is certified — including a
 first end-to-end run of the full pipeline on 100%-QPU-estimated kernels;
@@ -130,7 +131,7 @@ nominal weights, has power beyond α against them. **Fourth**, anytime-valid
 certification extends *exactly* to physics-weighted estimands through a
 one-sample reduction that maps every weighted ratio claim onto the
 existing bounded-mean confidence sequence; its measured price is a ×1.7
-median label-cost inflation and a fail-closed hardening (543 of ~7,300
+median label-cost inflation and a fail-closed hardening (536 of 7,054
 certifications retreat to abstention under the physical estimand).
 **Fifth**, information level I3 restores identifiability of what I1/I2
 cannot see — but its practical resolving power is set by the quality of
@@ -146,11 +147,11 @@ validity depends on information the classifier metrics do not carry, with
 a mechanism now traced to SR composition — and a profiled likelihood
 restores validity exactly where its nuisance model matches the physics,
 fails where it cannot (stochastic smearing, joint shifts), and pays a
-measured factor 2–3 in interval width for the coverage it recovers.
+measured ×1.8–3.4 in interval width for the coverage it recovers.
 **Seventh**, quantum estimation
 uncertainty acts on certification exactly where the framework predicts:
-noise perturbs the deployed pipeline's reference points by up to 0.05, so
-fixed-reference verdicts flip at 21% → 0.4% (far-margin, 128 → 4096
+noise perturbs the deployed pipeline's reference points by up to ~0.05
+(0.14 worst-case), so fixed-reference verdicts flip at 21% → 0.4% (far-margin, 128 → 4096
 shots) while deployment-relative verdicts flip only near boundaries — and
 in *every* accounting, empirical false certification stays below α: noise
 changes what is resolvable, never the validity of what is certified. A
@@ -161,12 +162,14 @@ counterparts, with device noise dominating the kernel error budget ~6×.
 The study was predeclared to be reportable under every outcome
 (registered falsifiers, five-seed replication gates, a frozen deployment
 snapshot committed before the confirmatory draw, pre- and post-campaign
-falsification audits with logged dispositions), and its registered
-falsifiers fired five times during the campaign — twice blocking an
-invalid inference implementation, once correcting an estimand label, and
-twice correcting our own over-generalized readings. We report the
-corrections and the correction process, because a framework about
-trustworthy validation should itself be validated trustworthily.
+falsification audits with logged dispositions), and during the campaign
+its registered falsifiers fired four times (the confirmatory holdout's
+flagship-cell arm, the rate-fit coverage check, and the inference
+calibration gate twice) while the falsification audits forced two further
+corrections (an estimand label; an over-generalized reading of the
+normalization-collapse result). We report the corrections and the
+correction process, because a framework about trustworthy validation
+should itself be validated trustworthily.
 
 ## 2. Related Work
 
@@ -437,8 +440,8 @@ run tables are preserved, never overwritten.
 numbers mean (E01, E02R, E12)
 
 Matched 2000-event budget, five-seed replication: QK-SVC 0.848 ± 0.022 —
-consistently above full-feature RBF and linear SVC, consistently below
-tuned trees (QK − XGB = −0.035 ± 0.013, negative in 5/5 seeds). The
+above full-feature RBF in 4/5 seeds and above linear SVC in 5/5,
+consistently below tuned trees (QK − XGB = −0.035 ± 0.013, negative in 5/5 seeds). The
 matched-kernel control — RBF on the identical 8 features — reaches
 0.859 ± 0.016, statistically indistinguishable from the QK-SVC: the
 earlier "QK above RBF" contrast was a feature-set effect, not
@@ -448,10 +451,12 @@ bands) while exposing a finding about absolute numbers: every model's
 absolute weighted AUC sits 0.067–0.098 lower on the fresh draw, with
 unweighted AUCs essentially unchanged (0.839–0.845 / 0.875–0.877 for the
 trees across both worlds and both model sets). The mechanism is the
-benchmark's heavy-tailed signal weights (max/mean ≈ 420; effective sample
+benchmark's heavy-tailed signal weights (max/mean ≈ 420–440 across
+draws; effective sample
 size ratio 0.005, i.e. ≈ 46 effective signal events per 41k-event test
 role): *absolute physics-weighted metrics carry subset-draw variance of
-order ±0.05 that partition-level replication structurally understates.*
+order ±0.05 (bootstrap CI half-widths 0.04–0.09) that partition-level
+replication structurally understates.*
 Paired contrasts, degradation signs, rank structure, and error control —
 everything our claims rest on — replicate. We flag this as a caution for
 matched-budget benchmark practice generally.
@@ -461,8 +466,9 @@ matched-budget benchmark practice generally.
 TES down-shifts degrade the QK-SVC in 5/5 seeds (+0.0024 ± 0.0010 at
 −2σ); the up-shift arm does not replicate; the adverse combination
 degrades the QK-SVC in 5/5 seeds (+0.025 ± 0.024). Both signs reproduce
-on the fresh holdout (+0.0011; +0.0081). Weight-only nuisances leave AUC
-invariant exactly.
+on the fresh holdout (+0.0011; +0.0081). Weight-only nuisances leave the feature
+distribution unchanged exactly; their weighted-AUC effect is at the
+4·10⁻⁴ level (uniform background scaling exactly zero).
 
 ### 6.3 The label-free sensor: out-of-grid generalization and exact
 blindness (E03, E04v2, E04v3; Figs. 4 and 4b)
@@ -476,7 +482,8 @@ environments per world — off-grid single-nuisance values and 24
 multi-nuisance draws from the official priors — with the sensor archived
 before any target existed. Pooled out-of-grid rank correlation is
 positive in both worlds and for both sensors (best: quantum→own 0.65,
-p < 10⁻⁴; secondary world 0.39–0.62 with world-dependent detail; JES
+p < 10⁻⁴; secondary world 0.22–0.62 with world-dependent detail (the rbf8→own
+fold at 0.22, n.s.); JES
 folds sit at the noise floor, as their degradations do). Magnitude
 calibration (leave-one-family-out isotonic) is rough — MAE 0.0005–0.012
 against target means 0.0003–0.012, at the high end exceeding the target
@@ -486,7 +493,7 @@ is exact under common random numbers (weight-only environments are
 byte-identical to nominal — the proposition of Sec. 3 realized
 computationally), which also degenerates the development-era veto floor;
 the operative floor is re-based on independent nominal draws
-(null σ ≈ 7·10⁻⁵), under which 4–8 of 48 out-of-grid environments alarm —
+(null σ ≈ 7·10⁻⁵ for the quantum sensor, 1.6·10⁻⁴ for rbf8), under which 4–8 of 48 out-of-grid environments alarm —
 only the soft-MET family and the strongest prior draws, consistently
 across worlds and kernels.
 
@@ -494,9 +501,10 @@ across worlds and kernels.
 (E05, E13; Fig. 5 data)
 
 Unweighted (development world): across 19,680 claim-streams, empirical
-false certification 0.61% ≤ α = 5% on genuinely-false claims, false
-refutation 0.03%, with 98% of near-boundary false claims ending
-UNRESOLVED at n = 3,000. On the confirmatory holdout the corresponding
+false certification 0.61% ≤ α = 5% on genuinely-false claims (an
+independent stream re-draw of the same arm in the weighted study gives
+0.56% — seed variation, both ≤ α), false refutation 0.03%, with 98% of
+near-boundary false claims ending UNRESOLVED at n = 3,000. On the confirmatory holdout the corresponding
 rate over non-vetoed false-claim streams is 0.69% ≤ α (the fresh
 partition's veto set is disclosed as degenerate under CRN; streams are
 shared across the δ grid, so pooled denominators are correlated ≈6:1 —
@@ -577,7 +585,7 @@ tes/jes cells collapsing to coverage exactly 0.0 at flat AUC. The
 confirmatory draw also *corrected our reading* of the
 normalization-driven cells: their collapse is signal-region-composition-
 dependent — it reproduces decisively for the models whose SRs retain
-ttbar/diboson content (matched-kernel RBF: 10/12 normalization
+ttbar/diboson content (the full-feature RBF-SVC: 10/12 normalization
 environments below 0.633, down to 0.008; scale-trained tree: 0.51–0.59)
 and vanishes for the models whose fresh-draw SRs hold little of either.
 The mechanism — coverage is destroyed by yield shifts invisible to
@@ -604,7 +612,7 @@ estimator's (1.74–4.76 vs 0.99–1.38 in μ units at these
 signal-to-background ratios). Omitting the actually-shifted family from
 the profile (L3, the realistic misspecification) re-collapses TES/JES
 coverage to 0.000/0.073 — in the flagship cell μ̂ biases to −5.9 with a
-seven-times-narrower interval, the confident-and-wrong failure mode —
+3.5-times-narrower interval, the confident-and-wrong failure mode —
 while small normalization shifts remain absorbable by the remaining
 freedom. And two nuisance families defeat even the correctly-configured
 profile: stochastic soft-MET smearing (L2 coverage 0.217; the fit leaves
@@ -627,7 +635,7 @@ on the shifted nuisance) is now identified and priced.
 
 Kernel error scales as 1/√shots (13.7% → 2.4% Frobenius); effective rank
 inflates under shot noise; the classifier is shot-tolerant at n = 2000
-(±0.01 AUC at 128 shots). The campaign's certification study rebuilds the
+(within ±0.015 AUC at 128 shots). The campaign's certification study rebuilds the
 *entire deployment* — refit, recalibration, threshold refreeze — under
 independently sampled kernels (30 noisy deployments) and audits the
 frozen claim grid with paired label streams under two accountings.
@@ -635,9 +643,10 @@ Deployment-relative (each noisy pipeline's own refrozen references):
 far-margin claims (|m| ≥ 0.04) never flip at any budget; moderate margins
 flip 16% → 7% (128 → 4096 shots); near-boundary abstention is 92–94%.
 Fixed-reference (the ideal deployment's claims): estimation noise moves
-the deployed pipeline's source reference by up to +0.049, so the same
-claim resolves differently — far-margin flips 21% at 128 shots, 12% at
-1024, 0.4% at 4096 (monotone in budget); moderate 71% → 40%. The
+the deployed pipeline's source reference by up to 0.053 upward and 0.139
+in worst-case magnitude, so the same claim resolves differently — far-margin flips 21% at 128 shots, 12% at
+1024, 0.4% at 4096 (declining on trend; the per-budget series is
+non-monotone); moderate 71% → 40%. The
 quantitative answer to the title question of this section: *whether
 quantum estimation uncertainty changes a scientific validity verdict
 depends on the claim's margin and its anchoring, with ≳4k shots needed
@@ -656,8 +665,9 @@ shot noise, fidelities biased down, and the Gram still PSD. The campaign
 adds the first 100%-hardware *deployment* Grams: a 28-event train Gram
 plus a 28×12 cross-Gram (714 circuits × 1024 shots, 200 s QPU, test
 events half nominal / half TES-shifted), auto-sized to the free-tier
-budget. Device excess is 10.6% over 2.1% shot-only (~6×, consistent with
-the deeper-shot v1 ratio); the hardware Gram stays PSD. Run end-to-end,
+budget. The hardware kernel error is 12.7% against 2.1% shot-only at the
+same budget (6.0×; device excess 10.6%, i.e. 5.0× the shot floor —
+consistent with the deeper-shot v1 ratios); the hardware Gram stays PSD. Run end-to-end,
 the auditor returns identical verdicts across the hardware and three
 same-budget shot-only deployments (0 flips, 0 false certifications) —
 stated precisely: the n = 28 micro-deployment is at chance (M_T = 0.50,
@@ -698,7 +708,8 @@ single MC-vs-data draw against a 20-draw floor.
   (up-shift arm) did not replicate; partition variance dominates most
   single-nuisance deltas.
 - **Corrected by the confirmatory draw:** absolute weighted-AUC levels
-  are draw-fragile (±0.05 at this benchmark's signal-weight tails);
+  are draw-fragile (of order ±0.05 at this benchmark's signal-weight
+tails);
   normalization-induced coverage collapse is SR-composition-dependent —
   the two registered flagship cells failed while the mechanism reproduced
   in other models; both corrections are reported with mechanisms.
@@ -772,8 +783,8 @@ confirmatory holdout; and a quantum-estimation-uncertainty study showing
 that noise relocates what is resolvable without ever breaking the
 validity of what is certified, on simulated kernels and on a real QPU.
 The framework's components are generic; nothing is specific to H→ττ, to
-kernels, or to quantum models. Its registered falsifiers fired five times
-during this campaign and were obeyed every time — which is, we believe,
+kernels, or to quantum models. Its registered falsifiers and audits forced six corrections during this
+campaign and were obeyed every time — which is, we believe,
 the property a validation framework should be most eager to demonstrate.
 
 ---

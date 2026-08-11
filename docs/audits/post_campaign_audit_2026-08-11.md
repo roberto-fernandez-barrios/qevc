@@ -147,3 +147,24 @@ CR_rest).
 - ~172 registry numbers match their tables (all mismatches listed in §3
   were corrected registry-side; no table was edited post hoc — superseded
   tables are preserved under `*_v1_*.json` names).
+
+## 6. Addendum — manuscript number-verification pass (same day)
+
+A third independent pass verified every quantitative claim in manuscript
+v0.3 against the tables: **≈178 exact matches**, 13 mismatches, 5
+unsourced figures — all wording-level, all corrected in the manuscript
+(and the two affected E16 registry lines): the intro's stale 543/~7,300
+(v1-table value; live table 536/7,054); "monotone in budget" for a
+non-monotone fixed-τ far series (endpoints correct); the reference-shift
+maximum (+0.053 upward / 0.139 worst-case, not +0.049); the L3 flagship
+width ratio (3.5×, not 7×); weight-only "AUC invariant exactly" scoped to
+the feature distribution (weighted-AUC effects at 4·10⁻⁴); QK-above-RBF28
+4/5 seeds (not implied 5/5); shot tolerance ±0.015 (not ±0.01); the
+secondary-world sensor range including the 0.22 n.s. fold; the intro's
+"factor 2–3" harmonized to ×1.8–3.4; the hardware ratio re-attached
+(12.7/2.1 = 6.0×; excess 10.6% = 5.0×); "matched-kernel RBF" → the
+full-feature RBF-SVC in the E12 norm-collapse sentence; the floor null σ
+scoped per sensor; the falsifier tally made consistent (4 registered
+firings + 2 audit corrections); ±0.05 and max/mean figures tied to their
+artifacts; and a cross-artifact note added (E05's 0.61% vs the weighted
+study's independent re-draw 0.56% of the same arm — seed variation).

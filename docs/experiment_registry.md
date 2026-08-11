@@ -963,10 +963,11 @@ entry.
      budget 128–4096;** moderate 15.8% → 6.7% (declining on trend); near
      4–7% with abstention 92–94% (fail-closed dominates).
   2. **Fixed-τ view — the sharper finding:** estimation noise changes the
-     deployment itself (recalibration moves M_S by up to +0.049), so the
-     SAME claim resolves differently: far-margin flips 20.8% at 128
-     shots → 11.9% at 1024 → **0.4% at 4096** (monotone in budget);
-     moderate 71% → 40%; near 83% → 40%. Measuring small-margin claims
+     deployment itself (recalibration moves M_S by up to +0.053 upward,
+     0.139 in worst-case magnitude), so the SAME claim resolves
+     differently: far-margin flips 20.8% at 128 shots → 11.9% at 1024 →
+     **0.4% at 4096** (declining on trend; per-budget series
+     non-monotone); moderate 71% → 40%; near 83% → 40%. Measuring small-margin claims
      against ideal-anchored references requires large shot budgets — the
      quantitative answer to "when does quantum estimation uncertainty
      change a scientific validity verdict".
@@ -987,9 +988,9 @@ entry.
   5. First 100%-hardware *deployment* Grams in the project: 28-event train
      Gram + 28×12 cross Gram (test half nominal / half tes=0.98). Kernel
      diagnostics: train Frobenius 12.7% vs 2.1% shot-only at the same
-     budget → device excess 10.6% (≈6×, consistent with E10 v1's ~8× at
-     2048 shots); mean fidelity bias −0.005; K_hw stayed PSD; eff. rank
-     26.4 → 27.2. Cross-Gram relative error 48% — off-diagonal entries
+     budget (6.0×; device excess 10.6%, i.e. 5.0× the shot floor —
+     consistent with E10 v1's deeper-shot ratios); mean fidelity bias
+     −0.005; K_hw stayed PSD; eff. rank 26.4 → 27.2. Cross-Gram relative error 48% — off-diagonal entries
      are small and deep-circuit noise dominates them; reported as
      measured.
   6. **End-to-end auditor consistency on device: 0 majority-verdict flips
