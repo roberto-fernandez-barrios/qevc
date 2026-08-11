@@ -152,8 +152,14 @@ def _process_chunk(a: ak.Array) -> pd.DataFrame:
     return df[keep].reset_index(drop=True)
 
 
-def ingest_sample(root_path: str | Path, stem: str) -> pd.DataFrame:
-    """One ROOT file → selected feature DataFrame with process metadata."""
+def ingest_sample(root_path: str | Path, stem: str,
+                  lumi_pb: float = EFFECTIVE_LUMI_PB) -> pd.DataFrame:
+    """One ROOT file → selected feature DataFrame with process metadata.
+
+    ``lumi_pb`` is the luminosity MC weights target (D-026): the mirror-era
+    default keeps E11 v1 byte-identical; E11v2 passes the full LUMI_PB when
+    the collision-data side uses the full Run2012B+C files.
+    """
     process, is_signal, xsec = SAMPLES[stem]
     total = 0
     chunks = []
@@ -164,6 +170,6 @@ def ingest_sample(root_path: str | Path, stem: str) -> pd.DataFrame:
     df = pd.concat(chunks, ignore_index=True)
     df["process"] = process
     df["labels"] = is_signal
-    df["weights"] = 1.0 if xsec is None else xsec * EFFECTIVE_LUMI_PB / total
+    df["weights"] = 1.0 if xsec is None else xsec * lumi_pb / total
     df.attrs["n_generated"] = total
     return df
