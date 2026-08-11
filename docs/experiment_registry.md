@@ -583,7 +583,32 @@ entry.
   comparison table complete with n* ratios and verdict-flip counts.
 - **Expected outputs:** `results/tables/E13_weighted_cs.json`; new module
   + tests under `tests/`; SAP amendment note.
-- **Status:** specified (2026-08-11).
+- **Status:** **complete (2026-08-11) — falsifier NOT triggered;
+  implementation valid.** Results:
+  1. **Validation battery:** time-uniform miscoverage within α + 3σ slack
+     in every profile × level cell; worst MC false-certification cell 1.5%
+     (slack threshold 8.3% at n_rep 400); adversarial optional stopping
+     breaks the naive Wald rule (27.8% false certification) while the CS
+     holds at 0.0% — the guarantee, demonstrated.
+  2. **Benchmark (identical draws, 41 envs × 4 models × claim grid):**
+     weighted false certification 2/8,900 = 0.02% ≤ α; weighted false
+     refutation 0; class-conditional (TPR_w/TNR_w) false certification
+     0/4,700.
+  3. **Label cost of physics-weighted certification:** n*_w / n*_unw
+     median 1.67 (IQR 1.11–3.01, 6,575 resolved pairs); verdict-flip
+     table: 543 SUPPORTED→UNRESOLVED (fail-closed hardens under the
+     physical estimand), 218 UNRESOLVED→SUPPORTED, 272
+     UNRESOLVED→REFUTED, and 1 SUPPORTED→REFUTED — the weighted and
+     unweighted estimands genuinely disagree about deployment health,
+     sharpening the "metric named in the claim" finding.
+  4. Per-process weights are NOT constant (htautau spans ×1000; matches
+     the E12 diagnostic): the weighted machinery is necessary, not
+     decorative. w_max = 7.264 × 2.05 = 14.89 (predeclared rule).
+  5. **BA_w component bound is severely conservative at n_max = 3,000**
+     (all BA claims UNRESOLVED, true and false alike): reported as the
+     honest cost of the α/4-per-component union bound; BA claims should be
+     stated per component (the physics quantities) — manuscript
+     limitation.
 
 ## E14 — Information set I3
 

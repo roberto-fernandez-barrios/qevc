@@ -1,0 +1,56 @@
+# E04v3 — Out-of-grid generalization of the frozen geometry sensor
+# (registered in docs/experiment_registry.md; D-025). 60 NEW environments,
+# none coinciding with any E02 grid point. The 24 prior draws were sampled
+# ONCE from the official priors with seed 20260811 and are frozen here
+# literally. Sensor values are archived BEFORE any degradation target is
+# computed (order-of-operations discipline; no target labels touch the
+# sensor pipeline).
+experiment: E04v3
+frozen_source: configs/frozen/frozen_deployment_v1.yaml
+off_grid:
+  tes: [0.9775, 0.985, 0.9925, 0.9975, 1.005, 1.0125, 1.025]
+  jes: [0.9775, 0.985, 0.9925, 0.9975, 1.005, 1.0125, 1.025]
+  soft_met:
+    values: [0.5, 1.5, 2.5, 4.0, 4.5]
+    seeds: [21, 22]
+  # weight-only: floor estimation + blindness check ONLY (never regression)
+  ttbar_scale: [0.93, 0.97, 1.03, 1.07]
+  diboson_scale: [0.6, 0.9, 1.1, 1.4]
+  bkg_scale: [0.9985, 0.9995, 1.0005, 1.0015]
+prior_draws:  # official priors, seed 20260811, clipped to official ranges
+  - {tes: 0.9968, jes: 1.0045, soft_met: 2.476, ttbar_scale: 0.9732, diboson_scale: 0.9924, bkg_scale: 0.99895, seed: 30}
+  - {tes: 0.988, jes: 0.9994, soft_met: 0.739, ttbar_scale: 1.0228, diboson_scale: 1.1878, bkg_scale: 0.99971, seed: 31}
+  - {tes: 1.0103, jes: 1.0052, soft_met: 5.0, ttbar_scale: 1.0557, diboson_scale: 0.9127, bkg_scale: 1.00027, seed: 32}
+  - {tes: 0.9895, jes: 0.9896, soft_met: 0.751, ttbar_scale: 1.0055, diboson_scale: 1.2067, bkg_scale: 1.00018, seed: 33}
+  - {tes: 1.0002, jes: 1.0208, soft_met: 0.503, ttbar_scale: 0.955, diboson_scale: 0.9417, bkg_scale: 1.00031, seed: 34}
+  - {tes: 0.9952, jes: 1.0034, soft_met: 0.107, ttbar_scale: 0.9828, diboson_scale: 0.8, bkg_scale: 1.00263, seed: 35}
+  - {tes: 1.0113, jes: 0.9697, soft_met: 2.38, ttbar_scale: 1.0013, diboson_scale: 0.7141, bkg_scale: 0.99965, seed: 36}
+  - {tes: 0.986, jes: 0.9917, soft_met: 0.245, ttbar_scale: 1.0376, diboson_scale: 0.7032, bkg_scale: 1.00003, seed: 37}
+  - {tes: 0.9841, jes: 0.994, soft_met: 0.122, ttbar_scale: 1.0106, diboson_scale: 1.1234, bkg_scale: 0.99954, seed: 38}
+  - {tes: 0.9941, jes: 0.9865, soft_met: 0.742, ttbar_scale: 0.9679, diboson_scale: 0.8752, bkg_scale: 0.99968, seed: 39}
+  - {tes: 0.997, jes: 0.986, soft_met: 0.568, ttbar_scale: 1.0112, diboson_scale: 1.0361, bkg_scale: 1.0003, seed: 40}
+  - {tes: 1.0016, jes: 1.0092, soft_met: 1.071, ttbar_scale: 1.034, diboson_scale: 1.0763, bkg_scale: 0.9999, seed: 41}
+  - {tes: 1.0036, jes: 0.9907, soft_met: 0.539, ttbar_scale: 0.992, diboson_scale: 0.7846, bkg_scale: 1.00135, seed: 42}
+  - {tes: 0.9959, jes: 0.9912, soft_met: 0.258, ttbar_scale: 0.9368, diboson_scale: 1.2086, bkg_scale: 0.99843, seed: 43}
+  - {tes: 1.0105, jes: 1.0081, soft_met: 0.607, ttbar_scale: 0.9957, diboson_scale: 1.0499, bkg_scale: 0.99981, seed: 44}
+  - {tes: 1.0129, jes: 1.0153, soft_met: 2.801, ttbar_scale: 0.9864, diboson_scale: 1.239, bkg_scale: 1.00038, seed: 45}
+  - {tes: 0.9993, jes: 0.9861, soft_met: 5.0, ttbar_scale: 0.9729, diboson_scale: 0.9178, bkg_scale: 0.99987, seed: 46}
+  - {tes: 1.0161, jes: 0.9986, soft_met: 2.549, ttbar_scale: 1.014, diboson_scale: 1.0219, bkg_scale: 1.0006, seed: 47}
+  - {tes: 0.9883, jes: 1.0028, soft_met: 4.962, ttbar_scale: 1.0199, diboson_scale: 0.7469, bkg_scale: 1.00148, seed: 48}
+  - {tes: 1.0066, jes: 0.9933, soft_met: 0.385, ttbar_scale: 0.9924, diboson_scale: 1.0702, bkg_scale: 0.99964, seed: 49}
+  - {tes: 1.0158, jes: 0.9915, soft_met: 2.128, ttbar_scale: 0.9862, diboson_scale: 0.6497, bkg_scale: 1.0007, seed: 50}
+  - {tes: 1.006, jes: 1.0049, soft_met: 1.309, ttbar_scale: 1.0096, diboson_scale: 1.4482, bkg_scale: 0.99821, seed: 51}
+  - {tes: 1.0151, jes: 0.9955, soft_met: 1.494, ttbar_scale: 1.0079, diboson_scale: 0.9314, bkg_scale: 0.99979, seed: 52}
+  - {tes: 0.9997, jes: 1.0014, soft_met: 0.469, ttbar_scale: 1.003, diboson_scale: 0.5446, bkg_scale: 0.99982, seed: 53}
+sensor:
+  n_base_rows: 2500
+  draw_seeds: [81, 82, 83]       # CRN draws from auditor_dev (D-021)
+  floor_bootstrap: 2000          # bootstrap resamples for floor uncertainty
+targets:
+  models: ["A:qksvc", "A:rbf_svc_8f", "A:xgboost"]
+worlds:
+  primary: s101                  # frozen seed-101 deployment
+  secondary: e12                 # cross-partition check (evaluation only)
+analysis:
+  families: {tes: [tes], jes: [jes], soft_met: [soft_met], prior_combos: [prior]}
+  magnitude_calibration: isotonic   # fit on other families, evaluate held-out
