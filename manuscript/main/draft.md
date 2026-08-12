@@ -143,7 +143,8 @@ collapses at flat AUC, with the mechanism traced to signal-region
 composition across worlds. A calibration-gate-validated profile
 likelihood restores validity exactly where its nuisance model can
 represent the shift — coverage 0.63–0.67 from 0.00–0.59, with fitted
-nuisances tracking the true shifts at slope 0.99–1.00 and μ̂-sensitivity
+nuisances tracking the true shifts at slope 0.98–1.00 (one disclosed
+exception: the tree's JES tracking, 0.71, §6.7) and μ̂-sensitivity
 ∂μ̂/∂θ suppressed by one to two orders of magnitude — at a measured
 ×1.8–3.4 interval-width price; and it fails, predictably, where it
 cannot (stochastic soft-MET smearing: tracking slope 0.25–0.50,
@@ -776,14 +777,21 @@ on the shifted nuisance) is now identified and priced.
 The mechanism is quantified by the nuisance sensitivities ∂μ̂/∂θ,
 computed by finite differences over the archived grid (SAP §1.2). The
 counting estimator's μ̂ moves by +5 to +10 μ-units per σ of TES shift
-(model-dependent); full profiling suppresses this to +0.1 to +0.4 — one
+(gated models); full profiling suppresses this to +0.1 to +0.4 — one
 to two orders of magnitude — while the fitted nuisance tracks the true
-shift with slope 0.99–1.00 for TES/JES and the normalization scales.
+shift with slope 0.98–1.00 for TES and the normalization scales. JES
+tracking is 0.98–0.99 for the two kernel models but 0.71 for the tree:
+at jes = +2σ its fit under-recovers the shift (fitted +0.5σ, μ̂ bias
++3.1, coverage 0.012) — the confident-and-wrong signature appearing
+at a *representable* nuisance, confined to that single cell (the tree's
+other three JES cells cover at 0.648–0.662 with pulls tracking −2.03,
+−1.05, +0.96) and already inside the JES mean coverage of 0.629
+reported above.
 For stochastic soft-MET the tracking slope is only 0.25–0.50: the fit
 structurally under-recovers the shift, which is *why* profiling fails
 there. And with the shifted family omitted (L3), sensitivities revert to
-the counting estimator's scale (+5 to +9 μ/σ for TES) — the profile's
-protection is exactly as good as its nuisance model.
+the counting estimator's scale (+4.8 to +8.7 μ/σ for TES) — the
+profile's protection is exactly as good as its nuisance model.
 
 ## 7. Quantum Realism: estimation uncertainty as a certification problem
 
