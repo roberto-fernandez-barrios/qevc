@@ -8,7 +8,8 @@
 > (F5.2) etc. where useful.
 
 **Objective:** bring the paper to the highest level the current project
-permits and submit arXiv v1 (three-contribution framing per D-028).
+permits and freeze the audited arXiv-v1 package (three-contribution framing
+per D-028). Actual arXiv submission was deferred by the author on 2026-08-12.
 
 ---
 
@@ -222,10 +223,12 @@ D-028's disposition list rather than dropping silently:
 8. **arXiv package DONE 2026-08-12:** primary quant-ph, cross-list hep-ph +
    stat.ME, license CC BY 4.0, `.bbl` included; abstract ≤ 1,920 chars;
    source archive independently compiled clean (26 + 7 pages).
-9. **CI green gate** before tagging: then F8: populate + publish Zenodo
-   deposition 21894292 (record deposit SHA-256s), submit to arXiv, tag
-   `arxiv-v1`, add `preferred-citation` to CITATION.cff when the arXiv
-   record exists, update README status line.
+9. **Release gate passed 2026-08-12:** Windows + Linux CI green on PR and
+   merge; public GitHub release/tag `arxiv-v1` and Zenodo deposition 21894292
+   published with verified hashes. The frozen arXiv package is retained but
+   not submitted, per author decision. Add `preferred-citation` to
+   CITATION.cff only when a future arXiv submission receives its permanent
+   record.
 
 ## Session hygiene (lesson from the power cut)
 
