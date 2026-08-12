@@ -4,6 +4,16 @@ Research codebase for the paper *"When Can Quantum Event Classifiers Be
 Trusted? Conditional Validity under Collider Systematics and Quantum
 Estimation Uncertainty"*.
 
+**arXiv v1 release candidate (2026-08-12).** The scientific program is
+closed, the 26-page manuscript and 7-page supplement pass the final audit,
+and the archival source package is frozen. The software and artifacts have
+the reserved Zenodo DOI [10.5281/zenodo.21894292](https://doi.org/10.5281/zenodo.21894292).
+
+Authors: Roberto Fernández-Barrios, Iker Pastor-López, Asier
+González-Santocildes and Pablo García Bringas; Faculty of Engineering,
+University of Deusto, Bilbao, Spain. ORCID records are included in
+`CITATION.cff` and in both publication PDFs.
+
 **Scientific question.** Under what experimentally available information can
 the validity of a quantum event classifier be justified when (i) collider
 systematics shift the deployment distribution away from the nominal

@@ -164,7 +164,7 @@ references.bib; no arXiv ID in the draft).
 - Structure counts as listed above; no non-ASCII bytes; no leftover markdown
   (`**`, backticks, `#` headings).
 - Rare-word presence sweep (38 distinctive terms) -- all present.
-- Reproducible F8.2 gate: 73/73 checks passed; semantic four-word coverage
-  90.6123% draft-to-LaTeX and 92.4747% LaTeX-to-draft.
+- Reproducible F8.2 gate: 81/81 checks passed; semantic four-word coverage
+  90.5473% draft-to-LaTeX and 92.4084% LaTeX-to-draft.
 - MiKTeX/pdfLaTeX build: 26 pages, zero overfull boxes, unresolved citations,
   or unresolved references; all pages inspected after the final build.
