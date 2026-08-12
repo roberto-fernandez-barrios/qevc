@@ -1,0 +1,407 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{caption}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\captionsetup{justification=raggedright,singlelinecheck=false}
+
+\graphicspath{{../../results/figures/}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\setcounter{figure}{15}
+
+\title{Supplementary Material for\\
+\emph{When Can Quantum Event Classifiers Be Trusted? Conditional Validity
+under Collider Systematics and Quantum Estimation Uncertainty}}
+\author{Roberto Fern\'andez Barrios\\
+\href{https://orcid.org/0009-0003-5312-2634}{ORCID 0009-0003-5312-2634}}
+\date{2026}
+
+\begin{document}
+\maketitle
+
+This supplement gives the full algebra behind the formal results, the
+registered-falsifier and correction trail, and extended numerical tables.
+Every numerical table is a transcription or an explicitly identified
+summary of the immutable JSON artifact named in its caption. Superseded
+first-run tables remain in the repository under \texttt{*\_v1\_*.json}.
+
+\section{Formal details}
+
+\subsection{Exact weighted anytime-valid certification}
+
+For IID labeled draws $(c_i,u_i)$, with $c_i\in\{0,1\}$,
+$u_i\in[0,w_{\max}]$, $E[u]>0$, and
+$R=E[uc]/E[u]$, fix a claim $R\geq\tau$ and define
+\[
+ Z_i(\tau)=\frac{u_i(c_i-\tau)+\tau w_{\max}}{w_{\max}}.
+\]
+Because $u_i(c_i-\tau)$ lies between $-\tau w_{\max}$ and
+$(1-\tau)w_{\max}$, $Z_i(\tau)\in[0,1]$. Moreover,
+\[
+ E[Z(\tau)]\geq\tau
+ \iff E[u(c-\tau)]\geq0
+ \iff E[uc]\geq\tau E[u]
+ \iff R\geq\tau.
+\]
+The reduction is therefore exact. If $(L_n,U_n)$ is any level
+$1-\alpha$ confidence sequence for the mean of $Z$, then on its
+time-uniform coverage event $L_n\geq\tau$ implies $R\geq\tau$ at every
+$n$. Thus
+\[
+ P\{\exists n:\text{SUPPORTED and }R<\tau\}\leq\alpha
+\]
+under arbitrary stopping. Setting $u\equiv1$ and $w_{\max}=1$ recovers
+the unweighted construction. Weighting changes the variance and hence
+the stopping time, but adds no validity slack.
+
+\subsection{Information-set boundary for weight-only nuisances}
+
+For a weight-only nuisance $P_\theta(X)=P_0(X)$ and an unchanged
+correctness process. Hence every I1 statistic has the same sampling law
+under $\theta$ and $0$, and so does I2 when labels carry nominal weights.
+Any size-$\alpha$ test based on those observations has power exactly
+$\alpha$ against the nuisance. A fail-closed auditor must leave any claim
+whose truth changes only through the hidden rate weights UNRESOLVED.
+
+At I3 a control-region count $N\sim\operatorname{Poisson}(\lambda(\theta))$
+with $\lambda(\theta)\ne\lambda(0)$ changes the sampling law and restores
+non-trivial power. The restoration is quantitative rather than absolute:
+template variance
+\[
+ \sigma_c^2=\sum_g(\operatorname{relerr}_g\lambda_g)^2
+\]
+sets the resolution scale. This is why the template-statistics-aware E14
+fit identifies the ttbar rate only to approximately $\pm10\%$ and leaves
+tighter claims unresolved.
+
+\subsection{Random deployments and verdict stability}
+
+Let $\omega$ denote the finite-shot or hardware realization and
+$\widetilde f_\omega$ the resulting refit, recalibration, and threshold.
+If the audit controls false certification conditionally,
+\[
+ P(\text{false certification}\mid\omega)\leq\alpha,
+\]
+then the tower property gives marginal control for both the
+deployment-relative and ideal-anchored claim classes:
+\[
+ P(\text{false certification})
+ =E_\omega[P(\text{false certification}\mid\omega)]\leq\alpha.
+\]
+
+For signed target and source movements $\Delta M_T$ and $\Delta M_S$,
+the ideal-anchored margin moves by at most $|\Delta M_T|$, while the
+deployment-relative margin moves by
+$|\Delta M_T-\Delta M_S|$. On the confidence-sequence coverage event,
+if the movement is smaller than the ideal margin and the realized audit
+resolves, the verdict sign is unchanged. For weighted claims the
+metric-scale margin is mapped to the certification scale by
+$E[u]/w_{\max}$. Common-mode movement cancels from the
+deployment-relative margin but not from the ideal-anchored margin.
+Figure~\ref{fig:s16} and Table~\ref{tab:e16} show the measured movement
+distributions that instantiate these conditions; no first-principles
+Frobenius-to-metric bound is claimed.
+
+\subsection{Pre-split component allocation for weighted balanced accuracy}
+
+For $\mathrm{BA}_w=(\mathrm{TPR}_w+\mathrm{TNR}_w)/2\geq\tau_{\rm BA}$,
+predeclare component thresholds $\tau_1,\tau_2$ satisfying
+$(\tau_1+\tau_2)/2=\tau_{\rm BA}$ and error levels
+$\alpha_1+\alpha_2=\alpha$. Each component uses the exact one-sample
+reduction with its predeclared class-specific bound. The BA claim is
+SUPPORTED only if both components are supported, REFUTED only if both are
+refuted, and UNRESOLVED otherwise. If BA is false, at least one component
+claim is false; certifying it requires a coverage violation. A union bound
+therefore controls false certification at $\alpha$. The symmetric argument
+controls false refutation. Table~\ref{tab:e13v2} shows that the removable
+ratio-CS slack disappears on the synthetic control, while the benchmark's
+weighted signal fraction makes the physics case information-limited.
+
+\section{Registered falsifiers and audit trail}
+
+The count below is by \emph{unique registered falsifier arm}. The E15
+calibration gate is one arm, although it rejected two successive invalid
+implementations before the valid grid was allowed to run. This convention
+reconciles the nine-arm tally with the two gate interventions.
+
+\footnotesize
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.32\linewidth}}
+\caption{All nine registered falsifier arms that fired. Frozen conditions and consequences are recorded in \texttt{docs/experiment\_registry.md}.}\label{tab:falsifiers}\\
+\toprule
+Arm & Frozen condition & Observed firing & Consequence obeyed \\
+\midrule
+\endfirsthead
+\toprule
+Arm & Frozen condition & Observed firing & Consequence obeyed \\
+\midrule
+\endhead
+E02R & TES sign pattern fails multi-seed replication & Up-shift monotonicity in only 2/5 seeds & Symmetric TES narrative withdrawn; only small down-shift degradation retained. \\
+E12(e) & Two flagship decoupling cells fail to reproduce & Diboson flagship cells stayed nominal-like in the fresh world & Normalization-collapse statement scoped to signal-region composition; failing registered cells kept. \\
+E14 v1 & Control-region interval coverage below nominal & Pure-Poisson fit gave ttbar bias $+0.07$ and zero coverage & Run blocked; template-statistics likelihood registered, then rerun as v2. \\
+E15 gate & Nominal L2 coverage outside $0.6827\pm0.02$ & Conditional-ensemble and numerical-conditioning implementations each failed & Both grids blocked; ensemble semantics and optimizer fixed before any shifted claim. \\
+E17(b) & Degradation signs fail across additional worlds & One world improved QK under combo by 0.009; another under TES-down by 0.005 & Cross-world degradation claim withdrawn. \\
+E08v2(a) & Corrected counting coverage outside the nominal band & One-draw corrected coverage $0.9916$--$1.000$ & Arm blocked and bounded multi-draw E08v3 registered. \\
+E08v2(b) & Independent-template flagship L2 coverage $<0.633$ & Coverage 0.000 versus shared 0.7188 & ``Profiling restores validity'' made explicitly shared-simulation-conditional. \\
+E08v3(a) & Marginal symmetric-BB coverage outside $0.6827\pm0.06$ for at least two gated models & All three gated models overcovered, 0.7513--0.8284 & Calibration-restoration claim withdrawn; conservative direction reported. \\
+E13v2(b) & All true benchmark BA claims unresolved by 5,000 labels & TPR component 0/200 resolutions in every cell & BA path published as information-limited; TNR success and mechanism reported separately. \\
+\bottomrule
+\end{longtable}
+\normalsize
+\FloatBarrier
+
+\begin{table}[H]
+\centering
+\small
+\caption{Audit-trail summary. The full findings and dispositions are in \texttt{docs/audits/}.}
+\label{tab:audit-trail}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.51\linewidth}}
+\toprule
+Audit & Scope & Material effect \\
+\midrule
+Pre-campaign, 2026-08-11 & All E00--E11 code, tables, splits, and governance & Seven design constraints frozen before E12--E16: archived row indices, role separation, post-selection sensor validation, an independent floor, independent quantum-noise streams, a typed deployment snapshot, and weighted estimands. No prior headline invalidated. \\
+Post-campaign, 2026-08-11 & E12--E16, E04v3, E11v2; 172 registry values and about 178 manuscript claims & E13 nominal-weight estimand fixed and rerun; E15 gate rejected two implementations; E16 dual accounting added; E12 normalization reading corrected; all superseded tables retained. \\
+Pre-submission, 2026-08-12 & Extension runners, figure scripts, and line-by-line formal proofs & Two HIGH findings fixed: JES tracking scoped and disclosed; E19 weighted estimand corrected and rerun. Proposition 4 gained its coverage-event and scale-bridge qualifiers. Eight LOW findings were fixed, completed, disclosed, or documented. \\
+F8.2, 2026-08-12 & Final LaTeX, supplement, number trace, semantic equivalence, rendered PDFs & E08v3 bias range corrected from $+6.1$ to the archived $+7.5$ endpoint; the nine-arm counting convention made explicit. \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\section{Extended numerical results}
+
+\subsection{Inference sensitivity (E15)}
+
+Table~\ref{tab:e15sens} reports the local slope at the nominal point,
+averaged over the five injected $\mu$ values. L1 is the counting
+estimator, L2 the complete profile, and L3 the profile with the shifted
+family omitted. Only the three models that passed the nominal L2 gate are
+shown. Units are $\mu$ per nuisance unit: per standard deviation for TES
+and JES, per GeV for soft-MET, and per unit scale for the normalization
+families.
+
+\footnotesize
+\begin{longtable}{llrrrr}
+\caption{E15 local sensitivity and nuisance tracking. Source: \texttt{results/tables/E15\_sensitivity.json}.}\label{tab:e15sens}\\
+\toprule
+Family & Model & L1 slope & L2 slope & L3 slope & L2 tracking \\
+\midrule
+\endfirsthead
+\toprule
+Family & Model & L1 slope & L2 slope & L3 slope & L2 tracking \\
+\midrule
+\endhead
+TES & QK-SVC & 9.8095 & 0.4092 & 7.1213 & 0.9970 \\
+TES & RBF-SVC & 10.3065 & 0.2269 & 8.6641 & 0.9986 \\
+TES & XGBoost & 5.4959 & 0.1031 & 4.7948 & 0.9938 \\
+JES & QK-SVC & 3.6530 & -0.2033 & 5.1238 & 0.9813 \\
+JES & RBF-SVC & 2.7528 & -0.1096 & 5.7069 & 0.9901 \\
+JES & XGBoost & 1.7328 & 0.0121 & 1.1957 & 0.7116 \\
+soft-MET & QK-SVC & -0.0812 & -0.2126 & 6.5142 & 0.2497 \\
+soft-MET & RBF-SVC & 0.7731 & -0.0496 & 3.0473 & 0.2511 \\
+soft-MET & XGBoost & 0.7305 & -0.4605 & -1.5627 & 0.5001 \\
+ttbar scale & QK-SVC & 49.7510 & 0.5175 & -0.7125 & 1.0040 \\
+ttbar scale & RBF-SVC & 54.0570 & -1.1795 & -4.0830 & 0.9915 \\
+ttbar scale & XGBoost & 12.7935 & -0.0220 & 9.0305 & 0.9895 \\
+diboson scale & QK-SVC & 4.7626 & 0.0834 & 0.5676 & 0.9900 \\
+diboson scale & RBF-SVC & 4.3356 & 0.2769 & 1.0303 & 0.9869 \\
+diboson scale & XGBoost & 0.9981 & -0.0065 & 0.4824 & 1.0006 \\
+background scale & QK-SVC & 270.1200 & -30.9900 & 222.4700 & 1.0000 \\
+background scale & RBF-SVC & 397.2600 & 34.5600 & 823.4100 & 0.9800 \\
+background scale & XGBoost & 101.8800 & -5.3900 & -3.6800 & 1.0000 \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Fresh-world validity and stopping-time efficiency}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Fresh-world validity replication. Source: \texttt{results/tables/E19\_fresh\_world\_validity.json}; the false-refutation counts documented in the registered status agree with the rates stored in the table.}
+\label{tab:e19}
+\begin{tabular}{lrrr}
+\toprule
+Accounting & False certification & False refutation & $\alpha+3\sigma$ boundary \\
+\midrule
+Unweighted, non-vetoed & 11/3,060 = 0.359\% & 1/11,980 = 0.008\% & 6.182\% \\
+Unweighted, all streams & 11/7,700 = 0.143\% & 1/11,980 = 0.008\% & 6.182\% \\
+Weighted, nominal weights & 6/7,980 = 0.075\% & 4/11,700 = 0.034\% & 5.732\% \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\parbox{0.94\linewidth}{\footnotesize All 12 archived model--environment
+score comparisons were byte-identical before auditing. The weighted bound
+was $w_{\max}=7.22421\times2.05=14.80963$. The corrected nominal-weight
+estimand is invariant across all 12 weight-only environments.}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Stopping-time price relative to the Wald information yardstick. Source: \texttt{results/tables/E06\_nstar\_efficiency.json}.}
+\label{tab:nstar}
+\begin{tabular}{lrrrr}
+\toprule
+Subset & Cells & Q25 & Median & Q75 \\
+\midrule
+All resolved cells & 518 & 1.56 & 2.07 & 2.97 \\
+Margin $[0.01,0.02)$ & 95 & 2.82 & 3.35 & 3.85 \\
+Margin $[0.02,0.04)$ & 95 & 2.62 & 3.19 & 3.66 \\
+Margin $[0.04,0.08)$ & 164 & 1.63 & 1.98 & 2.38 \\
+Margin $\geq0.08$ & 164 & 1.25 & 1.46 & 1.72 \\
+Certification direction & 487 & 1.54 & 1.99 & 2.78 \\
+Refutation direction & 31 & 3.12 & 3.34 & 3.65 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\clearpage
+\subsection{Quantum-estimation diagnostics (E16)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.98\linewidth]{figS16_estimation_diagnostics.pdf}
+\caption{Per-configuration diagnostics for all 30 noisy deployments:
+relative Frobenius error, effective-rank inflation, and source
+reference movement. The empirical distributions, rather than a claimed
+analytic kernel-to-metric bound, calibrate the stability conditions. Source:
+\texttt{results/tables/E16\_quantum\_uncertainty.json}.}
+\label{fig:s16}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{E16 shot-budget summary. Frobenius error and effective rank are means over five deployments; movement is the maximum absolute weighted source-reference shift. Flip and abstention entries are percentages. Source: \texttt{results/tables/E16\_quantum\_uncertainty.json}.}
+\label{tab:e16}
+\begin{tabular}{rrrrrrrrr}
+\toprule
+Shots & Frob.\ err. & Rank & max $|\Delta M_S|$ & \multicolumn{2}{c}{Far flips} & \multicolumn{2}{c}{Moderate flips} & Near abst. \\
+ & (\%) & & & own & fixed & own & fixed & own \\
+\midrule
+128  & 13.66 & 488.6 & 0.058 & 0.0 & 20.8 & 15.8 & 71.4 & 94.0 \\
+256  &  9.66 & 455.2 & 0.139 & 0.0 & 17.7 & 16.1 & 49.4 & 92.9 \\
+512  &  6.84 & 428.3 & 0.023 & 0.0 &  0.9 & 11.5 & 47.7 & 92.5 \\
+1024 &  4.83 & 407.6 & 0.080 & 0.0 & 11.9 & 13.2 & 54.6 & 92.0 \\
+2048 &  3.42 & 392.1 & 0.038 & 0.0 &  5.8 & 11.1 & 58.4 & 93.9 \\
+4096 &  2.42 & 380.7 & 0.034 & 0.0 &  0.4 &  6.7 & 40.4 & 93.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\clearpage
+\subsection{Independent-MC split studies (E08v3)}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Marginal nominal counting coverage over 400 independent splits. Source: \texttt{results/tables/E08v3\_multidraw.json}.}
+\label{tab:e08count}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Shared truth & Indep. naive & Indep. BB & Indep. BB symmetric & Stored prediction \\
+\midrule
+QK-SVC & 0.6828 & 0.0691 & 0.6501 & 0.8113 & 0.5220 \\
+RBF-SVC & 0.6827 & 0.0860 & 0.6605 & 0.8284 & 0.5220 \\
+XGBoost (A) & 0.6830 & 0.0673 & 0.5650 & 0.7513 & 0.5216 \\
+XGBoost (B) & 0.6823 & 0.0645 & 0.5458 & 0.7033 & 0.5164 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Independent-template profile results across 10 splits, averaged over the frozen $\mu$ grid within each split. Source: \texttt{results/tables/E08v3\_multidraw.json}.}
+\label{tab:e08profile}
+\begin{tabular}{lrrrr}
+\toprule
+Cell & Coverage range & Draws $<0.633$ & Bias range & Shared reference \\
+\midrule
+TES $=0.98$, XGBoost & 0.000--0.238 & 10/10 & $-6.600$--$+4.050$ & 0.7188 \\
+Nominal, XGBoost & 0.000--0.359 & 10/10 & $-6.557$--$+7.496$ & gate-passing in E15 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Weighted balanced-accuracy allocation (E13v2)}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{E13v2 component-allocation battery, 200 replications per cell at $n_{\max}=5{,}000$. Entries are correct resolutions; all false-certification counts are zero. Source: \texttt{results/tables/E13v2\_baw\_allocation.json}.}
+\label{tab:e13v2}
+\begin{tabular}{llrrrrr}
+\toprule
+Population & Claim & BA pre-split & TPR component & TNR component & v1 BA & median $n^*$ \\
+\midrule
+Synthetic & $m=0.02$, true & 0/200 & 9/200 & 36/200 & 0/200 & -- \\
+Synthetic & $m=0.02$, false & 0/200 & 3/200 & 36/200 & 0/200 & -- \\
+Synthetic & $m=0.05$, true & 83/200 & 83/200 & 199/200 & 0/200 & 3,489 \\
+Synthetic & $m=0.05$, false & 87/200 & 87/200 & 200/200 & 0/200 & 3,370 \\
+Benchmark & $m=0.02$, true & 0/200 & 0/200 & 67/200 & 0/200 & -- \\
+Benchmark & $m=0.02$, false & 0/200 & 0/200 & 64/200 & 0/200 & -- \\
+Benchmark & $m=0.05$, true & 0/200 & 0/200 & 200/200 & 0/200 & -- \\
+Benchmark & $m=0.05$, false & 0/200 & 0/200 & 200/200 & 0/200 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Mechanism diagnostics for E13v2 at $n=5{,}000$.}
+\label{tab:e13diag}
+\begin{tabular}{lrr}
+\toprule
+Diagnostic & Synthetic control & Benchmark physics weights \\
+\midrule
+Weighted signal fraction & 0.301459 & 0.000966 \\
+Positive-class ESS ratio & 0.226298 & 0.001106 \\
+$w_{\max}^{(+)}$ & 4.58547 & 5.98645 \\
+$w_{\max}^{(-)}$ & 9.40021 & 14.89144 \\
+TPR $Z$-margin at $m=0.05$ & 0.01130253 & 0.00002827 \\
+TPR CS radius & 0.011776 & 0.001806 \\
+v1 BA radius & 0.168819 & 0.288855 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\parbox{0.92\linewidth}{\footnotesize In the benchmark, the TPR radius-to-margin
+ratio is about 64 at 5,000 labels. A quadratic information-scaling
+extrapolation therefore gives $n^*\approx 5{,}000\times64^2\simeq2\times10^7$
+uniform labels at margin 0.05. This is a diagnostic extrapolation, not a
+new Monte Carlo run.}
+\end{table}
+\FloatBarrier
+
+\section{Artifact map}
+
+The main machine-readable sources for this supplement are:
+\begin{itemize}
+\item \path{results/tables/E15_sensitivity.json};
+\item \path{results/tables/E19_fresh_world_validity.json};
+\item \path{results/tables/E06_nstar.json} and
+      \path{results/tables/E06_nstar_efficiency.json};
+\item \path{results/tables/E16_quantum_uncertainty.json};
+\item \path{results/tables/E08v2_independent_mc.json} and
+      \path{results/tables/E08v3_multidraw.json};
+\item \path{results/tables/E13v2_baw_allocation.json}.
+\end{itemize}
+The frozen protocols and post-run dispositions are in
+\path{docs/experiment_registry.md}, \path{docs/decisions.md}, and the
+three dated files under \path{docs/audits/}. These text records explain
+the design and corrections; the JSON artifacts remain the numerical
+source of truth.
+
+\end{document}

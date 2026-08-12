@@ -1397,7 +1397,7 @@ entry.
      shared reference 0.7188) → strength-of-statement = **generic**.
      The shift-free nominal control collapses in 10/10 draws as well
      (0.000–0.359), with μ̂ bias of BOTH signs across draws (−6.6 to
-     +6.1; E08v2's draw +8.4): the collapse is template-MC-noise-driven
+     +7.5; E08v2's draw +8.4): the collapse is template-MC-noise-driven
      and draw-generic, not shift-driven and not a pathological draw.
      Consequence (pre-accepted at E08v2 registration): §6.7's
      "profiling restores validity" is downgraded to

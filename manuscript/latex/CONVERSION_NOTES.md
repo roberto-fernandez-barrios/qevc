@@ -1,8 +1,8 @@
 # Conversion notes: draft.md -> main.tex
 
-Source: `manuscript/main/draft.md` (1,163 lines, v0.3 of 2026-08-11).
-Target: `manuscript/latex/main.tex`. Strictly faithful conversion; no content
-changes. Not compiled (per instructions).
+Source: `manuscript/main/draft.md` (v0.3 of 2026-08-11).
+Target: `manuscript/latex/main.tex`. Faithful conversion with later audited
+corrections applied in parallel to both sources. Compiled and visually checked.
 
 ## Counts
 
@@ -20,9 +20,8 @@ changes. Not compiled (per instructions).
   graphics files total. Fig. S16 excluded (supplement).
 - **Tables:** 3 (D-030 numbering: Table 1 = claim x information set, Sec. 6.5;
   Table 2 = CMS ledger, Sec. 8; Table 3 = frozen deployment, Sec. 5.2).
-- **Citations:** 45 `\cite*` commands, 45 unique keys (43 arXiv +
-  mott2017nature + barlow1993fitting). Verified: every arXiv ID appearing in
-  the draft is cited exactly once, and every cited key exists in
+- **Citations:** 47 `\cite*` commands, 49 unique keys (47 arXiv +
+  mott2017nature + barlow1993fitting). Verified: every cited key exists in
   `manuscript/bibliography/references.bib`.
 
 ## Non-obvious mapping decisions
@@ -127,18 +126,17 @@ changes. Not compiled (per instructions).
 
 ## %%TODO markers left (1)
 
-1. `\thanks{%%TODO: affiliation, ORCID, email --- author to supply}` on the
-   author (closing brace on the next line so the file compiles with an empty
-   thanks).
+1. The author footnote now includes the supplied ORCID
+   (`0009-0003-5312-2634`) and the email already recorded in
+   `pyproject.toml`; only the affiliation remains to be supplied.
 
-Note: `manuscript/bibliography/references.bib` already exists in the repo
-(created in parallel) and contains all 45 cited keys, plus extra entries
-(datasets, the four adjacent cite-and-differentiate items) that are simply
-not cited from main.tex -- verified by key-set comparison.
+Note: `manuscript/bibliography/references.bib` contains 53 entries: all 49
+cited keys plus four uncited dataset/software records, verified by key-set
+comparison.
 
-## Citation keys (44 from the draft's citation scheme + 1)
+## Citation keys (45 from the original conversion + 4 adjacent works)
 
-arXiv (43): arxiv1611.01046, arxiv1804.11326, arxiv1806.04743,
+arXiv (47): arxiv1611.01046, arxiv1804.11326, arxiv1806.04743,
 arxiv1904.06019, arxiv2002.09935, arxiv2008.07230, arxiv2009.10064,
 arxiv2010.09686, arxiv2011.01938, arxiv2101.11665, arxiv2103.05331,
 arxiv2103.16774, arxiv2104.05059, arxiv2105.08742, arxiv2106.03747,
@@ -148,7 +146,8 @@ arxiv2209.12788, arxiv2301.09633, arxiv2301.10780, arxiv2304.03398,
 arxiv2305.17570, arxiv2306.00312, arxiv2403.03208, arxiv2409.04406,
 arxiv2410.02867, arxiv2412.01600, arxiv2504.03315, arxiv2509.04536,
 arxiv2509.22247, arxiv2510.13994, arxiv2511.15672, arxiv2511.18225,
-arxiv2605.07470, arxiv2606.20820, arxiv2606.24038, arxiv2606.24996.
+arxiv2512.07074, arxiv2602.22248, arxiv2605.07470, arxiv2606.11949,
+arxiv2606.14028, arxiv2606.20820, arxiv2606.24038, arxiv2606.24996.
 Non-arXiv (2): mott2017nature (Mott et al., Nature 550, 2017);
 barlow1993fitting (Barlow & Beeston -- key taken from the pre-existing
 references.bib; no arXiv ID in the draft).
@@ -165,4 +164,7 @@ references.bib; no arXiv ID in the draft).
 - Structure counts as listed above; no non-ASCII bytes; no leftover markdown
   (`**`, backticks, `#` headings).
 - Rare-word presence sweep (38 distinctive terms) -- all present.
-- NOT compiled, per instructions.
+- Reproducible F8.2 gate: 73/73 checks passed; semantic four-word coverage
+  90.6123% draft-to-LaTeX and 92.4747% LaTeX-to-draft.
+- MiKTeX/pdfLaTeX build: 26 pages, zero overfull boxes, unresolved citations,
+  or unresolved references; all pages inspected after the final build.

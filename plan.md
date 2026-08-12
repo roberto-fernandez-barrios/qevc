@@ -191,28 +191,30 @@ D-028's disposition list rather than dropping silently:
 1. Final figure/table numbering per D-030 amendment (4/4b → 4(a)(b),
    ledger → Table 2, claim×info table → Table 1); captions pass;
    renumbering map recorded.
-2. LaTeX conversion (F6) of `manuscript/main/draft.md`; front matter
-   completed at conversion — authors, affiliation, ORCID, funding
-   (F5.7, still pending; back matter is done). Bibliography from
+2. **LaTeX conversion DONE 2026-08-12.** Front matter has author, ORCID and
+   email; affiliation is the sole remaining author input. Funding/back matter
+   is done. Bibliography from
    `manuscript/bibliography` (citation keys already in §2; sources in
    novelty matrix); cite-and-differentiate the four adjacent arXiv
    items from the re-sweep. Figures as PDFs with embedded fonts.
-3. Supplementary → `manuscript/supplementary/` + arXiv `anc/` package
-   (F6.5): long proofs, audit-trail summary, registry extract
+3. **Supplementary DONE 2026-08-12** in `manuscript/supplementary/` (7-page
+   compiled PDF); final arXiv `anc/` packaging remains a submission mechanic.
+   Contents: long proofs, audit-trail summary, registry extract
    (falsifiers + corrections incl. E08v2), extended tables (E15
    sensitivity, E19, n* efficiency, E16 diagnostics, E08v2/E08v3,
    priority-B if run).
-4. **Pre-submission adversarial audit (F8.1 — NOT yet done; the
-   existing audits are pre/post-campaign only):**
+4. **Pre-submission adversarial audit F8.1 DONE 2026-08-12:**
    `docs/audits/pre_submission_audit_<date>.md` — adversarial pass over
    ALL extension code (E17/E19/E08v2[/E08v3]/E11v3 runners + figure
    scripts) and adversarial math review of every step of the Thm 1 /
    Props 2–4 proofs; findings dispositioned.
-5. Number verification on the LaTeX (F8.2): every number traced to its
-   table (~220 expected) + semantic diff LaTeX vs draft.md.
-6. Full read-through (fresh-eyes pass) on the compiled PDF; arXiv
-   build-check (compiles clean, every citation resolves, every
-   figure/table exists).
+5. **Number verification F8.2 DONE 2026-08-12:** prior manuscript-wide trace
+   plus 73/73 reproducible final-LaTeX checks and bidirectional semantic diff;
+   see `docs/audits/f8_2_latex_audit_2026-08-12.md`.
+6. **Fresh-eyes PDF read-through DONE 2026-08-12:** all 26 main and 7
+   supplementary pages inspected; both compile clean with every citation,
+   reference, figure and table resolved. Final arXiv source-package build
+   remains part of submission mechanics.
 7. Sealed-role endgame disposition recorded at submission (D-028 rule 3
    / F8.3): seed-101/seed-121 `final_eval` KEPT SEALED for journal
    review; dated decision entry mandatory.

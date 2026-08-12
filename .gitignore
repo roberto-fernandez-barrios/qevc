@@ -18,6 +18,7 @@ venv/
 .mypy_cache/
 .ruff_cache/
 .ipynb_checkpoints/
+tmp/
 
 # Large raw result artifacts are tracked via manifests, not git
 results/raw/
@@ -40,3 +41,8 @@ manuscript/latex/*.blg
 manuscript/latex/*.fls
 manuscript/latex/*.fdb_latexmk
 manuscript/latex/main.pdf
+manuscript/supplementary/*.aux
+manuscript/supplementary/*.log
+manuscript/supplementary/*.out
+manuscript/supplementary/*.fls
+manuscript/supplementary/*.fdb_latexmk

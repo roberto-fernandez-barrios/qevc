@@ -165,8 +165,9 @@ The study was predeclared to be reportable under every outcome
 (registered falsifiers, five-seed replication gates, a frozen deployment
 snapshot committed before the confirmatory draw, pre- and post-campaign
 falsification audits with logged dispositions), and its registered
-falsifiers fired nine times (the confirmatory holdout's flagship-cell
-arm, the rate-fit coverage check, the inference calibration gate twice,
+falsifiers fired nine times (the multi-seed TES replication arm,
+the confirmatory holdout's flagship-cell arm, the rate-fit coverage check,
+the inference calibration gate -- one registered arm that blocked two implementations --,
 the cross-world degradation arm, the independent-MC split studies'
 three arms, and the weighted balanced-accuracy impossibility arm) while
 the falsification audits
@@ -826,7 +827,7 @@ anticonservative. Profile: with row-independent templates the L2 fit
 is invalid in 10/10 draws at the flagship cell (coverage 0.000–0.238
 against 0.719 shared) *and* in 10/10 draws at the shift-free nominal
 control (0.000–0.359), with μ̂ biases of both signs across draws (−6.6
-to +6.1). "Profiling restores validity" is thus
+to +7.5). "Profiling restores validity" is thus
 **shared-simulation-conditional**: at independent-MC template
 statistics of this size, template noise biases the profile fit
 everywhere, including nominal. The framework's own gate behaves
