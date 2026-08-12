@@ -1373,9 +1373,44 @@ entry.
   explicit E08v2-vs-E08v3 comparison rows.
 - **Expected outputs:** `results/tables/E08v3_multidraw.json`
   + manifest.
-- **Status:** registered 2026-08-12 (D-031), before execution — config
-  `configs/experiments/E08v3.yaml`, runner
-  `experiments/E08_physics_inference/run_e08v3.py`.
+- **Status:** **complete (2026-08-12, wall 8,790 s) — falsifier (a)
+  FIRED; reporting rule (b) returned its strongest form (generic).**
+  1. **Counting, marginal over 400 draws:** `shared_truth_half` control
+     lands exactly on target (0.6828/0.6827/0.6830/0.6823 — machinery
+     validated); `independent_naive` 0.065–0.086 (the measured price of
+     ignoring belief-side MC-stat); `independent_bb_sym`
+     (emulation-honest, ≡ the field estimator when nature is exact)
+     covers **0.7033–0.8284** — outside 0.6827 ± 0.06 for all three
+     gated models, on the conservative side. Per the frozen falsifier
+     the D-015-closure claim ("the corrected estimator restores nominal
+     calibration under independent MC") is **withdrawn**: the
+     delta-method variance term is right, the Gaussian quantile is not —
+     under heavy-tailed weight noise the offset distribution is
+     leptokurtic and the ±1σ interval over-covers. Direction disclosed:
+     fail-closed (conservative), never anticonservative; E08v2's
+     single-draw ≈1.0 was the conditional face of this conservatism.
+     Belief-only `independent_bb` (0.546–0.660) and the stored
+     `bb_predicted` (≈0.52) quantify the emulation's truth-side term;
+     per-draw variance components archived in-table.
+  2. **Profile, 10 draws:** flagship coverage < 0.633 in **10/10**
+     draws (per-draw 0.000–0.238; E08v2's registered draw 0.000; E15
+     shared reference 0.7188) → strength-of-statement = **generic**.
+     The shift-free nominal control collapses in 10/10 draws as well
+     (0.000–0.359), with μ̂ bias of BOTH signs across draws (−6.6 to
+     +6.1; E08v2's draw +8.4): the collapse is template-MC-noise-driven
+     and draw-generic, not shift-driven and not a pathological draw.
+     Consequence (pre-accepted at E08v2 registration): §6.7's
+     "profiling restores validity" is downgraded to
+     shared-simulation-conditional — and the E15 calibration gate
+     itself, fed independent-MC nominal cells, would correctly have
+     refused to validate the profile (fail-closed behavior of the
+     framework; the optimism lived in the validation evidence, not the
+     auditor).
+  3. **E08v2-vs-E08v3 comparison (acceptance rows):** counting nominal
+     bb: v2 conditional 0.9916–1.0 (one draw) → v3 marginal
+     0.7033–0.8284 (400 draws); flagship L2: v2 0.000 (one draw) → v3
+     0.000–0.238 with 10/10 below threshold; naive: v2 0.000–0.101 →
+     v3 marginal 0.065–0.086 (consistent).
 
 ## E11v3 — CMS ledger statistical hardening
 

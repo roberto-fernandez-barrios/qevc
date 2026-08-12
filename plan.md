@@ -89,7 +89,14 @@ scale/alignment bug found; row-alignment asserts passed):
   distinguish "L2 invalid under independent MC at this size" from "this
   draw is pathological".
 
-## 3. Decision point — D-031 (Roberto decides; blocks steps 4–5)
+## 3. Decision point — D-031 — RESOLVED 2026-08-12 (Option A executed
+under Roberto's delegation; E08v3 registered, run, both outcomes
+integrated: falsifier (a) fired → D-015-closure claim withdrawn,
+direction conservative; strength rule → generic → §6.7/§9/intro/tally
+revised; E18 stays deferred with recorded reasoning). Also executed
+same day: D-032 (E19 weighted-arm estimand corrected after
+pre-submission-audit HIGH finding; re-run verified; 6/7,980 = 0.08%).
+Original decision text kept below for the record.
 
 Options, either is publishable under D-028 rules:
 
@@ -132,7 +139,9 @@ D-031 must ALSO disposition two clauses the roadmap ties to E08v2:
   below) must therefore WAIT for the D-031 outcome — it cannot be
   drafted before the E08v2 wording is settled.
 
-## 4. After D-031 — integration (order matters)
+## 4. After D-031 — integration (order matters) — steps 1–3 DONE
+2026-08-12; step 4 (targeted number re-verification) pending alongside
+the audit-doc consolidation; step 5 (abstract) next.
 
 1. Registry: E08v2 status block (outcome + diagnosis + disposition —
    status recorded 2026-08-12, disposition pending); decisions.md:

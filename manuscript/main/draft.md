@@ -148,7 +148,13 @@ exception: the tree's JES tracking, 0.71, §6.7) and μ̂-sensitivity
 ∂μ̂/∂θ suppressed by one to two orders of magnitude — at a measured
 ×1.8–3.4 interval-width price; and it fails, predictably, where it
 cannot (stochastic soft-MET smearing: tracking slope 0.25–0.50,
-coverage 0.22; joint shifts under an additive morph: 0.09). The
+coverage 0.22; joint shifts under an additive morph: 0.09). The repair
+and its gate are moreover shared-simulation-conditional: registered
+independent-MC split studies show that with row-independent analyst
+templates at our MC size the profile fit is template-noise-biased
+everywhere (10/10 draws, both signs of μ̂ bias, shift-free cells
+included) and the MC-statistics-corrected counting intervals are
+conservative rather than calibrated (§6.7). The
 fail-closed ledger runs end-to-end on the complete public CMS Run2012
 H→ττ dataset (126k selected events): control-region claims certified
 with MC-side statistics propagated, the simulation-to-data shift
@@ -186,9 +192,10 @@ The study was predeclared to be reportable under every outcome
 (registered falsifiers, five-seed replication gates, a frozen deployment
 snapshot committed before the confirmatory draw, pre- and post-campaign
 falsification audits with logged dispositions), and its registered
-falsifiers fired five times (the confirmatory holdout's flagship-cell
+falsifiers fired eight times (the confirmatory holdout's flagship-cell
 arm, the rate-fit coverage check, the inference calibration gate twice,
-and the cross-world degradation arm) while the falsification audits
+the cross-world degradation arm, and the independent-MC split studies'
+three arms) while the falsification audits
 forced two further corrections (an estimand label; an over-generalized
 reading of the normalization-collapse result). One registered
 re-analysis carried a bidirectional falsifier that was free to
@@ -531,8 +538,9 @@ and after the campaign and before submission, with every finding
 dispositioned in the open (`docs/audits/`). Statistical protocol per the
 predeclared SAP and its logged amendments; superseded run tables are
 preserved, never overwritten. Every experiment is registered with a
-frozen falsifier before execution; registered falsifiers fired five times
-in this program (E02R, E12 arm (e), E14 v1, E15 gate, E17 arm (b)) and
+frozen falsifier before execution; registered falsifiers fired eight
+times in this program (E02R, E12 arm (e), E14 v1, E15 gate, E17
+arm (b), E08v2 arms (a) and (b), E08v3 arm (a)) and
 were obeyed each time. Compute is a single workstation: the full
 simulation program re-executes from one clean commit in under a day
 (largest single run: profiled inference, 5.4 h; confirmatory holdout
@@ -796,6 +804,41 @@ there. And with the shifted family omitted (L3), sensitivities revert to
 the counting estimator's scale (+4.8 to +8.7 μ/σ for TES) — the
 profile's protection is exactly as good as its nuisance model.
 
+Every result above shares one construction: the analyst's beliefs —
+counting expectations (s₀, b₀) and profile templates — are computed
+from the same simulated rows that generate the pseudo-experiment truth.
+Two registered split studies measure what that sharing is worth. E08v2
+splits the evaluation role in half (beliefs from one half, truth from
+the other; SR signal-yield relative error 0.23–0.32 at the resulting
+MC statistics, driven by heavy-tailed physics weights) and its
+multi-draw disposition E08v3 repeats the split over 400 independent
+draws (counting) and 10 draws (profile). Both registered falsifiers
+fired, and the multi-draw evaluation returned the strongest registered
+form of each outcome. Counting: the shared-simulation control
+reproduces 0.6827–0.6830 exactly (marginally over draws), naive
+independent beliefs collapse coverage to 0.065–0.086, and the
+Barlow–Beeston-style delta-method correction does *not* restore
+nominal calibration — it over-covers at 0.70–0.83 because the
+weight-noise distribution is heavy-tailed and the Gaussian ±1σ
+quantile is wrong even though the variance term is right. The
+registered claim that the corrected estimator closes the
+shared-simulation deferral is therefore withdrawn; the correction's
+failure direction is conservative (fail-closed), never
+anticonservative. Profile: with row-independent templates the L2 fit
+is invalid in 10/10 draws at the flagship cell (coverage 0.000–0.238
+against 0.719 shared) *and* in 10/10 draws at the shift-free nominal
+control (0.000–0.359), with μ̂ biases of both signs across draws (−6.6
+to +6.1). "Profiling restores validity" is thus
+**shared-simulation-conditional**: at independent-MC template
+statistics of this size, template noise biases the profile fit
+everywhere, including nominal. The framework's own gate behaves
+correctly under the honest input — a calibration gate fed
+independent-MC nominal cells collapses and would have refused to
+validate the profile. The optimism lived in the validation evidence,
+not in the auditor: the same information-quality axis that bounds
+I3's resolving power (template statistics, §6.5) governs the validity
+of the profiled repair itself.
+
 ## 7. Quantum Realism: estimation uncertainty as a certification problem
 
 The claim semantics of Section 3 (C_dep vs C_ideal) carry two formal
@@ -952,12 +995,17 @@ unweighted MC row samples with data, matching v1/v2 for comparability.
   certification at scale;
   E12 computes its landscape before its geometry phase (no label flow —
   verified — but the stronger archive-before-targets discipline of E04v3
-  is not claimed for E12). Two previously disclosed limitations were
-  closed by registered re-analyses rather than argued away: CMS CR
+  is not claimed for E12). One previously disclosed limitation was
+  closed by a registered re-analysis rather than argued away: CMS CR
   intervals now propagate MC-side statistics and the sensor verdict is
-  calibrated (E11v3, §8), and the shared-simulation construction of the
-  physics beliefs is addressed by the independent-MC split study
-  (E08v2, §6.7).
+  calibrated (E11v3, §8). A second was *measured, with adverse
+  outcome*: the registered independent-MC split studies (E08v2/E08v3,
+  §6.7) show that the profiled repair and its calibration gate are
+  shared-simulation-conditional at our MC size (template-noise bias of
+  both signs, 10/10 draws, including shift-free cells) and that the
+  corrected counting intervals are conservative rather than calibrated
+  — the shared-simulation caveat is thereby quantified, not removed,
+  and the corresponding registered falsifiers fired and were obeyed.
 - **Scope:** conclusions are conditional on the declared information
   sets, the H→ττ process, and the benchmark's weight-only implementation
   of normalization nuisances; no quantum advantage is claimed anywhere,

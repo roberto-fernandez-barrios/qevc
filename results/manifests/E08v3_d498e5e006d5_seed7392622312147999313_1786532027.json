@@ -1,0 +1,82 @@
+{
+  "backend": {},
+  "config": {
+    "E08v3": {
+      "acceptance": {
+        "bb_sym_band": 0.06,
+        "flagship_atypical_le": 2,
+        "flagship_generic_ge": 8
+      },
+      "base": "configs/experiments/E08v2.yaml",
+      "counting": {
+        "accountings": [
+          "shared_truth_half",
+          "independent_naive",
+          "independent_bb",
+          "independent_bb_sym"
+        ],
+        "env": "nominal",
+        "models": [
+          "A:qksvc",
+          "A:rbf_svc",
+          "A:xgboost",
+          "B:xgboost"
+        ],
+        "n_draws": 400
+      },
+      "experiment": "E08v3",
+      "frozen_source": "configs/frozen/frozen_deployment_v1.yaml",
+      "profile_spotcheck": {
+        "cells": [
+          {
+            "env": "tes=0.98",
+            "model": "xgboost"
+          },
+          {
+            "env": "nominal",
+            "model": "xgboost"
+          }
+        ],
+        "n_draws": 10,
+        "n_pe": 200
+      },
+      "split": {
+        "halves": {
+          "belief": 0.5,
+          "truth": 0.5
+        },
+        "role": "nominal_test",
+        "salt_prefix": "E08V3",
+        "stratify_by": "detailed_labels"
+      }
+    }
+  },
+  "config_hash": "d498e5e006d5292429a8524efc0e63bb2672519921d8191cbdaa2a90819bfa7f",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E08v3",
+  "finished_at": 1786532027.1716156,
+  "git_commit": "ef5b50430d2d4d06154d14903a0676cf3ff768d5",
+  "git_dirty": false,
+  "outputs": [
+    "results\\tables\\E08v3_multidraw.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 7392622312147999313,
+  "started_at": 1786532027.1715457,
+  "wall_seconds": 6.985664367675781e-05
+}
