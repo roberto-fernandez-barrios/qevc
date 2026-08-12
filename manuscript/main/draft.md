@@ -811,12 +811,14 @@ layer must be, and is, indifferent to that.
 signed movements ΔM_T(ω), ΔM_S(ω) of the realized deployment's target
 and source metrics, the realized margin obeys |m(ω) − m⋆| ≤ |ΔM_T| for
 C_ideal and |m(ω) − m⋆| ≤ |ΔM_T − ΔM_S| for C_dep; if the ideal margin
-exceeds the relevant movement bound and the audit resolves, the realized
-verdict equals the ideal one. When movement is common-mode (refit and
+exceeds the relevant movement bound and the audit resolves, then — on
+the confidence sequence's coverage event, probability ≥ 1 − α, the same
+α already spent — the realized verdict equals the ideal one. When
+movement is common-mode (refit and
 recalibration shift source and target together), C_dep margins cancel it
 while C_ideal margins absorb ΔM_T in full — deployment-relative claims
 are structurally the stabler class.* Proof: triangle inequality plus the
-determinism of the fail-closed rule given the CS bounds
+determinism of the fail-closed rule given covering CS bounds
 (`docs/formal_results.md`). The movement magnitudes are *measured, not
 derived* — per-budget distributions from the 30 archived noisy
 deployments (Fig. S16) — and they predict what follows: at 128 shots the

@@ -166,10 +166,13 @@ margin. For a realization ω define the movements
 where ΔM_T, ΔM_S are the signed movements. In particular, if
 m⋆ > ε_Q(ω) — with ε_Q = ε_T for C_ideal and ε_Q = |ΔM_T − ΔM_S| for
 C_dep — the realized claim remains true; symmetrically for m⋆ < −ε_Q.
-(ii) *Verdict stability.* If additionally the realized audit resolves, i.e.
-the running-intersection CS radius at the stopping time is below the
-realized margin, then the realized verdict equals the ideal verdict: same
-sign of margin + resolution ⇒ same D-006 output. (iii) *Common-mode
+(ii) *Verdict stability.* On the CS coverage event (probability ≥ 1 − α),
+if additionally the realized audit resolves — the running-intersection CS
+radius at the stopping time is below the realized margin, both taken on
+the certification scale (for weighted claims the metric-scale margin maps
+to the Z scale with factor E[u]/w_max, Theorem 1(a)) — then the realized
+verdict equals the ideal verdict: same sign of margin + resolution ⇒ same
+D-006 output. (iii) *Common-mode
 cancellation.* When the deployment movement is common-mode — ΔM_T(ω) ≈
 ΔM_S(ω), as when refitting and recalibration shift source and target
 performance together — C_dep margins difference it away (|ΔM_T − ΔM_S|
@@ -178,9 +181,13 @@ claims are structurally the more stable class.
 
 **Proof.** (i) Triangle inequality on m(ω) − m⋆ written in terms of the
 signed movements; for C_dep, m(ω) − m⋆ = ΔM_T − ΔM_S. (ii) The D-006 rule
-is a deterministic function of the CS bounds; if the margin sign is
-unchanged and its magnitude exceeds the realized radius, the same bound
-crosses the same side of τ. (iii) Immediate from the C_dep bound. ∎
+is a deterministic function of the CS bounds. On the coverage event the
+bounds contain the true mean at every n; a REFUTED output with positive
+margin (or SUPPORTED with negative) would put the true mean outside a
+bound — a coverage violation. Resolution with radius below the margin
+therefore forces the crossing onto the margin's side of τ; the
+probability qualifier is inherited from the CS, adding nothing beyond
+the α already spent. (iii) Immediate from the C_dep bound. ∎
 
 **Honesty note (assumption status).** ε_T, ε_S are *realized random
 quantities*; Proposition 4 is conditional on them. Their per-shot-budget
