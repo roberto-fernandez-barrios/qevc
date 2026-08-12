@@ -1,14 +1,10 @@
 # When Can Quantum Event Classifiers Be Trusted? Conditional Validity under Collider Systematics and Quantum Estimation Uncertainty
 
-**Draft v0.3 — 2026-08-11.** Rebuilt after the E12–E16 campaign per the
-evidence; structure per research spec §33; language per the claims
-discipline of §34. All numbers come from the audited result tables
-(`docs/experiment_registry.md` campaign section; the ~172-value
-number audit and the adversarial code audit are in
-`docs/audits/post_campaign_audit_2026-08-11.md`; superseded first-run
-tables are preserved under `*_v1_*.json` names). Remaining before submission: BibTeX bibliography and venue formatting at
-LaTeX conversion (citation keys already in §2; sources in
-`docs/novelty_matrix.md`).
+**arXiv v1 source — 2026-08-12.** Synchronized with the final LaTeX
+manuscript after the registered extension campaign, adversarial audit,
+number trace, bibliography verification and fresh-eyes PDF review. All
+numbers come from the audited result tables; superseded first-run tables
+remain preserved under `*_v1_*.json` names.
 
 ---
 

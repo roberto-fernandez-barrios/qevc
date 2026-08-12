@@ -13,8 +13,8 @@ semantic equivalence between `draft.md` and `main.tex`.
 
 Final execution result:
 
-- 73/73 executable assertions passed.
-- Four-word prose coverage was 90.6123% from Markdown to LaTeX and 92.4747%
+- 81/81 executable assertions passed.
+- Four-word prose coverage was 90.5473% from Markdown to LaTeX and 92.4084%
   from LaTeX to Markdown (thresholds 90% and 92%).
 - The residual is explained by TeX math syntax, citations moved to BibTeX,
   automatic numbering, float/table markup, and the deliberately omitted
@@ -79,9 +79,9 @@ Final execution result:
 
 ## Build and visual gate
 
-- `main.tex`: MiKTeX/pdfLaTeX, 26 pages, 829,461 bytes; zero overfull boxes,
+- `main.tex`: MiKTeX/pdfLaTeX, 26 pages, 850,886 bytes; zero overfull boxes,
   unresolved citations, or unresolved references.
-- `supplement.tex`: MiKTeX/pdfLaTeX, 7 pages, 407,961 bytes; zero overfull
+- `supplement.tex`: MiKTeX/pdfLaTeX, 7 pages, 411,805 bytes; zero overfull
   boxes or unresolved references.
 - Repository regression suite: 127/127 tests passed in the project virtual
   environment.

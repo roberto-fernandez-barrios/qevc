@@ -775,3 +775,49 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   executed or dispositioned, nine falsifier firings obeyed and
   published (E02R, E12(e), E14 v1, E15 gate, E17(b), E08v2(a)(b),
   E08v3(a), E13v2(b)).
+
+## D-034 — Final authorship and institutional front matter
+
+- **Date:** 2026-08-12
+- **Context:** the author supplied a previously published team article solely
+  as the authoritative source for the shared author list, ORCIDs and
+  institutional affiliation. Page 1 and its embedded ORCID links were
+  independently inspected; all four ORCID check digits validate under ISO
+  7064 MOD 11-2. The source file was `sn-article.pdf`, SHA-256
+  `D9679C24D2227D73E00A21839D8A1DE206A05C8FF53DEDD54461BC1FACDCB039`.
+- **Decision:** the paper, supplement, package metadata and citation metadata
+  use Roberto Fernández-Barrios (0009-0003-5312-2634), Iker Pastor-López
+  (0000-0002-3068-6248), Asier González-Santocildes
+  (0009-0002-8888-8560), and Pablo García Bringas
+  (0000-0003-3594-9534), all affiliated with the Faculty of Engineering,
+  University of Deusto, Avda. de las Universidades 24, 48007 Bilbao, Spain.
+  Roberto is the corresponding author at roberto.fernandez.b@deusto.es.
+  The reference article is not a research input or release artifact and is
+  deleted from the working tree after verification, as explicitly requested
+  by the author.
+- **Status:** adopted and verified in the final 26-page manuscript and
+  7-page supplement.
+
+## D-035 — arXiv-v1 sealed holdouts and release freeze
+
+- **Date:** 2026-08-12
+- **Context:** all mandatory experiments, registered dispositions, F8.1/F8.2
+  audits, bibliography checks, final compilation and visual inspection are
+  complete. The author explicitly authorized publication on 2026-08-12.
+- **Decision:** (i) seed-101 and seed-121 `final_eval` remain sealed for a
+  journal revision; arXiv v1 spends no sealed-role data. (ii) The E16
+  priority-(b) DD-on/off micro-split is not run: its gate required the IBM
+  Open window to reset before F8 began, and F8 is already complete. (iii)
+  The release uses arXiv primary category `quant-ph`, cross-lists `hep-ph`
+  and `stat.ME`, and CC BY 4.0 for the preprint. (iv) Publication is gated
+  on a green Windows CI run; the release tag is `arxiv-v1`; Zenodo deposition
+  21894292 is populated with the audited release artifacts and published at
+  submission time.
+- **Frozen artifacts:** `manuscript/latex/main.pdf` — 26 pages, SHA-256
+  `9F798522ED240BD7F76915877068291EBBC5FDC9ECEDBDC18EF6115D8DEA4D2F`;
+  `manuscript/supplementary/supplement.pdf` — 7 pages, SHA-256
+  `83C4279415295313903E1D052FA856C880809740B708DD88AB2A02F3074B1C22`;
+  `dist/arxiv-v1-source.zip` — SHA-256
+  `9C439AF7628567F490ABD60AA36A38A2EEC3FC5D85B846AC79DD223235FF8646`.
+- **Status:** adopted; remote publication endpoints are recorded in the
+  release closeout after their identifiers are assigned.

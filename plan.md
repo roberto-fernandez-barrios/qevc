@@ -215,12 +215,13 @@ D-028's disposition list rather than dropping silently:
    supplementary pages inspected; both compile clean with every citation,
    reference, figure and table resolved. Final arXiv source-package build
    remains part of submission mechanics.
-7. Sealed-role endgame disposition recorded at submission (D-028 rule 3
-   / F8.3): seed-101/seed-121 `final_eval` KEPT SEALED for journal
-   review; dated decision entry mandatory.
-8. arXiv mechanics (F6.6/F8.4): primary quant-ph, cross-list hep-ph +
-   stat.ME (final call after the re-sweep), license CC BY 4.0, `.bbl`
-   included; abstract ≤ 1,920 chars.
+7. **Sealed-role endgame disposition DONE 2026-08-12 (D-035):**
+   seed-101/seed-121 `final_eval` KEPT SEALED for journal review. The E16
+   DD-on/off micro-split is not run because F8 began before the IBM window
+   reset.
+8. **arXiv package DONE 2026-08-12:** primary quant-ph, cross-list hep-ph +
+   stat.ME, license CC BY 4.0, `.bbl` included; abstract ≤ 1,920 chars;
+   source archive independently compiled clean (26 + 7 pages).
 9. **CI green gate** before tagging: then F8: populate + publish Zenodo
    deposition 21894292 (record deposit SHA-256s), submit to arXiv, tag
    `arxiv-v1`, add `preferred-citation` to CITATION.cff when the arXiv
