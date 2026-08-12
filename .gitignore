@@ -32,3 +32,11 @@ Thumbs.db
 # Secrets (QPU provider tokens etc.)
 .env
 *.token
+manuscript/latex/*.aux
+manuscript/latex/*.log
+manuscript/latex/*.out
+manuscript/latex/*.bbl
+manuscript/latex/*.blg
+manuscript/latex/*.fls
+manuscript/latex/*.fdb_latexmk
+manuscript/latex/main.pdf

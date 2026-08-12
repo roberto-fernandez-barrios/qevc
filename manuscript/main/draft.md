@@ -276,7 +276,20 @@ composition with rate evidence (Sec. 4.4); our template-statistics
 treatment follows Barlow & Beeston, and our toy conventions the standard
 unconditional-ensemble practice of profile-likelihood analyses.
 
-**2.6 The gap.** No prior work combines quantum models, physically
+**2.6 The gap.** A pre-submission sweep surfaced four adjacent recent
+works, none of which crosses the combination: Profile OmniFold
+(arXiv:2512.07074) brings nuisance parameters into ML unfolding —
+nuisance-aware *measurement*, with no claim certification and no
+information-set conditioning; the ML-HEQUPP review (arXiv:2602.22248)
+surveys ML across heterogeneous and quantum hardware for particle
+physics without a validity framework; online shift detection with
+conformal adaptation (arXiv:2606.11949) monitors and adapts rather than
+certifying fail-closed, with no physics inference or label-budget
+accounting; and anytime-valid confirmation of label-shift corrections
+(arXiv:2606.14028) is the nearest statistical machinery but is
+label-shift-specific, with no information-set hierarchy, collider
+systematics, or downstream inference validity. No prior work combines
+quantum models, physically
 parameterized collider systematics, information-conditional
 error-controlled certification, and physics-level inference — and none
 poses quantum estimation noise as a certification problem in which the
