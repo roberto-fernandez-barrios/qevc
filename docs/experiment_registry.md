@@ -1264,8 +1264,35 @@ entry.
   spot-check complete; explicit shared-vs-independent comparison table.
 - **Expected outputs:** `results/tables/E08v2_independent_mc.json`
   + manifest.
-- **Status:** specified (2026-08-11) — config
-  `configs/experiments/E08v2.yaml`.
+- **Status:** **run complete (2026-08-11, manifest
+  `E08v2_4df40c2496d2_seed1812_1786484445`, wall 5409 s) — BOTH frozen
+  falsifiers FIRED; disposition pending D-031.** Recorded before any
+  interpretation was negotiated:
+  1. **Falsifier (a) fired:** accounting (iii) nominal-env coverage
+     1.000 / 1.000 / 0.9916 for the three gated models — outside
+     0.6827 ± 0.02 on the high side (intervals ~8× Poisson width).
+  2. **Falsifier (b) fired:** flagship tes=0.98 × A:xgboost L2 coverage
+     with independent templates 0.000 (E15 shared reference 0.7188).
+     The three *nominal* calibration cells also collapse (coverage
+     0.000–0.0088, μ-bias +3 to +11, nuisances dragged to jes ≈ −1.8σ,
+     diboson_scale ≈ 0.16): the collapse is template-MC-noise-driven,
+     not shift-driven.
+  3. **Post-run diagnosis (code audited, arithmetic verified, row
+     alignment asserted):** belief-half MC-stat in the SRs is large
+     (s₀ relerr 0.23–0.32; heavy-tailed weights, small signal ESS).
+     The delta-method term of accounting (iii) then *dominates* the
+     Poisson term, and with a single realized belief draw the
+     conditional coverage of the corrected interval is degenerate
+     (≈ 1 or ≈ 0 depending on the one draw's offset); the 0.6827
+     target is observable only marginally over belief draws. Both arms
+     share the one draw, so their firings are one correlated
+     realization. The falsifier's single-draw premise — not the
+     estimator's arithmetic — is the identified defect; per the frozen
+     text the counting-BB arm is **blocked until fixed and
+     re-registered**, and the arm-(b) §6.7 downgrade consequence
+     stands. Disposition (single-draw publication vs bounded
+     multi-draw re-registration E08v3) is recorded as D-031 when
+     taken; all outcomes published either way.
 
 ## E11v3 — CMS ledger statistical hardening
 
