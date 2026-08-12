@@ -23,6 +23,7 @@ Freeze date: 2026-08-12
 | `manuscript/latex/main.pdf` | 26 | 850,886 | `9F798522ED240BD7F76915877068291EBBC5FDC9ECEDBDC18EF6115D8DEA4D2F` |
 | `manuscript/supplementary/supplement.pdf` | 7 | 411,805 | `83C4279415295313903E1D052FA856C880809740B708DD88AB2A02F3074B1C22` |
 | `dist/arxiv-v1-source.zip` | — | 622,685 | `9C439AF7628567F490ABD60AA36A38A2EEC3FC5D85B846AC79DD223235FF8646` |
+| `dist/qevc-arxiv-v1.zip` | — | 3,561,869 | `24F350C79AD5585D803D73D241F2389BF07B6C2E963E289B6861ADDD053CD2AB` |
 
 The source archive contains `main.tex`, its generated `main.bbl`, all 11
 main-document figure PDFs, and the supplement PDF plus source and Figure S16
@@ -40,5 +41,12 @@ boxes.
 - seed-101 and seed-121 `final_eval` remain sealed for journal review.
 - Nine registered falsifier firings are retained and disclosed.
 
-Remote publication URLs and the arXiv submission identifier are appended in
-the release closeout after those services assign them.
+## Remote publication
+
+- GitHub release:
+  <https://github.com/roberto-fernandez-barrios/qevc/releases/tag/arxiv-v1>
+- Zenodo record: <https://doi.org/10.5281/zenodo.21894292>
+- Zenodo state: published 2026-08-12 with four files; every remote MD5
+  matched its local artifact before the irreversible publish action.
+- arXiv: source and metadata ready, but not submitted; publication was
+  explicitly deferred by the author on 2026-08-12.

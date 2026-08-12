@@ -819,5 +819,10 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   `83C4279415295313903E1D052FA856C880809740B708DD88AB2A02F3074B1C22`;
   `dist/arxiv-v1-source.zip` — SHA-256
   `9C439AF7628567F490ABD60AA36A38A2EEC3FC5D85B846AC79DD223235FF8646`.
-- **Status:** adopted; remote publication endpoints are recorded in the
-  release closeout after their identifiers are assigned.
+- **Status:** adopted. The mandatory Windows CI and auxiliary Linux CI passed
+  on PR #1 and again on merge commit
+  `a7387ec0b25e44c588fa3fa6b638e555d8e537e4`. Git tag `arxiv-v1`, the public
+  GitHub release, and Zenodo record 10.5281/zenodo.21894292 were published on
+  2026-08-12. The four Zenodo file MD5s matched the frozen local artifacts
+  before publication. The arXiv source/metadata are ready but were not
+  submitted: the author explicitly deferred arXiv publication on 2026-08-12.

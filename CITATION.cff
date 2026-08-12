@@ -42,6 +42,6 @@ keywords:
   - collider physics
   - certification
 doi: "10.5281/zenodo.21894292"
-# The Zenodo deposit is reserved (D-030) and will be published with the
-# arXiv preprint; preferred-citation will point to the arXiv record once
-# the preprint is announced (kept as software-only until then).
+# The Zenodo record was published with the audited arXiv-v1 release on
+# 2026-08-12. A preferred-citation will point to the arXiv record once the
+# preprint is assigned its permanent identifier.
