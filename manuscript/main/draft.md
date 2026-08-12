@@ -12,64 +12,37 @@ LaTeX conversion (citation keys already in §2; sources in
 
 ---
 
-## Abstract (draft)
+## Abstract
 
 Quantum machine-learning classifiers for collider physics face two
-distinct validation gaps. Like their classical counterparts they are
-validated on nominal simulation while deployment happens under
-experimentally uncertain conditions — the collider's systematic
-uncertainties. Unlike their classical counterparts, even *evaluating*
-them is a statistical estimation problem: finite-shot and hardware-noisy
-kernels make the deployed model itself uncertain. We ask when a
-scientific claim made with a quantum event classifier is actually valid
-when uncertainty enters simultaneously from collider deployment and from
-quantum estimation, and we answer with an
-information-set-conditional, fail-closed auditing framework whose
-verdicts (SUPPORTED / REFUTED / UNRESOLVED) carry anytime-valid error
-control. On the FAIR Universe HiggsML Uncertainty benchmark (H→ττ, six
-parameterized nuisance sources) with a quantum-kernel classifier and
-matched classical baselines we establish, and confirm on a provably
-disjoint fresh holdout: (i) small but replicated degradations of the
-quantum-kernel classifier under tau-energy-scale shifts and adverse
-nuisance combinations — with a matched-kernel control showing nothing
-quantum-specific in either classification or label-free shift sensing;
-(ii) a label-free kernel-geometry sensor that generalizes out of the
-development grid (48 unseen nuisance configurations, rank correlation up
-to 0.65) while being *provably* blind to normalization nuisances — on
-common random numbers the weight-only environments are byte-identical to
-nominal; (iii) an exact extension of anytime-valid certification to
-physics-weighted estimands via a one-sample reduction, whose measured
-label cost is ×1.7 at matched margins and whose fail-closed behavior
-hardens under the physical estimand; (iv) a formal identifiability
-boundary — no I1/I2 evidence has any power against weight-only
-nuisances — together with its resolution at information level I3
-(control-region rates), whose practical resolving power we show is set by
-the auxiliary evidence's template statistics (±10% on the ttbar scale at
-our MC size); (v) propagation to signal-strength inference through three
-inference levels, showing that a calibration-gate-validated profile
-likelihood restores the coverage that a deployment-blind estimator loses
-under scale and normalization shifts (0.63–0.67 from 0.00–0.59) at a
-measured ×1.8–3.4 interval-width price — while stochastic soft-MET
-smearing and multi-nuisance combinations defeat even the profiled
-treatment (coverage 0.22 and 0.09), because their structure is not
-representable by deterministic template morphing; (vi) a quantum-estimation-
-uncertainty study showing that noise moves the deployed pipeline's own
-reference points by up to 0.05 typically (0.14 in the worst
-configuration), flipping fixed-reference verdicts at rates from 21%
-(far-margin, 128 shots) to 0.4% (4096 shots) while false
-certification stays below α in every accounting — noise changes what is
-resolvable, never the validity of what is certified — including a
-first end-to-end run of the full pipeline on 100%-QPU-estimated kernels;
-and (vii) a fail-closed claims ledger on the complete public CMS Run2012
-H→ττ collision dataset (126k selected events) that certifies
-control-region claims, detects the simulation-to-data shift, and refuses
-by construction to certify event-level accuracy without labels. Two of
-our own headline patterns did not survive internal falsification — a
-single-seed TES antisymmetry and the draw-fragility of
-normalization-induced coverage damage — and are reported as corrections
-with their mechanisms. None of our conclusions requires quantum
-advantage; the framework treats quantum and classical models identically
-and is fail-closed by design.
+validation gaps: they are validated on nominal simulation yet deployed
+under uncertain systematics, and even their evaluation is statistical,
+since finite-shot and hardware-noisy kernels make the deployed model
+itself random. We ask when a scientific claim made with one remains
+valid under both uncertainties, and answer with a fail-closed auditing
+framework whose SUPPORTED/REFUTED/UNRESOLVED verdicts carry
+anytime-valid error control. On the FAIR Universe HiggsML benchmark
+(H→ττ, six nuisance sources), with results confirmed in disjoint fresh
+worlds, we establish three contributions. (C1) Certification is
+information-conditional: a proved impossibility (no label-free or
+nominal-weight evidence has power against weight-only nuisances), its
+resolution by control-region rates, and an exact weighted extension of
+anytime-valid certification with label costs within ×1.5–3.4 of the
+Wald floor. (C2) Classifier stability does not certify inference:
+signal-strength coverage collapses at flat AUC; a gate-validated
+profile likelihood restores it exactly where its nuisance model
+represents the shift, at a measured ×1.8–3.4 width price — a repair
+registered split studies show to be shared-simulation-conditional,
+failing under independent-MC templates. (C3) Deployment randomness
+changes which claims are true and resolvable, never the validity of
+what is certified — proved via deployment-relative vs ideal-anchored
+claim semantics, measured across shot budgets (fixed-reference verdict
+flips 21% to 0.4%), and demonstrated end-to-end on fully QPU-estimated
+kernels and on real CMS data via a fail-closed claims ledger. The
+quantum kernel is competitive, never superior — a matched classical
+kernel reproduces every quantum-attributed effect; registered
+falsifiers fired eight times and were obeyed; no conclusion requires
+quantum advantage.
 
 ## 1. Introduction
 
