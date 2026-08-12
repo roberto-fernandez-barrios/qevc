@@ -617,3 +617,65 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   blindness — the registry's E03 "Fig. 3 data" promise, finally drawn)
   and Fig. 6 (label economics — closes the dangling §6.6 reference).
 
+
+## D-031 — E08v2 falsifier disposition: bounded multi-draw re-registration (E08v3)
+
+- **Date:** 2026-08-12
+- **Context:** E08v2 completed 2026-08-11 (manifest
+  `E08v2_4df40c2496d2_seed1812_1786484445`) and BOTH frozen falsifiers
+  fired: (a) accounting-(iii) nominal coverage 1.000/1.000/0.9916 for
+  the three gated models (band 0.6827 ± 0.02); (b) flagship
+  tes=0.98 × A:xgboost L2 coverage 0.000 with independent templates —
+  and the three nominal calibration cells collapse as well
+  (0.000–0.0088, μ-bias +3..+11), showing the collapse is
+  template-MC-noise-driven, not shift-driven. Post-run code audit found
+  no arithmetic, scale, or alignment defect in `run_e08v2.py`.
+- **Diagnosis (recorded as the basis of this decision):** belief-half
+  MC-stat in the signal regions is large (s₀ relerr 0.23–0.32;
+  heavy-tailed weights, small signal ESS), so the delta-method term
+  dominates the Poisson term and, with a SINGLE realized belief draw,
+  the conditional coverage of the corrected interval is degenerate
+  (≈ 0 or ≈ 1 per draw). The 0.6827 target is observable only
+  MARGINALLY over belief draws. Both E08v2 arms share the one draw, so
+  the two firings are one correlated realization. The defect is the
+  falsifier's single-draw premise, not the estimator's arithmetic.
+  A second structural fact follows from the emulation itself: E08v2's
+  "truth" is a finite half-sample, so the offset between belief and
+  truth carries BOTH halves' MC variance while the field-correct
+  belief-only BB term models only one — a belief-only interval cannot
+  reach 0.6827 marginally in this emulation even in principle
+  (predicted ≈ 2Φ(σ_bb/σ_tot) − 1 ≈ 0.52 when the variance terms
+  dominate and the halves are symmetric).
+- **Decision:**
+  1. Per the frozen E08v2 falsifier-(a) text, the counting-BB arm is
+     blocked and re-registered as **E08v3** (registry entry frozen
+     before execution): K = 400 independent half-split draws for the
+     counting arm (nominal env, four accountings — the three of E08v2
+     plus `independent_bb_sym`, which adds the truth-half Σw² term and
+     is the emulation-honest interval; in the field, where nature is
+     exact, bb_sym ≡ bb) and K = 10 draws for the profile arm
+     (flagship + shift-free nominal control cell, 200 PEs). The
+     marginal falsifier applies to bb_sym; bb is reported against its
+     model-predicted marginal coverage from the stored per-draw
+     variance components.
+  2. The E08v2 arm-(b) manuscript consequence STANDS as pre-accepted
+     (§6.7 "profiling restores validity" downgraded to
+     shared-simulation-conditional). E08v3's registered draw-fraction
+     statistic fixes only the STRENGTH of the wording (generic vs
+     draw-dependent), decided by frozen thresholds, not post hoc.
+  3. **E18 trigger clause evaluated (D-028):** E08v2 did raise a
+     concrete question — belief-side template statistics and
+     single-draw degeneracy — but it is not one the Latin-hypercube
+     multi-nuisance design answers (E18 targets additive-morphing
+     cross-terms). E18 therefore REMAINS DEFERRED, with this reasoning
+     recorded rather than silently.
+  4. The abstract rewrite (roadmap F5.2) is blocked on E08v3: abstract
+     item (v) asserts exactly the claim arm (b) qualifies.
+  5. All E08v2 outputs stand published as-is (superseded-table rule
+     not triggered; E08v3 is a follow-up, not a replacement).
+- **Alternatives:** publish the single-draw result alone (Option B) —
+  rejected: it leaves the marginal validity of the corrected estimator
+  undetermined in print and the §6.7 wording strength unquantified,
+  when a bounded (~2 h) registered follow-up resolves both. Author
+  delegated the disposition 2026-08-12 ("best possible material").
+- **Status:** adopted; E08v3 registered 2026-08-12 before execution.

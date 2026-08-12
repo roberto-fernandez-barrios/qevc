@@ -1,0 +1,35 @@
+# E08v3 — Multi-draw independent-MC beliefs (registered in
+# docs/experiment_registry.md; disposition of the E08v2 falsifier firings,
+# D-031). E08v2's single-draw design measures coverage CONDITIONAL on one
+# belief draw, which is degenerate when belief-side MC-stat dominates; this
+# run measures the MARGINAL coverage over K independent half-split draws,
+# and adds the emulation-symmetric accounting independent_bb_sym (truth-half
+# sum(w^2) term; in the field, where nature is exact, bb_sym == bb).
+experiment: E08v3
+frozen_source: configs/frozen/frozen_deployment_v1.yaml
+base: configs/experiments/E08v2.yaml   # split geometry, SR procedure, mu/PE grids
+split:
+  role: nominal_test
+  halves: {belief: 0.5, truth: 0.5}
+  stratify_by: detailed_labels
+  salt_prefix: "E08V3"                 # per-draw salts "E08V3:001", ...
+counting:
+  n_draws: 400
+  env: nominal
+  models: ["A:qksvc", "A:rbf_svc", "A:xgboost", "B:xgboost"]
+  accountings:
+    - shared_truth_half        # per-draw control (conditional ~0.68 expected)
+    - independent_naive        # price of ignoring belief MC-stat (finding)
+    - independent_bb           # field estimator (belief-side term only)
+    - independent_bb_sym       # + truth-half term: emulation-honest interval
+profile_spotcheck:
+  n_draws: 10                  # draws 001-010 (shared with counting salts)
+  n_pe: 200
+  cells:
+    - {env: "tes=0.98", model: xgboost}   # flagship (E08v2 arm-b cell)
+    - {env: nominal, model: xgboost}      # shift-free template-noise control
+acceptance:                    # frozen in the registry entry
+  bb_sym_band: 0.06            # marginal nominal bb_sym within 0.6827 +- 0.06;
+                               # outside for >=2 gated models -> falsifier (a)
+  flagship_generic_ge: 8       # draws (of 10) < 0.633 -> collapse generic
+  flagship_atypical_le: 2      # -> E08v2 draw reported atypical

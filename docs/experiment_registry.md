@@ -1292,7 +1292,63 @@ entry.
      re-registered**, and the arm-(b) §6.7 downgrade consequence
      stands. Disposition (single-draw publication vs bounded
      multi-draw re-registration E08v3) is recorded as D-031 when
-     taken; all outcomes published either way.
+     taken; all outcomes published either way. **Disposition taken
+     2026-08-12: D-031 → E08v3 below.**
+
+## E08v3 — Multi-draw independent-MC beliefs (D-031; E08v2 falsifier disposition)
+
+- **Question:** (a) Is the BB-lite-corrected counting interval valid
+  *marginally* over belief-MC draws — the notion E08v2's single-draw
+  design could not observe? (b) Is the E08v2 L2 template-noise collapse
+  generic across draws or specific to the one registered draw?
+- **Hypothesis:** (i) the emulation-symmetric accounting
+  `independent_bb_sym` (truth-half Σw² term added; in the field, where
+  nature is exact, bb_sym ≡ bb) achieves marginal nominal coverage
+  ≈ 0.6827, validating the delta-method logic; (ii) belief-only
+  `independent_bb` under-covers marginally, matching its
+  model-predicted coverage ≈ 2Φ(σ_bb/σ_tot) − 1 (≈ 0.52 at symmetric
+  halves with dominating variance terms) — quantifying that E08v2's
+  ≈ 1.0 was the conditional, not marginal, behavior; (iii) the L2
+  collapse is generic: most draws show flagship AND shift-free nominal
+  coverage far below the E15 gate.
+- **Estimand(s):** identical to E08v2 per arm, evaluated per draw and
+  marginally (mean over draws). Counting arm: K = 400 stratified
+  half-split draws (salts "E08V3:001".."E08V3:400"), nominal env only,
+  4 audit models, frozen μ grid and PE count (E08), four accountings
+  {shared_truth_half, independent_naive, independent_bb,
+  independent_bb_sym}; per-draw variance components
+  (s₀/b₀ and Σw² for BOTH halves) stored so the bb prediction is
+  computable from the table alone. Profile arm: K = 10 draws (salts
+  001–010), cells {tes=0.98 × A:xgboost (flagship),
+  nominal × A:xgboost (shift-free control)}, 200 PEs per (cell, μ,
+  draw), D-023 protocol otherwise frozen.
+- **Information set:** unchanged (analyst-side MC only).
+- **Protocol:** SR thresholds and score-bin edges frozen from
+  source_val exactly as E08v2 (draw-independent, recomputed
+  deterministically); per-draw per-half lumi rescale; cached env
+  datasets/scores reused with row-alignment asserts; seeds via
+  stable_seed("E08V3", arm, draw, ...).
+- **Falsifier (frozen):** (a) marginal nominal-env coverage of
+  `independent_bb_sym` outside 0.6827 ± 0.06 for ≥ 2 gated models
+  (band ≈ 2.6σ binomial at K = 400 plus model slack) → the BB-lite
+  delta-method correction is invalidated for the counting estimator;
+  the D-015-closure claim is withdrawn as such, not repaired post hoc.
+  (b) *Reporting rule* (not a falsifier — the E08v2 arm-(b) §6.7
+  downgrade already stands): the registered strength-of-statement
+  statistic is the fraction of draws with flagship coverage < 0.633:
+  ≥ 8/10 → the collapse is reported as generic
+  (template-MC-noise-driven); ≤ 2/10 → reported as draw-dependent with
+  the registered E08v2 draw disclosed as atypical; otherwise →
+  draw-dependent with the measured fraction. The nominal-cell
+  distribution is reported alongside to separate shift-free template
+  noise from shift response.
+- **Acceptance criterion:** per-draw + marginal tables for both arms;
+  explicit E08v2-vs-E08v3 comparison rows.
+- **Expected outputs:** `results/tables/E08v3_multidraw.json`
+  + manifest.
+- **Status:** registered 2026-08-12 (D-031), before execution — config
+  `configs/experiments/E08v3.yaml`, runner
+  `experiments/E08_physics_inference/run_e08v3.py`.
 
 ## E11v3 — CMS ledger statistical hardening
 
