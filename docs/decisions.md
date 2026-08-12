@@ -679,3 +679,59 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   when a bounded (~2 h) registered follow-up resolves both. Author
   delegated the disposition 2026-08-12 ("best possible material").
 - **Status:** adopted; E08v3 registered 2026-08-12 before execution.
+
+## D-032 — Pre-submission audit finding: E19 weighted arm re-run under the registered nominal-weight convention
+
+- **Date:** 2026-08-12
+- **Context:** the pre-submission adversarial audit (F8.1) found, and the
+  author-side verification confirmed against the tables, that
+  `run_e19.py` audited the weighted claims with environment-scaled
+  weights w(θ) (`te["weights"]` after `build_environment_dataset`
+  applies normalization scalings) for both the truth `m_t_w` and the
+  audit streams. The registered protocol — "the E13 Part-B
+  weighted-vs-unweighted benchmark" — fixes NOMINAL per-event weights
+  w(0) for every environment (D-019 spec §4; `configs/experiments/
+  E13.yaml` estimand note; `run_e13.py` audit-C1 fix of 2026-08-11,
+  whose superseded θ-weight table is preserved as
+  `E13_weighted_cs_v1_theta_weights.json`). Diagnostic signature:
+  E19's m_t_w varies across weight-only environments (0.76236 nominal
+  → 0.76117 diboson_scale=1.5, A:qksvc) where the registered estimand
+  is exactly invariant (E13 frozen table: 0.76382 everywhere). Blast
+  radius: ~15/41 environments (12 weight-only + 3 combo3) × 4 models ×
+  6 deltas × 20 seeds of weighted streams; 3 of the 6 published
+  weighted false-certification events sit in weight-only environments;
+  the headline "6/8,060 = 0.07%" is an estimate of a different,
+  unregistered estimand. Internal coherence was preserved (truth and
+  stream shared the same weights), so the ≤ α guarantee itself was
+  never at risk; the estimand was wrong, not the statistics.
+- **Decision:** following the E13 audit-C1 precedent — same experiment
+  ID, no new registration scope:
+  1. `run_e19.py` is corrected to audit the weighted arm with nominal
+     weights w(0) aligned by row_id (one semantic change; the
+     unweighted and landscape arms are untouched).
+  2. The published table is superseded and preserved as
+     `E19_fresh_world_validity_v1_theta_weights.json`; the corrected
+     run writes the canonical path; manifests append-only.
+  3. Frozen expectation, declared before the re-run: the unweighted
+     block must reproduce the v1 table EXACTLY (identical draws, no
+     weight dependence) — any deviation is a defect and blocks
+     publication of the re-run; the weighted block changes in the
+     weight-only/combo environments. The original E19 falsifier
+     (validity replicates: weighted false certification ≤ α + 3σ on
+     fresh streams) applies unchanged to the corrected numbers; both
+     outcomes publishable.
+  4. Registry/manuscript corrections riding along, from the same audit:
+     the E19 status line "false refutation 1/12,260" is arithmetically
+     impossible (true unweighted streams = 19,680 − 7,700 = 11,980;
+     table rate 8e-05 ⇒ 1/11,980) and is corrected; the registered
+     weighted seed salt "E19W" was never consumed (identical draws to
+     the unweighted arm were used, matching the registry's "identical
+     draws" clause) — the dead parameter is recorded here and the
+     table now records the salt actually used; the E13 Part-B
+     class-conditional claims (TPR_w/TNR_w) were not replicated in E19
+     — disclosed as a scope reduction, not silently.
+  5. E17 estimand (i) completion: the registered between-world table
+     covers weighted AUC only; the unweighted between-world summary is
+     computed as a derived analysis from the archived per-world tables
+     (no new randomness) and recorded in the E17 status.
+- **Status:** adopted; executed 2026-08-12.

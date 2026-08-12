@@ -1152,6 +1152,19 @@ entry.
   4. Norm-env coverage vs SR composition across four worlds recorded in
      `between_world.norm_env_coverage_by_world` (manuscript §6.7 uses
      it for the SR-composition mechanism).
+  5. **D-032 completion (2026-08-12) — estimand (i) unweighted
+     between-world summary**, derived from the archived per-world
+     tables (no new randomness): nominal unweighted tier-A AUC
+     between-world ranges e17a↔e17b are 0.0024 (lightgbm), 0.0035
+     (qksvc), 0.0036 (rbf_svc), 0.0043 (xgboost), 0.0020 (B:xgboost);
+     0.0289 for rbf_8f. Disclosed limitation: the prior worlds
+     (seed-101, seed-121) archived weighted AUC only, so the unweighted
+     summary spans the two E17 worlds; a four-world version would need
+     score-level recomputation and is dispositioned as not run. The
+     contrast with the weighted between-world std (0.030–0.050)
+     directly supports the published mechanism: the ±0.05 absolute-AUC
+     fragility is a heavy-tailed-weight (ESS) effect, roughly an order
+     larger than the classifier's own between-world instability.
 
 ## E19 — Fresh-world validity replication (archived E12 scores)
 
@@ -1201,13 +1214,27 @@ entry.
      on 12/12 (model × check-env) comparisons before any audit ran.
   2. **Unweighted (E05 v1.1 protocol, salt "E19"):** false certification
      **11/3,060 = 0.36% ≤ α** on the honest non-vetoed denominator
-     (all-streams 11/7,700 = 0.14%); false refutation 1/12,260.
-  3. **Weighted (E13 Part-B protocol, identical draws, salt "E19W";
+     (all-streams 11/7,700 = 0.14%); false refutation 1/11,980
+     (denominator corrected under D-032: true unweighted streams =
+     19,680 − 7,700; the previously recorded "1/12,260" was
+     arithmetically impossible).
+  3. **Weighted (E13 Part-B protocol, identical draws — the registered
+     salt "E19W" was never consumed, recorded in D-032 and now in-table;
      w_max = E12-world base × 2.05 recorded in-table):** false
-     certification **6/8,060 = 0.07% ≤ α**; false refutation 0.03%.
+     certification **6/7,980 = 0.08% ≤ α**; false refutation 0.03%
+     (4/11,700). **D-032 amendment (2026-08-12):** the first run audited
+     environment-scaled weights w(θ) instead of the registered nominal
+     w(0) (D-019 §4); found by the pre-submission audit, corrected with
+     the E13 audit-C1 idiom, and re-run. The unweighted and landscape
+     blocks reproduced the first run EXACTLY (frozen expectation,
+     verified field-by-field); m_t_w is now invariant across the 12
+     weight-only environments as the estimand requires. Superseded
+     table preserved as `*_v1_theta_weights.json`. The E13 Part-B
+     class-conditional claims (TPR_w/TNR_w) were not replicated here —
+     disclosed scope reduction (D-032).
   4. Cross-accounting comparison now spans three independent worlds and
      two estimand families, all ≤ α: E05 0.61% (dev), E12 0.69%
-     (confirmatory, own protocol), E19 0.36% unweighted / 0.07% weighted
+     (confirmatory, own protocol), E19 0.36% unweighted / 0.08% weighted
      (fresh world, archived scores). The "validity measured in one world"
      caveat is closed.
   5. E06-style n* landscape at n_max = 20,000 stored in

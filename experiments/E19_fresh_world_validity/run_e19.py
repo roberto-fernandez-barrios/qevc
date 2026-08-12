@@ -161,15 +161,24 @@ def main() -> int:
     landscape_cells = []
     per_env: dict = {}
     envs = [("nominal", Environment())] + run_e12.environments()
+    # D-032: the weighted estimand is audited with NOMINAL per-event
+    # weights w(0) in every environment (D-019 spec section 4; E13 Part-B
+    # frozen convention, audit-C1 fix) — never the environment-scaled
+    # weights.
+    w0_all = raw["weights"].to_numpy()
+    if float(np.max(w0_all)) > w_max:
+        raise RuntimeError("w_max violated on nominal weights")
     for env_name, env in envs:
         te = build_environment_dataset(raw, env, row_ids=test_ids)
         npz = np.load(SCORES_DIR / npz_name(env_name))
-        if not np.array_equal(npz["row_id"], te["row_id"].to_numpy()):
+        rid = te["row_id"].to_numpy()
+        if not np.array_equal(npz["row_id"], rid):
             raise RuntimeError(f"row_id mismatch in {env_name}")
-        y = labels_raw[te["row_id"].to_numpy()]
-        w = te["weights"].to_numpy()
-        if float(np.max(w)) > w_max:
-            raise RuntimeError(f"w_max violated in {env_name}")
+        y = labels_raw[rid]
+        # NOMINAL weights of the surviving rows (D-032; E13 audit-C1
+        # idiom): the environment frame's weights are w(theta), not the
+        # oracle's nominal w(0) — index the raw subset by row_id instead.
+        w = w0_all[rid]
         alarm = env_name in alarms
         per_env[env_name] = {"i1_alarm": bool(alarm), "models": {}}
         for key in audit_models:
@@ -304,7 +313,15 @@ def main() -> int:
     out = {
         "experiment": "E19",
         "declared_status": "validity replication on archived fresh-world "
-                           "scores (D-028 rule 5)",
+                           "scores (D-028 rule 5); weighted arm on NOMINAL "
+                           "weights per D-019 section 4 (D-032 correction; "
+                           "v1 theta-weight table preserved)",
+        "weight_convention": "nominal w(0), every environment (D-019 s4)",
+        "audit_salts": {"unweighted_and_weighted":
+                        E19["auditor"]["seed_salt"],
+                        "note": "identical draws both arms (registered); "
+                                "config salt E19W never consumed (D-032)",
+                        "landscape": E19["landscape"]["seed_salt"]},
         "archive_certification": cert,
         "w_max": {"base_max_weight": round(base_wmax, 5),
                   "kappa_norm": E13["w_max"]["kappa_norm"],

@@ -128,7 +128,7 @@ power set by the auxiliary evidence's template statistics (±10% on the
 ttbar scale at our MC size — tighter claims stay UNRESOLVED,
 fail-closed). The guarantees are measured, not asserted: false
 certification ≤ α in every accounting across three independent worlds
-and both estimand families (0.61%, 0.69%, 0.36% unweighted / 0.07%
+and both estimand families (0.61%, 0.69%, 0.36% unweighted / 0.08%
 weighted), and measured label costs sit within a factor 1.5–3.4 of the
 Wald information floor — the near-boundary label explosion is
 fundamentally statistical, not procedural slack. Supporting evidence: a
@@ -640,8 +640,11 @@ per-claim α is unaffected). A dedicated fresh-world replication (E19)
 closes the "one-world validity" question: the confirmatory world's
 archived deployment scores — certified byte-identical against a full
 re-derivation of the frozen deployment before any audit ran — give false
-certification 0.36% unweighted and 0.07% weighted on fresh audit
-streams. Across three independent accountings and both estimand
+certification 0.36% unweighted and 0.08% weighted (6/7,980) on fresh
+audit streams; the weighted arm was re-audited on the registered
+nominal-weight estimand after a pre-submission audit finding, with the
+superseded table preserved and the unweighted block reproducing
+exactly. Across three independent accountings and both estimand
 families, every measured false-certification rate is below α.
 
 Weighted (the campaign's extension): the one-sample reduction passes its
