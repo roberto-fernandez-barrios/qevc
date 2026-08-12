@@ -204,6 +204,91 @@ sequences run at α/2; the union bound gives total level α. Diboson's
 unidentifiability from these control regions is expected and reported —
 its clip range enters the worst case.
 
+## 4c. E13v2 addendum — pre-split component allocation for BA_w
+(added 2026-08-12, before any E13v2 implementation or run; registry
+E13v2, falsifiers frozen at D-028)
+
+**Motivation.** The §3.3 BA_w path was measured vacuous (post-audit H3:
+radius ≈ 0.28 in BA units at n_max = 5,000). Two sources of slack are
+removable without touching validity; a third limit is structural and, if
+binding, is the honest result.
+
+**The allocation rule (predeclared).** For a claim BA_w ≥ τ_BA:
+
+1. *Component thresholds:* predeclare (τ₁, τ₂) with (τ₁ + τ₂)/2 = τ_BA.
+   The registered decomposition is source-referenced: a claim at margin
+   δ against a reference (T̂PR, T̂NR) uses τ₁ = T̂PR − δ, τ₂ = T̂NR − δ.
+   In the Monte-Carlo battery the population's exact component values
+   play the reference role, mirroring how §5's A_w claims are placed.
+2. *α allocation:* α₁ + α₂ = α, predeclared; default α/2 each.
+3. *Sharp per-component machinery:* each component claim R_k ≥ τ_k runs
+   the §3.1 one-sample reduction — NOT the §3.2 ratio CS that §3.3 v1
+   built on (§3.2 is registered as "never preferred for verdicts"; v1's
+   use of it inside resolve_ba_claim is the first removable slack).
+4. *Per-class predeclared bounds (second removable slack):* the §3.1
+   reduction only needs a predeclared a.s. bound on u. For
+   u⁽¹⁾ = w·1[y=1], class identity is process identity (spec §2), so
+   w_max⁽¹⁾ = (max signal-row weight in the audited subset at nominal)
+   × κ_sig with **κ_sig = 1.0**: no admissible weight-only nuisance
+   touches signal weights (`_norm_weight_scale` applies ttbar_scale and
+   diboson_scale to those processes and bkg_scale to y = 0 rows only —
+   verified in code before this addendum was frozen). For
+   u⁽⁰⁾ = w·1[y=0], w_max⁽⁰⁾ = (max background-row weight) × κ_norm
+   (2.05, §3.4). Both follow the precedented §3.4 rule (subset maxima
+   are declared process metadata).
+5. *Streams and budget:* draws remain uniform-with-replacement (§2 —
+   class-conditional sampling is impossible pre-label, since labeling
+   is what reveals y). Every labeled draw feeds both component streams;
+   masked draws contribute the neutral increment τ_k. The "label
+   budget allocation" of the registry hypothesis is therefore realized
+   through (α_k, w_max⁽ᵏ⁾), not through physical routing.
+
+**Verdict rule.** SUPPORTED for BA_w ≥ τ_BA iff BOTH component audits
+certify (L_k ≥ τ_k at level α_k, running intersection); REFUTED iff
+BOTH component audits refute (U_k < τ_k); UNRESOLVED otherwise.
+
+**Validity (proposition, proved before implementation).** (i) False
+certification: if BA_w < τ_BA then R_k < τ_k for at least one k (else
+(R₁+R₂)/2 ≥ (τ₁+τ₂)/2 = τ_BA); certifying that component requires its
+CS to violate coverage (Theorem 1 applied with the class bound
+w_max⁽ᵏ⁾), so P ≤ α₁ + α₂ = α by the union bound. (ii) False
+refutation: if BA_w ≥ τ_BA then R_k ≥ τ_k for at least one k; refuting
+that component requires a coverage violation, so P ≤ α. (iii) The rule
+is fail-closed: components disagreeing in direction yield UNRESOLVED. ∎
+
+**Structural limit (stated as the falsifiable hypothesis).** The §3.1
+margin on the Z scale is E[u⁽ᵏ⁾]·m / w_max⁽ᵏ⁾. At the benchmark's
+physics weights the signal carries E[u⁽¹⁾]/E[w] ≈ 1.0 × 10⁻³ of the
+weight mass, so the TPR_w Z-margin at m = 0.05 is ~10⁻⁵ against a CS
+radius floor of order 10⁻³ at n = 5,000 — a gap of ~10² that the
+per-class bound (factor w_max·κ_norm / w_max⁽¹⁾ ≈ 2.5) cannot close.
+If the battery confirms this, falsifier (b) fires and the honest
+publication is: the BA_w path at physics weight dispersion is
+information-limited by the weighted signal fraction, not by estimator
+slack — the sharpest exact reduction moves the feasibility boundary by
+×2.5 and the remaining gap is structural. A population with the same
+weight *values* but class-independent weights (the v1 battery design)
+is predicted to RESOLVE under this allocation, attributing the
+impossibility to the class–weight correlation.
+
+**Battery (frozen).** Salt "E13V2"; α = 0.05; n_max = 5,000;
+n_rep = 200 per cell. Populations: (P1) the v1 §5-style synthetic BA
+population (y ~ Bern(0.3), weights drawn class-independently from the
+benchmark per-process constants, component rates 0.75/0.85 — the v1
+construction, for comparability and for the attribution control);
+(P2) benchmark-faithful: the seed-101 subset's actual (y, w) rows as
+the finite population, correctness synthesized class-conditionally at
+the same target rates. Claims: τ_BA = BA_w ± m, m ∈ {0.02, 0.05}
+(the registered margin range endpoints); component claims also audited
+individually for diagnosis. Comparison arm: v1 `resolve_ba_claim` on
+identical draws. Diagnostics recorded: per-class w_max values and
+factors, weighted class fractions, mean CS radius at n_max in BA units
+(v1 vs v2), per-component resolution. Falsifiers as registered (D-028;
+registry E13v2): (a) any cell false-cert > α + 3σ → allocation invalid
+and blocked; (b) ALL true BA_w claims at margins 0.02–0.05 UNRESOLVED
+at n_max = 5,000 on the physics population → measured impossibility,
+published as such.
+
 ## 5. Validation protocol (Monte Carlo, predeclared)
 
 All checks use synthetic populations with known truth plus benchmark-derived
