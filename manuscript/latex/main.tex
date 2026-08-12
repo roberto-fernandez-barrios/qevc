@@ -21,13 +21,18 @@
 % is seeded explicitly before each formal environment (see \setcounter calls).
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\orcidlink}[1]{\href{https://orcid.org/#1}{\textsuperscript{[ORCID]}}}
 
 \title{When Can Quantum Event Classifiers Be Trusted? Conditional Validity
 under Collider Systematics and Quantum Estimation Uncertainty}
-% TODO: affiliation --- author to supply.
-\author{Roberto Fern\'andez Barrios\thanks{ORCID:
-\href{https://orcid.org/0009-0003-5312-2634}{0009-0003-5312-2634}.
-Email: \href{mailto:roberto.fernandez.barrios@gmail.com}{roberto.fernandez.barrios@gmail.com}.}}
+\author{Roberto Fern\'andez-Barrios\orcidlink{0009-0003-5312-2634}\textsuperscript{1,*},
+Iker Pastor-L\'opez\orcidlink{0000-0002-3068-6248}\textsuperscript{1}\\
+Asier Gonz\'alez-Santocildes\orcidlink{0009-0002-8888-8560}\textsuperscript{1},
+Pablo Garc\'ia Bringas\orcidlink{0000-0003-3594-9534}\textsuperscript{1}\\[0.6em]
+\small\textsuperscript{1}Faculty of Engineering, University of Deusto,
+Avda. de las Universidades 24, 48007 Bilbao, Spain\\
+\small\textsuperscript{*}Corresponding author:
+\href{mailto:roberto.fernandez.b@deusto.es}{roberto.fernandez.b@deusto.es}}
 \date{2026}
 
 \begin{document}
@@ -1333,7 +1338,7 @@ and developed at the repository referenced in \texttt{CITATION.cff}.
 
 We acknowledge the use of IBM Quantum services for this work (Open
 plan; backend ibm\_marrakesh). The views expressed are those of the
-author and do not reflect the official policy or position of IBM or the
+authors and do not reflect the official policy or position of IBM or the
 IBM Quantum team. We thank the FAIR Universe collaboration for the
 public HiggsML Uncertainty benchmark (a defect report was filed
 upstream during dataset validation) and the CMS collaboration and CERN

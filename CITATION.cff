@@ -4,12 +4,28 @@ title: "qevc: Quantum Event Validity Certification — conditional validity of (
 type: software
 version: 0.2.0
 date-released: "2026-08-11"
-repository-code: "https://github.com/roberto-fernandez-barrios/paper-fisica"
+repository-code: "https://github.com/roberto-fernandez-barrios/qevc"
 authors:
-  - family-names: "Fernández Barrios"
+  - family-names: "Fernández-Barrios"
     given-names: "Roberto"
-    email: "roberto.fernandez.barrios@gmail.com"
+    email: "roberto.fernandez.b@deusto.es"
     orcid: "https://orcid.org/0009-0003-5312-2634"
+    affiliation: "Faculty of Engineering, University of Deusto"
+  - family-names: "Pastor-López"
+    given-names: "Iker"
+    email: "iker.pastor@deusto.es"
+    orcid: "https://orcid.org/0000-0002-3068-6248"
+    affiliation: "Faculty of Engineering, University of Deusto"
+  - family-names: "González-Santocildes"
+    given-names: "Asier"
+    email: "gonzalez.asier@deusto.es"
+    orcid: "https://orcid.org/0009-0002-8888-8560"
+    affiliation: "Faculty of Engineering, University of Deusto"
+  - family-names: "García Bringas"
+    given-names: "Pablo"
+    email: "pablo.garcia.bringas@deusto.es"
+    orcid: "https://orcid.org/0000-0003-3594-9534"
+    affiliation: "Faculty of Engineering, University of Deusto"
 year: 2026
 license: MIT
 abstract: >

@@ -4,12 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qevc"
-version = "0.1.0"
+version = "0.2.0"
 description = "Conditional validity auditing of quantum event classifiers under collider systematics"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Roberto Fernández Barrios", email = "roberto.fernandez.barrios@gmail.com" }]
+authors = [
+    { name = "Roberto Fernández-Barrios", email = "roberto.fernandez.b@deusto.es" },
+    { name = "Iker Pastor-López", email = "iker.pastor@deusto.es" },
+    { name = "Asier González-Santocildes", email = "gonzalez.asier@deusto.es" },
+    { name = "Pablo García Bringas", email = "pablo.garcia.bringas@deusto.es" },
+]
 
 dependencies = [
     "numpy>=1.26",

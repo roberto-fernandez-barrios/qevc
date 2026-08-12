@@ -124,11 +124,11 @@ corrections applied in parallel to both sources. Compiled and visually checked.
 19. **Fig. 6** is a single PDF whose caption narrates (a)/(b) panels -- kept
     as one non-subfigure float (only 4/4b, 7/7b, 8/8b are file pairs).
 
-## %%TODO markers left (1)
+## %%TODO markers left (0)
 
-1. The author footnote now includes the supplied ORCID
-   (`0009-0003-5312-2634`) and the email already recorded in
-   `pyproject.toml`; only the affiliation remains to be supplied.
+The final four-author list, ORCIDs, institutional affiliation and
+corresponding-author email were supplied from the team's reference article on
+2026-08-12 and verified against its linked front matter.
 
 Note: `manuscript/bibliography/references.bib` contains 53 entries: all 49
 cited keys plus four uncited dataset/software records, verified by key-set

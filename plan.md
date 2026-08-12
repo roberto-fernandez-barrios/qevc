@@ -191,9 +191,9 @@ D-028's disposition list rather than dropping silently:
 1. Final figure/table numbering per D-030 amendment (4/4b → 4(a)(b),
    ledger → Table 2, claim×info table → Table 1); captions pass;
    renumbering map recorded.
-2. **LaTeX conversion DONE 2026-08-12.** Front matter has author, ORCID and
-   email; affiliation is the sole remaining author input. Funding/back matter
-   is done. Bibliography from
+2. **LaTeX conversion and front matter DONE 2026-08-12.** The final four-author
+   list, ORCIDs, common University of Deusto affiliation and corresponding
+   email are present; funding/back matter is done. Bibliography from
    `manuscript/bibliography` (citation keys already in §2; sources in
    novelty matrix); cite-and-differentiate the four adjacent arXiv
    items from the re-sweep. Figures as PDFs with embedded fonts.

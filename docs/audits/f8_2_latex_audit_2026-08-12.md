@@ -50,10 +50,10 @@ Final execution result:
    counts unique registered arms, explicitly states that the one E15 arm
    blocked two implementations, and matches the nine-row supplementary
    ledger.
-3. **Author footnote:** a `% TODO` inside `\thanks{}` commented out the visible
-   metadata and left a blank asterisk. The comment was moved outside the
-   command; ORCID 0009-0003-5312-2634 and the recorded email now render and
-   link correctly. Affiliation is the only remaining front-matter TODO.
+3. **Author front matter:** a `% TODO` inside `\thanks{}` initially commented
+   out the visible metadata and left a blank asterisk. The final four-author
+   list, four linked ORCIDs, common University of Deusto affiliation and
+   institutional corresponding-author email now render correctly.
 4. **Table 1 layout:** column proportions and type size were adjusted after
    rendering to remove the only overfull line without changing content.
 
@@ -89,6 +89,6 @@ Final execution result:
   clipping, overlap, missing graphics, illegible table, or float-order defect
   remains. Figure S16 and Tables S1--S10 are present in the supplement.
 
-F8.2 is complete. The remaining author-side front-matter input is affiliation;
-submission-only actions (sealed-role disposition, Zenodo publication, arXiv
-submission, CI/tagging) remain intentionally untouched.
+F8.2 is complete and the front matter is complete. Submission-only actions
+(sealed-role disposition, Zenodo publication, arXiv submission, CI/tagging)
+remain separately governed by the release decision log.

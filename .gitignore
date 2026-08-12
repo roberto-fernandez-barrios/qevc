@@ -46,3 +46,6 @@ manuscript/supplementary/*.log
 manuscript/supplementary/*.out
 manuscript/supplementary/*.fls
 manuscript/supplementary/*.fdb_latexmk
+
+# Stray root-level LaTeX build output (superseded by manuscript/latex/main.pdf)
+/sn-article.pdf

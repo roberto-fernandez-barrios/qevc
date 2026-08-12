@@ -96,19 +96,26 @@ def main() -> int:
     supplement = SUPPLEMENT.read_text(encoding="utf-8")
 
     # Front matter and the two F8.2 corrections must be synchronized.
+    for author, orcid in {
+        "Roberto": "0009-0003-5312-2634",
+        "Iker": "0000-0002-3068-6248",
+        "Asier": "0009-0002-8888-8560",
+        "Pablo": "0000-0003-3594-9534",
+    }.items():
+        audit.check(f"{author} ORCID in main", orcid in main_tex)
+        audit.check(f"{author} ORCID in supplement", orcid in supplement)
     audit.check(
-        "ORCID in main",
-        "0009-0003-5312-2634" in main_tex,
+        "institutional corresponding email in main",
+        "roberto.fernandez.b@deusto.es" in main_tex,
     )
     audit.check(
-        "email in main",
-        "roberto.fernandez.barrios@gmail.com" in main_tex,
+        "affiliation in main and supplement",
+        all(
+            "Faculty of Engineering, University of Deusto" in text
+            for text in (main_tex, supplement)
+        ),
     )
-    audit.check(
-        "only affiliation TODO remains",
-        "TODO: affiliation --- author to supply" in main_tex
-        and "TODO: affiliation, ORCID" not in main_tex,
-    )
+    audit.check("no front-matter TODO remains", "TODO: affiliation" not in main_tex)
     for text, label in [(main_tex, "LaTeX"), (draft_md, "Markdown")]:
         audit.check(f"E08v3 corrected bias endpoint in {label}", "+7.5" in text)
         audit.check(f"stale E08v3 endpoint absent in {label}", "to $+6.1$" not in text and "to +6.1" not in text)
