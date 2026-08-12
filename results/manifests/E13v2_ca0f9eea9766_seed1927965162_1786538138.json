@@ -1,0 +1,55 @@
+{
+  "backend": {},
+  "config": {
+    "E13v2": {
+      "alpha": 0.05,
+      "component_rates": {
+        "tnr": 0.85,
+        "tpr": 0.75
+      },
+      "experiment": "E13v2",
+      "kappa_norm": 2.05,
+      "kappa_sig": 1.0,
+      "margins": [
+        0.02,
+        0.05
+      ],
+      "n_max": 5000,
+      "n_rep": 200,
+      "populations": [
+        "synthetic_v1",
+        "benchmark_class"
+      ],
+      "seed_salt": "E13V2"
+    }
+  },
+  "config_hash": "ca0f9eea976684bac46ed07e26279083a00719f06e8508257481d19acc654a64",
+  "dataset_hashes": {
+    "FAIR_Universe_HiggsML_data.parquet": "a9bbb8c44c14c7ffe7be2fd3bf179f0b9bf732401346b8cd65c26bf39ba0fe4f"
+  },
+  "experiment_id": "E13v2",
+  "finished_at": 1786538138.9256196,
+  "git_commit": "309025f7b4d3806d5fbb658defe7997bd0c7570d",
+  "git_dirty": true,
+  "outputs": [
+    "results\\tables\\E13v2_baw_allocation.json"
+  ],
+  "package_versions": {
+    "lightgbm": "4.7.0",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "python": "3.13.12",
+    "qiskit": "2.5.1",
+    "qiskit-aer": "0.17.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "qiskit-machine-learning": "0.9.0",
+    "scikit-learn": "1.9.0",
+    "scipy": "1.18.0",
+    "xgboost": "3.4.0"
+  },
+  "platform": "Windows-11-10.0.26200-SP0",
+  "seed": 1927965162,
+  "started_at": 1786538138.925562,
+  "wall_seconds": 5.7697296142578125e-05,
+  "warning": "git working tree dirty at run time"
+}

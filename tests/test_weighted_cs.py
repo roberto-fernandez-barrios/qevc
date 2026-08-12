@@ -15,6 +15,7 @@ import pytest
 from qevc.auditing.claims import Verdict
 from qevc.statistics.confidence_sequences import empirical_bernstein_cs
 from qevc.statistics.weighted import (
+    resolve_ba_presplit,
     effective_sample_size_ratio,
     resolve_ba_claim,
     resolve_weighted_claim,
@@ -180,3 +181,79 @@ def test_ess_ratio():
     assert effective_sample_size_ratio(np.ones(100)) == pytest.approx(1.0)
     u = np.zeros(100); u[0] = 5.0
     assert effective_sample_size_ratio(u) == pytest.approx(0.01)
+
+
+# ---- E13v2: pre-split BA_w allocation (spec 4c) ---------------------------
+
+def _presplit_population(seed=42, n=20000):
+    rng0 = np.random.default_rng(seed)
+    y = (rng0.random(n) < 0.3).astype(int)
+    w = rng0.choice([0.05, 1.0], size=n, p=[0.4, 0.6])
+    c = (rng0.random(n) < np.where(y == 1, 0.75, 0.85)).astype(float)
+    tpr = (w * c * (y == 1)).sum() / (w * (y == 1)).sum()
+    tnr = (w * c * (y == 0)).sum() / (w * (y == 0)).sum()
+    return y, w, c, float(tpr), float(tnr)
+
+
+def test_presplit_false_cert_controlled():
+    """Spec 4c validity (i): false certification <= alpha on a false BA
+    claim decomposed with per-component margins."""
+    alpha, n_rep, n_stream = 0.05, 150, 2000
+    y, w, c, tpr, tnr = _presplit_population()
+    w_max_pos = float(w[y == 1].max()) * 1.05
+    w_max_neg = float(w[y == 0].max()) * 1.05
+    m = 0.02  # false claim: both components above truth
+    false_cert = 0
+    for r in range(n_rep):
+        rng = np.random.default_rng(9000 + r)
+        idx = rng.integers(0, len(y), size=n_stream)
+        ba, _rp, _rn = resolve_ba_presplit(
+            c[idx], y[idx], w[idx], min(tpr + m, 1.0), min(tnr + m, 1.0),
+            w_max_pos, w_max_neg, alpha=alpha)
+        if ba.verdict is Verdict.SUPPORTED:
+            false_cert += 1
+    assert false_cert / n_rep <= alpha + 3 * np.sqrt(alpha * (1 - alpha) / n_rep)
+
+
+def test_presplit_true_claim_resolves_when_feasible():
+    """With mild dispersion and balanced classes the pre-split rule must
+    certify a comfortably true BA claim (the sharpening exists)."""
+    y, w, c, tpr, tnr = _presplit_population()
+    w_max_pos = float(w[y == 1].max()) * 1.05
+    w_max_neg = float(w[y == 0].max()) * 1.05
+    rng = np.random.default_rng(123)
+    idx = rng.integers(0, len(y), size=20000)
+    ba, rp, rn = resolve_ba_presplit(
+        c[idx], y[idx], w[idx], tpr - 0.10, tnr - 0.10,
+        w_max_pos, w_max_neg, alpha=0.05)
+    assert ba.verdict is Verdict.SUPPORTED
+    assert ba.n_star == max(rp.n_star, rn.n_star)
+
+
+def test_presplit_disagreement_is_unresolved():
+    """One component certifying and the other refuting must yield
+    UNRESOLVED (fail-closed, spec 4c verdict rule)."""
+    y, w, c, tpr, tnr = _presplit_population()
+    w_max_pos = float(w[y == 1].max()) * 1.05
+    w_max_neg = float(w[y == 0].max()) * 1.05
+    rng = np.random.default_rng(321)
+    idx = rng.integers(0, len(y), size=5000)
+    # TPR claim far below truth (certifies); TNR claim far above (refutes)
+    ba, rp, rn = resolve_ba_presplit(
+        c[idx], y[idx], w[idx], max(tpr - 0.10, 0.0), min(tnr + 0.10, 1.0),
+        w_max_pos, w_max_neg, alpha=0.05)
+    assert rp.verdict is Verdict.SUPPORTED
+    assert rn.verdict is Verdict.REFUTED
+    assert ba.verdict is Verdict.UNRESOLVED
+    assert ba.n_star is None
+
+
+def test_presplit_class_bound_violation_raises():
+    """A signal-class weight above the predeclared per-class bound must
+    void loudly (spec 3.4 discipline applied per class)."""
+    y, w, c, tpr, tnr = _presplit_population()
+    bad_wmax_pos = float(w[y == 1].max()) * 0.5
+    w_max_neg = float(w[y == 0].max()) * 1.05
+    with pytest.raises(ValueError):
+        resolve_ba_presplit(c[:100], y[:100], w[:100], 0.5, 0.5,
+                            bad_wmax_pos, w_max_neg)

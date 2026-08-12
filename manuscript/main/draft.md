@@ -41,7 +41,7 @@ flips 21% to 0.4%), and demonstrated end-to-end on fully QPU-estimated
 kernels and on real CMS data via a fail-closed claims ledger. The
 quantum kernel is competitive, never superior — a matched classical
 kernel reproduces every quantum-attributed effect; registered
-falsifiers fired eight times and were obeyed; no conclusion requires
+falsifiers fired nine times and were obeyed; no conclusion requires
 quantum advantage.
 
 ## 1. Introduction
@@ -165,10 +165,11 @@ The study was predeclared to be reportable under every outcome
 (registered falsifiers, five-seed replication gates, a frozen deployment
 snapshot committed before the confirmatory draw, pre- and post-campaign
 falsification audits with logged dispositions), and its registered
-falsifiers fired eight times (the confirmatory holdout's flagship-cell
+falsifiers fired nine times (the confirmatory holdout's flagship-cell
 arm, the rate-fit coverage check, the inference calibration gate twice,
-the cross-world degradation arm, and the independent-MC split studies'
-three arms) while the falsification audits
+the cross-world degradation arm, the independent-MC split studies'
+three arms, and the weighted balanced-accuracy impossibility arm) while
+the falsification audits
 forced two further corrections (an estimand label; an over-generalized
 reading of the normalization-collapse result). One registered
 re-analysis carried a bidirectional falsifier that was free to
@@ -511,9 +512,9 @@ and after the campaign and before submission, with every finding
 dispositioned in the open (`docs/audits/`). Statistical protocol per the
 predeclared SAP and its logged amendments; superseded run tables are
 preserved, never overwritten. Every experiment is registered with a
-frozen falsifier before execution; registered falsifiers fired eight
+frozen falsifier before execution; registered falsifiers fired nine
 times in this program (E02R, E12 arm (e), E14 v1, E15 gate, E17
-arm (b), E08v2 arms (a) and (b), E08v3 arm (a)) and
+arm (b), E08v2 arms (a) and (b), E08v3 arm (a), E13v2 arm (b)) and
 were obeyed each time. Compute is a single workstation: the full
 simulation program re-executes from one clean commit in under a day
 (largest single run: profiled inference, 5.4 h; confirmatory holdout
@@ -643,10 +644,21 @@ measured price of the physical estimand: median n*_w/n*_unw = 1.66
 streams retreat from SUPPORTED to UNRESOLVED, while 1 stream flips
 SUPPORTED→REFUTED: the weighted and unweighted estimands genuinely
 disagree about deployment health, sharpening the finding that *the metric
-named in the claim changes which claims are at risk*. The balanced-
-accuracy component bound is vacuous at these scales (its ratio-CS radius
-dwarfs the tested margins); we audit the components — the physics
-quantities — directly.
+named in the claim changes which claims are at risk*. For weighted
+balanced accuracy the question is now closed by a registered follow-up
+(supplement): a pre-split component allocation — sharp one-sample
+reduction per component with predeclared per-class weight bounds —
+removes the v1 component bound's slack entirely (it resolves 0.05-margin
+claims on a class-independent-weight control where the v1 bound, radius
+0.17–0.29 in BA units, resolves nothing), and on the physics population
+it cleanly splits the verdict: weighted background rejection is fully
+certifiable (200/200 correct resolutions at margin 0.05, zero errors),
+while weighted signal efficiency — and hence BA_w — is
+*information-limited*, not machinery-limited: the signal carries
+9.7×10⁻⁴ of the weight mass, putting its certification margin two
+orders of magnitude below the confidence-sequence radius at n = 5,000
+(implied n* ≈ 2×10⁷ uniform labels at margin 0.05). We therefore audit
+the components — the physics quantities — directly.
 
 ### 6.5 Information level I3: what restores identifiability, and what it
 costs (E14)
@@ -960,8 +972,13 @@ unweighted MC row samples with data, matching v1/v2 for comparability.
   experiments degenerates under common random numbers (E12's arm-(d)
   accounting is reported both ways); E12/E13 share label streams across
   the δ grid (pooled denominators correlated ≈6:1; per-claim α
-  unaffected); the balanced-accuracy component bound is vacuous at tested
-  scales; L2/L3 morphing is additive across nuisances (combo cells carry
+  unaffected); the balanced-accuracy path is measured as
+  information-limited at physics weight dispersion — weighted signal
+  efficiency needs ≈ 2×10⁷ uniform labels at margin 0.05, while
+  background rejection certifies cleanly (E13v2, supplement; upgrades
+  the earlier "component bound is vacuous" disclosure to a measured
+  impossibility with its mechanism);
+  L2/L3 morphing is additive across nuisances (combo cells carry
   real cross-terms); one model (scale-trained tree) is
   L2-gate-excluded (0.717 vs 0.6827, conservative direction); the E16
   hardware arm is a micro-scale consistency demonstration, not

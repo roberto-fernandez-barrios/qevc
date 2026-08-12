@@ -1505,7 +1505,11 @@ entry.
   new module + tests.
 - **Status:** specified (2026-08-11) — priority B; runs only if the
   mandatory extension set completes on schedule (D-028). Falsifier frozen
-  now, before any implementation work.
+  now, before any implementation work. **Declined for arXiv v1 with
+  recorded disposition (D-033, 2026-08-12):** supplement-only placement,
+  mechanism already explained by E07's analysis, costliest remaining
+  item against the freeze; entry remains available, falsifier frozen,
+  for a future revision.
 
 ## E13v2 — BA_w pre-split component allocation (priority B)
 
@@ -1537,5 +1541,34 @@ entry.
   rates; spec appendix with the allocation derivation.
 - **Expected outputs:** `results/tables/E13v2_baw_allocation.json`
   + manifest; spec amendment.
-- **Status:** specified (2026-08-11) — priority B (D-028). Falsifier
-  frozen now, before any implementation work.
+- **Status:** **complete (2026-08-12, wall 2.7 s) — falsifier (a)
+  validity PASS (0 false certifications in every cell, slack 0.096);
+  falsifier (b) FIRED → the impossibility branch, published with the
+  mechanism decomposed.** Allocation rule derived and frozen in spec
+  §4c BEFORE implementation; `resolve_ba_presplit` in
+  `src/qevc/statistics/weighted.py` + 4 tests.
+  1. **The sharpening is real (attribution control P1):** on the v1
+     synthetic BA population (weights class-independent) the pre-split
+     rule resolves at m = 0.05 (83/200 true claims certified, 87/200
+     false claims refuted, n* median 3,489) where the v1 component
+     bound resolves NOTHING (0/200 in every cell; its measured radius
+     0.169 BA units). The removable slack was v1's use of the §3.2
+     ratio-CS inside the BA path.
+  2. **The physics population is information-limited (P2, seed-101
+     (y, w) rows):** v1 radius 0.289 BA units — reproducing post-audit
+     H3's ≈ 0.28 independently. Under the sharpened rule, TNR_w
+     (background rejection) is fully certifiable (200/200 correct
+     resolutions at m = 0.05; 67 certified / 64 refuted at m = 0.02;
+     zero errors), while TPR_w (signal efficiency) never resolves
+     (0/200 everywhere): its Z-scale margin at m = 0.05 is 2.8×10⁻⁵
+     (weighted signal fraction 9.7×10⁻⁴; per-class bound sharpening
+     only ×1.21) against a CS radius 1.8×10⁻³ at n = 5,000 — a ×64
+     gap, implied n* ≈ 2×10⁷ uniform labels. BA_w inherits the TPR_w
+     blockage.
+  3. **Published statement:** the BA_w path at physics weight
+     dispersion is *quantitatively impractical* — not because the
+     certification machinery is loose (P1 resolves; TNR_w resolves on
+     physics weights) but because weighted signal efficiency is
+     information-limited by the weighted signal fraction under uniform
+     labeling. The manuscript's "component bound is vacuous" limitation
+     is upgraded to this measured impossibility with its mechanism.

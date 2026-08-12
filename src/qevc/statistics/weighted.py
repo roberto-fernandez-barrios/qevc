@@ -29,7 +29,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from qevc.auditing.claims import Claim, Resolution, resolve_claim
+from qevc.auditing.claims import Claim, Resolution, Verdict, resolve_claim
 from qevc.statistics.confidence_sequences import (
     ConfidenceSequence,
     empirical_bernstein_cs,
@@ -138,6 +138,64 @@ def resolve_ba_claim(correct: np.ndarray, y: np.ndarray, w: np.ndarray,
     )
     return resolve_claim(Claim("ba_weighted", tau), ba,
                          heuristic_alarm=heuristic_alarm)
+
+
+def resolve_ba_presplit(correct: np.ndarray, y: np.ndarray, w: np.ndarray,
+                        tau_pos: float, tau_neg: float,
+                        w_max_pos: float, w_max_neg: float,
+                        alpha: float = 0.05,
+                        heuristic_alarm: bool = False
+                        ) -> tuple[Resolution, Resolution, Resolution]:
+    """Pre-split component allocation for BA_w (spec §4c; E13v2).
+
+    Predeclared component thresholds (τ₁, τ₂) with (τ₁+τ₂)/2 = τ_BA, α/2
+    per component, each component certified through the sharp §3.1
+    one-sample reduction with its own predeclared per-class bound
+    (w_max_pos for u = w·1[y=1]; w_max_neg for u = w·1[y=0]).
+
+    Verdict rule (spec §4c): SUPPORTED iff both components certify;
+    REFUTED iff both refute; UNRESOLVED otherwise. False certification
+    and false refutation are each ≤ α by Theorem 1 per component plus
+    the union bound (validity proposition, spec §4c).
+
+    Returns (ba_resolution, tpr_resolution, tnr_resolution); the BA
+    resolution's n* is the first draw at which BOTH components had
+    resolved (running intersections are monotone, so component verdicts
+    never un-resolve).
+    """
+    y = np.asarray(y)
+    if not np.all(np.isin(y, (0, 1))):
+        raise ValueError("y must be binary {0,1}")
+    w = np.asarray(w, dtype=float)
+    u_pos = w * (y == 1)
+    u_neg = w * (y == 0)
+    r_pos = resolve_weighted_claim(correct, u_pos, tau_pos, w_max_pos,
+                                   alpha=alpha / 2.0,
+                                   heuristic_alarm=heuristic_alarm)
+    r_neg = resolve_weighted_claim(correct, u_neg, tau_neg, w_max_neg,
+                                   alpha=alpha / 2.0,
+                                   heuristic_alarm=heuristic_alarm)
+    tau_ba = (tau_pos + tau_neg) / 2.0
+    if (r_pos.verdict is r_neg.verdict
+            and r_pos.verdict is not Verdict.UNRESOLVED):
+        verdict = r_pos.verdict
+        n_star = max(r_pos.n_star, r_neg.n_star)
+    else:
+        verdict, n_star = Verdict.UNRESOLVED, None
+    # The BA verdict is threshold-wise (spec §4c); the component Z-scale
+    # bounds live on different w_max scales and average to no valid BA_w
+    # interval, so the combined resolution carries the vacuous [0, 1] —
+    # interval information lives in the component resolutions.
+    ba = Resolution(
+        claim=Claim("ba_weighted_presplit", tau_ba),
+        verdict=verdict,
+        n_used=r_pos.n_used,
+        lower=0.0,
+        upper=1.0,
+        n_star=n_star,
+        vetoed=r_pos.vetoed or r_neg.vetoed,
+    )
+    return ba, r_pos, r_neg
 
 
 def effective_sample_size_ratio(u: np.ndarray) -> float:

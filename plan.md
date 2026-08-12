@@ -164,7 +164,13 @@ the audit-doc consolidation; step 5 (abstract) next.
    draft-status header block at the top of draft.md (lines 3–11) at
    LaTeX conversion.
 
-## 5. Priority B disposition (D-028)
+## 5. Priority B disposition (D-028) — CLOSED 2026-08-12 (D-033):
+E13v2 RUN to the impossibility branch (validity PASS; falsifier (b)
+fired; TNR_w certifiable, TPR_w information-limited ~2×10⁷ labels;
+spec §4c + resolve_ba_presplit + 4 tests; manuscript §6.6/§9
+integrated; tally now NINE firings). E07v2 DECLINED with recorded
+disposition. Experimental program for arXiv v1 is CLOSED. Original
+text below for the record.
 
 E07v2 / E13v2 run only if the mandatory set completed "on schedule".
 E08v2's firing consumed schedule; decide explicitly and record in

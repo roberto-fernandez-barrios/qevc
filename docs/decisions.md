@@ -735,3 +735,43 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
      computed as a derived analysis from the archived per-world tables
      (no new randomness) and recorded in the E17 status.
 - **Status:** adopted; executed 2026-08-12.
+
+## D-033 — Priority-B closure: E13v2 run to the impossibility branch; E07v2 declined with disposition
+
+- **Date:** 2026-08-12
+- **Context:** the mandatory extension set is closed (E17, E19+D-032,
+  E11v3, E08v2+E08v3/D-031). The author directed the program to its
+  absolute ceiling before the release freeze. Of the two priority-B
+  items frozen at D-028, E13v2 was executed (spec §4c rule derived and
+  frozen before implementation; battery complete 2026-08-12): validity
+  PASS, falsifier (b) fired → the BA_w path is published as measured
+  impossibility at physics weight dispersion, with the mechanism
+  decomposed (TNR_w fully certifiable; TPR_w information-limited by the
+  9.7×10⁻⁴ weighted signal fraction, implied n* ≈ 2×10⁷ at margin
+  0.05; the sharpened rule resolves the class-independent control that
+  the v1 bound could not touch).
+- **Decision (E07v2 declined):** E07v2 (LURE-style control variates;
+  stratified without-replacement acquisition) is NOT run for arXiv v1.
+  Rationale: (i) its registered placement is supplement-only with no
+  abstract branch — it cannot move the headline; (ii) E07's mechanism
+  analysis already explains the active-acquisition negative (the ×2
+  importance-weight range halves effective margins), and the E13v2
+  result now demonstrates the deeper point on the weighted side —
+  near-boundary label costs are information-limited, not
+  procedure-limited (n* vs Wald floor; TPR_w impossibility); (iii) it
+  is the costliest remaining item (new `src/qevc/acquisition/` module,
+  WoR-valid finite-population CS, tests, 2–3 days) against the release
+  freeze. The E07 negative therefore keeps its registered scope
+  ("under the tested conditions", naive uncertainty-mixture importance
+  sampling); the registry entry stays `specified` with its frozen
+  falsifier, available to a future revision. This is a disposition of
+  the D-028 priority-B clause, not a silent drop.
+- **E16 priority (b) DD-on/off micro-split:** unchanged (D-027/D-028) —
+  runs only if the IBM Open window resets (~2026-09-07) before the
+  submission freeze AND F8 has not started; the final state will be
+  recorded in the sealed-holdout/endgame decision entry at submission.
+- **Status:** adopted. The experimental program for arXiv v1 is CLOSED:
+  every registered mandatory experiment complete, every priority-B item
+  executed or dispositioned, nine falsifier firings obeyed and
+  published (E02R, E12(e), E14 v1, E15 gate, E17(b), E08v2(a)(b),
+  E08v3(a), E13v2(b)).

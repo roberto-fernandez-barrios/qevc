@@ -1,0 +1,18 @@
+# E13v2 — BA_w pre-split component allocation (registered in
+# docs/experiment_registry.md; rule derived and frozen in
+# docs/weighted_certification_spec.md section 4c BEFORE implementation).
+# Re-runs ONLY the BA_w block of the E13 validation battery with the
+# pre-split allocation; falsifiers frozen at D-028.
+experiment: E13v2
+alpha: 0.05
+n_max: 5000
+n_rep: 200
+margins: [0.02, 0.05]          # registered range endpoints; claims at BA +- m
+component_rates: {tpr: 0.75, tnr: 0.85}   # v1 BA-block targets
+kappa_sig: 1.0                 # signal weights untouched by admissible
+                               # weight-only nuisances (verified in code)
+kappa_norm: 2.05               # spec section 3.4 compound clip bound
+seed_salt: "E13V2"
+populations:
+  - synthetic_v1               # P1: v1 BA-block construction (attribution control)
+  - benchmark_class            # P2: seed-101 subset (y, w) rows, physics dispersion
