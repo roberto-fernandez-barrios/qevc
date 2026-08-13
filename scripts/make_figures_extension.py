@@ -9,7 +9,7 @@ Fig. 3  — sensor response by nuisance family + categorical weight-only
           blindness (E04 CRN records; the empirical face of the
           unidentifiability proposition).
 Fig. 6  — label economics: (A) active-vs-uniform paired n* ratio ECDF (E07,
-          primary negative); (B) n* efficiency vs the Wald information floor
+          primary negative); (B) n* vs a Wald-style information yardstick
           by margin bucket (E06_nstar_efficiency).
 Fig. S16 — kernel estimation diagnostics per shot budget (E16 per-config):
           Frobenius error vs 1/sqrt(shots), effective-rank inflation,
@@ -134,7 +134,7 @@ def fig3() -> None:
     save(fig, "fig3_family_blindness")
 
 
-# ---- Fig. 6 — Label economics: active acquisition + information floor ------
+# ---- Fig. 6 — Label economics: active acquisition + information yardstick --
 def fig6() -> None:
     e07 = load("E07_active")
     eff = load("E06_nstar_efficiency")
@@ -182,7 +182,7 @@ def fig6() -> None:
                 fmt="o", ms=7, color=THEME[0], ecolor=THEME[0], elinewidth=1.6,
                 capsize=3, zorder=3)
     ax.axhline(1.0, color=MUTED, lw=1.0, ls="--", zorder=2)
-    ax.text(len(buckets) - 0.55, 1.06, "Wald information floor", fontsize=8,
+    ax.text(len(buckets) - 0.55, 1.06, "Wald-style yardstick", fontsize=8,
             color=INK2, ha="right")
     for xi, v in zip(x, q50):
         ax.annotate(f"{v:.2f}", (xi, v), textcoords="offset points",
@@ -192,11 +192,11 @@ def fig6() -> None:
     ax.set_xlabel("|claim margin| bucket")
     ax.set_ylabel(r"$n^*_{q50}\ /\ [\log(1/\alpha)/\mathrm{KL}]$")
     ax.set_ylim(0.8, 4.3)
-    ax.set_title("Measured label cost vs information bound (E06)", fontsize=9)
+    ax.set_title("Measured label cost vs information yardstick (E06)", fontsize=9)
 
-    fig.suptitle("Label economics of certification: uniform sampling is "
-                 "near-optimal; costs sit a small factor above the "
-                 "information floor", fontsize=10, y=1.04)
+    fig.suptitle("Label economics of certification: active sampling is "
+                 "slower here; costs are contextualized by an "
+                 "information yardstick", fontsize=10, y=1.04)
     save(fig, "fig6_label_economics")
 
 
@@ -269,7 +269,7 @@ def fig_s16() -> None:
     ax.set_xlabel("shots per circuit")
     ax.set_ylabel(r"reference movement $|\Delta M_S|$")
     ax.legend(loc="upper right", frameon=False, fontsize=8)
-    ax.set_title("Recalibration moves the reference", fontsize=9)
+    ax.set_title("Source movement only (not Prop. 4 inputs)", fontsize=9)
 
     fig.suptitle("Quantum estimation diagnostics per noisy deployment "
                  "(30 configurations: 6 budgets × 5 kernel seeds)",

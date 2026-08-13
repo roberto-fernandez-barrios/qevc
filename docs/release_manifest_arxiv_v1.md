@@ -20,10 +20,9 @@ Freeze date: 2026-08-12
 
 | Artifact | Pages | Bytes | SHA-256 |
 |---|---:|---:|---|
-| `manuscript/latex/main.pdf` | 26 | 850,886 | `9F798522ED240BD7F76915877068291EBBC5FDC9ECEDBDC18EF6115D8DEA4D2F` |
-| `manuscript/supplementary/supplement.pdf` | 7 | 411,805 | `83C4279415295313903E1D052FA856C880809740B708DD88AB2A02F3074B1C22` |
-| `dist/arxiv-v1-source.zip` | — | 622,685 | `9C439AF7628567F490ABD60AA36A38A2EEC3FC5D85B846AC79DD223235FF8646` |
-| `dist/qevc-arxiv-v1.zip` | — | 3,561,869 | `24F350C79AD5585D803D73D241F2389BF07B6C2E963E289B6861ADDD053CD2AB` |
+| `manuscript/latex/main.pdf` | 27 | 858,056 | `6D36CE51E8540518563ABC1783DA768B3F60E91A7938CDA757751D7A8AA0A3F3` |
+| `manuscript/supplementary/supplement.pdf` | 8 | 417,508 | `67012F90E479C56831A15275E6286776AD2E7F0E831E0DAA49B31A73F37B541E` |
+| `dist/arxiv-v1-source.zip` | — | 632,167 | `2C50C6198DACA0FACB64B7A9802D0D63BBF9E8F9710FA840A4F915C318D4FA33` |
 
 The source archive contains `main.tex`, its generated `main.bbl`, all 11
 main-document figure PDFs, and the supplement PDF plus source and Figure S16
@@ -33,11 +32,13 @@ boxes.
 
 ## Verification gate
 
-- F8.2 executable audit: 81/81 checks passed.
-- Semantic four-gram coverage: 90.5473% Markdown→LaTeX and 92.4084%
+- F8.2 executable audit: 97/97 checks passed.
+- Semantic four-gram coverage: 90.4294% Markdown→LaTeX and 92.1970%
   LaTeX→Markdown.
 - Repository test suite: 127/127 passed.
-- All 33 final PDF pages visually inspected.
+- Both repository PDFs and both sources in the arXiv package compile with no
+  unresolved references/citations, overfull boxes, or LaTeX warnings.
+- All 35 final PDF pages visually inspected.
 - seed-101 and seed-121 `final_eval` remain sealed for journal review.
 - Nine registered falsifier firings are retained and disclosed.
 
@@ -46,7 +47,7 @@ boxes.
 - GitHub release:
   <https://github.com/roberto-fernandez-barrios/qevc/releases/tag/arxiv-v1>
 - Zenodo record: <https://doi.org/10.5281/zenodo.21894292>
-- Zenodo state: published 2026-08-12 with four files; every remote MD5
-  matched its local artifact before the irreversible publish action.
-- arXiv: source and metadata ready, but not submitted; publication was
-  explicitly deferred by the author on 2026-08-12.
+- Zenodo state: the earlier D-035 release was published 2026-08-12; D-036
+  supersedes it for submission and the hashes above are the current source of
+  truth.
+- arXiv: the D-036 source and metadata are ready but not submitted.

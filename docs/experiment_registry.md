@@ -421,9 +421,9 @@ entry.
   | Claim | Requires | Verdict | Evidence |
   |---|---|---|---|
   | C1 event accuracy on data | I2 labels | **UNRESOLVED** | labels do not exist — fail-closed by construction (the falsifier: certifying this would be design failure — did NOT happen) |
-  | C2 W norm within 30% (high-mT CR) | I1+CR | **SUPPORTED** | data/MC = 0.922 [0.885, 0.961] |
+  | C2 total-MC normalization within 30% (W-enriched high-mT CR; fixed non-W, QCD absent) | I1+CR | **SUPPORTED** | data/MC = 0.922 [0.885, 0.961] |
   | C3 no MC→data shift at sensor floor | I1 | **REFUTED** | QK-MMD² 0.0030 vs floor 0.0011 (2.6×) — sim-to-real shift detected; alarm vetoes performance claims |
-  | C4 SS QCD excess | I1+CR | **SUPPORTED** | +1,007 events over MC, z = 18.6 (the data-driven QCD method's premise) |
+  | C4 SS data excess over non-QCD MC, consistent with QCD | I1+CR | **SUPPORTED** | +1,007 events over non-QCD MC, z = 18.6 (consistent with the data-driven QCD premise; not an exclusive attribution) |
   The demonstration lands the paper's thesis on real collision data: aggregate
   physics claims ARE certifiable from control-region evidence; event-level
   performance claims are NOT, and the geometry sensor detects the sim-to-real
@@ -574,7 +574,7 @@ entry.
 - **Hypothesis:** the one-sample reduction (D-019) preserves time-uniform
   Type-I control exactly under weighted estimands; weighted n* exceeds
   unweighted n* by a factor driven by the weight dispersion (effective
-  sample size Σw²/(Σw)² and the a priori bound w_max).
+  sample size (Σw)²/Σw² and the scalar bound w_max).
 - **Estimand(s):** exactly as predeclared in
   `docs/weighted_certification_spec.md` (D-019): weighted accuracy A_w,
   weighted TPR_w/TNR_w as primary claims; BA_w only via the conservative
@@ -617,7 +617,7 @@ entry.
      in every profile × level cell; worst MC false-certification cell 1.5%
      (slack threshold 8.3% at n_rep 400); adversarial optional stopping
      breaks the naive Wald rule (27.8% false certification) while the CS
-     holds at 0.0% — the guarantee, demonstrated.
+     holds at 0.0% — an implementation stress test, not a proof or FWER claim.
   2. **Benchmark (identical draws, 41 envs × 4 models × claim grid):**
      weighted false certification 2/8,580 = 0.02% ≤ α; weighted false
      refutation 0; class-conditional (TPR_w/TNR_w) false certification
@@ -1039,9 +1039,9 @@ entry.
   | Claim | v1 (mirror) | v2 (full) |
   |---|---|---|
   | C1 event accuracy | UNRESOLVED | **UNRESOLVED** (by construction — more data cannot change this, which is the point) |
-  | C2 W norm ≤30% | SUPPORTED, 0.922 [0.885, 0.961] | **SUPPORTED, 0.9495 [0.937, 0.962]** (3× tighter; consistent with v1) |
+  | C2 total-MC norm ≤30% in W-enriched high-mT CR (fixed non-W, QCD absent) | SUPPORTED, 0.922 [0.885, 0.961] | **SUPPORTED, 0.9495 [0.937, 0.962]** (3× tighter; consistent with v1) |
   | C3 no shift at floor | REFUTED (2.6× floor) | **REFUTED (2.5× floor)** — the sim-to-real shift is not a mirror artifact |
-  | C4 SS QCD excess | SUPPORTED, z = 18.6 | **SUPPORTED, z = 59.4** |
+  | C4 SS data excess over non-QCD MC, consistent with QCD | SUPPORTED, z = 18.6 | **SUPPORTED, z = 59.4** |
   The mirror-based conclusions were not sample-fragile; the C2 interval
   narrows as √N predicts (3.1× vs predicted 3.2×) and overlaps the v1
   interval with the upper bound essentially unchanged (0.9619 vs 0.9613 —
@@ -1457,12 +1457,14 @@ entry.
      each; median 0.005); the pooled permutation test gives p_perm =
      1/1000 = 0.001 in every draw. The sim-to-real shift detection no
      longer rests on a single draw against a 20-draw max-floor.
-  2. **C2 SUPPORTED with MC-side statistics:** MC template rel-err
-     propagated via log-delta into the ratio interval; the widened CI
-     remains inside the 30% tolerance band (the C2 margin dwarfs
+  2. **C2 SUPPORTED with MC-side statistics:** total data/MC normalization
+     in the W-enriched high-mT CR, conditional on fixed non-W components
+     and absent QCD; MC template rel-err is propagated via log-delta into
+     the ratio interval [0.9042, 0.9972], inside the 30% tolerance band (the C2 margin dwarfs
      MC-stat, as the audit predicted — now measured, not argued).
-  3. **C4 SUPPORTED with MC-side statistics:** z recomputed with the
-     Σw² MC term in the denominator; remains far above 3 (and above 5).
+  3. **C4 SUPPORTED with MC-side statistics:** the SS data excess over
+     non-QCD MC, consistent with QCD but not an exclusive QCD measurement,
+     has z = 18.78 after the Σw² MC term is added to the denominator.
   4. Bidirectional falsifier outcome: `refuted_stands_on_calibrated_
      grounds`; no §8 verdict revision required — the ledger's
      statistical basis is upgraded in place.
@@ -1572,3 +1574,11 @@ entry.
      information-limited by the weighted signal fraction under uniform
      labeling. The manuscript's "component bound is vacuous" limitation
      is upgraded to this measured impossibility with its mechanism.
+  4. **Final-audit information-set qualification (2026-08-12):** the
+     executed class-specific maxima use y over the complete frozen
+     population (`run_e13v2.py`, lines 114–121). E13v2 is therefore an
+     oracle/benchmark diagnostic, not an operational I2 guarantee. Its
+     negative TPR/BA result remains a favorable-oracle information-limit
+     diagnosis; TNR successes are scoped to the oracle bound. Operational
+     weighted guarantees remain those of E13/E19 with a global scalar bound
+     fixed before the random audit order.

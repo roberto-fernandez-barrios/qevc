@@ -13,6 +13,11 @@ dist/
 .venv/
 venv/
 
+# Keep the frozen npj submission bundle while ignoring other build archives
+!dist/
+dist/*
+!dist/npjqi-submission.zip
+
 # Tooling caches
 .pytest_cache/
 .mypy_cache/
@@ -25,6 +30,9 @@ results/raw/
 
 # Vendored external repos (exact commits recorded in docs/dataset_audit.md)
 external/
+
+# Local journal guidelines and submission-reference material
+guidelines/
 
 # OS
 Thumbs.db
@@ -46,6 +54,12 @@ manuscript/supplementary/*.log
 manuscript/supplementary/*.out
 manuscript/supplementary/*.fls
 manuscript/supplementary/*.fdb_latexmk
+manuscript/npjqi/*.aux
+manuscript/npjqi/*.log
+manuscript/npjqi/*.out
+manuscript/npjqi/*.fls
+manuscript/npjqi/*.fdb_latexmk
+manuscript/npjqi/*.pdf
 
 # Stray root-level LaTeX build output (superseded by manuscript/latex/main.pdf)
 /sn-article.pdf

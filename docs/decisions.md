@@ -291,17 +291,21 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   on the existing empirical-Bernstein CS (exact, time-uniform); BA_w only as
   the conservative α/2-per-component bound; weighted AUC stays on fixed-n
   checkpoints (never CS). Per-event weights are revealed only at labeling
-  time (they are label-equivalent in this benchmark — granting them on
-  unlabeled events would leak labels into I1). The a priori bound
-  w_max = (max per-event D-010-rescaled weight at nominal) × 2.0 (largest
-  official normalization clip factor), predeclared, loose-but-valid.
+  time (they are process- and label-informative — granting them on
+  unlabeled events would add label-adjacent information to I1). Conditional
+  on each frozen finite population, the scalar bound
+  w_max = (max per-event D-010-rescaled weight at nominal) × 2.05 is fixed
+  before the random audit order. The multiplier covers the largest compound
+  official scale, diboson × background = 2.0 × 1.01 = 2.02.
 - **Alternatives considered:** weight-proportional label sampling (exact
   Bernoulli reduction, rejected: requires pre-labeling weights = label
   leakage); direct ratio-CS as primary (rejected as primary: strictly more
   conservative per claim; kept as the simultaneous-in-τ secondary);
   betting-CS re-derivation (unnecessary: the reduction reuses the tested
   EB-CS unchanged).
-- **Status:** adopted; falsifiers frozen in the E13 registry entry.
+- **Status:** adopted; falsifiers frozen in the E13 registry entry. Wording
+  and multiplier corrected by the final mathematical audit on 2026-08-12;
+  no experiment consumed the earlier 2.0 value.
 
 ## D-020 — Campaign freeze artifact and row-index archival (E12)
 
@@ -758,7 +762,7 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   importance-weight range halves effective margins), and the E13v2
   result now demonstrates the deeper point on the weighted side —
   near-boundary label costs are information-limited, not
-  procedure-limited (n* vs Wald floor; TPR_w impossibility); (iii) it
+  procedure-limited (n* vs Wald-style yardstick; TPR_w impossibility); (iii) it
   is the costliest remaining item (new `src/qevc/acquisition/` module,
   WoR-valid finite-population CS, tests, 2–3 days) against the release
   freeze. The E07 negative therefore keeps its registered scope
@@ -826,3 +830,70 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   2026-08-12. The four Zenodo file MD5s matched the frozen local artifacts
   before publication. The arXiv source/metadata are ready but were not
   submitted: the author explicitly deferred arXiv publication on 2026-08-12.
+
+## D-036 — Final mathematical/editorial audit and superseding freeze
+
+- **Date:** 2026-08-12
+- **Context:** the author requested one last mathematical and editorial audit
+  of the complete release without new experiments. Independent QML, HEP and
+  statistics reviews found formal overstatements in Proposition 4, the
+  weight-bound information set, Proposition 2, multiplicity, the Wald
+  comparison, C2, E17, and the interpretation of the micro-QPU arm.
+- **Decision:** (i) Proposition 4 remains conditional because E16 archives
+  only ΔM_S, not ΔM_T or ΔM_T−ΔM_S; flip rates are independent empirical
+  evidence. Equality of two ternary verdicts requires both audits to resolve
+  and joint coverage (at least 1−2α without joint calibration). (ii) Theorem 1
+  is stated conditionally on a frozen finite population and scalar bound fixed
+  before audit order, for fixed τ and per-claim error control; no FWER or
+  arbitrary adaptive-sampling guarantee is implied. (iii) E13v2 class bounds,
+  computed with complete-population labels, are an oracle diagnostic rather
+  than an operational I2 guarantee. (iv) C2 is jointly conditioned on nuisance
+  representability and auxiliary/template quality. (v) Wald is a contextual
+  yardstick, E17 signs are cross-world unstable, and quantum execution adds
+  measurement-induced uncertainty without exclusive claims about randomness.
+- **Experimental scope:** no experiments, models, datasets, or QPU executions
+  were added. Figure 8 was redrawn only from archived E09/E10/E16 artifacts.
+- **Status:** adopted; the hashes and page counts in D-035 are superseded by
+  the final audit manifest and `docs/audits/final_math_editorial_audit.md`.
+
+## D-037 — npj Quantum Information target and submission ceiling
+
+- **Date:** 2026-08-12
+- **Context:** after the scientific freeze, the author supplied a comparative
+  venue analysis, current scope extracts, a local guidelines folder, and the
+  location of an earlier Springer Nature LaTeX template. APC funding is
+  available, so cost does not constrain journal choice. Current official
+  sources were rechecked independently: *npj Quantum Information* explicitly
+  covers quantum machine learning, and its open Collection *Quantum machine
+  learning: understanding capabilities, limitations, and perspectives for
+  quantum advantage* accepts submissions through 2026-12-31. The main
+  editorial risk is quantum centrality, not formal scope or evidence quality.
+- **Decision:** target *npj Quantum Information* first through that Collection.
+  The manuscript is positioned as a QML claim-validity paper: C1/C2 provide the
+  model-agnostic scientific validity layer, while E09/E10/E16 instantiate the
+  QML-specific additional measurement-induced deployment uncertainty through
+  Gram estimation, refitting, calibration, and thresholding. HEP is retained
+  as the stringent scientific deployment environment. No quantum advantage is
+  claimed. The repository now uses the self-contained Springer Nature
+  `sn-jnl`/`sn-nature` source, a 13-word title, 147-word abstract, journal-order
+  sectioning, mandatory availability/declaration statements, generative-AI
+  disclosure, a Collection-specific cover letter, metadata sheet, verifier,
+  and reproducible source/PDF bundle. Hardware evidence remains explicitly a
+  micro-scale fail-closed consistency demonstration, not performance or
+  certification at scale. The distinct same-author manuscript DOI
+  10.5281/zenodo.21776862 is disclosed voluntarily with its non-overlap stated.
+  `guidelines/` is ignored by Git.
+- **Scientific scope:** presentation only. No experiment, model, dataset,
+  artifact value, QPU run, or conclusion was added. All formal and evidential
+  weakenings of D-036 remain unchanged.
+- **Frozen submission artifacts:** main PDF, 29 pages, SHA-256
+  `A2DC23A938D9A044EC9FB4C52C6C409EBE17486FEF6E2A89E0E109F7615E1E68`;
+  Supplementary Information, 8 pages, SHA-256
+  `CDAF97F09A2DDCB2614421E909FAD334834A49DA9AFAF9BDFDF4684FC023DE1F`;
+  cover letter, 1 page, SHA-256
+  `3D4F6F3DF84CEF8DDED32F3A9A0F6F3F5D75BC42B870D8CD76D5EB69741A7A8A`;
+  `dist/npjqi-submission.zip`, SHA-256
+  `D122C53F729242513B1A3218473E5FD511C00F7A1EC86FCFAB5F48F57A9A4FE3`.
+- **Status:** adopted. All 127 tests, 97 scientific audit gates, 49 npj
+  submission gates, independent archive builds, and the 38-page visual review
+  pass. The manuscript is ready for author confirmation and portal upload.

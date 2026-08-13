@@ -145,30 +145,26 @@ def fig8b() -> None:
               ("flip_rate_own_tau_mean",
                "deployment-relative claims (own refrozen τ)")]
 
-    dodge = {"near": -9, "moderate": 7, "far": 0}   # end-label collision fix
-    fig, axes = plt.subplots(1, 2, figsize=(7.6, 3.0), sharey=True)
+    fig, axes = plt.subplots(2, 1, figsize=(4.0, 5.2), sharex=True, sharey=True)
     for ax, (key, title) in zip(axes, panels):
         for st, color, label in strata:
             vals = [agg[str(s)].get(st, {}).get(key, np.nan) for s in shots]
-            ax.plot(shots, vals, color=color, lw=2, marker="o", ms=4.5)
-            ax.annotate(label.split(" (")[0], (shots[-1], vals[-1]),
-                        xytext=(6, dodge[st]), textcoords="offset points",
-                        color=INK, fontsize=8, va="center")
+            ax.plot(shots, np.multiply(vals, 100), color=color, lw=2,
+                    marker="o", ms=5, label=label)
         ax.set_xscale("log", base=2)
         ax.set_xticks(shots)
-        ax.set_xticklabels([str(s) for s in shots], fontsize=8)
-        ax.set_xlabel("shots per kernel entry")
-        ax.set_title(title, fontsize=9)
-        ax.set_xlim(110, 9000)
-    axes[0].set_ylabel("verdict flip rate vs C_ideal")
-    axes[0].set_ylim(-0.03, 0.9)
-    handles = [plt.Line2D([], [], color=c, lw=2, marker="o", ms=4.5)
-               for _, c, _ in strata]
-    axes[0].legend(handles, [lbl for _, _, lbl in strata], loc="upper right",
-                   frameon=False, fontsize=8)
-    fig.suptitle("Quantum estimation noise and claim verdicts, by ideal-margin "
-                 "stratum (5 kernel seeds/point; false certification ≤ α "
-                 "in every cell)", y=1.05, fontsize=10)
+        ax.set_xticklabels(["128", "256", "512", "1k", "2k", "4k"],
+                           fontsize=8.5, rotation=28, ha="right")
+        ax.set_title(title, fontsize=9.3)
+        ax.set_xlim(110, 4800)
+        ax.set_ylabel("verdict flips (%)")
+    axes[-1].set_xlabel("shots per kernel entry")
+    axes[0].set_ylim(-3, 90)
+    axes[1].legend(loc="upper right", frameon=False, fontsize=7.6)
+    fig.suptitle("E16 empirical verdict flips by ideal-margin stratum\n"
+                 "(5 simulated deployments per shot budget)",
+                 y=0.995, fontsize=10.5)
+    fig.subplots_adjust(hspace=0.28)
     save(fig, "fig8b_estimation_noise_verdicts")
 
 

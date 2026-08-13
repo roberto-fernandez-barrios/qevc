@@ -1,4 +1,4 @@
-"""n* efficiency vs the sequential information lower bound (derived analysis).
+"""n* stopping-time comparison against a Wald-style yardstick (derived analysis).
 
 Contextualizes the E06 certification landscape: for every resolved claim cell,
 compare the measured median stopping time n*_q50 against the Wald
@@ -7,13 +7,12 @@ information-theoretic yardstick
     n_oracle = log(1/alpha) / KL( Ber(p) || Ber(tau) )
 
 where p = the environment's true stream mean (m_target) and tau = M_S - delta
-is the claim threshold. Any sequential procedure with type-I error <= alpha
-needs on the order of n_oracle samples to resolve the claim; the ratio
-n*_q50 / n_oracle measures how much of the near-boundary label explosion is
-fundamental statistics (KL ~ 2*margin^2 for small margins) versus slack in our
-empirical-Bernstein confidence sequence (which pays a known iterated-logarithm
-/ variance-adaptivity price; WSR 2020). Both components are reported honestly
-— no minimax-optimality claim is made (D-028).
+is the claim threshold. The ratio n*_q50 / n_oracle is a descriptive
+comparison of conditional medians to an asymptotic/sequential information
+benchmark. It is not a universal lower bound: no power/type-II constraint or
+expected-stopping-time comparison is supplied. Near the boundary,
+KL(Ber(tau+m)||Ber(tau)) = m^2/[2 tau(1-tau)] + O(m^3) = Theta(m^2).
+No minimax-optimality claim is made (D-028/D-036).
 
 Sources (read-only): results/tables/E06_nstar.json.
 Output: results/tables/E06_nstar_efficiency.json.
@@ -112,12 +111,12 @@ def main() -> int:
         "alpha": alpha,
         "definition": {
             "n_oracle": "log(1/alpha) / KL(Ber(m_target) || Ber(tau)) — "
-                        "Wald information yardstick for any sequential "
-                        "procedure with type-I error <= alpha",
+                        "Wald-style contextual information yardstick; not "
+                        "a universal lower bound",
             "efficiency_ratio": "n_star_q50 / n_oracle (conditional on "
                                 "resolution, as E06's n* quantiles are)",
-            "caveats": "no minimax claim; the EB-CS pays a known "
-                       "variance-adaptivity/iterated-logarithm factor; "
+            "caveats": "no minimax or universal optimality claim; no "
+                       "power/type-II constraint; medians rather than E[T]; "
                        "n* medians are over resolved streams only",
         },
         "overall": {

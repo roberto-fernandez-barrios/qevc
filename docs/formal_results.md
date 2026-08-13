@@ -16,12 +16,14 @@ sold as a deep theorem.
 
 ## Theorem 1 — Exact weighted anytime-valid certification
 
-**Setting.** Labeled draws (c_i, u_i), i = 1, 2, …, IID from the audited
-population: c_i ∈ {0, 1} a correctness indicator, u_i ∈ [0, w_max] a
-nonnegative mask-weight (u_i = w_i for A_w; u_i = w_i·1[y_i = 1] for TPR_w;
-u_i = w_i·1[y_i = 0] for TNR_w), with w_max a *predeclared, nonrandom* bound
-(spec §3.4) and E[u] > 0. The weighted estimand is the ratio
-R = E[u·c] / E[u]. For a claim R ≥ τ, τ ∈ [0, 1], define
+**Setting.** Condition on a frozen finite audit population and a scalar
+w_max fixed before the random audit order. Labeled draws (c_i, u_i), i = 1,
+2, …, are IID with replacement from that population: c_i ∈ {0, 1} is a
+correctness indicator and u_i ∈ [0, w_max] is a nonnegative mask-weight
+(u_i = w_i for A_w; u_i = w_i·1[y_i = 1] for TPR_w; u_i =
+w_i·1[y_i = 0] for TNR_w), with E[u] > 0. The weighted estimand is the ratio
+R = E[u·c] / E[u]. For a fixed claim R ≥ τ, τ ∈ [0, 1] chosen before the
+audit label stream, define
 
     Z_i(τ) = ( u_i (c_i − τ) + τ·w_max ) / w_max .
 
@@ -35,10 +37,13 @@ empirical-Bernstein predictable plug-in CS), applied to the stream Z_1(τ),
 Z_2(τ), …, and let the D-006 rule issue SUPPORTED at the first n with
 L_n ≥ τ. Then
 
-    P( ∃ n : SUPPORTED issued  ∧  R < τ ) ≤ α ,
+    P( ∃ n : SUPPORTED issued  ∧  R < τ ) ≤ α,
+    P( ∃ n : REFUTED issued    ∧  R ≥ τ ) ≤ α,
 
-so the false-certification guarantee holds *simultaneously over all stopping
-rules*; n* is a legitimate stopping time. (c) The unweighted D-014 system is
+so each directional error is controlled simultaneously over all stopping
+times for this fixed claim; the union of incorrect decisive verdicts is also
+contained in the single two-sided-CS coverage failure. n* is a legitimate
+stopping time. (c) The unweighted D-014 system is
 the special case u ≡ 1, w_max = 1: the weighted machinery strictly
 generalizes it, licensing weighted-vs-unweighted comparisons on identical
 draws.
@@ -50,16 +55,32 @@ and dividing by w_max lands in [0, 1]. Equivalence: E[Z(τ)] ≥ τ ⟺
 E[u(c − τ)] + τ·w_max ≥ τ·w_max ⟺ E[u·c] ≥ τ·E[u] ⟺ R ≥ τ, using
 E[u] > 0. (b) On the event that the CS covers E[Z(τ)] at every n — an event
 of probability ≥ 1 − α by time-uniformity — L_n ≥ τ implies E[Z(τ)] ≥ τ,
-hence R ≥ τ by (a); so a false certification requires a coverage violation
-at some n. (c) Substitution. ∎
+hence R ≥ τ by (a); the symmetric statement holds for refutation. Thus any
+incorrect decisive verdict requires a coverage violation at some n. (c)
+Substitution. ∎
 
 *Why exactness matters.* Z is a fixed measurable transform per claim of an
 IID draw; no clipping, truncation or asymptotic argument enters, so the
 guarantee is inherited *unchanged* from the CS — the reduction adds zero
 slack of its own. The label price of weighting is paid in the variance of Z
-(effective sample size Σw²/(Σw)²), not in validity.
+(effective sample size (Σw)²/Σw²), not in validity. Labeling reveals y_i and
+w_i and hence u_i; event-wise weights are withheld from I1 because they are
+process- and label-informative, not because they identify a process exactly.
+The data-curation layer supplies only the single global scalar bound before
+sampling, not row weights or class labels; this does not enlarge I1 with
+event-level information.
+The multiplier 2.05 covers the largest compound official scaling 2.02, and
+both classes have positive archived weight mass, so E[u] > 0.
 
-**Empirical instances.** Validation battery: time-uniform miscoverage within
+**Scope.** The guarantee is per fixed claim and simultaneous only over its
+stopping times. It is not FWER control over thresholds, models, or
+environments. Selecting τ or a claim after labels requires a separate
+multiplicity construction. Time-uniformity likewise does not validate
+arbitrary adaptive row selection; E07 uses a proposal fixed from unlabeled
+scores with bounded importance weights.
+
+**Empirical instances.** These correlated Monte-Carlo rates are implementation
+stress tests, not proofs of the theorem or FWER. Validation battery: time-uniform miscoverage within
 α + 3σ in every profile × level cell; adversarial optional stopping breaks
 the naive fixed-n Wald rule (27.8% false certification) while the CS holds
 at 0.0% (`E13_weighted_cs.json`, Part A). Deployment-scale: weighted false
@@ -74,10 +95,12 @@ A_w on weight-only environments (E13 v2). Label price: n*_w/n*_unw median
 Statement and proof as registered in `docs/weighted_certification_spec.md`
 §4b (frozen before any E14 run): for a weight-only nuisance θ (P_θ(X) =
 P_0(X), correctness process unchanged), (i) every I1 statistic has identical
-law under θ and 0, so any size-α label-free test has power exactly α;
+law under θ and 0, so any test of size at most α has power equal to its actual
+size and hence at most α (exactly α only if its size is exactly α);
 (ii) the same holds at I2 with nominal weights; (iii) hence every claim
-whose truth differs between θ and 0 is unresolvable at I0–I2 and a
-fail-closed auditor must return UNRESOLVED; (iv) a control-region count
+whose truth differs between θ and 0 admits no nontrivial distinguishing power
+at I0–I2; under our fail-closed policy absence of distinguishing evidence is
+reported UNRESOLVED; (iv) a control-region count
 N ~ Poisson(λ(θ)), λ(θ) ≠ λ(0), has non-trivial power — I3 restores
 identifiability precisely because rate evidence enters the information set.
 
@@ -120,8 +143,9 @@ realized pipeline's own label stream, controls false certification at level
     P( false certification | ω ) ≤ α    for P_ω-almost every ω
 
 — which is Theorem 1(b) (or its unweighted special case) applied at fixed
-ω, since conditionally on ω the claim threshold is a constant and the
-stream is IID. Then the marginal false-certification rate over deployment
+ω, since conditionally on ω the claim threshold is a constant and the audit
+stream remains IID and disjoint from training, calibration, and threshold
+selection. Then the marginal false-certification rate over deployment
 randomness obeys
 
     P( false certification ) = E_ω [ P( false certification | ω ) ] ≤ α ,
@@ -136,12 +160,12 @@ the validity of what is certified. This is the formal counterpart of the
 campaign's measured sentence: "noise changes what is resolvable, never the
 validity of what is certified."
 
-**Remark (why this needs quantum).** For a deterministic classical pipeline
-the map data → deployment is fixed: pseudo-randomness in training is
-seed-controllable and reproducible. Estimated kernels make the deployed
-object *physically* random — irreducibly so on hardware — and Proposition 3
-is the statement that the certification layer is indifferent to that
-randomness while the claim semantics must not be.
+**Remark (quantum-specific role).** Classical pipelines may also contain
+training and inference randomness. Quantum-kernel evaluation adds an
+additional measurement-induced deployment uncertainty intrinsic to
+finite-shot and noisy quantum execution. Proposition 3 says the
+certification layer is indifferent to the source of randomness while claim
+semantics must not be.
 
 **Empirical instances.** E16's dual accounting (forced by audit H1) is
 exactly the C_dep/C_ideal split: own-τ false certifications 0.5–1.3% ≤ α at
@@ -151,61 +175,45 @@ with 0 false certifications (`E16_quantum_uncertainty.json`, `E16_hw.json`).
 
 ---
 
-## Proposition 4 — Verdict stability under bounded deployment movement
+## Proposition 4 — Truth-sign and resolved-verdict stability
 
-**Setting.** Fix a claim family and let m⋆ = M_T(f⋆) − τ⋆ be the ideal
-margin. For a realization ω define the movements
+**Setting.** Fix a claim family and let m⋆ be its ideal signed margin. Define
+the signed target and source movements
 
-    ε_T(ω) = | M_T(f̃_ω) − M_T(f⋆) | ,      ε_S(ω) = | M_S(f̃_ω) − M_S(f⋆) | .
+    ΔM_T(ω) = M_T(f̃_ω) − M_T(f⋆),
+    ΔM_S(ω) = M_S(f̃_ω) − M_S(f⋆).
 
-**Proposition.** (i) *Margin transport.* The realized margin m(ω) satisfies
+**Proposition.** (i) *Exact margin transport:*
 
-    C_ideal :  | m(ω) − m⋆ | ≤ ε_T(ω)
-    C_dep   :  | m(ω) − m⋆ | ≤ | ΔM_T(ω) − ΔM_S(ω) | ≤ ε_T(ω) + ε_S(ω) ,
+    C_ideal :  m(ω) − m⋆ = ΔM_T(ω),
+    C_dep   :  m(ω) − m⋆ = ΔM_T(ω) − ΔM_S(ω).
 
-where ΔM_T, ΔM_S are the signed movements. In particular, if
-m⋆ > ε_Q(ω) — with ε_Q = ε_T for C_ideal and ε_Q = |ΔM_T − ΔM_S| for
-C_dep — the realized claim remains true; symmetrically for m⋆ < −ε_Q.
-(ii) *Verdict stability.* On the CS coverage event (probability ≥ 1 − α),
-if additionally the realized audit resolves — the running-intersection CS
-radius at the stopping time is below the realized margin, both taken on
-the certification scale (for weighted claims the metric-scale margin maps
-to the Z scale with factor E[u]/w_max, Theorem 1(a)) — then the realized
-verdict equals the ideal verdict: same sign of margin + resolution ⇒ same
-D-006 output. (iii) *Common-mode
-cancellation.* When the deployment movement is common-mode — ΔM_T(ω) ≈
-ΔM_S(ω), as when refitting and recalibration shift source and target
-performance together — C_dep margins difference it away (|ΔM_T − ΔM_S|
-small) while C_ideal margins absorb ΔM_T in full: deployment-relative
-claims are structurally the more stable class.
+Consequently |m⋆| > |ΔM_T| for C_ideal, or
+|m⋆| > |ΔM_T − ΔM_S| for C_dep, is sufficient to preserve the truth-sign.
+Failure of either sufficient condition gives no conclusion about a flip.
+(ii) *Resolved verdicts.* On a CS coverage event, any decisive verdict points
+to the true sign. Equality of the ideal and realized ternary verdicts therefore
+requires both audits to resolve and both CSs to cover. Without joint
+calibration the intersection has probability at least 1 − 2α by a union
+bound; running each audit at α/2 gives at least 1 − α. For weighted claims,
+the metric-scale margin maps to the Z scale by E[u]/w_max. (iii)
+*Common-mode cancellation.* If ΔM_T ≈ ΔM_S, the deployment-relative movement
+is small while the ideal-anchored movement retains ΔM_T, so C_dep is
+structurally the stabler claim class.
 
-**Proof.** (i) Triangle inequality on m(ω) − m⋆ written in terms of the
-signed movements; for C_dep, m(ω) − m⋆ = ΔM_T − ΔM_S. (ii) The D-006 rule
-is a deterministic function of the CS bounds. On the coverage event the
-bounds contain the true mean at every n; a REFUTED output with positive
-margin (or SUPPORTED with negative) would put the true mean outside a
-bound — a coverage violation. Resolution with radius below the margin
-therefore forces the crossing onto the margin's side of τ; the
-probability qualifier is inherited from the CS, adding nothing beyond
-the α already spent. (iii) Immediate from the C_dep bound. ∎
+**Proof.** Substitute the signed movements into each margin. If a perturbation
+has magnitude below |m⋆|, it cannot cross zero. On coverage, a decisive verdict
+on the wrong side would exclude the true mean. Requiring both resolutions
+rules out SUPPORTED/REFUTED versus UNRESOLVED mismatches; intersecting the two
+coverage events gives the stated probability. ∎
 
-**Honesty note (assumption status).** ε_T, ε_S are *realized random
-quantities*; Proposition 4 is conditional on them. Their per-shot-budget
-distributions are **measured, not derived**: the chain shots → kernel
-Frobenius error → movement is calibrated empirically from the 30 archived
-noisy deployments (`E16_quantum_uncertainty.json` per_config; Fig. S16).
-No first-principles bound from Frobenius error to metric movement is
-claimed — a loose one exists but would be vacuous at these scales.
-
-**Predicted-then-measured pattern.** The measured movements at 128 shots
-reach ε_S = 0.058 (typ.) and 0.139 (worst) — larger than the far-margin
-band |m⋆| ≥ 0.04 — so Proposition 4 *predicts* fixed-τ far-margin verdict
-flips at 128 shots and their disappearance once ε falls below the margin at
-high budgets; and it predicts own-τ far-margin stability at every budget by
-common-mode cancellation. Both patterns are what E16 measured: fixed-τ far
-flips 20.8% (128) → 0.4% (4096); own-τ far flips 0.000 at every budget.
-The 21% → 0.4% curve is not a curiosity; it is the theory's prediction
-traced by the data.
+**Artifact status.** Proposition 4 is conditional. E16 archives ΔM_S and
+empirical verdict flip rates, but not ΔM_T or ΔM_T − ΔM_S. Figure S16 and
+Table S6 therefore do **not** instantiate either sufficient condition, and
+|ΔM_S| is not substituted for the missing quantities. The empirical results
+remain independent evidence: fixed-reference far flips are 20.8% at 128 shots
+and 0.4% at 4096 shots, while own-reference far flips are 0 at every tested
+budget. These observations are not called theory predictions.
 
 ---
 
@@ -216,4 +224,4 @@ traced by the data.
 | Theorem 1 | §4 (Method, C1) — statement; short proof inline | inline (8 lines) |
 | Proposition 2 + corollary | §3 (Formulation, C1) — already present as prose; elevate to numbered environment | inline (already short) |
 | Proposition 3 | §7 opening (C3) + conceptual front matter | inline (3 lines) |
-| Proposition 4 | §7 (C3), before the E16 results it predicts | inline (6 lines) |
+| Proposition 4 | §7 (C3), before the independent E16 empirical results | inline |

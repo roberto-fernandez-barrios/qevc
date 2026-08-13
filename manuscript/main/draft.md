@@ -1,8 +1,8 @@
-# When Can Quantum Event Classifiers Be Trusted? Conditional Validity under Collider Systematics and Quantum Estimation Uncertainty
+# Conditional validity of quantum event classifiers under collider systematics and quantum estimation uncertainty
 
-**arXiv v1 source — 2026-08-12.** Synchronized with the final LaTeX
-manuscript after the registered extension campaign, adversarial audit,
-number trace, bibliography verification and fresh-eyes PDF review. All
+**Prose snapshot — 2026-08-12.** The canonical journal-submission source is
+`manuscript/latex/main.tex`; this Markdown file preserves the audited prose
+snapshot used before the npj Quantum Information format adaptation. All
 numbers come from the audited result tables; superseded first-run tables
 remain preserved under `*_v1_*.json` names.
 
@@ -10,35 +10,22 @@ remain preserved under `*_v1_*.json` names.
 
 ## Abstract
 
-Quantum machine-learning classifiers for collider physics face two
-validation gaps: they are validated on nominal simulation yet deployed
-under uncertain systematics, and even their evaluation is statistical,
-since finite-shot and hardware-noisy kernels make the deployed model
-itself random. We ask when a scientific claim made with one remains
-valid under both uncertainties, and answer with a fail-closed auditing
-framework whose SUPPORTED/REFUTED/UNRESOLVED verdicts carry
-anytime-valid error control. On the FAIR Universe HiggsML benchmark
-(H→ττ, six nuisance sources), with results confirmed in disjoint fresh
-worlds, we establish three contributions. (C1) Certification is
-information-conditional: a proved impossibility (no label-free or
-nominal-weight evidence has power against weight-only nuisances), its
-resolution by control-region rates, and an exact weighted extension of
-anytime-valid certification with label costs within ×1.5–3.4 of the
-Wald floor. (C2) Classifier stability does not certify inference:
-signal-strength coverage collapses at flat AUC; a gate-validated
-profile likelihood restores it exactly where its nuisance model
-represents the shift, at a measured ×1.8–3.4 width price — a repair
-registered split studies show to be shared-simulation-conditional,
-failing under independent-MC templates. (C3) Deployment randomness
-changes which claims are true and resolvable, never the validity of
-what is certified — proved via deployment-relative vs ideal-anchored
-claim semantics, measured across shot budgets (fixed-reference verdict
-flips 21% to 0.4%), and demonstrated end-to-end on fully QPU-estimated
-kernels and on real CMS data via a fail-closed claims ledger. The
-quantum kernel is competitive, never superior — a matched classical
-kernel reproduces every quantum-attributed effect; registered
-falsifiers fired nine times and were obeyed; no conclusion requires
-quantum advantage.
+Claims made by deployed quantum machine-learning classifiers can fail because
+the target environment differs from validation and finite-shot quantum
+evaluation randomizes the model itself. We develop an information-conditional,
+fail-closed framework that returns supported, refuted or unresolved verdicts
+with anytime-valid per-claim error control. Across a Higgs-to-tau-tau
+benchmark, four disjoint simulated worlds, CMS open data and a micro-scale IBM
+hardware demonstration, we prove an exact weighted extension and an
+indistinguishability boundary for weight-only nuisances. Stable classifier
+metrics do not ensure signal-strength coverage: inference is jointly limited by
+nuisance representability and auxiliary-template quality. For quantum kernels,
+deployment-relative and ideal-anchored claims separate measurement-induced
+uncertainty from scientific shift; empirical fixed-reference far-margin verdict
+flips decrease from 20.8% to 0.4% across tested shot budgets. A matched classical
+kernel reproduces all apparent quantum-specific performance and sensing
+effects. The result is a framework for deciding which QML claims are
+supportable, not a claim of quantum advantage.
 
 ## 1. Introduction
 
@@ -46,13 +33,14 @@ Machine-learned event classifiers are standard components of collider
 analyses, and quantum machine-learning (QML) classifiers are increasingly
 proposed as successors. Both are validated the same way: on nominal
 simulation, under the exact conditions the simulation happened to assume.
-Deployment is different in two ways, one shared and one quantum-specific.
+The validation problem has two uncertainty axes, one shared and one added by
+quantum-kernel measurement.
 
 The shared gap is the collider's: the real experiment operates under
 uncertain calibrations — tau and jet energy scales, soft missing-energy
 activity, background normalizations — and the classifier validated at
-θ = 0 is deployed at some unknown θ ≠ 0. The quantum-specific gap is
-statistical: a quantum-kernel model's Gram matrix is not computed but
+θ = 0 is deployed at some unknown θ ≠ 0. Quantum-kernel evaluation adds
+an additional measurement-induced deployment uncertainty: its Gram matrix is not computed but
 *estimated*, from finite shots on noisy hardware, so the deployed
 pipeline — kernel, calibration, operating point — is itself a random
 object. The QML-for-HEP literature addresses neither: robustness there
@@ -95,12 +83,12 @@ computationally as byte-identical sensor values under common random
 numbers); information level I3 restores identifiability with resolving
 power set by the auxiliary evidence's template statistics (±10% on the
 ttbar scale at our MC size — tighter claims stay UNRESOLVED,
-fail-closed). The guarantees are measured, not asserted: false
+fail-closed). Implementation stress tests give false
 certification ≤ α in every accounting across three independent worlds
 and both estimand families (0.61%, 0.69%, 0.36% unweighted / 0.08%
-weighted), and measured label costs sit within a factor 1.5–3.4 of the
-Wald information floor — the near-boundary label explosion is
-fundamentally statistical, not procedural slack. Supporting evidence: a
+weighted), and measured label costs sit within a factor 1.5–3.4 of a
+Wald-style information yardstick, contextualizing rather than lower-bounding
+the procedure. Supporting evidence: a
 label-free sensor whose degradation-rank prediction generalizes out of
 the development grid (rank, not magnitude, is the defensible claim) and
 which serves as veto-only evidence; and a primary negative —
@@ -109,9 +97,9 @@ uncertainty-guided label acquisition loses to uniform sampling.
 **C2 — Classifier metrics do not certify scientific inference.**
 Classifier metrics and physics-level validity decouple: coverage
 collapses at flat AUC, with the mechanism traced to signal-region
-composition across worlds. A calibration-gate-validated profile
-likelihood restores validity exactly where its nuisance model can
-represent the shift — coverage 0.63–0.67 from 0.00–0.59, with fitted
+composition across worlds. A calibration-gate-validated fixed-template
+profile, under the shared-simulation construction, recovers coverage in
+most tested cells where its nuisance model can represent the shift — coverage 0.63–0.67 from 0.00–0.59, with fitted
 nuisances tracking the true shifts at slope 0.98–1.00 (one disclosed
 exception: the tree's JES tracking, 0.71, §6.7) and μ̂-sensitivity
 ∂μ̂/∂θ suppressed by one to two orders of magnitude — at a measured
@@ -120,10 +108,11 @@ cannot (stochastic soft-MET smearing: tracking slope 0.25–0.50,
 coverage 0.22; joint shifts under an additive morph: 0.09). The repair
 and its gate are moreover shared-simulation-conditional: registered
 independent-MC split studies show that with row-independent analyst
-templates at our MC size the profile fit is template-noise-biased
-everywhere (10/10 draws, both signs of μ̂ bias, shift-free cells
-included) and the MC-statistics-corrected counting intervals are
-conservative rather than calibrated (§6.7). The
+templates at our MC size the construction is invalid in both registered
+multi-draw cells (10/10 draws, both signs of μ̂ bias, including the
+shift-free cell) and the MC-statistics-corrected counting intervals are
+conservative rather than calibrated (§6.7). Thus validity is jointly limited
+by nuisance representability and auxiliary/template quality. The
 fail-closed ledger runs end-to-end on the complete public CMS Run2012
 H→ττ dataset (126k selected events): control-region claims certified
 with MC-side statistics propagated, the simulation-to-data shift
@@ -136,16 +125,15 @@ object — refit, recalibration and threshold all functions of the
 realized noise. We register two claim classes (deployment-relative vs
 ideal-anchored), show that conditional-on-realization certification
 keeps the marginal false-certification rate ≤ α for both (Proposition
-3), and derive when verdicts are stable across realizations
-(Proposition 4: margins beyond the measured reference movement;
-deployment-relative margins cancel common-mode movement). The theory's
-predictions are what the data trace: measured reference movement up to
-~0.05 typically (0.14 worst) exceeds far margins at 128 shots and falls
-below them at 4096, so ideal-anchored verdicts flip at 21% → 0.4% while
-deployment-relative far-margin verdicts never flip at any budget — and
-false certification stays below α in every accounting. A full-pipeline
-run on 100%-hardware kernels (28-event train Gram plus cross-Gram on
-ibm_marrakesh) behaves identically to its shot-only counterparts, with
+3), and derive conditional sufficient criteria for truth-sign and
+resolved-verdict stability across realizations (Proposition 4). E16 did not
+archive the target movements required to instantiate those criteria;
+independently, the empirical ideal-anchored far-margin flip rate falls from
+21% to 0.4%, deployment-relative far-margin verdicts never flip at any tested
+budget, and
+false certification stays below α in every accounting. A micro-scale
+full-pipeline run on 100%-hardware kernels (28-event train Gram plus cross-Gram on
+ibm_marrakesh) is fail-closed-consistent with its shot-only counterparts, with
 device noise dominating the kernel error budget ~6×.
 
 Throughout, the honest negatives stay central: no quantum advantage
@@ -269,8 +257,8 @@ transfer in robotics with betting e-processes — no information-set
 conditioning, no physics inference, no estimation-noise axis. Our
 statistical additions to this line are the exact one-sample reduction for
 weighted ratio claims (Sec. 4.3) and the worst-case-over-nuisance-box
-composition with rate evidence (Sec. 4.4); our template-statistics
-treatment follows Barlow & Beeston, and our toy conventions the standard
+composition with rate evidence (Sec. 4.4); our aggregate Gaussian
+template-variance treatment is Barlow–Beeston-inspired (BB-lite), and our toy conventions the standard
 unconditional-ensemble practice of profile-likelihood analyses.
 
 **2.6 The gap.** A pre-submission sweep surfaced four adjacent recent
@@ -334,9 +322,9 @@ form τ = M_S − δ. Unweighted per-event correctness (D-014) and
 physics-weighted estimands (D-019) are both audited: weighted accuracy
 A_w = Σ w_i c_i / Σ w_i and the class-conditional physics quantities
 TPR_w (weighted signal efficiency) and TNR_w (weighted background
-rejection). Weights are label-adjacent in this benchmark (the per-event
-weight identifies the generating process), so they are revealed only at
-labeling time — granting them earlier would leak labels into I1. The
+rejection). Weights are process- and label-informative in this benchmark,
+so event-wise values are revealed only at labeling time — granting them
+earlier would add label-adjacent information to I1. The
 information sets are I0 = {source data, f}; I1 = I0 ∪ {unlabeled target
 features}; I2(n) = I1 ∪ {n target labels (with their weights)}; I3 =
 I2(n) ∪ {control-region counts and yields from unlabeled target data,
@@ -345,10 +333,12 @@ nuisance estimates θ̂ derived from them, with declared uncertainties}.
 **Proposition 2 (weight-only unidentifiability at I0–I2; I3
 restoration).** *For weight-only θ (P_θ(X) = P_0(X), correctness process
 unchanged): (i) any I1 statistic has identical law under θ and 0, so any
-size-α test has power exactly α; (ii) the same holds at I2 with nominal
-weights; (iii) hence any claim whose truth value differs between θ and
-0 — rate claims, the true-weighted metric A_w^{(θ)} — is unresolvable at
-I0–I2, and a fail-closed auditor must return UNRESOLVED; (iv) a
+test of size at most α has power equal to its actual size and hence at
+most α (exactly α only when its size is exactly α); (ii) the same holds at
+I2 with nominal weights; (iii) hence any claim whose truth value differs
+between θ and 0 admits no nontrivial distinguishing power at I0–I2; under
+our fail-closed policy, absence of distinguishing evidence is reported
+UNRESOLVED; (iv) a
 control-region count N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0) has non-trivial
 power — I3 restores identifiability precisely because rate evidence
 enters the information set.* Proof: equality of sampling laws applied to
@@ -369,6 +359,10 @@ L_t ≥ τ, REFUTED iff U_t < τ, UNRESOLVED otherwise; heuristic sensors may
 demote SUPPORTED to UNRESOLVED and may prioritize labeling, but cannot
 create certification. The first budget at which a claim leaves UNRESOLVED
 defines n*(θ, C), a legitimate stopping time under time-uniform validity.
+Time-uniformity alone does not license arbitrary adaptive row selection:
+the registered arm uses a score-based proposal fixed before labels and
+bounded importance weights. It also does not license selecting a threshold
+or claim after viewing labels.
 
 ## 4. Method
 
@@ -393,31 +387,49 @@ empirically against simulation truth.
 
 **4.3 Weighted certification (I2).**
 
-**Theorem 1 (exact weighted anytime-valid certification).** *Let
-(c_i, u_i) be IID with c_i ∈ {0,1}, u_i ∈ [0, w_max] for a predeclared
-nonrandom bound w_max, and E[u] > 0; let R = E[u·c]/E[u] and, for a
-claim R ≥ τ, define Z_i(τ) = (u_i(c_i − τ) + τ·w_max)/w_max. Then
+**Theorem 1 (exact weighted anytime-valid certification).** *Condition on
+a frozen finite audit population and a scalar bound w_max fixed before the
+random audit order. Let (c_i, u_i) be IID draws with replacement with
+c_i ∈ {0,1}, u_i ∈ [0, w_max], and E[u] > 0; let R = E[u·c]/E[u] and,
+for a fixed τ ∈ [0,1] chosen before observing the audit label stream, define
+Z_i(τ) = (u_i(c_i − τ) + τ·w_max)/w_max. Then
 (a) Z_i(τ) ∈ [0,1] and R ≥ τ ⟺ E[Z(τ)] ≥ τ — an equivalence, not an
 approximation; (b) any time-uniform level-(1−α) confidence sequence for
 a bounded mean, applied to the Z-stream with the fail-closed rule,
-satisfies P(∃n: SUPPORTED issued ∧ R < τ) ≤ α simultaneously over all
-stopping rules; (c) the unweighted system is the special case u ≡ 1,
-w_max = 1.* Proof: boundedness and the equivalence are four lines of
-algebra using E[u] > 0; a false certification then requires a coverage
-violation of the CS at some n, an event of probability ≤ α by
-time-uniformity; substitution gives (c)
+satisfies P(∃n: SUPPORTED issued ∧ R < τ) ≤ α and
+P(∃n: REFUTED issued ∧ R ≥ τ) ≤ α over all stopping times for that fixed
+claim; (c) the unweighted system is the special case u ≡ 1,
+w_max = 1.* Proof: u(c−τ) lies in [−τw_max,(1−τ)w_max], so Z∈[0,1], and
+E[Z]−τ=E[u](R−τ)/w_max, proving the equivalence because E[u]>0. A false
+certification or false refutation then requires a coverage violation of the
+two-sided CS at some n, an event of probability ≤ α by time-uniformity;
+substitution gives (c)
 (`docs/formal_results.md`). The reduction adds *zero slack of its own*:
 the label price of weighting is paid in the variance of Z (effective
-sample size Σw²/(Σw)²), never in validity. Here u = w for A_w;
-u = w·1[y=1] for TPR_w; u = w·1[y=0] for TNR_w; w_max comes from process
-metadata and the official nuisance clip ranges. Balanced accuracy, a
+sample size (Σw)²/Σw²), never in validity. Here u = w for A_w;
+u = w·1[y=1] for TPR_w; u = w·1[y=0] for TNR_w. Labeling reveals (y_i,w_i)
+and hence u_i and c_i; event-wise weights remain unavailable at I1. The
+data-curation layer supplies only the single global scalar bound before
+sampling, not row weights or class labels; this does not enlarge I1 with
+event-level information. The scalar bound is fixed before label-order sampling
+from each frozen finite audit population: the predeclared multiplier 2.05 exceeds the largest admissible
+compound scale, 2.0×1.01=2.02, over the official nuisance clips. Both classes
+have positive archived weight mass, establishing E[u]>0 for the
+class-conditional estimands. Balanced accuracy, a
 ratio-of-ratios, gets only a conservative component bound; we audit the
 components (the physics quantities) directly instead.
+
+The guarantee is per fixed claim. Time-uniformity is simultaneous over
+labeling times and optional stopping for that claim; it is not simultaneous
+or family-wise control over the thousands of thresholds, models, and
+environments reported. Here α=0.05 is per claim; any joint family claim
+requires an explicit multiplicity adjustment.
 
 **4.4 I3: rates and worst-case reweighting.** Normalization scales are
 estimated by a joint fit to disjoint control-region counts
 (ttbar-enriched tail of the scalar-sum-p_T spectrum, and its complement),
-with template-statistics variance included Barlow–Beeston-style — a
+with a Barlow–Beeston-inspired Gaussian aggregate template-variance term
+(BB-lite) — a
 pure-Poisson fit failed its registered Monte-Carlo coverage falsifier by
 mistaking template noise for scale shifts, and the amended likelihood is
 coverage-validated at both the reporting and the chain's α levels. Rate
@@ -478,7 +490,7 @@ Run2012B+C TauPlusX H→ττ samples (126,164 selected collision events at
 ### 5.2 Models and budgets
 
 Tier A trains on a matched, stratified 2000-event budget (the
-quantum-feasible scale); tier B on the full 110k train role. Frozen
+statevector-feasible matched scale); tier B on the full 110k train role. Frozen
 hyperparameters (E01 random-search under comparable budgets, revived
 verbatim from the deployment snapshot):
 
@@ -644,7 +656,9 @@ predeclared Monte-Carlo battery — time-uniform coverage on uniform,
 benchmark-derived, and heavy-tailed weight profiles; worst
 false-certification cell 1.5% against an 8.3% slack; and an adversarial
 optional-stopping stress in which a naive Wald rule falsely certifies
-27.8% of the time while the confidence sequence holds at 0.0%. On the
+27.8% of the time while the confidence sequence holds at 0.0%.
+These correlated Monte-Carlo rates test the implementation; they are not a
+proof of the theorem or family-wise control. On the
 benchmark, with weights revealed only at labeling time and the estimand
 verified computationally (weight-only environments give byte-identical
 weighted accuracies), weighted false certification is 2/8,580 = 0.02%
@@ -655,19 +669,24 @@ streams retreat from SUPPORTED to UNRESOLVED, while 1 stream flips
 SUPPORTED→REFUTED: the weighted and unweighted estimands genuinely
 disagree about deployment health, sharpening the finding that *the metric
 named in the claim changes which claims are at risk*. For weighted
-balanced accuracy the question is now closed by a registered follow-up
-(supplement): a pre-split component allocation — sharp one-sample
-reduction per component with predeclared per-class weight bounds —
+balanced accuracy is diagnosed by a registered follow-up
+(supplement): an oracle/benchmark pre-split component allocation — sharp
+one-sample reduction per component with class maxima computed from the
+frozen labeled population —
 removes the v1 component bound's slack entirely (it resolves 0.05-margin
 claims on a class-independent-weight control where the v1 bound, radius
 0.17–0.29 in BA units, resolves nothing), and on the physics population
-it cleanly splits the verdict: weighted background rejection is fully
-certifiable (200/200 correct resolutions at margin 0.05, zero errors),
+it cleanly splits the diagnostic: weighted background rejection resolves
+in all 200/200 oracle-bound runs at margin 0.05 with zero errors,
 while weighted signal efficiency — and hence BA_w — is
 *information-limited*, not machinery-limited: the signal carries
 9.7×10⁻⁴ of the weight mass, putting its certification margin two
 orders of magnitude below the confidence-sequence radius at n = 5,000
-(implied n* ≈ 2×10⁷ uniform labels at margin 0.05). We therefore audit
+(implied n* ≈ 2×10⁷ uniform labels at margin 0.05). Because the
+class-specific bounds use full-population labels, E13v2 is not an operational
+I2 guarantee; the operational weighted results above use the global scalar
+bound fixed before the audit order. Its negative signal-efficiency result is
+nevertheless conservative as a favorable oracle benchmark. We therefore audit
 the components — the physics quantities — directly.
 
 ### 6.5 Information level I3: what restores identifiability, and what it
@@ -688,7 +707,7 @@ A pure-Poisson control-region fit failed its registered coverage
 falsifier (ŝ_ttbar biased +0.07 with zero coverage): analyst templates
 carry Monte-Carlo statistics (2.4% in the ttbar-enriched region at our
 sample size) that a pure-Poisson likelihood misreads as scale shifts. The
-Barlow–Beeston-amended fit is coverage-valid — and honest about its
+BB-lite Gaussian aggregate template-variance fit is coverage-valid — and honest about its
 resolution: s_ttbar ±10%, s_bkg's interval saturating the official clip
 range in 99% of replications ("no information beyond the prior clip").
 Predeclared tight bands therefore stay UNRESOLVED, fail-closed; only
@@ -709,20 +728,17 @@ say so rather than overclaiming CR evidence.
 
 n* is sharply margin-driven: ~180 labels at |margin| ≥ 0.08; ~870 at
 0.04–0.08; ~13,000 at 0.01–0.02; below 0.01 the fail-closed UNRESOLVED
-region dominates even at 20,000. Those costs are close to fundamental:
-against the Wald information yardstick log(1/α)/KL(Ber(p) ‖ Ber(τ)) —
-a floor for *any* sequential procedure with type-I error ≤ α — the
-measured median stopping times sit a factor 2.07 above the bound overall
+region dominates even at 20,000. We contextualize those costs against the
+Wald-style information yardstick log(1/α)/KL(Ber(p) ‖ Ber(τ)). The
+measured median stopping times are a factor 2.07 above this benchmark overall
 (IQR 1.56–2.97), from ×1.46 at large margins to ×3.35 near the boundary
-(518 resolved cells; Fig. 6). The near-boundary label explosion is
-fundamentally statistical — the information floor itself diverges as
-KL ≈ 2·margin² — and the confidence sequence's own overhead is a bounded
-small factor; no minimax optimality is claimed. Uncertainty-guided
+(518 resolved cells; Fig. 6). The benchmark diverges as
+KL(Ber(τ+m) ‖ Ber(τ)) = m²/[2τ(1−τ)] + O(m³) = Θ(m²), illustrating the
+statistical difficulty near the boundary; no universal lower bound,
+expected-stopping-time comparison, or minimax optimality is claimed. Uncertainty-guided
 acquisition loses to uniform (median n* ratio 1.55; better in 10% of
 cells; Fig. 6) — a primary negative result that simplifies practice.
-Principled variance-reduction estimators (LURE-style control variates,
-stratified without-replacement sampling) remain registered as the
-candidate second round before the question is declared closed.
+No further acquisition arm is part of the frozen study.
 
 ### 6.7 Physics-level validity: decoupling, its mechanism, and the price
 of restoring it (E08, E12, E15; Figs. 7 and 7b)
@@ -752,8 +768,9 @@ nuisances profiled, validated by a per-model nominal calibration gate
 (A:qksvc 0.682, A:rbf_svc 0.680, A:xgboost 0.658 pass; the scale-trained
 tree overcovers marginally at 0.717 and is gate-excluded from every
 shifted-environment claim) — cleanly splits the answer by nuisance type.
-Where the nuisance model matches the physics, profiling restores
-validity: mean coverage rises from 0.000/0.002 (counting) to 0.653/0.629
+Under the shared-simulation construction, profiling recovers validity in
+most tested scale and normalization cells that its nuisance model represents:
+mean coverage rises from 0.000/0.002 (counting) to 0.653/0.629
 for TES/JES and from 0.27–0.59 to 0.67 for the three normalization
 scales; in the flagship cell (TES −2σ, A:xgboost) coverage goes
 0.000 → 0.719 with the fitted TES pull −2.007 — the profile *finds* the
@@ -812,21 +829,23 @@ fired, and the multi-draw evaluation returned the strongest registered
 form of each outcome. Counting: the shared-simulation control
 reproduces 0.6827–0.6830 exactly (marginally over draws), naive
 independent beliefs collapse coverage to 0.065–0.086, and the
-Barlow–Beeston-style delta-method correction does *not* restore
+BB-inspired delta-method correction does *not* restore
 nominal calibration — it over-covers at 0.70–0.83 because the
 weight-noise distribution is heavy-tailed and the Gaussian ±1σ
 quantile is wrong even though the variance term is right. The
 registered claim that the corrected estimator closes the
 shared-simulation deferral is therefore withdrawn; the correction's
 failure direction is conservative (fail-closed), never
-anticonservative. Profile: with row-independent templates the L2 fit
+anticonservative. Profile: with row-independent templates this fixed-template L2 fit
 is invalid in 10/10 draws at the flagship cell (coverage 0.000–0.238
 against 0.719 shared) *and* in 10/10 draws at the shift-free nominal
 control (0.000–0.359), with μ̂ biases of both signs across draws (−6.6
 to +7.5). "Profiling restores validity" is thus
 **shared-simulation-conditional**: at independent-MC template
-statistics of this size, template noise biases the profile fit
-everywhere, including nominal. The framework's own gate behaves
+statistics of this size, template noise invalidates the construction in
+both registered multi-draw cells across 10/10 splits, including nominal
+(and in all six one-draw E08v2 spot checks). This does not claim that an
+MC-statistics-aware profile fails in general. The framework's own gate behaves
 correctly under the honest input — a calibration gate fed
 independent-MC nominal cells collapses and would have refused to
 validate the profile. The optimism lived in the validation evidence,
@@ -838,43 +857,47 @@ of the profiled repair itself.
 
 The claim semantics of Section 3 (C_dep vs C_ideal) carry two formal
 consequences, both deliberately elementary — their content is the
-semantics, and the fact that this section's measurements instantiate
-them.
+semantics. The measurements instantiate Proposition 3; Proposition 4 remains
+conditional because its required target-movement quantities were not archived.
 
-**Proposition 3 (validity under estimated deployments).** *If the
-certification procedure, applied to the realized pipeline's own label
-stream, controls false certification at level α conditionally on every
+**Proposition 3 (validity under estimated deployments).** *If, conditional on
+each realization ω, the audit label stream remains IID from a population
+disjoint from training, calibration, and threshold selection, and the
+certification procedure controls false certification at level α on the
+realized pipeline's own stream for every
 realization ω — which is Theorem 1 at fixed ω, the claim threshold being
 a constant given ω — then the marginal false-certification rate over
 deployment randomness satisfies P(false certification) =
 E_ω[P(false certification | ω)] ≤ α, for both claim classes.* Proof:
 tower property. Deployment randomness moves which claims are *true* and
 *resolvable* (through τ(ω) and M_T(f̃_ω)); it never touches the validity
-of what is certified. This is where the quantum setting genuinely
-differs from the classical one: classical training randomness is
-seed-controllable, while estimated kernels make the deployed object
-physically random — irreducibly so on hardware — and the certification
-layer must be, and is, indifferent to that.
+of what is certified. Classical pipelines may also contain training or
+inference randomness. Quantum-kernel evaluation adds an additional
+measurement-induced deployment uncertainty intrinsic to finite-shot and noisy
+quantum execution; the certification layer is indifferent to its origin.
+quantum execution; the certification layer must be, and is, indifferent to its origin.
 
-**Proposition 4 (verdict stability under bounded movement).** *With
-signed movements ΔM_T(ω), ΔM_S(ω) of the realized deployment's target
-and source metrics, the realized margin obeys |m(ω) − m⋆| ≤ |ΔM_T| for
-C_ideal and |m(ω) − m⋆| ≤ |ΔM_T − ΔM_S| for C_dep; if the ideal margin
-exceeds the relevant movement bound and the audit resolves, then — on
-the confidence sequence's coverage event, probability ≥ 1 − α, the same
-α already spent — the realized verdict equals the ideal one. When
+**Proposition 4 (truth-sign and resolved-verdict stability under bounded
+movement).** *With signed movements ΔM_T(ω), ΔM_S(ω) of the realized
+deployment's target and source metrics, m(ω)−m⋆=ΔM_T for C_ideal and
+m(ω)−m⋆=ΔM_T−ΔM_S for C_dep. Thus |m⋆|>|ΔM_T| or, respectively,
+|m⋆|>|ΔM_T−ΔM_S| is sufficient to preserve the truth sign; failure of
+the sufficient condition gives no conclusion. If both the ideal and realized
+audits resolve, their decisive verdicts coincide on the intersection of their
+CS coverage events (probability at least 1−2α without joint calibration, or
+1−α if each is run at α/2). When
 movement is common-mode (refit and
 recalibration shift source and target together), C_dep margins cancel it
 while C_ideal margins absorb ΔM_T in full — deployment-relative claims
-are structurally the stabler class.* Proof: triangle inequality plus the
-determinism of the fail-closed rule given covering CS bounds
-(`docs/formal_results.md`). The movement magnitudes are *measured, not
-derived* — per-budget distributions from the 30 archived noisy
-deployments (Fig. S16) — and they predict what follows: at 128 shots the
-measured reference movement (typically up to ~0.05; worst 0.139) exceeds
-the far-margin band |m| ≥ 0.04, so C_ideal far verdicts must flip and
-C_dep far verdicts must not; at 4096 shots the movement falls below the
-band and both stabilize.
+are structurally the stabler class.* Proof: substitute the signed movements
+into each margin. If the movement's magnitude is smaller than |m⋆|, the sign
+cannot cross zero. On each coverage event, any decisive verdict points to the
+true sign; intersection and a union bound give the stated resolved-verdict
+result (`docs/formal_results.md`). The E16 artifact archives ΔM_S and empirical
+flip rates, but not ΔM_T or ΔM_T−ΔM_S; therefore Figure S16 and Table S6 do not
+instantiate the sufficient conditions. Proposition 4 remains a conditional
+result, and the flip rates below are independent empirical evidence rather
+than theory predictions.
 
 ### 7.1 Finite shots (E09, E16; Figs. 8 and 8b)
 
@@ -894,8 +917,9 @@ in worst-case magnitude, so the same claim resolves differently — far-margin f
 non-monotone); moderate 71% → 40%. The
 quantitative answer to the title question of this section: *whether
 quantum estimation uncertainty changes a scientific validity verdict
-depends on the claim's margin and its anchoring, with ≳4k shots needed
-before fixed-reference verdicts stabilize* — and in both accountings,
+depends on the claim's margin and its anchoring; in this frozen deployment
+under the tested binomial shot-only model, far fixed-reference flips are
+mostly absent by 4096 shots* — and in both accountings,
 empirical false certification stays below α (own-τ 0.5–1.3%;
 fixed-τ 0 false certifications on 80 genuinely-false far-margin claims at
 128 shots). Estimation noise changes what is resolvable; it never breaks
@@ -907,7 +931,7 @@ ibm_marrakesh (Heron r2). The development-era kernel study (496
 compute–uncompute circuits × 2048 shots, 32 events, raw counts, no
 mitigation) found device noise dominating the estimation budget ~8× over
 shot noise, fidelities biased down, and the Gram still PSD. The campaign
-adds the first 100%-hardware *deployment* Grams: a 28-event train Gram
+adds the project's first 100%-hardware *deployment* Grams: a 28-event train Gram
 plus a 28×12 cross-Gram (714 circuits × 1024 shots, 200 s QPU, test
 events half nominal / half TES-shifted), auto-sized to the free-tier
 budget. The hardware kernel error is 12.7% against 2.1% shot-only at the
@@ -922,9 +946,7 @@ the full pipeline on a real device* — REFUTED and UNRESOLVED where they
 should be, never certified — not a hardware performance claim. Protocol
 deviations forced by scale (decision-function deployment without Platt
 calibration; absolute τ grid; budget-ladder sizing) are disclosed in the
-registry. The proposed BasQ-scale campaign
-(`docs/basq_e10v2_proposal.md`) remains the registered path to
-hardware-kernel certification at statistically meaningful scale.
+registry. No hardware-performance or scale-certification claim is made.
 
 ## 8. Simulation-to-Real Demonstration (E11, E11v2, E11v3; Fig. 9 = ledger)
 
@@ -940,9 +962,9 @@ which is itself the demonstration:
 | Claim | mirror | full data | hardened (v3) |
 |---|---|---|---|
 | C1 event accuracy on data | UNRESOLVED | UNRESOLVED | UNRESOLVED — by construction; more data cannot change this, which is the point |
-| C2 W normalization ≤ 30% (high-mT CR) | SUPPORTED, 0.922 [0.885, 0.961] | SUPPORTED, 0.9495 [0.937, 0.962] — 3× tighter, √N-consistent | SUPPORTED with MC-stat propagated into the interval (the margin dwarfs it) |
+| C2 total-MC normalization ≤ 30% (W-enriched high-mT CR; fixed non-W, QCD absent) | SUPPORTED, 0.922 [0.885, 0.961] | SUPPORTED, 0.9495 [0.937, 0.962] — 3× tighter, √N-consistent | SUPPORTED, MC-stat propagated: [0.9042, 0.9972] |
 | C3 no MC→data shift at sensor floor | REFUTED (2.6× floor) | REFUTED (2.5× floor) | REFUTED, calibrated: p = 0.005 against a 200-draw null and p = 0.001 by permutation, in *every one* of 20 observation draws |
-| C4 SS-region QCD excess | SUPPORTED, z = 18.6 | SUPPORTED, z = 59.4 | SUPPORTED with MC-stat in the denominator (z still ≫ 5) |
+| C4 SS data excess over non-QCD MC, consistent with QCD | SUPPORTED, z = 18.6 | SUPPORTED, z = 59.4 | SUPPORTED with MC-stat in the denominator, z=18.78 |
 
 Aggregate physics claims are certifiable from control-region evidence;
 event-level performance claims are not — and the framework says so
@@ -985,7 +1007,8 @@ unweighted MC row samples with data, matching v1/v2 for comparability.
   unaffected); the balanced-accuracy path is measured as
   information-limited at physics weight dispersion — weighted signal
   efficiency needs ≈ 2×10⁷ uniform labels at margin 0.05, while
-  background rejection certifies cleanly (E13v2, supplement; upgrades
+  background rejection resolves under the favorable oracle class bound
+  (E13v2, supplement; upgrades
   the earlier "component bound is vacuous" disclosure to a measured
   impossibility with its mechanism);
   L2/L3 morphing is additive across nuisances (combo cells carry
@@ -1006,6 +1029,10 @@ unweighted MC row samples with data, matching v1/v2 for comparability.
   corrected counting intervals are conservative rather than calibrated
   — the shared-simulation caveat is thereby quantified, not removed,
   and the corresponding registered falsifiers fired and were obeyed.
+  The initial global optimizer-success flag is conservative and falls as low
+  as 0.382 in E15; analytic gradients, multi-start fitting, a monotone lower-minimum
+  safeguard, and the nominal coverage gate support the delivered fits but do
+  not prove global optimization in every shifted cell.
 - **Scope:** conclusions are conditional on the declared information
   sets, the H→ττ process, and the benchmark's weight-only implementation
   of normalization nuisances; no quantum advantage is claimed anywhere,
@@ -1022,17 +1049,20 @@ information the deployment possesses (certification is cheap at margin,
 impossible without labels, and physics inference is at risk exactly where
 feature-distribution evidence is provably blind); the information's
 *quality* (I3 restores identifiability in principle, with resolving power
-set by template statistics; profiling restores coverage exactly where its
-nuisance model matches the physics, at a ×1.8–3.4 interval-width price,
-and fails against the stochastic and joint shifts it cannot represent);
+set by template statistics; under shared simulation the fixed-template
+profile recovers most representable cells at a ×1.8–3.4 interval-width
+price, while independent-MC results show that auxiliary quality is a second
+condition, and it fails against shifts its morph cannot represent);
 and the information's *stability
 under estimation noise* (quantum uncertainty moves the deployed
-pipeline's reference points, flipping fixed-reference verdicts until shot
-budgets reach thousands — while never breaking error control). This is an
+pipeline's reference points, with empirical fixed-reference flips decreasing
+across the tested shot budgets while never breaking per-claim error control).
+This is an
 argument for information-set-conditional auditing as standard practice
 for ML-based physics analyses, quantum or classical — with the quantum
-case adding one genuinely new ingredient: the deployment itself is a
-random object whose certification must be anchored explicitly.
+case instantiating an additional measurement-induced deployment uncertainty
+that propagates through Gram estimation, refitting, calibration, and threshold
+selection. C1 and C2 are generic; this propagation is the QML-specific role of E09/E10/E16.
 
 ## 11. Conclusion
 
@@ -1041,20 +1071,24 @@ actually valid when uncertainty arrives simultaneously from collider
 deployment and from quantum estimation, and we answered conditionally,
 which is the only honest way to answer it. Under nuisance-induced
 distribution shift the quantum-kernel classifier behaves like a
-competitive member of its model family — small replicated degradations,
+competitive member of its model family — small within-world replicated but
+cross-world unstable responses,
 no special fragility, no special robustness, and after a matched-kernel
 control, no quantum-specific sensing advantage either. What the study
 establishes is a validation discipline with measured properties: an
-information-set-conditional, fail-closed auditor with anytime-valid error
+information-set-conditional, fail-closed auditor with anytime-valid per-claim error
 control, extended exactly to the physics-weighted estimands analysts
 actually care about; a formal identifiability boundary at feature-
 distribution evidence, resolved by rate evidence whose power we bound by
 its template quality; a decoupling of classifier metrics from physics
 validity whose mechanism — signal-region composition under invisible
 yield shifts — survived and was sharpened by a provably disjoint
-confirmatory holdout; and a quantum-estimation-uncertainty study showing
-that noise relocates what is resolvable without ever breaking the
-validity of what is certified, on simulated kernels and on a real QPU.
+confirmatory holdout, while fixed-template repair validity proved jointly
+limited by nuisance representability and auxiliary/template quality; and a
+quantum-estimation-uncertainty study showing
+that measurement noise relocates what is resolvable without breaking
+per-claim validity, on simulated kernels and in a micro-scale fail-closed
+QPU demonstration.
 The framework's components are generic; nothing is specific to H→ττ, to
 kernels, or to quantum models. Its registered falsifiers and audits forced six corrections during this
 campaign and were obeyed every time — which is, we believe,
@@ -1104,29 +1138,33 @@ region is confined to |margin| ≲ 0.01.
 **Figure 6 (label economics).** (a) Paired n* ratio of
 uncertainty-guided acquisition vs uniform sampling over 480 jointly
 resolved cells (ECDF): the median ratio 1.55 is a primary negative
-result. (b) Measured median stopping times against the Wald information
-floor log(1/α)/KL by margin bucket: certification costs sit a small
-factor (1.46–3.35) above a bound no sequential procedure can beat.
+result. (b) Measured median stopping times relative to the Wald-style
+information yardstick log(1/α)/KL by margin bucket: ratios are 1.46–3.35.
+This contextual benchmark is not an optimality bound.
 
 **Figure 7 (physics decoupling; (a) counting, (b) inference levels).**
 (a) Coverage vs |ΔAUC| for the deployment-blind counting estimator:
 validity collapses at flat AUC. (b) Coverage by nuisance family at
-L1/L2/L3: profiling restores validity where the nuisance model can
-represent the shift and fails where it cannot (soft-MET, combinations);
-omitting the shifted family (L3) re-collapses it.
+L1/L2/L3 under shared simulation: the fixed-template profile recovers most
+representable scale/normalization cells and fails where the morph cannot
+represent the shift; one JES cell is a disclosed exception. Independent-MC
+results separately show auxiliary-template quality is a second condition.
 
 **Figure 8 (estimation uncertainty; (a) kernels and hardware, (b)
-verdict stability).** (a) Kernel estimation error vs shot budget with
-the hardware point (device excess over the shot floor). (b) Verdict
-flips under the two claim anchorings per shot budget: deployment-
-relative far-margin verdicts never flip; ideal-anchored far-margin flips
-disappear once the measured reference movement falls below the margin
-(Proposition 4's prediction traced by the data).
+verdict stability).** (a) The E09 n_train=2000 shot-only curve and AUC;
+the E10 n=32, 2048-shot hardware diagnostic is shown separately with its
+matched local shot floor (~0.020), so the scales are not conflated. (b) E16
+simulated-deployment verdict flips under the two claim anchorings per shot budget: deployment-
+relative far-margin verdicts never flip; ideal-anchored far-margin flips fall
+from 20.8% at 128 shots to 0.4% at 4096. These rates are separate from
+Proposition 4's uninstantiated sufficient condition. The separate E16 n=28
+hardware micro-arm is discussed in §7.2 and is not plotted.
 
 **Figure S16 (supplementary; estimation diagnostics).** Per-configuration
 kernel diagnostics for the 30 noisy deployments: Frobenius error
-following 1/√shots, effective-rank inflation, and the reference
-movement |ΔM_S| whose per-budget distribution calibrates Proposition 4.
+following 1/√shots, effective-rank inflation, and source movement |ΔM_S|.
+E16 did not archive ΔM_T or ΔM_T−ΔM_S, so this figure cannot instantiate
+Proposition 4.
 
 **Table 1 (claim × information set).** What each information level can
 resolve, with measured error rates (§6.5).

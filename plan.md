@@ -33,7 +33,7 @@ Done and committed:
   C_dep/C_ideal), §5 redesigned, E17/E19/E11v3 integrated, back matter
   finalized (reproducibility, availability, acknowledgements); falsifier
   tally harmonized to five firings. Archive-mining items F1.1–1.6 all
-  landed (∂μ̂/∂θ, n* vs Wald floor, Figs 3/6/S16, E19).
+  landed (∂μ̂/∂θ, n* vs Wald-style yardstick, Figs 3/6/S16, E19).
 - Number-verification pass (~178 exact matches); figures 3/6/S16 and
   4b/7b/8b validated.
 - Release hygiene D-030: README/CITATION current, CI workflow, container

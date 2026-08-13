@@ -186,23 +186,29 @@ def fig8() -> None:
                for k, v in e09["configs"].items()
                if k.startswith(f"shots{s}_")] for s in shots}
     hw_frob = e10["kernels"]["hardware"]["stats_vs_ideal"]["frob_rel_err"]
+    local_frob = [v["frob_rel_err"] for v in
+                  e10["kernels"]["shots_local"]["stats_vs_ideal"]]
+    local_mean = float(np.mean(local_frob))
     exact_auc = e09["exact"]["envs"]["nominal"]["auc"]
 
-    fig, axes = plt.subplots(2, 1, figsize=(4.6, 4.6), sharex=True,
-                             height_ratios=[1.1, 1.0])
+    fig, axes = plt.subplots(2, 1, figsize=(4.0, 5.2), sharex=True,
+                             height_ratios=[1.15, 1.0])
     ax = axes[0]
     m = [np.mean(frob[s]) for s in shots]
-    ax.plot(shots, m, color=C["qksvc"], lw=2, marker="o", ms=5)
+    ax.plot(shots, m, color=C["qksvc"], lw=2, marker="o", ms=5,
+            label="E09 shot-only ($n=2000$)")
     ax.plot(shots, m[0] * np.sqrt(shots[0] / np.array(shots)), color=MUTED,
             lw=1, ls=":", label=r"$1/\sqrt{\mathrm{shots}}$")
-    ax.axhline(hw_frob, color=C["xgboost"], lw=2, ls="--")
-    ax.text(shots[0], hw_frob * 1.12,
-            f"hardware (ibm_marrakesh, 2048 shots): {hw_frob:.3f}",
-            color=INK, fontsize=7.5)
+    ax.scatter([2048], [local_mean], color=C["rbf_svc"], marker="D", s=42,
+               zorder=4, label=f"E10 local shots ($n=32$): {local_mean:.3f}")
+    ax.scatter([2048], [hw_frob], color=C["xgboost"], marker="s", s=46,
+               zorder=4, label=f"E10 hardware ($n=32$): {hw_frob:.3f}")
     ax.set_xscale("log")
     ax.set_yscale("log")
+    ax.minorticks_off()
     ax.set_ylabel("kernel error (rel. Frobenius)")
-    ax.legend(frameon=False, fontsize=7.5, loc="lower left")
+    ax.set_title("Kernel error (E09 and local E10 scales differ)", fontsize=9.5)
+    ax.legend(frameon=False, fontsize=7.2, loc="lower left")
 
     ax = axes[1]
     mu = [np.mean(auc[s]) for s in shots]
@@ -214,9 +220,16 @@ def fig8() -> None:
     ax.text(shots[0], exact_auc + 0.002, f"exact kernel: {exact_auc:.3f}",
             color=INK2, fontsize=7.5)
     ax.set_xscale("log")
+    ax.minorticks_off()
     ax.set_xlabel("shots per kernel entry")
     ax.set_ylabel("nominal test AUC")
-    fig.suptitle("Finite-shot estimation and the hardware point", fontsize=10)
+    ax.set_title("E09 downstream AUC ($n=2000$)", fontsize=9.5)
+    ax.set_xticks(shots)
+    ax.set_xticklabels(["128", "256", "512", "1k", "2k", "4k"],
+                       rotation=28, ha="right")
+    fig.suptitle("Finite-shot estimation and the E10 hardware diagnostic",
+                 fontsize=10.5, y=0.995)
+    fig.subplots_adjust(hspace=0.28)
     save(fig, "fig8_shots_hardware")
 
 

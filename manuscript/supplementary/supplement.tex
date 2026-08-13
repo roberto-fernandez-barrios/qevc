@@ -19,9 +19,9 @@
 \renewcommand{\thetable}{S\arabic{table}}
 \setcounter{figure}{15}
 
-\title{Supplementary Material for\\
-\emph{When Can Quantum Event Classifiers Be Trusted? Conditional Validity
-under Collider Systematics and Quantum Estimation Uncertainty}}
+\title{Supplementary Information for\\
+\emph{Conditional validity of quantum event classifiers under collider
+systematics and quantum estimation uncertainty}}
 \author{Roberto Fern\'andez-Barrios\orcidlink{0009-0003-5312-2634}\textsuperscript{1,*},
 Iker Pastor-L\'opez\orcidlink{0000-0002-3068-6248}\textsuperscript{1}\\
 Asier Gonz\'alez-Santocildes\orcidlink{0009-0002-8888-8560}\textsuperscript{1},
@@ -45,9 +45,10 @@ first-run tables remain in the repository under \texttt{*\_v1\_*.json}.
 
 \subsection{Exact weighted anytime-valid certification}
 
-For IID labeled draws $(c_i,u_i)$, with $c_i\in\{0,1\}$,
-$u_i\in[0,w_{\max}]$, $E[u]>0$, and
-$R=E[uc]/E[u]$, fix a claim $R\geq\tau$ and define
+Condition on a frozen finite audit population and a scalar $w_{\max}$ fixed
+before the random audit order. For IID with-replacement labeled draws
+$(c_i,u_i)$, with $c_i\in\{0,1\}$, $u_i\in[0,w_{\max}]$, $E[u]>0$, and
+$R=E[uc]/E[u]$, fix $\tau\in[0,1]$ before observing the audit label stream and define
 \[
  Z_i(\tau)=\frac{u_i(c_i-\tau)+\tau w_{\max}}{w_{\max}}.
 \]
@@ -66,18 +67,38 @@ $n$. Thus
 \[
  P\{\exists n:\text{SUPPORTED and }R<\tau\}\leq\alpha
 \]
-under arbitrary stopping. Setting $u\equiv1$ and $w_{\max}=1$ recovers
+under arbitrary stopping; symmetrically,
+$P\{\exists n:\text{REFUTED and }R\geq\tau\}\leq\alpha$. Both kinds of
+incorrect decisive verdict are contained in the same two-sided CS coverage
+failure, so their union for this fixed claim is also bounded by $\alpha$.
+Setting $u\equiv1$ and $w_{\max}=1$ recovers
 the unweighted construction. Weighting changes the variance and hence
-the stopping time, but adds no validity slack.
+the stopping time, but adds no validity slack. Labeling reveals $(y_i,w_i)$
+and therefore $u_i=w_i$, $w_i1[y_i=1]$, or $w_i1[y_i=0]$ as appropriate;
+event-wise weights remain unavailable to I1. The data-curation layer supplies
+only the single global scalar bound before sampling, not row weights or class
+labels; this does not enlarge I1 with event-level information. Both classes have positive
+archived weight mass, establishing $E[u]>0$ for the class-conditional cases.
+The multiplier 2.05 covers the largest admissible compound scale
+$2.0\times1.01=2.02$.
+
+This guarantee is per fixed claim and simultaneous only over its labeling
+times/stopping rules. It is not FWER or simultaneous control over thresholds,
+models, or environments; selecting $\tau$ or a claim after labels requires a
+separate multiplicity construction. Time-uniformity also does not validate
+arbitrary adaptive row selection. E07 instead uses a score-based proposal
+fixed before labels and bounded importance weights.
 
 \subsection{Information-set boundary for weight-only nuisances}
 
 For a weight-only nuisance $P_\theta(X)=P_0(X)$ and an unchanged
 correctness process. Hence every I1 statistic has the same sampling law
 under $\theta$ and $0$, and so does I2 when labels carry nominal weights.
-Any size-$\alpha$ test based on those observations has power exactly
-$\alpha$ against the nuisance. A fail-closed auditor must leave any claim
-whose truth changes only through the hidden rate weights UNRESOLVED.
+Any test of size at most $\alpha$ based on those observations has power equal
+to its actual size and hence at most $\alpha$ against the nuisance (exactly
+$\alpha$ only for exact size $\alpha$). No nontrivial distinction is possible;
+under our fail-closed policy, absence of distinguishing evidence is reported
+UNRESOLVED for claims whose truth changes only through hidden rate weights.
 
 At I3 a control-region count $N\sim\operatorname{Poisson}(\lambda(\theta))$
 with $\lambda(\theta)\ne\lambda(0)$ changes the sampling law and restores
@@ -94,7 +115,8 @@ tighter claims unresolved.
 
 Let $\omega$ denote the finite-shot or hardware realization and
 $\widetilde f_\omega$ the resulting refit, recalibration, and threshold.
-If the audit controls false certification conditionally,
+If, conditional on $\omega$, the audit stream remains IID and disjoint from
+training, calibration, and threshold selection, and the audit controls false certification,
 \[
  P(\text{false certification}\mid\omega)\leq\alpha,
 \]
@@ -105,33 +127,41 @@ deployment-relative and ideal-anchored claim classes:
  =E_\omega[P(\text{false certification}\mid\omega)]\leq\alpha.
 \]
 
-For signed target and source movements $\Delta M_T$ and $\Delta M_S$,
-the ideal-anchored margin moves by at most $|\Delta M_T|$, while the
-deployment-relative margin moves by
-$|\Delta M_T-\Delta M_S|$. On the confidence-sequence coverage event,
-if the movement is smaller than the ideal margin and the realized audit
-resolves, the verdict sign is unchanged. For weighted claims the
+For signed target and source movements $\Delta M_T$ and $\Delta M_S$, the
+exact margin movements are $\Delta M_T$ for the ideal-anchored claim and
+$\Delta M_T-\Delta M_S$ for the deployment-relative claim. Therefore
+$|m^\star|>|\Delta M_T|$ or, respectively,
+$|m^\star|>|\Delta M_T-\Delta M_S|$ is sufficient to preserve the truth-sign;
+failure of a sufficient condition gives no conclusion. On coverage, any
+decisive verdict points to that sign. Equality of two realized ternary
+verdicts additionally requires that both audits resolve and that both CSs
+cover: without joint calibration the intersection probability is at least
+$1-2\alpha$, or $1-\alpha$ if each audit uses $\alpha/2$. For weighted claims the
 metric-scale margin is mapped to the certification scale by
 $E[u]/w_{\max}$. Common-mode movement cancels from the
 deployment-relative margin but not from the ideal-anchored margin.
-Figure~\ref{fig:s16} and Table~\ref{tab:e16} show the measured movement
-distributions that instantiate these conditions; no first-principles
-Frobenius-to-metric bound is claimed.
+E16 archives only $\Delta M_S$, not $\Delta M_T$ or
+$\Delta M_T-\Delta M_S$; Figure~\ref{fig:s16} and Table~\ref{tab:e16}
+therefore do not instantiate either condition. The proposition remains
+conditional, while archived flip rates are independent empirical evidence.
 
 \subsection{Pre-split component allocation for weighted balanced accuracy}
 
 For $\mathrm{BA}_w=(\mathrm{TPR}_w+\mathrm{TNR}_w)/2\geq\tau_{\rm BA}$,
-predeclare component thresholds $\tau_1,\tau_2$ satisfying
+the mathematical construction can predeclare component thresholds $\tau_1,\tau_2$ satisfying
 $(\tau_1+\tau_2)/2=\tau_{\rm BA}$ and error levels
 $\alpha_1+\alpha_2=\alpha$. Each component uses the exact one-sample
-reduction with its predeclared class-specific bound. The BA claim is
+reduction with a valid class-specific bound. The BA claim is
 SUPPORTED only if both components are supported, REFUTED only if both are
 refuted, and UNRESOLVED otherwise. If BA is false, at least one component
 claim is false; certifying it requires a coverage violation. A union bound
 therefore controls false certification at $\alpha$. The symmetric argument
-controls false refutation. Table~\ref{tab:e13v2} shows that the removable
-ratio-CS slack disappears on the synthetic control, while the benchmark's
-weighted signal fraction makes the physics case information-limited.
+controls false refutation. In the executed E13v2 battery, however, the class
+maxima were calculated using labels from the complete frozen population.
+It is therefore an oracle/benchmark diagnostic rather than an operational
+I2 guarantee. Table~\ref{tab:e13v2} shows that even this favorable oracle
+construction is information-limited by the benchmark's weighted signal
+fraction; successful TNR resolutions are reported only in that diagnostic sense.
 
 \section{Registered falsifiers and audit trail}
 
@@ -151,7 +181,7 @@ Arm & Frozen condition & Observed firing & Consequence obeyed \\
 Arm & Frozen condition & Observed firing & Consequence obeyed \\
 \midrule
 \endhead
-E02R & TES sign pattern fails multi-seed replication & Up-shift monotonicity in only 2/5 seeds & Symmetric TES narrative withdrawn; only small down-shift degradation retained. \\
+E02R & TES sign pattern fails multi-seed replication & Up-shift monotonicity in only 2/5 seeds & Down-shift retained provisionally within-world; E17 later withdrew the directional cross-world claim. \\
 E12(e) & Two flagship decoupling cells fail to reproduce & Diboson flagship cells stayed nominal-like in the fresh world & Normalization-collapse statement scoped to signal-region composition; failing registered cells kept. \\
 E14 v1 & Control-region interval coverage below nominal & Pure-Poisson fit gave ttbar bias $+0.07$ and zero coverage & Run blocked; template-statistics likelihood registered, then rerun as v2. \\
 E15 gate & Nominal L2 coverage outside $0.6827\pm0.02$ & Conditional-ensemble and numerical-conditioning implementations each failed & Both grids blocked; ensemble semantics and optimizer fixed before any shifted claim. \\
@@ -178,6 +208,7 @@ Pre-campaign, 2026-08-11 & All E00--E11 code, tables, splits, and governance & S
 Post-campaign, 2026-08-11 & E12--E16, E04v3, E11v2; 172 registry values and about 178 manuscript claims & E13 nominal-weight estimand fixed and rerun; E15 gate rejected two implementations; E16 dual accounting added; E12 normalization reading corrected; all superseded tables retained. \\
 Pre-submission, 2026-08-12 & Extension runners, figure scripts, and line-by-line formal proofs & Two HIGH findings fixed: JES tracking scoped and disclosed; E19 weighted estimand corrected and rerun. Proposition 4 gained its coverage-event and scale-bridge qualifiers. Eight LOW findings were fixed, completed, disclosed, or documented. \\
 F8.2, 2026-08-12 & Final LaTeX, supplement, number trace, semantic equivalence, rendered PDFs & E08v3 bias range corrected from $+6.1$ to the archived $+7.5$ endpoint; the nine-arm counting convention made explicit. \\
+Final mathematical/editorial, 2026-08-12 & Proposition 2, Theorem 1, Proposition 4, C2/C3, E17, figures, and three independent adversarial reviews & Claims were restricted to their exact mathematical and evidential scope: per-claim rather than family-wise control; finite-population-conditional weight bounds; conditional Proposition 4 with empirical flips separated; joint nuisance-representability/template-quality limits; no new experiment or result. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -194,6 +225,11 @@ family omitted. Only the three models that passed the nominal L2 gate are
 shown. Units are $\mu$ per nuisance unit: per standard deviation for TES
 and JES, per GeV for soft-MET, and per unit scale for the normalization
 families.
+
+The archived initial global optimizer-success flag is conservative and falls
+as low as 0.382. Analytic gradients, multi-start fitting, a
+monotone lower-minimum safeguard, and the nominal coverage gate support the
+reported solutions but do not prove global optimization in every shifted cell.
 
 \footnotesize
 \begin{longtable}{llrrrr}
@@ -250,6 +286,9 @@ Weighted, nominal weights & 6/7,980 = 0.075\% & 4/11,700 = 0.034\% & 5.732\% \\
 score comparisons were byte-identical before auditing. The weighted bound
 was $w_{\max}=7.22421\times2.05=14.80963$. The corrected nominal-weight
 estimand is invariant across all 12 weight-only environments.}
+\parbox{0.94\linewidth}{\footnotesize These correlated Monte-Carlo rates are
+implementation stress tests, not a proof of the theorem or family-wise error
+control across the claim grid.}
 \end{table}
 
 \begin{table}[H]
@@ -278,9 +317,10 @@ Refutation direction & 31 & 3.12 & 3.34 & 3.65 \\
 \centering
 \includegraphics[width=0.98\linewidth]{figS16_estimation_diagnostics.pdf}
 \caption{Per-configuration diagnostics for all 30 noisy deployments:
-relative Frobenius error, effective-rank inflation, and source
-reference movement. The empirical distributions, rather than a claimed
-analytic kernel-to-metric bound, calibrate the stability conditions. Source:
+relative Frobenius error, effective-rank inflation, and source-reference
+movement $|\Delta M_S|$. The target movement $\Delta M_T$ and the difference
+$\Delta M_T-\Delta M_S$ were not archived, so this panel cannot instantiate
+Proposition 4. Source:
 \texttt{results/tables/E16\_quantum\_uncertainty.json}.}
 \label{fig:s16}
 \end{figure}
@@ -288,7 +328,7 @@ analytic kernel-to-metric bound, calibrate the stability conditions. Source:
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{E16 shot-budget summary. Frobenius error and effective rank are means over five deployments; movement is the maximum absolute weighted source-reference shift. Flip and abstention entries are percentages. Source: \texttt{results/tables/E16\_quantum\_uncertainty.json}.}
+\caption{E16 shot-budget summary. Frobenius error and effective rank are means over five deployments; movement is only the maximum absolute weighted source-reference shift $|\Delta M_S|$, not either quantity needed by Proposition 4. Flip and abstention entries are independent empirical percentages. Source: \texttt{results/tables/E16\_quantum\_uncertainty.json}.}
 \label{tab:e16}
 \begin{tabular}{rrrrrrrrr}
 \toprule
@@ -328,7 +368,7 @@ XGBoost (B) & 0.6823 & 0.0645 & 0.5458 & 0.7033 & 0.5164 \\
 \begin{table}[H]
 \centering
 \small
-\caption{Independent-template profile results across 10 splits, averaged over the frozen $\mu$ grid within each split. Source: \texttt{results/tables/E08v3\_multidraw.json}.}
+\caption{Independent-template fixed-profile results in the two registered E08v3 cells across 10 splits, averaged over the frozen $\mu$ grid within each split. This does not test MC-statistics-aware profiling in general. Source: \texttt{results/tables/E08v3\_multidraw.json}.}
 \label{tab:e08profile}
 \begin{tabular}{lrrrr}
 \toprule
@@ -345,7 +385,7 @@ Nominal, XGBoost & 0.000--0.359 & 10/10 & $-6.557$--$+7.496$ & gate-passing in E
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{E13v2 component-allocation battery, 200 replications per cell at $n_{\max}=5{,}000$. Entries are correct resolutions; all false-certification counts are zero. Source: \texttt{results/tables/E13v2\_baw\_allocation.json}.}
+\caption{E13v2 oracle component-allocation battery, 200 replications per cell at $n_{\max}=5{,}000$. Class bounds use full-population labels, so this is not an operational I2 guarantee. Entries are correct resolutions; all false-certification counts are zero. Source: \texttt{results/tables/E13v2\_baw\_allocation.json}.}
 \label{tab:e13v2}
 \begin{tabular}{llrrrrr}
 \toprule

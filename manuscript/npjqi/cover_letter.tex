@@ -1,0 +1,83 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.48em}
+
+\begin{document}
+
+\begin{flushright}
+12 August 2026\\
+Roberto Fern\'andez-Barrios\\
+Faculty of Engineering, University of Deusto\\
+Avda. de las Universidades 24, 48007 Bilbao, Spain\\
+\href{mailto:roberto.fernandez.b@deusto.es}{roberto.fernandez.b@deusto.es}
+\end{flushright}
+
+Editors\\
+\emph{npj Quantum Information}
+
+\textbf{Re: Article submission to the Collection ``Quantum machine learning:
+understanding capabilities, limitations, and perspectives for quantum
+advantage''}
+
+Dear Editors,
+
+We submit ``Conditional validity of quantum event classifiers under collider
+systematics and quantum estimation uncertainty'' for consideration as an
+Article in the Collection named above. Rather than presupposing quantum
+advantage, the manuscript asks a prior question for deployable QML: under what
+observable information can a performance or scientific-inference claim be
+supported when both the scientific environment and the quantum estimator are
+uncertain?
+
+The work makes a connection that is not captured by nominal QML benchmarking.
+Collider systematics determine whether the scientific claim is identifiable;
+finite-shot and noisy quantum-kernel evaluation additionally randomizes the
+implemented Gram matrix, refit, calibration, and operating point. We integrate
+these layers in one fail-closed framework and distinguish claims about the
+realized deployment from claims anchored to an ideal quantum kernel. This
+allows the paper to say exactly what quantum measurement changes without
+attributing ordinary stochasticity exclusively to quantum systems.
+
+The results directly address the Collection's emphasis on capabilities and
+limitations. Matched classical controls remove every apparent
+quantum-specific performance and sensing effect, so we claim no quantum
+advantage. What remains quantum-specific is an experimentally quantified,
+measurement-induced deployment uncertainty whose effects propagate through
+the full decision pipeline. The collider setting is essential as a stringent
+scientific deployment environment: it supplies physics weights, invisible
+yield shifts, control regions, finite templates, and downstream
+signal-strength inference. Evidence spans disjoint simulated worlds, CMS open
+data, and a deliberately micro-scale IBM QPU demonstration, with all scope
+limits stated explicitly.
+
+The manuscript combines formal identifiability and anytime-valid per-claim
+guarantees with registered falsifiers, immutable manifests, public code and
+data artifacts, and a complete correction trail. Several registered
+falsifiers fired; each adverse result was retained and used to narrow the
+claims. We believe this combination of rigorous negative controls, quantum
+deployment semantics, and physics-level validation will be useful to the
+journal's interdisciplinary QML readership.
+
+For transparency, the same author group has released a distinct manuscript,
+``Sharp Target-Domain Certificates for Quantum-Kernel Advantage under
+Distribution Shift'' (Zenodo DOI 10.5281/zenodo.21776862). That work studies
+finite-target partial identification of predictive advantage against a
+prespecified classical-kernel family on unrelated cybersecurity and tabular
+datasets. It shares no datasets, experiments, theorems, estimands, codebase, or
+reported results with the present collider-inference study. We provide it as
+related material so the Editors can assess the distinction directly.
+
+This manuscript is not under consideration elsewhere. All authors have
+approved the manuscript and its submission. The authors declare no financial
+or non-financial competing interests.
+
+Sincerely,
+
+Roberto Fern\'andez-Barrios\\
+Corresponding author, on behalf of all authors
+
+\end{document}

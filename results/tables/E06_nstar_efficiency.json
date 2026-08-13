@@ -5,9 +5,9 @@
  },
  "alpha": 0.05,
  "definition": {
-  "n_oracle": "log(1/alpha) / KL(Ber(m_target) || Ber(tau)) \u2014 Wald information yardstick for any sequential procedure with type-I error <= alpha",
+  "n_oracle": "log(1/alpha) / KL(Ber(m_target) || Ber(tau)) \u2014 Wald-style contextual information yardstick; not a universal lower bound",
   "efficiency_ratio": "n_star_q50 / n_oracle (conditional on resolution, as E06's n* quantiles are)",
-  "caveats": "no minimax claim; the EB-CS pays a known variance-adaptivity/iterated-logarithm factor; n* medians are over resolved streams only"
+  "caveats": "no minimax or universal optimality claim; no power/type-II constraint; medians rather than E[T]; n* medians are over resolved streams only"
  },
  "overall": {
   "n_cells": 518,

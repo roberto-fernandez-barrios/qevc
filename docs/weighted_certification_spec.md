@@ -56,20 +56,19 @@ Label draws are **uniform with replacement** from the audited population
 event i reveals the pair (y_i, hence c_i; and w_i).
 
 Why w_i is revealed *at labeling time and not before*: in this benchmark the
-per-event weight is a deterministic function of the generating process
-(w = σ·L/N_gen per process, D-010-rescaled), and the process identity is
-label-equivalent (htautau = signal). Granting the auditor per-event weights
-on *unlabeled* events would therefore leak labels into I1. Weights are
-label-adjacent information and live strictly on the labeled side of the
-information boundary. (Population-level weight *constants* — the per-process
-weight values and their official clip ranges — are prior physics knowledge
-and are available at all information levels; see w_max below.)
+per-event weight is process- and label-informative. The archived per-process
+ranges overlap and are not constant, so a weight does not identify a process
+exactly; nevertheless, granting event-wise weights on *unlabeled* events would
+add label-adjacent information to I1. The scalar design bound is a separate
+input fixed for each frozen finite audit population before its random label
+order (see w_max below).
 
 ## 3. Confidence machinery
 
 ### 3.1 One-sample reduction for ratio claims (primary)
 
-Every claim of the form  R ≥ τ  with  R = E[u·c]/E[u]  for a nonnegative
+Every fixed claim of the form R ≥ τ, with τ ∈ [0,1] chosen before the audit
+label stream and R = E[u·c]/E[u], for a nonnegative
 bounded "mask-weight" u (u_i = w_i for A_w; u_i = w_i·1[y_i=1] for TPR_w;
 u_i = w_i·1[y_i=0] for TNR_w) is equivalent, since E[u] > 0, to
 
@@ -93,14 +92,16 @@ and time-uniform** for the transformed mean, and the frozen decision rule
     REFUTED    ⟺  upper CS bound on E[Z(τ)] < τ
     UNRESOLVED otherwise.
 
-Because the draws are IID and Z is a fixed measurable transform per claim,
+Because the draws are IID with replacement and Z is a fixed measurable transform per claim,
 optional stopping is licensed by time-uniformity exactly as in D-014; n* is
 a stopping time and inherits the guarantee.
 
 Properties to note (and to verify empirically in §5):
 - Each claim (each τ) carries its own CS over the *same* underlying draws.
-  Per-claim α = 0.05 is the unit of inference (SAP §3.3); family-wise counts
-  and a Holm sensitivity check are reported as before.
+  Per-claim α = 0.05 is the unit of inference (SAP §3.3). Time-uniformity is
+  simultaneous over stopping times for that claim, not over τ, models, or
+  environments. No family-wise manuscript claim is made without a separately
+  implemented multiplicity adjustment; a post-label choice of τ is not covered.
 - The D-014 unweighted estimand is the special case u ≡ 1, w_max = 1 — the
   weighted machinery strictly generalizes the running system, giving a clean
   weighted-vs-unweighted comparison on identical draws.
@@ -128,8 +129,9 @@ clear τ; REFUTED requires the component upper bounds' average to fall below
 
 ### 3.4 The a priori bound w_max
 
-CS validity for bounded means requires a *nonrandom, predeclared* upper
-bound on the increments. We set
+CS validity for bounded means requires an upper bound fixed relative to the
+audit filtration. Conditional on each frozen finite population, before its
+random audit order, we set
 
     w_max = (max over processes of the D-010-rescaled per-event weight
              in the audited subset at nominal)  ×  κ_norm,
@@ -141,8 +143,11 @@ remains a valid bound under every admissible weight-only nuisance
 configuration, including combined scalings. *(Amended 2026-08-11, before any
 E13 implementation or run: v1.0 said κ_norm = 2.0 citing the diboson clip
 alone, which misses the compound diboson × bkg worst case by 1%. No
-experiment had consumed the old value.)* w_max is process metadata (σ·L/N_gen and official clip
-ranges), not event-level information: declaring it does not leak labels.
+experiment had consumed the old value.)* The base maximum is computed from
+the already materialized finite audit population; thus the stated guarantee
+is conditional on that population and scalar bound, not an unconditional
+claim that its numerical value was known before population construction.
+Only the scalar is exposed before the random audit order, not event-wise weights.
 Looseness in w_max costs only statistical efficiency (wider CS), never
 validity; the measured cost appears in the §5 comparison.
 
@@ -175,17 +180,19 @@ nuisance: the environment modifies only the event-weight map, with
 P_θ(X) = P_0(X) and the correctness process c(X) unchanged.
 
 (i) Any I1 statistic T(X_1,…,X_m) computed from unlabeled target draws has
-identical law under θ and under 0; hence any size-α test of H₀: θ = 0 from
-I1 evidence has power exactly α.
+identical law under θ and under 0; hence any test of size at most α for
+H₀: θ = 0 from I1 evidence has power equal to its actual size and therefore
+at most α (exactly α only if its size is exactly α).
 
 (ii) The same holds at I2 with nominal weights: the labeled stream
 (c_i, y_i, w_i⁰) drawn uniformly has θ-invariant law.
 
 (iii) Consequently any claim whose truth value differs between θ and 0
 (normalization/rate claims; the true-weighted metric A_w^{(θ)}) is
-unresolvable at I0–I2: an auditor that issues SUPPORTED with probability
-> α under one hypothesis falsely certifies with the same probability under
-the other, so a fail-closed auditor must return UNRESOLVED.
+unable to support nontrivial distinguishing power at I0–I2: an auditor that
+issues SUPPORTED with probability > α under one hypothesis falsely certifies
+with the same probability under the other. Under our fail-closed policy,
+absence of distinguishing evidence is reported UNRESOLVED.
 
 (iv) A control-region count N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0) gives a
 test with non-trivial power — I3 restores identifiability precisely
@@ -208,6 +215,16 @@ its clip range enters the worst case.
 (added 2026-08-12, before any E13v2 implementation or run; registry
 E13v2, falsifiers frozen at D-028)
 
+**Final-audit qualification (2026-08-12).** The mathematical allocation is
+valid when its class bounds are fixed without using unrevealed labels. The
+executed battery computed its class maxima using y over the complete frozen
+population (`run_e13v2.py`, lines 114–121). It is therefore an
+**oracle/benchmark diagnostic**, not an operational I2 guarantee. This does
+not weaken the negative TPR/BA conclusion: failure even under the favorable
+oracle bound is an information-limit diagnostic. Successful TNR resolutions
+are reported only as oracle-bound results. The operational E13/E19 guarantees
+use the global scalar bound described in §3.4.
+
 **Motivation.** The §3.3 BA_w path was measured vacuous (post-audit H3:
 radius ≈ 0.28 in BA units at n_max = 5,000). Two sources of slack are
 removable without touching validity; a third limit is structural and, if
@@ -225,17 +242,18 @@ binding, is the honest result.
    the §3.1 one-sample reduction — NOT the §3.2 ratio CS that §3.3 v1
    built on (§3.2 is registered as "never preferred for verdicts"; v1's
    use of it inside resolve_ba_claim is the first removable slack).
-4. *Per-class predeclared bounds (second removable slack):* the §3.1
-   reduction only needs a predeclared a.s. bound on u. For
-   u⁽¹⁾ = w·1[y=1], class identity is process identity (spec §2), so
+4. *Per-class oracle bounds in the executed battery (second removable-slack
+   diagnostic):* the §3.1 reduction only needs an a.s. bound on u. For
+   u⁽¹⁾ = w·1[y=1], the battery uses
    w_max⁽¹⁾ = (max signal-row weight in the audited subset at nominal)
    × κ_sig with **κ_sig = 1.0**: no admissible weight-only nuisance
    touches signal weights (`_norm_weight_scale` applies ttbar_scale and
    diboson_scale to those processes and bkg_scale to y = 0 rows only —
    verified in code before this addendum was frozen). For
    u⁽⁰⁾ = w·1[y=0], w_max⁽⁰⁾ = (max background-row weight) × κ_norm
-   (2.05, §3.4). Both follow the precedented §3.4 rule (subset maxima
-   are declared process metadata).
+   (2.05, §3.4). These subset maxima were derived using
+   complete-population labels and do not follow the operational I2
+   information boundary; see the qualification above.
 5. *Streams and budget:* draws remain uniform-with-replacement (§2 —
    class-conditional sampling is impossible pre-label, since labeling
    is what reveals y). Every labeled draw feeds both component streams;
@@ -247,7 +265,8 @@ binding, is the honest result.
 certify (L_k ≥ τ_k at level α_k, running intersection); REFUTED iff
 BOTH component audits refute (U_k < τ_k); UNRESOLVED otherwise.
 
-**Validity (proposition, proved before implementation).** (i) False
+**Validity of the mathematical construction, conditional on admissible
+pre-label bounds.** (i) False
 certification: if BA_w < τ_BA then R_k < τ_k for at least one k (else
 (R₁+R₂)/2 ≥ (τ₁+τ₂)/2 = τ_BA); certifying that component requires its
 CS to violate coverage (Theorem 1 applied with the class bound
@@ -306,7 +325,7 @@ populations (E02 archived scores with row-level weights):
 4. **Weighted vs unweighted on identical draws:** n*-ratio distributions and
    verdict-flip table across the E05 claim grid; quantify the label cost of
    physics-weighted certification and its driver (effective-sample-size
-   ratio Σw²/(Σw)² and the w_max bound).
+  ratio (Σw)²/Σw² and the w_max bound).
 5. **BA_w conservatism:** empirical coverage of the §3.3 bound vs its
    nominal level (expected strictly conservative; measure how much).
 
