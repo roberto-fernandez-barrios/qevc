@@ -11,6 +11,12 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{xurl}
 
+\hypersetup{
+  pdftitle={Supplementary Information for Conditional validity of quantum event classifiers under collider systematics and quantum estimation uncertainty},
+  pdfauthor={Roberto Fernandez-Barrios, Iker Pastor-Lopez, Asier Gonzalez-Santocildes, Pablo Garcia Bringas},
+  pdfsubject={Supplementary Information submitted to npj Quantum Information}
+}
+
 \captionsetup{justification=raggedright,singlelinecheck=false}
 
 \graphicspath{{../../results/figures/}}
@@ -34,6 +40,14 @@ Avda. de las Universidades 24, 48007 Bilbao, Spain\\
 
 \begin{document}
 \maketitle
+
+\noindent\textbf{Scope of statistical guarantees.} Theorem 1's anytime-valid
+error control applies to each fixed I2 label-stream claim, conditional on the
+frozen finite audit population under the declared with-replacement sampling
+protocol. I3 profile-likelihood and auxiliary-information procedures are
+separately coverage-gated. The CMS and other empirical ledgers use their own
+calibrated tests and information constraints and do not inherit Theorem 1
+automatically.
 
 This supplement gives the full algebra behind the formal results, the
 registered-falsifier and correction trail, and extended numerical tables.
@@ -168,10 +182,14 @@ For weighted claims the
 metric-scale margin is mapped to the certification scale by
 $E[u]/w_{\max}$. Common-mode movement cancels from the
 deployment-relative margin but not from the ideal-anchored margin.
-E16 archives only $\Delta M_S$, not $\Delta M_T$ or
-$\Delta M_T-\Delta M_S$; Figure~\ref{fig:s16} and Table~\ref{tab:e16}
-therefore do not instantiate either condition. The proposition remains
-conditional, while archived flip rates are independent empirical evidence.
+Although the original E16 summary archived only $\Delta M_S$, the final
+deterministic replay reconstructs $\Delta M_T$ and
+$\Delta M_T-\Delta M_S$ from the frozen source/target rows and the exact
+replayed raw and PSD-repaired deployments. It therefore instantiates both
+sufficient conditions without new randomness or QPU jobs; the resulting
+7,200-case evaluation and its conservative interpretation are reported in
+Section~\ref{sec:prop4-instantiation} and
+Table~\ref{tab:prop4-instantiation}.
 
 \subsection{Pre-split component allocation for weighted balanced accuracy}
 
@@ -352,10 +370,12 @@ Refutation direction & 31 & 3.12 & 3.34 & 3.65 \\
 \includegraphics[width=0.98\linewidth]{figS16_estimation_diagnostics.pdf}
 \caption{Per-configuration diagnostics for all 30 noisy deployments:
 relative Frobenius error, effective-rank inflation, and source-reference
-movement $|\Delta M_S|$. The target movement $\Delta M_T$ and the difference
-$\Delta M_T-\Delta M_S$ were not archived, so this panel cannot instantiate
-Proposition 4. Source:
-\texttt{results/tables/E16\_quantum\_uncertainty.json}.}
+movement $|\Delta M_S|$. The primary artifact plotted only source movement;
+the final deterministic raw/PSD replay reconstructs
+$\Delta M_T$ and $\Delta M_T-\Delta M_S$ and instantiates Proposition 4 in
+Table~\ref{tab:prop4-instantiation}. Sources:
+\texttt{results/tables/E16\_quantum\_uncertainty.json} and
+\texttt{results/tables/E16\_proposition4\_instantiation.json}.}
 \label{fig:s16}
 \end{figure}
 
@@ -371,6 +391,11 @@ non-monotonic. At the endpoints the sample SDs are 19.9 and 0.65\%, ranges are
 population confidence intervals. Five deployments per budget permit only a
 descriptive characterization of the observed realizations; no population
 trend or equivalence claim is made.
+All far-margin deployment-relative claims in this evaluated grid are true and
+remain SUPPORTED in every raw and PSD-repaired realization. Consequently, the
+zero far-margin flip rate demonstrates stability of clearly true/supported
+claims only; this grid contains no false far-margin deployment-relative claim
+with which to assess refutation stability.
 
 \clearpage
 \begin{table}[H]
@@ -453,15 +478,17 @@ negative-mode tolerance $10^{-10}\max(1,|\lambda_{\max}|)$. Across budgets,
 the median negative spectral-mass fraction falls from 13.59\% to 2.14\%, while
 $\lambda_{\max}$ remains approximately 201.2; the positive-only condition
 number ranges from $8.8\times10^4$ to $6.4\times10^7$ and is descriptive only
-because the raw matrices are indefinite. Entry-wise finite-shot estimation
-therefore does not necessarily produce a PSD kernel or a standard RKHS Gram.
+because the raw matrices are indefinite. The historical finite-shot pipeline
+fits an SVC to each realized quantum-similarity matrix. Entry-wise finite-shot
+estimation does not preserve positive semidefiniteness, so this RAW-INDEFINITE
+fitted object is not interpreted as the standard convex RKHS SVM associated
+with a PSD kernel.
 The material far-margin changes are confined to the ideal-anchored magnitude:
 they are substantial at 128--1024 shots, small at 2048 and negligible at 4096;
 the deployment-relative far rate is unchanged at every budget.
 LIBSVM can and did return a numerical solution when supplied each precomputed
-raw matrix, but the usual convex PSD-kernel interpretation and guarantees do
-not automatically attach to that solution; indefiniteness alone also does not
-make its numerical deployment meaningless.
+raw matrix; indefiniteness alone also does not make its numerical deployment
+meaningless.
 
 The historical RAW-INDEFINITE pipeline remains primary. For the declared
 sensitivity, each training Gram is converted in float64 as
@@ -470,24 +497,79 @@ $\delta=\max(0,-\lambda_{\min}+\epsilon)$ and
 $\epsilon=10^{-10}\max(1,|\lambda_{\max}|)$ (approximately $2.01\times10^{-8}$
 here). This is the minimum predeclared diagonal load up to the numerical
 margin; it preserves all off-diagonal finite-shot estimates. The loaded
-full-rank training block also gives a coherent linear extension of every
-unchanged source/target cross column through the training span. Each repaired
-deployment is then refitted, Platt-recalibrated, threshold-refrozen and audited
-on exactly the same roles, claim grids and paired audit streams. No Gram,
-sample, seed or QPU job is newly drawn.
+training block restores a convex precomputed-SVM training problem, but it is a
+post-hoc regularized similarity matrix, not a normalized fidelity Gram: the
+diagonal changes, source/target cross-Grams remain unchanged, and no global
+Mercer extension is claimed. Each repaired deployment is then refitted,
+Platt-recalibrated, threshold-refrozen and audited on exactly the same roles,
+claim grids and paired audit streams. No Gram, sample, seed or QPU job is newly
+drawn.
 
 The PSD-repaired nominal-AUC means differ from raw by $+0.0051$ to $+0.0137$
 across budgets; these changes are a sensitivity outcome, not a repair-selection
 or performance claim. Raw-versus-repaired deployment-relative verdict-change
 rates are zero in the far stratum, at most 19.9\% in moderate and 7.6\% in near;
 ideal-anchored compositions move more strongly. Nevertheless, the observed
-zero far-margin deployment-relative rate, ideal-anchored heterogeneity,
+support stability of the evaluated true far-margin deployment-relative claims,
+ideal-anchored heterogeneity,
 non-monotonic budget sequence and endpoint reduction all survive. The exact
 deployment metrics, thresholds, target metrics, abstention, verdict
 compositions and transitions are archived in the source JSON. The audit
 verdict is therefore \textsc{PSD-sensitive-but-scoped}: Contribution 3's
 qualitative statement survives, whereas its raw ideal-anchored percentages
 must not be treated as repair-invariant.
+
+\subsubsection{Deterministic instantiation of Proposition 4}
+\label{sec:prop4-instantiation}
+
+For the unweighted family, $M$ is mean correctness on the frozen source or
+target rows; for the weighted family it is raw-physical-weighted mean
+correctness on those rows. For each deployment $\omega$, the replay computes
+$\Delta M_S=M_S(\tilde f_\omega)-M_S(f^\star)$ and
+$\Delta M_T=M_T(\tilde f_\omega)-M_T(f^\star)$. The evaluated movement is
+$\Delta M_T-\Delta M_S$ for deployment-relative claims and $\Delta M_T$ for
+ideal-anchored claims. Every reconstructed threshold is interior to $[0,1]$,
+and both exact margin identities have zero numerical residual, so all 7,200
+condition cells are evaluable.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Proposition 4 instantiation. ``H'' and ``F'' mean that the strict
+sufficient condition holds or fails; entries are verdict flip/no-flip counts
+over the ten paired audit streams per condition cell. Cells and streams within
+a deployment are correlated; the descriptive unit remains the deployment.
+Source: \texttt{results/tables/E16\_proposition4\_instantiation.json}.}
+\label{tab:prop4-instantiation}
+\begin{tabular}{lrrrr}
+\toprule
+Cut & Condition cells & H (\%) & H: flip/no flip & F: flip/no flip \\
+\midrule
+Overall & 7,200 & 68.7 & 4,554 / 44,876 & 13,637 / 8,933 \\
+RAW-INDEFINITE & 3,600 & 70.3 & 2,260 / 23,060 & 6,247 / 4,433 \\
+PSD-repaired & 3,600 & 67.0 & 2,294 / 21,816 & 7,390 / 4,500 \\
+Deployment-relative & 3,600 & 92.8 & 2,127 / 31,283 & 62 / 2,528 \\
+Ideal-anchored & 3,600 & 44.5 & 2,427 / 13,593 & 13,575 / 6,405 \\
+Far & 2,400 & 95.3 & 683 / 22,197 & 967 / 153 \\
+Moderate & 2,040 & 70.0 & 2,955 / 11,325 & 4,112 / 2,008 \\
+Near & 2,760 & 44.5 & 916 / 11,354 & 8,558 / 6,772 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The inequality holds in 4,943/7,200 cells and preserves the truth sign in all
+4,943, while 1,188 of the 2,257 failing cells also retain their sign. At audit
+level, ternary verdict flips occur in 9.2\% of streams when the condition holds
+and 60.4\% when it fails. Two condition-holding streams produce opposite
+resolved verdicts; Proposition 4 bounds such events through confidence-sequence
+coverage and does not assert deterministic verdict equality from the margin
+inequality alone. The condition is therefore informative but conservative:
+it is most useful for deployment-relative far/moderate cells and least often
+satisfied for near ideal-anchored cells; it is sufficient rather than
+necessary. This classification is
+\textsc{informatively instantiated}, not an empirical general law or a set of
+independent claim replications.
 
 \clearpage
 \subsection{Independent-MC split studies (E08v3)}
@@ -800,6 +882,8 @@ The main machine-readable sources for this supplement are:
       \path{results/tables/E06_nstar_efficiency.json};
 \item \path{results/tables/E16_quantum_uncertainty.json};
 \item \path{results/tables/E16_deployment_level.json};
+\item \path{results/tables/E16_psd_sensitivity.json};
+\item \path{results/tables/E16_proposition4_instantiation.json};
 \item \path{results/tables/E08v2_independent_mc.json} and
       \path{results/tables/E08v3_multidraw.json};
 \item \path{results/tables/E13v2_baw_allocation.json}.

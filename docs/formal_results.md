@@ -240,16 +240,25 @@ opposite ideal and realized truth signs, so perfectly covering audits resolve
 SUPPORTED and REFUTED. Failure of sufficiency does not force a flip either:
 ΔM_T=+0.10 violates |m⋆|>|ΔM_T| but preserves the positive sign. ∎
 
-**Artifact status.** Proposition 4 is conditional. E16 archives ΔM_S and
-empirical verdict flip rates, but not ΔM_T or ΔM_T − ΔM_S. Figure S16 and
-Table S6 therefore do **not** instantiate either sufficient condition, and
-|ΔM_S| is not substituted for the missing quantities. The empirical results
-remain separate empirical evidence. The independent unit is one noisy-kernel
-deployment (five per shot budget), not the correlated claims inside it.
-Fixed-reference far-flip endpoint means are 20.8% at 128 shots and 0.4% at
-4096 shots, with non-monotonic intermediate budgets and wide seed ranges;
-own-reference far flips are 0 in all 30 deployments. These observations are
-not theory predictions or a population trend.
+**Artifact status (0.3.2 closure).** The deterministic raw/PSD replay
+reconstructs the exact source and target accuracy estimands for every frozen
+E16 realization. It therefore evaluates ΔM_S, ΔM_T and ΔM_T − ΔM_S for 7,200
+deployment/regime/claim-semantics/environment-family-delta condition cells;
+all are evaluable, with no threshold clipping and zero margin-identity
+residual. The strict sufficient condition holds in 4,943/7,200 (68.7%). It
+preserves the truth sign in every holding cell. Across the ten paired audit
+streams per cell, verdict flips occur in 4,554/49,430 (9.2%) holding cases and
+13,637/22,570 (60.4%) failing cases. Two holding streams have opposite resolved
+verdicts, as permitted by the proposition's coverage-conditioned 2α bound;
+8,933 stable verdicts occur despite failure, confirming that the condition is
+sufficient rather than necessary. The result is **INFORMATIVELY INSTANTIATED**
+and conservative, not a theory prediction for each verdict or a population
+law. The independent descriptive unit remains one deployment (five per shot
+budget), not correlated cells or streams. All evaluated far-margin
+deployment-relative claims are true and supported in raw and PSD-repaired
+realizations; no false far-margin deployment-relative claim tests refutation
+stability. Source:
+`results/tables/E16_proposition4_instantiation.json`.
 
 ---
 

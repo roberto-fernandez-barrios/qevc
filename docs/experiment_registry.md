@@ -966,8 +966,10 @@ entry.
   claim families × 6 δ × 10 paired streams). The independent empirical unit
   is one noisy-kernel deployment (five per budget); claim cells within it are
   correlated and are not IID replicates:
-  1. **Own-τ view: far-margin claims (|m| ≥ 0.04) flip 0.0 in all 30
-     deployments;** moderate endpoint means are 15.8% and 6.7%; near
+  1. **Own-τ view: every far-margin claim (|m| ≥ 0.04) in the evaluated
+     grid is true and remains SUPPORTED in all 30 deployments;** the grid has
+     no false far-margin deployment-relative claim with which to assess
+     refutation stability. Moderate endpoint means are 15.8% and 6.7%; near
      4–7% with abstention 92–94% (fail-closed dominates).
   2. **Fixed-τ view — the sharper finding:** estimation noise changes the
      deployment itself (recalibration moves M_S by up to +0.053 upward,
@@ -1016,6 +1018,20 @@ entry.
      seed, sample SD/range and leave-one-deployment-out sensitivity. Five
      deployments per budget suffice only for the scoped descriptive C3; no
      new seed or QPU run is recommended.
+  8. **Final PSD sensitivity (2026-08-31):** all 30 raw training Grams are
+     indefinite. Minimum diagonal loading restores a convex precomputed-SVM
+     training problem but is treated only as post-hoc regularization: the
+     loaded matrix is not a normalized fidelity Gram and no global Mercer
+     extension is claimed. The raw historical pipeline remains primary;
+     ideal-anchored magnitudes are repair-sensitive.
+  9. **Proposition 4 closure (2026-08-31, deterministic derived replay only):**
+     all 7,200 raw/PSD condition cells are evaluable; the strict sufficient
+     condition holds in 4,943 (68.7%). Paired-stream verdict flips are 9.2%
+     when it holds versus 60.4% when it fails. The condition preserves every
+     holding-cell truth sign but remains sufficient, not necessary. Verdict:
+     **INFORMATIVELY INSTANTIATED**. Artifact:
+     `results/tables/E16_proposition4_instantiation.json`; no new randomness,
+     sample, seed, QPU job or campaign arm was introduced.
 
 ## E11v2 — Strengthened CMS real-data demonstration
 

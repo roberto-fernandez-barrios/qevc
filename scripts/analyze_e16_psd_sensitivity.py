@@ -7,7 +7,9 @@ match, and then refits the same deployment after minimum diagonal loading of
 the realized training Gram.  Calibration/target cross-Grams, roles, claim
 grids, and audit streams are unchanged.
 
-Output: results/tables/E16_psd_sensitivity.json
+Outputs:
+  results/tables/E16_psd_sensitivity.json
+  results/tables/E16_proposition4_instantiation.json
 """
 
 from __future__ import annotations
@@ -15,6 +17,7 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import math
 import sys
 import time
 from collections import Counter
@@ -30,6 +33,14 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "experiments" / "E02_systematic_landscape"))
 
 from qevc.geometry.descriptors import effective_rank  # noqa: E402
+from qevc.auditing.stability import (  # noqa: E402
+    FAILS,
+    HOLDS,
+    canonical_json_sha256,
+    opposite_resolved_verdict,
+    sufficient_condition_status,
+    summarize_proposition4_cases,
+)
 from qevc.kernels.psd import (  # noqa: E402
     DEFAULT_EPSILON_REL,
     DEFAULT_NEGATIVE_TOL_REL,
@@ -57,10 +68,12 @@ from run_e02 import environments, parse_params  # noqa: E402
 
 PRIMARY = ROOT / "results" / "tables" / "E16_quantum_uncertainty.json"
 OUTPUT = ROOT / "results" / "tables" / "E16_psd_sensitivity.json"
+PROPOSITION4_OUTPUT = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
 E01_PATH = ROOT / "configs" / "experiments" / "E01.yaml"
 E16_PATH = ROOT / "configs" / "experiments" / "E16.yaml"
 FROZEN_PATH = ROOT / "configs" / "frozen" / "frozen_deployment_v1.yaml"
 E16_MODULE_PATH = ROOT / "experiments" / "E16_quantum_uncertainty" / "run_e16.py"
+E13_RESULTS_PATH = ROOT / "results" / "tables" / "E13_weighted_cs.json"
 
 
 def sha256(path: Path) -> str:
@@ -151,6 +164,216 @@ def deployment_payload(result: dict, ideal_audit: dict, cell_stratum: dict) -> d
                 ),
             }
             for stratum in ("far", "moderate", "near")
+        },
+    }
+
+
+def proposition4_cases_for_deployment(
+    *,
+    deployment_id: str,
+    shot_budget: int,
+    kernel_seed: int,
+    regime: str,
+    result: dict,
+    ideal: dict,
+    ideal_audit: dict,
+    cell_stratum: dict,
+) -> list[dict]:
+    """Instantiate Proposition 4 for every E16 claim cell and paired stream."""
+
+    cases = []
+    base_cells = sorted({(key[0], key[1], key[2]) for key in ideal_audit})
+    for environment, family, delta in base_cells:
+        source_key = "m_s_unw" if family == "unweighted" else "m_s_w"
+        target_key = (
+            "metric_unweighted_accuracy"
+            if family == "unweighted"
+            else "metric_weighted_accuracy"
+        )
+        metric_name = (
+            "unweighted accuracy"
+            if family == "unweighted"
+            else "raw-physical-weighted accuracy"
+        )
+        ideal_source = float(ideal["refs"][source_key])
+        realized_source = float(result["refs"][source_key])
+        ideal_target = float(ideal["targets_exact"][environment][target_key])
+        realized_target = float(result["targets_exact"][environment][target_key])
+        delta_m_source = realized_source - ideal_source
+        delta_m_target = realized_target - ideal_target
+        differential_movement = delta_m_target - delta_m_source
+
+        ideal_unclipped_threshold = ideal_source - float(delta)
+        ideal_threshold = float(np.clip(ideal_unclipped_threshold, 0.0, 1.0))
+        realized_unclipped_threshold = realized_source - float(delta)
+        realized_threshold = float(np.clip(realized_unclipped_threshold, 0.0, 1.0))
+        ideal_threshold_clipped = ideal_threshold != ideal_unclipped_threshold
+        realized_threshold_clipped = realized_threshold != realized_unclipped_threshold
+        ideal_margin = ideal_target - ideal_threshold
+
+        for claim_semantics in ("deployment_relative", "ideal_anchored"):
+            if claim_semantics == "deployment_relative":
+                audit = result["audit_own"]
+                realized_margin = realized_target - realized_threshold
+                movement = differential_movement
+                threshold_clipped = ideal_threshold_clipped or realized_threshold_clipped
+                realized_claim_threshold = realized_threshold
+            else:
+                audit = result["audit_fixed"]
+                realized_margin = realized_target - ideal_threshold
+                movement = delta_m_target
+                threshold_clipped = ideal_threshold_clipped
+                realized_claim_threshold = ideal_threshold
+
+            identity_residual = (realized_margin - ideal_margin) - movement
+            identity_verified = math.isclose(
+                identity_residual, 0.0, rel_tol=0.0, abs_tol=1e-12
+            )
+            evaluable = not threshold_clipped and identity_verified
+            condition_status = sufficient_condition_status(
+                ideal_margin, movement, evaluable=evaluable
+            )
+            stream_rows = []
+            for audit_seed in sorted(key[3] for key in ideal_audit if key[:3] == (
+                environment, family, delta
+            )):
+                key = (environment, family, delta, audit_seed)
+                ideal_row = ideal_audit[key]
+                realized_row = audit[key]
+                if not math.isclose(
+                    float(ideal_row["margin"]), ideal_margin, rel_tol=0.0, abs_tol=1e-12
+                ):
+                    raise RuntimeError(f"ideal-margin reconstruction mismatch for {key}")
+                if bool(ideal_row["truth"]) != (ideal_margin >= 0.0):
+                    raise RuntimeError(f"ideal-truth reconstruction mismatch for {key}")
+                if bool(realized_row["truth"]) != (realized_margin >= 0.0):
+                    raise RuntimeError(f"realized-truth reconstruction mismatch for {key}")
+                verdict_flip = realized_row["verdict"] != ideal_row["verdict"]
+                stream_rows.append(
+                    {
+                        "audit_seed": int(audit_seed),
+                        "ideal_verdict": ideal_row["verdict"],
+                        "realized_verdict": realized_row["verdict"],
+                        "verdict_flip": verdict_flip,
+                        "opposite_resolved_verdict": opposite_resolved_verdict(
+                            ideal_row["verdict"], realized_row["verdict"]
+                        ),
+                        "truth_sign_flip": bool(ideal_row["truth"]) != bool(
+                            realized_row["truth"]
+                        ),
+                        "ideal_n_star": ideal_row["n_star"],
+                        "realized_n_star": realized_row["n_star"],
+                    }
+                )
+
+            cases.append(
+                {
+                    "deployment_id": deployment_id,
+                    "shot_budget": int(shot_budget),
+                    "kernel_seed": int(kernel_seed),
+                    "regime": regime,
+                    "raw_indefinite": regime == "raw",
+                    "psd_repaired": regime == "psd_repaired",
+                    "claim_semantics": claim_semantics,
+                    "environment": environment,
+                    "metric_family": family,
+                    "metric": metric_name,
+                    "delta": float(delta),
+                    "stratum": cell_stratum[(environment, family, delta)],
+                    "ideal_source_metric": ideal_source,
+                    "realized_source_metric": realized_source,
+                    "ideal_target_metric": ideal_target,
+                    "realized_target_metric": realized_target,
+                    "delta_M_S": delta_m_source,
+                    "delta_M_T": delta_m_target,
+                    "delta_M_T_minus_delta_M_S": differential_movement,
+                    "ideal_threshold": ideal_threshold,
+                    "realized_claim_threshold": realized_claim_threshold,
+                    "ideal_margin": ideal_margin,
+                    "realized_margin": realized_margin,
+                    "condition_movement": movement,
+                    "condition_inequality": "abs(ideal_margin) > abs(condition_movement)",
+                    "sufficient_condition_status": condition_status,
+                    "ideal_threshold_clipped": ideal_threshold_clipped,
+                    "realized_threshold_clipped": realized_threshold_clipped,
+                    "margin_identity_residual": identity_residual,
+                    "margin_identity_verified": identity_verified,
+                    "ideal_truth": ideal_margin >= 0.0,
+                    "realized_truth": realized_margin >= 0.0,
+                    "audit_streams": stream_rows,
+                }
+            )
+    return cases
+
+
+def aggregate_proposition4(cases: list[dict]) -> dict:
+    """Return all requested descriptive cuts of the normalized case table."""
+
+    def selected(**filters) -> list[dict]:
+        return [
+            row for row in cases
+            if all(row[field] == value for field, value in filters.items())
+        ]
+
+    regimes = ("raw", "psd_repaired")
+    semantics = ("deployment_relative", "ideal_anchored")
+    strata = ("far", "moderate", "near")
+    return {
+        "overall": summarize_proposition4_cases(cases),
+        "by_regime": {
+            regime: summarize_proposition4_cases(selected(regime=regime))
+            for regime in regimes
+        },
+        "by_claim_semantics": {
+            claim: summarize_proposition4_cases(selected(claim_semantics=claim))
+            for claim in semantics
+        },
+        "by_stratum": {
+            stratum: summarize_proposition4_cases(selected(stratum=stratum))
+            for stratum in strata
+        },
+        "by_regime_and_claim_semantics": {
+            regime: {
+                claim: summarize_proposition4_cases(
+                    selected(regime=regime, claim_semantics=claim)
+                )
+                for claim in semantics
+            }
+            for regime in regimes
+        },
+        "by_regime_and_stratum": {
+            regime: {
+                stratum: summarize_proposition4_cases(
+                    selected(regime=regime, stratum=stratum)
+                )
+                for stratum in strata
+            }
+            for regime in regimes
+        },
+        "by_claim_semantics_and_stratum": {
+            claim: {
+                stratum: summarize_proposition4_cases(
+                    selected(claim_semantics=claim, stratum=stratum)
+                )
+                for stratum in strata
+            }
+            for claim in semantics
+        },
+        "by_regime_claim_semantics_and_stratum": {
+            regime: {
+                claim: {
+                    stratum: summarize_proposition4_cases(
+                        selected(
+                            regime=regime,
+                            claim_semantics=claim,
+                            stratum=stratum,
+                        )
+                    )
+                    for stratum in strata
+                }
+                for claim in semantics
+            }
+            for regime in regimes
         },
     }
 
@@ -300,6 +523,22 @@ def main() -> int:
     frozen = yaml.safe_load(FROZEN_PATH.read_text(encoding="utf-8"))
     primary = json.loads(PRIMARY.read_text(encoding="utf-8"))
     primary_hash_before = sha256(PRIMARY)
+    protected_table_paths = [
+        ROOT / "results" / "tables" / name
+        for name in (
+            "E16_quantum_uncertainty.json",
+            "E16_deployment_level.json",
+            "E16_hw.json",
+            "E20_offline_gate.json",
+            "E11_cms_case_study.json",
+            "E11v2_cms_full.json",
+            "E11v3_cms_stats.json",
+        )
+    ]
+    protected_hashes_before = {
+        str(path.relative_to(ROOT)).replace("\\", "/"): sha256(path)
+        for path in protected_table_paths
+    }
     hardware_raw_paths = sorted((ROOT / "results" / "raw" / "E16_hw").glob("*"))
     hardware_hashes_before = {str(path.relative_to(ROOT)).replace("\\", "/"): sha256(path)
                               for path in hardware_raw_paths if path.is_file()}
@@ -366,6 +605,7 @@ def main() -> int:
             "thr": float(threshold),
         }
         targets = {}
+        targets_exact = {}
         correct, weights = {}, {}
         for name, data in environment_data.items():
             probability = calibrator.predict_proba(
@@ -375,13 +615,21 @@ def main() -> int:
             corr = (prediction == data["y"]).astype(float)
             correct[name] = corr
             weights[name] = data["w"]
+            auc = float(weighted_auc(data["y"], probability, data["w"]))
+            balanced_accuracy = float(
+                weighted_balanced_accuracy(data["y"], prediction, data["w"])
+            )
+            unweighted_accuracy = float(corr.mean())
+            weighted_accuracy = float(np.average(corr, weights=data["w"]))
+            targets_exact[name] = {
+                "auc": auc,
+                "balanced_accuracy": balanced_accuracy,
+                "metric_unweighted_accuracy": unweighted_accuracy,
+                "metric_weighted_accuracy": weighted_accuracy,
+            }
             targets[name] = {
-                "auc": rounded(weighted_auc(data["y"], probability, data["w"])),
-                "balanced_accuracy": rounded(
-                    weighted_balanced_accuracy(data["y"], prediction, data["w"])
-                ),
-                "metric_unweighted_accuracy": rounded(corr.mean()),
-                "metric_weighted_accuracy": rounded(np.average(corr, weights=data["w"])),
+                metric: rounded(value)
+                for metric, value in targets_exact[name].items()
             }
         audit_own = e16.audit_deployment(
             correct, weights, refs["m_s_unw"], refs["m_s_w"], e16_cfg["alpha"]
@@ -400,6 +648,7 @@ def main() -> int:
                 y_source, source_pred, w_source
             ),
             "targets": targets,
+            "targets_exact": targets_exact,
         }
 
     ideal = build_deployment(
@@ -413,6 +662,7 @@ def main() -> int:
     log(f"ideal deployment reconstructed: nominal AUC={ideal['targets']['nominal']['auc']:.5f}")
 
     per_deployment = {}
+    proposition4_cases = []
     replay_mismatches = {}
     for shots in e16_cfg["shots_grid"]:
         for kernel_seed in e16_cfg["kernel_seeds"]:
@@ -439,6 +689,7 @@ def main() -> int:
                     "expected": primary["per_config"][key],
                     "observed": observed_primary,
                 }
+                log(json.dumps(replay_mismatches[key], indent=2, sort_keys=True))
                 raise RuntimeError(f"raw deterministic replay mismatch for {key}")
 
             repair = minimum_diagonal_loading(
@@ -446,6 +697,30 @@ def main() -> int:
             )
             repaired_result = build_deployment(
                 repair.matrix, K_source_raw, K_environment_raw, fixed_refs=ideal["refs"]
+            )
+            proposition4_cases.extend(
+                proposition4_cases_for_deployment(
+                    deployment_id=key,
+                    shot_budget=shots,
+                    kernel_seed=kernel_seed,
+                    regime="raw",
+                    result=raw_result,
+                    ideal=ideal,
+                    ideal_audit=ideal_audit,
+                    cell_stratum=cell_stratum,
+                )
+            )
+            proposition4_cases.extend(
+                proposition4_cases_for_deployment(
+                    deployment_id=key,
+                    shot_budget=shots,
+                    kernel_seed=kernel_seed,
+                    regime="psd_repaired",
+                    result=repaired_result,
+                    ideal=ideal,
+                    ideal_audit=ideal_audit,
+                    cell_stratum=cell_stratum,
+                )
             )
             raw_payload = deployment_payload(raw_result, ideal_audit, cell_stratum)
             repaired_payload = deployment_payload(repaired_result, ideal_audit, cell_stratum)
@@ -492,10 +767,16 @@ def main() -> int:
     primary_hash_after = sha256(PRIMARY)
     hardware_hashes_after = {str(path.relative_to(ROOT)).replace("\\", "/"): sha256(path)
                              for path in hardware_raw_paths if path.is_file()}
+    protected_hashes_after = {
+        str(path.relative_to(ROOT)).replace("\\", "/"): sha256(path)
+        for path in protected_table_paths
+    }
     if primary_hash_before != primary_hash_after:
         raise RuntimeError("primary E16 artifact changed during derived analysis")
     if hardware_hashes_before != hardware_hashes_after:
         raise RuntimeError("E16 hardware raw artifacts changed during derived analysis")
+    if protected_hashes_before != protected_hashes_after:
+        raise RuntimeError("a protected primary/CMS/E20 table changed during derived analysis")
 
     output = {
         "analysis": "E16 post-hoc PSD robustness analysis",
@@ -510,9 +791,10 @@ def main() -> int:
             "negative_mode_tolerance_relative": DEFAULT_NEGATIVE_TOL_REL,
             "cross_gram_rule": "all source-validation and target cross-Grams remain raw and unchanged",
             "interpretation": (
-                "The loaded full-rank training block restores the convex PSD-SVM training "
-                "problem; unchanged cross columns define the same measured out-of-sample "
-                "similarities through the training span."
+                "Minimum diagonal loading restores a PSD training block and therefore a "
+                "convex precomputed-SVM training problem. The loaded matrix is a post-hoc "
+                "regularized similarity matrix, not a normalized fidelity Gram; cross-Gram "
+                "estimates remain unchanged and no global Mercer extension is claimed."
             ),
         },
         "provenance": {
@@ -541,6 +823,130 @@ def main() -> int:
     }
     OUTPUT.write_text(json.dumps(output, indent=2) + "\n", encoding="utf-8")
     log(f"wrote {OUTPUT.relative_to(ROOT)} ({output['wall_seconds']:.1f} s)")
+
+    proposition4_cases.sort(
+        key=lambda row: (
+            row["shot_budget"],
+            row["kernel_seed"],
+            row["regime"],
+            row["claim_semantics"],
+            row["environment"],
+            row["metric_family"],
+            row["delta"],
+        )
+    )
+    proposition4_aggregate = aggregate_proposition4(proposition4_cases)
+    overall = proposition4_aggregate["overall"]
+    matrix = overall["verdict_flip_contingency"]
+
+    def flip_rate(status: str) -> float | None:
+        denominator = matrix[status]["flip"] + matrix[status]["no_flip"]
+        return matrix[status]["flip"] / denominator if denominator else None
+
+    fraction_holds = overall["fraction_holds_among_evaluable"]
+    holds_rate = flip_rate(HOLDS)
+    fails_rate = flip_rate(FAILS)
+    if (
+        fraction_holds is not None
+        and fraction_holds >= 0.10
+        and holds_rate is not None
+        and fails_rate is not None
+        and holds_rate < fails_rate
+    ):
+        interpretation = "INFORMATIVELY INSTANTIATED"
+    elif overall["condition_cell_counts"][HOLDS] > 0:
+        interpretation = "CONSERVATIVE BUT VALID"
+    else:
+        interpretation = "EMPIRICALLY UNINFORMATIVE"
+
+    proposition4_output = {
+        "analysis": "E16 Proposition 4 deterministic instantiation",
+        "status": "derived-only closure analysis over the 30 frozen E16 deployments",
+        "interpretation": interpretation,
+        "independent_descriptive_unit": "deployment",
+        "correlation_warning": (
+            "Claims, thresholds and paired audit streams within a deployment are correlated; "
+            "the cell and stream counts below are descriptive, not independent replications."
+        ),
+        "definitions": {
+            "f_star": "the exact ideal E16 deployment",
+            "f_tilde_omega": (
+                "the realized deployment for omega, either historical raw-indefinite or the "
+                "minimum-diagonal-loading PSD sensitivity"
+            ),
+            "M_unweighted": "mean target/source correctness over the corresponding frozen rows",
+            "M_weighted": (
+                "raw-physical-weighted mean correctness over the corresponding frozen rows"
+            ),
+            "delta_M_S": "M_S(f_tilde_omega) - M_S(f_star)",
+            "delta_M_T": "M_T(f_tilde_omega) - M_T(f_star)",
+            "deployment_relative_movement": "delta_M_T - delta_M_S",
+            "ideal_anchored_movement": "delta_M_T",
+            "ideal_margin": "M_T(f_star) - (M_S(f_star) - delta)",
+            "sufficient_condition": "abs(ideal_margin) > abs(condition_movement)",
+            "condition_scope": (
+                "strict sufficient sign-stability bound; failure is not a predicted flip and "
+                "holding is not empirical proof of a general law"
+            ),
+            "verdict_flip": (
+                "any change among SUPPORTED, REFUTED and UNRESOLVED relative to the paired "
+                "ideal audit stream"
+            ),
+            "opposite_resolved_verdict": (
+                "SUPPORTED<->REFUTED only; transitions involving UNRESOLVED are excluded"
+            ),
+        },
+        "provenance": {
+            "input_sha256": {
+                "primary_e16": primary_hash_before,
+                "e01_config": sha256(E01_PATH),
+                "e16_config": sha256(E16_PATH),
+                "frozen_deployment": sha256(FROZEN_PATH),
+                "frozen_e16_runner": sha256(E16_MODULE_PATH),
+                "weighted_cs_results": sha256(E13_RESULTS_PATH),
+                "instantiation_script": sha256(Path(__file__).resolve()),
+            },
+            "protected_table_sha256": protected_hashes_before,
+            "hardware_raw_sha256": hardware_hashes_before,
+            "no_new_randomness": True,
+            "deterministic_replay_of_archived_seed_schedule_only": True,
+            "no_new_qpu_jobs": True,
+            "no_new_datasets_models_feature_maps_hyperparameters_or_likelihoods": True,
+            "primary_artifacts_unchanged_after_analysis": (
+                primary_hash_before == primary_hash_after
+                and hardware_hashes_before == hardware_hashes_after
+                and protected_hashes_before == protected_hashes_after
+            ),
+            "raw_replay_all_30_primary_rows_match": not replay_mismatches,
+        },
+        "case_accounting": {
+            "n_frozen_deployments": len(per_deployment),
+            "n_regimes_per_deployment": 2,
+            "n_claim_semantics_per_metric_cell": 2,
+            "n_unique_environment_family_delta_cells_per_deployment": 60,
+            "n_paired_audit_streams_per_cell": int(e16_cfg["audit_seeds"]),
+            "n_condition_cells": len(proposition4_cases),
+            "n_audit_stream_cases": sum(
+                len(row["audit_streams"]) for row in proposition4_cases
+            ),
+        },
+        "cases": proposition4_cases,
+        "aggregate_summaries": proposition4_aggregate,
+        "reproducibility": {
+            "canonical_encoding": "UTF-8 JSON, sorted keys, compact separators, no NaN",
+        },
+    }
+    proposition4_output["reproducibility"]["canonical_payload_sha256"] = (
+        canonical_json_sha256(proposition4_output)
+    )
+    PROPOSITION4_OUTPUT.write_text(
+        json.dumps(proposition4_output, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    log(
+        f"wrote {PROPOSITION4_OUTPUT.relative_to(ROOT)}: "
+        f"{len(proposition4_cases)} condition cells, interpretation={interpretation}"
+    )
     return 0
 
 

@@ -1,9 +1,11 @@
 # npj Quantum Information submission metadata
 
-Status: PSD-audited patch release on 2026-08-31; not yet submitted.
+Status: logically closed patch release on 2026-08-31; not yet submitted.
 
-- Release version: `0.3.1` / `npjqi-submission-v1.1`
-- Version DOI: `10.5281/zenodo.22209367`
+- Release version: `0.3.2` / `npjqi-submission-v1.2`
+- Version DOI: `10.5281/zenodo.22214449`
+- Historical `0.3.1` / `npjqi-submission-v1.1` DOI:
+  `10.5281/zenodo.22209367`
 - Historical `0.3.0` / `npjqi-submission-v1` DOI:
   `10.5281/zenodo.22206235`
 - Historical `0.2.0` / `arxiv-v1` DOI: `10.5281/zenodo.21894292`
@@ -27,21 +29,21 @@ Compliance: 13 words; no punctuation, idiom, or pun.
 
 ## Abstract
 
-Claims made by deployed quantum machine-learning classifiers can fail because
-the target environment differs from validation and finite-shot quantum
-evaluation randomizes the model itself. We develop an information-conditional,
-fail-closed framework that returns supported, refuted or unresolved verdicts
-with anytime-valid per-claim error control. Across a Higgs-to-tau-tau
-benchmark, four disjoint simulated worlds, CMS open data and a micro-scale IBM
-hardware demonstration, we give an exact fixed-threshold reduction for
-physics-weighted ratio claims and an identifiability boundary for feature-only
-evidence. Stable classifier metrics do not ensure signal-strength coverage:
-inference is jointly limited by nuisance representability and
-auxiliary-template quality. Finite-shot deployments propagate each realized
-Gram matrix through refitting, calibration and thresholding. In five
-descriptive deployments per shot budget, far-margin deployment-relative
-verdicts were stable, whereas ideal-anchored verdicts were heterogeneous; no
-monotonic population trend is inferred. A matched classical kernel removes apparent
+Claims made by deployed quantum machine-learning classifiers can fail under
+target shift or when finite-shot quantum evaluation randomizes the model. We
+develop an information-conditional, fail-closed framework returning supported,
+refuted or unresolved verdicts. Anytime-valid error control applies to each
+fixed I2 label-stream claim, conditional on the frozen finite audit population
+under declared with-replacement sampling; I3 and CMS procedures are separately
+coverage-gated or calibrated. On a Higgs-to-tau-tau benchmark, we give an exact
+fixed-threshold reduction for physics-weighted ratio claims and a feature-only
+identifiability boundary. Stable classifier metrics do not ensure
+signal-strength coverage. Finite-shot deployments propagate each realized Gram
+through refitting, calibration and thresholding. Deterministic replay
+instantiates a sufficient sign-stability bound, which holds in 68.7% of
+evaluated cells and discriminates observed flips. All evaluated far-margin
+deployment-relative claims were true and remained supported across raw and
+PSD-repaired realizations. Matched classical controls remove apparent
 quantum-specific performance and sensing effects. We claim no quantum
 advantage.
 
@@ -81,24 +83,32 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 
 ## Scientific guardrails
 
-- Proposition 4 is conditional: E16 archives neither target movement nor the
-  target-minus-source movement required to instantiate its sufficient bounds.
+- Proposition 4 is informatively instantiated by deterministic replay: all
+  7,200 condition cells are evaluable, 68.7% satisfy the sufficient inequality,
+  and paired-stream flips are 9.2% when it holds versus 60.4% when it fails.
+  Failure remains non-predictive because the condition is sufficient, not
+  necessary; cell/stream counts are correlated within deployment.
 - Same-verdict stability additionally requires the corresponding sign-stability
   condition, both audits to cover and both to resolve; two level-alpha audits
   give a 2-alpha union bound, or alpha jointly when each uses alpha/2.
-- Observed verdict flips are independent empirical evidence, not a theorem
-  prediction.
-- The anytime-valid guarantee is per fixed claim and stopping time; it is not
-  simultaneous or FWER control across models, thresholds, or environments.
+- Observed verdict flips are descriptive comparisons, not deterministic theorem
+  predictions or independent replications.
+- The anytime-valid guarantee applies per fixed I2 label-stream claim and
+  stopping time, conditional on the frozen finite audit population under
+  declared with-replacement sampling; it is not simultaneous/FWER control.
+  I3 inference is separately coverage-gated, and CMS/other ledgers use their
+  own calibrated tests and information constraints.
 - The IBM run is a micro-scale fail-closed consistency demonstration, not a
   performance result or certification at scale.
 - E16 has five independent noisy-kernel deployments per shot budget. Claims
   within each deployment are correlated; reported rates/ranges are descriptive
   and no monotonic trend or population interval is claimed.
 - All 30 historical finite-shot training Grams are indefinite. A post-hoc
-  minimum-diagonal-loading sensitivity preserves the zero far-margin
-  deployment-relative flip rate but changes several ideal-anchored magnitudes;
+  minimum-diagonal-loading sensitivity preserves support for every evaluated
+  far-margin deployment-relative claim but changes several ideal-anchored magnitudes;
   the result is PSD-SENSITIVE-BUT-SCOPED, not repair-invariant.
+- Every evaluated far-margin deployment-relative claim is true; the grid has no
+  false far-margin claim with which to assess refutation stability.
 - n* is a with-replacement audit-label draw budget, not a unique-event labeling
   cost. Real CMS event truth cannot be queried.
 - The fixed-template profiling result is conditional on nuisance

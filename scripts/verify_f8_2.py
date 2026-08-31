@@ -201,8 +201,10 @@ def main() -> int:
     )
     audit.check(
         "C2 joint validity condition",
-        "jointly limited by nuisance representability and" in main_tex
-        and "auxiliary-template quality" in main_tex,
+        re.search(
+            r"jointly limited\s+by nuisance representability and\s+auxiliary-template quality",
+            main_tex,
+        ) is not None,
     )
     audit.check(
         "E17 cross-world instability in conclusion",
@@ -331,10 +333,23 @@ def main() -> int:
         "m_s_shift_unw" in e16_fields and "m_s_shift_w" in e16_fields
         and not ({"delta_m_t", "m_t_shift", "delta_m_t_minus_delta_m_s"} & e16_fields),
     )
+    e16_proposition4 = load("E16_proposition4_instantiation.json")
+    proposition4_overall = e16_proposition4["aggregate_summaries"]["overall"]
     audit.check(
-        "Proposition 4 remains conditional",
-        "$\\Delta M_T-\\Delta M_S$; therefore Fig.~S16 and Table~S6 do not instantiate" in main_tex
-        and "do not instantiate either condition" in supplement,
+        "Proposition 4 informatively instantiated",
+        e16_proposition4["interpretation"] == "INFORMATIVELY INSTANTIATED"
+        and proposition4_overall["n_condition_cells"] == 7200
+        and proposition4_overall["n_evaluable_condition_cells"] == 7200
+        and proposition4_overall["condition_cell_counts"]["HOLDS"] == 4943
+        and "informatively instantiated" in main_tex.lower()
+        and "informatively instantiated" in supplement.lower(),
+    )
+    audit.check(
+        "Proposition 4 sufficient-not-necessary semantics",
+        proposition4_overall["verdict_flip_contingency"]["FAILS"]
+        == {"flip": 13637, "no_flip": 8933}
+        and re.search(r"sufficient\s+rather than\s+necessary", main_tex) is not None
+        and re.search(r"sufficient\s+rather than\s+necessary", supplement) is not None,
     )
     audit.check(
         "no stale Proposition 4 flip inference",
@@ -456,8 +471,20 @@ def main() -> int:
     )
     audit.check(
         "E16 raw LIBSVM semantics",
-        "usual convex PSD-kernel interpretation" in main_tex
-        and "do\nnot automatically attach" in supplement,
+        "RAW-INDEFINITE fitted object is not interpreted as the\nstandard convex RKHS SVM" in main_tex
+        and "RAW-INDEFINITE\nfitted object is not interpreted as the standard convex RKHS SVM" in supplement,
+    )
+    audit.check(
+        "E16 PSD regularization semantics",
+        "not a normalized fidelity Gram" in main_tex
+        and "no global Mercer\nextension is claimed" in main_tex
+        and "not a normalized fidelity Gram" in supplement
+        and "no global\nMercer extension is claimed" in supplement,
+    )
+    audit.check(
+        "E16 far-margin support-only scope",
+        "no\nfalse far-margin deployment-relative claim" in main_tex
+        and "no false far-margin deployment-relative claim" in supplement,
     )
     audit.check(
         "E16 non-monotonic wording",

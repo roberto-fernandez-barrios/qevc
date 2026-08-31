@@ -7,6 +7,7 @@ This is an editorial-format gate. Scientific claims remain covered by
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import sys
 from pathlib import Path
@@ -21,10 +22,12 @@ METADATA = ROOT / "docs" / "submission" / "npjqi_submission_metadata.md"
 README = ROOT / "README.md"
 DECISIONS = ROOT / "docs" / "decisions.md"
 AUDIT = ROOT / "docs" / "audits" / "senior_author_revision_2026-08-13.md"
+FINAL_AUDIT = ROOT / "docs" / "audits" / "final_logical_closure_2026-08-31.md"
 CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 PSD_ANALYSIS = ROOT / "results" / "tables" / "E16_psd_sensitivity.json"
+PROPOSITION4_ANALYSIS = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
 
 
 def sha256(path: Path) -> str:
@@ -91,9 +94,11 @@ def main() -> int:
     readme = README.read_text(encoding="utf-8")
     decisions = DECISIONS.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
+    final_audit = FINAL_AUDIT.read_text(encoding="utf-8")
     checksum_text = CHECKSUMS.read_text(encoding="utf-8")
     citation = CITATION.read_text(encoding="utf-8")
     release_manifest = RELEASE_MANIFEST.read_text(encoding="utf-8")
+    proposition4 = json.loads(PROPOSITION4_ANALYSIS.read_text(encoding="utf-8"))
 
     titles = balanced_arguments(main_tex, r"\title")
     # The optional short title is skipped by balanced_arguments.
@@ -163,8 +168,16 @@ def main() -> int:
     check("related manuscript exact status", "has not been submitted to any" in cover and "journal" in cover)
     check("submission metadata present", "## Scientific guardrails" in metadata)
 
-    check("per-claim multiplicity guardrail", "not simultaneously across a grid" in main_tex)
-    check("Proposition 4 archive guardrail", "target movements needed to instantiate" in main_tex)
+    check(
+        "per-claim multiplicity guardrail",
+        re.search(r"not simultaneous(?:ly)?\s+across a grid", main_tex) is not None,
+    )
+    check(
+        "Proposition 4 instantiated",
+        proposition4["interpretation"] == "INFORMATIVELY INSTANTIATED"
+        and proposition4["aggregate_summaries"]["overall"]["condition_cell_counts"]["HOLDS"] == 4943
+        and "informatively instantiated" in main_tex.lower(),
+    )
     check(
         "Proposition 4 logical structure",
         "sign-stability condition, coverage" in main_tex
@@ -175,15 +188,15 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22209367" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22214449" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.1" in text and "npjqi-submission-v1.1" in text
+        all("0.3.2" in text and "npjqi-submission-v1.2" in text
             for text in (readme, metadata, release_manifest)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22209367" in text
+        all("10.5281/zenodo.22214449" in text
             for text in (main_tex, readme, metadata, citation, release_manifest)),
     )
     check(
@@ -199,6 +212,33 @@ def main() -> int:
     check("README artifact set", all(token in readme for token in ("npjqi_manuscript.pdf", "npjqi_supplementary_information.pdf", "npjqi_cover_letter.pdf")))
     check("README submission state", "has not yet been submitted" in readme)
     check("PSD sensitivity archived", "PSD-SENSITIVE-BUT-SCOPED" in readme and PSD_ANALYSIS.is_file())
+    check(
+        "Proposition 4 artifact archived",
+        PROPOSITION4_ANALYSIS.is_file()
+        and "E16_proposition4_instantiation.json" in readme,
+    )
+    check(
+        "I2 I3 CMS guarantee separation",
+        "fixed I2 label-stream claim" in abstract
+        and "I3 and CMS procedures are separately" in abstract
+        and "does not inherit the\nI2 confidence-sequence theorem" in main_tex,
+    )
+    check(
+        "far-margin support-only scope",
+        "no\nfalse far-margin deployment-relative claim" in main_tex
+        and "no false far-margin deployment-relative claim" in supp_tex,
+    )
+    check(
+        "raw and PSD formal semantics",
+        "RAW-INDEFINITE fitted object is not interpreted" in main_tex
+        and "not a normalized fidelity Gram" in main_tex
+        and "no global Mercer" in main_tex,
+    )
+    check(
+        "PDF metadata declared",
+        "pdftitle=" in supp_tex and "pdfauthor=" in supp_tex and "pdfsubject=" in supp_tex
+        and "pdftitle=" in cover and "pdfauthor=" in cover and "pdfsubject=" in cover,
+    )
     check("no internal proof paths in main", "docs/" not in main_tex)
     check(
         "unsupported equivalence wording absent",
@@ -207,6 +247,13 @@ def main() -> int:
     )
     check("decision log contains npj revision", "D-038" in decisions and "npj Quantum Information" in decisions)
     check("audit contains npj adaptation", "npj Quantum Information editorial adaptation" in audit)
+    check(
+        "final logical-closure audit",
+        "INFORMATIVELY INSTANTIATED" in final_audit
+        and "4,943" in final_audit
+        and "7,200" in final_audit
+        and "no experiment, seed" in final_audit,
+    )
 
     framing_docs = {
         "README": readme,
@@ -225,14 +272,8 @@ def main() -> int:
     )
     check(
         "Proposition 4 evidence synchronized",
-        all(
-            (
-                re.search(r"Proposition(?:~|\s)4", text) is not None
-                or r"Proposition~\ref{prop:stability}" in text
-            )
-            and ("separate empirical" in text or "independent empirical" in text)
-            for text in framing_docs.values()
-        ),
+        all("informatively instantiated" in text.lower()
+            for text in (readme, main_tex, supp_tex, metadata)),
     )
     check(
         "E16 deployment unit synchronized",
@@ -261,6 +302,7 @@ def main() -> int:
         ROOT / "output" / "pdf" / "npjqi_cover_letter.pdf",
         ROOT / "dist" / "npjqi-submission.zip",
         PSD_ANALYSIS,
+        PROPOSITION4_ANALYSIS,
     )
     for path in frozen_outputs:
         rel = path.relative_to(ROOT).as_posix()

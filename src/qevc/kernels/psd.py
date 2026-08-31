@@ -99,8 +99,10 @@ def minimum_diagonal_loading(
 
     The float64 copy leaves the input untouched and preserves every
     off-diagonal element exactly.  With a strictly positive epsilon, the
-    repaired training block is full rank; unchanged cross-kernel columns have
-    a coherent out-of-sample linear extension through that training span.
+    repaired training block is full rank.  This is post-hoc regularization of
+    the training similarity matrix: its diagonal changes, cross-Gram estimates
+    remain unchanged, and no normalized-fidelity or global Mercer
+    interpretation is assigned.
     """
     matrix = np.asarray(K, dtype=np.float64)
     eigenvalues = symmetric_eigenvalues(matrix)

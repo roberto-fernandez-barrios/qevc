@@ -1055,8 +1055,9 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   estimates and source/target cross-Grams stay unchanged. Each of the same 30
   deployments is refitted, recalibrated, threshold-refrozen and audited with
   identical roles, claim grids and paired audit streams.
-- **Decision:** **PSD-SENSITIVE-BUT-SCOPED.** Far-margin deployment-relative
-  flips remain zero in all 30 repaired deployments. Far-margin ideal-anchored
+- **Decision:** **PSD-SENSITIVE-BUT-SCOPED.** Every evaluated far-margin
+  deployment-relative claim is true and remains SUPPORTED in all 30 repaired
+  deployments; no false far-margin claim tests refutation stability. Far-margin ideal-anchored
   means change from `20.8, 17.7, 0.9, 11.9, 5.8, 0.4%` to
   `31.5, 40.7, 25.1, 3.0, 6.9, 0.3%`. Their heterogeneity,
   non-monotonicity and endpoint reduction survive, but the raw numerical
@@ -1072,3 +1073,44 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   be overwritten.
 - **Status:** adopted; final release identifiers and hashes are recorded in
   the new release manifest and audit after all gates pass.
+
+## D-043 — Final logical closure and Proposition 4 instantiation
+
+- **Date:** 2026-08-31
+- **Scope:** the last pre-submission patch is restricted to deterministic
+  calculations from the already reconstructed/frozen E16 deployments and
+  factual wording/metadata corrections. It authorizes no new experiment,
+  seed, sample, dataset, model, feature map, hyperparameter, PSD repair,
+  likelihood, CMS analysis, E20 arm or QPU job. The related manuscript remains
+  untouched.
+- **Formal derivation:** for the exact deployment $f^\star$ and each realized
+  raw or PSD-sensitivity deployment $\tilde f_\omega$, compute
+  $\Delta M_S=M_S(\tilde f_\omega)-M_S(f^\star)$ and
+  $\Delta M_T=M_T(\tilde f_\omega)-M_T(f^\star)$ using the E16 claim's own
+  unweighted or raw-physical-weighted accuracy. Proposition 4 evaluates
+  $|m^\star|>|\Delta M_T-\Delta M_S|$ for deployment-relative claims and
+  $|m^\star|>|\Delta M_T|$ for ideal-anchored claims.
+- **Result:** all 7,200 raw/PSD condition cells are evaluable; threshold
+  clipping occurs in none and the exact margin identities have zero residual.
+  The sufficient inequality holds in 4,943 cells (68.7%) and preserves every
+  corresponding truth sign. Across paired audit streams, verdict flips occur
+  in 4,554/49,430 (9.2%) holding cases and 13,637/22,570 (60.4%) failing cases.
+  Two holding streams yield opposite resolved verdicts, within Proposition 4's
+  coverage-conditioned probabilistic accounting; 8,933 failing streams do not
+  flip, confirming that failure is not predictive.
+- **Interpretation:** **INFORMATIVELY INSTANTIATED**, with conservative behavior
+  in near/ideal-anchored cells. Claims and streams within a deployment remain
+  correlated; deployment is the descriptive unit.
+- **Far-margin scope:** every evaluated far-margin deployment-relative claim
+  is true and remains SUPPORTED in all raw and PSD-repaired realizations. The
+  grid contains no false far-margin deployment-relative claim with which to
+  assess refutation stability.
+- **Release rule:** publish as `0.3.2 / npjqi-submission-v1.2`, preserving all
+  earlier tags and DOIs. Completion requires the full test/gate/build/visual
+  and public byte-integrity audit.
+- **Reserved archive identifier:** Zenodo version DOI
+  `10.5281/zenodo.22214449` under the unchanged concept DOI
+  `10.5281/zenodo.21894291`.
+- **Status:** adopted. The release manifest freezes the six submission and
+  derived artifacts after all local gates and the independent ZIP build pass;
+  publication is permitted only with byte-identical GitHub and Zenodo assets.

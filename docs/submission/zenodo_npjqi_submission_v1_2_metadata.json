@@ -1,0 +1,47 @@
+{
+  "title": "qevc: Quantum Event Validity Certification — conditional validity of (quantum) event classifiers under collider systematics and estimation uncertainty",
+  "upload_type": "software",
+  "description": "<p>Exact 0.3.2 / npjqi-submission-v1.2 logical-closure release of the qevc research code and submission artifacts for <em>Conditional validity of quantum event classifiers under collider systematics and quantum estimation uncertainty</em>.</p><p>This version deterministically instantiates Proposition 4 from the 30 already reconstructed and frozen E16 deployments. All 7,200 raw/PSD deployment-cell conditions are evaluable; the sufficient sign-stability condition holds in 4,943 (68.7%). It is informative but conservative: paired-stream verdict flips occur in 9.2% of condition-holding cases and 60.4% of condition-failing cases, while failure is not interpreted as predicting a flip. All evaluated far-margin deployment-relative claims are true and remain supported; the grid contains no false far-margin deployment-relative claims with which to assess refutation stability.</p><p>The historical finite-shot RAW-INDEFINITE fitted object remains primary and is not interpreted as the standard convex RKHS SVM of a PSD kernel. Minimum diagonal loading remains a post-hoc robustness sensitivity: it restores a PSD training block and a convex precomputed-SVM training problem, but produces a regularized similarity matrix rather than a normalized fidelity Gram or claimed global Mercer kernel.</p><p>The archive contains the manuscript, Supplementary Information, cover letter, self-contained submission/source ZIP, the complete derived E16 PSD and Proposition 4 JSON artifacts, checksums and release documentation. No new experiment, Gram realization, seed, sample, dataset, model, feature map, hyperparameter, claim, likelihood, CMS analysis, QPU job or E20 execution was added. The eight-qubit study is classically simulable, the IBM evidence is micro-scale, and no quantum advantage is claimed.</p>",
+  "creators": [
+    {
+      "name": "Fernández-Barrios, Roberto",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0009-0003-5312-2634"
+    },
+    {
+      "name": "Pastor-López, Iker",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0000-0002-3068-6248"
+    },
+    {
+      "name": "González-Santocildes, Asier",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0009-0002-8888-8560"
+    },
+    {
+      "name": "García Bringas, Pablo",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0000-0003-3594-9534"
+    }
+  ],
+  "access_right": "open",
+  "license": "mit-license",
+  "publication_date": "2026-08-31",
+  "version": "0.3.2 / npjqi-submission-v1.2",
+  "keywords": [
+    "quantum machine learning",
+    "distribution shift",
+    "anytime-valid inference",
+    "collider physics",
+    "certification",
+    "quantum estimation uncertainty",
+    "positive semidefinite kernel"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.2",
+      "relation": "isIdenticalTo",
+      "scheme": "url"
+    }
+  ]
+}

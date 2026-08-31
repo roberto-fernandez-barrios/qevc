@@ -4,7 +4,7 @@
 
 ## Abstract
 
-Claims made by deployed quantum machine-learning classifiers can fail because the target environment differs from validation and finite-shot quantum evaluation randomizes the model itself. We develop an information-conditional, fail-closed framework that returns supported, refuted or unresolved verdicts with anytime-valid per-claim error control. Across a Higgs-to-tau-tau benchmark, four disjoint simulated worlds, CMS open data and a micro-scale IBM hardware demonstration, we give an exact fixed-threshold reduction for physics-weighted ratio claims and an identifiability boundary for feature-only evidence. Stable classifier metrics do not ensure signal-strength coverage: inference is jointly limited by nuisance representability and auxiliary-template quality. Finite-shot deployments propagate each realized Gram matrix through refitting, calibration and thresholding. In five descriptive deployments per shot budget, far-margin deployment-relative verdicts were stable, whereas ideal-anchored verdicts were heterogeneous; no monotonic population trend is inferred. A matched classical kernel removes apparent quantum-specific performance and sensing effects. We claim no quantum advantage.
+Claims made by deployed quantum machine-learning classifiers can fail under target shift or when finite-shot quantum evaluation randomizes the model. We develop an information-conditional, fail-closed framework returning supported, refuted or unresolved verdicts. Anytime-valid error control applies to each fixed I2 label-stream claim, conditional on the frozen finite audit population under declared with-replacement sampling; I3 and CMS procedures are separately coverage-gated or calibrated. On a Higgs-to-tau-tau benchmark, we give an exact fixed-threshold reduction for physics-weighted ratio claims and a feature-only identifiability boundary. Stable classifier metrics do not ensure signal-strength coverage. Finite-shot deployments propagate each realized Gram through refitting, calibration and thresholding. Deterministic replay instantiates a sufficient sign-stability bound, which holds in 68.7\% of evaluated cells and discriminates observed flips. All evaluated far-margin deployment-relative claims were true and remained supported across raw and PSD-repaired realizations. Matched classical controls remove apparent quantum-specific performance and sensing effects. We claim no quantum advantage.
 
 ## Introduction
 
@@ -37,9 +37,14 @@ unlabeled target data (I1), $n$ target labels (I2($n$)), and experimentally
 available aggregates such as control-region rates and nuisance estimates
 (I3). A fail-closed auditor returns SUPPORTED or REFUTED only when the declared
 information resolves the claim at a declared error rate, and UNRESOLVED
-otherwise. Its anytime-valid guarantee applies to each fixed claim over all
-stopping times, not simultaneously across a grid of models, thresholds, or
-environments. Heuristic signals may veto certification but never grant it.
+otherwise. At I2, the anytime-valid guarantee applies to each fixed label-stream
+claim, conditional on the frozen finite audit population under the declared
+with-replacement protocol, over all stopping times; it is not simultaneous
+across a grid of models, thresholds, or environments. I3 profile-likelihood and
+auxiliary-information procedures are separately coverage-gated, while CMS and
+other empirical ledgers use their own calibrated tests and information
+constraints; neither inherits Theorem~the referenced section automatically.
+Heuristic signals may veto certification but never grant it.
 
 Collider physics is a demanding test bed rather than a decorative application:
 physics weights, invisible yield shifts, control regions, downstream likelihood
@@ -57,8 +62,9 @@ data, and QPU-estimated kernels (Fig.~the referenced section).
 **Caption.** Framework. The information-set hierarchy I0$\to$I3 and the
 fail-closed decision rule. Claims about a frozen deployment are audited
 under declared information; heuristic sensors may veto certification but
-never grant it; SUPPORTED/REFUTED verdicts carry anytime-valid per-claim
-error control; everything else remains UNRESOLVED.}
+never grant it. At I2, fixed label-stream claims carry anytime-valid per-claim
+error control; I3 and empirical ledgers use separate coverage gates or
+calibrated tests. Unresolved claims remain UNRESOLVED.}
 
 First, certification is information-conditional. We give an exact algebraic
 reduction of the fixed-threshold physics-weighted ratio claim used here to a
@@ -78,7 +84,7 @@ measured 1.8--3.4 interval-width price, but fails for unrepresented smearing
 and interaction terms. Registered independent-MC studies then show that
 template noise at the archived MC size can invalidate this fixed-template
 construction even nominally. Inference validity is therefore jointly limited
-by nuisance representability and auxiliary-information quality. A fail-closed
+by nuisance representability and auxiliary-template quality. A fail-closed
 ledger on the complete public CMS Run2012 $H\to\tau\tau$ sample certifies only
 the aggregate claims that its control-region information supports and refuses
 event-level accuracy by construction.
@@ -89,14 +95,19 @@ refit, calibration and threshold variation $\to$ claim truth and resolvability.
 We distinguish realized-deployment from ideal-anchored claims, retain
 conditional per-claim validity for both (Proposition~the referenced section), and
 state elementary sufficient stability conditions
-(Proposition~the referenced section). The target movements needed to instantiate
-those conditions were not archived. E16 therefore supplies separate,
-deployment-level descriptive evidence from five independent realizations per
-shot budget: far-margin deployment-relative verdicts were stable in all 30
-realizations, whereas ideal-anchored verdicts were heterogeneous across
-realizations and non-monotonic across the observed budget sequence. No
-population trend is inferred. A micro-scale full-pipeline IBM QPU run
-tests fail-closed consistency, not performance or certification at scale.
+(Proposition~the referenced section). The final deterministic replay reconstructs
+its source and target movements for all 7,200 raw/PSD, claim-semantics and
+environment--metric--threshold condition cells. The sufficient inequality
+holds in 68.7% of them; across the paired audit streams, verdict-flip rates are
+9.2% when it holds and 60.4% when it fails. This is informative but
+sufficient-not-necessary evidence, not independent claim-level replication.
+All evaluated far-margin deployment-relative claims were true and remained
+SUPPORTED in all 30 raw and corresponding PSD-repaired realizations; the grid
+contains no false far-margin deployment-relative claim with which to assess
+refutation stability. Ideal-anchored verdicts remain heterogeneous and
+non-monotonic across the observed budget sequence. No population trend is
+inferred. A micro-scale full-pipeline IBM QPU run tests fail-closed consistency,
+not performance or certification at scale.
 
 The first two contributions are deliberately model-agnostic: they identify the
 scientific validity layer that any event classifier must pass. Their integration
@@ -653,9 +664,9 @@ coverage) -- the principled joint treatment is profiling
 
 ### Audit-label draw efficiency
 
-$n^*$ is sharply margin-driven: $\sim$180 labeled draws at $|margin| \ge 0.08$; $\sim$870 at
+$n^*$ is sharply margin-driven: $\sim$180 audit-label draws at $|margin| \ge 0.08$; $\sim$870 at
 0.04--0.08; $\sim$13,000 at 0.01--0.02; below 0.01 the fail-closed UNRESOLVED
-region dominates even at 20,000. We contextualize those costs against the
+region dominates even at 20,000. We contextualize those draw budgets against the
 Wald-style information yardstick
 $\log(1/\alpha)/KL(Ber(p) \,\|\, Ber(\tau))$. The
 measured median stopping times are a factor 2.07 above this benchmark overall
@@ -755,10 +766,11 @@ quality is a second validity condition.}
 
 The claim semantics of Section~the referenced section ($C_{dep}$ vs $C_{ideal}$) carry two formal
 consequences, both deliberately elementary -- their content is the
-semantics. The measurements instantiate Proposition~the referenced section;
-Proposition~the referenced section remains conditional because its required
-target-movement quantities were not archived. The entire eight-qubit study is
-classically simulable; the quantum relevance is the propagation of a
+semantics. The measurements instantiate Proposition~the referenced section. The
+final deterministic E16 replay also reconstructs the source and target
+movements required to instantiate Proposition~the referenced section; no new
+randomness, sample, seed or QPU job is introduced. The entire eight-qubit study
+is classically simulable; the quantum relevance is the propagation of a
 physically estimated kernel realization through scientific claim semantics,
 not computational advantage.
 
@@ -816,12 +828,22 @@ $\Delta M_T=-0.10$, perfectly covering, resolving audits return SUPPORTED and
 REFUTED because the realized margin is $-0.05$. Conversely,
 $\Delta M_T=+0.10$ also violates the sufficient inequality but preserves the
 positive sign. Thus failure of the condition neither prevents nor forces a
-flip. The E16 artifact archives
-$\Delta M_S$ and empirical flip rates, but not $\Delta M_T$ or
-$\Delta M_T-\Delta M_S$; therefore Fig.~S16 and Table~S6 do not instantiate
-the sufficient conditions. Proposition~the referenced section remains a
-conditional result, and the flip rates below are independent empirical
-evidence rather than theory predictions.
+flip. Deterministic replay makes all 7,200 condition cells evaluable: the
+margin identities hold exactly at the archived precision, no threshold clips,
+and the sufficient inequality holds in 4,943 cells (68.7%). It preserves the
+truth sign in every such cell, as required. Across their 49,430 paired audit
+streams, 4,554 ternary verdict changes are observed, versus 13,637 among the
+22,570 streams whose condition fails (9.2% versus 60.4%). Two of the former
+are opposite resolved verdicts, consistent with the proposition's
+coverage-conditioned probabilistic statement rather than a deterministic
+verdict guarantee. Conversely, 8,933 stable verdicts occur when the condition
+fails. We therefore classify Proposition~the referenced section as
+\textsc{informatively instantiated}: it discriminates observed outcomes but is
+conservative, especially for near-margin ideal-anchored claims; the inequality
+is sufficient rather than necessary. Claims and
+streams within a deployment remain correlated; these counts are descriptive,
+not independent replication (Supplementary Table~S8 and the derived
+`E16_proposition4_instantiation.json`).
 
 #### Finite-shot deployments
 
@@ -838,15 +860,18 @@ and audit streams and are not IID replicates. Audit streams are deliberately
 paired across deployments, so deployment-level comparisons also share common
 random numbers; the dispersion below is descriptive.
 
-Deployment-relative far-margin verdicts ($|m|\geq0.04$) do not flip in any of
-the 30 deployments. Ideal-anchored far-margin behavior is heterogeneous: at
+All far-margin deployment-relative claims ($|m|\geq0.04$) in the evaluated grid
+are true and remain SUPPORTED in all 30 raw deployments. The grid contains no
+false far-margin deployment-relative claim with which to assess refutation
+stability. Ideal-anchored far-margin behavior is heterogeneous: at
 128 shots the deployment-level mean is 20.8%, sample SD 19.9% and range
 0--44%; at 4096 shots it is 0.4%, SD 0.65% and range 0--1.5%. Intermediate
 means are non-monotonic (17.7, 0.9, 11.9 and 5.8%), including a 0--88.5%
 range at 256 shots and 0--59% at 1024. Leave-one-deployment-out endpoint
 means range from 15--26% and 0.13--0.50%, respectively. These five
 deployments per budget support a descriptive endpoint comparison and the
-observed zero far-margin deployment-relative rate, not a population interval
+observed support stability of the evaluated true far-margin
+deployment-relative claims, not a population interval
 or monotonic trend. Contribution 3 is restricted to those descriptive
 statements. Pooled claim-level false-certification counts remain
 implementation diagnostics; the per-fixed-claim guarantee comes from the
@@ -854,17 +879,22 @@ confidence-sequence construction.
 
 A post-hoc robustness analysis prompted by the final technical audit found
 that all 30 historical finite-shot training Grams are indefinite
-($\lambda_{\min}=-1.94$ to $-0.312$; 377--580 negative modes). Entry-wise
-finite-shot estimates need not preserve positive semidefiniteness, so these
-raw matrices are not standard PSD/RKHS kernels. LIBSVM returns numerical fits
-for the precomputed matrices, but the usual convex PSD-kernel interpretation
-is not assigned to them. The historical RAW-INDEFINITE pipeline remains the
-primary analysis. A declared sensitivity instead applies minimum diagonal
-loading, $K_{\rm PSD}=K+\max(0,-\lambda_{\min}+\epsilon)I$, with
-$\epsilon=10^{-10}\max(1,|\lambda_{\max}|)$; it leaves every off-diagonal and
-cross-Gram estimate unchanged, then repeats the refit, calibration, threshold
-freeze and audits. Far-margin deployment-relative flips remain zero in all 30
-repaired deployments. Far-margin ideal-anchored means change to 31.5, 40.7,
+($\lambda_{\min}=-1.94$ to $-0.312$; 377--580 negative modes). The historical
+finite-shot pipeline fits an SVC to each realized quantum-similarity matrix.
+Because entry-wise finite-shot estimation does not preserve positive
+semidefiniteness, this RAW-INDEFINITE fitted object is not interpreted as the
+standard convex RKHS SVM associated with a PSD kernel, although LIBSVM returns
+a numerical fit. It remains the primary historical analysis. A declared
+post-hoc robustness sensitivity instead applies minimum diagonal loading,
+$K_{\rm PSD}=K+\max(0,-\lambda_{\min}+\epsilon)I$, with
+$\epsilon=10^{-10}\max(1,|\lambda_{\max}|)$. This restores a PSD training block
+and therefore a convex precomputed-SVM training problem, but the loaded matrix
+is a regularized similarity matrix, not a normalized fidelity Gram: its
+diagonal changes, cross-Gram estimates remain unchanged, and no global Mercer
+extension is claimed. The same refit, calibration, threshold freeze and audits
+then follow. All evaluated far-margin deployment-relative claims are again true
+and remain SUPPORTED in all 30 repaired deployments; no false far-margin cell
+tests refutation stability. Far-margin ideal-anchored means change to 31.5, 40.7,
 25.1, 3.0, 6.9 and 0.3% across increasing shot budgets: their heterogeneity,
 non-monotonicity and endpoint reduction survive, but their magnitudes are
 repair-sensitive (Supplementary Table S7). We therefore classify
@@ -887,11 +917,13 @@ verdict stability. (a) The E09 $n_{\rm train}=2000$ shot-only curve and AUC;
 the E10 $n=32$, 2048-shot hardware diagnostic is shown separately with its
 matched local shot floor ($\simeq0.020$), so the scales are not conflated.
 (b) E16 deployment-level means and ranges across five noisy-kernel
-realizations per shot budget. Deployment-relative far-margin verdicts never
-flip; the endpoint ideal-anchored means are 20.8% at 128 shots and 0.4% at
+realizations per shot budget. All evaluated deployment-relative far-margin
+claims are true and remain SUPPORTED; the grid has no false far-margin cell.
+The endpoint ideal-anchored means are 20.8% at 128 shots and 0.4% at
 4096 shots, with non-monotonic intermediate values and substantial seed
 heterogeneity. Claims within each realization are correlated. These empirical rates are separate
-from Proposition~the referenced section's uninstantiated sufficient condition.
+from, but descriptively discriminated by, Proposition~the referenced section's
+now-instantiated sufficient condition.
 The separate E16 $n=28$ hardware micro-arm is discussed in
 Section~the referenced section and is not plotted.}
 
@@ -933,7 +965,9 @@ first on a verified 10% mirror, then on the complete public Run2012B+C
 collision files (126,164 selected events, $\times$10), and finally under a
 statistical hardening pass (E11v3) that propagates MC-side statistics
 into the control-region claims and replaces the sensor's max-floor rule
-with calibrated tests. The ledger (Table~the referenced section) is stable
+with calibrated tests. This is a real-data fail-closed case study, not external
+classifier validation or a calibrated physics search; it does not inherit the
+I2 confidence-sequence theorem. The ledger (Table~the referenced section) is stable
 across all three analyses, which is itself the demonstration:
 
 [t]
@@ -1003,10 +1037,13 @@ The interpretation has five principal limitations.
   construction is invalid even nominally. We do not evaluate a general
   MC-statistics-aware likelihood.
 \item E16 has five noisy-kernel deployments per shot budget. Its rates and
-  ranges are descriptive; Proposition~the referenced section remains conditional.
-  Every raw finite-shot training Gram is indefinite. Minimum diagonal loading
-  preserves the zero far-margin deployment-relative flip rate but changes
-  several ideal-anchored magnitudes, which are therefore repair-sensitive.
+  ranges are descriptive. Proposition~the referenced section is informatively
+  instantiated (68.7% of condition cells satisfy the sufficient inequality),
+  but it is not a necessary condition or a population law. Every raw finite-shot
+  training Gram is indefinite. Minimum diagonal loading preserves support for
+  every evaluated far-margin deployment-relative claim but changes several
+  ideal-anchored magnitudes, which are therefore repair-sensitive. Those far
+  claims are all true; refutation stability is untested in that stratum.
   The eight-qubit experiments are classically simulable, and the QPU arm is a
   micro-scale integration/fail-closed consistency demonstration with a strong
   REFUTED/UNRESOLVED floor effect.
@@ -1155,7 +1192,7 @@ is https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T, under CC0
 . Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-https://doi.org/10.5281/zenodo.22209367 . Raw source
+https://doi.org/10.5281/zenodo.22214449 . Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1165,7 +1202,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 https://github.com/roberto-fernandez-barrios/qevc and in the versioned
-Zenodo archive https://doi.org/10.5281/zenodo.22209367
+Zenodo archive https://doi.org/10.5281/zenodo.22214449
 . The software is released under the MIT License.
 
 ## Acknowledgements

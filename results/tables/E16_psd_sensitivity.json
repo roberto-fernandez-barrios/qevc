@@ -10,7 +10,7 @@
     "epsilon_definition": "epsilon = 1e-10 * max(1, abs(lambda_max(K_raw)))",
     "negative_mode_tolerance_relative": 1e-10,
     "cross_gram_rule": "all source-validation and target cross-Grams remain raw and unchanged",
-    "interpretation": "The loaded full-rank training block restores the convex PSD-SVM training problem; unchanged cross columns define the same measured out-of-sample similarities through the training span."
+    "interpretation": "Minimum diagonal loading restores a PSD training block and therefore a convex precomputed-SVM training problem. The loaded matrix is a post-hoc regularized similarity matrix, not a normalized fidelity Gram; cross-Gram estimates remain unchanged and no global Mercer extension is claimed."
   },
   "provenance": {
     "primary_e16_path": "results/tables/E16_quantum_uncertainty.json",
@@ -11074,5 +11074,5 @@
       }
     }
   },
-  "wall_seconds": 1264.1
+  "wall_seconds": 1261.2
 }
