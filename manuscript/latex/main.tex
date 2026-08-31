@@ -303,7 +303,7 @@ nontrivial power.
 
 Proof: equality of the stated observable laws makes the rejection probability
 identical under null and alternative. The count counterexample follows from
-standard Poisson testing (\texttt{docs/weighted\_certification\_spec.md} \S4b).
+standard Poisson testing (Supplementary Section S1.2).
 \textbf{Corollary.} The power restored by I3 is bounded by the auxiliary
 evidence's own statistics: with template variance
 $\sigma^2_c = \sum_g (\mathrm{relerr}_g\lambda_g)^2$, rate scales
@@ -379,7 +379,7 @@ $E[Z]-\tau=E[u](R-\tau)/w_{\max}$, proving the equivalence because $E[u]>0$.
 A false certification or false refutation then requires a coverage violation
 of the two-sided CS at some $n$, an event of probability $\le \alpha$ by
 time-uniformity; substitution gives (c)
-(\texttt{docs/formal\_results.md}). Importance-weighted, self-normalized and
+(Supplementary Section S1.1). Importance-weighted, self-normalized and
 adaptive-data confidence sequences already exist, notably in off-policy
 inference \citep{karampatziakis2021offpolicy,waudbysmith2022anytimeoffpolicy}.
 We do not claim priority over weighted anytime-valid inference. The contribution
@@ -463,7 +463,8 @@ Matched 2000-event budget, five-seed replication: QK-SVC $0.848 \pm 0.022$ ---
 above full-feature RBF in 4/5 seeds and above linear SVC in 5/5,
 consistently below tuned trees (QK $-$ XGB $= -0.035 \pm 0.013$, negative in 5/5 seeds). The
 matched-kernel control --- RBF on the identical 8 features --- reaches
-$0.859 \pm 0.016$, statistically indistinguishable from the QK-SVC: the
+$0.859 \pm 0.016$; no consistent separation from the QK-SVC is detected
+across the five evaluated replications. The
 earlier ``QK above RBF'' contrast was a feature-set effect, not
 quantumness. The fresh holdout confirms the \emph{paired} structure exactly
 (QK $-$ XGB $= -0.039$; QK $-$ RBF8 $= -0.008$, both within the replication
@@ -483,7 +484,8 @@ measured cross-world fact: over four independent worlds the between-world
 standard deviation of absolute weighted AUC is 0.030--0.050 per model
 (ranges up to 0.121), while QK $-$ XGB stays negative in all four worlds
 ($-0.022$ to $-0.076$) and QK $-$ RBF8 changes sign across worlds --- the
-``statistically indistinguishable'' reading is world-robust. What
+absence of a consistent QK--RBF8 separation is also observed across worlds.
+What
 replicates everywhere is the \emph{paired ordering} against tuned trees and
 the error control; what does not is anything absolute. This is no longer
 a caution but a quantified warning for matched-budget benchmark practice:
@@ -874,7 +876,7 @@ Proof: substitute the signed movements into each margin. If the movement's
 magnitude is smaller than $|m^\star|$, the sign cannot cross zero. On each
 coverage event, any decisive verdict points to the true sign; intersection
 and a union bound give the stated resolved-verdict result
-(\texttt{docs/formal\_results.md}). Coverage and resolution alone are
+(Supplementary Section S1.3). Coverage and resolution alone are
 insufficient: for an ideal-anchored margin $m^\star=0.05$ and
 $\Delta M_T=-0.10$, perfectly covering, resolving audits return SUPPORTED and
 REFUTED because the realized margin is $-0.05$. Conversely,
@@ -912,10 +914,28 @@ range at 256 shots and 0--59\% at 1024. Leave-one-deployment-out endpoint
 means range from 15--26\% and 0.13--0.50\%, respectively. These five
 deployments per budget support a descriptive endpoint comparison and the
 observed zero far-margin deployment-relative rate, not a population interval
-or monotonic trend. C3 is scoped to those statements, so no additional seeds
-are required. Pooled claim-level false-certification counts remain
+or monotonic trend. Contribution 3 is restricted to those descriptive
+statements. Pooled claim-level false-certification counts remain
 implementation diagnostics; the per-fixed-claim guarantee comes from the
 confidence-sequence construction.
+
+A post-hoc robustness analysis prompted by the final technical audit found
+that all 30 historical finite-shot training Grams are indefinite
+($\lambda_{\min}=-1.94$ to $-0.312$; 377--580 negative modes). Entry-wise
+finite-shot estimates need not preserve positive semidefiniteness, so these
+raw matrices are not standard PSD/RKHS kernels. LIBSVM returns numerical fits
+for the precomputed matrices, but the usual convex PSD-kernel interpretation
+is not assigned to them. The historical RAW-INDEFINITE pipeline remains the
+primary analysis. A declared sensitivity instead applies minimum diagonal
+loading, $K_{\rm PSD}=K+\max(0,-\lambda_{\min}+\epsilon)I$, with
+$\epsilon=10^{-10}\max(1,|\lambda_{\max}|)$; it leaves every off-diagonal and
+cross-Gram estimate unchanged, then repeats the refit, calibration, threshold
+freeze and audits. Far-margin deployment-relative flips remain zero in all 30
+repaired deployments. Far-margin ideal-anchored means change to 31.5, 40.7,
+25.1, 3.0, 6.9 and 0.3\% across increasing shot budgets: their heterogeneity,
+non-monotonicity and endpoint reduction survive, but their magnitudes are
+repair-sensitive (Supplementary Table S7). We therefore classify
+the result as \textsc{PSD-sensitive-but-scoped}, not PSD-invariant.
 
 \begin{figure}[t]
 \centering
@@ -949,14 +969,18 @@ Section~\ref{sec:hardware} and is not plotted.}
 
 ibm\_marrakesh (Heron r2). The development-era kernel study (496
 compute--uncompute circuits $\times$ 2048 shots, 32 events, raw counts, no
-mitigation) found device noise dominating the estimation budget $\sim$8$\times$ over
-shot noise, fidelities biased down, and the Gram still PSD. The campaign
-adds the project's first 100\%-hardware \emph{deployment} Grams: a 28-event train Gram
-plus a $28\times12$ cross-Gram (714 circuits $\times$ 1024 shots, 200 s QPU, test
-events half nominal / half TES-shifted), auto-sized to the free-tier
-budget. The hardware kernel error is 12.7\% against 2.1\% shot-only at the
-same budget (6.0$\times$; device excess 10.6\%, i.e.\ 5.0$\times$ the shot floor ---
-consistent with the deeper-shot v1 ratios); the hardware Gram stays PSD. Run end-to-end,
+mitigation on the measured entries) found device noise dominating the
+estimation budget $\sim$8$\times$ over shot noise and fidelities biased down.
+The campaign adds a micro-deployment whose 378 off-diagonal training-kernel
+and 336 cross-kernel entries are estimated from QPU counts (714 circuits
+$\times$ 1024 shots, 200 s QPU; 28 train and 12 test events, half nominal /
+half TES-shifted). The 28 training-diagonal entries were not executed: they
+are fixed analytically to unity by the fidelity-kernel convention. ``No
+mitigation'' refers only to the entries actually measured. The hardware
+kernel error is 12.7\% against 2.1\% shot-only at the same budget
+(6.0$\times$; device excess 10.6\%, i.e.\ 5.0$\times$ the shot floor ---
+consistent with the deeper-shot v1 ratios); the constructed unit-diagonal
+hardware training Gram is PSD. Run end-to-end,
 the auditor returns identical verdicts across the hardware and three
 same-budget shot-only deployments (0 flips, 0 false certifications) ---
 stated precisely: the $n = 28$ micro-deployment is at chance ($M_T = 0.50$,
@@ -1028,7 +1052,8 @@ finite-shot/noisy quantum evaluation creates an additional
 measurement-induced deployment uncertainty that propagates through Gram
 estimation, refitting, calibration and threshold selection.
 
-C1 and C2 are model-agnostic. Their QML relevance emerges when coupled to C3:
+Contributions 1 and 2 are model-agnostic. Their QML relevance emerges when
+coupled to Contribution 3:
 a physically estimated quantum kernel is not a fixed input but a random
 realized deployment, so the scientific claim and its reference must be defined
 for that realization. The value of the elementary deployment propositions is
@@ -1058,6 +1083,9 @@ The interpretation has five principal limitations.
   MC-statistics-aware likelihood.
 \item E16 has five noisy-kernel deployments per shot budget. Its rates and
   ranges are descriptive; Proposition~\ref{prop:stability} remains conditional.
+  Every raw finite-shot training Gram is indefinite. Minimum diagonal loading
+  preserves the zero far-margin deployment-relative flip rate but changes
+  several ideal-anchored magnitudes, which are therefore repair-sensitive.
   The eight-qubit experiments are classically simulable, and the QPU arm is a
   micro-scale integration/fail-closed consistency demonstration with a strong
   REFUTED/UNRESOLVED floor effect.
@@ -1093,7 +1121,13 @@ SHA-256s, and each new draw records overlap zero against every prior
 archive. Each world carries a raw-row five-role partition (train 40\%,
 source\_val / nominal\_test / auditor\_dev / final\_eval 15\% each); both
 \texttt{final\_eval} roles of the development and confirmatory worlds remain
-sealed and have never been read. Level II uses the complete public CMS
+sealed. The complete raw draws and class labels were available when the
+deterministic label-stratified role indices were constructed and persisted;
+sealing begins immediately after that construction. Since then, the standard
+loader removes \texttt{final\_eval} unless an explicit opt-in flag is supplied,
+and no such opt-in occurs in an experiment: those roles have not been used for
+model or hyperparameter selection, calibration or threshold choices, claim
+construction, or any reported evaluation. Level II uses the complete public CMS
 Run2012B+C TauPlusX $H\to\tau\tau$ samples (126,164 selected collision events at
 11,467 pb$^{-1}$) with mirror MC re-weighted to full luminosity.
 
@@ -1216,7 +1250,7 @@ is \url{https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T}, under CC0
 \citep{cernopendata12350}. Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-\url{https://doi.org/10.5281/zenodo.22206235} \citep{qevc_artifact}. Raw source
+\url{https://doi.org/10.5281/zenodo.22209367} \citep{qevc_artifact}. Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1226,7 +1260,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 \url{https://github.com/roberto-fernandez-barrios/qevc} and in the versioned
-Zenodo archive \url{https://doi.org/10.5281/zenodo.22206235}
+Zenodo archive \url{https://doi.org/10.5281/zenodo.22209367}
 \citep{qevc_artifact}. The software is released under the MIT License.
 
 \section*{Acknowledgements}

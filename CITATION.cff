@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software or its results, please cite as below."
 title: "qevc: Quantum Event Validity Certification — conditional validity of (quantum) event classifiers under collider systematics and estimation uncertainty"
 type: software
-version: 0.3.0
+version: 0.3.1
 date-released: "2026-08-31"
 repository-code: "https://github.com/roberto-fernandez-barrios/qevc"
 authors:
@@ -41,6 +41,7 @@ keywords:
   - anytime-valid inference
   - collider physics
   - certification
-doi: "10.5281/zenodo.22206235"
-# Version 0.3.0 is the exact npj Quantum Information submission release.
+doi: "10.5281/zenodo.22209367"
+# Version 0.3.1 is the PSD-audited npj Quantum Information submission release.
+# The historical 0.3.0 release remains at 10.5281/zenodo.22206235.
 # The historical 0.2.0/arxiv-v1 record remains at 10.5281/zenodo.21894292.

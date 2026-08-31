@@ -16,6 +16,7 @@
 \graphicspath{{../../results/figures/}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thesection}{S\arabic{section}}
 \setcounter{figure}{15}
 
 \title{Supplementary Information for\\
@@ -43,6 +44,7 @@ first-run tables remain in the repository under \texttt{*\_v1\_*.json}.
 \section{Formal details}
 
 \subsection{Exact weighted anytime-valid certification}
+\label{supp:weighted}
 
 Condition on a frozen finite audit population and a scalar $w_{\max}$ fixed
 before the random audit order. For IID with-replacement labeled draws
@@ -97,6 +99,7 @@ importance-weighted, self-normalized or adaptive-data confidence sequences;
 the directly relevant off-policy literature is cited in the main manuscript.
 
 \subsection{Information-set boundary for weight-only nuisances}
+\label{supp:weight-only}
 
 I1 is the fixed-size or count-conditioned feature experiment
 $\mathcal O_1^{(n)}=(X_1,\ldots,X_n)\mid N=n$; it excludes $N$, exposure,
@@ -128,6 +131,7 @@ fit identifies the ttbar rate only to approximately $\pm10\%$ and leaves
 tighter claims unresolved.
 
 \subsection{Random deployments and verdict stability}
+\label{supp:random-deployments}
 
 Let $\omega$ denote the finite-shot or hardware realization and
 $\widetilde f_\omega$ the resulting refit, recalibration, and threshold.
@@ -232,9 +236,10 @@ Pre-campaign, 2026-08-11 & All E00--E11 code, tables, splits, and governance & S
 Post-campaign, 2026-08-11 & E12--E16, E04v3, E11v2; 172 registry values and about 178 manuscript claims & E13 nominal-weight estimand fixed and rerun; E15 gate rejected two implementations; E16 dual accounting added; E12 normalization reading corrected; all superseded tables retained. \\
 Pre-submission, 2026-08-12 & Extension runners, figure scripts, and line-by-line formal proofs & Two HIGH findings fixed: JES tracking scoped and disclosed; E19 weighted estimand corrected and rerun. Proposition 4 gained its coverage-event and scale-bridge qualifiers. Eight LOW findings were fixed, completed, disclosed, or documented. \\
 F8.2, 2026-08-12 & Final LaTeX, supplement, number trace, semantic equivalence, rendered PDFs & E08v3 bias range corrected from $+6.1$ to the archived $+7.5$ endpoint; the nine-arm counting convention made explicit. \\
-Final mathematical/editorial, 2026-08-12 & Proposition 2, Theorem 1, Proposition 4, C2/C3, E17, figures, and three independent adversarial reviews & Claims were restricted to their exact mathematical and evidential scope: per-claim rather than family-wise control; finite-population-conditional weight bounds; conditional Proposition 4 with empirical flips separated; joint nuisance-representability/template-quality limits; no new experiment or result. \\
+Final mathematical/editorial, 2026-08-12 & Proposition 2, Theorem 1, Proposition 4, Contributions 2/3, E17, figures, and three independent adversarial reviews & Claims were restricted to their exact mathematical and evidential scope: per-claim rather than family-wise control; finite-population-conditional weight bounds; conditional Proposition 4 with empirical flips separated; joint nuisance-representability/template-quality limits; no new experiment or result. \\
 Senior-author pre-submission, 2026-08-13 & Observable experiments, Proposition 4, weighted-inference literature, E16 deployment unit, C2 narrative, CMS wording and concision & Added the missing sign-stability premise and counterexample; separated feature-conditioned evidence from counts; reanalyzed all 30 existing E16 deployments without new runs; retired IID environment $p$-values; updated related-manuscript status and reduced audit-history prose in the main paper. \\
-Final pre-submission patch, 2026-08-31 & Primary literature, novelty claims, abstract hierarchy, methods, supplement, release metadata and rendered artifacts & Added the closest competitive work, removed priority language, made C3 deployment semantics primary, expanded protocol detail, and synchronized editorial/release records. No experiment, dataset, model, configuration or primary result changed. \\
+Final pre-submission patch, 2026-08-31 & Primary literature, novelty claims, abstract hierarchy, methods, supplement, release metadata and rendered artifacts & Added the closest competitive work, removed priority language, made Contribution 3 deployment semantics primary, expanded protocol detail, and synchronized editorial/release records. No experiment, dataset, model, configuration or primary result changed. \\
+Final technical PSD audit, 2026-08-31 & The 30 frozen E16 deployments, LIBSVM semantics, hardware-entry provenance and sealed-role wording & Deterministically replayed every raw deployment, measured the complete training-Gram spectra, applied one declared minimum-diagonal-loading sensitivity, and classified the result \textsc{PSD-sensitive-but-scoped}. No new Gram realization, seed, sample or QPU job was generated. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -363,8 +368,9 @@ across deployments, so comparisons also share common random numbers. The far ide
 non-monotonic. At the endpoints the sample SDs are 19.9 and 0.65\%, ranges are
 0--44 and 0--1.5\%, and leave-one-deployment-out means are 15--26 and
 0.13--0.50\%. These are descriptive dispersion and sensitivity summaries, not
-population confidence intervals. Five deployments per budget suffice for the
-scoped descriptive C3; no additional seeds are required for that claim.
+population confidence intervals. Five deployments per budget permit only a
+descriptive characterization of the observed realizations; no population
+trend or equivalence claim is made.
 
 \clearpage
 \begin{table}[H]
@@ -415,6 +421,73 @@ Shots & Seed & Frob.\ (\%) & AUC & \multicolumn{2}{c}{Far flips} & \multicolumn{
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\caption{Post-hoc E16 PSD sensitivity prompted by the final technical audit.
+Each row summarizes five deterministically replayed frozen deployments. Flip
+entries are mean far-margin percentages relative to the ideal exact-kernel
+deployment; ``dep.'' uses each realization's refrozen source reference and
+``ideal'' uses the fixed ideal reference. Minimum diagonal loading preserves
+every off-diagonal and cross-Gram estimate. Source:
+\texttt{results/tables/E16\_psd\_sensitivity.json}.}
+\label{tab:e16-psd}
+\begin{tabular}{rrrrrrrrrr}
+\toprule
+Shots & $n$ & med. $\lambda_{\min}$ & worst $\lambda_{\min}$ & med. $n_-$ & max $n_-$ & dep. raw & dep. PSD & ideal raw & ideal PSD \\
+\midrule
+128  & 5 & $-1.930$ & $-1.939$ & 580 & 580 & 0.0 & 0.0 & 20.8 & 31.5 \\
+256  & 5 & $-1.325$ & $-1.333$ & 531 & 532 & 0.0 & 0.0 & 17.7 & 40.7 \\
+512  & 5 & $-0.936$ & $-0.966$ & 489 & 490 & 0.0 & 0.0 & 0.9 & 25.1 \\
+1024 & 5 & $-0.655$ & $-0.657$ & 449 & 450 & 0.0 & 0.0 & 11.9 & 3.0 \\
+2048 & 5 & $-0.448$ & $-0.457$ & 412 & 413 & 0.0 & 0.0 & 5.8 & 6.9 \\
+4096 & 5 & $-0.313$ & $-0.319$ & 379 & 380 & 0.0 & 0.0 & 0.4 & 0.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All 30 raw $2000\times2000$ training Grams are indefinite under the declared
+negative-mode tolerance $10^{-10}\max(1,|\lambda_{\max}|)$. Across budgets,
+the median negative spectral-mass fraction falls from 13.59\% to 2.14\%, while
+$\lambda_{\max}$ remains approximately 201.2; the positive-only condition
+number ranges from $8.8\times10^4$ to $6.4\times10^7$ and is descriptive only
+because the raw matrices are indefinite. Entry-wise finite-shot estimation
+therefore does not necessarily produce a PSD kernel or a standard RKHS Gram.
+The material far-margin changes are confined to the ideal-anchored magnitude:
+they are substantial at 128--1024 shots, small at 2048 and negligible at 4096;
+the deployment-relative far rate is unchanged at every budget.
+LIBSVM can and did return a numerical solution when supplied each precomputed
+raw matrix, but the usual convex PSD-kernel interpretation and guarantees do
+not automatically attach to that solution; indefiniteness alone also does not
+make its numerical deployment meaningless.
+
+The historical RAW-INDEFINITE pipeline remains primary. For the declared
+sensitivity, each training Gram is converted in float64 as
+$K_{\rm PSD}=K_{\rm raw}+\delta I$, where
+$\delta=\max(0,-\lambda_{\min}+\epsilon)$ and
+$\epsilon=10^{-10}\max(1,|\lambda_{\max}|)$ (approximately $2.01\times10^{-8}$
+here). This is the minimum predeclared diagonal load up to the numerical
+margin; it preserves all off-diagonal finite-shot estimates. The loaded
+full-rank training block also gives a coherent linear extension of every
+unchanged source/target cross column through the training span. Each repaired
+deployment is then refitted, Platt-recalibrated, threshold-refrozen and audited
+on exactly the same roles, claim grids and paired audit streams. No Gram,
+sample, seed or QPU job is newly drawn.
+
+The PSD-repaired nominal-AUC means differ from raw by $+0.0051$ to $+0.0137$
+across budgets; these changes are a sensitivity outcome, not a repair-selection
+or performance claim. Raw-versus-repaired deployment-relative verdict-change
+rates are zero in the far stratum, at most 19.9\% in moderate and 7.6\% in near;
+ideal-anchored compositions move more strongly. Nevertheless, the observed
+zero far-margin deployment-relative rate, ideal-anchored heterogeneity,
+non-monotonic budget sequence and endpoint reduction all survive. The exact
+deployment metrics, thresholds, target metrics, abstention, verdict
+compositions and transitions are archived in the source JSON. The audit
+verdict is therefore \textsc{PSD-sensitive-but-scoped}: Contribution 3's
+qualitative statement survives, whereas its raw ideal-anchored percentages
+must not be treated as repair-invariant.
 
 \clearpage
 \subsection{Independent-MC split studies (E08v3)}
@@ -554,7 +627,15 @@ always uses raw physical weights. The \texttt{source\_val} role is used only
 for weighted Platt calibration, the weighted-balanced-accuracy threshold, and
 the separately declared inference bin/SR choices. \texttt{nominal\_test}
 supplies reported nominal performance and templates; \texttt{auditor\_dev}
-supports audit development; both \texttt{final\_eval} roles remain unread.
+supports audit development. The full raw draw and its labels were available
+once when the deterministic label-stratified role indices were constructed.
+Sealing starts after those indices are persisted. Thereafter the loader drops
+\texttt{final\_eval} by default; no experiment uses the explicit opt-in flag.
+Thus the sealed roles have not been used after sealing for model or
+hyperparameter selection, calibration or threshold choices, claim
+construction, or reported evaluation. This is a scientific-use guarantee,
+not a claim that their bytes were never technically loaded during split
+construction.
 
 Hyperparameters were chosen by a seed-202 random search on the train role:
 10 unique configurations per model family except five for the MLP, with three
@@ -642,7 +723,8 @@ compute--uncompute law, sampled directly as
 $\mathrm{Binomial}(S,K)/S$ at $S=128,256,512,1024,2048,4096$; training-Gram
 off-diagonals are sampled once and symmetrized, diagonals are fixed to one,
 and cross-Gram entries are sampled independently. No PSD projection or
-mitigation is applied. Each realization refits the SVC and repeats Platt
+mitigation is applied in the historical primary pipeline. Each realization
+refits the SVC and repeats Platt
 calibration and threshold freezing. For the 2,000-event Tier-A train set, one
 training realization represents 1,999,000 distinct off-diagonal
 compute--uncompute estimates, plus $2,000\times N$ entries for each calibration
@@ -656,7 +738,12 @@ balanced 32-event Gram at 2,048 shots. E16 job
 circuits (714 total) for 28 train and 12 test events at 1,024 shots; six test
 events are nominal and six TES-down. Both used compute--uncompute circuits,
 Qiskit transpilation at optimization level 1, a fixed transpiler seed, and no
-error mitigation. Median transpiled depth and two-qubit count were 182 and 54;
+error mitigation on the measured entries. The QPU-derived entries are exactly
+the off-diagonal training pairs and train--test cross entries reconstructed
+from raw counts. Training diagonals were not executed and are fixed
+analytically to one by the fidelity-kernel identity. Consequently, every
+reported hardware-Gram PSD observation refers to the constructed matrix under
+this unit-diagonal convention. Median transpiled depth and two-qubit count were 182 and 54;
 the archived QPU use was 276 s and 200 s, respectively.
 
 Archived provenance comprises backend and job identifiers, shots, submission

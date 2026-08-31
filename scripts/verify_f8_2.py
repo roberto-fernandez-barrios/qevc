@@ -391,6 +391,74 @@ def main() -> int:
         summary = e16_deployment["by_shots"][shots]["deployment_level_summary"]["far_flip_rate_fixed_tau"]
         observed = (summary["mean"], summary["sample_sd"], summary["range"], summary["leave_one_deployment_out_mean_range"])
         audit.check(f"E16 deployment summary {shots}", observed == expected, str(observed))
+
+    # Post-hoc PSD sensitivity: all numbers are derived from the same 30
+    # deterministic E16 realizations; the historical primary JSON is immutable.
+    e16_psd = load("E16_psd_sensitivity.json")
+    audit.check("E16 PSD deployment count", e16_psd["n_independent_deployments"] == 30)
+    audit.check(
+        "E16 PSD raw replay",
+        e16_psd["raw_replay_validation"]["all_30_primary_rows_match"]
+        and not e16_psd["raw_replay_validation"]["mismatches"],
+    )
+    audit.check(
+        "E16 PSD primary hash",
+        e16_psd["provenance"]["primary_e16_sha256"]
+        == hashlib.sha256(source_bytes).hexdigest().upper(),
+    )
+    expected_psd_rows = {
+        "128": (-1.930, -1.939, 580, 580, 0.0, 0.0, 20.8, 31.5),
+        "256": (-1.325, -1.333, 531, 532, 0.0, 0.0, 17.7, 40.7),
+        "512": (-0.936, -0.966, 489, 490, 0.0, 0.0, 0.9, 25.1),
+        "1024": (-0.655, -0.657, 449, 450, 0.0, 0.0, 11.9, 3.0),
+        "2048": (-0.448, -0.457, 412, 413, 0.0, 0.0, 5.8, 6.9),
+        "4096": (-0.313, -0.319, 379, 380, 0.0, 0.0, 0.4, 0.3),
+    }
+    for shots, expected in expected_psd_rows.items():
+        summary = e16_psd["aggregate_by_shots"][shots]
+        observed = (
+            round(summary["spectrum_raw"]["lambda_min"]["median"], 3),
+            round(summary["spectrum_raw"]["lambda_min"]["worst_case"], 3),
+            round(summary["spectrum_raw"]["negative_modes"]["median"]),
+            round(summary["spectrum_raw"]["negative_modes"]["worst_case"]),
+            round_half_up(100 * summary["raw_far_c_dep_flip_rate"]["mean"], 1),
+            round_half_up(100 * summary["psd_far_c_dep_flip_rate"]["mean"], 1),
+            round_half_up(100 * summary["raw_far_c_ideal_flip_rate"]["mean"], 1),
+            round_half_up(100 * summary["psd_far_c_ideal_flip_rate"]["mean"], 1),
+        )
+        audit.check(f"E16 PSD row {shots}", observed == expected, str(observed))
+        rendered = " & ".join(
+            [
+                shots,
+                "5",
+                f"${expected[0]:.3f}$",
+                f"${expected[1]:.3f}$",
+                str(expected[2]),
+                str(expected[3]),
+            ]
+        )
+        normalized_supplement = re.sub(r"\s+", " ", supplement)
+        audit.check(
+            f"E16 PSD supplement row {shots}",
+            rendered in normalized_supplement,
+            rendered,
+        )
+    audit.check(
+        "E16 PSD all raw Grams indefinite",
+        all(row["spectrum_raw"]["negative_modes"] > 0
+            and row["spectrum_raw"]["lambda_min"] < 0
+            for row in e16_psd["per_deployment"].values()),
+    )
+    audit.check(
+        "E16 PSD scoped verdict",
+        "PSD-sensitive-but-scoped" in main_tex
+        and "PSD-sensitive-but-scoped" in supplement,
+    )
+    audit.check(
+        "E16 raw LIBSVM semantics",
+        "usual convex PSD-kernel interpretation" in main_tex
+        and "do\nnot automatically attach" in supplement,
+    )
     audit.check(
         "E16 non-monotonic wording",
         "Intermediate\nmeans are non-monotonic" in main_tex
@@ -415,6 +483,37 @@ def main() -> int:
     audit.check(
         "structured Spearman p-values retired",
         "$p < 10^{-4}$" not in main_tex and "IID rank-test $p$-value is not reported" in main_tex,
+    )
+    audit.check(
+        "unsupported equivalence wording retired",
+        "statistically indistinguishable" not in main_tex.lower()
+        and "statistically equivalent" not in main_tex.lower()
+        and "no additional seeds are required" not in main_tex.lower()
+        and "no additional seeds are required" not in supplement.lower(),
+    )
+    audit.check(
+        "main article has no internal docs references",
+        "docs/" not in main_tex,
+    )
+    audit.check(
+        "hardware measured-entry wording",
+        "378 off-diagonal training-kernel" in main_tex
+        and "336 cross-kernel entries" in main_tex
+        and "fixed analytically to unity" in main_tex
+        and "unit-diagonal convention" in supplement,
+    )
+    audit.check(
+        "sealed-role wording is scientifically exact",
+        "sealing begins immediately after that construction" in main_tex
+        and "scientific-use guarantee" in supplement
+        and "never been read" not in main_tex
+        and "remain unread" not in supplement,
+    )
+    audit.check(
+        "contribution and CMS claim names do not collide",
+        "Contributions 1 and 2" in main_tex
+        and "coupled to Contribution 3" in main_tex
+        and "C1 and C2 are model-agnostic" not in main_tex,
     )
 
     # Existing artifact values newly surfaced by the editorial corrections.

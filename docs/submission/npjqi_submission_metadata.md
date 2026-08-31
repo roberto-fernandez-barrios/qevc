@@ -1,9 +1,11 @@
 # npj Quantum Information submission metadata
 
-Status: frozen submission release on 2026-08-31; not yet submitted.
+Status: PSD-audited patch release on 2026-08-31; not yet submitted.
 
-- Release version: `0.3.0` / `npjqi-submission-v1`
-- Version DOI: `10.5281/zenodo.22206235`
+- Release version: `0.3.1` / `npjqi-submission-v1.1`
+- Version DOI: `10.5281/zenodo.22209367`
+- Historical `0.3.0` / `npjqi-submission-v1` DOI:
+  `10.5281/zenodo.22206235`
 - Historical `0.2.0` / `arxiv-v1` DOI: `10.5281/zenodo.21894292`
 
 ## Destination
@@ -93,6 +95,10 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 - E16 has five independent noisy-kernel deployments per shot budget. Claims
   within each deployment are correlated; reported rates/ranges are descriptive
   and no monotonic trend or population interval is claimed.
+- All 30 historical finite-shot training Grams are indefinite. A post-hoc
+  minimum-diagonal-loading sensitivity preserves the zero far-margin
+  deployment-relative flip rate but changes several ideal-anchored magnitudes;
+  the result is PSD-SENSITIVE-BUT-SCOPED, not repair-invariant.
 - n* is a with-replacement audit-label draw budget, not a unique-event labeling
   cost. Real CMS event truth cannot be queried.
 - The fixed-template profiling result is conditional on nuisance

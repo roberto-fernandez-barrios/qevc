@@ -1027,3 +1027,48 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
 - **Status:** adopted. No further internal manuscript revision is authorized
   before real peer review unless a defect is found that invalidates a central
   contribution.
+
+## D-042 — Bounded post-release PSD robustness patch
+
+- **Date:** 2026-08-31
+- **Trigger:** a final technical review identified that the E16 finite-shot
+  training Grams were passed directly to `SVC(kernel="precomputed")` although
+  entry-wise finite-shot estimation need not preserve positive
+  semidefiniteness. This is the concrete-defect exception allowed by D-041.
+- **Scope:** no new experiment, sample, seed, Gram realization, QPU job,
+  dataset, model, feature map, hyperparameter, claim grid, threshold protocol
+  or frozen configuration. E20 remains NO-GO with zero submitted jobs. The
+  historical `0.3.0` release and primary
+  `results/tables/E16_quantum_uncertainty.json` remain immutable.
+- **Provenance:** the original E16 runner did not persist the large Gram arrays.
+  The six frozen shot budgets and five frozen kernel seeds were therefore
+  deterministically replayed from the stable RNG and frozen inputs. Every one
+  of the 30 archived primary per-configuration summaries matched before the
+  sensitivity was accepted. The primary JSON SHA-256 is
+  `3208814B4A66609A6C9436D2E232A8BD93204F36F6E2E5431D9FECA5DED981FE`.
+- **Spectral finding:** all 30 raw 2000-by-2000 training Grams are indefinite.
+  Median `lambda_min` changes from `-1.930` at 128 shots to `-0.313` at 4096
+  shots; median negative-mode count changes from 580 to 379.
+- **Declared sensitivity:** apply minimum diagonal loading only to the
+  training block, `K_psd = K_raw + max(0, -lambda_min + epsilon) I`, with
+  `epsilon = 1e-10 * max(1, abs(lambda_max))`. All off-diagonal training
+  estimates and source/target cross-Grams stay unchanged. Each of the same 30
+  deployments is refitted, recalibrated, threshold-refrozen and audited with
+  identical roles, claim grids and paired audit streams.
+- **Decision:** **PSD-SENSITIVE-BUT-SCOPED.** Far-margin deployment-relative
+  flips remain zero in all 30 repaired deployments. Far-margin ideal-anchored
+  means change from `20.8, 17.7, 0.9, 11.9, 5.8, 0.4%` to
+  `31.5, 40.7, 25.1, 3.0, 6.9, 0.3%`. Their heterogeneity,
+  non-monotonicity and endpoint reduction survive, but the raw numerical
+  magnitudes are not repair-invariant. Contribution 3 is restricted
+  accordingly; no claim is optimized or strengthened by choosing a repair.
+- **Associated corrections:** the manuscript now states the correct LIBSVM
+  semantics for indefinite precomputed matrices, precisely distinguishes
+  QPU-measured entries from the analytically fixed hardware diagonal, removes
+  unsupported equivalence wording, defines the sealed-role boundary, removes
+  main-text `docs/...` proof references and reserves C1--C4 for the CMS ledger.
+- **Release rule:** publish this bounded patch as `0.3.1` under a new tag and
+  Zenodo version. The historical `0.3.0 / npjqi-submission-v1` assets must not
+  be overwritten.
+- **Status:** adopted; final release identifiers and hashes are recorded in
+  the new release manifest and audit after all gates pass.

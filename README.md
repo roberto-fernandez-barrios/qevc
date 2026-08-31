@@ -3,23 +3,28 @@
 Research codebase for the paper *"Conditional validity of quantum event
 classifiers under collider systematics and quantum estimation uncertainty"*.
 
-**npj Quantum Information submission release `0.3.0` (2026-08-31).** The
+**npj Quantum Information submission release `0.3.1` (2026-08-31).** The
 scientific program is closed: no new dataset, model, configuration, QPU run or
 primary result was added. The manuscript, Supplementary Information and
 Collection-specific cover letter incorporate the final adversarial review and
 pass the mathematical, editorial, journal-format and cross-document gates.
 The self-contained submission package is built and independently recompiles;
 it has not yet been submitted. The exact release is tagged
-[`npjqi-submission-v1`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1)
-and archived as Zenodo version `0.3.0` at
-[10.5281/zenodo.22206235](https://doi.org/10.5281/zenodo.22206235). Earlier
+[`npjqi-submission-v1.1`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.1)
+and archived as Zenodo version `0.3.1` at
+[10.5281/zenodo.22209367](https://doi.org/10.5281/zenodo.22209367). The
+historical `0.3.0 / npjqi-submission-v1` release remains unchanged in its
+[GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1)
+and at [10.5281/zenodo.22206235](https://doi.org/10.5281/zenodo.22206235).
+Earlier
 `arxiv-v1` artifacts remain public as
 the historical pre-submission release in the
 [GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/arxiv-v1)
 and archived at [Zenodo DOI
 10.5281/zenodo.21894292](https://doi.org/10.5281/zenodo.21894292). The final npj
-presentation and its scientific scope are governed by D-036--D-040 and the
-[final patch snapshot](docs/audits/final_patch_release_snapshot_2026-08-31.md).
+presentation and its scientific scope are governed by D-036--D-042, the
+[final patch snapshot](docs/audits/final_patch_release_snapshot_2026-08-31.md),
+and the [technical PSD audit](docs/audits/final_technical_psd_patch_2026-08-31.md).
 
 Authors: Roberto Fernández-Barrios, Iker Pastor-López, Asier
 González-Santocildes and Pablo García Bringas; Faculty of Engineering,
@@ -36,21 +41,21 @@ itself estimated (finite-shot / hardware kernels)?
 The project does **not** optimize for a positive quantum result — and did
 not find one: the matched classical controls retire every quantum-specific
 performance and sensing claim, and that negative is kept central. The
-contribution is methodological, organized as three claims:
+contribution is methodological, organized as three contributions:
 
-- **C1 — Information-conditional certification (I0→I3):** a fail-closed
+- **Contribution 1 — Information-conditional certification (I0→I3):** a fail-closed
   auditor (SUPPORTED / REFUTED / UNRESOLVED) with anytime-valid error
   control per fixed claim (not simultaneous/FWER control over the claim grid),
   an exact fixed-threshold reduction for physics-weighted ratio estimands, a
   formal feature-only boundary for weight-only nuisances, and audit-label draw budgets
   contextualized against a Wald-style information yardstick (not an
   optimality bound or universal lower bound).
-- **C2 — Scientific-inference validity:** classifier-metric stability does
+- **Contribution 2 — Scientific-inference validity:** classifier-metric stability does
   not imply valid signal-strength inference; under shared simulation a
   fixed-template profile recovers most representable cells at a measured
   interval-width price, while independent-MC studies show that validity is
   jointly limited by nuisance representability and auxiliary-template quality.
-- **C3 — Quantum deployment uncertainty:** finite-shot and noisy quantum
+- **Contribution 3 — Quantum deployment uncertainty:** finite-shot and noisy quantum
   evaluation adds measurement-induced deployment uncertainty;
   deployment-relative vs ideal-anchored claim semantics preserve per-claim
   validity. Proposition 4 is conditional because E16 did not archive its
@@ -58,6 +63,12 @@ contribution is methodological, organized as three claims:
   separate empirical evidence, not theory predictions. E16 has five independent
   noisy-kernel deployments per budget; claims within each are correlated, the
   intermediate rates are non-monotonic, and no population trend is claimed.
+  A post-hoc final technical audit found all 30 raw training Grams indefinite.
+  Minimum diagonal loading preserves the zero far-margin deployment-relative
+  flip rate, but changes several ideal-anchored magnitudes; the declared
+  robustness verdict is **PSD-SENSITIVE-BUT-SCOPED**. The historical raw
+  pipeline remains primary and the complete derived analysis is archived in
+  `results/tables/E16_psd_sensitivity.json`.
 
 The closest new collider-QML study, Brown, Spannowsky and Williams
 ([arXiv:2608.11330](https://arxiv.org/abs/2608.11330)), evaluates frozen
@@ -72,14 +83,16 @@ through the realized deployment.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 26 | `30CB232B95119CB593DD927A909CD78269B40F8C44F9D69BF04E4E7411A42BD7` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 11 | `52904EB164AC6E24409F16911A98639968E726AE6F685023F87F71547513C8AC` |
-| `output/pdf/npjqi_cover_letter.pdf` | 1 | `895AF4A38561D70889863C7C81CBF0F9482455988C25ED9E754D6B2FCBF08E01` |
-| `dist/npjqi-submission.zip` | source + 3 PDFs | `B8CF241218C8D472CAC8D7637D706E22120A9F26426CE019CD10D411429BDA96` |
+| `output/pdf/npjqi_manuscript.pdf` | 26 | `D526AC37DEA363D811A70E5398A9DB67948599ADD24D86ED6AC77418C239A091` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 12 | `081209927410106ACEEF39B977DF55E332367E9E154DDAD399549D6C361DBB61` |
+| `output/pdf/npjqi_cover_letter.pdf` | 1 | `00CAF0E240AC896A2E1A1411E886BF7C806790101A2D64F6CFD4DFEA97711D7B` |
+| `dist/npjqi-submission.zip` | source + 3 PDFs | `5202F8E3996BFE44B025FA7319ACAAD05E824FB375640B3EC5168265CF6A4A38` |
+| `results/tables/E16_psd_sensitivity.json` | 30 deployments | `31D13A9D2EA739284DD739C1523120B349787D45C9062B9B21C5527CADE7ED7D` |
 
 The authoritative checksum file is
 `docs/submission/npjqi_checksums.sha256`. The bundle includes the three PDFs,
-the self-contained Springer Nature source, figure PDFs and submission metadata.
+the self-contained Springer Nature source, figure PDFs, submission metadata
+and the complete derived PSD-sensitivity JSON.
 
 ## Governing documents
 
@@ -122,6 +135,9 @@ hidden; superseded tables are kept as `*_v1_*.json`. The 2026-08-13 revision
 also corrects Proposition 4's missing stability premise, formalizes I1 as a
 count-conditioned feature experiment, retires IID environment p-values, and
 reports E16 by deployment in `E16_deployment_level.json`.
+The final technical patch additionally replays all 30 E16 realizations,
+audits their spectra, and refits the declared minimum-diagonal-loading
+sensitivity without new randomness or QPU work.
 
 ## Repository layout
 
