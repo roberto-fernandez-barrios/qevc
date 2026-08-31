@@ -619,7 +619,7 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   data" output labels are unaffected (they name data products, not
   float numbers). New figures: Fig. 3 (family response / exact
   blindness — the registry's E03 "Fig. 3 data" promise, finally drawn)
-  and Fig. 6 (label economics — closes the dangling §6.6 reference).
+  and Fig. 6 (audit-label draw budgets — closes the dangling §6.6 reference).
 
 
 ## D-031 — E08v2 falsifier disposition: bounded multi-draw re-registration (E08v3)
@@ -761,7 +761,7 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   analysis already explains the active-acquisition negative (the ×2
   importance-weight range halves effective margins), and the E13v2
   result now demonstrates the deeper point on the weighted side —
-  near-boundary label costs are information-limited, not
+  near-boundary audit-label draw budgets are information-limited, not
   procedure-limited (n* vs Wald-style yardstick; TPR_w impossibility); (iii) it
   is the costliest remaining item (new `src/qevc/acquisition/` module,
   WoR-valid finite-population CS, tests, 2–3 days) against the release
@@ -897,3 +897,133 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
 - **Status:** adopted. All 127 tests, 97 scientific audit gates, 49 npj
   submission gates, independent archive builds, and the 38-page visual review
   pass. The manuscript is ready for author confirmation and portal upload.
+
+## D-038 — Senior-author adversarial revision and evidential-unit correction
+
+- **Date:** 2026-08-13
+- **Context:** a final npj QI adversarial review identified a remaining logical
+  gap in Proposition 4, an overly broad observable experiment in Proposition 2,
+  incomplete weighted-sequential related work, claim-level pseudo-replication
+  in E16, IID environment p-values, and excessive audit-history prose.
+- **Decision:** (i) Proposition 4 now requires the corresponding sign-stability
+  condition plus both CS coverage events plus resolution of both audits before
+  concluding equal decisive verdicts. Two level-α audits give a 2α union bound;
+  α/2 each gives joint α. Explicit counterexamples distinguish failure of
+  sufficiency from a forced flip. (ii) I1 is the fixed-size/count-conditioned
+  feature experiment and excludes rates; I2 reveals binary class and nominal
+  weights in the simulated protocol but not hidden process categories; I3 adds
+  count/rate evidence. (iii) Theorem 1 is positioned as an exact
+  fixed-threshold physics-ratio reduction, not priority over weighted
+  anytime-valid inference. (iv) E16 is reported by five noisy-kernel
+  deployments per budget, with ranges, sample SD and leave-one-deployment-out
+  sensitivity; claims within a deployment are correlated. No monotonic trend,
+  population interval or additional-seed need is claimed. (v) Structured-grid
+  Spearman p-values are retired in favor of descriptive rank effects. (vi) C2
+  leads with joint nuisance-representability/template-quality limitations;
+  shared-simulation recovery is conditional. (vii) n* is an audit-label draw
+  budget, not unique-label cost. (viii) main-text audit chronology was condensed.
+- **Related material:** *Sharp Target-Domain Certificates for Quantum-Kernel
+  Advantage under Distribution Shift* is public preprint/Zenodo material and
+  has not been submitted to any journal. It is not simultaneously under
+  consideration and no file in its repository was changed.
+- **Experimental scope:** no new experiment, dataset, model, configuration or
+  QPU execution. `E16_deployment_level.json` and updated figures are derived
+  only from the immutable E16 table.
+- **Status:** adopted; D-037 artifact hashes and pagination are superseded by
+  the 2026-08-13 build and audit manifest.
+
+## D-039 — E20 real-hardware extension aborted at the preregistered offline gate
+
+- **Date:** 2026-08-13
+- **Context:** a new 100-minute IBM QPU allocation made it possible to ask
+  whether several independently estimated physical Gram realizations could
+  upgrade E16 from a single micro-scale integration demonstration to
+  replicated physical-deployment evidence for C3. The purpose was explicitly
+  not quantum advantage, feature-map search or post-hoc performance tuning.
+- **Pre-registration:** before running the offline gate, A48 was frozen as the
+  only hardware-eligible design: 48 train, 24 calibration and 24 paired target
+  rows in each of nominal and TES=0.98; 4,584 circuits at 1,024 shots per
+  deployment. Exact, 20-deployment finite-shot, claim-informativeness and cost
+  gates were frozen in `configs/experiments/E20_offline_gate.yaml` (SHA-256
+  `2b237305ad5eb0a49ed964d38738899b130dc6e44702bd5533a10bd54e857914`).
+- **Decision:** **ABORT E20; no QPU job.** A48 failed three hard gates: exact
+  worst-environment BA was 0.542 (<0.58), the exact audit had 0 SUPPORTED
+  unique claims (<4), and the median over 20 shot-only deployments was also
+  0 SUPPORTED claims (<4). Its exact AUC was 0.674/0.688, so the failure is an
+  operating-point and claim-floor failure rather than absence of ranking
+  signal. B64/C80 were preregistered scaling diagnostics, cannot rescue A48,
+  and require about 92.7/124.9 central QPU minutes for three deployments.
+- **Consequence:** the current manuscript remains unchanged and keeps the
+  statement “micro-scale integration / fail-closed consistency demonstration,
+  not hardware performance or certification at scale.” The 100-minute
+  allocation is reserved for other work. No `Generic_project` smoke test is
+  justified because a QPU cannot repair a gate that already failed under the
+  exact kernel.
+- **Artifacts:** `docs/e20_preregistration_2026-08-13.md`,
+  `docs/e20_offline_gate_decision_2026-08-13.md`,
+  `experiments/E20_confirmatory_hardware/run_e20_offline_gate.py`, and
+  `results/tables/E20_offline_gate.json`. The result records
+  `qpu_jobs_submitted = 0`.
+- **Status:** adopted as a post-freeze prospective-extension decision; it does
+  not supersede the READY submission or change any manuscript claim.
+
+## D-040 — Final pre-submission patch-release ceiling
+
+- **Date:** 2026-08-31
+- **Context:** the complete npj Quantum Information package received one final
+  adversarial referee, senior-author and public-release audit after D-039. The
+  audit identified correctable literature positioning, manuscript
+  self-containment, presentation and public-release synchronization issues. It
+  did not identify a reason to reopen the experimental program.
+- **Experimental closure:** the scientific program is closed. D-039/E20
+  confirmed prospectively, before hardware execution, that no high-return QPU
+  extension exists within the present budget and frozen protocol. E20 remains
+  NO-GO; the unused IBM allocation is not part of this paper.
+- **Permitted scope:** this final round is restricted to (i) current-literature
+  and novelty positioning; (ii) wording and narrative hierarchy; (iii)
+  self-contained Methods and Supplementary protocol descriptions; (iv)
+  typographic and evidence-preserving visual corrections; (v) GitHub, Zenodo
+  and release synchronization; and (vi) consistency and reproducibility audit.
+- **Prohibited changes:** no primary scientific result may change. No new
+  experiment, seed, QPU execution, dataset, model, feature map, hyperparameter
+  search, hypothesis, method, inference campaign or advantage-seeking analysis
+  is authorized. Existing primary results may be read only to verify an
+  already reported value. Experimental configurations are immutable except
+  for non-executing documentation needed to describe the frozen protocol.
+- **Release rule:** every textual change must preserve the archived numerical
+  source of truth. The release may be declared final only after clean and
+  independent builds, complete tests/gates, visual inspection, public-release
+  consistency checks, and a final diff proving that protected scientific
+  inputs and outputs did not change.
+- **Snapshot:** the pre-patch state, including dirty-tree inventory, artifact
+  hashes, pagination and passing gates, is recorded in
+  `docs/audits/final_patch_release_snapshot_2026-08-31.md`.
+- **Status:** adopted before the first manuscript or release edit in this
+  round. This decision supersedes earlier READY labels only until the bounded
+  patch-release audit completes; it does not supersede any scientific result.
+
+## D-041 — Freeze and publish the exact npj submission release
+
+- **Date:** 2026-08-31
+- **Context:** D-040 limited the last round to literature positioning,
+  narrative hierarchy, self-containment, presentation and release
+  synchronization. All scientific, mathematical, number, journal-format,
+  clean-build and visual gates passed after those edits.
+- **Decision:** freeze version `0.3.0` under Git tag
+  `npjqi-submission-v1`. The submission set is the 26-page manuscript,
+  11-page Supplementary Information, one-page cover letter and self-contained
+  `dist/npjqi-submission.zip` recorded in
+  `docs/submission/npjqi_release_manifest.md`. The historical `arxiv-v1` tag
+  and Zenodo version `10.5281/zenodo.21894292` remain immutable.
+- **Archive:** publish a new version of the same Zenodo concept record as
+  `10.5281/zenodo.22206235` (`0.3.0 / npjqi-submission-v1`). All eight
+  published files were downloaded again and matched their local SHA-256
+  values; the new version is the latest record under concept DOI
+  `10.5281/zenodo.21894291`.
+- **Scientific integrity:** no dataset, primary result, QPU raw record, model
+  implementation or frozen experimental configuration changed in the D-040
+  patch. The pre-existing E20 preregistration/configuration and offline NO-GO
+  artifacts are retained for auditability; no E20 hardware execution occurred.
+- **Status:** adopted. No further internal manuscript revision is authorized
+  before real peer review unless a defect is found that invalidates a central
+  contribution.

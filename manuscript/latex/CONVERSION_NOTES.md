@@ -1,4 +1,12 @@
-# Conversion notes: draft.md -> main.tex
+# Historical conversion notes: draft.md -> main.tex
+
+> This file records the initial 2026-08-11 conversion and its counts are not
+> submission metadata. Since D-038 (2026-08-13),
+> `manuscript/latex/main.tex` is authoritative and
+> `scripts/sync_markdown_draft.py` mechanically regenerates the searchable
+> Markdown mirror after every material edit. Current pagination, references and
+> gates are reported by the submission audit, not by the historical counts
+> below.
 
 Source: `manuscript/main/draft.md` (v0.3 of 2026-08-11).
 Target: `manuscript/latex/main.tex`. Faithful conversion with later audited

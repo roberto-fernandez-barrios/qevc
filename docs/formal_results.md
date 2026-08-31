@@ -1,6 +1,6 @@
 # Formal results (extension campaign, D-028/D-029)
 
-Status: working formalization document, 2026-08-11. The manuscript's three
+Status: synchronized pre-submission formalization, 2026-08-13. The manuscript's three
 contributions each carry formal statements: **C1** gets Theorem 1 and
 Proposition 2; **C3** gets Propositions 3 and 4. Notation follows
 `docs/weighted_certification_spec.md` (D-019) and the frozen decision rule
@@ -14,7 +14,7 @@ sold as a deep theorem.
 
 ---
 
-## Theorem 1 — Exact weighted anytime-valid certification
+## Theorem 1 — Exact fixed-threshold weighted reduction
 
 **Setting.** Condition on a frozen finite audit population and a scalar
 w_max fixed before the random audit order. Labeled draws (c_i, u_i), i = 1,
@@ -28,6 +28,10 @@ audit label stream, define
     Z_i(τ) = ( u_i (c_i − τ) + τ·w_max ) / w_max .
 
 **Theorem.** (a) Z_i(τ) ∈ [0, 1] almost surely, and
+
+    E[Z(τ)] − τ = E[u] / w_max · (R − τ),
+
+and therefore
 
     R ≥ τ   ⟺   E[Z(τ)] ≥ τ ,
 
@@ -43,7 +47,8 @@ L_n ≥ τ. Then
 so each directional error is controlled simultaneously over all stopping
 times for this fixed claim; the union of incorrect decisive verdicts is also
 contained in the single two-sided-CS coverage failure. n* is a legitimate
-stopping time. (c) The unweighted D-014 system is
+stopping time and, under with-replacement sampling, an audit-label draw budget
+rather than a unique-event label count. (c) The unweighted D-014 system is
 the special case u ≡ 1, w_max = 1: the weighted machinery strictly
 generalizes it, licensing weighted-vs-unweighted comparisons on identical
 draws.
@@ -79,6 +84,14 @@ multiplicity construction. Time-uniformity likewise does not validate
 arbitrary adaptive row selection; E07 uses a proposal fixed from unlabeled
 scores with bounded importance weights.
 
+**Novelty boundary.** Importance-weighted, self-normalized and adaptive-data
+confidence sequences already exist, including *Off-Policy Confidence
+Sequences* (Karampatziakis, Mineiro and Ramdas, 2021) and *Anytime-valid
+off-policy inference for contextual bandits* (Waudby-Smith et al., 2022/2025).
+We claim only the exact algebraic reduction for the fixed-threshold physics
+ratio estimand used here, the equivalence of its claim, and integration with
+the information hierarchy and fail-closed auditor.
+
 **Empirical instances.** These correlated Monte-Carlo rates are implementation
 stress tests, not proofs of the theorem or FWER. Validation battery: time-uniform miscoverage within
 α + 3σ in every profile × level cell; adversarial optional stopping breaks
@@ -90,24 +103,36 @@ A_w on weight-only environments (E13 v2). Label price: n*_w/n*_unw median
 
 ---
 
-## Proposition 2 — Weight-only unidentifiability at I0–I2; I3 restores it
+## Proposition 2 — Feature-only unidentifiability for weight-only nuisances
 
-Statement and proof as registered in `docs/weighted_certification_spec.md`
-§4b (frozen before any E14 run): for a weight-only nuisance θ (P_θ(X) =
-P_0(X), correctness process unchanged), (i) every I1 statistic has identical
-law under θ and 0, so any test of size at most α has power equal to its actual
-size and hence at most α (exactly α only if its size is exactly α);
-(ii) the same holds at I2 with nominal weights; (iii) hence every claim
-whose truth differs between θ and 0 admits no nontrivial distinguishing power
-at I0–I2; under our fail-closed policy absence of distinguishing evidence is
-reported UNRESOLVED; (iv) a control-region count
-N ~ Poisson(λ(θ)), λ(θ) ≠ λ(0), has non-trivial power — I3 restores
-identifiability precisely because rate evidence enters the information set.
+I1 is the fixed-size or count-conditioned feature experiment
+
+    O_1^(n) = (X_1, …, X_n) | N = n,
+
+which explicitly excludes N, exposure, yields and event weights. If a
+weight-only nuisance satisfies
+
+    P_θ(X_1, …, X_n | N=n) = P_0(X_1, …, X_n | N=n),
+
+every I1 statistic has the same law. I2 adds queried binary signal/background
+labels and nominal weights in the simulated audit protocol. A binary label
+reveals class, not background process category. If the joint law of
+(X,Y,w^(0)) is unchanged while the nuisance-dependent category or true weight
+w^(θ) remains hidden, the same conclusion holds at I2. A level-α test has
+power equal to its actual size and hence at most α; affected rate or
+true-weighted claims are reported UNRESOLVED under the fail-closed policy.
+
+This is not an impossibility for every collider observable. If the full
+experiment observes N and N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0), then
+
+    P_θ(N, X_1, …, X_N) ≠ P_0(N, X_1, …, X_N),
+
+and count-based I3 tests can have nontrivial power.
 
 **Corollary (quantitative I3 restoration is auxiliary-evidence-bounded).**
 The power restored by (iv) is limited by the statistical quality of the
 auxiliary evidence: with template-statistics variance σ²_c = Σ_g
-(relerr·λ)² (Barlow–Beeston-lite, D-024), the identifiable resolution on a
+(relerr_g·λ_g)² (Barlow–Beeston-lite, D-024), the identifiable resolution on a
 rate scale s_p is of order the template noise, and claims tighter than that
 remain UNRESOLVED — fail-closed degradation, not failure.
 
@@ -191,33 +216,44 @@ the signed target and source movements
 Consequently |m⋆| > |ΔM_T| for C_ideal, or
 |m⋆| > |ΔM_T − ΔM_S| for C_dep, is sufficient to preserve the truth-sign.
 Failure of either sufficient condition gives no conclusion about a flip.
-(ii) *Resolved verdicts.* On a CS coverage event, any decisive verdict points
-to the true sign. Equality of the ideal and realized ternary verdicts therefore
-requires both audits to resolve and both CSs to cover. Without joint
-calibration the intersection has probability at least 1 − 2α by a union
-bound; running each audit at α/2 gives at least 1 − α. For weighted claims,
+(ii) *Resolved verdicts.* For either claim class, the corresponding
+sign-stability condition plus coverage of both CSs plus resolution of both
+audits implies the same decisive verdict. Conditional on a realization that
+satisfies stability, two level-α audits obey
+
+    P(V⋆ ≠ V(ω), R⋆ ∩ R(ω) | ω) ≤ 2α
+
+by a union bound, with no independence assumption. Running each audit at α/2
+gives joint level-α control; no sharper dependence-based bound is claimed.
+For weighted claims,
 the metric-scale margin maps to the Z scale by E[u]/w_max. (iii)
 *Common-mode cancellation.* If ΔM_T ≈ ΔM_S, the deployment-relative movement
 is small while the ideal-anchored movement retains ΔM_T, so C_dep is
 structurally the stabler claim class.
 
-**Proof.** Substitute the signed movements into each margin. If a perturbation
-has magnitude below |m⋆|, it cannot cross zero. On coverage, a decisive verdict
-on the wrong side would exclude the true mean. Requiring both resolutions
-rules out SUPPORTED/REFUTED versus UNRESOLVED mismatches; intersecting the two
-coverage events gives the stated probability. ∎
+**Proof and counterexamples.** Substitute the signed movements into each
+margin. If a perturbation has magnitude below |m⋆|, it cannot cross zero. Under
+the relevant stability condition, coverage makes each decisive verdict point
+to the same truth sign; two resolutions and the union bound yield the result.
+Coverage and resolution alone do not suffice: m⋆=0.05 and ΔM_T=−0.10 produce
+opposite ideal and realized truth signs, so perfectly covering audits resolve
+SUPPORTED and REFUTED. Failure of sufficiency does not force a flip either:
+ΔM_T=+0.10 violates |m⋆|>|ΔM_T| but preserves the positive sign. ∎
 
 **Artifact status.** Proposition 4 is conditional. E16 archives ΔM_S and
 empirical verdict flip rates, but not ΔM_T or ΔM_T − ΔM_S. Figure S16 and
 Table S6 therefore do **not** instantiate either sufficient condition, and
 |ΔM_S| is not substituted for the missing quantities. The empirical results
-remain independent evidence: fixed-reference far flips are 20.8% at 128 shots
-and 0.4% at 4096 shots, while own-reference far flips are 0 at every tested
-budget. These observations are not called theory predictions.
+remain separate empirical evidence. The independent unit is one noisy-kernel
+deployment (five per shot budget), not the correlated claims inside it.
+Fixed-reference far-flip endpoint means are 20.8% at 128 shots and 0.4% at
+4096 shots, with non-monotonic intermediate budgets and wide seed ranges;
+own-reference far flips are 0 in all 30 deployments. These observations are
+not theory predictions or a population trend.
 
 ---
 
-## Placement map (for the manuscript surgery)
+## Manuscript locations
 
 | Result | Manuscript location | Proof location |
 |---|---|---|

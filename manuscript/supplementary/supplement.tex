@@ -1,5 +1,5 @@
-\documentclass[11pt]{article}
-\usepackage[margin=0.85in]{geometry}
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=0.85in]{geometry}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs,longtable,array}
 \usepackage{graphicx}
@@ -14,7 +14,6 @@
 \captionsetup{justification=raggedright,singlelinecheck=false}
 
 \graphicspath{{../../results/figures/}}
-\newcommand{\orcidlink}[1]{\href{https://orcid.org/#1}{\textsuperscript{[ORCID]}}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
 \setcounter{figure}{15}
@@ -22,10 +21,10 @@
 \title{Supplementary Information for\\
 \emph{Conditional validity of quantum event classifiers under collider
 systematics and quantum estimation uncertainty}}
-\author{Roberto Fern\'andez-Barrios\orcidlink{0009-0003-5312-2634}\textsuperscript{1,*},
-Iker Pastor-L\'opez\orcidlink{0000-0002-3068-6248}\textsuperscript{1}\\
-Asier Gonz\'alez-Santocildes\orcidlink{0009-0002-8888-8560}\textsuperscript{1},
-Pablo Garc\'ia Bringas\orcidlink{0000-0003-3594-9534}\textsuperscript{1}\\[0.6em]
+\author{Roberto Fern\'andez-Barrios\textsuperscript{1,*},
+Iker Pastor-L\'opez\textsuperscript{1}\\
+Asier Gonz\'alez-Santocildes\textsuperscript{1},
+Pablo Garc\'ia Bringas\textsuperscript{1}\\[0.6em]
 \small\textsuperscript{1}Faculty of Engineering, University of Deusto,
 Avda. de las Universidades 24, 48007 Bilbao, Spain\\
 \small\textsuperscript{*}Corresponding author:
@@ -60,6 +59,10 @@ $(1-\tau)w_{\max}$, $Z_i(\tau)\in[0,1]$. Moreover,
  \iff E[uc]\geq\tau E[u]
  \iff R\geq\tau.
 \]
+Equivalently,
+\[
+ E[Z(\tau)]-\tau=\frac{E[u]}{w_{\max}}(R-\tau).
+\]
 The reduction is therefore exact. If $(L_n,U_n)$ is any level
 $1-\alpha$ confidence sequence for the mean of $Z$, then on its
 time-uniform coverage event $L_n\geq\tau$ implies $R\geq\tau$ at every
@@ -88,21 +91,34 @@ models, or environments; selecting $\tau$ or a claim after labels requires a
 separate multiplicity construction. Time-uniformity also does not validate
 arbitrary adaptive row selection. E07 instead uses a score-based proposal
 fixed before labels and bounded importance weights.
+The contribution claimed here is this exact fixed-$\tau$ ratio reduction and
+its integration with the information-conditional auditor, not priority over
+importance-weighted, self-normalized or adaptive-data confidence sequences;
+the directly relevant off-policy literature is cited in the main manuscript.
 
 \subsection{Information-set boundary for weight-only nuisances}
 
-For a weight-only nuisance $P_\theta(X)=P_0(X)$ and an unchanged
-correctness process. Hence every I1 statistic has the same sampling law
-under $\theta$ and $0$, and so does I2 when labels carry nominal weights.
-Any test of size at most $\alpha$ based on those observations has power equal
-to its actual size and hence at most $\alpha$ against the nuisance (exactly
-$\alpha$ only for exact size $\alpha$). No nontrivial distinction is possible;
-under our fail-closed policy, absence of distinguishing evidence is reported
-UNRESOLVED for claims whose truth changes only through hidden rate weights.
+I1 is the fixed-size or count-conditioned feature experiment
+$\mathcal O_1^{(n)}=(X_1,\ldots,X_n)\mid N=n$; it excludes $N$, exposure,
+yields and event weights. If a weight-only nuisance satisfies
+\[
+ P_\theta(X_1,\ldots,X_n\mid N=n)=P_0(X_1,\ldots,X_n\mid N=n),
+\]
+every I1 statistic has the same sampling law. At I2 the simulated protocol
+reveals a binary signal/background label and nominal weight for each queried
+draw. The label does not reveal the background process category. If the joint
+law of $(X,Y,w^{(0)})$ remains unchanged while the nuisance-dependent category
+or true weight $w^{(\theta)}$ is hidden, the same indistinguishability result
+holds. A level-$\alpha$ test then has power equal to its actual size and hence
+at most $\alpha$; under the fail-closed policy, affected rate and true-weighted
+claims remain UNRESOLVED.
 
-At I3 a control-region count $N\sim\operatorname{Poisson}(\lambda(\theta))$
-with $\lambda(\theta)\ne\lambda(0)$ changes the sampling law and restores
-non-trivial power. The restoration is quantitative rather than absolute:
+This statement is deliberately limited to the declared experiment. The full
+observable collider experiment may instead contain
+$P_\theta(N,X_1,\ldots,X_N)$. At I3 a control-region count
+$N\sim\operatorname{Poisson}(\lambda(\theta))$ with
+$\lambda(\theta)\ne\lambda(0)$ changes that law and restores nontrivial power.
+The restoration is quantitative rather than absolute:
 template variance
 \[
  \sigma_c^2=\sum_g(\operatorname{relerr}_g\lambda_g)^2
@@ -132,11 +148,19 @@ exact margin movements are $\Delta M_T$ for the ideal-anchored claim and
 $\Delta M_T-\Delta M_S$ for the deployment-relative claim. Therefore
 $|m^\star|>|\Delta M_T|$ or, respectively,
 $|m^\star|>|\Delta M_T-\Delta M_S|$ is sufficient to preserve the truth-sign;
-failure of a sufficient condition gives no conclusion. On coverage, any
-decisive verdict points to that sign. Equality of two realized ternary
-verdicts additionally requires that both audits resolve and that both CSs
-cover: without joint calibration the intersection probability is at least
-$1-2\alpha$, or $1-\alpha$ if each audit uses $\alpha/2$. For weighted claims the
+failure of a sufficient condition gives no conclusion. For either claim
+class, the corresponding sign-stability condition plus coverage of both CSs
+plus resolution of both audits implies the same decisive verdict. Conditional
+on a realization satisfying stability, two level-$\alpha$ audits obey
+\[
+ P\{V^\star\ne V(\omega),R^\star\cap R(\omega)\mid\omega\}\leq2\alpha
+\]
+by a union bound. Running each audit at $\alpha/2$ gives joint level-$\alpha$
+control; no sharper dependence-based result is used. Coverage and resolution
+alone are insufficient: $m^\star=0.05$, $\Delta M_T=-0.10$ yields opposite
+truth signs and opposite perfectly covered verdicts. Failure does not force a
+flip either: $\Delta M_T=+0.10$ violates the inequality but preserves the sign.
+For weighted claims the
 metric-scale margin is mapped to the certification scale by
 $E[u]/w_{\max}$. Common-mode movement cancels from the
 deployment-relative margin but not from the ideal-anchored margin.
@@ -171,7 +195,7 @@ implementations before the valid grid was allowed to run. This convention
 reconciles the nine-arm tally with the two gate interventions.
 
 \footnotesize
-\begin{longtable}{>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.32\linewidth}}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.32\linewidth}@{}}
 \caption{All nine registered falsifier arms that fired. Frozen conditions and consequences are recorded in \texttt{docs/experiment\_registry.md}.}\label{tab:falsifiers}\\
 \toprule
 Arm & Frozen condition & Observed firing & Consequence obeyed \\
@@ -209,6 +233,8 @@ Post-campaign, 2026-08-11 & E12--E16, E04v3, E11v2; 172 registry values and abou
 Pre-submission, 2026-08-12 & Extension runners, figure scripts, and line-by-line formal proofs & Two HIGH findings fixed: JES tracking scoped and disclosed; E19 weighted estimand corrected and rerun. Proposition 4 gained its coverage-event and scale-bridge qualifiers. Eight LOW findings were fixed, completed, disclosed, or documented. \\
 F8.2, 2026-08-12 & Final LaTeX, supplement, number trace, semantic equivalence, rendered PDFs & E08v3 bias range corrected from $+6.1$ to the archived $+7.5$ endpoint; the nine-arm counting convention made explicit. \\
 Final mathematical/editorial, 2026-08-12 & Proposition 2, Theorem 1, Proposition 4, C2/C3, E17, figures, and three independent adversarial reviews & Claims were restricted to their exact mathematical and evidential scope: per-claim rather than family-wise control; finite-population-conditional weight bounds; conditional Proposition 4 with empirical flips separated; joint nuisance-representability/template-quality limits; no new experiment or result. \\
+Senior-author pre-submission, 2026-08-13 & Observable experiments, Proposition 4, weighted-inference literature, E16 deployment unit, C2 narrative, CMS wording and concision & Added the missing sign-stability premise and counterexample; separated feature-conditioned evidence from counts; reanalyzed all 30 existing E16 deployments without new runs; retired IID environment $p$-values; updated related-manuscript status and reduced audit-history prose in the main paper. \\
+Final pre-submission patch, 2026-08-31 & Primary literature, novelty claims, abstract hierarchy, methods, supplement, release metadata and rendered artifacts & Added the closest competitive work, removed priority language, made C3 deployment semantics primary, expanded protocol detail, and synchronized editorial/release records. No experiment, dataset, model, configuration or primary result changed. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -294,7 +320,10 @@ control across the claim grid.}
 \begin{table}[H]
 \centering
 \small
-\caption{Stopping-time price relative to the Wald information yardstick. Source: \texttt{results/tables/E06\_nstar\_efficiency.json}.}
+\caption{Audit-label draw-budget price relative to the Wald information
+yardstick. Sampling is with replacement, so $n^*$ is a labeled-observation
+budget rather than a unique-event label cost. Source:
+\texttt{results/tables/E06\_nstar\_efficiency.json}.}
 \label{tab:nstar}
 \begin{tabular}{lrrrr}
 \toprule
@@ -325,22 +354,64 @@ Proposition 4. Source:
 \label{fig:s16}
 \end{figure}
 
+The primary replication unit is the independently sampled noisy-kernel
+realization, five per shot budget. Within a deployment, 200 far, 170 moderate
+and 230 near claims share the Gram matrix, refit, calibration, threshold and
+audit streams; their count is not an IID sample size. Audit streams are paired
+across deployments, so comparisons also share common random numbers. The far ideal-anchored deployment means are
+20.8, 17.7, 0.9, 11.9, 5.8 and 0.4\%, so the intermediate sequence is
+non-monotonic. At the endpoints the sample SDs are 19.9 and 0.65\%, ranges are
+0--44 and 0--1.5\%, and leave-one-deployment-out means are 15--26 and
+0.13--0.50\%. These are descriptive dispersion and sensitivity summaries, not
+population confidence intervals. Five deployments per budget suffice for the
+scoped descriptive C3; no additional seeds are required for that claim.
+
+\clearpage
 \begin{table}[H]
 \centering
-\footnotesize
-\caption{E16 shot-budget summary. Frobenius error and effective rank are means over five deployments; movement is only the maximum absolute weighted source-reference shift $|\Delta M_S|$, not either quantity needed by Proposition 4. Flip and abstention entries are independent empirical percentages. Source: \texttt{results/tables/E16\_quantum\_uncertainty.json}.}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{E16 results by noisy-kernel deployment. Rates are percentages of the
+correlated claims within that deployment, not independent replication. ``Fixed''
+is ideal-anchored and ``own'' is deployment-relative. Source:
+\texttt{results/tables/E16\_quantum\_uncertainty.json}; derived deployment
+summary: \texttt{results/tables/E16\_deployment\_level.json}.}
 \label{tab:e16}
 \begin{tabular}{rrrrrrrrr}
 \toprule
-Shots & Frob.\ err. & Rank & max $|\Delta M_S|$ & \multicolumn{2}{c}{Far flips} & \multicolumn{2}{c}{Moderate flips} & Near abst. \\
- & (\%) & & & own & fixed & own & fixed & own \\
+Shots & Seed & Frob.\ (\%) & AUC & \multicolumn{2}{c}{Far flips} & \multicolumn{2}{c}{Moderate flips} & Near abst. \\
+ & & & & fixed & own & fixed & own & own \\
 \midrule
-128  & 13.66 & 488.6 & 0.058 & 0.0 & 20.8 & 15.8 & 71.4 & 94.0 \\
-256  &  9.66 & 455.2 & 0.139 & 0.0 & 17.7 & 16.1 & 49.4 & 92.9 \\
-512  &  6.84 & 428.3 & 0.023 & 0.0 &  0.9 & 11.5 & 47.7 & 92.5 \\
-1024 &  4.83 & 407.6 & 0.080 & 0.0 & 11.9 & 13.2 & 54.6 & 92.0 \\
-2048 &  3.42 & 392.1 & 0.038 & 0.0 &  5.8 & 11.1 & 58.4 & 93.9 \\
-4096 &  2.42 & 380.7 & 0.034 & 0.0 &  0.4 &  6.7 & 40.4 & 93.0 \\
+128 & 1 & 13.64 & 0.8336 & 0.0 & 0.0 & 52.3 & 14.7 & 95.7 \\
+128 & 2 & 13.69 & 0.8311 & 11.5 & 0.0 & 74.7 & 15.9 & 94.8 \\
+128 & 3 & 13.66 & 0.8338 & 40.0 & 0.0 & 80.0 & 14.1 & 93.9 \\
+128 & 4 & 13.66 & 0.8377 & 44.0 & 0.0 & 78.8 & 18.2 & 93.0 \\
+128 & 5 & 13.67 & 0.8384 & 8.5 & 0.0 & 71.2 & 15.9 & 92.6 \\
+256 & 1 & 9.67 & 0.8361 & 0.0 & 0.0 & 50.0 & 18.2 & 92.2 \\
+256 & 2 & 9.66 & 0.8331 & 0.0 & 0.0 & 34.1 & 11.8 & 93.9 \\
+256 & 3 & 9.67 & 0.8278 & 0.0 & 0.0 & 50.0 & 12.3 & 92.2 \\
+256 & 4 & 9.65 & 0.8364 & 0.0 & 0.0 & 32.9 & 16.5 & 90.4 \\
+256 & 5 & 9.66 & 0.8436 & 88.5 & 0.0 & 80.0 & 21.8 & 95.7 \\
+512 & 1 & 6.85 & 0.8307 & 2.0 & 0.0 & 62.4 & 9.4 & 96.1 \\
+512 & 2 & 6.84 & 0.8394 & 0.0 & 0.0 & 30.0 & 10.6 & 91.3 \\
+512 & 3 & 6.83 & 0.8480 & 1.0 & 0.0 & 57.6 & 12.3 & 90.9 \\
+512 & 4 & 6.83 & 0.8486 & 0.0 & 0.0 & 30.6 & 10.6 & 93.5 \\
+512 & 5 & 6.83 & 0.8478 & 1.5 & 0.0 & 57.6 & 14.7 & 90.9 \\
+1024 & 1 & 4.83 & 0.8385 & 0.0 & 0.0 & 49.4 & 15.3 & 90.9 \\
+1024 & 2 & 4.83 & 0.8338 & 0.0 & 0.0 & 51.2 & 12.9 & 90.9 \\
+1024 & 3 & 4.84 & 0.8381 & 0.0 & 0.0 & 47.1 & 11.8 & 93.9 \\
+1024 & 4 & 4.83 & 0.8381 & 59.0 & 0.0 & 80.0 & 15.9 & 93.0 \\
+1024 & 5 & 4.84 & 0.8385 & 0.5 & 0.0 & 45.3 & 10.0 & 91.3 \\
+2048 & 1 & 3.42 & 0.8366 & 0.0 & 0.0 & 32.9 & 10.0 & 94.8 \\
+2048 & 2 & 3.42 & 0.8460 & 0.0 & 0.0 & 49.4 & 10.0 & 93.0 \\
+2048 & 3 & 3.42 & 0.8469 & 3.0 & 0.0 & 61.2 & 12.9 & 90.4 \\
+2048 & 4 & 3.42 & 0.8496 & 14.0 & 0.0 & 73.5 & 11.2 & 96.5 \\
+2048 & 5 & 3.42 & 0.8428 & 12.0 & 0.0 & 74.7 & 11.2 & 94.8 \\
+4096 & 1 & 2.42 & 0.8409 & 0.0 & 0.0 & 39.4 & 4.7 & 93.0 \\
+4096 & 2 & 2.42 & 0.8444 & 0.0 & 0.0 & 3.5 & 5.3 & 91.7 \\
+4096 & 3 & 2.42 & 0.8357 & 1.5 & 0.0 & 56.5 & 10.6 & 94.8 \\
+4096 & 4 & 2.42 & 0.8373 & 0.0 & 0.0 & 48.8 & 8.2 & 92.2 \\
+4096 & 5 & 2.42 & 0.8400 & 0.5 & 0.0 & 53.5 & 4.7 & 93.5 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -424,14 +495,215 @@ v1 BA radius & 0.168819 & 0.288855 \\
 
 \vspace{0.5em}
 \parbox{0.92\linewidth}{\footnotesize In the benchmark, the TPR radius-to-margin
-ratio is about 64 at 5,000 labels. A quadratic information-scaling
+ratio is about 64 at 5,000 labeled draws. A quadratic information-scaling
 extrapolation therefore gives $n^*\approx 5{,}000\times64^2\simeq2\times10^7$
-uniform labels at margin 0.05. This is a diagnostic extrapolation, not a
+uniform labeled draws at margin 0.05. This is a diagnostic extrapolation, not a
 new Monte Carlo run.}
 \end{table}
 \FloatBarrier
 
+\section{Computational, inference and hardware protocol details}
+
+\small
+
+This section collects scientific choices that are executable in repository
+configuration but are needed to evaluate the experiment without navigating the
+YAML files. It documents the frozen protocol; it does not introduce a new
+analysis.
+
+\subsection{Features, data roles and hyperparameter selection}
+
+The eight inputs shared by QK-SVC and its matched RBF control are listed in
+Table~\ref{tab:features}. All are defined for every selected event. The choice
+was made from source-domain physics knowledge and frozen in D-011 on 10 August
+2026, before E01. The criterion was to retain documented HiggsML discriminants
+while avoiding jet-dependent sentinel variables, whose fixed absent-object
+value could dominate an angle encoding. No target sample, target label,
+systematic landscape, or CMS collision data was used to select them.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Frozen eight-feature input in circuit order. Definitions follow the
+FAIR Universe HiggsML data documentation.}
+\label{tab:features}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.43\linewidth}>{\raggedright\arraybackslash}p{0.49\linewidth}}
+\toprule
+Feature & Operational definition \\
+\midrule
+\texttt{DER\_mass\_transverse\_met\_lep} & Transverse mass of the lepton and missing transverse momentum. \\
+\texttt{DER\_mass\_vis} & Invariant mass of the visible hadronic-tau and lepton four-vectors. \\
+\texttt{DER\_pt\_ratio\_lep\_had} & Ratio $p_T^{\rm lep}/p_T^{\rm had}$. \\
+\texttt{DER\_met\_phi\_centrality} & Azimuthal centrality of the MET vector relative to the hadronic tau and lepton. \\
+\texttt{DER\_deltar\_had\_lep} & $\Delta R$ separation between the hadronic tau and lepton. \\
+\texttt{DER\_pt\_h} & Magnitude of the vector sum of hadronic-tau, lepton, and MET transverse momenta. \\
+\texttt{DER\_sum\_pt} & Scalar sum of hadronic-tau, lepton, and all selected-jet transverse momenta. \\
+\texttt{PRI\_met} & Magnitude of missing transverse momentum. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The development draw contains 300,000 raw rows and 274,004 rows after the
+official nominal selection. A raw-row stratified partition gives train
+109,699; \texttt{source\_val} 41,128; \texttt{nominal\_test} 41,116;
+\texttt{auditor\_dev} 41,001; and sealed \texttt{final\_eval} 41,060. Tier A
+uses a fixed stratified 2,000-event subset of train; Tier B uses all 109,699
+train events. Training weights preserve physical within-class importance but
+equalize the two class masses and are renormalized to mean one. Evaluation
+always uses raw physical weights. The \texttt{source\_val} role is used only
+for weighted Platt calibration, the weighted-balanced-accuracy threshold, and
+the separately declared inference bin/SR choices. \texttt{nominal\_test}
+supplies reported nominal performance and templates; \texttt{auditor\_dev}
+supports audit development; both \texttt{final\_eval} roles remain unread.
+
+Hyperparameters were chosen by a seed-202 random search on the train role:
+10 unique configurations per model family except five for the MLP, with three
+stratified folds and physics-weighted fold AUC. Scale-sensitive preprocessing
+was fitted inside each fold. The same configuration count applied to Tier A
+families, including QK-SVC; Tier B repeated the classical search on its own
+train budget. The finite search spaces were:
+
+\begin{itemize}
+\item linear SVC: $C\in\{0.01,0.03,0.1,0.3,1,3,10\}$;
+\item RBF SVC (28-feature and matched eight-feature versions):
+  \newline $C\in\{0.1,0.3,1,3,10,30\}$ and
+  $\gamma\in\{\text{scale},0.01,0.03,0.1,0.3\}$;
+\item XGBoost: trees $\in\{200,400,800\}$, depth $\in\{4,6,8\}$,
+  learning rate $\in\{0.03,0.05,0.1,0.2\}$, subsample and column fraction
+  each $\in\{0.7,0.9,1\}$, and $\lambda\in\{0.5,1,3\}$;
+\item LightGBM: trees $\in\{200,400,800\}$, leaves
+  $\in\{15,31,63\}$, and the same learning-rate, subsample,
+  column-fraction and $\lambda$ sets as XGBoost;
+\item MLP: hidden widths $\in\{(32),(64,32),(128,64)\}$,
+  $L_2\in\{10^{-5},10^{-4},10^{-3},10^{-2}\}$, and learning rate
+  $\in\{10^{-3},3\times10^{-3},10^{-2}\}$;
+\item QK-SVC: $C\in\{0.1,0.3,1,3,10\}$, repetitions
+  $\in\{1,2\}$, bandwidth scale $\in\{0.25,0.5,0.75,1\}$, and linear or
+  full entanglement.
+\end{itemize}
+
+The winning parameters are in main Table~3 and the complete classical values
+are in \path{configs/frozen/frozen_deployment_v1.yaml}. They were frozen before
+the confirmatory world was drawn. There was no target-domain tuning.
+
+\subsection{Counting and profile-likelihood inference}
+
+The E08 counting signal region is chosen on \texttt{source\_val} from 200 score
+quantiles between 0.5 and 0.999 by maximizing $s/\sqrt b$, subject to
+$b\geq50$ at the benchmark luminosity. For each environment, model and
+$\mu\in\{0.5,1,1.5,2,3\}$, E08 draws 2,000 Poisson pseudoexperiments from the
+shifted signal and background yields. Its nominal-template estimator is
+$\hat\mu=(N-b_0)/s_0$ with the reported one-standard-deviation Gaussian
+interval. The nominal belief and shifted truth use the same
+\texttt{nominal\_test} rows, so this study is explicitly
+shared-simulation-conditional.
+
+E15 uses a product of score-bin Poisson likelihoods. For each model, ten
+weighted-quantile edges are first proposed on \texttt{source\_val}; low-score
+bins are merged until every nominal background bin has at least 25 expected
+events. Per-process templates for htautau, ztautau, ttbar and diboson are built
+from \texttt{nominal\_test}. TES/JES anchors are at $-2,-1,+1,+2$ standard
+deviations; their per-bin deviations use a quadratic interpolation inside
+$\lvert\alpha\rvert\leq1$ and the $1\to2\sigma$ linear slope outside. Soft-MET
+uses piecewise-linear anchors at 0, 1, 2, 3 and 5 GeV, with the three stochastic
+seeds averaged at nonzero anchors. Normalization nuisances act exactly and
+multiplicatively on ttbar, diboson and all-background yields.
+
+TES and JES have unit-Gaussian constraints in standard-deviation units;
+normalization scales have Gaussian constraints with widths 0.02, 0.25 and
+0.001 and the official bounds; soft-MET is flat on $[0,5]$ GeV. Each
+pseudoexperiment draws its auxiliary-constraint centers around the true
+nuisance value, giving the declared unconditional ensemble. L2 profiles all
+six nuisances; L3 uses the identical likelihood but omits the nuisance family
+actually shifted. The $68.27\%$ interval is
+$q(\mu)=-2\log\{L(\mu,\widehat{\widehat\theta})/
+L(\hat\mu,\hat\theta)\}\leq1$, found with bounded L-BFGS-B fits, an analytic
+gradient, a second start and a monotone lower-minimum safeguard. E15 runs 500
+pseudoexperiments for each model--environment--$\mu$--level cell and 2,000 per
+$\mu$ for each nominal gate model before the shifted grid is interpreted.
+
+The independent-MC studies do not repair or redefine this likelihood. E08v2
+uses 500 pseudoexperiments in each of six registered profile spot-check cells.
+E08v3 marginalizes counting coverage over 400 independent half-split draws and
+uses ten profile draws with 200 pseudoexperiments per registered cell. Those
+studies establish the stated auxiliary-template-quality limitation; no general
+MC-statistics-aware profile construction is claimed.
+
+\subsection{Quantum kernel, finite shots and hardware provenance}
+
+Training-only 0.5\% and 99.5\% feature quantiles map each input to
+$[-\pi,\pi]$, with out-of-range deployment values clipped. The frozen
+eight-qubit map has two repetitions and bandwidth 0.5. Each repetition applies
+$H$ and $R_Z(2z_i)$ to every qubit, followed on each neighboring pair by
+CNOT--$R_Z(2z_i z_j)$--CNOT, where $z_i=0.5x_i$. The fidelity kernel is
+$K(x,y)=\lvert\langle\phi(x)\vert\phi(y)\rangle\rvert^2$. ``Exact'' means
+statevector evaluation. ``Finite shot'' means the exact noiseless
+compute--uncompute law, sampled directly as
+$\mathrm{Binomial}(S,K)/S$ at $S=128,256,512,1024,2048,4096$; training-Gram
+off-diagonals are sampled once and symmetrized, diagonals are fixed to one,
+and cross-Gram entries are sampled independently. No PSD projection or
+mitigation is applied. Each realization refits the SVC and repeats Platt
+calibration and threshold freezing. For the 2,000-event Tier-A train set, one
+training realization represents 1,999,000 distinct off-diagonal
+compute--uncompute estimates, plus $2,000\times N$ entries for each calibration
+or target cross-Gram. These large finite-shot arms sample the exact Bernoulli
+law in software; they are not claimed as executed QPU circuits.
+
+Two real-device jobs were run on \path{ibm_marrakesh} (156-qubit Heron r2).
+E10 job \path{d9t2jrvtfhrs73dtd8dg} contains 496 off-diagonal circuits for a
+balanced 32-event Gram at 2,048 shots. E16 job
+\path{d9tdubopdb6s73e73o20} contains 378 train-pair and 336 train--test
+circuits (714 total) for 28 train and 12 test events at 1,024 shots; six test
+events are nominal and six TES-down. Both used compute--uncompute circuits,
+Qiskit transpilation at optimization level 1, a fixed transpiler seed, and no
+error mitigation. Median transpiled depth and two-qubit count were 182 and 54;
+the archived QPU use was 276 s and 200 s, respectively.
+
+Archived provenance comprises backend and job identifiers, shots, submission
+timestamps, circuit/pair order, feature-map parameters, aggregate transpiled
+depth/two-qubit counts, backend size, the calibration last-update timestamp,
+raw counts, row identifiers, labels, kernel blocks and E16 usage records. No
+explicit initial layout was fixed. Per-circuit physical layouts, transpiled
+circuit objects, and detailed per-qubit calibration/error tables were not
+archived, so the hardware evidence cannot support a calibration-conditional or
+layout-specific claim. It is a hardware micro-scale integration and
+fail-closed consistency check only; all eight-qubit experiments are
+classically simulable.
+
+\subsection{CMS real-data case-study protocol}
+
+Level II uses Run2012B+C TauPlusX collision data at 11,467 pb$^{-1}$ and the
+available CMS outreach MC (ggH, VBF, DY, ttbar and W+jets; no QCD sample).
+The full-data pass retains 126,164 selected collision events and 12,445
+selected MC events. The selection requires the
+\path{IsoMu17_eta2p1_LooseIsoPFTau20} trigger, a tight isolated muon with
+$p_T>20$ GeV and $|\eta|<2.1$, a tight isolated hadronic tau with
+$p_T>25$ GeV and $|\eta|<2.3$ plus decay-mode and anti-electron/anti-muon
+requirements, and $\Delta R(\mu,\tau)>0.5$. The leading passing muon and tau
+are used. Opposite-sign events form the analysis region and same-sign events a
+QCD-enriched control region. The eight features are reconstructed in the same
+order and with the same operational definitions as Table~\ref{tab:features}.
+MC weights are cross section times luminosity divided by generated events;
+collision events carry no class label. Models are trained on MC with a fixed
+70/30 train/validation split and Level-I-frozen hyperparameters; QK-SVC uses a
+2,000-event training subset. There is no collision-target tuning.
+
+The ledger has four frozen claims. C1 asks whether event-level accuracy on
+collision data is within 0.05 of source accuracy and requires queryable I2
+truth; it is UNRESOLVED because such labels do not exist. C2 asks whether the
+data/MC normalization ratio in the opposite-sign high-transverse-mass
+($m_T>70$ GeV) W-enriched control region is within 30\%; E11v3 propagates MC
+statistics. C3 asks whether MC-to-data QK-MMD$^2$ exceeds the feature-only
+noise floor: the hardened analysis uses 200 MC--MC null draws, 20 MC--data
+draws and 999 permutations on unweighted 2,000-row samples, and requires both
+calibrations to reject. C4 asks whether the same-sign collision count exceeds
+the available non-QCD MC, with MC statistics in the denominator. C4 does not
+measure the QCD yield or establish QCD quantitatively; absent-QCD MC makes QCD
+a physically plausible explanation for the excess, not the certified claim.
+
 \section{Artifact map}
+
+\normalsize
 
 The main machine-readable sources for this supplement are:
 \begin{itemize}
@@ -440,13 +712,14 @@ The main machine-readable sources for this supplement are:
 \item \path{results/tables/E06_nstar.json} and
       \path{results/tables/E06_nstar_efficiency.json};
 \item \path{results/tables/E16_quantum_uncertainty.json};
+\item \path{results/tables/E16_deployment_level.json};
 \item \path{results/tables/E08v2_independent_mc.json} and
       \path{results/tables/E08v3_multidraw.json};
 \item \path{results/tables/E13v2_baw_allocation.json}.
 \end{itemize}
 The frozen protocols and post-run dispositions are in
 \path{docs/experiment_registry.md}, \path{docs/decisions.md}, and the
-three dated files under \path{docs/audits/}. These text records explain
+dated files under \path{docs/audits/}. These text records explain
 the design and corrections; the JSON artifacts remain the numerical
 source of truth.
 

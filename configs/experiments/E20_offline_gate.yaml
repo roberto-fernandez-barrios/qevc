@@ -1,0 +1,100 @@
+# E20 — preregistered confirmatory real-hardware deployment study
+# OFFLINE GATE ONLY. This file does not authorize or submit QPU work.
+experiment: E20
+registered_at: "2026-08-13"
+status: offline_gate_only
+inherits: [E01, E16]
+
+scientific_question: >-
+  Can multiple independently estimated physical quantum-kernel deployments
+  provide informative evidence about deployment-relative versus ideal-anchored
+  claim stability beyond the existing micro-scale integration demonstration?
+
+frozen_protocol:
+  event_seed: 20260813
+  n_calibration: 24
+  n_target_per_environment: 24
+  target_environments: [nominal, "tes=0.98"]
+  paired_target_row_ids: true
+  candidates:
+    - {name: A48, n_train: 48}
+    - {name: B64, n_train: 64}
+    - {name: C80, n_train: 80}
+  primary_hardware_candidate: A48
+  candidate_rule: >-
+    A48 is the only preregistered hardware-eligible design. B64 and C80 are
+    offline scaling diagnostics, not post-hoc fallbacks, because three physical
+    deployments exceed the preferred QPU budget under the measured cost model.
+  feature_map: frozen_deployment_v1
+  preprocessing: angle_scaler_fit_on_frozen_tier_a_population
+  training_weights: class_balanced_mean1
+  svm_C: 1.0
+  calibration: weighted_platt_on_fixed_source_val_subset
+  threshold: weighted_ba_optimal_on_same_fixed_calibration_subset
+  claims:
+    metric_families: [unweighted_accuracy, weighted_accuracy]
+    deltas: [-0.01, -0.005, 0.0, 0.02, 0.05, 0.10]
+    alpha: 0.05
+    n_max: 20000
+    audit_seeds: 10
+    margin_strata: {near: 0.01, far: 0.04}
+
+offline_estimation:
+  shots: 1024
+  kernel_seeds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+  noise_model: binomial_compute_uncompute
+  independent_noise_per_matrix: true
+  psd_projection: false
+
+qpu_cost_model:
+  seconds_per_circuit_at_1024:
+    central: 0.28
+    low: 0.22
+    high: 0.38
+  anchors:
+    - "E10: 276 s / 496 circuits at 2048 shots"
+    - "E16 hardware: 200 s / 714 circuits at 1024 shots"
+  intended_physical_deployments: 3
+  maximum_physical_deployments_considered: 4
+  preferred_total_minutes: 70
+  hard_upper_estimate_minutes: 90
+  total_instance_minutes: 100
+
+go_no_go:
+  # Exact deployment must be meaningfully above the E16 threshold floor.
+  exact_min_nominal_auc: 0.65
+  exact_min_each_environment_auc: 0.60
+  exact_min_each_environment_ba: 0.58
+  # Shot-only realizations must remain informative without performance tuning.
+  shot_min_median_nominal_auc: 0.62
+  shot_min_q10_nominal_auc: 0.55
+  shot_min_median_worst_environment_ba: 0.54
+  shot_max_chance_fraction: 0.25
+  chance_definition: "nominal AUC <= 0.55 or worst-environment BA <= 0.50"
+  # Claim comparisons must not be dominated by REFUTED/UNRESOLVED floor.
+  exact_min_supported_unique_claims: 4
+  exact_max_unresolved_fraction: 0.50
+  exact_min_far_unique_claims: 4
+  shot_min_median_supported_unique_claims: 4
+  shot_max_median_unresolved_fraction: 0.60
+  shot_min_median_informative_pairs: 6
+  informative_pair_definition: >-
+    The exact, deployment-relative and ideal-anchored majority verdicts are all
+    decisive for the same unique environment/family/delta claim.
+  # Cost is a hard scientific-opportunity gate, not merely accounting.
+  cost_max_three_deployment_central_minutes: 70
+  cost_max_three_deployment_high_minutes: 90
+
+decision_rule: >-
+  GO requires every exact, shot-only, claim-informativeness and cost gate for
+  A48. Failure of any hard gate means ABORT E20 and no QPU submission. B64/C80
+  cannot rescue a failed A48 after results are seen. A BORDERLINE result is
+  allowed only for missing/corrupt offline evidence, not for a failed threshold.
+
+hardware_prohibitions:
+  - no quantum-advantage search
+  - no feature-map or depth sweep
+  - no post-hoc hyperparameter tuning
+  - no backend shopping after outcomes
+  - no repeat-until-favorable execution
+  - no QPU job before explicit author approval after the offline decision

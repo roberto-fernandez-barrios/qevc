@@ -1,7 +1,7 @@
 # Novelty Matrix
 
-**Status:** v1.0 — 2026-08-10 (literature current through August 2026).
-Gate 0 assessment per spec §30. Built from four parallel literature sweeps
+**Status:** v1.1 — 2026-08-31 (literature checked through 31 August 2026).
+Gate 0 assessment per spec §30. Built from targeted literature sweeps
 (QML-in-HEP; quantum-kernel theory; trustworthy-ML certification/shift;
 HEP systematics-aware ML). arXiv IDs were verified during the sweep unless
 marked ⏳ (re-verify before citing in the manuscript).
@@ -26,6 +26,7 @@ physics-level inference (μ, intervals, coverage) · **Real**: real collision da
 | Alvi, Bauer, Nachman 2023, JHEP arXiv:2206.08391 | ✓ | ✓ | · | · | · | · | ~ | · | · |
 | Ait Haddou+ 2026, PTEP arXiv:2511.15672 | ✓ | ✓ | ~ | · | · | · | · | ~ | · |
 | Maier+ 2026, EPJ QT (QELM, Kaggle HiggsML) arXiv:2510.13994 | ✓ | ✓ | · | · | ~ | · | · | · | · |
+| Brown, Spannowsky & Williams 2026 (detector-inspired smearing) arXiv:2608.11330 | ✓ | ✓ | ~ | ✓ | · | · | · | · | · |
 
 ## Cluster B — Quantum-kernel theory and trust
 
@@ -38,6 +39,8 @@ physics-level inference (μ, intervals, coverage) · **Real**: real collision da
 | Canatar+ 2023, TMLR (bandwidth) arXiv:2206.06686 | ✓ | · | · | · | ✓ | · | · | · | · |
 | Wang+ 2021, Quantum (NISQ kernels) arXiv:2103.16774 | ✓ | · | · | · | ✓ | · | · | · | · |
 | Schnabel & Roth 2025, QMI (benchmark scrutiny) arXiv:2409.04406 | ✓ | · | · | · | ✓ | · | ~ | · | · |
+| Miroszewski+ 2024 (shot-cost rules for fidelity/projected kernels) arXiv:2407.15776 | ✓ | · | · | · | ✓ | · | ~ | · | · |
+| Casas, Bonet-Monroig & Pérez-Salinas 2026, npj QI (embedding class margin) DOI:10.1038/s41534-026-01330-y | ✓ | · | · | · | ✓ | · | ~ | · | · |
 
 ## Cluster C — QML validity, robustness, monitoring
 
@@ -72,6 +75,8 @@ physics-level inference (μ, intervals, coverage) · **Real**: real collision da
 | Kossen+ 2021, ICML (active testing) arXiv:2103.05331 | · | · | · | · | · | ✓ | ~ | · | · |
 | Farquhar+ 2021, ICLR (LURE) arXiv:2101.11665 | · | · | · | · | · | ✓ | ~ | · | · |
 | Waudby-Smith & Ramdas 2024, JRSS-B (betting CS) arXiv:2010.09686 | · | · | · | · | · | ~ | ✓ | · | · |
+| Karampatziakis, Mineiro & Ramdas 2021, ICML (off-policy CS) arXiv:2102.09540 | · | · | · | ~ | · | ✓ | ✓ | · | · |
+| Waudby-Smith+ 2022/25 (anytime-valid adaptive off-policy inference) arXiv:2210.10768 | · | · | · | ~ | · | ✓ | ✓ | · | · |
 | Podkopaev & Ramdas 2022, ICLR (risk monitoring) arXiv:2110.06177 | · | · | · | ✓ | · | · | ✓ | · | · |
 | Chugg+ 2023, NeurIPS (auditing fairness by betting) arXiv:2305.17570 | · | · | · | ~ | · | ~ | ✓ | · | · |
 | Angelopoulos+ 2023, Science (PPI) arXiv:2301.09633 | · | · | · | · | · | ✓ | ✓ | · | · |
@@ -94,16 +99,18 @@ physics-level inference (μ, intervals, coverage) · **Real**: real collision da
 
 Sweep conclusion (searches enumerated in the survey logs, August 2026):
 
-1. **No paper evaluates quantum classifiers under physically meaningful collider
-   systematics or MC-vs-data shift.** All QML "robustness" work concerns
-   hardware/shot noise or adversarial perturbations; all collider-QML papers
-   evaluate on fixed nominal simulation. Closest partial touches: Ait Haddou+
-   (normalization uncertainty enters only a final limit, classifier unaudited);
-   Mott+ (overtraining-robustness claim only); Alvi+ (critical validation of QML
-   claims, no systematics).
+1. **Collider-QML robustness under detector variability is no longer an open
+   category.** Brown, Spannowsky & Williams train on a reference distribution
+   and evaluate frozen quantum autoencoders and supervised data-reuploading
+   classifiers under controlled feature-level smearing. The work uses exact
+   simulation and a simplified detector-inspired variability model, and calls
+   realistic detector systematics, finite shots and device noise future work.
+   It does not include official nuisance parameterizations, rate-only effects,
+   information-conditional claim certification, signal-strength inference, or
+   a realized noisy Gram deployment.
 2. **No QML paper uses the FAIR Universe HiggsML Uncertainty benchmark** (zero
    quantum entries in the competition; no follow-ups found).
-3. **No work in any field combines** error-controlled claim certification under
+3. **The specific combination remains underexplored:** error-controlled claim certification under
    shift + explicit information-set conditioning + label-budget n* + a scientific
    downstream inference task. Nearest neighbors each miss ≥2 axes: CELEUS (no
    shift, no info-sets), Chugg+ (labeled stream assumed, no info-set hierarchy),
@@ -114,16 +121,14 @@ Sweep conclusion (searches enumerated in the survey logs, August 2026):
 
 ### Differentiators to claim (and nothing more)
 
-- First evaluation of quantum-kernel event classifiers under parameterized
-  physical collider systematics as **nuisance-induced (shape-level)
-  distribution shift** of the inputs. (Sharpened 2026-08-10: Ait Haddou+
-  PTEP 2026 folds rate-only background-normalization uncertainty into final
-  limits without evaluating the classifier under shift — cite and
-  distinguish.)
-- First information-set-conditional, fail-closed certification framework
+- Evaluation under official, physically parameterized collider nuisances,
+  including both shape and rate-only effects, while separating feature-only
+  from aggregate/control-region evidence. This is a scope distinction, not a
+  priority claim over all collider-QML shift studies.
+- Information-set-conditional, fail-closed certification framework
   (SUPPORTED/REFUTED/UNRESOLVED with anytime-valid error control) applied to
   collider classifiers, quantum and classical.
-- First propagation of quantum-classifier degradation to signal-strength
+- Propagation of quantum-classifier degradation to signal-strength
   inference validity (bias/width/coverage) under systematics.
 - Kernel-geometry shift diagnostics as *risk sensors* with an explicit
   out-of-environment predictive test (H2) — never sold as certificates.
@@ -132,8 +137,13 @@ Sweep conclusion (searches enumerated in the survey logs, August 2026):
 
 FAIR Universe benchmark (data + nuisance semantics); betting-CS/e-process
 statistics (Waudby-Smith–Ramdas; Howard+); active-testing estimators
-(LURE); kernel-trust theory (Huang+, Thanasilp+, Canatar+) for feature-map
-design discipline and expected failure modes (concentration under shift).
+(LURE); kernel-trust theory (Huang+, Thanasilp+, Canatar+, Miroszewski+,
+Casas+) for feature-map design discipline, finite-shot resource costs and
+expected embedding/concentration failure modes.
+Weighted anytime-valid inference is established by the off-policy confidence
+sequence literature. Theorem 1 claims only the exact fixed-threshold algebraic
+reduction for this physics-weighted ratio estimand and its integration with the
+fail-closed information hierarchy.
 
 ### Watch items (fast-moving threats)
 
@@ -153,6 +163,8 @@ design discipline and expected failure modes (concentration under shift).
 - Re-run targeted searches before submission (spec §31: continuous review).
 - **Verification status (2026-08-10): all 12 previously-flagged arXiv IDs
   verified correct; venue data recorded in the sweep log.**
+- **Resolved 2026-08-31:** Brown, Spannowsky & Williams arXiv:2608.11330 is
+  now the nearest collider-QML robustness neighbor and is cited explicitly.
 
 ## Pre-submission re-sweep (2026-08-11; spec §31)
 
@@ -181,7 +193,26 @@ bibliography stage:
 
 ## Gate 0 verdict
 
-**GO.** The combination remains materially underexplored on every pairing that
-defines the contribution; the paper does not rely on quantum advantage and
-survives all four alternative outcomes of spec §37. Re-confirmed by the
-2026-08-11 pre-submission sweep above.
+## Final novelty audit (2026-08-31)
+
+Primary sources checked: Brown, Spannowsky & Williams (arXiv:2608.11330v1,
+submitted 11 August 2026); Miroszewski et al. (arXiv:2407.15776v1); and Casas,
+Bonet-Monroig & Pérez-Salinas (npj Quantum Information,
+DOI:10.1038/s41534-026-01330-y). Targeted searches also screened recent work on
+covariant-kernel concentration, finite-size shot-resource scaling, adversarial
+quantum robustness and quantum-data distribution shift. Those papers do not
+directly overlap C1--C3 beyond limitations already represented by the cited
+kernel and certification literature, so they were not added merely to enlarge
+Related Work.
+
+| Old claim | New competitive literature | Final defensible claim |
+|---|---|---|
+| Collider-QML studies have not evaluated deployment shift. | Brown et al. evaluate frozen collider QML models under controlled detector-inspired feature smearing. | Existing work has begun evaluating collider QML robustness under detector variability. This paper instead integrates official shape and rate-only nuisances, I0--I3 evidence, fail-closed anytime-valid claim certification, signal-strength inference and finite-shot/noisy Gram deployment. |
+| Finite-shot kernels are an unstructured implementation caveat. | Miroszewski et al. give spread/concentration rules for shot precision and resource estimation. | This paper consumes shot-cost limitations as prior art and contributes downstream propagation of each realized Gram through refitting, calibration, thresholding and claim resolution. |
+| Kernel limitations are adequately represented by concentration and bandwidth alone. | Casas et al. connect data-induced randomness and embedding quality to classification through class margin. | Embedding choice is acknowledged as a classification limitation; the paper claims neither an optimal embedding nor quantum advantage and uses a frozen bandwidth-limited map plus matched RBF control. |
+| The combination is categorically first. | The component literatures now overlap more strongly. | No first-ever/first-study claim is made. Novelty is the specific integration and the resulting information-conditional claim semantics. |
+
+## Gate 0 verdict
+
+**GO.** The updated claim is narrower but remains materially distinct. The
+paper does not rely on priority for collider shift or on quantum advantage.

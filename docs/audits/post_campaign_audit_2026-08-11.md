@@ -160,7 +160,7 @@ maximum (+0.053 upward / 0.139 worst-case, not +0.049); the L3 flagship
 width ratio (3.5×, not 7×); weight-only "AUC invariant exactly" scoped to
 the feature distribution (weighted-AUC effects at 4·10⁻⁴); QK-above-RBF28
 4/5 seeds (not implied 5/5); shot tolerance ±0.015 (not ±0.01); the
-secondary-world sensor range including the 0.22 n.s. fold; the intro's
+secondary-world sensor range including the descriptive 0.22 fold; the intro's
 "factor 2–3" harmonized to ×1.8–3.4; the hardware ratio re-attached
 (12.7/2.1 = 6.0×; excess 10.6% = 5.0×); "matched-kernel RBF" → the
 full-feature RBF-SVC in the E12 norm-collapse sentence; the floor null σ

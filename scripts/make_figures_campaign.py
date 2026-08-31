@@ -135,7 +135,9 @@ def fig7b() -> None:
 
 # ---- Fig. 8b — When does estimation noise change a verdict? (E16) ----------
 def fig8b() -> None:
-    agg = load("E16_quantum_uncertainty")["aggregate_by_shots"]
+    data = load("E16_quantum_uncertainty")
+    agg = data["aggregate_by_shots"]
+    per_config = data["per_config"]
     shots = [128, 256, 512, 1024, 2048, 4096]
     strata = [("near", SEQ_BLUE[0], "near (|m| < 0.01)"),
               ("moderate", SEQ_BLUE[1], "moderate (0.01–0.04)"),
@@ -149,8 +151,21 @@ def fig8b() -> None:
     for ax, (key, title) in zip(axes, panels):
         for st, color, label in strata:
             vals = [agg[str(s)].get(st, {}).get(key, np.nan) for s in shots]
-            ax.plot(shots, np.multiply(vals, 100), color=color, lw=2,
-                    marker="o", ms=5, label=label)
+            raw_key = key.removesuffix("_mean")
+            deployment_values = [
+                [per_config[f"shots{s}|k{k}"]["strata"][st][raw_key]
+                 for k in range(1, 6)]
+                for s in shots
+            ]
+            lows = [min(values) for values in deployment_values]
+            highs = [max(values) for values in deployment_values]
+            vals_pct = np.multiply(vals, 100)
+            yerr = [
+                vals_pct - np.multiply(lows, 100),
+                np.multiply(highs, 100) - vals_pct,
+            ]
+            ax.errorbar(shots, vals_pct, yerr=yerr, color=color, lw=1.8,
+                        marker="o", ms=5, capsize=2.5, label=label)
         ax.set_xscale("log", base=2)
         ax.set_xticks(shots)
         ax.set_xticklabels(["128", "256", "512", "1k", "2k", "4k"],
@@ -159,10 +174,10 @@ def fig8b() -> None:
         ax.set_xlim(110, 4800)
         ax.set_ylabel("verdict flips (%)")
     axes[-1].set_xlabel("shots per kernel entry")
-    axes[0].set_ylim(-3, 90)
+    axes[0].set_ylim(-3, 103)
     axes[1].legend(loc="upper right", frameon=False, fontsize=7.6)
-    fig.suptitle("E16 empirical verdict flips by ideal-margin stratum\n"
-                 "(5 simulated deployments per shot budget)",
+    fig.suptitle("E16 deployment-level verdict flips by ideal-margin stratum\n"
+                 "(mean and range across 5 noisy-kernel deployments)",
                  y=0.995, fontsize=10.5)
     fig.subplots_adjust(hspace=0.28)
     save(fig, "fig8b_estimation_noise_verdicts")

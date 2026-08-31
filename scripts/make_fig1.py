@@ -59,7 +59,7 @@ ax.text(59.4, 20.2, "veto\nonly", ha="center", color=BLUE, fontsize=6.6)
 
 # information sets feeding the auditor
 box(ax, 62, 1.5, 15, 7,
-    "information set\nI0 ⊂ I1 ⊂ I2(n) ⊂ I3\nn labels → $n^*$", fs=7.0)
+    "information set\nI0: source; I1: $X\\mid N=n$\nI2: + queried labels; I3: + rates", fs=6.6)
 arrow(ax, 69.5, 8.5, 69.5, 12)
 
 # ---- verdicts --------------------------------------------------------------
@@ -75,8 +75,8 @@ for y in (21.7, 15.3, 8.9):
 ax.text(1, 44.2, "Deployment happens under $\\theta \\neq 0$; "
                  "validation happened at $\\theta = 0$.",
         color=INK2, fontsize=8.2)
-ax.text(1, 2.5, "Heuristics (geometry) can only veto; only labeled target\n"
-                "evidence (I2) can certify — guarantees are per-claim,\n"
+ax.text(1, 2.5, "Heuristics (geometry) can only veto; labeled target\n"
+                "evidence (I2) can certify in the simulated audit — guarantees are per-claim,\n"
                 "time-uniform, and fail closed.",
         color=INK2, fontsize=7.6, va="bottom")
 

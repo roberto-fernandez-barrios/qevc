@@ -1,5 +1,10 @@
 # Final mathematical and editorial audit
 
+> Historical 2026-08-12 audit. Its submission-freeze conclusions are
+> superseded by D-038 and
+> `docs/audits/senior_author_revision_2026-08-13.md`; underlying artifact
+> checks remain part of the audit trail.
+
 **Date:** 2026-08-12
 **Scope:** current main paper, supplement, formal specifications, immutable
 result tables, manifests, experiment registry, decision log, figure sources,
@@ -34,7 +39,7 @@ and the Wald comparison is a contextual yardstick, not an optimality bound.
 | MEDIUM | The Wald quantity was called a universal information floor and was locally expanded as `2m^2` without fixing `tau=1/2`. | Renamed a Wald-style information yardstick/benchmark. Universal, minimax, and “no sequential procedure can beat it” claims were removed. Expansion is `m^2/[2 tau(1-tau)] + O(m^3) = Theta(m^2)`. The descriptive ratios 1.46--3.35 remain numerically unchanged. |
 | MEDIUM | Classical randomness and quantum deployment randomness were contrasted too absolutely. | Reframed: classical pipelines may also be stochastic; quantum-kernel evaluation adds measurement-induced deployment uncertainty intrinsic to finite-shot/noisy execution. |
 | MEDIUM | Independent-MC and hardware language could overgeneralize beyond the tested construction/scale. | E08v3 is scoped to the two registered XGBoost multi-draw cells (plus six one-draw spot checks) and does not claim that MC-statistics-aware profiling fails in general. QPU evidence is a micro-scale fail-closed consistency demonstration, not performance or certification at scale. |
-| MEDIUM | HEP wording overstated Barlow--Beeston and some CMS control-region interpretations. | The implemented likelihood is described as Barlow--Beeston-inspired/BB-lite Gaussian aggregate template variance. CMS C2 is total-MC normalization in a W-enriched CR with fixed non-W and absent QCD; C4 is an SS excess over non-QCD MC, consistent with QCD rather than exclusively attributed to it. |
+| MEDIUM | HEP wording overstated Barlow--Beeston and some CMS control-region interpretations. | The implemented likelihood is described as Barlow--Beeston-inspired/BB-lite Gaussian aggregate template variance. CMS C2 is total-MC normalization in a W-enriched CR with fixed non-W and absent QCD; C4 is an SS excess relative to non-QCD MC. QCD is interpretation, not a demonstrated cause. |
 | MEDIUM | Figure 8 conflated an E09 `n=2000` simulated curve with an E10 `n=32` hardware point and its labels were difficult at final column width. | Redrawn from existing artifacts. It now shows the E10 matched local shot floor (~0.020), separates provenance/scales in the caption, enlarges panels/fonts, removes overlapping end labels, and states that the separate E16 `n=28` micro-arm is not plotted. |
 | LOW | The text used inverse ESS as “effective sample size,” called `n=2000` hardware-feasible, and used an ambiguous hardware priority phrase. | Corrected to ESS `(sum w)^2/sum(w^2)`, “statevector-feasible matched scale,” and “the project's first.” |
 
@@ -134,7 +139,7 @@ qualification.
 | QML | Figure 8 compared different Gram scales without identifying provenance. | Figure 8 panels and caption. | Yes: E09 `n=2000`, E10 `n=32` local floor/hardware, E16 simulated verdicts, and the unplotted E16 `n=28` arm are separated. |
 | HEP | Profiling cannot be called valid merely where the nuisance model represents the shift. Strongest: independent template noise invalidates the frozen construction even nominally, while one representable JES cell already fails under shared simulation. | Abstract C2; Results Section 6.7; Figure 7 caption; Limitations; Discussion/Conclusion; supplement Section 3.4. | Yes: representability and auxiliary/template quality are joint conditions; scope and exceptions are explicit. |
 | HEP | “Barlow--Beeston” overstated the implemented Gaussian aggregate variance treatment. | Method Section 4.4; Results Section 6.5; registry/decision log. | Yes: consistently Barlow--Beeston-inspired/BB-lite. |
-| HEP | CMS C2/C4 assigned more process physics than the computed observables support. | Main Table 2 and Section 8; experiment registry E11v3. | Yes: total-MC in W-enriched CR and SS excess over non-QCD MC, merely consistent with QCD. |
+| HEP | CMS C2/C4 assigned more process physics than the computed observables support. | Main Table 2 and Section 8; experiment registry E11v3. | Yes: total-MC in W-enriched CR and SS excess relative to non-QCD MC; no causal QCD claim. |
 | HEP | Low initial optimizer-success fractions might be hidden evidence of unreliable global fits. | Limitations and supplement Section 3.1. | Yes: minimum 0.382 is disclosed; safeguards/gate support the fits but are not claimed as a proof of global optimization. |
 | Statistics | Proposition 4 overreached from truth-sign to equality of ternary verdicts and from failed sufficiency to forced flips. | Main Proposition 4/proof; supplement Section 1.3; formal results. | Yes: both-resolution/joint-coverage conditions and the one-way nature of sufficiency are explicit. |
 | Statistics | Theorem 1 might not cover fixed threshold, weighting, observability, optional stopping, adaptivity, or multiplicity as actually described. | Main Theorem 1/proof and adjacent conditional-validity text; supplement Section 1.1; weighted spec. | Yes, after finite-population, fixed-`tau`, information-set, adaptivity, and per-claim qualifications. |

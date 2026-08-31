@@ -20,7 +20,7 @@ COVER = ROOT / "manuscript" / "npjqi" / "cover_letter.tex"
 METADATA = ROOT / "docs" / "submission" / "npjqi_submission_metadata.md"
 README = ROOT / "README.md"
 DECISIONS = ROOT / "docs" / "decisions.md"
-AUDIT = ROOT / "docs" / "audits" / "final_math_editorial_audit.md"
+AUDIT = ROOT / "docs" / "audits" / "senior_author_revision_2026-08-13.md"
 CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 
 
@@ -154,23 +154,31 @@ def main() -> int:
     check("Collection named in cover letter", "Quantum machine learning:" in cover)
     check("journal named in cover letter", "npj Quantum Information" in cover)
     check("related manuscript disclosed", "Sharp Target-Domain Certificates" in cover)
-    check("related manuscript distinction recorded", "shares no datasets" in cover.lower())
+    check("related manuscript distinction recorded", "share no datasets" in cover.lower())
+    check("related manuscript exact status", "has not been submitted to any" in cover and "journal" in cover)
     check("submission metadata present", "## Scientific guardrails" in metadata)
 
     check("per-claim multiplicity guardrail", "not simultaneously across a grid" in main_tex)
     check("Proposition 4 archive guardrail", "target movements needed to instantiate" in main_tex)
+    check(
+        "Proposition 4 logical structure",
+        "sign-stability condition, coverage" in main_tex
+        and "resolution of both audits" in main_tex
+        and "2\\alpha" in main_tex
+        and "each audit at $\\alpha/2$" in main_tex,
+    )
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.21894292" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22206235" in main_tex)
 
     # Public-repository closeout: the README, paper, supplement, cover letter,
     # decision log, and final audit must describe the same frozen submission.
     check("README title synchronized", expected_title in " ".join(readme.split()))
     check("cover title synchronized", expected_title in " ".join(cover.split()))
-    check("README current pagination", all(token in readme for token in ("29-page", "8-page", "one-page")))
-    check("README submission state", "ready for author confirmation and portal upload" in readme and "not yet been submitted" in readme)
-    check("decision log contains npj freeze", "D-037" in decisions and "npj Quantum Information" in decisions)
+    check("README artifact set", all(token in readme for token in ("npjqi_manuscript.pdf", "npjqi_supplementary_information.pdf", "npjqi_cover_letter.pdf")))
+    check("README submission state", "has not yet been submitted" in readme)
+    check("decision log contains npj revision", "D-038" in decisions and "npj Quantum Information" in decisions)
     check("audit contains npj adaptation", "npj Quantum Information editorial adaptation" in audit)
 
     framing_docs = {
@@ -195,9 +203,18 @@ def main() -> int:
                 re.search(r"Proposition(?:~|\s)4", text) is not None
                 or r"Proposition~\ref{prop:stability}" in text
             )
-            and "independent empirical" in text
+            and ("separate empirical" in text or "independent empirical" in text)
             for text in framing_docs.values()
         ),
+    )
+    check(
+        "E16 deployment unit synchronized",
+        all("five" in text.lower() and "deployment" in text.lower() and "correlated" in text.lower()
+            for text in (readme, main_tex, supp_tex, decisions, audit)),
+    )
+    check(
+        "audit-label draw terminology synchronized",
+        all("audit-label draw" in text.lower() for text in (readme, main_tex, supp_tex, decisions, audit)),
     )
     hardware_docs = {
         "README": readme,

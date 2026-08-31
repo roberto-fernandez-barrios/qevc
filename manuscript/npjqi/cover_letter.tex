@@ -1,5 +1,5 @@
-\documentclass[10pt]{article}
-\usepackage[margin=0.8in]{geometry}
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper,margin=0.8in]{geometry}
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage[hidelinks]{hyperref}
@@ -9,7 +9,7 @@
 \begin{document}
 
 \begin{flushright}
-12 August 2026\\
+31 August 2026\\
 Roberto Fern\'andez-Barrios\\
 Faculty of Engineering, University of Deusto\\
 Avda. de las Universidades 24, 48007 Bilbao, Spain\\
@@ -42,12 +42,24 @@ realized deployment from claims anchored to an ideal quantum kernel. This
 allows the paper to say exactly what quantum measurement changes without
 attributing ordinary stochasticity exclusively to quantum systems.
 
+We have updated the positioning against the closest new literature. Brown,
+Spannowsky and Williams (arXiv:2608.11330) now evaluate collider QML models
+under controlled detector-inspired feature smearing. Our claim is therefore
+not priority for studying collider shift. The distinct contribution is the
+combination of official physically parameterized nuisances, including
+rate-only effects; an explicit I0--I3 observable-information hierarchy;
+fail-closed anytime-valid certification; propagation to signal-strength
+inference; and finite-shot/noisy Gram estimation treated as part of the
+realized deployment.
+
 The results directly address the Collection's emphasis on capabilities and
 limitations. Matched classical controls remove every apparent
 quantum-specific performance and sensing effect, so we claim no quantum
-advantage. What remains quantum-specific is an experimentally quantified,
-measurement-induced deployment uncertainty whose effects propagate through
-the full decision pipeline. The collider setting is essential as a stringent
+advantage. What remains QML-specific is a measurement-induced deployment
+uncertainty whose effects propagate from the realized Gram matrix through
+refitting, calibration, thresholding and claim resolution. The eight-qubit
+experiment is classically simulable, and the QPU result is only a micro-scale
+integration/fail-closed consistency demonstration. The collider setting is a stringent
 scientific deployment environment: it supplies physics weights, invisible
 yield shifts, control regions, finite templates, and downstream
 signal-strength inference. Evidence spans disjoint simulated worlds, CMS open
@@ -62,14 +74,17 @@ claims. We believe this combination of rigorous negative controls, quantum
 deployment semantics, and physics-level validation will be useful to the
 journal's interdisciplinary QML readership.
 
-For transparency, the same author group has released a distinct manuscript,
+For transparency, the same author group has released distinct public material,
 ``Sharp Target-Domain Certificates for Quantum-Kernel Advantage under
-Distribution Shift'' (Zenodo DOI 10.5281/zenodo.21776862). That work studies
-finite-target partial identification of predictive advantage against a
-prespecified classical-kernel family on unrelated cybersecurity and tabular
-datasets. It shares no datasets, experiments, theorems, estimands, codebase, or
-reported results with the present collider-inference study. We provide it as
-related material so the Editors can assess the distinction directly.
+Distribution Shift'' (Zenodo DOI 10.5281/zenodo.21776862). It is currently
+available as public preprint/Zenodo material and has not been submitted to any
+journal. That paper studies partial identification and certification of
+predictive advantage under target-domain shift. The present paper instead
+studies scientific claim validity under collider systematics, incomplete
+information, downstream physics inference and measurement-induced quantum
+deployment uncertainty. The works share no datasets, experiments, theorems,
+estimands, codebase, or reported results, and are not manuscripts
+simultaneously under consideration.
 
 This manuscript is not under consideration elsewhere. All authors have
 approved the manuscript and its submission. The authors declare no financial

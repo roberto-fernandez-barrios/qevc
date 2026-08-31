@@ -31,7 +31,7 @@ print(f"  per-seed QK - RBF8: {diff}")
 v2 = load("E04v2_geom_failure_multiseed")["analysis"]
 print("\nE04v2 sensors (multi-seed targets):")
 for k, r in v2.items():
-    print(f"  {k:24s} mmd2-only rho={r['mmd2_only_rho']:+.3f} p={r['mmd2_only_p']}")
+    print(f"  {k:24s} descriptive mmd2-only rho={r['mmd2_only_rho']:+.3f} (IID p omitted)")
 
 e08 = load("E08_physics")
 print(f"\nE08 gated decoupling: {len(e08['decoupled_cells_H5'])} cells, "

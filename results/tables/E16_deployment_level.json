@@ -1,0 +1,863 @@
+{
+  "analysis": "E16 deployment-level descriptive reanalysis",
+  "source": "results/tables/E16_quantum_uncertainty.json",
+  "source_sha256": "3208814B4A66609A6C9436D2E232A8BD93204F36F6E2E5431D9FECA5DED981FE",
+  "independent_unit": "one noisy quantum-kernel deployment",
+  "dependence_note": "Claims within a deployment share the realized Gram matrix, refit, calibration, threshold and audit streams; claim counts are not IID replicates. Kernel realizations use independent RNG keys, while audit streams are paired across deployments, so cross-deployment verdict comparisons also share CRN.",
+  "scope": "Descriptive mean, sample SD, range and leave-one-deployment-out sensitivity across five deployments per shot budget; no population confidence interval or monotonic trend claim.",
+  "n_independent_deployments_total": 30,
+  "by_shots": {
+    "128": {
+      "n_independent_deployments": 5,
+      "claims_evaluated_per_deployment": {
+        "far": 200,
+        "moderate": 170,
+        "near": 230
+      },
+      "per_seed": [
+        {
+          "kernel_seed": 1,
+          "frob_rel_err": 0.13642,
+          "nominal_auc": 0.83356,
+          "m_s_shift_w": -0.01059,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1471,
+          "moderate_flip_rate_fixed_tau": 0.5235,
+          "near_abstention": 0.9565
+        },
+        {
+          "kernel_seed": 2,
+          "frob_rel_err": 0.13689,
+          "nominal_auc": 0.83111,
+          "m_s_shift_w": -0.03097,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.115,
+          "moderate_flip_rate_own_tau": 0.1588,
+          "moderate_flip_rate_fixed_tau": 0.7471,
+          "near_abstention": 0.9478
+        },
+        {
+          "kernel_seed": 3,
+          "frob_rel_err": 0.1366,
+          "nominal_auc": 0.83384,
+          "m_s_shift_w": -0.05655,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.4,
+          "moderate_flip_rate_own_tau": 0.1412,
+          "moderate_flip_rate_fixed_tau": 0.8,
+          "near_abstention": 0.9391
+        },
+        {
+          "kernel_seed": 4,
+          "frob_rel_err": 0.13655,
+          "nominal_auc": 0.83768,
+          "m_s_shift_w": -0.05837,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.44,
+          "moderate_flip_rate_own_tau": 0.1824,
+          "moderate_flip_rate_fixed_tau": 0.7882,
+          "near_abstention": 0.9304
+        },
+        {
+          "kernel_seed": 5,
+          "frob_rel_err": 0.13671,
+          "nominal_auc": 0.83837,
+          "m_s_shift_w": -0.02613,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.085,
+          "moderate_flip_rate_own_tau": 0.1588,
+          "moderate_flip_rate_fixed_tau": 0.7118,
+          "near_abstention": 0.9261
+        }
+      ],
+      "deployment_level_summary": {
+        "far_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.0,
+          "sample_sd": 0.0,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ],
+          "nonzero_deployments": 0,
+          "leave_one_deployment_out_mean_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "far_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.208,
+          "sample_sd": 0.1986,
+          "median": 0.115,
+          "range": [
+            0.0,
+            0.44
+          ],
+          "nonzero_deployments": 4,
+          "leave_one_deployment_out_mean_range": [
+            0.15,
+            0.26
+          ]
+        },
+        "moderate_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.1577,
+          "sample_sd": 0.0158,
+          "median": 0.1588,
+          "range": [
+            0.1412,
+            0.1824
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.1515,
+            0.1618
+          ]
+        },
+        "moderate_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.7141,
+          "sample_sd": 0.1121,
+          "median": 0.7471,
+          "range": [
+            0.5235,
+            0.8
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.6926,
+            0.7618
+          ]
+        },
+        "near_abstention": {
+          "n_deployments": 5,
+          "mean": 0.94,
+          "sample_sd": 0.0124,
+          "median": 0.9391,
+          "range": [
+            0.9261,
+            0.9565
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.9359,
+            0.9435
+          ]
+        }
+      }
+    },
+    "256": {
+      "n_independent_deployments": 5,
+      "claims_evaluated_per_deployment": {
+        "far": 200,
+        "moderate": 170,
+        "near": 230
+      },
+      "per_seed": [
+        {
+          "kernel_seed": 1,
+          "frob_rel_err": 0.09667,
+          "nominal_auc": 0.8361,
+          "m_s_shift_w": 0.04881,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1824,
+          "moderate_flip_rate_fixed_tau": 0.5,
+          "near_abstention": 0.9217
+        },
+        {
+          "kernel_seed": 2,
+          "frob_rel_err": 0.09663,
+          "nominal_auc": 0.83309,
+          "m_s_shift_w": 0.01772,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1176,
+          "moderate_flip_rate_fixed_tau": 0.3412,
+          "near_abstention": 0.9391
+        },
+        {
+          "kernel_seed": 3,
+          "frob_rel_err": 0.09666,
+          "nominal_auc": 0.82783,
+          "m_s_shift_w": 0.05268,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1235,
+          "moderate_flip_rate_fixed_tau": 0.5,
+          "near_abstention": 0.9217
+        },
+        {
+          "kernel_seed": 4,
+          "frob_rel_err": 0.09654,
+          "nominal_auc": 0.83636,
+          "m_s_shift_w": -0.00299,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1647,
+          "moderate_flip_rate_fixed_tau": 0.3294,
+          "near_abstention": 0.9043
+        },
+        {
+          "kernel_seed": 5,
+          "frob_rel_err": 0.09664,
+          "nominal_auc": 0.84362,
+          "m_s_shift_w": -0.1386,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.885,
+          "moderate_flip_rate_own_tau": 0.2176,
+          "moderate_flip_rate_fixed_tau": 0.8,
+          "near_abstention": 0.9565
+        }
+      ],
+      "deployment_level_summary": {
+        "far_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.0,
+          "sample_sd": 0.0,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ],
+          "nonzero_deployments": 0,
+          "leave_one_deployment_out_mean_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "far_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.177,
+          "sample_sd": 0.3958,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.885
+          ],
+          "nonzero_deployments": 1,
+          "leave_one_deployment_out_mean_range": [
+            0.0,
+            0.2213
+          ]
+        },
+        "moderate_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.1612,
+          "sample_sd": 0.0417,
+          "median": 0.1647,
+          "range": [
+            0.1176,
+            0.2176
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.1471,
+            0.1721
+          ]
+        },
+        "moderate_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.4941,
+          "sample_sd": 0.1898,
+          "median": 0.5,
+          "range": [
+            0.3294,
+            0.8
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.4177,
+            0.5353
+          ]
+        },
+        "near_abstention": {
+          "n_deployments": 5,
+          "mean": 0.9287,
+          "sample_sd": 0.0198,
+          "median": 0.9217,
+          "range": [
+            0.9043,
+            0.9565
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.9217,
+            0.9347
+          ]
+        }
+      }
+    },
+    "512": {
+      "n_independent_deployments": 5,
+      "claims_evaluated_per_deployment": {
+        "far": 200,
+        "moderate": 170,
+        "near": 230
+      },
+      "per_seed": [
+        {
+          "kernel_seed": 1,
+          "frob_rel_err": 0.06846,
+          "nominal_auc": 0.83067,
+          "m_s_shift_w": -0.02275,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.02,
+          "moderate_flip_rate_own_tau": 0.0941,
+          "moderate_flip_rate_fixed_tau": 0.6235,
+          "near_abstention": 0.9609
+        },
+        {
+          "kernel_seed": 2,
+          "frob_rel_err": 0.06836,
+          "nominal_auc": 0.83943,
+          "m_s_shift_w": 0.01199,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1059,
+          "moderate_flip_rate_fixed_tau": 0.3,
+          "near_abstention": 0.913
+        },
+        {
+          "kernel_seed": 3,
+          "frob_rel_err": 0.06831,
+          "nominal_auc": 0.84798,
+          "m_s_shift_w": -0.01703,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.01,
+          "moderate_flip_rate_own_tau": 0.1235,
+          "moderate_flip_rate_fixed_tau": 0.5765,
+          "near_abstention": 0.9087
+        },
+        {
+          "kernel_seed": 4,
+          "frob_rel_err": 0.06834,
+          "nominal_auc": 0.84856,
+          "m_s_shift_w": 0.01273,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1059,
+          "moderate_flip_rate_fixed_tau": 0.3059,
+          "near_abstention": 0.9348
+        },
+        {
+          "kernel_seed": 5,
+          "frob_rel_err": 0.06831,
+          "nominal_auc": 0.84781,
+          "m_s_shift_w": -0.01732,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.015,
+          "moderate_flip_rate_own_tau": 0.1471,
+          "moderate_flip_rate_fixed_tau": 0.5765,
+          "near_abstention": 0.9087
+        }
+      ],
+      "deployment_level_summary": {
+        "far_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.0,
+          "sample_sd": 0.0,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ],
+          "nonzero_deployments": 0,
+          "leave_one_deployment_out_mean_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "far_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.009,
+          "sample_sd": 0.0089,
+          "median": 0.01,
+          "range": [
+            0.0,
+            0.02
+          ],
+          "nonzero_deployments": 3,
+          "leave_one_deployment_out_mean_range": [
+            0.0063,
+            0.0112
+          ]
+        },
+        "moderate_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.1153,
+          "sample_sd": 0.0206,
+          "median": 0.1059,
+          "range": [
+            0.0941,
+            0.1471
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.1074,
+            0.1206
+          ]
+        },
+        "moderate_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.4765,
+          "sample_sd": 0.1596,
+          "median": 0.5765,
+          "range": [
+            0.3,
+            0.6235
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.4397,
+            0.5206
+          ]
+        },
+        "near_abstention": {
+          "n_deployments": 5,
+          "mean": 0.9252,
+          "sample_sd": 0.0227,
+          "median": 0.913,
+          "range": [
+            0.9087,
+            0.9609
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.9163,
+            0.9294
+          ]
+        }
+      }
+    },
+    "1024": {
+      "n_independent_deployments": 5,
+      "claims_evaluated_per_deployment": {
+        "far": 200,
+        "moderate": 170,
+        "near": 230
+      },
+      "per_seed": [
+        {
+          "kernel_seed": 1,
+          "frob_rel_err": 0.04831,
+          "nominal_auc": 0.83847,
+          "m_s_shift_w": 0.04323,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1529,
+          "moderate_flip_rate_fixed_tau": 0.4941,
+          "near_abstention": 0.9087
+        },
+        {
+          "kernel_seed": 2,
+          "frob_rel_err": 0.04834,
+          "nominal_auc": 0.83384,
+          "m_s_shift_w": 0.04658,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1294,
+          "moderate_flip_rate_fixed_tau": 0.5118,
+          "near_abstention": 0.9087
+        },
+        {
+          "kernel_seed": 3,
+          "frob_rel_err": 0.04837,
+          "nominal_auc": 0.83809,
+          "m_s_shift_w": 0.02825,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1176,
+          "moderate_flip_rate_fixed_tau": 0.4706,
+          "near_abstention": 0.9391
+        },
+        {
+          "kernel_seed": 4,
+          "frob_rel_err": 0.04826,
+          "nominal_auc": 0.83806,
+          "m_s_shift_w": -0.08023,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.59,
+          "moderate_flip_rate_own_tau": 0.1588,
+          "moderate_flip_rate_fixed_tau": 0.8,
+          "near_abstention": 0.9304
+        },
+        {
+          "kernel_seed": 5,
+          "frob_rel_err": 0.04837,
+          "nominal_auc": 0.83849,
+          "m_s_shift_w": -0.01119,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.005,
+          "moderate_flip_rate_own_tau": 0.1,
+          "moderate_flip_rate_fixed_tau": 0.4529,
+          "near_abstention": 0.913
+        }
+      ],
+      "deployment_level_summary": {
+        "far_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.0,
+          "sample_sd": 0.0,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ],
+          "nonzero_deployments": 0,
+          "leave_one_deployment_out_mean_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "far_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.119,
+          "sample_sd": 0.2633,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.59
+          ],
+          "nonzero_deployments": 2,
+          "leave_one_deployment_out_mean_range": [
+            0.0013,
+            0.1487
+          ]
+        },
+        "moderate_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.1317,
+          "sample_sd": 0.0245,
+          "median": 0.1294,
+          "range": [
+            0.1,
+            0.1588
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.125,
+            0.1397
+          ]
+        },
+        "moderate_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.5459,
+          "sample_sd": 0.1438,
+          "median": 0.4941,
+          "range": [
+            0.4529,
+            0.8
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.4824,
+            0.5691
+          ]
+        },
+        "near_abstention": {
+          "n_deployments": 5,
+          "mean": 0.92,
+          "sample_sd": 0.0139,
+          "median": 0.913,
+          "range": [
+            0.9087,
+            0.9391
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.9152,
+            0.9228
+          ]
+        }
+      }
+    },
+    "2048": {
+      "n_independent_deployments": 5,
+      "claims_evaluated_per_deployment": {
+        "far": 200,
+        "moderate": 170,
+        "near": 230
+      },
+      "per_seed": [
+        {
+          "kernel_seed": 1,
+          "frob_rel_err": 0.03416,
+          "nominal_auc": 0.83658,
+          "m_s_shift_w": 0.01358,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1,
+          "moderate_flip_rate_fixed_tau": 0.3294,
+          "near_abstention": 0.9478
+        },
+        {
+          "kernel_seed": 2,
+          "frob_rel_err": 0.03415,
+          "nominal_auc": 0.84605,
+          "m_s_shift_w": 0.03813,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.1,
+          "moderate_flip_rate_fixed_tau": 0.4941,
+          "near_abstention": 0.9304
+        },
+        {
+          "kernel_seed": 3,
+          "frob_rel_err": 0.03418,
+          "nominal_auc": 0.84687,
+          "m_s_shift_w": -0.02025,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.03,
+          "moderate_flip_rate_own_tau": 0.1294,
+          "moderate_flip_rate_fixed_tau": 0.6118,
+          "near_abstention": 0.9043
+        },
+        {
+          "kernel_seed": 4,
+          "frob_rel_err": 0.03416,
+          "nominal_auc": 0.84957,
+          "m_s_shift_w": -0.03715,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.14,
+          "moderate_flip_rate_own_tau": 0.1118,
+          "moderate_flip_rate_fixed_tau": 0.7353,
+          "near_abstention": 0.9652
+        },
+        {
+          "kernel_seed": 5,
+          "frob_rel_err": 0.03417,
+          "nominal_auc": 0.84276,
+          "m_s_shift_w": -0.03084,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.12,
+          "moderate_flip_rate_own_tau": 0.1118,
+          "moderate_flip_rate_fixed_tau": 0.7471,
+          "near_abstention": 0.9478
+        }
+      ],
+      "deployment_level_summary": {
+        "far_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.0,
+          "sample_sd": 0.0,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ],
+          "nonzero_deployments": 0,
+          "leave_one_deployment_out_mean_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "far_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.058,
+          "sample_sd": 0.0672,
+          "median": 0.03,
+          "range": [
+            0.0,
+            0.14
+          ],
+          "nonzero_deployments": 3,
+          "leave_one_deployment_out_mean_range": [
+            0.0375,
+            0.0725
+          ]
+        },
+        "moderate_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.1106,
+          "sample_sd": 0.0121,
+          "median": 0.1118,
+          "range": [
+            0.1,
+            0.1294
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.1059,
+            0.1132
+          ]
+        },
+        "moderate_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.5835,
+          "sample_sd": 0.1755,
+          "median": 0.6118,
+          "range": [
+            0.3294,
+            0.7471
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.5426,
+            0.6471
+          ]
+        },
+        "near_abstention": {
+          "n_deployments": 5,
+          "mean": 0.9391,
+          "sample_sd": 0.023,
+          "median": 0.9478,
+          "range": [
+            0.9043,
+            0.9652
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.9326,
+            0.9478
+          ]
+        }
+      }
+    },
+    "4096": {
+      "n_independent_deployments": 5,
+      "claims_evaluated_per_deployment": {
+        "far": 200,
+        "moderate": 170,
+        "near": 230
+      },
+      "per_seed": [
+        {
+          "kernel_seed": 1,
+          "frob_rel_err": 0.02415,
+          "nominal_auc": 0.84093,
+          "m_s_shift_w": -0.00989,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.0471,
+          "moderate_flip_rate_fixed_tau": 0.3941,
+          "near_abstention": 0.9304
+        },
+        {
+          "kernel_seed": 2,
+          "frob_rel_err": 0.02415,
+          "nominal_auc": 0.8444,
+          "m_s_shift_w": 0.00047,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.0529,
+          "moderate_flip_rate_fixed_tau": 0.0353,
+          "near_abstention": 0.9174
+        },
+        {
+          "kernel_seed": 3,
+          "frob_rel_err": 0.02419,
+          "nominal_auc": 0.83566,
+          "m_s_shift_w": -0.02116,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.015,
+          "moderate_flip_rate_own_tau": 0.1059,
+          "moderate_flip_rate_fixed_tau": 0.5647,
+          "near_abstention": 0.9478
+        },
+        {
+          "kernel_seed": 4,
+          "frob_rel_err": 0.02418,
+          "nominal_auc": 0.83732,
+          "m_s_shift_w": 0.03357,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.0,
+          "moderate_flip_rate_own_tau": 0.0824,
+          "moderate_flip_rate_fixed_tau": 0.4882,
+          "near_abstention": 0.9217
+        },
+        {
+          "kernel_seed": 5,
+          "frob_rel_err": 0.02418,
+          "nominal_auc": 0.84001,
+          "m_s_shift_w": -0.01601,
+          "far_flip_rate_own_tau": 0.0,
+          "far_flip_rate_fixed_tau": 0.005,
+          "moderate_flip_rate_own_tau": 0.0471,
+          "moderate_flip_rate_fixed_tau": 0.5353,
+          "near_abstention": 0.9348
+        }
+      ],
+      "deployment_level_summary": {
+        "far_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.0,
+          "sample_sd": 0.0,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.0
+          ],
+          "nonzero_deployments": 0,
+          "leave_one_deployment_out_mean_range": [
+            0.0,
+            0.0
+          ]
+        },
+        "far_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.004,
+          "sample_sd": 0.0065,
+          "median": 0.0,
+          "range": [
+            0.0,
+            0.015
+          ],
+          "nonzero_deployments": 2,
+          "leave_one_deployment_out_mean_range": [
+            0.0013,
+            0.005
+          ]
+        },
+        "moderate_flip_rate_own_tau": {
+          "n_deployments": 5,
+          "mean": 0.0671,
+          "sample_sd": 0.0262,
+          "median": 0.0529,
+          "range": [
+            0.0471,
+            0.1059
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.0574,
+            0.0721
+          ]
+        },
+        "moderate_flip_rate_fixed_tau": {
+          "n_deployments": 5,
+          "mean": 0.4035,
+          "sample_sd": 0.2157,
+          "median": 0.4882,
+          "range": [
+            0.0353,
+            0.5647
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.3632,
+            0.4956
+          ]
+        },
+        "near_abstention": {
+          "n_deployments": 5,
+          "mean": 0.9304,
+          "sample_sd": 0.0119,
+          "median": 0.9304,
+          "range": [
+            0.9174,
+            0.9478
+          ],
+          "nonzero_deployments": 5,
+          "leave_one_deployment_out_mean_range": [
+            0.9261,
+            0.9337
+          ]
+        }
+      }
+    }
+  }
+}

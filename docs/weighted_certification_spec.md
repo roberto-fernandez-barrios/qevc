@@ -1,9 +1,10 @@
 # Weighted Anytime-Valid Certification — Mathematical Specification (E13)
 
-**Status:** v1.0 draft — 2026-08-11. SAP §3 extension, predeclared before any
+**Status:** v1.1 synchronized clarification — 2026-08-13. SAP §3 extension, predeclared before any
 E13 implementation or run (registered as D-019). Nothing in this document was
 derived from looking at E13 data: it fixes estimands, guarantees, and
-falsifiers first.
+falsifiers first. The 2026-08-13 amendment narrows the observable-experiment
+scope and terminology without changing an experiment or result.
 
 Notation: the target environment's audited population is the post-selection
 environment dataset restricted to the audit role, with events indexed
@@ -80,6 +81,7 @@ Define the per-draw increment
 
 where w_max is a predeclared a priori bound on u_i (§3.4). Then
 
+    E[Z(τ)] − τ = E[u] / w_max · (R − τ),
     R ≥ τ  ⟺  E[Z(τ)] ≥ τ.
 
 The existing empirical-Bernstein predictable-plug-in confidence sequence
@@ -94,7 +96,9 @@ and time-uniform** for the transformed mean, and the frozen decision rule
 
 Because the draws are IID with replacement and Z is a fixed measurable transform per claim,
 optional stopping is licensed by time-uniformity exactly as in D-014; n* is
-a stopping time and inherits the guarantee.
+a stopping time and inherits the guarantee. Because sampling is with
+replacement, n* is an audit-label draw (labeled-observation) budget, not the
+number of unique events that would need new experimental labels.
 
 Properties to note (and to verify empirically in §5):
 - Each claim (each τ) carries its own CS over the *same* underlying draws.
@@ -105,6 +109,9 @@ Properties to note (and to verify empirically in §5):
 - The D-014 unweighted estimand is the special case u ≡ 1, w_max = 1 — the
   weighted machinery strictly generalizes the running system, giving a clean
   weighted-vs-unweighted comparison on identical draws.
+- Weighted and adaptive-data anytime-valid inference predates this work; the
+  claimed contribution is the exact fixed-threshold ratio reduction used here
+  and its integration with the information-set/fail-closed framework.
 
 ### 3.2 Simultaneous ratio CS (secondary, for landscape plots)
 
@@ -175,33 +182,35 @@ E14 owns the θ̂-uncertain extension and its experiments.
 ## 4b. E14 addendum — formal unidentifiability proposition (added
 2026-08-11, before any E14 run)
 
-**Proposition (weight-only unidentifiability).** Let θ be a weight-only
-nuisance: the environment modifies only the event-weight map, with
-P_θ(X) = P_0(X) and the correctness process c(X) unchanged.
+**Proposition (feature-only unidentifiability for a weight-only nuisance;
+observable-experiment clarification, 2026-08-13).** I1 is the fixed-size or
+count-conditioned feature experiment O_1^(n)=(X_1,…,X_n)|N=n and excludes N,
+exposure, yields and event weights. Suppose
 
-(i) Any I1 statistic T(X_1,…,X_m) computed from unlabeled target draws has
-identical law under θ and under 0; hence any test of size at most α for
-H₀: θ = 0 from I1 evidence has power equal to its actual size and therefore
-at most α (exactly α only if its size is exactly α).
+    P_θ(X_1,…,X_n | N=n) = P_0(X_1,…,X_n | N=n).
 
-(ii) The same holds at I2 with nominal weights: the labeled stream
-(c_i, y_i, w_i⁰) drawn uniformly has θ-invariant law.
+(i) Every I1 statistic has identical law under θ and 0; a level-α test has
+power equal to its actual size and hence at most α.
 
-(iii) Consequently any claim whose truth value differs between θ and 0
-(normalization/rate claims; the true-weighted metric A_w^{(θ)}) is
-unable to support nontrivial distinguishing power at I0–I2: an auditor that
-issues SUPPORTED with probability > α under one hypothesis falsely certifies
-with the same probability under the other. Under our fail-closed policy,
-absence of distinguishing evidence is reported UNRESOLVED.
+(ii) I2 adds queried binary signal/background labels and nominal event weights
+in the simulated benchmark. The binary label reveals class but not the
+background process category. If the joint law of (X,Y,w⁰) is invariant while
+the nuisance-dependent category or true weight w^(θ) remains hidden, the same
+indistinguishability result holds. A binary target label alone cannot
+reconstruct the hidden physical rate weights.
 
-(iv) A control-region count N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0) gives a
-test with non-trivial power — I3 restores identifiability precisely
-because rate evidence enters the information set.
+(iii) Claims whose truth changes only through the unobserved rate or
+true-weighted estimand have no nontrivial distinguishing power in these
+declared experiments and are reported UNRESOLVED by policy.
 
-*Proof.* (i)–(ii): immediate from equality of the sampling laws — every
-event of the form {auditor output = SUPPORTED} has the same probability
-under θ and 0. (iii): apply (i)–(ii) to the SUPPORTED event and invoke the
-error-control requirement. (iv): standard Poisson hypothesis testing. ∎
+(iv) This is not a statement about every collider observable. If the full
+experiment includes N ~ Poisson(λ(θ)) with λ(θ) ≠ λ(0), then
+P_θ(N,X_1,…,X_N) differs from P_0(N,X_1,…,X_N), and count-based I3 tests can
+have nontrivial power.
+
+*Proof.* (i)–(iii) follow from equality of the declared sampling laws; every
+rejection event has the same probability under null and alternative. Part
+(iv) is the explicit count-observable counterexample. ∎
 
 Alpha budget for I3-conditional weighted verdicts (D-024(ii)): the
 (s_ttbar, s_bkg) confidence box is built from per-parameter
@@ -323,7 +332,7 @@ populations (E02 archived scores with row-level weights):
    time the naive fixed-n Wald interval would certify) must show inflated
    error for the naive interval and controlled error for the CS.
 4. **Weighted vs unweighted on identical draws:** n*-ratio distributions and
-   verdict-flip table across the E05 claim grid; quantify the label cost of
+   verdict-flip table across the E05 claim grid; quantify the audit-label draw budget of
    physics-weighted certification and its driver (effective-sample-size
   ratio (Σw)²/Σw² and the w_max bound).
 5. **BA_w conservatism:** empirical coverage of the §3.3 bound vs its

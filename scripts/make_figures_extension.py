@@ -8,7 +8,7 @@ thin marks, recessive grid, entity-stable colors.
 Fig. 3  — sensor response by nuisance family + categorical weight-only
           blindness (E04 CRN records; the empirical face of the
           unidentifiability proposition).
-Fig. 6  — label economics: (A) active-vs-uniform paired n* ratio ECDF (E07,
+Fig. 6  — audit-label draw budgets: (A) active-vs-uniform paired n* ratio ECDF (E07,
           primary negative); (B) n* vs a Wald-style information yardstick
           by margin bucket (E06_nstar_efficiency).
 Fig. S16 — kernel estimation diagnostics per shot budget (E16 per-config):
@@ -134,7 +134,7 @@ def fig3() -> None:
     save(fig, "fig3_family_blindness")
 
 
-# ---- Fig. 6 — Label economics: active acquisition + information yardstick --
+# ---- Fig. 6 — Audit-label draws: acquisition + information yardstick -------
 def fig6() -> None:
     e07 = load("E07_active")
     eff = load("E06_nstar_efficiency")
@@ -165,7 +165,7 @@ def fig6() -> None:
     ax.annotate(f"active better in {frac_better:.0%}", (1.0, 0.06),
                 textcoords="offset points", xytext=(-6, 0), fontsize=8,
                 color=INK2, ha="right")
-    ax.set_xlabel(r"paired $n^*$ ratio active / uniform "
+    ax.set_xlabel(r"paired $n^*$ draw-budget ratio active / uniform "
                   f"({len(ratios)} jointly resolved cells)")
     ax.set_ylabel("ECDF")
     ax.set_xlim(0.3, 4.0)
@@ -192,10 +192,10 @@ def fig6() -> None:
     ax.set_xlabel("|claim margin| bucket")
     ax.set_ylabel(r"$n^*_{q50}\ /\ [\log(1/\alpha)/\mathrm{KL}]$")
     ax.set_ylim(0.8, 4.3)
-    ax.set_title("Measured label cost vs information yardstick (E06)", fontsize=9)
+    ax.set_title("Audit-label draw budget vs information yardstick (E06)", fontsize=9)
 
-    fig.suptitle("Label economics of certification: active sampling is "
-                 "slower here; costs are contextualized by an "
+    fig.suptitle("Audit-label draw budgets: active sampling is "
+                 "slower here; budgets are contextualized by an "
                  "information yardstick", fontsize=10, y=1.04)
     save(fig, "fig6_label_economics")
 

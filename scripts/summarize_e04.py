@@ -13,7 +13,7 @@ for k, v in a["noise_floor_weight_only"].items():
 
 print()
 for pair, r in a["lono"].items():
-    print(f"{pair}: pooled rho={r['pooled_rho']} (p={r['pooled_p']}), "
-          f"mmd2-only rho={r['mmd2_only_rho']} (p={r['mmd2_only_p']})")
+    print(f"{pair}: descriptive pooled rho={r['pooled_rho']}, "
+          f"mmd2-only rho={r['mmd2_only_rho']} (IID p-values omitted)")
     for fam, v in r["per_fold"].items():
         print(f"    {fam:9s} n={v['n']:2d} rho={v['rho']}")

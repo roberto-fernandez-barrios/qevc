@@ -98,9 +98,8 @@ def fig4() -> None:
         ax.scatter(x, y, s=26, color=color, alpha=0.85,
                    edgecolors="white", linewidths=1.2)
         rho = v2[f"quantum->{target}"]["mmd2_only_rho"]
-        p = v2[f"quantum->{target}"]["mmd2_only_p"]
         ax.set_title(f"target: {label}   "
-                     rf"$\rho_S$ = {rho:.2f} (p = {p:.4g})", fontsize=9)
+                     rf"descriptive $\rho_S$ = {rho:.2f}", fontsize=9)
         ax.set_xlabel(r"quantum-kernel MMD$^2$ ($\times 10^{-3}$, label-free)")
     axes[0].set_ylabel(r"|$\Delta$AUC| (5-seed mean)")
     fig.suptitle("Label-free geometry sensor vs replicated degradation "

@@ -1,6 +1,10 @@
 # npj Quantum Information submission metadata
 
-Status: prepared for author verification and portal upload on 2026-08-12.
+Status: frozen submission release on 2026-08-31; not yet submitted.
+
+- Release version: `0.3.0` / `npjqi-submission-v1`
+- Version DOI: `10.5281/zenodo.22206235`
+- Historical `0.2.0` / `arxiv-v1` DOI: `10.5281/zenodo.21894292`
 
 ## Destination
 
@@ -27,19 +31,20 @@ evaluation randomizes the model itself. We develop an information-conditional,
 fail-closed framework that returns supported, refuted or unresolved verdicts
 with anytime-valid per-claim error control. Across a Higgs-to-tau-tau
 benchmark, four disjoint simulated worlds, CMS open data and a micro-scale IBM
-hardware demonstration, we prove an exact weighted extension and an
-indistinguishability boundary for weight-only nuisances. Stable classifier
-metrics do not ensure signal-strength coverage: inference is jointly limited by
-nuisance representability and auxiliary-template quality. For quantum kernels,
-deployment-relative and ideal-anchored claims separate measurement-induced
-uncertainty from scientific shift; empirical fixed-reference far-margin verdict
-flips decrease from 20.8% to 0.4% across tested shot budgets. A matched classical
-kernel reproduces all apparent quantum-specific performance and sensing
-effects. The result is a framework for deciding which QML claims are
-supportable, not a claim of quantum advantage.
+hardware demonstration, we give an exact fixed-threshold reduction for
+physics-weighted ratio claims and an identifiability boundary for feature-only
+evidence. Stable classifier metrics do not ensure signal-strength coverage:
+inference is jointly limited by nuisance representability and
+auxiliary-template quality. Finite-shot deployments propagate each realized
+Gram matrix through refitting, calibration and thresholding. In five
+descriptive deployments per shot budget, far-margin deployment-relative
+verdicts were stable, whereas ideal-anchored verdicts were heterogeneous; no
+monotonic population trend is inferred. A matched classical kernel removes apparent
+quantum-specific performance and sensing effects. We claim no quantum
+advantage.
 
-Compliance: 147 words by the repository verifier; no citations, equations, or
-subheadings.
+Compliance: at most 150 words by the repository verifier; no citations,
+equations, or subheadings.
 
 ## Keywords
 
@@ -62,8 +67,8 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 
 ## Three contributions for portal fields
 
-1. An exact weighted anytime-valid reduction and an indistinguishability
-   boundary make certification conditional on the information actually
+1. An exact fixed-threshold reduction for the physics-weighted ratio estimands
+   and a feature-only identifiability boundary make certification conditional on the information actually
    observable, with per-claim rather than family-wise error control.
 2. Signal-strength validity is shown to depend jointly on nuisance
    representability and auxiliary-template quality, even when classifier
@@ -76,28 +81,43 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 
 - Proposition 4 is conditional: E16 archives neither target movement nor the
   target-minus-source movement required to instantiate its sufficient bounds.
+- Same-verdict stability additionally requires the corresponding sign-stability
+  condition, both audits to cover and both to resolve; two level-alpha audits
+  give a 2-alpha union bound, or alpha jointly when each uses alpha/2.
 - Observed verdict flips are independent empirical evidence, not a theorem
   prediction.
 - The anytime-valid guarantee is per fixed claim and stopping time; it is not
   simultaneous or FWER control across models, thresholds, or environments.
 - The IBM run is a micro-scale fail-closed consistency demonstration, not a
   performance result or certification at scale.
+- E16 has five independent noisy-kernel deployments per shot budget. Claims
+  within each deployment are correlated; reported rates/ranges are descriptive
+  and no monotonic trend or population interval is claimed.
+- n* is a with-replacement audit-label draw budget, not a unique-event labeling
+  cost. Real CMS event truth cannot be queried.
 - The fixed-template profiling result is conditional on nuisance
-  representability and auxiliary/template quality.
+  representability and auxiliary-template quality.
 - The matched classical control removes apparent quantum-specific performance
   and sensing effects; no quantum advantage is claimed.
+- Brown, Spannowsky and Williams (arXiv:2608.11330) now provide directly
+  adjacent collider-QML evidence under controlled detector-inspired feature
+  smearing. This manuscript therefore makes no priority claim for studying
+  collider deployment shift; its differential scope is the official
+  shape/rate nuisance family, I0--I3 hierarchy, fail-closed anytime-valid
+  certification, signal-strength propagation, and realized noisy-Gram
+  deployment semantics.
 
 ## Related-manuscript disclosure
 
 The same authors have released *Sharp Target-Domain Certificates for
 Quantum-Kernel Advantage under Distribution Shift*, Zenodo DOI
-10.5281/zenodo.21776862. It uses unrelated cybersecurity and tabular datasets
-and studies partial identification of predictive advantage against a fixed
-classical-kernel family. It shares no datasets, experiments, theorems,
-estimands, codebase, or results with the present collider-inference paper.
-Upload the manuscript as related material if it is under consideration or in
-press at the time of submission; retaining the voluntary disclosure in the
-cover letter is the conservative option in either case.
+10.5281/zenodo.21776862. It is currently public preprint/Zenodo material and
+has not been submitted to any journal. It studies partial identification and
+certification of predictive advantage under target-domain shift. The present
+paper studies scientific claim validity under collider systematics, incomplete
+information, downstream physics inference and measurement-induced quantum
+deployment uncertainty. The works share no datasets, experiments, theorems,
+estimands, codebase, or results and are not simultaneously under consideration.
 
 ## Upload set
 
@@ -108,7 +128,7 @@ cover letter is the conservative option in either case.
   and style, and all figure PDFs.
 - Editorial Policy Checklist if requested by the portal.
 - Reporting Summary if generated or requested by the portal.
-- Copy of the related manuscript described above.
+- Related preprint copy only if requested by the portal/editor.
 
 ## Author checks immediately before upload
 

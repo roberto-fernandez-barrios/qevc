@@ -177,7 +177,9 @@ entry.
 - **Status:** **complete — first pass** (2026-08-10). Findings:
   1. Kernel MMD² rank-correlates positively but weakly with degradation
      magnitude across the 40 environments (quantum kernel ρ≈0.28–0.36; RBF
-     ρ≈0.29–0.42; only some nominally significant, uncorrected).
+     ρ≈0.29–0.42). These are descriptive effect sizes. The original IID
+     Spearman p-values are retired because the grid shares common random
+     numbers and nuisance-family structure; they are not evidential inputs.
   2. **Noise floor identified:** at n_target=2000, sampling noise on MMD²
      (~±0.0002, measured via the weight-only environments whose feature
      distribution is exactly nominal) is comparable to the signal range;
@@ -205,8 +207,8 @@ entry.
 - **Status:** **complete — first pass** (2026-08-10). **H2 falsifier NOT
   triggered for the quantum kernel.** Out-of-environment (LONO) results on
   the 28 feature-shift environments:
-  1. Quantum geometry → QK-SVC degradation: pooled ρ = 0.563 (p = 0.002);
-     **MMD² alone: ρ = 0.761 (p < 10⁻³)** — the simple sensor beats the
+  1. Quantum geometry → QK-SVC degradation: descriptive pooled ρ = 0.563;
+     **MMD² alone: descriptive ρ = 0.761** — the simple sensor beats the
      5-descriptor ridge (overfitting at n≈24 training envs; honest finding).
      Folds: tes +0.8, soft_met +0.48, combos +0.74; jes −0.8 (n=4, JES ΔAUC
      ~0.001–0.003 ≈ noise floor of the single-seed E02 targets).
@@ -222,12 +224,12 @@ entry.
   blind spot, E03).
   **v2 (2026-08-10, targets = E02R multi-seed mean |ΔAUC|;
   `results/tables/E04v2_geom_failure_multiseed.json`): H2 survives in
-  simple-sensor form.** Quantum MMD² → QK degradation ρ = 0.557 (p = 0.002);
-  → XGBoost degradation ρ = 0.682 (p = 10⁻⁴) — the transfer result
+  simple-sensor form.** Quantum MMD² → QK degradation descriptive ρ = 0.557;
+  → XGBoost degradation ρ = 0.682 — the transfer result
   *strengthens* with cleaner targets. The multi-descriptor LONO ridge
   collapses (pooled ρ ≈ 0) — definitively overfit; the manuscript presents
   the univariate MMD² sensor only. RBF-28 geometry fails as a sensor with
-  clean targets (own-model ρ = −0.21 n.s.) — the quantum-kernel-as-better-
+  clean targets (own-model ρ = −0.21) — the quantum-kernel-as-better-
   shift-sensor asymmetry replicates.
 
 ## E05 — Conditional auditor
@@ -423,7 +425,7 @@ entry.
   | C1 event accuracy on data | I2 labels | **UNRESOLVED** | labels do not exist — fail-closed by construction (the falsifier: certifying this would be design failure — did NOT happen) |
   | C2 total-MC normalization within 30% (W-enriched high-mT CR; fixed non-W, QCD absent) | I1+CR | **SUPPORTED** | data/MC = 0.922 [0.885, 0.961] |
   | C3 no MC→data shift at sensor floor | I1 | **REFUTED** | QK-MMD² 0.0030 vs floor 0.0011 (2.6×) — sim-to-real shift detected; alarm vetoes performance claims |
-  | C4 SS data excess over non-QCD MC, consistent with QCD | I1+CR | **SUPPORTED** | +1,007 events over non-QCD MC, z = 18.6 (consistent with the data-driven QCD premise; not an exclusive attribution) |
+  | C4 SS data excess relative to MC without QCD | I1+CR | **SUPPORTED** | +1,007 events over non-QCD MC, z = 18.6; QCD is an interpretation, not a demonstrated cause |
   The demonstration lands the paper's thesis on real collision data: aggregate
   physics claims ARE certifiable from control-region evidence; event-level
   performance claims are NOT, and the geometry sensor detects the sim-to-real
@@ -518,9 +520,10 @@ entry.
      not represented in this threshold — the arm is a consistency check,
      not a calibrated test.*
   3. **Arm (b) PASS:** tes=0.98 ΔAUC(QK) = +0.0011; combo3 mean +0.0081.
-  4. **Arm (c) PASS:** sensor ρ_S out-of-partition: quantum→own 0.39
-     (p=0.04), rbf8→own 0.54 (p=0.003) — weaker than seed-101 (0.56/0.73)
-     but sign-correct and significant.
+  4. **Arm (c) PASS:** descriptive sensor ρ_S out-of-partition:
+     quantum→own 0.39, rbf8→own 0.54 — weaker than seed-101 (0.56/0.73)
+     but sign-correct. The environment grid is structured, so IID p-values
+     are not interpreted.
   5. **Arm (d) PASS, corrected accounting (post-audit H2):** the headline
      21/7,700 = 0.27% divides by ALL false-claim streams, but E12's frozen
      max-over-weight-only I1 floor degenerates under CRN (weight-only MMD²
@@ -569,7 +572,7 @@ entry.
 ## E13 — Weighted anytime-valid certification
 
 - **Question:** Can the fail-closed auditor certify *physics-weighted*
-  claims with the same anytime-valid guarantees, and at what label cost
+  claims with the same anytime-valid guarantees, and at what audit-label draw budget
   relative to unweighted claims?
 - **Hypothesis:** the one-sample reduction (D-019) preserves time-uniform
   Type-I control exactly under weighted estimands; weighted n* exceeds
@@ -623,7 +626,7 @@ entry.
      refutation 0; class-conditional (TPR_w/TNR_w) false certification
      0/4,700. (M1 caveat: streams are shared across the δ grid — pooled
      denominators correlated ≈6:1; per-claim α is unaffected.)
-  3. **Label cost of physics-weighted certification:** n*_w / n*_unw
+  3. **Audit-label draw budget of physics-weighted certification:** n*_w / n*_unw
      median 1.66 (IQR 1.11–3.00, 6,582 resolved pairs); verdict-flip
      table: 536 SUPPORTED→UNRESOLVED (fail-closed hardens under the
      physical estimand), 226 UNRESOLVED→SUPPORTED, 271
@@ -745,7 +748,7 @@ entry.
   coverage — quantifying the information that protects inference; (c) a
   profiled fit that omits the actually-shifted nuisance family (realistic
   misspecification) still loses coverage while classifier metrics stay
-  healthy — the decoupling claim in its reviewer-proof form. (b) and (c)
+  healthy — the decoupling claim under the full inference chain. (b) and (c)
   are both acceptable outcomes wherever the data lands; nothing is forced.
 - **Estimand(s):** signal strength μ; bias of μ̂, interval width, empirical
   68.27% coverage, nuisance pulls (θ̂ − θ_true)/σ_θ; all per (environment,
@@ -877,13 +880,15 @@ entry.
   family-dependent detail reported honestly.** Results (48 out-of-grid
   shift environments per world; sensor archived before targets, SHA-256 in
   table):
-  1. **Pooled out-of-grid ρ_S, primary (seed-101) world:** quantum→own
-     0.654 (p < 10⁻⁴), rbf8→own 0.559 (p = 4·10⁻⁵); transfers to XGBoost
-     0.302 / 0.220. **Secondary (E12) world:** quantum→own 0.389
-     (p = 0.006), rbf8→own 0.219 (n.s.), transfers 0.567 / 0.615 —
+  1. **Descriptive pooled out-of-grid ρ_S, primary (seed-101) world:**
+     quantum→own 0.654, rbf8→own 0.559; transfers to XGBoost
+     0.302 / 0.220. **Secondary (E12) world:** quantum→own 0.389,
+     rbf8→own 0.219, transfers 0.567 / 0.615 —
      positive everywhere, but which target a sensor predicts best is
      world-dependent (E12's tiny tes/jes target magnitudes ≈ 0.0005 sit at
-     partition noise).
+     partition noise). Common random numbers and nuisance-family structure
+     invalidate the standard IID Spearman p-values, so only effect sizes and
+     cross-world sign/detail are retained.
   2. **Per-family:** TES generalizes best (ρ up to 0.96); soft_met strong
      (0.67–0.72); official-prior multi-nuisance draws 0.50–0.66 in the
      primary world; JES weak/unstable (its |ΔAUC| targets are at the noise
@@ -952,22 +957,26 @@ entry.
   false-cert rates and n* inflation; hardware provenance complete.
 - **Expected outputs:** `results/tables/E16_quantum_uncertainty.json`;
   `results/raw/E16_hw/*` if the hardware arm runs; Fig. 8 upgrade data.
-- **Status:** **complete (2026-08-11), both arms — falsifier NOT
-  triggered.** Re-run with DUAL claim accounting after the post-campaign
+- **Status:** **complete (2026-08-11); deployment-level reanalysis added
+  2026-08-13; both arms — falsifier NOT triggered.** Re-run with DUAL claim accounting after the post-campaign
   audit (H1): each noisy deployment is audited under its OWN refrozen
   claim references (τ = own M_S − δ, the deployment-relative view) AND
   under the ideal deployment's FIXED τ (the same-claim view); streams
   paired. Simulation results (30 full noisy deployments × 5 envs × 2
-  claim families × 6 δ × 10 paired streams):
-  1. **Own-τ view: far-margin claims (|m| ≥ 0.04) flip 0.0 at every shot
-     budget 128–4096;** moderate 15.8% → 6.7% (declining on trend); near
+  claim families × 6 δ × 10 paired streams). The independent empirical unit
+  is one noisy-kernel deployment (five per budget); claim cells within it are
+  correlated and are not IID replicates:
+  1. **Own-τ view: far-margin claims (|m| ≥ 0.04) flip 0.0 in all 30
+     deployments;** moderate endpoint means are 15.8% and 6.7%; near
      4–7% with abstention 92–94% (fail-closed dominates).
   2. **Fixed-τ view — the sharper finding:** estimation noise changes the
      deployment itself (recalibration moves M_S by up to +0.053 upward,
      0.139 in worst-case magnitude), so the SAME claim resolves
-     differently: far-margin flips 20.8% at 128 shots → 11.9% at 1024 →
-     **0.4% at 4096** (declining on trend; per-budget series
-     non-monotone); moderate 71% → 40%; near 83% → 40%. Measuring small-margin claims
+     differently: far-margin deployment means are 20.8, 17.7, 0.9, 11.9,
+     5.8 and **0.4%** across increasing budgets; no monotonic trend is claimed.
+     Endpoint sample SD/range are 19.9%/0–44% and 0.65%/0–1.5%; the 256-shot
+     range is 0–88.5%. Moderate endpoint means are 71% and 40%; near 83% and
+     40%. Measuring small-margin claims
      against ideal-anchored references requires large shot budgets — the
      quantitative answer to "when does quantum estimation uncertainty
      change a scientific validity verdict".
@@ -998,10 +1007,15 @@ entry.
      shot-only deployments, and 0 false certifications.** Honest scale
      statement: the n_train = 28 micro-deployment is at chance
      (M_T = 0.50, as E10 v1's LOO 0.53–0.59 anticipated at this scale),
-     so the demonstrated property is *verdict stability and fail-closed
-     behavior of the full pipeline on real hardware* — REFUTED/UNRESOLVED
+     so the demonstrated property is *micro-scale integration and fail-closed
+     consistency of the full pipeline on real hardware* — REFUTED/UNRESOLVED
      where they should be, never certified — not any hardware performance
-     claim (spec §34 discipline).
+     claim. This verdict composition creates a floor effect, so zero flips is
+     not strong statistical validation of a general stability mechanism.
+  7. Derived summary `results/tables/E16_deployment_level.json` reports every
+     seed, sample SD/range and leave-one-deployment-out sensitivity. Five
+     deployments per budget suffice only for the scoped descriptive C3; no
+     new seed or QPU run is recommended.
 
 ## E11v2 — Strengthened CMS real-data demonstration
 
@@ -1041,7 +1055,7 @@ entry.
   | C1 event accuracy | UNRESOLVED | **UNRESOLVED** (by construction — more data cannot change this, which is the point) |
   | C2 total-MC norm ≤30% in W-enriched high-mT CR (fixed non-W, QCD absent) | SUPPORTED, 0.922 [0.885, 0.961] | **SUPPORTED, 0.9495 [0.937, 0.962]** (3× tighter; consistent with v1) |
   | C3 no shift at floor | REFUTED (2.6× floor) | **REFUTED (2.5× floor)** — the sim-to-real shift is not a mirror artifact |
-  | C4 SS data excess over non-QCD MC, consistent with QCD | SUPPORTED, z = 18.6 | **SUPPORTED, z = 59.4** |
+  | C4 SS data excess relative to MC without QCD | SUPPORTED, z = 18.6 | **SUPPORTED, z = 59.4** |
   The mirror-based conclusions were not sample-fragile; the C2 interval
   narrows as √N predicts (3.1× vs predicted 3.2×) and overlaps the v1
   interval with the upper bound essentially unchanged (0.9619 vs 0.9613 —
@@ -1462,9 +1476,10 @@ entry.
      and absent QCD; MC template rel-err is propagated via log-delta into
      the ratio interval [0.9042, 0.9972], inside the 30% tolerance band (the C2 margin dwarfs
      MC-stat, as the audit predicted — now measured, not argued).
-  3. **C4 SUPPORTED with MC-side statistics:** the SS data excess over
-     non-QCD MC, consistent with QCD but not an exclusive QCD measurement,
-     has z = 18.78 after the Σw² MC term is added to the denominator.
+  3. **C4 SUPPORTED with MC-side statistics:** the SS data excess relative to
+     the available non-QCD MC has z = 18.78 after the Σw² MC term is added to
+     the denominator. QCD is a plausible physical interpretation, not a cause
+     demonstrated here without a quantitative QCD prediction.
   4. Bidirectional falsifier outcome: `refuted_stands_on_calibrated_
      grounds`; no §8 verdict revision required — the ledger's
      statistical basis is upgraded in place.
@@ -1582,3 +1597,27 @@ entry.
      diagnosis; TNR successes are scoped to the oracle bound. Operational
      weighted guarantees remain those of E13/E19 with a global scalar bound
      fixed before the random audit order.
+
+## E20 — Preregistered confirmatory real-hardware deployment study
+
+- **Question:** can several independent physical Gram realizations provide
+  informative evidence about deployment-relative versus ideal-anchored claim
+  stability beyond the E16 micro-scale integration demonstration?
+- **Scope:** prospective post-freeze extension only; no quantum-advantage
+  search, feature-map sweep, hyperparameter tuning or backend shopping.
+- **Frozen primary design:** A48, with 48 train, 24 fixed calibration and 24
+  paired target rows per environment (nominal and TES=0.98), current eight-
+  qubit feature map and pipeline, 4,584 circuits at 1,024 shots per deployment.
+  Three physical deployments were estimated at 64.2 QPU min centrally
+  [50.4, 87.1]. B64/C80 were cost/performance diagnostics only.
+- **Offline gate:** exact fidelity kernel plus 20 independent 1,024-shot
+  binomial Gram realizations. A48 exact AUC was 0.674/0.688 but BA was
+  0.542/0.542; its 24 exact claims were all REFUTED, and the median number of
+  SUPPORTED claims across shot deployments was zero. Three preregistered hard
+  gates failed. ΔM_S, ΔM_T and ΔM_T−ΔM_S were archiveable, but this did not
+  rescue claim informativeness.
+- **Outputs:** `results/tables/E20_offline_gate.json`, with full per-deployment
+  diagnostics; pre-registration and decision documents in `docs/`.
+- **Status:** **ABORTED OFFLINE / NO-GO (2026-08-13).** No IBM connection or
+  submission; `qpu_jobs_submitted = 0`. The current manuscript and submission
+  package are unchanged.
