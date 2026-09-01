@@ -21,3 +21,16 @@ results/tables/E16_psd_sensitivity.json text eol=crlf
 results/tables/E16_proposition4_instantiation.json text eol=crlf
 results/tables/E16_proposition4_deployment_summary.json text eol=crlf
 results/tables/E20_offline_gate.json text eol=crlf
+
+# 0.3.6 derived-analysis provenance inputs (hashes recorded from these bytes).
+scripts/analyze_e16_stage_decomposition.py text eol=lf
+scripts/analyze_wmax_nominal_bound_sensitivity.py text eol=crlf
+scripts/summarize_e16_prop3_margin_stratification.py text eol=lf
+results/tables/E16_stage_decomposition.json text eol=crlf
+results/tables/E16_prop3_margin_stratification.json text eol=crlf
+results/tables/E13_wmax_nominal_bound_sensitivity.json text eol=crlf
+results/tables/E19_fresh_world_validity.json text eol=crlf
+configs/experiments/E13.yaml text eol=lf
+configs/experiments/E19.yaml text eol=lf
+experiments/E13_weighted_certification/run_e13.py text eol=lf
+experiments/E19_fresh_world_validity/run_e19.py text eol=lf
