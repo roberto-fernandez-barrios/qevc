@@ -265,7 +265,7 @@ Final mathematical/editorial, 2026-08-12 & Proposition 2, Theorem 1, Proposition
 Senior-author pre-submission, 2026-08-13 & Observable experiments, Proposition 4, weighted-inference literature, E16 deployment unit, C2 narrative, CMS wording and concision & Added the missing sign-stability premise and counterexample; separated feature-conditioned evidence from counts; reanalyzed all 30 existing E16 deployments without new runs; retired IID environment $p$-values; updated related-manuscript status and reduced audit-history prose in the main paper. \\
 Final pre-submission patch, 2026-08-31 & Primary literature, novelty claims, abstract hierarchy, methods, supplement, release metadata and rendered artifacts & Added the closest competitive work, removed priority language, made Contribution 3 deployment semantics primary, expanded protocol detail, and synchronized editorial/release records. No experiment, dataset, model, configuration or primary result changed. \\
 Final technical PSD audit, 2026-08-31 & The 30 frozen E16 deployments, LIBSVM semantics, hardware-entry provenance and sealed-role wording & Deterministically replayed every raw deployment, measured the complete training-Gram spectra, applied one declared minimum-diagonal-loading sensitivity, and classified the result \textsc{PSD-sensitive-but-scoped}. No new Gram realization, seed, sample or QPU job was generated. \\
-Mechanistic-clarity / derived-analysis patch, 2026-09-01 & The 30 frozen E16 deployments and their loaded counterparts, the Proposition-3 instantiation, the E13/E19 weighted audits, C2/C3 framing & Deterministic counterfactual stage decomposition after exact endpoint reproduction (predeclared classification \textsc{mixed}: recalibration generates the far-margin flips, threshold refreezing partly compensates); Proposition 3 stratified by margin; weight-bound conservatism measured on identical streams; plain-language abstract; adverse independent-template result leads Contribution 2; editorial corrections. No new randomness, seed, sample, model, repair, likelihood or QPU job. \\
+Mechanistic-clarity / derived-analysis patch, 2026-09-01 & The 30 frozen E16 deployments and their loaded counterparts, the Proposition-3 instantiation, the E13/E19 weighted audits, C2/C3 framing & Deterministic counterfactual stage decomposition after exact endpoint reproduction (predeclared classification \textsc{mixed}: recalibration generates the far-margin flips, threshold refreezing partly compensates); Proposition 3 stratified by margin; weight-bound conservatism measured on identical streams; plain-language abstract; adverse independent-template result leads Contribution 2; editorial corrections. No new randomness, seed, sample, model, repair, likelihood or QPU job. 0.3.7: regime-specific C3 wording only. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -730,7 +730,8 @@ longer matches its scale. Recalibration and threshold refreezing then recover
 most of the movement (far flips 60.3, 64.9, 31.4 and 17.9\%). The rule labels
 that regime \textsc{model/ranking-dominated}, with the qualification that the
 model-stage increment is a scale change rather than a ranking loss; the
-overall classification is \textsc{mixed}. The metric that selects the
+overall classification is \textsc{mixed}, and no universal downstream
+mechanism is claimed across kernel treatments. The metric that selects the
 operating point is more stable than the audited estimands: at stage D the
 weighted balanced accuracy moves by a median 0.007 in both regimes, against
 0.014 (raw) and 0.015 (loaded) for unweighted accuracy and 0.024 and 0.029

@@ -1,11 +1,13 @@
 # npj Quantum Information submission release manifest
 
-- Version: `0.3.6`
-- Git tag: `npjqi-submission-v1.6`
+- Version: `0.3.7`
+- Git tag: `npjqi-submission-v1.7`
 - Release date: 2026-09-01
 - Journal state: frozen and ready for portal upload; not yet submitted
-- Zenodo version DOI: `10.5281/zenodo.22235287`
+- Zenodo version DOI: `10.5281/zenodo.22236115`
 - Zenodo concept DOI: `10.5281/zenodo.21894291`
+- Historical mechanistic-clarity patch retained: `0.3.6` /
+  `npjqi-submission-v1.6` / `10.5281/zenodo.22235287`
 - Historical submission-hygiene patch retained: `0.3.5` /
   `npjqi-submission-v1.5` / `10.5281/zenodo.22231469`
 - Historical statistical/bibliographic patch retained: `0.3.4` /
@@ -25,10 +27,10 @@
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 30 | `9F5E59F1A54CBDB93D0B55D7B65D07CD9CABA72375140EFC6B8D58DA629DE87F` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `EC8AE562B1516AEBEDF6F69C62CEACD53F227E3FF5528ADF77D4B07B16082D4E` |
-| `output/pdf/npjqi_cover_letter.pdf` | 1 | `2E7BE8DA767664DE104FA9A4087D8F893BD84EDD2DFCB3AA33072666247F632F` |
-| `dist/npjqi-submission.zip` | source + three PDFs | `ECBC312C8BD145A15FCB123B3BC54CF8196D2C63C493763FBE7C7656E14B23D3` |
+| `output/pdf/npjqi_manuscript.pdf` | 31 | `462536E01462D21F3295BA06F5BEB960E0B765E4849A7E21D2D5D659A65AE3E3` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `B6399EC4CE6293EDAC37ADC7B367D55DCD5B91E698CF2B7BE90450135140D955` |
+| `output/pdf/npjqi_cover_letter.pdf` | 1 | `C4EDC6199B0AC0FC7BEFD568924CC798E24C932ED0D334A534CB380ABAF60B95` |
+| `dist/npjqi-submission.zip` | source + three PDFs | `F770DB073FDE333CFA903BBCA7A7ED579DC357CCC632DA274B0C428F8FFAD021` |
 | `results/tables/E16_psd_sensitivity.json` | 30 deployments | `5EDE2C056327DFB5768933C7BEE78A662C9E257011EF39984151E163170AABF1` |
 | `results/tables/E16_proposition4_instantiation.json` | 7,200 condition cells | `E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B` |
 | `results/tables/E16_proposition4_deployment_summary.json` | 30 noisy-kernel deployments | `4E09E3B86A38F26EB7892F49FC55C146BECFC5C7DDF6BFF210CD3EEBB60CE31B` |
@@ -43,7 +45,12 @@ release manifest, metadata record and release README.
 
 ## Scope integrity
 
-The bounded 0.3.6 patch is the mechanistic-clarity / derived-analysis patch.
+The 0.3.7 release is a wording micro-patch on 0.3.6: the Contribution-3
+mechanism statement is made regime-specific (primary raw decomposition mixed;
+diagonal-loading sensitivity decomposes differently; no universal downstream
+mechanism claimed) with no change to any number, JSON artifact, seed, result or
+gate expectation. The bounded 0.3.6 patch was the mechanistic-clarity /
+derived-analysis patch.
 It adds three deterministic derived analyses of already frozen artifacts (the
 E16 stage decomposition, the Proposition-3 margin stratification and the
 sharp-nominal-bound sensitivity of the weighted certification), the

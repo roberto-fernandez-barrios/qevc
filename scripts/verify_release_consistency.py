@@ -19,11 +19,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.3.6"
-TAG = "npjqi-submission-v1.6"
+VERSION = "0.3.7"
+TAG = "npjqi-submission-v1.7"
 # Filled with the DOI reserved for the new Zenodo version before final release.
 PENDING_DOI = "10.5281/zenodo.00000000"
-VERSION_DOI = "10.5281/zenodo.22235287"
+VERSION_DOI = "10.5281/zenodo.22236115"
 CONCEPT_DOI = "10.5281/zenodo.21894291"
 
 README = ROOT / "README.md"
@@ -33,7 +33,7 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 SUBMISSION_METADATA = ROOT / "docs" / "submission" / "npjqi_submission_metadata.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_6_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_7_metadata.json"
 )
 MAIN_TEX = ROOT / "manuscript" / "latex" / "main.tex"
 MAIN_AUX = ROOT / "manuscript" / "latex" / "main.aux"
@@ -45,7 +45,7 @@ DRAFT = ROOT / "manuscript" / "main" / "draft.md"
 FORMAL_RESULTS = ROOT / "docs" / "formal_results.md"
 
 PDF_ARTIFACTS = {
-    "output/pdf/npjqi_manuscript.pdf": 30,
+    "output/pdf/npjqi_manuscript.pdf": 31,
     "output/pdf/npjqi_supplementary_information.pdf": 18,
     "output/pdf/npjqi_cover_letter.pdf": 1,
 }

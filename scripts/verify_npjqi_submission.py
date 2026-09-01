@@ -32,7 +32,7 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_6_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_7_metadata.json"
 )
 MECHANISM_AUDIT = ROOT / "docs" / "audits" / "mechanistic_clarity_patch_2026-09-01.md"
 STAGE_DECOMPOSITION = ROOT / "results" / "tables" / "E16_stage_decomposition.json"
@@ -235,17 +235,22 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22235287" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22236115" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.6" in text and "npjqi-submission-v1.6" in text
+        all("0.3.7" in text and "npjqi-submission-v1.7" in text
             for text in (readme, metadata, release_manifest, zenodo_metadata)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22235287" in text
+        all("10.5281/zenodo.22236115" in text
             for text in (main_tex, readme, metadata, citation, release_manifest,
                          zenodo_metadata)),
+    )
+    check(
+        "historical 0.3.6 release retained",
+        "10.5281/zenodo.22235287" in readme
+        and "10.5281/zenodo.22235287" in release_manifest,
     )
     check(
         "historical 0.3.5 release retained",
@@ -424,6 +429,9 @@ def main() -> int:
         and "amplified downstream" in flat_main
         and "through recalibration and operating-threshold selection" in flat_main
         and "need not itself be quantum-specific" in flat_main
+        and "do not claim a universal downstream mechanism across kernel treatments" in flat_main
+        and "partly compensates rather than generates the far ideal-anchored flips in the RAW replay" in flat_main
+        and "decomposes differently" in abstract
         and "threshold-dominated" not in main_tex.lower(),
     )
     check(

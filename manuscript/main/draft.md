@@ -4,7 +4,7 @@
 
 ## Abstract
 
-Claims about a deployed quantum machine-learning classifier can fail when the target data shift or when finite-shot quantum evaluation randomizes the model itself. We develop an information-conditional, fail-closed auditing framework that returns supported, refuted or unresolved verdicts with anytime-valid per-claim error control under a declared sampling protocol. On a Higgs-to-tau-tau collider benchmark, stable classifier metrics do not guarantee valid signal-strength inference: the evaluated fixed-template profile can lose coverage, even in shift-free controls, when its simulation templates are estimated independently. Across 30 frozen finite-shot quantum-kernel deployments, every realized Gram matrix is propagated through refitting, calibration and threshold selection; a deterministic stage decomposition shows that the finite-shot perturbation leaves ranking largely intact and is amplified at the operating point, where recalibration and threshold refreezing relocate the claims. Matched classical controls remove apparent quantum-specific effects. We claim no quantum advantage.
+Claims about a deployed quantum machine-learning classifier can fail when the target data shift or when finite-shot quantum evaluation randomizes the model itself. We develop an information-conditional, fail-closed auditing framework that returns supported, refuted or unresolved verdicts with anytime-valid per-claim error control under a declared sampling protocol. On a Higgs-to-tau-tau collider benchmark, stable classifier metrics do not guarantee valid signal-strength inference: the evaluated fixed-template profile can lose coverage, even in shift-free controls, when its simulation templates are estimated independently. Across 30 frozen finite-shot quantum-kernel deployments, every realized Gram matrix is propagated through refitting, calibration and threshold selection. A deterministic stage decomposition shows that, in the primary raw pipeline, ranking changes are modest while downstream recalibration and operating-point selection substantially reshape claim-level effects; the diagonal-loading sensitivity decomposes differently. Matched classical controls remove apparent quantum-specific effects. We claim no quantum advantage.
 
 ## Introduction
 
@@ -113,14 +113,12 @@ SUPPORTED in all 30 raw and corresponding PSD-repaired realizations; the grid
 contains no false far-margin deployment-relative claim with which to assess
 refutation stability. Ideal-anchored verdicts are heterogeneous across deployments and sensitive to
 single realizations; no population trend is inferred. A deterministic stage
-decomposition of the same frozen deployments locates the amplification: the
-finite-shot perturbation changes the ranking of the realized decision function
-only moderately (median Spearman correlation 0.92 with the ideal one) and
-leaves AUC essentially unchanged, whereas the operating-point stage --
-recalibration on the realized scores followed by threshold refreezing --
-generates, and only partly compensates, the accuracy movements that flip
-ideal-anchored claims. The measurement-induced origin refers to the upstream
-finite-shot perturbation; the dominant downstream mechanism need not itself be
+decomposition shows that, in the primary raw pipeline, the finite-shot
+perturbation changes the ranking of the realized decision function only
+moderately (median Spearman 0.92) and leaves AUC essentially unchanged, while
+downstream recalibration and operating-point selection substantially reshape
+the accuracy movements that flip ideal-anchored claims; the diagonal-loading
+sensitivity decomposes differently, and the downstream mechanism need not be
 quantum-specific. A micro-scale full-pipeline IBM QPU run tests fail-closed consistency,
 not performance or certification at scale.
 
@@ -843,11 +841,10 @@ inference randomness. Quantum-kernel evaluation adds an additional
 measurement-induced deployment uncertainty intrinsic to finite-shot and
 noisy quantum execution; the certification layer must be, and is,
 indifferent to its origin. ``Measurement-induced'' names the source of the
-perturbation that E16 controls, the finite-shot realization of the Gram
-matrix; it does not assert that the downstream amplification through
-recalibration and operating-threshold selection is exclusive to quantum
-pipelines. Classical pipelines can exhibit analogous downstream sensitivity to
-their own training or evaluation randomness, which E16 does not measure.
+perturbation that E16 controls (the finite-shot Gram realization), not a
+downstream mechanism exclusive to quantum pipelines: Classical pipelines can
+exhibit analogous downstream sensitivity to their own training or evaluation
+randomness, which E16 does not measure.
 
 **Formal statement: truth-sign and resolved-verdict stability under bounded movement.**
 
@@ -1020,12 +1017,17 @@ model-stage increment is a scale change rather than a ranking loss. The metric
 that selects the operating point is more stable than the audited estimands: at
 stage D the weighted balanced accuracy moves by a median 0.007 against 0.014
 for unweighted and 0.024 for weighted accuracy, and it is the smaller movement
-in 25 of 30 raw and 28 of 30 loaded deployments. Finite-shot perturbations
-therefore need not primarily degrade ranking performance; in the evaluated
-deployments their largest claim-level effects were amplified downstream
-through recalibration and operating-threshold selection. The
-measurement-induced origin refers to the upstream finite-shot perturbation;
-the dominant downstream mechanism need not itself be quantum-specific.
+in 25 of 30 raw and 28 of 30 loaded deployments. The primary RAW
+decomposition is mixed: downstream recalibration and operating-point selection
+amplify the finite-shot perturbation, while the PSD sensitivity is more
+model/ranking dominated. We therefore do not claim a universal downstream
+mechanism across kernel treatments. Threshold refreezing partly compensates
+rather than generates the far ideal-anchored flips in the RAW replay.
+Finite-shot perturbations therefore need not primarily degrade ranking
+performance: in the raw deployments their largest claim-level effects were
+amplified downstream through recalibration and operating-threshold selection,
+and that downstream amplification, whose measurement-induced origin is the
+upstream finite-shot perturbation, need not itself be quantum-specific.
 
 [t]
 
@@ -1139,11 +1141,11 @@ pure rate nuisance. Second, auxiliary quality determines whether identifiable
 claims resolve and whether downstream likelihoods calibrate. Third,
 finite-shot/noisy quantum evaluation creates an additional
 measurement-induced deployment uncertainty that propagates through Gram
-estimation, refitting, calibration and threshold selection. In the evaluated
-deployments that uncertainty was amplified at the operating point rather than
-through ranking loss: recalibration and threshold refreezing relocate claims
-whose ranking metrics barely move, and the metric that selects the operating
-point stays more stable than the metrics being audited.
+estimation, refitting, calibration and threshold selection. In the primary raw
+deployments that uncertainty was reshaped mainly downstream, by recalibration
+and operating-point selection, while ranking metrics barely moved and the
+operating-point metric stayed more stable than the audited ones; the
+diagonal-loading sensitivity decomposes differently.
 
 Contributions 1 and 2 are model-agnostic. Their QML relevance emerges when
 coupled to Contribution 3:
@@ -1183,9 +1185,9 @@ The interpretation has five principal limitations.
   and it is neither a necessary condition nor a population law. The stage
   decomposition uses diagnostic counterfactual stages that were never
   deployed, and its sequential attribution depends on the declared
-  intervention order; it locates the amplification within this pipeline and
-  does not measure the analogous sensitivity of classical pipelines to their
-  own randomness. At the
+  intervention order; it is specific to the evaluated raw pipeline and does
+  not measure the analogous sensitivity of classical pipelines to their own
+  randomness. At the
   $n=2{,}000$ Tier-A scale, the symmetric training block alone contains
   $n(n-1)/2=1{,}999{,}000$ distinct off-diagonal kernel evaluations. This is
   $255{,}872{,}000\simeq2.56\times10^8$ shots at 128 shots per entry and
@@ -1348,7 +1350,7 @@ is https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T, under CC0
 . Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-https://doi.org/10.5281/zenodo.22235287 . Raw source
+https://doi.org/10.5281/zenodo.22236115 . Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1358,7 +1360,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 https://github.com/roberto-fernandez-barrios/qevc and in the versioned
-Zenodo archive https://doi.org/10.5281/zenodo.22235287
+Zenodo archive https://doi.org/10.5281/zenodo.22236115
 . The software is released under the MIT License.
 
 ## Acknowledgements

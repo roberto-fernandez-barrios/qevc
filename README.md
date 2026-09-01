@@ -3,19 +3,27 @@
 Research codebase for the paper *"Conditional validity of quantum event
 classifiers under collider systematics and quantum estimation uncertainty"*.
 
-**npj Quantum Information submission release `0.3.6` (2026-09-01).** The
+**npj Quantum Information submission release `0.3.7` (2026-09-01).** The
 scientific program is closed: no new dataset, model, configuration, seed, QPU
-run or primary result was added. Version 0.3.6 is the mechanistic-clarity /
-derived-analysis patch: it adds three deterministic derived analyses of frozen
+run or primary result was added. Version 0.3.7 is a wording micro-patch on
+0.3.6 that makes the Contribution-3 mechanism statement regime-specific (the
+primary raw decomposition is mixed; the diagonal-loading sensitivity
+decomposes differently; no universal downstream mechanism is claimed) without
+changing any number, artifact or result. Version 0.3.6 was the
+mechanistic-clarity / derived-analysis patch: it adds three deterministic derived analyses of frozen
 artifacts (an E16 stage decomposition, a Proposition-3 margin stratification
 and a sharp-nominal-bound sensitivity of the weighted certification) and the
 corresponding framing and editorial corrections. The manuscript, Supplementary
 Information and Collection-specific cover letter pass the mathematical,
 editorial, journal-format and cross-document gates. The self-contained
 submission package is built and independently recompiles; it has not yet been submitted. The exact release is tagged
-[`npjqi-submission-v1.6`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.6)
-and archived as Zenodo version `0.3.6` at
-[10.5281/zenodo.22235287](https://doi.org/10.5281/zenodo.22235287). The
+[`npjqi-submission-v1.7`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.7)
+and archived as Zenodo version `0.3.7` at
+[10.5281/zenodo.22236115](https://doi.org/10.5281/zenodo.22236115). The
+historical `0.3.6 / npjqi-submission-v1.6` mechanistic-clarity release is
+preserved in its
+[GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.6)
+and at [10.5281/zenodo.22235287](https://doi.org/10.5281/zenodo.22235287). The
 historical `0.3.5 / npjqi-submission-v1.5` submission-hygiene release is
 preserved in its
 [GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.5)
@@ -99,14 +107,15 @@ contribution is methodological, organized as three contributions:
   budget; claims within each are correlated, the intermediate rates are
   dominated by single deployments (heterogeneity and outlier sensitivity), and
   no population trend is claimed. A deterministic stage decomposition of the
-  same 30 deployments and their loaded counterparts locates the amplification
-  at the operating point: the realized decision function keeps the ideal
+  same 30 deployments and their loaded counterparts gives a mixed picture: in
+  the primary raw pipeline the realized decision function keeps the ideal
   ranking moderately well (median Spearman 0.92) and AUC barely moves,
   recalibration at a fixed probability threshold generates almost all
   far-margin ideal-anchored flips, and threshold refreezing partly compensates
-  them; under the predeclared rule the raw regime is MIXED and the loaded
-  regime is MODEL/RANKING-dominated through a decision-function scale change,
-  so the overall classification is MIXED. The weighted balanced accuracy that
+  them (raw regime MIXED), whereas the loaded sensitivity is
+  MODEL/RANKING-dominated through a decision-function scale change; the
+  overall classification is MIXED and no universal downstream mechanism is
+  claimed across kernel treatments. The weighted balanced accuracy that
   selects the operating point is more stable than the audited accuracies. The
   measurement-induced origin is the upstream finite-shot perturbation; the
   downstream mechanism need not be quantum-specific.
@@ -153,10 +162,10 @@ and adds finite-shot/noisy quantum deployment uncertainty.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 30 | `9F5E59F1A54CBDB93D0B55D7B65D07CD9CABA72375140EFC6B8D58DA629DE87F` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `EC8AE562B1516AEBEDF6F69C62CEACD53F227E3FF5528ADF77D4B07B16082D4E` |
-| `output/pdf/npjqi_cover_letter.pdf` | 1 | `2E7BE8DA767664DE104FA9A4087D8F893BD84EDD2DFCB3AA33072666247F632F` |
-| `dist/npjqi-submission.zip` | source + 3 PDFs | `ECBC312C8BD145A15FCB123B3BC54CF8196D2C63C493763FBE7C7656E14B23D3` |
+| `output/pdf/npjqi_manuscript.pdf` | 31 | `462536E01462D21F3295BA06F5BEB960E0B765E4849A7E21D2D5D659A65AE3E3` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `B6399EC4CE6293EDAC37ADC7B367D55DCD5B91E698CF2B7BE90450135140D955` |
+| `output/pdf/npjqi_cover_letter.pdf` | 1 | `C4EDC6199B0AC0FC7BEFD568924CC798E24C932ED0D334A534CB380ABAF60B95` |
+| `dist/npjqi-submission.zip` | source + 3 PDFs | `F770DB073FDE333CFA903BBCA7A7ED579DC357CCC632DA274B0C428F8FFAD021` |
 | `results/tables/E16_psd_sensitivity.json` | 30 deployments | `5EDE2C056327DFB5768933C7BEE78A662C9E257011EF39984151E163170AABF1` |
 | `results/tables/E16_proposition4_instantiation.json` | 7,200 condition cells | `E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B` |
 | `results/tables/E16_proposition4_deployment_summary.json` | 30 noisy-kernel deployments | `4E09E3B86A38F26EB7892F49FC55C146BECFC5C7DDF6BFF210CD3EEBB60CE31B` |
@@ -244,6 +253,11 @@ streams, and applies the corresponding framing and editorial corrections. No
 experiment, seed, sample, model, threshold rule, PSD repair, likelihood, CMS
 analysis or QPU job was added; the primary scientific artifacts remain
 byte-identical to 0.3.5.
+Version 0.3.7 changes wording only: the Contribution-3 mechanism statement is
+made regime-specific in the abstract, Introduction, Results, Discussion, cover
+letter and Supplement, so that it cannot be read as one downstream mechanism
+dominating both the raw pipeline and the diagonal-loading sensitivity. No
+number, JSON artifact, seed, result or gate expectation changed.
 
 ## Repository layout
 

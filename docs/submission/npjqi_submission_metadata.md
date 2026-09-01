@@ -1,9 +1,11 @@
 # npj Quantum Information submission metadata
 
-Status: mechanistic-clarity / derived-analysis release 0.3.6 on 2026-09-01; not yet submitted.
+Status: wording micro-patch release 0.3.7 on 2026-09-01; not yet submitted.
 
-- Release version: `0.3.6` / `npjqi-submission-v1.6`
-- Version DOI: `10.5281/zenodo.22235287`
+- Release version: `0.3.7` / `npjqi-submission-v1.7`
+- Version DOI: `10.5281/zenodo.22236115`
+- Historical `0.3.6` / `npjqi-submission-v1.6` DOI:
+  `10.5281/zenodo.22235287`
 - Historical `0.3.5` / `npjqi-submission-v1.5` DOI:
   `10.5281/zenodo.22231469`
 - Historical `0.3.4` / `npjqi-submission-v1.4` DOI:
@@ -47,14 +49,14 @@ valid signal-strength inference: the evaluated fixed-template profile can lose
 coverage, even in shift-free controls, when its simulation templates are
 estimated independently. Across 30 frozen finite-shot quantum-kernel
 deployments, every realized Gram matrix is propagated through refitting,
-calibration and threshold selection; a deterministic stage decomposition shows
-that the finite-shot perturbation leaves ranking largely intact and is
-amplified at the operating point, where recalibration and threshold refreezing
-relocate the claims. Matched classical controls remove apparent
-quantum-specific effects. We claim no quantum advantage.
+calibration and threshold selection. A deterministic stage decomposition shows
+that, in the primary raw pipeline, ranking changes are modest while downstream
+recalibration and operating-point selection substantially reshape claim-level
+effects; the diagonal-loading sensitivity decomposes differently. Matched
+classical controls remove apparent quantum-specific effects. We claim no
+quantum advantage.
 
-Compliance: 137 words (130--145 target, at most 150 by the repository
-verifier); no citations, equations, subheadings or undefined internal labels
+Compliance: 139 words (at most 150 by the repository verifier); no citations, equations, subheadings or undefined internal labels
 (I2, I3, CMS, PSD).
 
 ## Keywords
@@ -103,8 +105,9 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
   deployed pipeline. Do not write that the mechanism is threshold-dominated.
 - The measurement-induced origin names the upstream finite-shot perturbation;
   the downstream amplification through recalibration and threshold selection
-  is not claimed to be exclusive to quantum pipelines, and classical
-  analogues are not measured.
+  is not claimed to be exclusive to quantum pipelines, nor universal across
+  kernel treatments (the PSD sensitivity decomposes differently), and
+  classical analogues are not measured.
 - Non-monotonicity of the intermediate E16 budgets is not a substantive
   result: the intermediate means are dominated by single deployments
   (heterogeneity and outlier sensitivity); no population trend is claimed.

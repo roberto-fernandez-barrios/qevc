@@ -1265,3 +1265,24 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   classical controls, new PSD repairs, Barlow–Beeston/HistFactory/pyhf
   likelihoods, without-replacement theorems, more QPU or qubits are D; broad
   shortening and figure reduction by preference are C.
+
+## D-047 — Wording micro-patch (0.3.7): regime-specific Contribution-3 statement
+
+- **Date:** 2026-09-01
+- **Scope:** wording only. The Contribution-3 mechanism statement is made
+  regime-specific in the abstract, Introduction, Results, Discussion, cover
+  letter and Supplement so that it cannot be read as one downstream mechanism
+  dominating both the primary raw pipeline and the diagonal-loading
+  sensitivity. Results states once: "The primary RAW decomposition is mixed:
+  downstream recalibration and operating-point selection amplify the
+  finite-shot perturbation, while the PSD sensitivity is more model/ranking
+  dominated. We therefore do not claim a universal downstream mechanism across
+  kernel treatments." and "Threshold refreezing partly compensates rather than
+  generates the far ideal-anchored flips in the RAW replay."
+- **Unchanged:** every number, JSON artifact, seed, QPU record, PSD
+  sensitivity, E16, C2, CMS, w_max, Proposition 3 and gate expectation; the
+  three 0.3.6 derived artifacts are byte-identical.
+- **Release rule:** publish as `0.3.7 / npjqi-submission-v1.7` under the
+  reserved Zenodo version DOI `10.5281/zenodo.22236115` (concept
+  `10.5281/zenodo.21894291`), preserving all prior tags and DOIs.
+- **Hard stop:** no new analysis, experiment, critique or review is authorized.
