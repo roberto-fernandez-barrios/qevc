@@ -1,5 +1,5 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[a4paper,margin=0.8in]{geometry}
+\usepackage[a4paper,margin=0.75in]{geometry}
 \usepackage{lmodern}
 \usepackage{microtype}
 \usepackage[hidelinks]{hyperref}
@@ -9,7 +9,7 @@
   pdfsubject={Article submission to npj Quantum Information}
 }
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.48em}
+\setlength{\parskip}{0.32em}
 
 \begin{document}
 
@@ -62,7 +62,11 @@ limitations. Matched classical controls remove every apparent
 quantum-specific performance and sensing effect, so we claim no quantum
 advantage. What remains QML-specific is a measurement-induced deployment
 uncertainty whose effects propagate from the realized Gram matrix through
-refitting, calibration, thresholding and claim resolution. The eight-qubit
+refitting, calibration, thresholding and claim resolution. A deterministic
+stage decomposition of the frozen deployments shows that this perturbation is
+amplified at the operating point, through recalibration and threshold
+refreezing, rather than through ranking loss; the measurement-induced origin
+is upstream, and the downstream mechanism need not be quantum-specific. The eight-qubit
 experiment is classically simulable, and the QPU result is only a micro-scale
 integration/fail-closed consistency demonstration. The collider setting is a stringent
 scientific deployment environment: it supplies physics weights, invisible

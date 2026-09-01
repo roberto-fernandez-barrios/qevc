@@ -19,11 +19,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.3.5"
-TAG = "npjqi-submission-v1.5"
+VERSION = "0.3.6"
+TAG = "npjqi-submission-v1.6"
 # Filled with the DOI reserved for the new Zenodo version before final release.
 PENDING_DOI = "10.5281/zenodo.00000000"
-VERSION_DOI = "10.5281/zenodo.22231469"
+VERSION_DOI = "10.5281/zenodo.22235287"
 CONCEPT_DOI = "10.5281/zenodo.21894291"
 
 README = ROOT / "README.md"
@@ -33,7 +33,7 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 SUBMISSION_METADATA = ROOT / "docs" / "submission" / "npjqi_submission_metadata.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_5_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_6_metadata.json"
 )
 MAIN_TEX = ROOT / "manuscript" / "latex" / "main.tex"
 MAIN_AUX = ROOT / "manuscript" / "latex" / "main.aux"
@@ -45,8 +45,8 @@ DRAFT = ROOT / "manuscript" / "main" / "draft.md"
 FORMAL_RESULTS = ROOT / "docs" / "formal_results.md"
 
 PDF_ARTIFACTS = {
-    "output/pdf/npjqi_manuscript.pdf": 28,
-    "output/pdf/npjqi_supplementary_information.pdf": 14,
+    "output/pdf/npjqi_manuscript.pdf": 30,
+    "output/pdf/npjqi_supplementary_information.pdf": 18,
     "output/pdf/npjqi_cover_letter.pdf": 1,
 }
 NON_PDF_ARTIFACTS = (
@@ -54,6 +54,9 @@ NON_PDF_ARTIFACTS = (
     "results/tables/E16_psd_sensitivity.json",
     "results/tables/E16_proposition4_instantiation.json",
     "results/tables/E16_proposition4_deployment_summary.json",
+    "results/tables/E16_stage_decomposition.json",
+    "results/tables/E16_prop3_margin_stratification.json",
+    "results/tables/E13_wmax_nominal_bound_sensitivity.json",
 )
 ARTIFACTS = (*PDF_ARTIFACTS, *NON_PDF_ARTIFACTS)
 ZIP_PDFS = {
@@ -77,6 +80,15 @@ ZIP_SOURCES = {
     ),
     "source/results/tables/E16_proposition4_deployment_summary.json": (
         ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json"
+    ),
+    "source/results/tables/E16_stage_decomposition.json": (
+        ROOT / "results" / "tables" / "E16_stage_decomposition.json"
+    ),
+    "source/results/tables/E16_prop3_margin_stratification.json": (
+        ROOT / "results" / "tables" / "E16_prop3_margin_stratification.json"
+    ),
+    "source/results/tables/E13_wmax_nominal_bound_sensitivity.json": (
+        ROOT / "results" / "tables" / "E13_wmax_nominal_bound_sensitivity.json"
     ),
 }
 EXPECTED_LABELS = {
@@ -458,26 +470,31 @@ def validate(
     check("current Proposition 2 documented", "## Proposition 2" in formal)
     check("current Proposition 3 documented", "## Proposition 3" in formal)
 
-    historical_numbering = subprocess.run(
-        [
-            "git",
-            "diff",
-            "--name-only",
-            "npjqi-submission-v1.4",
-            "--",
-            "docs/decisions.md",
-            "docs/experiment_registry.md",
-            "docs/audits",
-        ],
-        cwd=ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
+    # Historical records are append-only: every line of the 0.3.5 versions of the
+    # decision log and registry must survive, and pre-existing audit files must
+    # be byte-identical (new audit files are allowed).
+    def historical_lines_preserved(relpath: str) -> tuple[bool, str]:
+        shown = subprocess.run(
+            ["git", "show", f"npjqi-submission-v1.5:{relpath}"],
+            cwd=ROOT, check=False, capture_output=True, text=True, encoding="utf-8",
+        )
+        if shown.returncode != 0:
+            return False, f"cannot read {relpath} at npjqi-submission-v1.5"
+        current = set((ROOT / relpath).read_text(encoding="utf-8").splitlines())
+        missing = [line for line in shown.stdout.splitlines() if line.strip() and line not in current]
+        return not missing, (missing[0] if missing else "")
+
+    for relpath in ("docs/decisions.md", "docs/experiment_registry.md"):
+        ok, detail = historical_lines_preserved(relpath)
+        check(f"historical records preserved: {relpath}", ok, detail)
+    audit_diff = subprocess.run(
+        ["git", "diff", "--name-only", "--diff-filter=MD", "npjqi-submission-v1.5", "--", "docs/audits"],
+        cwd=ROOT, check=False, capture_output=True, text=True,
     )
     check(
-        "historical numbering records preserved",
-        historical_numbering.returncode == 0 and not historical_numbering.stdout.strip(),
-        historical_numbering.stdout.strip(),
+        "historical audit files unchanged",
+        audit_diff.returncode == 0 and not audit_diff.stdout.strip(),
+        audit_diff.stdout.strip(),
     )
 
     if require_tag:

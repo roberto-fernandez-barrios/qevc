@@ -266,6 +266,22 @@ stability. Source:
 range, mean and sample SD across the same 30 noisy-kernel deployments without
 changing the replay or adding population inference.
 
+**Margin stratification and common-mode cancellation (0.3.6, derived only).**
+`results/tables/E16_prop3_margin_stratification.json` stratifies the 7,200
+cells by |m⋆|: for ideal-anchored claims the HOLDS/FAILS distinction remains
+descriptively informative within every bin (paired-stream flips 2.7–38.7% when
+the inequality holds versus 63.8–100% when it fails); for deployment-relative
+claims the inequality fails only at |m⋆| < 0.005 (largest failing margin
+0.0040), because ΔM_T − ΔM_S is itself small in E16 (median 0.0011 RAW /
+0.0012 PSD, maxima 0.0052 / 0.0063, against |ΔM_T| medians 0.019 / 0.022). The
+proposition is unchanged; the empirical deployment-relative stability is
+largely explained by this common-mode cancellation, not by a structural law.
+The stage decomposition of the same deployments
+(`results/tables/E16_stage_decomposition.json`) locates the upstream
+perturbation's amplification at the operating point (recalibration, partly
+compensated by threshold refreezing) and is classified MIXED under a
+predeclared rule; it does not enter the proposition.
+
 ---
 
 ## Manuscript locations

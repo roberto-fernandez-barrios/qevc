@@ -163,7 +163,13 @@ is conditional on that population and scalar bound, not an unconditional
 claim that its numerical value was known before population construction.
 Only the scalar is exposed before the random audit order, not event-wise weights.
 Looseness in w_max costs only statistical efficiency (wider CS), never
-validity; the measured cost appears in the §5 comparison.
+validity; the measured cost appears in the §5 comparison. *(Post-hoc note,
+2026-09-01, version 0.3.6: for the D-032 nominal-weight estimands the revealed
+increment never exceeds max_i w_i^(0), so κ_norm = 2.05 is deliberate
+conservatism rather than a validity requirement for the executed E13/E19
+claims. Its stopping-time price is measured, on identical frozen streams, in
+`results/tables/E13_wmax_nominal_bound_sensitivity.json`; the registered
+value and the primary analyses are unchanged.)*
 
 ## 4. Weights under unknown normalization nuisances — the identifiability
 boundary (bridge to E14)

@@ -487,11 +487,153 @@ def main() -> int:
         and "no false far-margin deployment-relative claim" in supplement,
     )
     audit.check(
-        "E16 non-monotonic wording",
-        "Intermediate\nmeans are non-monotonic" in main_tex
-        and "non-monotonic" in supplement
+        "E16 heterogeneity wording (non-monotonicity demoted)",
+        "are each dominated by one or two\ndeployments" in main_tex
+        and "non-monotonic" not in main_tex
+        and "non-monotonic" not in supplement
+        and "outlier sensitivity" in supplement
         and "decrease from 20.8" not in main_tex,
     )
+
+    # 0.3.6 derived analyses: every displayed number is recomputed from its JSON.
+    strat = load("E16_prop3_margin_stratification.json")
+    audit.check(
+        "stratification totals",
+        strat["totals"] == {"condition_cells": 7200, "audit_streams": 72000,
+                            "holds_cells": 4943, "fails_cells": 2257},
+    )
+    strat_source = hashlib.sha256((TABLES / "E16_proposition4_instantiation.json").read_bytes()).hexdigest().upper()
+    audit.check("stratification source hash", strat["source_sha256"] == strat_source)
+    audit.check(
+        "stratification largest failing deployment-relative margin",
+        strat["largest_abs_ideal_margin_among_FAILS_cells"]["deployment_relative"] < 0.005
+        and "largest failing margin 0.0040" in main_tex,
+    )
+    labels = {"[0,0.005)": "$[0,0.005)$", "[0.005,0.01)": "$[0.005,0.01)$", "[0.01,0.02)": "$[0.01,0.02)$",
+              "[0.02,0.04)": "$[0.02,0.04)$", "[0.04,0.08)": "$[0.04,0.08)$", ">=0.08": "$\\geq0.08$"}
+    for claim, name in (("deployment_relative", "deployment-relative"), ("ideal_anchored", "ideal-anchored")):
+        for key, tex_label in labels.items():
+            row = strat["by_claim_semantics"][claim][key]
+            h, f = row["HOLDS"], row["FAILS"]
+            flip_h = f"{round_half_up(100 * h['verdict_flip_rate'], 1):.1f}" if h["verdict_flip_rate"] is not None else "--"
+            flip_f = f"{round_half_up(100 * f['verdict_flip_rate'], 1):.1f}" if f["verdict_flip_rate"] is not None else "--"
+            rendered = f"{name} & {tex_label} & {h['cells']} & {f['cells']} & {flip_h} & {flip_f} \\\\"
+            audit.check(f"stratification row {claim}/{key}", rendered in supplement, rendered)
+    ia = strat["by_claim_semantics"]["ideal_anchored"]
+    ia_h = [100 * ia[k]["HOLDS"]["verdict_flip_rate"] for k in labels]
+    ia_f = [100 * ia[k]["FAILS"]["verdict_flip_rate"] for k in labels]
+    audit.check(
+        "stratification ranges quoted in main text",
+        round_half_up(min(ia_h), 1) == 2.7 and round_half_up(max(ia_h), 1) == 38.7
+        and round_half_up(min(ia_f), 1) == 63.8 and round_half_up(max(ia_f), 1) == 100.0
+        and "2.7--38.7\\%" in main_tex and "63.8--100\\%" in main_tex,
+    )
+
+    stage = load("E16_stage_decomposition.json")
+    rep = stage["reproduction"]
+    audit.check(
+        "stage decomposition exact reproduction",
+        rep["all_raw_stage_D_match_primary"] and rep["all_raw_stage_D_match_psd_archive"]
+        and rep["all_psd_stage_D_match_psd_archive"] and rep["platt_slopes_positive"]
+        and rep["prop3_movement_max_abs_residual"] == {"raw": 0.0, "psd_repaired": 0.0}
+        and rep["prop3_movement_cells_compared"] == {"raw": 1800, "psd_repaired": 1800},
+    )
+    audit.check(
+        "stage decomposition source hash",
+        stage["provenance"]["input_sha256"]["primary_e16"] == hashlib.sha256(source_bytes).hexdigest().upper(),
+    )
+    audit.check(
+        "stage decomposition classification",
+        stage["classification"]["overall"] == "MIXED"
+        and stage["classification"]["by_regime"]["raw"]["label"] == "MIXED"
+        and stage["classification"]["by_regime"]["psd_repaired"]["label"] == "MODEL/RANKING-DOMINATED",
+    )
+
+    def signed(value: float, digits: int = 4) -> str:
+        return f"${round_half_up(value, digits):+.{digits}f}$"
+
+    for regime, label in (("raw", "RAW"), ("psd_repaired", "PSD")):
+        agg = stage["aggregate_by_regime"][regime]
+        for st in ("B0", "B", "C", "D"):
+            b = agg["by_stage"][st]
+            dms, dba, dauc = b["delta_M_S_unweighted"], b["delta_source_weighted_balanced_accuracy"], b["delta_nominal_auc"]
+            rho = agg["ranking_stability"]["B0_vs_ideal" if st == "B0" else "B_vs_ideal"]["source_val"]["spearman"]["median"]
+            row = (
+                f"{label} & {st} & {signed(dms['median'])} [{signed(dms['min'])}, {signed(dms['max'])}] & "
+                f"{signed(dba['median'])} & {signed(dauc['median'])} & {round_half_up(rho, 3):.3f} & "
+                f"{round_half_up(100 * b['far_ideal_anchored_flip_rate']['mean'], 1):.1f} & "
+                f"{round_half_up(100 * b['moderate_ideal_anchored_flip_rate']['mean'], 1):.1f} & "
+                f"{round_half_up(100 * b['near_ideal_anchored_flip_rate']['mean'], 1):.1f} & "
+                f"{round_half_up(100 * b['moderate_deployment_relative_flip_rate']['mean'], 1):.1f} \\\\"
+            )
+            audit.check(f"stage row {label}/{st}", row in supplement, row)
+    raw_agg = stage["aggregate_by_regime"]["raw"]
+    raw_inc = raw_agg["source_metric_increments"]["m_s_unw"]
+    raw_far = raw_agg["ideal_anchored_flip_path"]["far"]
+    audit.check(
+        "stage decomposition headline numbers",
+        round_half_up(100 * raw_far["cumulative_mean_flip_rate_by_stage"]["C"], 1) == 14.3
+        and round_half_up(100 * raw_far["cumulative_mean_flip_rate_by_stage"]["D"], 1) == 9.6
+        and round_half_up(100 * raw_far["cumulative_mean_flip_rate_by_stage"]["B"], 1) == 0.2
+        and round_half_up(100 * raw_far["positive_share"]["CALIBRATION"], 0) == 99
+        and round_half_up(raw_inc["thr"]["share_of_mean_absolute_increment"], 2) == 0.50
+        and round_half_up(raw_inc["thr"]["absolute"]["mean"], 3) == 0.020
+        and round_half_up(raw_agg["ranking_stability"]["B_vs_ideal"]["source_val"]["spearman"]["median"], 2) == 0.92
+        and round_half_up(raw_agg["ranking_stability"]["B_vs_ideal"]["source_val"]["kendall_tau_b"]["median"], 2) == 0.78
+        and raw_agg["balanced_accuracy_vs_accuracy"]["deployments_with_abs_delta_BA_w_below_abs_delta_unweighted_accuracy"] == 25
+        and stage["aggregate_by_regime"]["psd_repaired"]["balanced_accuracy_vs_accuracy"]["deployments_with_abs_delta_BA_w_below_abs_delta_unweighted_accuracy"] == 28
+        and round_half_up(stage["aggregate_by_regime"]["psd_repaired"]["by_stage"]["B0"]["delta_M_S_unweighted"]["median"], 3) == -0.053
+        and round_half_up(stage["aggregate_by_regime"]["psd_repaired"]["by_stage"]["B0"]["delta_nominal_auc"]["median"], 3) == 0.017
+        and "far flips rise to 14.3" in main_tex and "back to 9.6" in main_tex
+        and "25 of 30 raw and 28 of 30 loaded" in main_tex,
+    )
+    for regime in ("raw", "psd_repaired"):
+        cm = stage["aggregate_by_regime"][regime]["common_mode"]["D|unweighted"]
+        audit.check(
+            f"stage decomposition common mode {regime}",
+            cm["abs_delta_M_T_minus_delta_M_S"]["median"] < 0.002
+            and cm["abs_delta_M_T"]["median"] > 0.01,
+        )
+
+    wmax = load("E13_wmax_nominal_bound_sensitivity.json")
+    e13w = wmax["E13_part_b"]
+    cmp = e13w["comparison"]
+    audit.check("w_max historical replay exact", e13w["historical_replay_exact"] is True and wmax["E19_weighted_arm"]["historical_replay_exact"] is True)
+    audit.check(
+        "w_max sensitivity numbers",
+        cmp["error_rates"]["historical"]["w"]["false_cert"] == 2
+        and cmp["error_rates"]["sharp"]["w"]["false_cert"] == 12
+        and cmp["error_rates"]["sharp"]["w"]["n_false"] == 8580
+        and cmp["n_star_ratio_w_over_unw"]["historical_archived"]["median"] == 1.664
+        and cmp["n_star_ratio_w_over_unw"]["sharp_archived_style"]["median"] == 1.336
+        and round_half_up(cmp["weighted_accuracy_claims"]["per_claim_n_star_ratio_sharp_over_historical"]["median"], 2) == 0.85
+        and cmp["weighted_accuracy_claims"]["stream_verdicts_historical"] == {"SUPPORTED": 6743, "REFUTED": 336, "UNRESOLVED": 12601}
+        and cmp["weighted_accuracy_claims"]["stream_verdicts_sharp"] == {"SUPPORTED": 6572, "REFUTED": 310, "UNRESOLVED": 12798}
+        and wmax["E19_weighted_arm"]["historical_false_cert_counts"] == [6, 7980]
+        and wmax["E19_weighted_arm"]["sharp_false_cert_counts"] == [12, 7980]
+        and cmp["cell_transitions"]["near_margin_cells_abs_margin_below_0_01"] == {"cells": 323, "resolved_streams_historical": 46, "resolved_streams_sharp": 72}
+        and cmp["cell_transitions"]["far_margin_cells_abs_margin_at_least_0_04"] == {"cells": 312, "resolved_streams_historical": 6082, "resolved_streams_sharp": 5945}
+        and "1.66 [1.11, 3.00] & 1.34 [1.00, 2.10]" in supplement
+        and "2/8,580 & 12/8,580 & 6/7,980 & 12/7,980" in supplement
+        and "median ratio 1.34, IQR 1.00--2.10" in main_tex,
+    )
+
+    e01 = load("E01_nominal.json")
+    e01_rows = (
+        ("A", "linear_svc", "linear SVC"), ("A", "rbf_svc", "RBF-SVC"),
+        ("A", "rbf_svc_8f", "RBF-SVC (matched, 8 features)"), ("A", "xgboost", "XGBoost"),
+        ("A", "lightgbm", "LightGBM"), ("A", "mlp", "MLP"), ("A", "qksvc", "QK-SVC"),
+        ("B", "linear_svc", "linear SVC"), ("B", "xgboost", "XGBoost"),
+        ("B", "lightgbm", "LightGBM"), ("B", "mlp", "MLP"),
+    )
+    for tier, key, label in e01_rows:
+        entry = e01["tiers"][tier][key]
+        row = (
+            f"{tier} & {label} & {entry['features']} & {round_half_up(entry['test']['auc'], 3):.3f} "
+            f"[{round_half_up(entry['auc_ci95'][0], 3):.3f}, {round_half_up(entry['auc_ci95'][1], 3):.3f}] & "
+            f"{round_half_up(entry['test']['balanced_accuracy'], 3):.3f} \\\\"
+        )
+        audit.check(f"E01 model row {tier}/{key}", row in supplement, row)
     audit.check(
         "E16 no pseudo-replication wording",
         "not IID replicates" in main_tex

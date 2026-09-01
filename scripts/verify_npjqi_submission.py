@@ -32,8 +32,12 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_5_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_6_metadata.json"
 )
+MECHANISM_AUDIT = ROOT / "docs" / "audits" / "mechanistic_clarity_patch_2026-09-01.md"
+STAGE_DECOMPOSITION = ROOT / "results" / "tables" / "E16_stage_decomposition.json"
+MARGIN_STRATIFICATION = ROOT / "results" / "tables" / "E16_prop3_margin_stratification.json"
+WMAX_SENSITIVITY = ROOT / "results" / "tables" / "E13_wmax_nominal_bound_sensitivity.json"
 PSD_ANALYSIS = ROOT / "results" / "tables" / "E16_psd_sensitivity.json"
 PROPOSITION4_ANALYSIS = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
 PROPOSITION4_DEPLOYMENT_SUMMARY = (
@@ -116,6 +120,11 @@ def main() -> int:
     proposition4_deployment = json.loads(
         PROPOSITION4_DEPLOYMENT_SUMMARY.read_text(encoding="utf-8")
     )
+    mechanism_audit = MECHANISM_AUDIT.read_text(encoding="utf-8")
+    stage = json.loads(STAGE_DECOMPOSITION.read_text(encoding="utf-8"))
+    stratification = json.loads(MARGIN_STRATIFICATION.read_text(encoding="utf-8"))
+    wmax = json.loads(WMAX_SENSITIVITY.read_text(encoding="utf-8"))
+    flat_main = re.sub(r"\s+", " ", main_tex)
 
     titles = balanced_arguments(main_tex, r"\title")
     # The optional short title is skipped by balanced_arguments.
@@ -132,7 +141,11 @@ def main() -> int:
     check("single abstract", len(abstracts) == 1, f"found {len(abstracts)}")
     abstract = abstracts[0]
     abstract_words = words(abstract)
-    check("abstract length", len(abstract_words) <= 150, f"{len(abstract_words)} words")
+    check("abstract length", 130 <= len(abstract_words) <= 150, f"{len(abstract_words)} words")
+    check(
+        "abstract avoids undefined internal labels",
+        not re.search(r"\b(I2|I3|CMS|PSD|far-margin)\b", abstract),
+    )
     check("abstract has no citations", r"\cite" not in abstract)
     check("abstract has no displayed equations", r"\[" not in abstract and "$$" not in abstract)
 
@@ -158,8 +171,14 @@ def main() -> int:
     ):
         check(f"required heading: {heading}", rf"\section*{{{heading}}}" in main_tex)
 
-    reference_count = len(re.findall(r"^@", bib, flags=re.MULTILINE))
-    check("reference guide", reference_count <= 60, f"{reference_count} entries")
+    cited_keys = {
+        key.strip()
+        for group in re.findall(r"\\cite[pt]?(?:alp)?\{([^}]*)\}", main_tex)
+        for key in group.split(",")
+    }
+    bib_keys = set(re.findall(r"^@\w+\{([^,]+),", bib, flags=re.MULTILINE))
+    check("reference guide", len(cited_keys) <= 60, f"{len(cited_keys)} cited entries")
+    check("all cited keys defined", cited_keys <= bib_keys, str(sorted(cited_keys - bib_keys)))
 
     captions = balanced_arguments(main_tex, r"\caption")
     caption_lengths = [len(words(caption)) for caption in captions]
@@ -216,17 +235,22 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22231469" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22235287" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.5" in text and "npjqi-submission-v1.5" in text
+        all("0.3.6" in text and "npjqi-submission-v1.6" in text
             for text in (readme, metadata, release_manifest, zenodo_metadata)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22231469" in text
+        all("10.5281/zenodo.22235287" in text
             for text in (main_tex, readme, metadata, citation, release_manifest,
                          zenodo_metadata)),
+    )
+    check(
+        "historical 0.3.5 release retained",
+        "10.5281/zenodo.22231469" in readme
+        and "10.5281/zenodo.22231469" in release_manifest,
     )
     check(
         "historical 0.3.3 release retained",
@@ -264,7 +288,8 @@ def main() -> int:
     check(
         "abstract omits correlated-cell percentage",
         "68.7" not in abstract
-        and "sufficient rather than necessary" in abstract,
+        and "9.2" not in abstract
+        and "sufficient rather than necessary" in flat_main,
     )
     check(
         "frozen batch deployment scope",
@@ -347,8 +372,8 @@ def main() -> int:
     )
     check(
         "I2 I3 CMS guarantee separation",
-        "fixed I2 label-stream claim" in abstract
-        and "I3 and CMS procedures are separately" in abstract
+        "anytime-valid guarantee applies to each fixed label-stream claim" in flat_main
+        and "auxiliary-information procedures are separately coverage-gated" in flat_main
         and "does not inherit the\nI2 confidence-sequence theorem" in main_tex,
     )
     check(
@@ -373,7 +398,100 @@ def main() -> int:
         "statistically indistinguishable" not in main_tex.lower()
         and "no additional seeds are required" not in main_tex.lower(),
     )
-    check("decision log contains npj revision", "D-044" in decisions and "npj Quantum Information" in decisions)
+    check("decision log contains npj revision", "D-044" in decisions and "D-046" in decisions and "npj Quantum Information" in decisions)
+    check(
+        "mechanistic-clarity audit",
+        "0.3.6" in mechanism_audit
+        and "10.5281/zenodo.22235287" in mechanism_audit
+        and "F1" in mechanism_audit and "F6" in mechanism_audit
+        and "no experiment, gram realization, seed" in mechanism_audit.lower(),
+    )
+    check(
+        "stage decomposition reproduces archived endpoints",
+        stage["reproduction"]["all_raw_stage_D_match_primary"]
+        and stage["reproduction"]["all_raw_stage_D_match_psd_archive"]
+        and stage["reproduction"]["all_psd_stage_D_match_psd_archive"]
+        and stage["reproduction"]["platt_slopes_positive"]
+        and stage["provenance"]["no_new_randomness"] is True
+        and stage["provenance"]["no_new_qpu_jobs"] is True,
+    )
+    check(
+        "stage decomposition classification synchronized",
+        stage["classification"]["overall"] == "MIXED"
+        and stage["classification"]["by_regime"]["raw"]["label"] == "MIXED"
+        and stage["classification"]["by_regime"]["psd_repaired"]["label"] == "MODEL/RANKING-DOMINATED"
+        and "\\textsc{mixed}" in main_tex and "\\textsc{mixed}" in supp_tex
+        and "amplified downstream" in flat_main
+        and "through recalibration and operating-threshold selection" in flat_main
+        and "need not itself be quantum-specific" in flat_main
+        and "threshold-dominated" not in main_tex.lower(),
+    )
+    check(
+        "non-monotonicity demoted",
+        "non-monotonic" not in main_tex and "non-monotonic" not in supp_tex
+        and "deployment heterogeneity" in flat_main
+        and "outlier sensitivity" in flat_main,
+    )
+    check(
+        "common-mode cancellation stated",
+        "common-mode cancellation" in flat_main and "common-mode" in supp_tex,
+    )
+    check(
+        "margin stratification artifact",
+        stratification["totals"] == {
+            "condition_cells": 7200, "audit_streams": 72000,
+            "holds_cells": 4943, "fails_cells": 2257,
+        }
+        and "Supplementary Table S10" in flat_main
+        and "tab:prop3-stratification" in supp_tex,
+    )
+    check(
+        "weight-bound sensitivity is post hoc and exact",
+        wmax["E13_part_b"]["historical_replay_exact"] is True
+        and wmax["E19_weighted_arm"]["historical_replay_exact"] is True
+        and "POST-HOC" in wmax["status"]
+        and wmax["mathematical_necessity_audit"]["kappa_2_05_required_for_executed_nominal_claims"] is False
+        and "post-hoc sensitivity" in flat_main
+        and "deliberate conservatism rather than a validity requirement" in flat_main
+        and "Supplementary Table S16" in flat_main,
+    )
+    check(
+        "without-replacement future work only",
+        "waudbysmith2020wor" in main_tex and "waudbysmith2020wor" in bib
+        and "theorem and protocol here are unchanged" in flat_main,
+    )
+    check(
+        "measurement-induced semantics scoped",
+        "names the source of the perturbation that E16 controls" in flat_main
+        and "Classical pipelines can exhibit analogous downstream sensitivity" in flat_main,
+    )
+    check(
+        "C2 adverse result leads",
+        "1.8--3.4" not in main_tex[intro:results]
+        and "this conditional diagnostic does not establish validity" in flat_main,
+    )
+    check(
+        "editorial corrections applied",
+        "\\ref{sec:related}" not in main_tex and "\\label{sec:related}" not in main_tex
+        and "\\label{sec:results}" not in main_tex
+        and "\\label{sec:limitations}" not in main_tex
+        and "\\label{sec:conclusion}" not in main_tex
+        and "INFERNO \\citep{arxiv1806.04743}" in main_tex
+        and "\\citealp{arxiv1806.04743}" not in main_tex
+        and "historical identifier `proposition4'" in main_tex
+        and "historical identifier `proposition4'" in supp_tex
+        and "Supplementary Table~S18" in main_tex
+        and "tab:e01models" in supp_tex
+        and "A verdict flip is any change among SUPPORTED, REFUTED and UNRESOLVED" in flat_main
+        and "Elharrauss, Salah Eddine" in bib
+        and "frozen on 10 August 2026" not in main_tex,
+    )
+    check(
+        "historical artifact names unchanged",
+        PROPOSITION4_ANALYSIS.is_file() and PROPOSITION4_DEPLOYMENT_SUMMARY.is_file()
+        and "E16_proposition4_instantiation.json" in readme
+        and "E16_proposition4_deployment_summary.json" in readme,
+    )
     check("audit contains npj adaptation", "npj Quantum Information editorial adaptation" in audit)
     check(
         "final micro-patch audit",
@@ -449,16 +567,25 @@ def main() -> int:
         "scripts/summarize_e16_proposition4_deployments.py",
     )
     protected_diff = subprocess.run(
-        ["git", "diff", "--name-only", "npjqi-submission-v1.4", "--", *protected_paths],
+        ["git", "diff", "--name-only", "npjqi-submission-v1.5", "--", *protected_paths],
         cwd=ROOT,
         check=False,
         capture_output=True,
         text=True,
     )
+    derived_additions = {
+        "results/tables/E16_stage_decomposition.json",
+        "results/tables/E16_prop3_margin_stratification.json",
+        "results/tables/E13_wmax_nominal_bound_sensitivity.json",
+    }
+    unexpected = [
+        line for line in protected_diff.stdout.split()
+        if line.replace("\\", "/") not in derived_additions
+    ]
     check(
-        "protected scientific artifacts unchanged from 0.3.4",
-        protected_diff.returncode == 0 and not protected_diff.stdout.strip(),
-        protected_diff.stdout.strip(),
+        "protected scientific artifacts unchanged from 0.3.5",
+        protected_diff.returncode == 0 and not unexpected,
+        " ".join(unexpected),
     )
 
     frozen_outputs = (
@@ -469,6 +596,9 @@ def main() -> int:
         PSD_ANALYSIS,
         PROPOSITION4_ANALYSIS,
         PROPOSITION4_DEPLOYMENT_SUMMARY,
+        STAGE_DECOMPOSITION,
+        MARGIN_STRATIFICATION,
+        WMAX_SENSITIVITY,
     )
     for path in frozen_outputs:
         rel = path.relative_to(ROOT).as_posix()

@@ -3,16 +3,23 @@
 Research codebase for the paper *"Conditional validity of quantum event
 classifiers under collider systematics and quantum estimation uncertainty"*.
 
-**npj Quantum Information submission release `0.3.5` (2026-09-01).** The
-scientific program is closed: no new dataset, model, configuration, QPU run or
-primary result was added. The manuscript, Supplementary Information and
-Collection-specific cover letter incorporate the bounded submission-hygiene patch and
-pass the mathematical, editorial, journal-format and cross-document gates.
-The self-contained submission package is built and independently recompiles;
-it has not yet been submitted. The exact release is tagged
-[`npjqi-submission-v1.5`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.5)
-and archived as Zenodo version `0.3.5` at
-[10.5281/zenodo.22231469](https://doi.org/10.5281/zenodo.22231469). The
+**npj Quantum Information submission release `0.3.6` (2026-09-01).** The
+scientific program is closed: no new dataset, model, configuration, seed, QPU
+run or primary result was added. Version 0.3.6 is the mechanistic-clarity /
+derived-analysis patch: it adds three deterministic derived analyses of frozen
+artifacts (an E16 stage decomposition, a Proposition-3 margin stratification
+and a sharp-nominal-bound sensitivity of the weighted certification) and the
+corresponding framing and editorial corrections. The manuscript, Supplementary
+Information and Collection-specific cover letter pass the mathematical,
+editorial, journal-format and cross-document gates. The self-contained
+submission package is built and independently recompiles; it has not yet been submitted. The exact release is tagged
+[`npjqi-submission-v1.6`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.6)
+and archived as Zenodo version `0.3.6` at
+[10.5281/zenodo.22235287](https://doi.org/10.5281/zenodo.22235287). The
+historical `0.3.5 / npjqi-submission-v1.5` submission-hygiene release is
+preserved in its
+[GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.5)
+and at [10.5281/zenodo.22231469](https://doi.org/10.5281/zenodo.22231469). The
 historical `0.3.4 / npjqi-submission-v1.4` release is preserved in its
 [GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.4)
 and at [10.5281/zenodo.22229290](https://doi.org/10.5281/zenodo.22229290). The
@@ -71,11 +78,12 @@ contribution is methodological, organized as three contributions:
   against a finite, frozen audit population, not a continually re-estimated
   online kernel service or an unspecified future superpopulation.
 - **Contribution 2 — Scientific-inference validity:** classifier-metric stability does
-  not imply valid signal-strength inference; under shared simulation a
-  fixed-template profile recovers most representable cells at a measured
-  interval-width price. At the studied MC size, the evaluated archived
-  fixed-template construction can lose coverage under independent-MC template
-  noise; validity is jointly limited by nuisance representability and
+  not imply valid signal-strength inference. At the studied MC size, the
+  evaluated archived fixed-template construction can lose coverage, including
+  in shift-free nominal controls, when templates are estimated independently;
+  under shared simulation the same construction can appear to recover
+  representable cells, a conditional diagnostic that does not establish
+  validity. Validity is jointly limited by nuisance representability and
   auxiliary-template quality.
 - **Contribution 3 — Quantum deployment uncertainty:** finite-shot and noisy quantum
   evaluation adds measurement-induced deployment uncertainty;
@@ -88,8 +96,20 @@ contribution is methodological, organized as three contributions:
   now reports median, IQR and range across the 30 noisy-kernel deployments,
   which are the descriptive units. The classification is
   **INFORMATIVELY INSTANTIATED**. E16 has five noisy-kernel deployments per
-  budget; claims within each are correlated, the
-  intermediate rates are non-monotonic, and no population trend is claimed.
+  budget; claims within each are correlated, the intermediate rates are
+  dominated by single deployments (heterogeneity and outlier sensitivity), and
+  no population trend is claimed. A deterministic stage decomposition of the
+  same 30 deployments and their loaded counterparts locates the amplification
+  at the operating point: the realized decision function keeps the ideal
+  ranking moderately well (median Spearman 0.92) and AUC barely moves,
+  recalibration at a fixed probability threshold generates almost all
+  far-margin ideal-anchored flips, and threshold refreezing partly compensates
+  them; under the predeclared rule the raw regime is MIXED and the loaded
+  regime is MODEL/RANKING-dominated through a decision-function scale change,
+  so the overall classification is MIXED. The weighted balanced accuracy that
+  selects the operating point is more stable than the audited accuracies. The
+  measurement-induced origin is the upstream finite-shot perturbation; the
+  downstream mechanism need not be quantum-specific.
   A post-hoc final technical audit found all 30 raw training Grams indefinite.
   Every evaluated far-margin deployment-relative claim is true and remains
   supported across raw and PSD-repaired realizations; the grid contains no
@@ -103,7 +123,10 @@ contribution is methodological, organized as three contributions:
   global Mercer kernel. The complete derived analyses are archived in
   `results/tables/E16_psd_sensitivity.json` and
   `results/tables/E16_proposition4_instantiation.json`; the deployment-level
-  derivative is `results/tables/E16_proposition4_deployment_summary.json`.
+  derivative is `results/tables/E16_proposition4_deployment_summary.json`. The
+  version-0.3.6 derived analyses are `results/tables/E16_stage_decomposition.json`,
+  `results/tables/E16_prop3_margin_stratification.json` and
+  `results/tables/E13_wmax_nominal_bound_sensitivity.json` (no new randomness).
 
 The closest new collider-QML study, Brown, Spannowsky and Williams
 ([arXiv:2608.11330](https://arxiv.org/abs/2608.11330)), evaluates frozen
@@ -130,19 +153,23 @@ and adds finite-shot/noisy quantum deployment uncertainty.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 28 | `FAC684BD7173972E4941DD323D53ED0B96A97BB96AC7DC881A2FD5E538447D79` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 14 | `D56B56549F10AB312ED7890702527FA21C789829D677217772209EEDD7D0ADFB` |
-| `output/pdf/npjqi_cover_letter.pdf` | 1 | `4692B5C4CE27211F8D49E7C63D067BAA35E0F7D145E5C99CF3669560AE8B713A` |
-| `dist/npjqi-submission.zip` | source + 3 PDFs | `B5E4256A1583AB345D67E0FAA6EB0C14DD097A1B4298068E2EDF74E19DF68A2A` |
+| `output/pdf/npjqi_manuscript.pdf` | 30 | `9F5E59F1A54CBDB93D0B55D7B65D07CD9CABA72375140EFC6B8D58DA629DE87F` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `EC8AE562B1516AEBEDF6F69C62CEACD53F227E3FF5528ADF77D4B07B16082D4E` |
+| `output/pdf/npjqi_cover_letter.pdf` | 1 | `2E7BE8DA767664DE104FA9A4087D8F893BD84EDD2DFCB3AA33072666247F632F` |
+| `dist/npjqi-submission.zip` | source + 3 PDFs | `ECBC312C8BD145A15FCB123B3BC54CF8196D2C63C493763FBE7C7656E14B23D3` |
 | `results/tables/E16_psd_sensitivity.json` | 30 deployments | `5EDE2C056327DFB5768933C7BEE78A662C9E257011EF39984151E163170AABF1` |
 | `results/tables/E16_proposition4_instantiation.json` | 7,200 condition cells | `E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B` |
 | `results/tables/E16_proposition4_deployment_summary.json` | 30 noisy-kernel deployments | `4E09E3B86A38F26EB7892F49FC55C146BECFC5C7DDF6BFF210CD3EEBB60CE31B` |
+| `results/tables/E16_stage_decomposition.json` | 30 RAW + 30 PSD deployments, 4 stages | `F91D4200D2375368E8E21553B00E81F63071C85288FEEB83A848AC82DB6826D5` |
+| `results/tables/E16_prop3_margin_stratification.json` | 7,200 condition cells | `8C3A654B7B6C7C7B50CA13104F37A117D7F54F0C942799203D12CD7E96692043` |
+| `results/tables/E13_wmax_nominal_bound_sensitivity.json` | E13 Part B + E19 weighted arm | `8B72B4F9B9CC646473E1DAF707D68BA3BCF9516CA10F210E6B69674408C4ADB5` |
 
 The authoritative checksum file is
 `docs/submission/npjqi_checksums.sha256`. The bundle includes the three PDFs,
 the self-contained Springer Nature source, figure PDFs, submission metadata
-and the complete derived PSD-sensitivity, Proposition 3 and deployment-summary
-JSON artifacts.
+and the complete derived PSD-sensitivity, Proposition 3, deployment-summary,
+stage-decomposition, margin-stratification and weight-bound-sensitivity JSON
+artifacts.
 
 ## Governing documents
 
@@ -160,6 +187,9 @@ JSON artifacts.
 | `docs/submission/npjqi_submission_metadata.md` | Portal metadata, claim guardrails and final author checklist |
 | `scripts/verify_npjqi_submission.py` | Executable npj format and disclosure gate |
 | `scripts/verify_release_consistency.py` | Release gate for version/DOI/tag, real PDF page counts, hashes, ZIP and manifest |
+| `scripts/analyze_e16_stage_decomposition.py` | Deterministic E16 stage decomposition (derived, no new randomness; 0.3.6) |
+| `scripts/summarize_e16_prop3_margin_stratification.py` | Proposition-3 margin stratification of the frozen instantiation (0.3.6) |
+| `scripts/analyze_wmax_nominal_bound_sensitivity.py` | Sharp-nominal-bound sensitivity of the weighted certification on frozen streams (0.3.6) |
 
 ## Experimental levels
 
@@ -202,6 +232,18 @@ Version 0.3.5 changes submission hygiene only: natural formal-result numbering,
 the cover-letter date, release-document synchronization and a 0.5 pt
 bibliography-spacing microadjustment. The scientific baseline remains
 byte-identical to 0.3.4.
+Version 0.3.6 is the mechanistic-clarity / derived-analysis patch: it replays
+the 30 frozen E16 deployments through diagnostic counterfactual stages (fit,
+evaluation, calibration, threshold) and classifies the amplification under a
+predeclared rule (MIXED overall: recalibration generates almost all far-margin
+ideal-anchored flips in the raw pipeline and threshold refreezing partly
+compensates them; diagonal loading acts through a decision-function scale
+change), stratifies the Proposition-3 instantiation by margin, measures the
+price of the deliberate 2.05 weight-bound conservatism on identical frozen
+streams, and applies the corresponding framing and editorial corrections. No
+experiment, seed, sample, model, threshold rule, PSD repair, likelihood, CMS
+analysis or QPU job was added; the primary scientific artifacts remain
+byte-identical to 0.3.5.
 
 ## Repository layout
 

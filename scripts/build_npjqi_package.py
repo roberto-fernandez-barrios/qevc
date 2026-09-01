@@ -22,6 +22,9 @@ PROPOSITION4_ANALYSIS = ROOT / "results" / "tables" / "E16_proposition4_instanti
 PROPOSITION4_DEPLOYMENT_SUMMARY = (
     ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json"
 )
+STAGE_DECOMPOSITION = ROOT / "results" / "tables" / "E16_stage_decomposition.json"
+MARGIN_STRATIFICATION = ROOT / "results" / "tables" / "E16_prop3_margin_stratification.json"
+WMAX_SENSITIVITY = ROOT / "results" / "tables" / "E13_wmax_nominal_bound_sensitivity.json"
 
 
 def sha256(path: Path) -> str:
@@ -84,6 +87,9 @@ def main() -> None:
             ROOT / "results" / "tables" / "E16_psd_sensitivity.json": "source/results/tables/E16_psd_sensitivity.json",
             ROOT / "results" / "tables" / "E16_proposition4_instantiation.json": "source/results/tables/E16_proposition4_instantiation.json",
             ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json": "source/results/tables/E16_proposition4_deployment_summary.json",
+            STAGE_DECOMPOSITION: "source/results/tables/E16_stage_decomposition.json",
+            MARGIN_STRATIFICATION: "source/results/tables/E16_prop3_margin_stratification.json",
+            WMAX_SENSITIVITY: "source/results/tables/E13_wmax_nominal_bound_sensitivity.json",
         }
         for source, arcname in source_files.items():
             zf.write(source, arcname)
@@ -101,6 +107,9 @@ def main() -> None:
         PSD_ANALYSIS,
         PROPOSITION4_ANALYSIS,
         PROPOSITION4_DEPLOYMENT_SUMMARY,
+        STAGE_DECOMPOSITION,
+        MARGIN_STRATIFICATION,
+        WMAX_SENSITIVITY,
     ]
     lines = [f"{sha256(path)}  {path.relative_to(ROOT).as_posix()}" for path in checksum_targets]
     CHECKSUM_FILE.write_text("\n".join(lines) + "\n", encoding="utf-8")

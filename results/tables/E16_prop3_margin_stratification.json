@@ -1,0 +1,788 @@
+{
+ "analysis": "Proposition 3 instantiation stratified by ideal-margin magnitude |m*|",
+ "status": "DERIVED / NO NEW RANDOMNESS",
+ "numbering_note": "The source artifact name retains the pre-v0.3.5 identifier 'proposition4'; after natural renumbering the corresponding formal result is Proposition 3.",
+ "source": "results/tables/E16_proposition4_instantiation.json",
+ "source_sha256": "E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B",
+ "source_canonical_payload_sha256": "A7B7830AD4D7ABEC671B99980F00B0954F8073CE79EDAC36700A9F33CE7BD802",
+ "method": "each of the 7,200 condition cells is assigned to a bin by |ideal_margin|; within each bin and claim-semantics class the HOLDS/FAILS cells, paired audit streams, ternary verdict flips, opposite resolved verdicts and truth-sign flips are counted",
+ "bins": {
+  "edges": [
+   0.0,
+   0.005,
+   0.01,
+   0.02,
+   0.04,
+   0.08,
+   "inf"
+  ],
+  "labels": [
+   "[0,0.005)",
+   "[0.005,0.01)",
+   "[0.01,0.02)",
+   "[0.02,0.04)",
+   "[0.04,0.08)",
+   ">=0.08"
+  ]
+ },
+ "unit_of_analysis": "condition cell / paired audit stream; cells and streams within a deployment are correlated and are not independent replications; no IID test is performed",
+ "dependencies": [
+  "results/tables/E16_proposition4_instantiation.json"
+ ],
+ "limitations": [
+  "descriptive stratification of correlated cells",
+  "bins are post-hoc refinements of the registered far/moderate/near strata",
+  "HOLDS is a sufficient truth-sign condition; FAILS does not predict a flip"
+ ],
+ "totals": {
+  "condition_cells": 7200,
+  "audit_streams": 72000,
+  "holds_cells": 4943,
+  "fails_cells": 2257
+ },
+ "largest_abs_ideal_margin_among_FAILS_cells": {
+  "deployment_relative": 0.00401664,
+  "ideal_anchored": 0.10598336
+ },
+ "by_claim_semantics": {
+  "deployment_relative": {
+   "[0,0.005)": {
+    "HOLDS": {
+     "cells": 521,
+     "streams": 5210,
+     "verdict_flips": 255,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.048944,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 259,
+     "streams": 2590,
+     "verdict_flips": 62,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 112,
+     "verdict_flip_rate": 0.023938,
+     "truth_sign_flip_cell_rate": 0.432432
+    }
+   },
+   "[0.005,0.01)": {
+    "HOLDS": {
+     "cells": 600,
+     "streams": 6000,
+     "verdict_flips": 495,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.0825,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 0,
+     "streams": 0,
+     "verdict_flips": 0,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": null,
+     "truth_sign_flip_cell_rate": null
+    }
+   },
+   "[0.01,0.02)": {
+    "HOLDS": {
+     "cells": 720,
+     "streams": 7200,
+     "verdict_flips": 1146,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.159167,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 0,
+     "streams": 0,
+     "verdict_flips": 0,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": null,
+     "truth_sign_flip_cell_rate": null
+    }
+   },
+   "[0.02,0.04)": {
+    "HOLDS": {
+     "cells": 300,
+     "streams": 3000,
+     "verdict_flips": 231,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.077,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 0,
+     "streams": 0,
+     "verdict_flips": 0,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": null,
+     "truth_sign_flip_cell_rate": null
+    }
+   },
+   "[0.04,0.08)": {
+    "HOLDS": {
+     "cells": 600,
+     "streams": 6000,
+     "verdict_flips": 0,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.0,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 0,
+     "streams": 0,
+     "verdict_flips": 0,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": null,
+     "truth_sign_flip_cell_rate": null
+    }
+   },
+   ">=0.08": {
+    "HOLDS": {
+     "cells": 600,
+     "streams": 6000,
+     "verdict_flips": 0,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.0,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 0,
+     "streams": 0,
+     "verdict_flips": 0,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": null,
+     "truth_sign_flip_cell_rate": null
+    }
+   }
+  },
+  "ideal_anchored": {
+   "[0,0.005)": {
+    "HOLDS": {
+     "cells": 28,
+     "streams": 280,
+     "verdict_flips": 19,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.067857,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 752,
+     "streams": 7520,
+     "verdict_flips": 4799,
+     "opposite_resolved_verdicts": 71,
+     "truth_sign_flip_cells": 346,
+     "verdict_flip_rate": 0.638165,
+     "truth_sign_flip_cell_rate": 0.460106
+    }
+   },
+   "[0.005,0.01)": {
+    "HOLDS": {
+     "cells": 78,
+     "streams": 780,
+     "verdict_flips": 147,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.188462,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 522,
+     "streams": 5220,
+     "verdict_flips": 3697,
+     "opposite_resolved_verdicts": 91,
+     "truth_sign_flip_cells": 190,
+     "verdict_flip_rate": 0.708238,
+     "truth_sign_flip_cell_rate": 0.363985
+    }
+   },
+   "[0.01,0.02)": {
+    "HOLDS": {
+     "cells": 218,
+     "streams": 2180,
+     "verdict_flips": 844,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.387156,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 502,
+     "streams": 5020,
+     "verdict_flips": 3268,
+     "opposite_resolved_verdicts": 613,
+     "truth_sign_flip_cells": 241,
+     "verdict_flip_rate": 0.650996,
+     "truth_sign_flip_cell_rate": 0.48008
+    }
+   },
+   "[0.02,0.04)": {
+    "HOLDS": {
+     "cells": 190,
+     "streams": 1900,
+     "verdict_flips": 734,
+     "opposite_resolved_verdicts": 1,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.386316,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 110,
+     "streams": 1100,
+     "verdict_flips": 844,
+     "opposite_resolved_verdicts": 445,
+     "truth_sign_flip_cells": 83,
+     "verdict_flip_rate": 0.767273,
+     "truth_sign_flip_cell_rate": 0.754545
+    }
+   },
+   "[0.04,0.08)": {
+    "HOLDS": {
+     "cells": 504,
+     "streams": 5040,
+     "verdict_flips": 523,
+     "opposite_resolved_verdicts": 0,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.10377,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 96,
+     "streams": 960,
+     "verdict_flips": 807,
+     "opposite_resolved_verdicts": 539,
+     "truth_sign_flip_cells": 81,
+     "verdict_flip_rate": 0.840625,
+     "truth_sign_flip_cell_rate": 0.84375
+    }
+   },
+   ">=0.08": {
+    "HOLDS": {
+     "cells": 584,
+     "streams": 5840,
+     "verdict_flips": 160,
+     "opposite_resolved_verdicts": 1,
+     "truth_sign_flip_cells": 0,
+     "verdict_flip_rate": 0.027397,
+     "truth_sign_flip_cell_rate": 0.0
+    },
+    "FAILS": {
+     "cells": 16,
+     "streams": 160,
+     "verdict_flips": 160,
+     "opposite_resolved_verdicts": 112,
+     "truth_sign_flip_cells": 16,
+     "verdict_flip_rate": 1.0,
+     "truth_sign_flip_cell_rate": 1.0
+    }
+   }
+  }
+ },
+ "by_regime_and_claim_semantics": {
+  "raw": {
+   "deployment_relative": {
+    "[0,0.005)": {
+     "HOLDS": {
+      "cells": 276,
+      "streams": 2760,
+      "verdict_flips": 131,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.047464,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 114,
+      "streams": 1140,
+      "verdict_flips": 17,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 55,
+      "verdict_flip_rate": 0.014912,
+      "truth_sign_flip_cell_rate": 0.482456
+     }
+    },
+    "[0.005,0.01)": {
+     "HOLDS": {
+      "cells": 300,
+      "streams": 3000,
+      "verdict_flips": 239,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.079667,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    "[0.01,0.02)": {
+     "HOLDS": {
+      "cells": 360,
+      "streams": 3600,
+      "verdict_flips": 527,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.146389,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    "[0.02,0.04)": {
+     "HOLDS": {
+      "cells": 150,
+      "streams": 1500,
+      "verdict_flips": 105,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.07,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    "[0.04,0.08)": {
+     "HOLDS": {
+      "cells": 300,
+      "streams": 3000,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.0,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    ">=0.08": {
+     "HOLDS": {
+      "cells": 300,
+      "streams": 3000,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.0,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    }
+   },
+   "ideal_anchored": {
+    "[0,0.005)": {
+     "HOLDS": {
+      "cells": 17,
+      "streams": 170,
+      "verdict_flips": 11,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.064706,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 373,
+      "streams": 3730,
+      "verdict_flips": 2298,
+      "opposite_resolved_verdicts": 31,
+      "truth_sign_flip_cells": 177,
+      "verdict_flip_rate": 0.616086,
+      "truth_sign_flip_cell_rate": 0.474531
+     }
+    },
+    "[0.005,0.01)": {
+     "HOLDS": {
+      "cells": 44,
+      "streams": 440,
+      "verdict_flips": 65,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.147727,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 256,
+      "streams": 2560,
+      "verdict_flips": 1804,
+      "opposite_resolved_verdicts": 57,
+      "truth_sign_flip_cells": 99,
+      "verdict_flip_rate": 0.704688,
+      "truth_sign_flip_cell_rate": 0.386719
+     }
+    },
+    "[0.01,0.02)": {
+     "HOLDS": {
+      "cells": 119,
+      "streams": 1190,
+      "verdict_flips": 475,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.39916,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 241,
+      "streams": 2410,
+      "verdict_flips": 1532,
+      "opposite_resolved_verdicts": 302,
+      "truth_sign_flip_cells": 114,
+      "verdict_flip_rate": 0.635685,
+      "truth_sign_flip_cell_rate": 0.473029
+     }
+    },
+    "[0.02,0.04)": {
+     "HOLDS": {
+      "cells": 106,
+      "streams": 1060,
+      "verdict_flips": 421,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.39717,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 44,
+      "streams": 440,
+      "verdict_flips": 307,
+      "opposite_resolved_verdicts": 149,
+      "truth_sign_flip_cells": 30,
+      "verdict_flip_rate": 0.697727,
+      "truth_sign_flip_cell_rate": 0.681818
+     }
+    },
+    "[0.04,0.08)": {
+     "HOLDS": {
+      "cells": 265,
+      "streams": 2650,
+      "verdict_flips": 235,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.088679,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 35,
+      "streams": 350,
+      "verdict_flips": 239,
+      "opposite_resolved_verdicts": 177,
+      "truth_sign_flip_cells": 24,
+      "verdict_flip_rate": 0.682857,
+      "truth_sign_flip_cell_rate": 0.685714
+     }
+    },
+    ">=0.08": {
+     "HOLDS": {
+      "cells": 295,
+      "streams": 2950,
+      "verdict_flips": 51,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.017288,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 5,
+      "streams": 50,
+      "verdict_flips": 50,
+      "opposite_resolved_verdicts": 50,
+      "truth_sign_flip_cells": 5,
+      "verdict_flip_rate": 1.0,
+      "truth_sign_flip_cell_rate": 1.0
+     }
+    }
+   }
+  },
+  "psd_repaired": {
+   "deployment_relative": {
+    "[0,0.005)": {
+     "HOLDS": {
+      "cells": 245,
+      "streams": 2450,
+      "verdict_flips": 124,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.050612,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 145,
+      "streams": 1450,
+      "verdict_flips": 45,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 57,
+      "verdict_flip_rate": 0.031034,
+      "truth_sign_flip_cell_rate": 0.393103
+     }
+    },
+    "[0.005,0.01)": {
+     "HOLDS": {
+      "cells": 300,
+      "streams": 3000,
+      "verdict_flips": 256,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.085333,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    "[0.01,0.02)": {
+     "HOLDS": {
+      "cells": 360,
+      "streams": 3600,
+      "verdict_flips": 619,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.171944,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    "[0.02,0.04)": {
+     "HOLDS": {
+      "cells": 150,
+      "streams": 1500,
+      "verdict_flips": 126,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.084,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    "[0.04,0.08)": {
+     "HOLDS": {
+      "cells": 300,
+      "streams": 3000,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.0,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    },
+    ">=0.08": {
+     "HOLDS": {
+      "cells": 300,
+      "streams": 3000,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.0,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 0,
+      "streams": 0,
+      "verdict_flips": 0,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": null,
+      "truth_sign_flip_cell_rate": null
+     }
+    }
+   },
+   "ideal_anchored": {
+    "[0,0.005)": {
+     "HOLDS": {
+      "cells": 11,
+      "streams": 110,
+      "verdict_flips": 8,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.072727,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 379,
+      "streams": 3790,
+      "verdict_flips": 2501,
+      "opposite_resolved_verdicts": 40,
+      "truth_sign_flip_cells": 169,
+      "verdict_flip_rate": 0.659894,
+      "truth_sign_flip_cell_rate": 0.44591
+     }
+    },
+    "[0.005,0.01)": {
+     "HOLDS": {
+      "cells": 34,
+      "streams": 340,
+      "verdict_flips": 82,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.241176,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 266,
+      "streams": 2660,
+      "verdict_flips": 1893,
+      "opposite_resolved_verdicts": 34,
+      "truth_sign_flip_cells": 91,
+      "verdict_flip_rate": 0.711654,
+      "truth_sign_flip_cell_rate": 0.342105
+     }
+    },
+    "[0.01,0.02)": {
+     "HOLDS": {
+      "cells": 99,
+      "streams": 990,
+      "verdict_flips": 369,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.372727,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 261,
+      "streams": 2610,
+      "verdict_flips": 1736,
+      "opposite_resolved_verdicts": 311,
+      "truth_sign_flip_cells": 127,
+      "verdict_flip_rate": 0.665134,
+      "truth_sign_flip_cell_rate": 0.48659
+     }
+    },
+    "[0.02,0.04)": {
+     "HOLDS": {
+      "cells": 84,
+      "streams": 840,
+      "verdict_flips": 313,
+      "opposite_resolved_verdicts": 1,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.372619,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 66,
+      "streams": 660,
+      "verdict_flips": 537,
+      "opposite_resolved_verdicts": 296,
+      "truth_sign_flip_cells": 53,
+      "verdict_flip_rate": 0.813636,
+      "truth_sign_flip_cell_rate": 0.80303
+     }
+    },
+    "[0.04,0.08)": {
+     "HOLDS": {
+      "cells": 239,
+      "streams": 2390,
+      "verdict_flips": 288,
+      "opposite_resolved_verdicts": 0,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.120502,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 61,
+      "streams": 610,
+      "verdict_flips": 568,
+      "opposite_resolved_verdicts": 362,
+      "truth_sign_flip_cells": 57,
+      "verdict_flip_rate": 0.931148,
+      "truth_sign_flip_cell_rate": 0.934426
+     }
+    },
+    ">=0.08": {
+     "HOLDS": {
+      "cells": 289,
+      "streams": 2890,
+      "verdict_flips": 109,
+      "opposite_resolved_verdicts": 1,
+      "truth_sign_flip_cells": 0,
+      "verdict_flip_rate": 0.037716,
+      "truth_sign_flip_cell_rate": 0.0
+     },
+     "FAILS": {
+      "cells": 11,
+      "streams": 110,
+      "verdict_flips": 110,
+      "opposite_resolved_verdicts": 62,
+      "truth_sign_flip_cells": 11,
+      "verdict_flip_rate": 1.0,
+      "truth_sign_flip_cell_rate": 1.0
+     }
+    }
+   }
+  }
+ },
+ "canonical_payload_sha256": "0234609D85F6DDF1546D2B3DCEBA68226019D07C3912F564A9D3FC7D5F2DA084"
+}

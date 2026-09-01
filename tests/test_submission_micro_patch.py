@@ -55,6 +55,13 @@ def test_tier_a_resource_count_is_exact() -> None:
         assert token in MAIN
 
 
+DERIVED_0_3_6 = {
+    "results/tables/E16_stage_decomposition.json",
+    "results/tables/E16_prop3_margin_stratification.json",
+    "results/tables/E13_wmax_nominal_bound_sensitivity.json",
+}
+
+
 def test_protected_scientific_artifacts_match_v033() -> None:
     protected = (
         "configs",
@@ -72,4 +79,5 @@ def test_protected_scientific_artifacts_match_v033() -> None:
         capture_output=True,
         text=True,
     )
-    assert completed.stdout.strip() == ""
+    changed = {line.replace("\\", "/") for line in completed.stdout.split()}
+    assert changed <= DERIVED_0_3_6, changed - DERIVED_0_3_6

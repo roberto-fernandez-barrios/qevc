@@ -1180,3 +1180,88 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   `npjqi-submission-v1.3`.
 - **Release rule:** publish as `0.3.4 / npjqi-submission-v1.4`, preserving all
   prior tags and DOIs. No further general review is authorized.
+
+## D-046 — Mechanistic-clarity / derived-analysis patch (0.3.6)
+
+- **Date:** 2026-09-01
+- **Trigger:** an external adversarial review of release 0.3.5 reported that
+  the E16 far-margin ideal-anchored flip rates are a near-deterministic
+  function of each deployment's source-accuracy movement (Spearman −0.92)
+  while that movement is uncorrelated with the nominal-AUC change (−0.13),
+  that source and target movements are common-mode, that the Proposition-3
+  discrimination pools claim classes and margins, and that the 2.05 weight
+  bound is conservatism rather than a validity requirement for the
+  nominal-weight estimand. All five headline figures were reproduced from
+  the frozen JSON artifacts before any manuscript change.
+- **Scope (authorized):** deterministic replay of the 30 frozen RAW E16
+  deployments and their 30 existing minimum-diagonal-loading sensitivities;
+  deterministic aggregations of frozen artifacts; a weight-bound sensitivity
+  on exactly the archived streams; wording, structure, citation, caption and
+  internal-reference corrections. Not authorized and not done: QPU, IBM
+  minutes, kernel seeds, additional realizations, train/calibration/test
+  resamplings, stochastic or Frobenius-matched classical controls, datasets,
+  kernels, features, hyperparameters, claims, PSD repairs, template-statistics
+  likelihoods, CMS campaigns, without-replacement confidence sequences,
+  protocol changes, `final_eval`, retraining under new randomness, broad
+  shortening or figure reduction by preference.
+- **Falsifiers fixed before the replay:** F1 stage D must reproduce the
+  archived RAW and PSD endpoints exactly, else the analysis is unusable; F2
+  the stages must separate model/calibration/threshold without a new
+  undeclared choice, else NOT IDENTIFIABLE; F3 threshold dominance is written
+  only if measured; F4 common-mode movement must hold in RAW and PSD or the
+  difference is reported; F5 the stratification must reproduce all 7,200
+  cells; F6 the nominal-bound sensitivity is computed only after the
+  historical replay reproduces the archived tables exactly.
+- **Outcome:** F1 passed (30/30 RAW primary rows, 30/30 RAW and 30/30 PSD
+  archived payloads, zero Proposition-3 movement residual over 3,600 cells);
+  F2 passed (predeclared order fit → evaluation → calibration → threshold;
+  Platt slopes positive); F3: threshold is NOT dominant — under the
+  predeclared rule the RAW regime is MIXED (recalibration generates 99% of
+  the positive far-margin flip increment, 0.2% → 14.3%; threshold refreezing
+  carries half of the mean absolute metric attribution with the opposite sign
+  and returns far flips to 9.6%), the loaded regime is MODEL/RANKING-dominated
+  through a decision-function scale change (fit-only stage −0.053 source
+  accuracy at +0.017 AUC), and the overall label is MIXED; F4 passed in both
+  regimes (median |ΔM_T−ΔM_S| 0.0011/0.0012 against |ΔM_T| 0.019/0.022); F5
+  passed (7,200 cells, 4,943 HOLDS); F6 passed for E13 Part B and the E19
+  weighted arm (exact replays), after which the sharp bound shortened jointly
+  resolved claims by ~15%, moved the median n*_w/n*_unw from 1.66 to 1.34,
+  slightly reduced the resolved fraction and raised weighted false
+  certification from 2 to 12 of 8,580 (0.14%) and 6 to 12 of 7,980 (0.15%),
+  all below α. The weighting price is mostly intrinsic to the effective
+  sample size.
+- **Framing decisions:** C3 states that finite-shot perturbations need not
+  primarily degrade ranking and that their largest claim-level effects were
+  amplified downstream through recalibration and operating-threshold
+  selection; "measurement-induced" names the upstream source, and the
+  downstream mechanism is not claimed to be quantum-specific. The
+  deployment-relative stability is explained as common-mode cancellation
+  (Proposition 3 unchanged). Non-monotonicity is demoted to deployment
+  heterogeneity with outlier sensitivity. C2 leads with the adverse
+  independent-template result; the shared-simulation recovery is a
+  conditional diagnostic and its 1.8–3.4 width factor leaves the
+  Introduction. The abstract is rewritten in plain language (137 words) with
+  the 30 frozen deployments as its only quantitative anchor.
+- **Editorial corrections:** dangling `sec:related` self-reference and three
+  unused labels removed; `INFERNO \citealp` rendered as a numbered
+  citation; PTEP author spelling "Elharrauss" per the version of record; a
+  single correspondence note for the historical `proposition4` artifact
+  names in each document; the linear SVC and MLP baselines tabulated
+  (Supplementary Table S17); Fig. 8 caption defines a verdict flip and the
+  min–max bars; operational dates removed from the main text;
+  without-replacement confidence sequences cited as future work
+  (arXiv:2006.04347).
+- **Integrity rule:** configs, data, experiment runners, results, models,
+  feature map, hyperparameters, seeds, claims, thresholds, alpha, CMS, E16
+  primary and PSD artifacts, E20, QPU counts and the Proposition-3 sources are
+  byte-protected against `npjqi-submission-v1.5`; the only additions under
+  `results/tables/` are the three derived JSON artifacts.
+- **Release rule:** publish as `0.3.6 / npjqi-submission-v1.6` under the
+  reserved Zenodo version DOI `10.5281/zenodo.22235287` (concept
+  `10.5281/zenodo.21894291`), preserving all prior tags and DOIs.
+- **Hard stop:** remaining suggestions are classified as A (invalidator), B
+  (unequivocal editorial correction), C (reviewer preference) or D (new
+  scientific project); 50+ deployments, stochastic-RBF or Frobenius-matched
+  classical controls, new PSD repairs, Barlow–Beeston/HistFactory/pyhf
+  likelihoods, without-replacement theorems, more QPU or qubits are D; broad
+  shortening and figure reduction by preference are C.

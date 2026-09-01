@@ -1,9 +1,11 @@
 # npj Quantum Information submission metadata
 
-Status: final submission-hygiene release on 2026-09-01; not yet submitted.
+Status: mechanistic-clarity / derived-analysis release 0.3.6 on 2026-09-01; not yet submitted.
 
-- Release version: `0.3.5` / `npjqi-submission-v1.5`
-- Version DOI: `10.5281/zenodo.22231469`
+- Release version: `0.3.6` / `npjqi-submission-v1.6`
+- Version DOI: `10.5281/zenodo.22235287`
+- Historical `0.3.5` / `npjqi-submission-v1.5` DOI:
+  `10.5281/zenodo.22231469`
 - Historical `0.3.4` / `npjqi-submission-v1.4` DOI:
   `10.5281/zenodo.22229290`
 - Historical `0.3.3` / `npjqi-submission-v1.3` DOI:
@@ -35,26 +37,25 @@ Compliance: 13 words; no punctuation, idiom, or pun.
 
 ## Abstract
 
-Claims made by deployed quantum machine-learning classifiers can fail under
-target shift or when finite-shot quantum evaluation randomizes the model. We
-develop an information-conditional, fail-closed framework returning supported,
-refuted or unresolved verdicts. Anytime-valid error control applies to each
-fixed I2 label-stream claim, conditional on the frozen finite audit population
-under declared with-replacement sampling; I3 and CMS procedures are separately
-coverage-gated or calibrated. On a Higgs-to-tau-tau benchmark, we give an exact
-fixed-threshold reduction for physics-weighted ratio claims and a feature-only
-identifiability boundary. Stable classifier metrics do not ensure
-signal-strength coverage. Finite-shot deployments propagate each realized Gram
-through refitting, calibration and thresholding. Deterministic replay
-instantiates the sufficient sign-stability bound and shows that it discriminates
-observed instability while remaining sufficient rather than necessary. All evaluated far-margin
-deployment-relative claims were true and remained supported across raw and
-PSD-repaired realizations. Matched classical controls remove apparent
-quantum-specific performance and sensing effects. We claim no quantum
-advantage.
+Claims about a deployed quantum machine-learning classifier can fail when the
+target data shift or when finite-shot quantum evaluation randomizes the model
+itself. We develop an information-conditional, fail-closed auditing framework
+that returns supported, refuted or unresolved verdicts with anytime-valid
+per-claim error control under a declared sampling protocol. On a
+Higgs-to-tau-tau collider benchmark, stable classifier metrics do not guarantee
+valid signal-strength inference: the evaluated fixed-template profile can lose
+coverage, even in shift-free controls, when its simulation templates are
+estimated independently. Across 30 frozen finite-shot quantum-kernel
+deployments, every realized Gram matrix is propagated through refitting,
+calibration and threshold selection; a deterministic stage decomposition shows
+that the finite-shot perturbation leaves ranking largely intact and is
+amplified at the operating point, where recalibration and threshold refreezing
+relocate the claims. Matched classical controls remove apparent
+quantum-specific effects. We claim no quantum advantage.
 
-Compliance: at most 150 words by the repository verifier; no citations,
-equations, or subheadings.
+Compliance: 137 words (130--145 target, at most 150 by the repository
+verifier); no citations, equations, subheadings or undefined internal labels
+(I2, I3, CMS, PSD).
 
 ## Keywords
 
@@ -89,6 +90,36 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 
 ## Scientific guardrails
 
+- E16 stage decomposition (0.3.6, `E16_stage_decomposition.json`): the 30
+  frozen raw deployments and their 30 diagonal-loading counterparts were
+  replayed through diagnostic counterfactual stages (fit-only, model-only,
+  model+calibration, full deployment). Stage D reproduces every archived
+  endpoint exactly. Under the predeclared rule the raw regime is MIXED
+  (recalibration generates 99% of the positive far-margin ideal-anchored flip
+  increment; threshold refreezing carries half of the metric attribution with
+  the opposite sign), the loaded regime is MODEL/RANKING-dominated through a
+  decision-function scale change, and the overall label is MIXED. The stages
+  are counterfactuals, the attribution is order-dependent, and no stage is a
+  deployed pipeline. Do not write that the mechanism is threshold-dominated.
+- The measurement-induced origin names the upstream finite-shot perturbation;
+  the downstream amplification through recalibration and threshold selection
+  is not claimed to be exclusive to quantum pipelines, and classical
+  analogues are not measured.
+- Non-monotonicity of the intermediate E16 budgets is not a substantive
+  result: the intermediate means are dominated by single deployments
+  (heterogeneity and outlier sensitivity); no population trend is claimed.
+- Proposition-3 margin stratification (`E16_prop3_margin_stratification.json`):
+  for ideal-anchored claims HOLDS/FAILS remains descriptively informative
+  within every |m*| bin; for deployment-relative claims FAILS occurs only at
+  |m*| < 0.005 (largest 0.0040) because movements are common-mode, so the
+  same interpretation is not supported for that class.
+- Weight bound: kappa_norm = 2.05 is deliberate conservatism, not a validity
+  requirement for the nominal-weight estimands; the registered analysis is
+  unchanged and the sharp-nominal-bound sensitivity
+  (`E13_wmax_nominal_bound_sensitivity.json`) is post hoc, on identical frozen
+  streams, with exact historical replays verified first.
+- Without-replacement confidence sequences are cited as future work only; the
+  theorem, protocol and the with-replacement meaning of n* are unchanged.
 - Historical alpha-plus-three-sigma implementation gates used binomial
   heuristics over stream/cell counts. Because pooled streams share audit draws,
   deployments, claims and thresholds, those quantities are not interpreted as

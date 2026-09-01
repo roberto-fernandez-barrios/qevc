@@ -265,6 +265,7 @@ Final mathematical/editorial, 2026-08-12 & Proposition 2, Theorem 1, Proposition
 Senior-author pre-submission, 2026-08-13 & Observable experiments, Proposition 4, weighted-inference literature, E16 deployment unit, C2 narrative, CMS wording and concision & Added the missing sign-stability premise and counterexample; separated feature-conditioned evidence from counts; reanalyzed all 30 existing E16 deployments without new runs; retired IID environment $p$-values; updated related-manuscript status and reduced audit-history prose in the main paper. \\
 Final pre-submission patch, 2026-08-31 & Primary literature, novelty claims, abstract hierarchy, methods, supplement, release metadata and rendered artifacts & Added the closest competitive work, removed priority language, made Contribution 3 deployment semantics primary, expanded protocol detail, and synchronized editorial/release records. No experiment, dataset, model, configuration or primary result changed. \\
 Final technical PSD audit, 2026-08-31 & The 30 frozen E16 deployments, LIBSVM semantics, hardware-entry provenance and sealed-role wording & Deterministically replayed every raw deployment, measured the complete training-Gram spectra, applied one declared minimum-diagonal-loading sensitivity, and classified the result \textsc{PSD-sensitive-but-scoped}. No new Gram realization, seed, sample or QPU job was generated. \\
+Mechanistic-clarity / derived-analysis patch, 2026-09-01 & The 30 frozen E16 deployments and their loaded counterparts, the Proposition-3 instantiation, the E13/E19 weighted audits, C2/C3 framing & Deterministic counterfactual stage decomposition after exact endpoint reproduction (predeclared classification \textsc{mixed}: recalibration generates the far-margin flips, threshold refreezing partly compensates); Proposition 3 stratified by margin; weight-bound conservatism measured on identical streams; plain-language abstract; adverse independent-template result leads Contribution 2; editorial corrections. No new randomness, seed, sample, model, repair, likelihood or QPU job. \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -388,7 +389,10 @@ the final deterministic raw/PSD replay reconstructs
 $\Delta M_T$ and $\Delta M_T-\Delta M_S$ and instantiates Proposition 3 in
 Table~\ref{tab:prop4-instantiation}. Sources:
 \texttt{results/tables/E16\_quantum\_uncertainty.json} and
-\texttt{results/tables/E16\_proposition4\_instantiation.json}.}
+\texttt{results/tables/E16\_proposition4\_instantiation.json}. The archived
+artifact names retain the historical identifier `proposition4' used before the
+formal results were renumbered; the corresponding formal result is
+Proposition 3.}
 \label{fig:s16}
 \end{figure}
 
@@ -397,8 +401,9 @@ realization, five per shot budget. Within a deployment, 200 far, 170 moderate
 and 230 near claims share the Gram matrix, refit, calibration, threshold and
 audit streams; their count is not an IID sample size. Audit streams are paired
 across deployments, so comparisons also share common random numbers. The far ideal-anchored deployment means are
-20.8, 17.7, 0.9, 11.9, 5.8 and 0.4\%, so the intermediate sequence is
-non-monotonic. At the endpoints the sample SDs are 19.9 and 0.65\%, ranges are
+20.8, 17.7, 0.9, 11.9, 5.8 and 0.4\%; the intermediate values are each
+dominated by one or two deployments, so the sequence reflects deployment
+heterogeneity and outlier sensitivity rather than a budget trend. At the endpoints the sample SDs are 19.9 and 0.65\%, ranges are
 0--44 and 0--1.5\%, and leave-one-deployment-out means are 15--26 and
 0.13--0.50\%. These are descriptive dispersion and sensitivity summaries, not
 population confidence intervals. Five deployments per budget permit only a
@@ -525,7 +530,7 @@ rates are zero in the far stratum, at most 19.9\% in moderate and 7.6\% in near;
 ideal-anchored compositions move more strongly. Nevertheless, the observed
 support stability of the evaluated true far-margin deployment-relative claims,
 ideal-anchored heterogeneity,
-non-monotonic budget sequence and endpoint reduction all survive. The exact
+outlier sensitivity and endpoint reduction all survive. The exact
 deployment metrics, thresholds, target metrics, abstention, verdict
 compositions and transitions are archived in the source JSON. The audit
 verdict is therefore \textsc{PSD-sensitive-but-scoped}: Contribution 3's
@@ -628,6 +633,145 @@ Truth-sign flips among F (\%) & \shortstack{50.0 [37.5, 66.7]\\0.0--75.0} & \sho
 }
 \end{table}
 
+Table~\ref{tab:prop3-stratification} stratifies the same 7,200 cells by the
+magnitude of the ideal margin. The bins refine the registered far/moderate/near
+strata and are descriptive. For ideal-anchored claims the HOLDS/FAILS
+distinction remains informative within every bin: paired-stream flip rates are
+2.7--38.7\% when the inequality holds and 63.8--100\% when it fails. For
+deployment-relative claims the inequality fails only when
+$|m^\star|<0.005$ (largest failing margin 0.0040), because the relevant
+movement $\Delta M_T-\Delta M_S$ is itself small in E16 (median 0.0011,
+maximum 0.0063 over both regimes); in that single bin the failing cells flip
+less often (2.4\%) than the holding cells (4.9\%), so the same interpretation
+is not supported for that class. Source and target movements are predominantly
+common-mode, and the deployment-relative margin cancels most of the observed
+deployment perturbation; the formal sufficient condition is general, but the
+empirical deployment-relative stability observed here is largely explained by
+this common-mode cancellation.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Proposition 3 instantiation stratified by ideal-margin magnitude
+$|m^\star|$, pooled over the raw and PSD-sensitivity regimes. ``H''/``F'': the
+strict sufficient inequality holds/fails; flip rates are ternary verdict flips
+per paired audit stream. Cells and streams within a deployment are correlated
+and no IID test is performed. Source:
+\texttt{results/tables/E16\_prop3\_margin\_stratification.json}.}
+\label{tab:prop3-stratification}
+\begin{tabular}{llrrrr}
+\toprule
+Class & $|m^\star|$ & H cells & F cells & Flips H (\%) & Flips F (\%) \\
+\midrule
+deployment-relative & $[0,0.005)$ & 521 & 259 & 4.9 & 2.4 \\
+deployment-relative & $[0.005,0.01)$ & 600 & 0 & 8.3 & -- \\
+deployment-relative & $[0.01,0.02)$ & 720 & 0 & 15.9 & -- \\
+deployment-relative & $[0.02,0.04)$ & 300 & 0 & 7.7 & -- \\
+deployment-relative & $[0.04,0.08)$ & 600 & 0 & 0.0 & -- \\
+deployment-relative & $\geq0.08$ & 600 & 0 & 0.0 & -- \\
+ideal-anchored & $[0,0.005)$ & 28 & 752 & 6.8 & 63.8 \\
+ideal-anchored & $[0.005,0.01)$ & 78 & 522 & 18.8 & 70.8 \\
+ideal-anchored & $[0.01,0.02)$ & 218 & 502 & 38.7 & 65.1 \\
+ideal-anchored & $[0.02,0.04)$ & 190 & 110 & 38.6 & 76.7 \\
+ideal-anchored & $[0.04,0.08)$ & 504 & 96 & 10.4 & 84.1 \\
+ideal-anchored & $\geq0.08$ & 584 & 16 & 2.7 & 100.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Stage decomposition of the frozen E16 deployments}
+\label{sec:stage-decomposition}
+
+To locate where the finite-shot perturbation is amplified, the 30 raw
+deployments and their 30 minimum-diagonal-loading counterparts were replayed
+deterministically from the frozen RNG schedule and evaluated at diagnostic
+counterfactual stages: A, the ideal deployment; B0, the SVC refitted on the
+realized training Gram but evaluated on the exact source/target cross-Grams
+with the ideal Platt map and threshold; B, the realized decision function
+(noisy fit and noisy cross-Grams) with the ideal Platt map and threshold; C,
+the realized decision function with its deployment-specific Platt map and the
+ideal probability threshold; and D, the archived full deployment with its own
+refrozen threshold. Stages B0--C were never deployed; they are diagnostic
+counterfactuals. Stage D reproduced every archived RAW primary summary and
+every archived PSD-sensitivity summary exactly, and the movements
+$\Delta M_S$ and $\Delta M_T$ matched the frozen Proposition-3 instantiation
+with zero residual in all 3,600 cells, before any stage was interpreted. The
+four increments of the source metric telescope exactly to the full movement;
+the attribution is sequential and depends on the declared pipeline order
+(fit, evaluation cross-Grams, calibration, operating threshold), and a
+different order could redistribute it. The classification rule was fixed
+before the replay: a stage group (model/ranking $=$ fit $+$ evaluation;
+calibration; threshold) dominates a regime when both its share of the mean
+absolute source-metric increment and its share of the positive far-margin
+ideal-anchored flip increment are at least one half; the regime label
+requires the unweighted and weighted families to agree, otherwise
+\textsc{mixed}. No new randomness, seed, sample, model, threshold rule, PSD
+repair or QPU job was introduced; the artifact is
+\texttt{results/tables/E16\_stage\_decomposition.json}.
+
+Table~\ref{tab:stage-decomposition} summarizes the stages. In the raw
+pipeline the realized decision function keeps the ideal ranking moderately
+well (median Spearman 0.92, Kendall 0.78 on \texttt{source\_val}; 0.95 and
+0.84 for the fit-only stage) and changes nominal AUC by a median $+0.001$. The
+increments of source unweighted accuracy have mean absolute values 0.0015
+(fit), 0.0059 (evaluation), 0.0122 (calibration) and 0.0197 (threshold), i.e.\
+shares 3.9, 15.1, 31.0 and 50.0\%; their medians are $-0.0009$, $-0.0041$,
+$-0.0092$ and $+0.0090$, so the threshold step carries the largest absolute
+movement but with the sign opposite to recalibration. Far-margin
+ideal-anchored flips are 0.0, 0.2, 14.3 and 9.6\% at B0, B, C and D:
+recalibration at the fixed probability threshold generates almost all of them
+(99\% of the positive flip increment) and threshold refreezing removes part of
+them. By the predeclared rule the raw regime is \textsc{mixed}. In the
+loaded regime the fit-only stage already moves source accuracy by a median
+$-0.053$ while AUC rises by a median 0.017 and ranking stability is unchanged:
+diagonal loading rescales the decision function, so the ideal Platt map no
+longer matches its scale. Recalibration and threshold refreezing then recover
+most of the movement (far flips 60.3, 64.9, 31.4 and 17.9\%). The rule labels
+that regime \textsc{model/ranking-dominated}, with the qualification that the
+model-stage increment is a scale change rather than a ranking loss; the
+overall classification is \textsc{mixed}. The metric that selects the
+operating point is more stable than the audited estimands: at stage D the
+weighted balanced accuracy moves by a median 0.007 in both regimes, against
+0.014 (raw) and 0.015 (loaded) for unweighted accuracy and 0.024 and 0.029
+for weighted accuracy, and it is the smaller movement in 25 of 30 raw and 28
+of 30 loaded deployments. Source and target movements remain common-mode at
+every stage (stage D: median $|\Delta M_T-\Delta M_S|$ of 0.0010 and 0.0012
+against median $|\Delta M_T|$ of 0.014 and 0.013).
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Stage decomposition of the 30 frozen E16 deployments (RAW) and their
+30 minimum-diagonal-loading counterparts (PSD). Entries summarize the 30
+deployments of each regime: $\Delta M_S$ is the source unweighted-accuracy
+movement relative to the ideal deployment (median [min, max]);
+$\Delta\mathrm{BA}_w$ and $\Delta$AUC are the median movements of source
+weighted balanced accuracy and nominal-target weighted AUC; $\rho_S$ is the
+median Spearman correlation between the stage's and the ideal decision
+function on \texttt{source\_val}; the last four columns are mean verdict-flip
+rates (\%) against the ideal audit for ideal-anchored (IA) claims by margin
+stratum and for moderate deployment-relative (DR) claims. Stages B0--C are
+diagnostic counterfactuals; stage D is the archived deployment. Source:
+\texttt{results/tables/E16\_stage\_decomposition.json}.}
+\label{tab:stage-decomposition}
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Regime & Stage & $\Delta M_S$ median [min, max] & $\Delta\mathrm{BA}_w$ & $\Delta$AUC & $\rho_S$ & IA far & IA mod. & IA near & DR mod. \\
+\midrule
+RAW & B0 & $-0.0009$ [$-0.0023$, $+0.0084$] & $-0.0196$ & $+0.0092$ & 0.954 & 0.0 & 10.7 & 5.6 & 7.8 \\
+RAW & B & $-0.0059$ [$-0.0175$, $+0.0004$] & $-0.0248$ & $+0.0010$ & 0.923 & 0.2 & 32.6 & 26.4 & 10.9 \\
+RAW & C & $-0.0154$ [$-0.0431$, $-0.0018$] & $-0.0225$ & $+0.0010$ & 0.923 & 14.3 & 58.6 & 62.2 & 12.0 \\
+RAW & D & $-0.0082$ [$-0.0856$, $+0.0217$] & $-0.0067$ & $+0.0010$ & 0.923 & 9.6 & 53.6 & 60.6 & 12.4 \\
+PSD & B0 & $-0.0535$ [$-0.1094$, $-0.0200$] & $-0.0236$ & $+0.0167$ & 0.947 & 60.3 & 78.5 & 93.9 & 17.0 \\
+PSD & B & $-0.0608$ [$-0.1379$, $-0.0217$] & $-0.0269$ & $+0.0105$ & 0.921 & 64.9 & 78.8 & 94.1 & 18.5 \\
+PSD & C & $-0.0241$ [$-0.0642$, $-0.0071$] & $-0.0156$ & $+0.0105$ & 0.921 & 31.4 & 70.7 & 79.9 & 15.7 \\
+PSD & D & $-0.0096$ [$-0.0901$, $+0.0241$] & $-0.0030$ & $+0.0105$ & 0.921 & 17.9 & 57.9 & 65.0 & 14.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \clearpage
 \subsection{Independent-MC split studies (E08v3)}
 
@@ -714,6 +858,68 @@ new Monte Carlo run.}
 \end{table}
 \FloatBarrier
 
+\subsection{Sharp-nominal-bound sensitivity of the weighted certification}
+\label{supp:wmax}
+
+The registered bound is $w_{\max}=2.05\times\max_i w_i^{(0)}$, the factor
+covering compound nuisance weight scalings (Section~S1.1). After the D-032
+estimand correction every executed I2 weighted claim in E13 Part B and E19
+audits a nominal-weight estimand, whose revealed increment $u_i$ never exceeds
+the nominal maximum. The factor 2.05 is therefore deliberate conservatism
+rather than a validity requirement for those claims, and its stopping-time
+price can be measured without new randomness: the frozen E13 Part-B runner and
+the frozen E19 weighted-arm loop were replayed with the registered bound,
+required to reproduce the archived tables exactly (they did, cell by cell),
+and then replayed with $w_{\max}=\max_i w_i^{(0)}$ on the same populations,
+audit draws, order, labels, thresholds, $\alpha$ and confidence-sequence
+implementation (Table~\ref{tab:wmax}). The registered analysis remains
+primary. Because the empirical-Bernstein radius is variance-adaptive, the
+transformed margin and the transformed standard deviation scale together with
+$w_{\max}$, so the bound enters only through the finite-sample terms: the
+sharp bound shortens jointly resolved claims by about 15\% (per-claim ratio of
+median $n^*$ 0.85, IQR 0.67--0.98, over 590 cells) and lowers the median
+weighted/unweighted stopping-time ratio from 1.66 to 1.34, while slightly
+reducing the resolved fraction and raising the weighted false-certification
+count from 2 to 12 of 8,580 streams in E13 (0.14\%) and from 6 to 12 of 7,980
+in E19 (0.15\%), all below $\alpha$. Resolution moves toward the boundary:
+among the 323 E13 cells with $|\mathrm{margin}|<0.01$ the resolved streams
+rise from 46 to 72, whereas among the 312 cells with $|\mathrm{margin}|\geq0.04$
+they fall from 6,082 to 5,945. This is consistent with the early, capped-$\lambda$
+regime of the predictable plug-in sequence, in which the radius scales with the
+transformed variance rather than its square root, so a looser bound is not
+uniformly worse. The weighting cost reported in the main
+text is therefore mostly intrinsic to the effective sample size of the
+physics weights, not bound conservatism. The analysis is post hoc and does not
+replace the registered 2.05 bound.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Sharp-nominal-bound sensitivity on identical frozen audit streams.
+E13 Part B: development world, weighted-accuracy claims (19,680 streams) and
+class-conditional claims (13,120 streams); E19: fresh world, weighted arm
+(19,680 streams). E13 stopping times are medians over the cell medians of
+resolved streams; E19 stopping times are medians over resolved streams. Source:
+\texttt{results/tables/E13\_wmax\_nominal\_bound\_sensitivity.json}.}
+\label{tab:wmax}
+\begin{tabular}{lrrrr}
+\toprule
+ & E13, $\kappa=2.05$ & E13, $\kappa=1.0$ & E19, $\kappa=2.05$ & E19, $\kappa=1.0$ \\
+\midrule
+$w_{\max}$ & 14.8914 & 7.2641 & 14.8096 & 7.2242 \\
+Resolved streams, $A_w$ claims & 7,079 (36.0\%) & 6,882 (35.0\%) & 6,854 (34.8\%) & 6,583 (33.5\%) \\
+False certification & 2/8,580 & 12/8,580 & 6/7,980 & 12/7,980 \\
+False refutation & 0/11,100 & 0/11,100 & 4/11,700 & 5/11,700 \\
+Median $n^*_w$ & 1,229 (617 cells) & 1,001 (631 cells) & 682.5 & 558 \\
+Median $n^*_w/n^*_{\mathrm{unw}}$ [IQR] & 1.66 [1.11, 3.00] & 1.34 [1.00, 2.10] & -- & -- \\
+Resolved streams, class-conditional & 3,411 (26.0\%) & 3,236 (24.7\%) & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
 \section{Computational, inference and hardware protocol details}
 
 \small
@@ -751,6 +957,36 @@ Feature & Operational definition \\
 \texttt{DER\_pt\_h} & Magnitude of the vector sum of hadronic-tau, lepton, and MET transverse momenta. \\
 \texttt{DER\_sum\_pt} & Scalar sum of hadronic-tau, lepton, and all selected-jet transverse momenta. \\
 \texttt{PRI\_met} & Magnitude of missing transverse momentum. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Nominal-baseline test performance of every trained model (E01;
+development world, \texttt{nominal\_test} role, single development seed).
+Physics-weighted AUC with a bootstrap 95\% interval and weighted balanced
+accuracy at the frozen threshold. Tier A trains on the matched 2,000-event
+subset; Tier B on all 109,699 training events. The linear SVC and MLP appear
+in the main text only as comparators. Source:
+\texttt{results/tables/E01\_nominal.json}.}
+\label{tab:e01models}
+\begin{tabular}{llrlr}
+\toprule
+Tier & Model & Features & Weighted AUC [95\% CI] & $\mathrm{BA}_w$ \\
+\midrule
+A & linear SVC & 28 & 0.716 [0.665, 0.766] & 0.658 \\
+A & RBF-SVC & 28 & 0.789 [0.696, 0.851] & 0.748 \\
+A & RBF-SVC (matched, 8 features) & 8 & 0.860 [0.811, 0.892] & 0.811 \\
+A & XGBoost & 28 & 0.860 [0.799, 0.900] & 0.806 \\
+A & LightGBM & 28 & 0.854 [0.784, 0.896] & 0.806 \\
+A & MLP & 28 & 0.780 [0.699, 0.841] & 0.705 \\
+A & QK-SVC & 8 & 0.837 [0.782, 0.876] & 0.775 \\
+B & linear SVC & 28 & 0.801 [0.766, 0.839] & 0.698 \\
+B & XGBoost & 28 & 0.909 [0.883, 0.927] & 0.836 \\
+B & LightGBM & 28 & 0.908 [0.879, 0.928] & 0.844 \\
+B & MLP & 28 & 0.877 [0.853, 0.900] & 0.806 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -943,7 +1179,11 @@ The main machine-readable sources for this supplement are under
 \item \path{E16_proposition4_instantiation.json};
 \item \path{E16_proposition4_deployment_summary.json};
 \item \path{E08v2_independent_mc.json} and \path{E08v3_multidraw.json};
-\item \path{E13v2_baw_allocation.json}.
+\item \path{E13v2_baw_allocation.json};
+\item \path{E16_prop3_margin_stratification.json},
+  \path{E16_stage_decomposition.json} and
+  \path{E13_wmax_nominal_bound_sensitivity.json} (derived, no new
+  randomness; version 0.3.6).
 \end{itemize}
 The frozen protocols and post-run dispositions are in
 \path{docs/experiment_registry.md}, \path{docs/decisions.md}, and the dated

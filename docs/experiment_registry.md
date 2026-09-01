@@ -655,6 +655,19 @@ entry.
      where the sharp one-sample reduction applies — manuscript
      limitation, and a sharper pre-split component allocation is noted as
      future work.
+  6. **Sharp-nominal-bound sensitivity (2026-09-01, version 0.3.6, derived
+     only):** for the D-032 nominal-weight estimand the revealed increment
+     never exceeds max_i w_i^(0), so κ_norm = 2.05 is deliberate
+     conservatism rather than a validity requirement. The frozen Part-B
+     runner was replayed with κ = 2.05 (exact match with the archived table,
+     cell by cell) and then with κ = 1.0 on identical streams: jointly
+     resolved claims stop ~15% earlier (per-claim ratio median 0.85), the
+     median n*_w/n*_unw moves from 1.664 to 1.336, the resolved fraction of
+     A_w streams moves from 36.0% to 35.0% (resolution shifts toward
+     near-boundary cells), and weighted false certification rises from
+     2/8,580 to 12/8,580 (0.14% ≤ α). The E19 weighted arm replicates the
+     pattern (6/7,980 → 12/7,980). The registered analysis is unchanged;
+     artifact `results/tables/E13_wmax_nominal_bound_sensitivity.json`.
 
 ## E14 — Information set I3
 
@@ -1042,6 +1055,31 @@ entry.
      **INFORMATIVELY INSTANTIATED**. Artifact:
      `results/tables/E16_proposition4_instantiation.json`; no new randomness,
      sample, seed, QPU job or campaign arm was introduced.
+  10. **Stage decomposition (2026-09-01, version 0.3.6, deterministic
+     counterfactual replay only):** the 30 frozen RAW deployments and their
+     30 diagonal-loading counterparts were replayed and evaluated at
+     diagnostic stages (B0 fit-only, B model-only, C model+calibration, D
+     full deployment), after stage D reproduced every archived endpoint
+     exactly. Predeclared classification: RAW MIXED (recalibration at the
+     fixed probability threshold generates 99% of the positive far-margin
+     ideal-anchored flip increment, 0.2% → 14.3%; threshold refreezing
+     carries half of the mean absolute metric attribution with the opposite
+     sign and returns far flips to 9.6%); loaded regime MODEL/RANKING-
+     dominated through a decision-function scale change (fit-only −0.053
+     source accuracy at +0.017 AUC, ranking unchanged); overall MIXED.
+     Ranking stability of the realized decision function: median Spearman
+     0.92, Kendall 0.78. The weighted balanced accuracy that selects the
+     operating point moves less than the audited accuracies (median 0.007
+     vs 0.014/0.024; smaller in 25/30 RAW and 28/30 loaded deployments).
+     Artifact `results/tables/E16_stage_decomposition.json`. No new
+     randomness, seed, sample, model, threshold rule, PSD repair or QPU job.
+  11. **Margin stratification of the Proposition-3 instantiation (0.3.6):**
+     for ideal-anchored claims HOLDS/FAILS remains informative within every
+     |m*| bin (flips 2.7–38.7% vs 63.8–100%); for deployment-relative claims
+     FAILS occurs only at |m*| < 0.005 (largest 0.0040) because movements
+     are common-mode (median |ΔM_T−ΔM_S| 0.0011/0.0012 vs |ΔM_T|
+     0.019/0.022 in RAW/PSD). Artifact
+     `results/tables/E16_prop3_margin_stratification.json`.
 
 ## E11v2 — Strengthened CMS real-data demonstration
 
