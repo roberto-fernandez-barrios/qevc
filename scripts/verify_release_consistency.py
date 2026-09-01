@@ -355,6 +355,17 @@ def validate(
     )
 
     archive = ROOT / "dist" / "npjqi-submission.zip"
+
+    def zip_source_matches(archived: bytes, checked_out: bytes) -> bool:
+        if require_build_evidence:
+            return archived == checked_out
+        # A source-only checkout may apply platform EOL rules to ordinary
+        # manuscript text.  Release mode remains byte-strict; CI mode compares
+        # only the newline-normalized source while artifact hashes stay exact.
+        return archived.replace(b"\r\n", b"\n") == checked_out.replace(
+            b"\r\n", b"\n"
+        )
+
     try:
         with zipfile.ZipFile(archive) as bundle:
             bad_member = bundle.testzip()
@@ -372,14 +383,17 @@ def validate(
             if metadata_member in names:
                 check(
                     "submission ZIP metadata synchronized",
-                    bundle.read(metadata_member) == SUBMISSION_METADATA.read_bytes(),
+                    zip_source_matches(
+                        bundle.read(metadata_member),
+                        SUBMISSION_METADATA.read_bytes(),
+                    ),
                 )
             for member, source in ZIP_SOURCES.items():
                 check(f"submission ZIP contains {member}", member in names)
                 if member in names:
                     check(
                         f"submission ZIP source matches {source.relative_to(ROOT).as_posix()}",
-                        bundle.read(member) == source.read_bytes(),
+                        zip_source_matches(bundle.read(member), source.read_bytes()),
                     )
     except zipfile.BadZipFile as exc:
         check("submission ZIP readable", False, str(exc))

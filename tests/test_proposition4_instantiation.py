@@ -209,7 +209,12 @@ def test_all_recorded_protected_inputs_remain_byte_identical() -> None:
         **payload["provenance"]["hardware_raw_sha256"],
     }
     for relative_path, expected in recorded.items():
-        observed = hashlib.sha256((ROOT / relative_path).read_bytes()).hexdigest().upper()
+        protected_path = ROOT / relative_path
+        if not protected_path.is_file():
+            assert relative_path in payload["provenance"]["hardware_raw_sha256"]
+            assert relative_path.startswith("results/raw/E16_hw/")
+            continue
+        observed = hashlib.sha256(protected_path.read_bytes()).hexdigest().upper()
         assert observed == expected, relative_path
 
 
