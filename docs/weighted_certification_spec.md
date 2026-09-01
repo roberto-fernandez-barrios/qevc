@@ -6,6 +6,13 @@ derived from looking at E13 data: it fixes estimands, guarantees, and
 falsifiers first. The 2026-08-13 amendment narrows the observable-experiment
 scope and terminology without changing an experiment or result.
 
+**Retrospective statistical interpretation (2026-09-01; D-045).** The
+`alpha + 3 sigma` / `alpha + 3 sigma MC` thresholds below are retained as the
+historically frozen implementation-falsifier gates. They are not interpreted
+as IID sampling standard errors or confidence boundaries across the correlated
+cell/stream grid. Formal validity is per fixed claim from the confidence
+sequence; pooled Monte-Carlo rates are descriptive implementation diagnostics.
+
 Notation: the target environment's audited population is the post-selection
 environment dataset restricted to the audit role, with events indexed
 i = 1..N, per-event physical weight w_i > 0, correctness indicator

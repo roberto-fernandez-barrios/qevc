@@ -93,8 +93,11 @@ ratio estimand used here, the equivalence of its claim, and integration with
 the information hierarchy and fail-closed auditor.
 
 **Empirical instances.** These correlated Monte-Carlo rates are implementation
-stress tests, not proofs of the theorem or FWER. Validation battery: time-uniform miscoverage within
-α + 3σ in every profile × level cell; adversarial optional stopping breaks
+stress tests, not proofs of the theorem or FWER. The validation battery passed
+its historical alpha + 3 sigma implementation gate in every profile x level
+cell. That gate used a binomial heuristic and is not an IID sampling standard
+error or confidence boundary; formal validity is the per-claim confidence-
+sequence result. Adversarial optional stopping breaks
 the naive fixed-n Wald rule (27.8% false certification) while the CS holds
 at 0.0% (`E13_weighted_cs.json`, Part A). Deployment-scale: weighted false
 certification 2/8,580; the estimand-equivalence check gives byte-identical

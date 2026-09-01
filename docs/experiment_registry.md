@@ -1,5 +1,15 @@
 # Experiment Registry
 
+> **Interpretation note (2026-09-01; D-045):** every occurrence below of
+> `alpha + 3 sigma`, `alpha + 3 sigma MC`, or “binomial slack” records a frozen
+> historical implementation-falsifier gate. Several pooled denominators count
+> correlated streams that share audit draws, deployments, claim grids,
+> thresholds, populations or seeds. The corresponding binomial expression is
+> therefore not a valid IID sampling standard error or confidence boundary.
+> The historical decisions and values are retained; formal validity follows
+> from the per-fixed-claim confidence-sequence result, while pooled empirical
+> rates are descriptive implementation diagnostics.
+
 > **Phase 10 adversarial review (2026-08-10):** findings and dispositions in
 > `docs/decisions.md` D-016–D-018 and the annotations below. A clean-tree
 > regeneration campaign re-executes E00–E09, E02R, E04v2 and E11 from one

@@ -2,8 +2,10 @@
 
 Status: final micro-patch release on 2026-09-01; not yet submitted.
 
-- Release version: `0.3.3` / `npjqi-submission-v1.3`
-- Version DOI: `10.5281/zenodo.22227158`
+- Release version: `0.3.4` / `npjqi-submission-v1.4`
+- Version DOI: `10.5281/zenodo.22229290`
+- Historical `0.3.3` / `npjqi-submission-v1.3` DOI:
+  `10.5281/zenodo.22227158`
 - Historical `0.3.2` / `npjqi-submission-v1.2` DOI:
   `10.5281/zenodo.22214449`
 - Historical `0.3.1` / `npjqi-submission-v1.1` DOI:
@@ -85,11 +87,19 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 
 ## Scientific guardrails
 
+- Historical alpha-plus-three-sigma implementation gates used binomial
+  heuristics over stream/cell counts. Because pooled streams share audit draws,
+  deployments, claims and thresholds, those quantities are not interpreted as
+  IID sampling standard errors or confidence boundaries. Formal validity is
+  per fixed claim from the confidence sequence; pooled rates are descriptive.
 - Proposition 4 is informatively instantiated by deterministic replay: all
   7,200 condition cells are evaluable, 68.7% satisfy the sufficient inequality,
   and paired-stream flips are 9.2% when it holds versus 60.4% when it fails.
   Failure remains non-predictive because the condition is sufficient, not
   necessary; cell/stream counts are correlated within deployment.
+- The E16 instantiation is retrospective: target movements are reconstructed
+  from frozen target rows after deployment. It diagnoses observed deployment
+  stability and is not a prospective operational pre-audit certificate.
 - Same-verdict stability additionally requires the corresponding sign-stability
   condition, both audits to cover and both to resolve; two level-alpha audits
   give a 2-alpha union bound, or alpha jointly when each uses alpha/2.
@@ -109,6 +119,10 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 - E16 has five noisy-kernel deployments per shot budget. Claims
   within each deployment are correlated; reported rates/ranges are descriptive
   and no monotonic trend or population interval is claimed.
+- At n=2,000, the analytic-diagonal symmetric training block has 1,999,000
+  distinct off-diagonal evaluations: 255,872,000 shots at 128 per entry and
+  8,187,904,000 at 4,096. These training-only counts exclude cross-Grams and
+  are not a wall-clock, scalable-deployment or quantum-advantage estimate.
 - All 30 historical finite-shot training Grams are indefinite. A post-hoc
   minimum-diagonal-loading sensitivity preserves support for every evaluated
   far-margin deployment-relative claim but changes several ideal-anchored magnitudes;
@@ -140,6 +154,13 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
   `10.1038/s41534-025-01154-2`, provide the adjacent finite/noisy quantum-kernel
   PSD projection work; the present RAW/diagonal-loading analyses are not
   represented as equivalent to their clipping construction.
+- Shastry et al., arXiv:2210.06971v3, connect finite-shot kernel uncertainty
+  to margins, reliability and shot complexity; Gentinetta et al., *Quantum* 8,
+  1225 (2024), DOI `10.22331/q-2024-01-11-1225`, analyze shot-noise-driven
+  QSVM solution complexity. The present novelty claim is integration through
+  refit, recalibration, threshold freezing, scientific claim semantics,
+  fail-closed resolution and downstream inference, not first propagation of
+  kernel-estimation noise into a classifier.
 - He, Krause and Wang, arXiv:2509.00672v1, study a systematics-aware FAIR-HUC
   learner for profile-likelihood signal-strength inference. The present paper
   freezes the learner and audits I0--I3 claim and scientific-inference validity,

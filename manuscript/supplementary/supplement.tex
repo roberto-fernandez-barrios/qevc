@@ -190,6 +190,13 @@ sufficient conditions without new randomness or QPU jobs; the resulting
 7,200-case evaluation and its conservative interpretation are reported in
 Section~\ref{sec:prop4-instantiation} and
 Table~\ref{tab:prop4-instantiation}.
+This E16 use is retrospective: the target movements are reconstructed from the
+frozen target population after the deployment is available. Proposition 4 is
+a formal sufficient sign-stability condition, but this instantiation is a
+diagnostic of observed deployment stability rather than an operational
+pre-audit certificate. A holding condition is sufficient for truth-sign
+stability; a failing condition does not predict a flip, and audit verdicts
+remain coverage-conditioned.
 
 \subsection{Pre-split component allocation for weighted balanced accuracy}
 
@@ -322,7 +329,7 @@ background scale & XGBoost & 101.8800 & -5.3900 & -3.6800 & 1.0000 \\
 \label{tab:e19}
 \begin{tabular}{lrrr}
 \toprule
-Accounting & False certification & False refutation & $\alpha+3\sigma$ boundary \\
+Accounting & False certification & False refutation & Historical heuristic gate \\
 \midrule
 Unweighted, non-vetoed & 11/3,060 = 0.359\% & 1/11,980 = 0.008\% & 6.182\% \\
 Unweighted, all streams & 11/7,700 = 0.143\% & 1/11,980 = 0.008\% & 6.182\% \\
@@ -335,9 +342,15 @@ Weighted, nominal weights & 6/7,980 = 0.075\% & 4/11,700 = 0.034\% & 5.732\% \\
 score comparisons were byte-identical before auditing. The weighted bound
 was $w_{\max}=7.22421\times2.05=14.80963$. The corrected nominal-weight
 estimand is invariant across all 12 weight-only environments.}
-\parbox{0.94\linewidth}{\footnotesize These correlated Monte-Carlo rates are
-implementation stress tests, not a proof of the theorem or family-wise error
-control across the claim grid.}
+\parbox{0.94\linewidth}{\footnotesize The final column retains the historical
+$\alpha+3\sigma$ implementation gate. It used a binomial heuristic over pooled,
+correlated stream counts: streams share audit draws, deployments, claim grids
+and thresholds. It is therefore not interpreted as an IID sampling standard
+error or confidence boundary. It is retained only as a historical
+implementation-falsifier threshold. Formal validity follows from the
+per-claim confidence-sequence result; the pooled empirical rates are
+descriptive implementation diagnostics, not a proof of the theorem or
+family-wise error control.}
 \end{table}
 
 \begin{table}[H]
@@ -519,7 +532,7 @@ verdict is therefore \textsc{PSD-sensitive-but-scoped}: Contribution 3's
 qualitative statement survives, whereas its raw ideal-anchored percentages
 must not be treated as repair-invariant.
 
-\subsubsection{Deterministic instantiation of Proposition 4}
+\subsubsection{Deterministic retrospective instantiation of Proposition 4}
 \label{sec:prop4-instantiation}
 
 For the unweighted family, $M$ is mean correctness on the frozen source or
@@ -531,6 +544,13 @@ $\Delta M_T-\Delta M_S$ for deployment-relative claims and $\Delta M_T$ for
 ideal-anchored claims. Every reconstructed threshold is interior to $[0,1]$,
 and both exact margin identities have zero numerical residual, so all 7,200
 condition cells are evaluable.
+
+This is a retrospective diagnostic: $\Delta M_T$ and
+$\Delta M_T-\Delta M_S$ require the frozen target rows and their labels/metrics
+after deployment. It does not supply a prospective operational certificate
+before target observation or audit. ``H'' remains a sufficient truth-sign
+stability condition, whereas ``F'' does not predict a flip; verdict comparisons
+remain conditioned on confidence-sequence coverage and resolution.
 
 \begin{table}[H]
 \centering
@@ -911,24 +931,23 @@ a physically plausible explanation for the excess, not the certified claim.
 
 \normalsize
 
-The main machine-readable sources for this supplement are:
+The main machine-readable sources for this supplement are under
+\path{results/tables/}:
 \begin{itemize}
-\item \path{results/tables/E15_sensitivity.json};
-\item \path{results/tables/E19_fresh_world_validity.json};
-\item \path{results/tables/E06_nstar.json} and
-      \path{results/tables/E06_nstar_efficiency.json};
-\item \path{results/tables/E16_quantum_uncertainty.json};
-\item \path{results/tables/E16_deployment_level.json};
-\item \path{results/tables/E16_psd_sensitivity.json};
-\item \path{results/tables/E16_proposition4_instantiation.json};
-\item \path{results/tables/E16_proposition4_deployment_summary.json};
-\item \path{results/tables/E08v2_independent_mc.json} and
-      \path{results/tables/E08v3_multidraw.json};
-\item \path{results/tables/E13v2_baw_allocation.json}.
+\item \path{E15_sensitivity.json};
+\item \path{E19_fresh_world_validity.json};
+\item \path{E06_nstar.json} and \path{E06_nstar_efficiency.json};
+\item \path{E16_quantum_uncertainty.json};
+\item \path{E16_deployment_level.json};
+\item \path{E16_psd_sensitivity.json};
+\item \path{E16_proposition4_instantiation.json};
+\item \path{E16_proposition4_deployment_summary.json};
+\item \path{E08v2_independent_mc.json} and \path{E08v3_multidraw.json};
+\item \path{E13v2_baw_allocation.json}.
 \end{itemize}
 The frozen protocols and post-run dispositions are in
-\path{docs/experiment_registry.md}, \path{docs/decisions.md}, and the
-dated files under \path{docs/audits/}. These text records explain
+\path{docs/experiment_registry.md}, \path{docs/decisions.md}, and the dated
+files under \path{docs/audits/}. These text records explain
 the design and corrections; the JSON artifacts remain the numerical
 source of truth.
 

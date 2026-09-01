@@ -1139,3 +1139,44 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   correction, remaining requests for repairs, QPU, seeds, qubits, datasets,
   kernels, broad shortening, figure redesign, likelihoods or CMS campaigns are
   reviewer preferences or new-paper questions, not blockers to submission.
+
+## D-045 — Final statistical/bibliographic precision micro-patch
+
+- **Date:** 2026-09-01
+- **Scope:** version 0.3.4 is restricted to four corrections: removing the IID
+  interpretation of historical alpha-plus-three-sigma gates; adding Shastry
+  et al. (arXiv:2210.06971v3) and Gentinetta et al. (Quantum 8, 1225); marking
+  E16's Proposition 4 instantiation as retrospective; and stating the physical
+  shot count of the Tier-A training Gram. No scientific result is recomputed.
+- **Historical gate:** E12, E13/E13v2 and E19 used registered binomial-form
+  implementation gates. Their source code, JSON fields, numerical thresholds
+  and pass outcomes remain unchanged. Pooled streams share draws, deployments,
+  claim grids and thresholds, so these gates are not interpreted as IID
+  standard errors or confidence boundaries. Formal validity remains the
+  per-fixed-claim confidence-sequence result; pooled rates are descriptive.
+- **Proposition 4:** the proposition and every archived number remain unchanged.
+  Its E16 use is a retrospective diagnostic because target movements are
+  reconstructed from frozen target rows after deployment. `HOLDS` is a
+  sufficient truth-sign condition; `FAILS` does not predict a flip, and audit
+  verdict comparisons remain coverage-conditioned.
+- **Resource accounting:** with analytic diagonal and n=2,000, the training
+  block has n(n-1)/2 = 1,999,000 distinct off-diagonal evaluations:
+  255,872,000 shots at 128 and 8,187,904,000 at 4,096. This excludes all
+  cross-Grams and is not a wall-clock estimate or a quantum-advantage claim.
+- **I3 disposition:** no wording change is needed. The paper already reports
+  the pure-Poisson failure, the audited Barlow--Beeston-inspired Gaussian
+  aggregate template-variance (BB-lite) correction, and the conditional scope
+  of the independent-template result; it does not claim that every possible
+  MC-statistical likelihood fails.
+- **Out-of-scope recommendations:** broad shortening and preference-only figure
+  redesign are class C (reviewer preference). Making PSD repair primary,
+  adding/comparing repairs, global Mercer reconstruction, Nystrom methods,
+  stochastic RBF controls, false far-margin claims, more deployments/QPU/
+  qubits/seeds, or new template-statistical/HEP likelihoods and CMS campaigns
+  are class D (new scientific projects).
+- **Integrity rule:** configs, data, experiment runners, results, models,
+  feature map, hyperparameters, seeds, claims, thresholds, alpha, CMS, E16,
+  E20, QPU counts and Proposition 4 sources are byte-protected against
+  `npjqi-submission-v1.3`.
+- **Release rule:** publish as `0.3.4 / npjqi-submission-v1.4`, preserving all
+  prior tags and DOIs. No further general review is authorized.

@@ -104,7 +104,12 @@ CR_rest).
 - **M1 (code audit):** E12/E13 share one label stream across the 6-δ
   claim grid (E14/E16 do not): per-claim α unaffected; pooled error-rate
   denominators are ≈6:1 correlated, so binomial slacks are ~√6 tighter
-  than nominal — conservative for every pass verdict reported.
+  than the number-of-streams calculation would suggest. **D-045 retrospective
+  clarification:** those slacks are historical implementation gates only.
+  Because the streams are correlated, they are not valid IID standard errors
+  or confidence boundaries; “conservative” applies only to the mechanical
+  pass/fail comparison, not to statistical coverage. No current scientific
+  conclusion uses the pooled gate as its validity proof.
 - **M2 (code audit):** E04v3's floor_v2 null uses single draws against
   mean-of-3 observations — under-alarms by ~7% in threshold units;
   conservative direction; disclosed.

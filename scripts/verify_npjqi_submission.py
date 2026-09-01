@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -23,9 +24,16 @@ README = ROOT / "README.md"
 DECISIONS = ROOT / "docs" / "decisions.md"
 AUDIT = ROOT / "docs" / "audits" / "senior_author_revision_2026-08-13.md"
 FINAL_AUDIT = ROOT / "docs" / "audits" / "final_micro_patch_2026-09-01.md"
+PRECISION_AUDIT = (
+    ROOT / "docs" / "audits" /
+    "final_statistical_bibliographic_micro_patch_2026-09-01.md"
+)
 CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
+ZENODO_METADATA = (
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_4_metadata.json"
+)
 PSD_ANALYSIS = ROOT / "results" / "tables" / "E16_psd_sensitivity.json"
 PROPOSITION4_ANALYSIS = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
 PROPOSITION4_DEPLOYMENT_SUMMARY = (
@@ -98,9 +106,11 @@ def main() -> int:
     decisions = DECISIONS.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
     final_audit = FINAL_AUDIT.read_text(encoding="utf-8")
+    precision_audit = PRECISION_AUDIT.read_text(encoding="utf-8")
     checksum_text = CHECKSUMS.read_text(encoding="utf-8")
     citation = CITATION.read_text(encoding="utf-8")
     release_manifest = RELEASE_MANIFEST.read_text(encoding="utf-8")
+    zenodo_metadata = ZENODO_METADATA.read_text(encoding="utf-8")
     proposition4 = json.loads(PROPOSITION4_ANALYSIS.read_text(encoding="utf-8"))
     proposition4_deployment = json.loads(
         PROPOSITION4_DEPLOYMENT_SUMMARY.read_text(encoding="utf-8")
@@ -205,16 +215,22 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22227158" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22229290" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.3" in text and "npjqi-submission-v1.3" in text
-            for text in (readme, metadata, release_manifest)),
+        all("0.3.4" in text and "npjqi-submission-v1.4" in text
+            for text in (readme, metadata, release_manifest, zenodo_metadata)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22227158" in text
-            for text in (main_tex, readme, metadata, citation, release_manifest)),
+        all("10.5281/zenodo.22229290" in text
+            for text in (main_tex, readme, metadata, citation, release_manifest,
+                         precision_audit)),
+    )
+    check(
+        "historical 0.3.3 release retained",
+        "10.5281/zenodo.22227158" in readme
+        and "10.5281/zenodo.22227158" in release_manifest,
     )
     check(
         "historical 0.3.2 release retained",
@@ -276,6 +292,54 @@ def main() -> int:
         and "10.48550/arXiv.2509.00672" in bib,
     )
     check(
+        "finite-shot classifier literature added",
+        all(
+            token in bib and token in main_tex
+            for token in ("shastry2023shotfrugal", "gentinetta2024complexity")
+        )
+        and "10.48550/arXiv.2210.06971" in bib
+        and "10.22331/q-2024-01-11-1225" in bib,
+    )
+    check(
+        "finite-shot novelty boundary",
+        "Prior work therefore already connects finite-shot kernel" in main_tex
+        and "Our distinction is the integration of a" in main_tex
+        and "refrozen threshold" in main_tex
+        and "downstream scientific-inference context" in main_tex,
+    )
+    check(
+        "historical alpha-plus-three-sigma scope",
+        r"$\alpha+3\sigma$ boundary" not in supp_tex
+        and "Historical heuristic gate" in supp_tex
+        and "not interpreted as an IID sampling standard" in supp_tex
+        and re.search(r"historical\s+implementation-falsifier threshold", supp_tex)
+        and "per-claim confidence-sequence result" in supp_tex,
+    )
+    check(
+        "Proposition 4 retrospective diagnostic",
+        "Its E16 instantiation is retrospective" in main_tex
+        and "diagnostic of observed" in main_tex
+        and "not as an operational pre-audit certificate" in main_tex
+        and "retrospective diagnostic" in supp_tex
+        and "does not predict a flip" in supp_tex,
+    )
+    check(
+        "Tier-A Gram resource arithmetic",
+        all(
+            token in main_tex
+            for token in (
+                "n(n-1)/2=1{,}999{,}000",
+                "255{,}872{,}000\\simeq2.56\\times10^8",
+                "8{,}187{,}904{,}000\\simeq8.19\\times10^9",
+                "not a linear wall-clock estimate",
+                "not a claim of practical quantum advantage",
+            )
+        )
+        and 2000 * 1999 // 2 == 1_999_000
+        and 1_999_000 * 128 == 255_872_000
+        and 1_999_000 * 4096 == 8_187_904_000,
+    )
+    check(
         "PSD repair benchmark excluded",
         "neither optimize nor benchmark PSD-repair" in main_tex
         and "rather than an\noptimization or comparison of PSD-repair strategies" in main_tex,
@@ -315,6 +379,14 @@ def main() -> int:
         "0.3.3" in final_audit
         and "10.5281/zenodo.22227158" in final_audit
         and "no experiment, seed" in final_audit.lower(),
+    )
+    check(
+        "final precision micro-patch audit",
+        "0.3.4" in precision_audit
+        and "historical heuristic gate" in precision_audit.lower()
+        and "retrospective diagnostic" in precision_audit.lower()
+        and "8,187,904,000" in precision_audit
+        and "no experiment, seed" in precision_audit.lower(),
     )
 
     framing_docs = {
@@ -356,6 +428,24 @@ def main() -> int:
     check(
         "micro-scale fail-closed framing synchronized",
         all("micro-scale" in text and "fail-closed" in text for text in hardware_docs.values()),
+    )
+
+    protected_paths = (
+        "configs", "data", "experiments", "results", "src",
+        "scripts/analyze_e16_psd_sensitivity.py",
+        "scripts/summarize_e16_proposition4_deployments.py",
+    )
+    protected_diff = subprocess.run(
+        ["git", "diff", "--name-only", "npjqi-submission-v1.3", "--", *protected_paths],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    check(
+        "protected scientific artifacts unchanged from 0.3.3",
+        protected_diff.returncode == 0 and not protected_diff.stdout.strip(),
+        protected_diff.stdout.strip(),
     )
 
     frozen_outputs = (

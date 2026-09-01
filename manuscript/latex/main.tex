@@ -194,7 +194,9 @@ literature: inductive bias and data-dependent advantage
 \citep{arxiv2011.01938,arxiv2106.03747}, concentration
 \citep{arxiv2208.11060}, bandwidth \citep{arxiv2206.06686}, noise
 \citep{arxiv2103.16774}, shot requirements for resolving kernel entries
-\citep{arxiv2407.15776}, data-embedding limitations
+\citep{arxiv2407.15776}, margin-dependent reliability and shot complexity
+\citep{shastry2023shotfrugal}, shot-noise-driven optimization complexity and
+solution accuracy for quantum SVMs \citep{gentinetta2024complexity}, data-embedding limitations
 \citep{casas2026randomness}, and benchmark scrutiny \citep{arxiv2409.04406}.
 Finite measurements and device noise can also make empirical quantum-kernel
 matrices indefinite. Agliardi et al. \citep{agliardi2026covariant} enforce
@@ -203,10 +205,12 @@ eigenvalues, using the distance to that projection in their bit-flip-tolerance
 calibration. This projection is not our pipeline. We preserve the historically
 executed RAW-INDEFINITE analysis and use minimum diagonal loading only as a
 declared post-hoc sensitivity; we neither optimize nor benchmark PSD-repair
-strategies. These results motivate our bandwidth-limited map, matched RBF
-control and explicit finite-shot accounting, but do not propagate a realized
-noisy Gram through refitting, calibration, claim resolution and a downstream
-scientific estimand.
+strategies. Prior work therefore already connects finite-shot kernel
+uncertainty to entries, margins, classifier reliability, accuracy or solution
+precision, and resource complexity. Our distinction is the integration of a
+realized finite-shot Gram with refitting, recalibration, a refrozen threshold,
+deployment-relative versus ideal-anchored claim semantics, fail-closed claim
+resolution and the downstream scientific-inference context.
 
 In the quantum literature, certification can mean hypothesis-test certificates for devices
 \citep{arxiv2009.10064}, formal verification of circuits
@@ -916,7 +920,12 @@ $\Delta M_T=-0.10$, perfectly covering, resolving audits return SUPPORTED and
 REFUTED because the realized margin is $-0.05$. Conversely,
 $\Delta M_T=+0.10$ also violates the sufficient inequality but preserves the
 positive sign. Thus failure of the condition neither prevents nor forces a
-flip. Deterministic replay makes all 7,200 condition cells evaluable: the
+flip. Proposition~\ref{prop:stability} provides a formal sufficient
+sign-stability condition. Its E16 instantiation is retrospective: the required
+target movements are reconstructed from the frozen target population after
+the deployment is available. We therefore use it as a diagnostic of observed
+deployment stability, not as an operational pre-audit certificate.
+Deterministic replay makes all 7,200 condition cells evaluable: the
 margin identities hold exactly at the archived precision, no threshold clips,
 and the sufficient inequality holds in 4,943 cells (68.7\%). It preserves the
 truth sign in every such cell, as required. Across their 49,430 paired audit
@@ -1147,8 +1156,17 @@ The interpretation has five principal limitations.
   outside scope.
 \item E16 has five noisy-kernel deployments per shot budget. Its rates and
   ranges are descriptive. Proposition~\ref{prop:stability} is informatively
-  instantiated (68.7\% of condition cells satisfy the sufficient inequality),
-  but it is not a necessary condition or a population law. Every raw finite-shot
+  instantiated retrospectively (68.7\% of condition cells satisfy the
+  sufficient inequality), not used as a prospective operational certificate,
+  and it is neither a necessary condition nor a population law. At the
+  $n=2{,}000$ Tier-A scale, the symmetric training block alone contains
+  $n(n-1)/2=1{,}999{,}000$ distinct off-diagonal kernel evaluations. This is
+  $255{,}872{,}000\simeq2.56\times10^8$ shots at 128 shots per entry and
+  $8{,}187{,}904{,}000\simeq8.19\times10^9$ at 4,096, before calibration/source-validation
+  and target cross-kernel evaluations. These are circuit-execution/shot counts,
+  not a linear wall-clock estimate because batching, runtime and backend
+  behavior matter; they are not a claim of practical quantum advantage or
+  scalable hardware deployment. Every raw finite-shot
   training Gram is indefinite. Minimum diagonal loading preserves support for
   every evaluated far-margin deployment-relative claim but changes several
   ideal-anchored magnitudes, which are therefore repair-sensitive. Those far
@@ -1317,7 +1335,7 @@ is \url{https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T}, under CC0
 \citep{cernopendata12350}. Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-\url{https://doi.org/10.5281/zenodo.22227158} \citep{qevc_artifact}. Raw source
+\url{https://doi.org/10.5281/zenodo.22229290} \citep{qevc_artifact}. Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1327,7 +1345,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 \url{https://github.com/roberto-fernandez-barrios/qevc} and in the versioned
-Zenodo archive \url{https://doi.org/10.5281/zenodo.22227158}
+Zenodo archive \url{https://doi.org/10.5281/zenodo.22229290}
 \citep{qevc_artifact}. The software is released under the MIT License.
 
 \section*{Acknowledgements}

@@ -3,16 +3,19 @@
 Research codebase for the paper *"Conditional validity of quantum event
 classifiers under collider systematics and quantum estimation uncertainty"*.
 
-**npj Quantum Information submission release `0.3.3` (2026-09-01).** The
+**npj Quantum Information submission release `0.3.4` (2026-09-01).** The
 scientific program is closed: no new dataset, model, configuration, QPU run or
 primary result was added. The manuscript, Supplementary Information and
 Collection-specific cover letter incorporate the bounded final micro-patch and
 pass the mathematical, editorial, journal-format and cross-document gates.
 The self-contained submission package is built and independently recompiles;
 it has not yet been submitted. The exact release is tagged
-[`npjqi-submission-v1.3`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.3)
-and archived as Zenodo version `0.3.3` at
-[10.5281/zenodo.22227158](https://doi.org/10.5281/zenodo.22227158). The
+[`npjqi-submission-v1.4`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.4)
+and archived as Zenodo version `0.3.4` at
+[10.5281/zenodo.22229290](https://doi.org/10.5281/zenodo.22229290). The
+historical `0.3.3 / npjqi-submission-v1.3` release is preserved in its
+[GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.3)
+and at [10.5281/zenodo.22227158](https://doi.org/10.5281/zenodo.22227158). The
 historical `0.3.2 / npjqi-submission-v1.2` logical-closure release is preserved
 in its [GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.2)
 and at [10.5281/zenodo.22214449](https://doi.org/10.5281/zenodo.22214449). The
@@ -187,6 +190,10 @@ instantiates Proposition 4 from those reconstructed frozen deployments; it
 adds no experiment, seed, sample, model, likelihood or hardware job.
 Version 0.3.3 adds only the two adjacent references, scope wording and a
 deterministic deployment-level aggregation of the frozen Proposition 4 JSON.
+Version 0.3.4 adds only the historical-gate interpretation correction, two
+finite-shot quantum-kernel references, retrospective wording for the frozen
+Proposition 4 replay, Tier-A Gram shot accounting and objective Supplement
+filename wrapping. Scientific artifacts remain byte-identical to 0.3.3.
 
 ## Repository layout
 
