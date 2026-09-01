@@ -22,12 +22,15 @@ METADATA = ROOT / "docs" / "submission" / "npjqi_submission_metadata.md"
 README = ROOT / "README.md"
 DECISIONS = ROOT / "docs" / "decisions.md"
 AUDIT = ROOT / "docs" / "audits" / "senior_author_revision_2026-08-13.md"
-FINAL_AUDIT = ROOT / "docs" / "audits" / "final_logical_closure_2026-08-31.md"
+FINAL_AUDIT = ROOT / "docs" / "audits" / "final_micro_patch_2026-09-01.md"
 CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 PSD_ANALYSIS = ROOT / "results" / "tables" / "E16_psd_sensitivity.json"
 PROPOSITION4_ANALYSIS = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
+PROPOSITION4_DEPLOYMENT_SUMMARY = (
+    ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json"
+)
 
 
 def sha256(path: Path) -> str:
@@ -99,6 +102,9 @@ def main() -> int:
     citation = CITATION.read_text(encoding="utf-8")
     release_manifest = RELEASE_MANIFEST.read_text(encoding="utf-8")
     proposition4 = json.loads(PROPOSITION4_ANALYSIS.read_text(encoding="utf-8"))
+    proposition4_deployment = json.loads(
+        PROPOSITION4_DEPLOYMENT_SUMMARY.read_text(encoding="utf-8")
+    )
 
     titles = balanced_arguments(main_tex, r"\title")
     # The optional short title is skipped by balanced_arguments.
@@ -179,6 +185,17 @@ def main() -> int:
         and "informatively instantiated" in main_tex.lower(),
     )
     check(
+        "Proposition 4 deployment summary",
+        proposition4_deployment["independent_descriptive_unit"]
+        == "noisy-kernel deployment"
+        and proposition4_deployment["accounting"]["noisy_kernel_deployments"] == 30
+        and proposition4_deployment["accounting"][
+            "condition_cells_per_deployment_regime_semantics_slice"
+        ]
+        == 60
+        and "E16\\_proposition4\\_deployment\\_summary.json" in supp_tex,
+    )
+    check(
         "Proposition 4 logical structure",
         "sign-stability condition, coverage" in main_tex
         and "resolution of both audits" in main_tex
@@ -188,16 +205,21 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22214449" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22227158" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.2" in text and "npjqi-submission-v1.2" in text
+        all("0.3.3" in text and "npjqi-submission-v1.3" in text
             for text in (readme, metadata, release_manifest)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22214449" in text
+        all("10.5281/zenodo.22227158" in text
             for text in (main_tex, readme, metadata, citation, release_manifest)),
+    )
+    check(
+        "historical 0.3.2 release retained",
+        "10.5281/zenodo.22214449" in readme
+        and "10.5281/zenodo.22214449" in release_manifest,
     )
     check(
         "historical 0.3.0 release retained",
@@ -216,6 +238,47 @@ def main() -> int:
         "Proposition 4 artifact archived",
         PROPOSITION4_ANALYSIS.is_file()
         and "E16_proposition4_instantiation.json" in readme,
+    )
+    check(
+        "Proposition 4 deployment artifact archived",
+        PROPOSITION4_DEPLOYMENT_SUMMARY.is_file()
+        and "E16_proposition4_deployment_summary.json" in readme,
+    )
+    check(
+        "abstract omits correlated-cell percentage",
+        "68.7" not in abstract
+        and "sufficient rather than necessary" in abstract,
+    )
+    check(
+        "frozen batch deployment scope",
+        "frozen\nfinite-population batch deployment" in main_tex
+        and "continually\nre-estimated online kernel service" in main_tex
+        and "unspecified future\nsuperpopulation" in main_tex,
+    )
+    check(
+        "independent-template limitation scoped",
+        "evaluated archived fixed-template construction\n  can lose coverage" in main_tex
+        and "hierarchical/template-statistical constructions" in main_tex,
+    )
+    check(
+        "row-disjoint wording scoped",
+        "provably disjoint" not in main_tex.lower()
+        and "four independent worlds" not in main_tex.lower()
+        and "provably disjoint" not in readme.lower(),
+    )
+    check(
+        "adjacent literature added",
+        all(
+            token in bib and token in main_tex
+            for token in ("agliardi2026covariant", "arxiv2509.00672")
+        )
+        and "10.1038/s41534-025-01154-2" in bib
+        and "10.48550/arXiv.2509.00672" in bib,
+    )
+    check(
+        "PSD repair benchmark excluded",
+        "neither optimize nor benchmark PSD-repair" in main_tex
+        and "rather than an\noptimization or comparison of PSD-repair strategies" in main_tex,
     )
     check(
         "I2 I3 CMS guarantee separation",
@@ -245,14 +308,13 @@ def main() -> int:
         "statistically indistinguishable" not in main_tex.lower()
         and "no additional seeds are required" not in main_tex.lower(),
     )
-    check("decision log contains npj revision", "D-038" in decisions and "npj Quantum Information" in decisions)
+    check("decision log contains npj revision", "D-044" in decisions and "npj Quantum Information" in decisions)
     check("audit contains npj adaptation", "npj Quantum Information editorial adaptation" in audit)
     check(
-        "final logical-closure audit",
-        "INFORMATIVELY INSTANTIATED" in final_audit
-        and "4,943" in final_audit
-        and "7,200" in final_audit
-        and "no experiment, seed" in final_audit,
+        "final micro-patch audit",
+        "0.3.3" in final_audit
+        and "10.5281/zenodo.22227158" in final_audit
+        and "no experiment, seed" in final_audit.lower(),
     )
 
     framing_docs = {
@@ -303,6 +365,7 @@ def main() -> int:
         ROOT / "dist" / "npjqi-submission.zip",
         PSD_ANALYSIS,
         PROPOSITION4_ANALYSIS,
+        PROPOSITION4_DEPLOYMENT_SUMMARY,
     )
     for path in frozen_outputs:
         rel = path.relative_to(ROOT).as_posix()

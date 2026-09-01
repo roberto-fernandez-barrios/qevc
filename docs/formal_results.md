@@ -240,7 +240,7 @@ opposite ideal and realized truth signs, so perfectly covering audits resolve
 SUPPORTED and REFUTED. Failure of sufficiency does not force a flip either:
 ΔM_T=+0.10 violates |m⋆|>|ΔM_T| but preserves the positive sign. ∎
 
-**Artifact status (0.3.2 closure).** The deterministic raw/PSD replay
+**Artifact status (0.3.3 presentation closure).** The deterministic raw/PSD replay
 reconstructs the exact source and target accuracy estimands for every frozen
 E16 realization. It therefore evaluates ΔM_S, ΔM_T and ΔM_T − ΔM_S for 7,200
 deployment/regime/claim-semantics/environment-family-delta condition cells;
@@ -258,7 +258,10 @@ budget), not correlated cells or streams. All evaluated far-margin
 deployment-relative claims are true and supported in raw and PSD-repaired
 realizations; no false far-margin deployment-relative claim tests refutation
 stability. Source:
-`results/tables/E16_proposition4_instantiation.json`.
+`results/tables/E16_proposition4_instantiation.json`. The 0.3.3 derivative
+`results/tables/E16_proposition4_deployment_summary.json` reports median, IQR,
+range, mean and sample SD across the same 30 noisy-kernel deployments without
+changing the replay or adding population inference.
 
 ---
 

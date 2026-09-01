@@ -3,16 +3,19 @@
 Research codebase for the paper *"Conditional validity of quantum event
 classifiers under collider systematics and quantum estimation uncertainty"*.
 
-**npj Quantum Information submission release `0.3.2` (2026-08-31).** The
+**npj Quantum Information submission release `0.3.3` (2026-09-01).** The
 scientific program is closed: no new dataset, model, configuration, QPU run or
 primary result was added. The manuscript, Supplementary Information and
-Collection-specific cover letter incorporate the final adversarial review and
+Collection-specific cover letter incorporate the bounded final micro-patch and
 pass the mathematical, editorial, journal-format and cross-document gates.
 The self-contained submission package is built and independently recompiles;
 it has not yet been submitted. The exact release is tagged
-[`npjqi-submission-v1.2`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.2)
-and archived as Zenodo version `0.3.2` at
-[10.5281/zenodo.22214449](https://doi.org/10.5281/zenodo.22214449). The
+[`npjqi-submission-v1.3`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.3)
+and archived as Zenodo version `0.3.3` at
+[10.5281/zenodo.22227158](https://doi.org/10.5281/zenodo.22227158). The
+historical `0.3.2 / npjqi-submission-v1.2` logical-closure release is preserved
+in its [GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.2)
+and at [10.5281/zenodo.22214449](https://doi.org/10.5281/zenodo.22214449). The
 historical `0.3.1 / npjqi-submission-v1.1` PSD-audited release is preserved in
 its [GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.1)
 and at [10.5281/zenodo.22209367](https://doi.org/10.5281/zenodo.22209367). The
@@ -58,21 +61,28 @@ contribution is methodological, organized as three contributions:
   formal feature-only boundary for weight-only nuisances, and audit-label draw budgets
   contextualized against a Wald-style information yardstick (not an
   optimality bound or universal lower bound).
+  Here deployment means a frozen finite-population batch deployment evaluated
+  against a finite, frozen audit population, not a continually re-estimated
+  online kernel service or an unspecified future superpopulation.
 - **Contribution 2 — Scientific-inference validity:** classifier-metric stability does
   not imply valid signal-strength inference; under shared simulation a
   fixed-template profile recovers most representable cells at a measured
-  interval-width price, while independent-MC studies show that validity is
-  jointly limited by nuisance representability and auxiliary-template quality.
+  interval-width price. At the studied MC size, the evaluated archived
+  fixed-template construction can lose coverage under independent-MC template
+  noise; validity is jointly limited by nuisance representability and
+  auxiliary-template quality.
 - **Contribution 3 — Quantum deployment uncertainty:** finite-shot and noisy quantum
   evaluation adds measurement-induced deployment uncertainty;
   deployment-relative vs ideal-anchored claim semantics preserve per-claim
   validity. The final deterministic replay reconstructs Proposition 4's
   `ΔM_S`, `ΔM_T` and `ΔM_T−ΔM_S` exactly for all 7,200 raw/PSD condition cells.
-  Its sufficient condition holds in 68.7% and discriminates paired-stream
-  verdict flips (9.2% when it holds versus 60.4% when it fails), while remaining
-  sufficient rather than necessary. The classification is **INFORMATIVELY INSTANTIATED**.
-  E16 has five independent
-  noisy-kernel deployments per budget; claims within each are correlated, the
+  The pooled, correlated cell-level condition holds in 68.7% and discriminates
+  paired-stream verdict flips (9.2% when it holds versus 60.4% when it fails),
+  while remaining sufficient rather than necessary. A deployment-level summary
+  now reports median, IQR and range across the 30 noisy-kernel deployments,
+  which are the descriptive units. The classification is
+  **INFORMATIVELY INSTANTIATED**. E16 has five noisy-kernel deployments per
+  budget; claims within each are correlated, the
   intermediate rates are non-monotonic, and no population trend is claimed.
   A post-hoc final technical audit found all 30 raw training Grams indefinite.
   Every evaluated far-margin deployment-relative claim is true and remains
@@ -86,7 +96,8 @@ contribution is methodological, organized as three contributions:
   regularized similarity matrix—not a normalized fidelity Gram or a claimed
   global Mercer kernel. The complete derived analyses are archived in
   `results/tables/E16_psd_sensitivity.json` and
-  `results/tables/E16_proposition4_instantiation.json`.
+  `results/tables/E16_proposition4_instantiation.json`; the deployment-level
+  derivative is `results/tables/E16_proposition4_deployment_summary.json`.
 
 The closest new collider-QML study, Brown, Spannowsky and Williams
 ([arXiv:2608.11330](https://arxiv.org/abs/2608.11330)), evaluates frozen
@@ -97,21 +108,35 @@ I0--I3 information hierarchy, fail-closed anytime-valid certification,
 signal-strength inference, and finite-shot/noisy Gram estimation carried
 through the realized deployment.
 
+Two additional adjacent references delimit rather than expand the claims.
+Agliardi et al. ([npj Quantum Information 12, 12
+(2026)](https://doi.org/10.1038/s41534-025-01154-2)) treat loss of PSD in
+finite/noisy quantum-kernel matrices and use negative-eigenvalue clipping for
+a PSD projection; this repository retains its historical RAW-INDEFINITE
+pipeline and declares minimum diagonal loading only as a post-hoc sensitivity,
+not a repair benchmark. He, Krause and Wang
+([arXiv:2509.00672v1](https://arxiv.org/abs/2509.00672v1)) train a
+systematics-aware learner on FAIR-HUC for profile-likelihood signal-strength
+inference. This paper instead freezes the learner, audits I0--I3 claim validity
+and adds finite-shot/noisy quantum deployment uncertainty.
+
 ## npj submission artifacts
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 27 | `E860D76B2AF5A7E3804722EF845B57F7A916261DBEB655DF3293762E1226DCC5` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 12 | `619DDEFD3D697FD1E42F0CC91B6BD51365E27597FE6CE986833382CA17C2D542` |
-| `output/pdf/npjqi_cover_letter.pdf` | 1 | `A9589B2630BA908FE31F831F33BA9DF22566A15F45B5A15B08475FB95DBE3E19` |
-| `dist/npjqi-submission.zip` | source + 3 PDFs | `EF85DC6811F9C9207DC072A34A570E873FB3C23887A8ECAC4C869700DE27699C` |
+| `output/pdf/npjqi_manuscript.pdf` | 28 | `482364C9FC18803DE8159A5C6B15E1ED0EBAE8B13C8037E848400EDFA2BF161B` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 13 | `3DD6FC8135250D6DFB6BABCE0308F14EEC9928A18EF15E27253330DB242695AF` |
+| `output/pdf/npjqi_cover_letter.pdf` | 1 | `214B31ECA7F7F3ECF240094D1DA909A0FF8602CE19B550F1189F3C77670FABC6` |
+| `dist/npjqi-submission.zip` | source + 3 PDFs | `3EDDE555413B358EDBA2D1DA859E526A7D5CAEDA5ED70E344F588C1E156FC940` |
 | `results/tables/E16_psd_sensitivity.json` | 30 deployments | `5EDE2C056327DFB5768933C7BEE78A662C9E257011EF39984151E163170AABF1` |
 | `results/tables/E16_proposition4_instantiation.json` | 7,200 condition cells | `E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B` |
+| `results/tables/E16_proposition4_deployment_summary.json` | 30 noisy-kernel deployments | `4E09E3B86A38F26EB7892F49FC55C146BECFC5C7DDF6BFF210CD3EEBB60CE31B` |
 
 The authoritative checksum file is
 `docs/submission/npjqi_checksums.sha256`. The bundle includes the three PDFs,
 the self-contained Springer Nature source, figure PDFs, submission metadata
-and the complete derived PSD-sensitivity and Proposition 4 JSON artifacts.
+and the complete derived PSD-sensitivity, Proposition 4 and deployment-summary
+JSON artifacts.
 
 ## Governing documents
 
@@ -133,8 +158,9 @@ and the complete derived PSD-sensitivity and Proposition 4 JSON artifacts.
 
 - **Level I — Controlled collider world:** FAIR Universe HiggsML Uncertainty
   benchmark (H→ττ with parameterized systematics: TES, JES, soft MET,
-  background normalizations). 220M events; multiple provably disjoint
-  300k worlds (seeds 101, 121, 131, 141) with archived index proofs.
+  background normalizations). 220M events; four 300k worlds verified
+  row-disjoint by construction (seeds 101, 121, 131, 141), with archived index
+  proofs; no probabilistic independence claim is made from row disjointness.
 - **Level II — Real collider world:** CMS Open Data Run2012B+C H→ττ
   real-data fail-closed case study (no event-level truth labels are
   ever fabricated), with calibrated sensor evidence (E11v3).
@@ -159,6 +185,8 @@ audits their spectra, and refits the declared minimum-diagonal-loading
 sensitivity without new randomness or QPU work. The 0.3.2 closure replay also
 instantiates Proposition 4 from those reconstructed frozen deployments; it
 adds no experiment, seed, sample, model, likelihood or hardware job.
+Version 0.3.3 adds only the two adjacent references, scope wording and a
+deterministic deployment-level aggregation of the frozen Proposition 4 JSON.
 
 ## Repository layout
 

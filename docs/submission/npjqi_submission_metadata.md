@@ -1,9 +1,11 @@
 # npj Quantum Information submission metadata
 
-Status: logically closed patch release on 2026-08-31; not yet submitted.
+Status: final micro-patch release on 2026-09-01; not yet submitted.
 
-- Release version: `0.3.2` / `npjqi-submission-v1.2`
-- Version DOI: `10.5281/zenodo.22214449`
+- Release version: `0.3.3` / `npjqi-submission-v1.3`
+- Version DOI: `10.5281/zenodo.22227158`
+- Historical `0.3.2` / `npjqi-submission-v1.2` DOI:
+  `10.5281/zenodo.22214449`
 - Historical `0.3.1` / `npjqi-submission-v1.1` DOI:
   `10.5281/zenodo.22209367`
 - Historical `0.3.0` / `npjqi-submission-v1` DOI:
@@ -40,8 +42,8 @@ fixed-threshold reduction for physics-weighted ratio claims and a feature-only
 identifiability boundary. Stable classifier metrics do not ensure
 signal-strength coverage. Finite-shot deployments propagate each realized Gram
 through refitting, calibration and thresholding. Deterministic replay
-instantiates a sufficient sign-stability bound, which holds in 68.7% of
-evaluated cells and discriminates observed flips. All evaluated far-margin
+instantiates the sufficient sign-stability bound and shows that it discriminates
+observed instability while remaining sufficient rather than necessary. All evaluated far-margin
 deployment-relative claims were true and remained supported across raw and
 PSD-repaired realizations. Matched classical controls remove apparent
 quantum-specific performance and sensing effects. We claim no quantum
@@ -93,6 +95,10 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
   give a 2-alpha union bound, or alpha jointly when each uses alpha/2.
 - Observed verdict flips are descriptive comparisons, not deterministic theorem
   predictions or independent replications.
+- The deployment-level derivative aggregates only the frozen Proposition 4
+  JSON. It reports median, IQR, range, mean and sample SD across 30 noisy-kernel
+  deployments; no population inference or new independence assumption is
+  introduced.
 - The anytime-valid guarantee applies per fixed I2 label-stream claim and
   stopping time, conditional on the frozen finite audit population under
   declared with-replacement sampling; it is not simultaneous/FWER control.
@@ -100,19 +106,27 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
   own calibrated tests and information constraints.
 - The IBM run is a micro-scale fail-closed consistency demonstration, not a
   performance result or certification at scale.
-- E16 has five independent noisy-kernel deployments per shot budget. Claims
+- E16 has five noisy-kernel deployments per shot budget. Claims
   within each deployment are correlated; reported rates/ranges are descriptive
   and no monotonic trend or population interval is claimed.
 - All 30 historical finite-shot training Grams are indefinite. A post-hoc
   minimum-diagonal-loading sensitivity preserves support for every evaluated
   far-margin deployment-relative claim but changes several ideal-anchored magnitudes;
   the result is PSD-SENSITIVE-BUT-SCOPED, not repair-invariant.
+- Alternative PSD projections, including negative-eigenvalue clipping used in
+  prior noisy quantum-kernel work, may yield different quantitative
+  deployments. The diagonal-loading analysis is a declared robustness
+  sensitivity, not an optimization or comparison of repair strategies.
 - Every evaluated far-margin deployment-relative claim is true; the grid has no
   false far-margin claim with which to assess refutation stability.
 - n* is a with-replacement audit-label draw budget, not a unique-event labeling
   cost. Real CMS event truth cannot be queried.
-- The fixed-template profiling result is conditional on nuisance
-  representability and auxiliary-template quality.
+- At the studied MC size, the evaluated archived fixed-template construction
+  can lose coverage under independent-MC template noise. MC/template-
+  uncertainty-aware likelihood constructions are outside scope.
+- Deployment denotes a frozen finite-population batch deployment evaluated
+  against a finite, frozen audit population, not a continually re-estimated
+  online kernel service or an unspecified future superpopulation.
 - The matched classical control removes apparent quantum-specific performance
   and sensing effects; no quantum advantage is claimed.
 - Brown, Spannowsky and Williams (arXiv:2608.11330) now provide directly
@@ -122,6 +136,14 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
   shape/rate nuisance family, I0--I3 hierarchy, fail-closed anytime-valid
   certification, signal-strength propagation, and realized noisy-Gram
   deployment semantics.
+- Agliardi et al., *npj Quantum Information* 12, 12 (2026), DOI
+  `10.1038/s41534-025-01154-2`, provide the adjacent finite/noisy quantum-kernel
+  PSD projection work; the present RAW/diagonal-loading analyses are not
+  represented as equivalent to their clipping construction.
+- He, Krause and Wang, arXiv:2509.00672v1, study a systematics-aware FAIR-HUC
+  learner for profile-likelihood signal-strength inference. The present paper
+  freezes the learner and audits I0--I3 claim and scientific-inference validity,
+  including finite-shot/noisy quantum deployment uncertainty.
 
 ## Related-manuscript disclosure
 

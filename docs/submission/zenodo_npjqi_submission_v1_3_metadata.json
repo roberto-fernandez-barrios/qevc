@@ -1,0 +1,47 @@
+{
+  "title": "qevc: Quantum Event Validity Certification — conditional validity of (quantum) event classifiers under collider systematics and estimation uncertainty",
+  "upload_type": "software",
+  "description": "<p>Exact 0.3.3 / npjqi-submission-v1.3 final micro-patch release of the qevc research code and submission artifacts for <em>Conditional validity of quantum event classifiers under collider systematics and quantum estimation uncertainty</em>.</p><p>This version adds two adjacent primary references, removes the correlated-cell percentage from the abstract, makes the frozen finite-population batch-deployment scope explicit, and narrows the independent-MC template statement to the evaluated archived fixed-template construction at the studied MC size. It also adds a deterministic descriptive summary across the 30 noisy-kernel deployments, derived exclusively from the frozen Proposition 4 JSON. Cell-level counts remain identified as correlated descriptions; no population inference is added.</p><p>The historical finite-shot RAW-INDEFINITE fitted object remains primary. Minimum diagonal loading remains the sole declared post-hoc robustness sensitivity. Alternative PSD projections may yield different quantitative deployments; this release performs no optimization or comparison of PSD-repair strategies and retains the classification PSD-SENSITIVE-BUT-SCOPED.</p><p>The archive contains the manuscript, Supplementary Information, cover letter, self-contained submission/source ZIP, the complete derived E16 PSD and Proposition 4 JSON artifacts, the deployment-level derivative, checksums and release documentation. No new experiment, Gram realization, seed, sample, dataset, model, feature map, hyperparameter, claim, likelihood, CMS analysis, QPU job, PSD repair or E20 execution was added. The eight-qubit study is classically simulable, the IBM evidence is micro-scale, and no quantum advantage is claimed.</p>",
+  "creators": [
+    {
+      "name": "Fernández-Barrios, Roberto",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0009-0003-5312-2634"
+    },
+    {
+      "name": "Pastor-López, Iker",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0000-0002-3068-6248"
+    },
+    {
+      "name": "González-Santocildes, Asier",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0009-0002-8888-8560"
+    },
+    {
+      "name": "García Bringas, Pablo",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0000-0003-3594-9534"
+    }
+  ],
+  "access_right": "open",
+  "license": "mit-license",
+  "publication_date": "2026-09-01",
+  "version": "0.3.3 / npjqi-submission-v1.3",
+  "keywords": [
+    "quantum machine learning",
+    "distribution shift",
+    "anytime-valid inference",
+    "collider physics",
+    "certification",
+    "quantum estimation uncertainty",
+    "positive semidefinite kernel"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.3",
+      "relation": "isIdenticalTo",
+      "scheme": "url"
+    }
+  ]
+}

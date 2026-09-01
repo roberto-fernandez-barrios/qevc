@@ -571,6 +571,43 @@ necessary. This classification is
 \textsc{informatively instantiated}, not an empirical general law or a set of
 independent claim replications.
 
+Table~\ref{tab:prop4-deployment-summary} changes the descriptive aggregation
+unit from correlated cells/streams to the 30 noisy-kernel deployments. Each
+deployment contributes 60 evaluable cells to every regime--semantics slice.
+No population inference or independence assumption is added.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Deployment-level descriptive aggregation of Proposition 4. Each
+column summarizes the 30 noisy-kernel deployments for one analysis slice;
+each deployment contains 60 evaluable condition cells in that slice. Entries
+are percentages shown as median [Q1, Q3] on the first line and min--max on the
+second. Verdict-flip rates condition on the paired audit streams attached to H
+or F cells; truth-sign rates are cell-level. The descriptive unit is the
+noisy-kernel deployment, not the cell or audit stream. One RAW
+deployment-relative deployment has no F cells, so its F-conditioned rates are
+undefined and those two summaries use 29 deployments. Every H-conditioned
+truth-sign flip rate is zero. Source:
+\texttt{results/tables/E16\_proposition4\_deployment\_summary.json}.}
+\label{tab:prop4-deployment-summary}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+Statistic & RAW, deployment-relative & RAW, ideal-anchored & PSD, deployment-relative & PSD, ideal-anchored \\
+\midrule
+Evaluable cells & 60 & 60 & 60 & 60 \\
+H cells (\%) & \shortstack{93.3 [92.1, 95.0]\\86.7--100.0} & \shortstack{42.5 [35.8, 57.9]\\8.3--96.7} & \shortstack{91.7 [90.4, 93.3]\\85.0--96.7} & \shortstack{41.7 [27.5, 50.8]\\8.3--86.7} \\
+F cells (\%) & \shortstack{6.7 [5.0, 7.9]\\0.0--13.3} & \shortstack{57.5 [42.1, 64.2]\\3.3--91.7} & \shortstack{8.3 [6.7, 9.6]\\3.3--15.0} & \shortstack{58.3 [49.2, 72.5]\\13.3--91.7} \\
+Verdict flips among H (\%) & \shortstack{5.8 [4.8, 7.3]\\2.8--9.4} & \shortstack{19.0 [4.7, 21.6]\\1.9--56.0} & \shortstack{7.1 [4.9, 8.2]\\3.1--12.0} & \shortstack{18.9 [5.9, 21.9]\\1.7--76.0} \\
+Verdict flips among F (\%) & \shortstack{0.0 [0.0, 2.9]\\0.0--6.7} & \shortstack{62.2 [37.7, 76.9]\\0.0--91.6} & \shortstack{2.0 [0.0, 4.8]\\0.0--8.0} & \shortstack{58.7 [48.7, 88.8]\\7.5--91.8} \\
+Truth-sign flips among F (\%) & \shortstack{50.0 [37.5, 66.7]\\0.0--75.0} & \shortstack{45.5 [31.4, 61.5]\\27.6--70.6} & \shortstack{40.0 [29.8, 50.0]\\16.7--75.0} & \shortstack{45.5 [34.9, 56.9]\\27.6--69.7} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
 \clearpage
 \subsection{Independent-MC split studies (E08v3)}
 
@@ -884,6 +921,7 @@ The main machine-readable sources for this supplement are:
 \item \path{results/tables/E16_deployment_level.json};
 \item \path{results/tables/E16_psd_sensitivity.json};
 \item \path{results/tables/E16_proposition4_instantiation.json};
+\item \path{results/tables/E16_proposition4_deployment_summary.json};
 \item \path{results/tables/E08v2_independent_mc.json} and
       \path{results/tables/E08v3_multidraw.json};
 \item \path{results/tables/E13v2_baw_allocation.json}.

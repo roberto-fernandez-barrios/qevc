@@ -154,7 +154,7 @@ arxiv2209.12788, arxiv2301.09633, arxiv2301.10780, arxiv2304.03398,
 arxiv2305.17570, arxiv2306.00312, arxiv2403.03208, arxiv2409.04406,
 arxiv2410.02867, arxiv2412.01600, arxiv2504.03315, arxiv2509.04536,
 arxiv2509.22247, arxiv2510.13994, arxiv2511.15672, arxiv2511.18225,
-arxiv2512.07074, arxiv2602.22248, arxiv2605.07470, arxiv2606.11949,
+arxiv2512.07074, arxiv2602.22248, arxiv2605.07470,
 arxiv2606.14028, arxiv2606.20820, arxiv2606.24038, arxiv2606.24996.
 Non-arXiv (2): mott2017nature (Mott et al., Nature 550, 2017);
 barlow1993fitting (Barlow & Beeston -- key taken from the pre-existing

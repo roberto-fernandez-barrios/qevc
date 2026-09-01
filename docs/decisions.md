@@ -1114,3 +1114,28 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
 - **Status:** adopted. The release manifest freezes the six submission and
   derived artifacts after all local gates and the independent ZIP build pass;
   publication is permitted only with byte-identical GitHub and Zenodo assets.
+
+## D-044 — Final bibliographic, scope and deployment-aggregation micro-patch
+
+- **Date:** 2026-09-01
+- **Scope:** version 0.3.3 is restricted to two omitted adjacent references,
+  exact wording for deployment and independent-template scope, removal of the
+  correlated-cell percentage from the abstract, and a deterministic
+  deployment-level aggregation of the already frozen Proposition 4 JSON.
+- **Statistical unit:** the new summary reports median, IQR, range, mean and
+  sample SD across 30 noisy-kernel deployments. Cells and paired audit streams
+  remain correlated descriptions and support no new population inference.
+- **PSD boundary:** no additional repair, projection or comparison is run.
+  Negative-eigenvalue clipping is cited as prior work; the historical RAW
+  pipeline and the single minimum-diagonal-loading sensitivity remain unchanged
+  and classified \textsc{PSD-SENSITIVE-BUT-SCOPED}.
+- **Scientific closure:** no experiment, seed, QPU job, dataset, model, feature
+  map, hyperparameter, likelihood, CMS result, E16 primary artifact, E20 result,
+  threshold, alpha level or claim changes. The other manuscript is untouched.
+- **Release rule:** publish as `0.3.3 / npjqi-submission-v1.3`, preserving all
+  historical tags and DOIs. The reserved Zenodo version DOI is
+  `10.5281/zenodo.22227158` under concept DOI `10.5281/zenodo.21894291`.
+- **Hard stop:** absent a factual/scientific invalidator or unequivocal
+  correction, remaining requests for repairs, QPU, seeds, qubits, datasets,
+  kernels, broad shortening, figure redesign, likelihoods or CMS campaigns are
+  reviewer preferences or new-paper questions, not blockers to submission.

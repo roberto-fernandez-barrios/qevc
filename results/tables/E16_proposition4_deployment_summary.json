@@ -1,0 +1,5188 @@
+{
+  "analysis": "E16 Proposition 4 deployment-level descriptive aggregation",
+  "status": "DERIVED SUMMARY ONLY",
+  "independent_descriptive_unit": "noisy-kernel deployment",
+  "population_inference": "none",
+  "source": {
+    "path": "results/tables/E16_proposition4_instantiation.json",
+    "sha256": "E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B"
+  },
+  "derivation_guards": {
+    "no_new_randomness": true,
+    "no_new_experiment": true,
+    "no_new_kernel_repair": true,
+    "no_new_inference": true,
+    "source_artifact_unchanged": true,
+    "quantiles": "linear/type-7",
+    "sample_sd_ddof": 1
+  },
+  "accounting": {
+    "noisy_kernel_deployments": 30,
+    "regimes": [
+      "raw",
+      "psd_repaired"
+    ],
+    "claim_semantics": [
+      "deployment_relative",
+      "ideal_anchored"
+    ],
+    "condition_cells_per_deployment_regime_semantics_slice": 60,
+    "audit_streams_per_condition_cell": 10,
+    "correlation_warning": "Cells and audit streams share each deployment's realized Gram, refit, calibration, threshold and paired common-random-number streams."
+  },
+  "per_deployment": [
+    {
+      "deployment_id": "shots128|k1",
+      "shot_budget": 128,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 40,
+          "denominator": 560,
+          "rate": 0.07142857142857142
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 40,
+          "rate": 0.05
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 4,
+          "rate": 0.25
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k1",
+      "shot_budget": 128,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 39,
+        "FAILS": 21
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.65,
+        "FAILS": 0.35
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 100,
+          "denominator": 390,
+          "rate": 0.2564102564102564
+        },
+        "FAILS": {
+          "numerator": 84,
+          "denominator": 210,
+          "rate": 0.4
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 39,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 6,
+          "denominator": 21,
+          "rate": 0.2857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k1",
+      "shot_budget": 128,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 39,
+          "denominator": 560,
+          "rate": 0.06964285714285715
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 40,
+          "rate": 0.05
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 4,
+          "rate": 0.25
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k1",
+      "shot_budget": 128,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 22,
+        "FAILS": 38
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.36666666666666664,
+        "FAILS": 0.6333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 40,
+          "denominator": 220,
+          "rate": 0.18181818181818182
+        },
+        "FAILS": {
+          "numerator": 314,
+          "denominator": 380,
+          "rate": 0.8263157894736842
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 22,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 14,
+          "denominator": 38,
+          "rate": 0.3684210526315789
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k2",
+      "shot_budget": 128,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 41,
+          "denominator": 560,
+          "rate": 0.07321428571428572
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 40,
+          "rate": 0.025
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k2",
+      "shot_budget": 128,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 23,
+        "FAILS": 37
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.38333333333333336,
+        "FAILS": 0.6166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 49,
+          "denominator": 230,
+          "rate": 0.21304347826086956
+        },
+        "FAILS": {
+          "numerator": 312,
+          "denominator": 370,
+          "rate": 0.8432432432432433
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 23,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 13,
+          "denominator": 37,
+          "rate": 0.35135135135135137
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k2",
+      "shot_budget": 128,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 52,
+          "denominator": 550,
+          "rate": 0.09454545454545454
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 50,
+          "rate": 0.08
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 5,
+          "rate": 0.2
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k2",
+      "shot_budget": 128,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 18,
+        "FAILS": 42
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.3,
+        "FAILS": 0.7
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 30,
+          "denominator": 180,
+          "rate": 0.16666666666666666
+        },
+        "FAILS": {
+          "numerator": 369,
+          "denominator": 420,
+          "rate": 0.8785714285714286
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 18,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 18,
+          "denominator": 42,
+          "rate": 0.42857142857142855
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k3",
+      "shot_budget": 128,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 39,
+          "denominator": 550,
+          "rate": 0.07090909090909091
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 50,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 5,
+          "rate": 0.4
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k3",
+      "shot_budget": 128,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 16,
+        "FAILS": 44
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.26666666666666666,
+        "FAILS": 0.7333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 40,
+          "denominator": 160,
+          "rate": 0.25
+        },
+        "FAILS": {
+          "numerator": 395,
+          "denominator": 440,
+          "rate": 0.8977272727272727
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 20,
+          "denominator": 44,
+          "rate": 0.45454545454545453
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k3",
+      "shot_budget": 128,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 54,
+        "FAILS": 6
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9,
+        "FAILS": 0.1
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 57,
+          "denominator": 540,
+          "rate": 0.10555555555555556
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 60,
+          "rate": 0.06666666666666667
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 54,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 6,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k3",
+      "shot_budget": 128,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 6,
+        "FAILS": 54
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.1,
+        "FAILS": 0.9
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 11,
+          "denominator": 60,
+          "rate": 0.18333333333333332
+        },
+        "FAILS": {
+          "numerator": 495,
+          "denominator": 540,
+          "rate": 0.9166666666666666
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 6,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 30,
+          "denominator": 54,
+          "rate": 0.5555555555555556
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k4",
+      "shot_budget": 128,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 48,
+          "denominator": 550,
+          "rate": 0.08727272727272728
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 50,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 5,
+          "rate": 0.4
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k4",
+      "shot_budget": 128,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 16,
+        "FAILS": 44
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.26666666666666666,
+        "FAILS": 0.7333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 48,
+          "denominator": 160,
+          "rate": 0.3
+        },
+        "FAILS": {
+          "numerator": 393,
+          "denominator": 440,
+          "rate": 0.8931818181818182
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 20,
+          "denominator": 44,
+          "rate": 0.45454545454545453
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k4",
+      "shot_budget": 128,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 44,
+          "denominator": 560,
+          "rate": 0.07857142857142857
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 4,
+          "rate": 0.25
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k4",
+      "shot_budget": 128,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 16,
+        "FAILS": 44
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.26666666666666666,
+        "FAILS": 0.7333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 41,
+          "denominator": 160,
+          "rate": 0.25625
+        },
+        "FAILS": {
+          "numerator": 394,
+          "denominator": 440,
+          "rate": 0.8954545454545455
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 20,
+          "denominator": 44,
+          "rate": 0.45454545454545453
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k5",
+      "shot_budget": 128,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 45,
+          "denominator": 560,
+          "rate": 0.08035714285714286
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k5",
+      "shot_budget": 128,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 23,
+        "FAILS": 37
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.38333333333333336,
+        "FAILS": 0.6166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 42,
+          "denominator": 230,
+          "rate": 0.1826086956521739
+        },
+        "FAILS": {
+          "numerator": 302,
+          "denominator": 370,
+          "rate": 0.8162162162162162
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 23,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 13,
+          "denominator": 37,
+          "rate": 0.35135135135135137
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k5",
+      "shot_budget": 128,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 54,
+        "FAILS": 6
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9,
+        "FAILS": 0.1
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 60,
+          "denominator": 540,
+          "rate": 0.1111111111111111
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 60,
+          "rate": 0.06666666666666667
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 54,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 6,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots128|k5",
+      "shot_budget": 128,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 25,
+        "FAILS": 35
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4166666666666667,
+        "FAILS": 0.5833333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 52,
+          "denominator": 250,
+          "rate": 0.208
+        },
+        "FAILS": {
+          "numerator": 257,
+          "denominator": 350,
+          "rate": 0.7342857142857143
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 25,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 11,
+          "denominator": 35,
+          "rate": 0.3142857142857143
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k1",
+      "shot_budget": 256,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 47,
+          "denominator": 570,
+          "rate": 0.0824561403508772
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 30,
+          "rate": 0.03333333333333333
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k1",
+      "shot_budget": 256,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 20,
+        "FAILS": 40
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.3333333333333333,
+        "FAILS": 0.6666666666666666
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 4,
+          "denominator": 200,
+          "rate": 0.02
+        },
+        "FAILS": {
+          "numerator": 271,
+          "denominator": 400,
+          "rate": 0.6775
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 40,
+          "rate": 0.6
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k1",
+      "shot_budget": 256,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 40,
+          "denominator": 560,
+          "rate": 0.07142857142857142
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 40,
+          "rate": 0.025
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 4,
+          "rate": 0.75
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k1",
+      "shot_budget": 256,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 46,
+        "FAILS": 14
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.7666666666666667,
+        "FAILS": 0.23333333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 98,
+          "denominator": 460,
+          "rate": 0.21304347826086956
+        },
+        "FAILS": {
+          "numerator": 22,
+          "denominator": 140,
+          "rate": 0.15714285714285714
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 46,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 14,
+          "rate": 0.2857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k2",
+      "shot_budget": 256,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 34,
+          "denominator": 570,
+          "rate": 0.05964912280701754
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 30,
+          "rate": 0.03333333333333333
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k2",
+      "shot_budget": 256,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 35,
+        "FAILS": 25
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.5833333333333334,
+        "FAILS": 0.4166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 35,
+          "denominator": 350,
+          "rate": 0.1
+        },
+        "FAILS": {
+          "numerator": 87,
+          "denominator": 250,
+          "rate": 0.348
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 35,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 17,
+          "denominator": 25,
+          "rate": 0.68
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k2",
+      "shot_budget": 256,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 53,
+          "denominator": 550,
+          "rate": 0.09636363636363636
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 50,
+          "rate": 0.04
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 5,
+          "rate": 0.4
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k2",
+      "shot_budget": 256,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 15,
+        "FAILS": 45
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.25,
+        "FAILS": 0.75
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 36,
+          "denominator": 150,
+          "rate": 0.24
+        },
+        "FAILS": {
+          "numerator": 405,
+          "denominator": 450,
+          "rate": 0.9
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 15,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 21,
+          "denominator": 45,
+          "rate": 0.4666666666666667
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k3",
+      "shot_budget": 256,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 32,
+          "denominator": 570,
+          "rate": 0.056140350877192984
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 30,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k3",
+      "shot_budget": 256,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 19,
+        "FAILS": 41
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.31666666666666665,
+        "FAILS": 0.6833333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 4,
+          "denominator": 190,
+          "rate": 0.021052631578947368
+        },
+        "FAILS": {
+          "numerator": 274,
+          "denominator": 410,
+          "rate": 0.6682926829268293
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 19,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 41,
+          "rate": 0.5853658536585366
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k3",
+      "shot_budget": 256,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 54,
+        "FAILS": 6
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9,
+        "FAILS": 0.1
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 50,
+          "denominator": 540,
+          "rate": 0.09259259259259259
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 60,
+          "rate": 0.016666666666666666
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 54,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 6,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k3",
+      "shot_budget": 256,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 5,
+        "FAILS": 55
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.08333333333333333,
+        "FAILS": 0.9166666666666666
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 38,
+          "denominator": 50,
+          "rate": 0.76
+        },
+        "FAILS": {
+          "numerator": 505,
+          "denominator": 550,
+          "rate": 0.9181818181818182
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 31,
+          "denominator": 55,
+          "rate": 0.5636363636363636
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k4",
+      "shot_budget": 256,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 53,
+        "FAILS": 7
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.8833333333333333,
+        "FAILS": 0.11666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 39,
+          "denominator": 530,
+          "rate": 0.07358490566037736
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 70,
+          "rate": 0.02857142857142857
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 53,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 7,
+          "rate": 0.5714285714285714
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k4",
+      "shot_budget": 256,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 45,
+        "FAILS": 15
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.75,
+        "FAILS": 0.25
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 80,
+          "denominator": 450,
+          "rate": 0.17777777777777778
+        },
+        "FAILS": {
+          "numerator": 20,
+          "denominator": 150,
+          "rate": 0.13333333333333333
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 45,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 5,
+          "denominator": 15,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k4",
+      "shot_budget": 256,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 33,
+          "denominator": 560,
+          "rate": 0.05892857142857143
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 40,
+          "rate": 0.075
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 4,
+          "rate": 0.25
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k4",
+      "shot_budget": 256,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 31,
+        "FAILS": 29
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.5166666666666667,
+        "FAILS": 0.48333333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 62,
+          "denominator": 310,
+          "rate": 0.2
+        },
+        "FAILS": {
+          "numerator": 155,
+          "denominator": 290,
+          "rate": 0.5344827586206896
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 31,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 29,
+          "rate": 0.27586206896551724
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k5",
+      "shot_budget": 256,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 54,
+        "FAILS": 6
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9,
+        "FAILS": 0.1
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 51,
+          "denominator": 540,
+          "rate": 0.09444444444444444
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 60,
+          "rate": 0.05
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 54,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 6,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k5",
+      "shot_budget": 256,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 5,
+        "FAILS": 55
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.08333333333333333,
+        "FAILS": 0.9166666666666666
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 28,
+          "denominator": 50,
+          "rate": 0.56
+        },
+        "FAILS": {
+          "numerator": 504,
+          "denominator": 550,
+          "rate": 0.9163636363636364
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 5,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 31,
+          "denominator": 55,
+          "rate": 0.5636363636363636
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k5",
+      "shot_budget": 256,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 51,
+        "FAILS": 9
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.85,
+        "FAILS": 0.15
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 61,
+          "denominator": 510,
+          "rate": 0.11960784313725491
+        },
+        "FAILS": {
+          "numerator": 6,
+          "denominator": 90,
+          "rate": 0.06666666666666667
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 51,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 9,
+          "rate": 0.4444444444444444
+        }
+      }
+    },
+    {
+      "deployment_id": "shots256|k5",
+      "shot_budget": 256,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 12,
+        "FAILS": 48
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.2,
+        "FAILS": 0.8
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 53,
+          "denominator": 120,
+          "rate": 0.44166666666666665
+        },
+        "FAILS": {
+          "numerator": 434,
+          "denominator": 480,
+          "rate": 0.9041666666666667
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 12,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 48,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k1",
+      "shot_budget": 512,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 24,
+          "denominator": 560,
+          "rate": 0.04285714285714286
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k1",
+      "shot_budget": 512,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 26,
+        "FAILS": 34
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.43333333333333335,
+        "FAILS": 0.5666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 49,
+          "denominator": 260,
+          "rate": 0.18846153846153846
+        },
+        "FAILS": {
+          "numerator": 221,
+          "denominator": 340,
+          "rate": 0.65
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 26,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 10,
+          "denominator": 34,
+          "rate": 0.29411764705882354
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k1",
+      "shot_budget": 512,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 40,
+          "denominator": 550,
+          "rate": 0.07272727272727272
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 50,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 5,
+          "rate": 0.6
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k1",
+      "shot_budget": 512,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 15,
+        "FAILS": 45
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.25,
+        "FAILS": 0.75
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 31,
+          "denominator": 150,
+          "rate": 0.20666666666666667
+        },
+        "FAILS": {
+          "numerator": 404,
+          "denominator": 450,
+          "rate": 0.8977777777777778
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 15,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 21,
+          "denominator": 45,
+          "rate": 0.4666666666666667
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k2",
+      "shot_budget": 512,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 58,
+        "FAILS": 2
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9666666666666667,
+        "FAILS": 0.03333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 31,
+          "denominator": 580,
+          "rate": 0.05344827586206897
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 58,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0.0
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k2",
+      "shot_budget": 512,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 43,
+        "FAILS": 17
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.7166666666666667,
+        "FAILS": 0.2833333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 39,
+          "denominator": 430,
+          "rate": 0.09069767441860466
+        },
+        "FAILS": {
+          "numerator": 49,
+          "denominator": 170,
+          "rate": 0.28823529411764703
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 43,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 12,
+          "denominator": 17,
+          "rate": 0.7058823529411765
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k2",
+      "shot_budget": 512,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 53,
+        "FAILS": 7
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.8833333333333333,
+        "FAILS": 0.11666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 30,
+          "denominator": 530,
+          "rate": 0.05660377358490566
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 70,
+          "rate": 0.05714285714285714
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 53,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 7,
+          "rate": 0.2857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k2",
+      "shot_budget": 512,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 25,
+        "FAILS": 35
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4166666666666667,
+        "FAILS": 0.5833333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 8,
+          "denominator": 250,
+          "rate": 0.032
+        },
+        "FAILS": {
+          "numerator": 204,
+          "denominator": 350,
+          "rate": 0.5828571428571429
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 25,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 35,
+          "rate": 0.6857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k3",
+      "shot_budget": 512,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 36,
+          "denominator": 570,
+          "rate": 0.06315789473684211
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 30,
+          "rate": 0.03333333333333333
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k3",
+      "shot_budget": 512,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 31,
+        "FAILS": 29
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.5166666666666667,
+        "FAILS": 0.48333333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 65,
+          "denominator": 310,
+          "rate": 0.20967741935483872
+        },
+        "FAILS": {
+          "numerator": 169,
+          "denominator": 290,
+          "rate": 0.5827586206896552
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 31,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 29,
+          "rate": 0.27586206896551724
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k3",
+      "shot_budget": 512,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 44,
+          "denominator": 550,
+          "rate": 0.08
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 50,
+          "rate": 0.02
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 5,
+          "rate": 0.4
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k3",
+      "shot_budget": 512,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 23,
+        "FAILS": 37
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.38333333333333336,
+        "FAILS": 0.6166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 52,
+          "denominator": 230,
+          "rate": 0.22608695652173913
+        },
+        "FAILS": {
+          "numerator": 293,
+          "denominator": 370,
+          "rate": 0.7918918918918919
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 23,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 13,
+          "denominator": 37,
+          "rate": 0.35135135135135137
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k4",
+      "shot_budget": 512,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 58,
+        "FAILS": 2
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9666666666666667,
+        "FAILS": 0.03333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 30,
+          "denominator": 580,
+          "rate": 0.05172413793103448
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 58,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 2,
+          "rate": 0.0
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k4",
+      "shot_budget": 512,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 40,
+        "FAILS": 20
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.6666666666666666,
+        "FAILS": 0.3333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 38,
+          "denominator": 400,
+          "rate": 0.095
+        },
+        "FAILS": {
+          "numerator": 55,
+          "denominator": 200,
+          "rate": 0.275
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 13,
+          "denominator": 20,
+          "rate": 0.65
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k4",
+      "shot_budget": 512,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 54,
+        "FAILS": 6
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9,
+        "FAILS": 0.1
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 46,
+          "denominator": 540,
+          "rate": 0.08518518518518518
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 60,
+          "rate": 0.016666666666666666
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 54,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 6,
+          "rate": 0.16666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k4",
+      "shot_budget": 512,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 9,
+        "FAILS": 51
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.15,
+        "FAILS": 0.85
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 34,
+          "denominator": 90,
+          "rate": 0.37777777777777777
+        },
+        "FAILS": {
+          "numerator": 464,
+          "denominator": 510,
+          "rate": 0.9098039215686274
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 9,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 27,
+          "denominator": 51,
+          "rate": 0.5294117647058824
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k5",
+      "shot_budget": 512,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 39,
+          "denominator": 570,
+          "rate": 0.06842105263157895
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 30,
+          "rate": 0.06666666666666667
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 3,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k5",
+      "shot_budget": 512,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 29,
+        "FAILS": 31
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.48333333333333334,
+        "FAILS": 0.5166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 60,
+          "denominator": 290,
+          "rate": 0.20689655172413793
+        },
+        "FAILS": {
+          "numerator": 181,
+          "denominator": 310,
+          "rate": 0.5838709677419355
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 29,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 9,
+          "denominator": 31,
+          "rate": 0.2903225806451613
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k5",
+      "shot_budget": 512,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 51,
+        "FAILS": 9
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.85,
+        "FAILS": 0.15
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 42,
+          "denominator": 510,
+          "rate": 0.08235294117647059
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 90,
+          "rate": 0.03333333333333333
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 51,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 9,
+          "rate": 0.4444444444444444
+        }
+      }
+    },
+    {
+      "deployment_id": "shots512|k5",
+      "shot_budget": 512,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 28,
+        "FAILS": 32
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4666666666666667,
+        "FAILS": 0.5333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 14,
+          "denominator": 280,
+          "rate": 0.05
+        },
+        "FAILS": {
+          "numerator": 139,
+          "denominator": 320,
+          "rate": 0.434375
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 28,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 22,
+          "denominator": 32,
+          "rate": 0.6875
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k1",
+      "shot_budget": 1024,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 52,
+        "FAILS": 8
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.8666666666666667,
+        "FAILS": 0.13333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 42,
+          "denominator": 520,
+          "rate": 0.08076923076923077
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 80,
+          "rate": 0.025
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 52,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 8,
+          "rate": 0.375
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k1",
+      "shot_budget": 1024,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 21,
+        "FAILS": 39
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.35,
+        "FAILS": 0.65
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 4,
+          "denominator": 210,
+          "rate": 0.01904761904761905
+        },
+        "FAILS": {
+          "numerator": 256,
+          "denominator": 390,
+          "rate": 0.6564102564102564
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 21,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 39,
+          "rate": 0.6153846153846154
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k1",
+      "shot_budget": 1024,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 40,
+          "denominator": 560,
+          "rate": 0.07142857142857142
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 40,
+          "rate": 0.025
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k1",
+      "shot_budget": 1024,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 18,
+        "FAILS": 42
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.3,
+        "FAILS": 0.7
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 3,
+          "denominator": 180,
+          "rate": 0.016666666666666666
+        },
+        "FAILS": {
+          "numerator": 285,
+          "denominator": 420,
+          "rate": 0.6785714285714286
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 18,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 42,
+          "rate": 0.5714285714285714
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k2",
+      "shot_budget": 1024,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 36,
+          "denominator": 560,
+          "rate": 0.06428571428571428
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k2",
+      "shot_budget": 1024,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 21,
+        "FAILS": 39
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.35,
+        "FAILS": 0.65
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 4,
+          "denominator": 210,
+          "rate": 0.01904761904761905
+        },
+        "FAILS": {
+          "numerator": 276,
+          "denominator": 390,
+          "rate": 0.7076923076923077
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 21,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 39,
+          "rate": 0.6153846153846154
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k2",
+      "shot_budget": 1024,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 32,
+          "denominator": 550,
+          "rate": 0.05818181818181818
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 50,
+          "rate": 0.02
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 5,
+          "rate": 0.4
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k2",
+      "shot_budget": 1024,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 32,
+        "FAILS": 28
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.5333333333333333,
+        "FAILS": 0.4666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 66,
+          "denominator": 320,
+          "rate": 0.20625
+        },
+        "FAILS": {
+          "numerator": 138,
+          "denominator": 280,
+          "rate": 0.4928571428571429
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 28,
+          "rate": 0.2857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k3",
+      "shot_budget": 1024,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 27,
+          "denominator": 570,
+          "rate": 0.04736842105263158
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 30,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k3",
+      "shot_budget": 1024,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 25,
+        "FAILS": 35
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4166666666666667,
+        "FAILS": 0.5833333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 8,
+          "denominator": 250,
+          "rate": 0.032
+        },
+        "FAILS": {
+          "numerator": 200,
+          "denominator": 350,
+          "rate": 0.5714285714285714
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 25,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 35,
+          "rate": 0.6857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k3",
+      "shot_budget": 1024,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 29,
+          "denominator": 550,
+          "rate": 0.05272727272727273
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 50,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 5,
+          "rate": 0.4
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k3",
+      "shot_budget": 1024,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 25,
+        "FAILS": 35
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4166666666666667,
+        "FAILS": 0.5833333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 8,
+          "denominator": 250,
+          "rate": 0.032
+        },
+        "FAILS": {
+          "numerator": 202,
+          "denominator": 350,
+          "rate": 0.5771428571428572
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 25,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 35,
+          "rate": 0.6857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k4",
+      "shot_budget": 1024,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 54,
+        "FAILS": 6
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9,
+        "FAILS": 0.1
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 40,
+          "denominator": 540,
+          "rate": 0.07407407407407407
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 54,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 6,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k4",
+      "shot_budget": 1024,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 14,
+        "FAILS": 46
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.23333333333333334,
+        "FAILS": 0.7666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 58,
+          "denominator": 140,
+          "rate": 0.4142857142857143
+        },
+        "FAILS": {
+          "numerator": 415,
+          "denominator": 460,
+          "rate": 0.9021739130434783
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 14,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 22,
+          "denominator": 46,
+          "rate": 0.4782608695652174
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k4",
+      "shot_budget": 1024,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 24,
+          "denominator": 560,
+          "rate": 0.04285714285714286
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k4",
+      "shot_budget": 1024,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 23,
+        "FAILS": 37
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.38333333333333336,
+        "FAILS": 0.6166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 54,
+          "denominator": 230,
+          "rate": 0.23478260869565218
+        },
+        "FAILS": {
+          "numerator": 303,
+          "denominator": 370,
+          "rate": 0.8189189189189189
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 23,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 13,
+          "denominator": 37,
+          "rate": 0.35135135135135137
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k5",
+      "shot_budget": 1024,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 30,
+          "denominator": 560,
+          "rate": 0.05357142857142857
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k5",
+      "shot_budget": 1024,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 34,
+        "FAILS": 26
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.5666666666666667,
+        "FAILS": 0.43333333333333335
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 65,
+          "denominator": 340,
+          "rate": 0.19117647058823528
+        },
+        "FAILS": {
+          "numerator": 96,
+          "denominator": 260,
+          "rate": 0.36923076923076925
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 34,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 26,
+          "rate": 0.3076923076923077
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k5",
+      "shot_budget": 1024,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 58,
+        "FAILS": 2
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9666666666666667,
+        "FAILS": 0.03333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 32,
+          "denominator": 580,
+          "rate": 0.05517241379310345
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 58,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 2,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots1024|k5",
+      "shot_budget": 1024,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 27,
+        "FAILS": 33
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.45,
+        "FAILS": 0.55
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 12,
+          "denominator": 270,
+          "rate": 0.044444444444444446
+        },
+        "FAILS": {
+          "numerator": 166,
+          "denominator": 330,
+          "rate": 0.503030303030303
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 27,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 23,
+          "denominator": 33,
+          "rate": 0.696969696969697
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k1",
+      "shot_budget": 2048,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 24,
+          "denominator": 570,
+          "rate": 0.042105263157894736
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 30,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k1",
+      "shot_budget": 2048,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 37,
+        "FAILS": 23
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.6166666666666667,
+        "FAILS": 0.38333333333333336
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 37,
+          "denominator": 370,
+          "rate": 0.1
+        },
+        "FAILS": {
+          "numerator": 62,
+          "denominator": 230,
+          "rate": 0.26956521739130435
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 37,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 15,
+          "denominator": 23,
+          "rate": 0.6521739130434783
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k1",
+      "shot_budget": 2048,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 28,
+          "denominator": 560,
+          "rate": 0.05
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k1",
+      "shot_budget": 2048,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 28,
+        "FAILS": 32
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4666666666666667,
+        "FAILS": 0.5333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 12,
+          "denominator": 280,
+          "rate": 0.04285714285714286
+        },
+        "FAILS": {
+          "numerator": 155,
+          "denominator": 320,
+          "rate": 0.484375
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 28,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 22,
+          "denominator": 32,
+          "rate": 0.6875
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k2",
+      "shot_budget": 2048,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 28,
+          "denominator": 560,
+          "rate": 0.05
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 4,
+          "rate": 0.75
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k2",
+      "shot_budget": 2048,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 24,
+        "FAILS": 36
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4,
+        "FAILS": 0.6
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 6,
+          "denominator": 240,
+          "rate": 0.025
+        },
+        "FAILS": {
+          "numerator": 243,
+          "denominator": 360,
+          "rate": 0.675
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 24,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 36,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k2",
+      "shot_budget": 2048,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 25,
+          "denominator": 560,
+          "rate": 0.044642857142857144
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 40,
+          "rate": 0.025
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 4,
+          "rate": 0.75
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k2",
+      "shot_budget": 2048,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 25,
+        "FAILS": 35
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4166666666666667,
+        "FAILS": 0.5833333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 8,
+          "denominator": 250,
+          "rate": 0.032
+        },
+        "FAILS": {
+          "numerator": 207,
+          "denominator": 350,
+          "rate": 0.5914285714285714
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 25,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 35,
+          "rate": 0.6857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k3",
+      "shot_budget": 2048,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 58,
+        "FAILS": 2
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9666666666666667,
+        "FAILS": 0.03333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 35,
+          "denominator": 580,
+          "rate": 0.0603448275862069
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 58,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 2,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k3",
+      "shot_budget": 2048,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 26,
+        "FAILS": 34
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.43333333333333335,
+        "FAILS": 0.5666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 52,
+          "denominator": 260,
+          "rate": 0.2
+        },
+        "FAILS": {
+          "numerator": 212,
+          "denominator": 340,
+          "rate": 0.6235294117647059
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 26,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 10,
+          "denominator": 34,
+          "rate": 0.29411764705882354
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k3",
+      "shot_budget": 2048,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 54,
+        "FAILS": 6
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9,
+        "FAILS": 0.1
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 44,
+          "denominator": 540,
+          "rate": 0.08148148148148149
+        },
+        "FAILS": {
+          "numerator": 4,
+          "denominator": 60,
+          "rate": 0.06666666666666667
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 54,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 6,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k3",
+      "shot_budget": 2048,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 52,
+        "FAILS": 8
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.8666666666666667,
+        "FAILS": 0.13333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 44,
+          "denominator": 520,
+          "rate": 0.08461538461538462
+        },
+        "FAILS": {
+          "numerator": 6,
+          "denominator": 80,
+          "rate": 0.075
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 52,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 8,
+          "rate": 0.375
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k4",
+      "shot_budget": 2048,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 31,
+          "denominator": 550,
+          "rate": 0.056363636363636366
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 50,
+          "rate": 0.02
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 5,
+          "rate": 0.6
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k4",
+      "shot_budget": 2048,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 23,
+        "FAILS": 37
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.38333333333333336,
+        "FAILS": 0.6166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 51,
+          "denominator": 230,
+          "rate": 0.2217391304347826
+        },
+        "FAILS": {
+          "numerator": 299,
+          "denominator": 370,
+          "rate": 0.8081081081081081
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 23,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 13,
+          "denominator": 37,
+          "rate": 0.35135135135135137
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k4",
+      "shot_budget": 2048,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 27,
+          "denominator": 560,
+          "rate": 0.048214285714285716
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 4,
+          "rate": 0.25
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k4",
+      "shot_budget": 2048,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 37,
+        "FAILS": 23
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.6166666666666667,
+        "FAILS": 0.38333333333333336
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 61,
+          "denominator": 370,
+          "rate": 0.16486486486486487
+        },
+        "FAILS": {
+          "numerator": 85,
+          "denominator": 230,
+          "rate": 0.3695652173913043
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 37,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 23,
+          "rate": 0.34782608695652173
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k5",
+      "shot_budget": 2048,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 27,
+          "denominator": 570,
+          "rate": 0.04736842105263158
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 30,
+          "rate": 0.03333333333333333
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k5",
+      "shot_budget": 2048,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 24,
+        "FAILS": 36
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4,
+        "FAILS": 0.6
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 58,
+          "denominator": 240,
+          "rate": 0.24166666666666667
+        },
+        "FAILS": {
+          "numerator": 284,
+          "denominator": 360,
+          "rate": 0.7888888888888889
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 24,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 12,
+          "denominator": 36,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k5",
+      "shot_budget": 2048,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 41,
+          "denominator": 550,
+          "rate": 0.07454545454545454
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 50,
+          "rate": 0.04
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 5,
+          "rate": 0.2
+        }
+      }
+    },
+    {
+      "deployment_id": "shots2048|k5",
+      "shot_budget": 2048,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 16,
+        "FAILS": 44
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.26666666666666666,
+        "FAILS": 0.7333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 29,
+          "denominator": 160,
+          "rate": 0.18125
+        },
+        "FAILS": {
+          "numerator": 392,
+          "denominator": 440,
+          "rate": 0.8909090909090909
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 16,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 20,
+          "denominator": 44,
+          "rate": 0.45454545454545453
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k1",
+      "shot_budget": 4096,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 60,
+        "FAILS": 0
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 1.0,
+        "FAILS": 0.0
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 17,
+          "denominator": 600,
+          "rate": 0.028333333333333332
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 60,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 0,
+          "rate": null
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k1",
+      "shot_budget": 4096,
+      "kernel_seed": 1,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 43,
+        "FAILS": 17
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.7166666666666667,
+        "FAILS": 0.2833333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 84,
+          "denominator": 430,
+          "rate": 0.19534883720930232
+        },
+        "FAILS": {
+          "numerator": 42,
+          "denominator": 170,
+          "rate": 0.24705882352941178
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 43,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 6,
+          "denominator": 17,
+          "rate": 0.35294117647058826
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k1",
+      "shot_budget": 4096,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 23,
+          "denominator": 570,
+          "rate": 0.04035087719298246
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 30,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 3,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k1",
+      "shot_budget": 4096,
+      "kernel_seed": 1,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 52,
+        "FAILS": 8
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.8666666666666667,
+        "FAILS": 0.13333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 61,
+          "denominator": 520,
+          "rate": 0.11730769230769231
+        },
+        "FAILS": {
+          "numerator": 6,
+          "denominator": 80,
+          "rate": 0.075
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 52,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 8,
+          "rate": 0.375
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k2",
+      "shot_budget": 4096,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 17,
+          "denominator": 560,
+          "rate": 0.030357142857142857
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k2",
+      "shot_budget": 4096,
+      "kernel_seed": 2,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 58,
+        "FAILS": 2
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9666666666666667,
+        "FAILS": 0.03333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 13,
+          "denominator": 580,
+          "rate": 0.022413793103448276
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 58,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 2,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k2",
+      "shot_budget": 4096,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 58,
+        "FAILS": 2
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9666666666666667,
+        "FAILS": 0.03333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 18,
+          "denominator": 580,
+          "rate": 0.03103448275862069
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 20,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 58,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 2,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k2",
+      "shot_budget": 4096,
+      "kernel_seed": 2,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 37,
+        "FAILS": 23
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.6166666666666667,
+        "FAILS": 0.38333333333333336
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 73,
+          "denominator": 370,
+          "rate": 0.1972972972972973
+        },
+        "FAILS": {
+          "numerator": 78,
+          "denominator": 230,
+          "rate": 0.3391304347826087
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 37,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 23,
+          "rate": 0.34782608695652173
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k3",
+      "shot_budget": 4096,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 27,
+          "denominator": 550,
+          "rate": 0.04909090909090909
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 50,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 3,
+          "denominator": 5,
+          "rate": 0.6
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k3",
+      "shot_budget": 4096,
+      "kernel_seed": 3,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 29,
+        "FAILS": 31
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.48333333333333334,
+        "FAILS": 0.5166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 63,
+          "denominator": 290,
+          "rate": 0.21724137931034482
+        },
+        "FAILS": {
+          "numerator": 168,
+          "denominator": 310,
+          "rate": 0.5419354838709678
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 29,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 9,
+          "denominator": 31,
+          "rate": 0.2903225806451613
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k3",
+      "shot_budget": 4096,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 24,
+          "denominator": 560,
+          "rate": 0.04285714285714286
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k3",
+      "shot_budget": 4096,
+      "kernel_seed": 3,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 29,
+        "FAILS": 31
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.48333333333333334,
+        "FAILS": 0.5166666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 64,
+          "denominator": 290,
+          "rate": 0.2206896551724138
+        },
+        "FAILS": {
+          "numerator": 170,
+          "denominator": 310,
+          "rate": 0.5483870967741935
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 29,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 9,
+          "denominator": 31,
+          "rate": 0.2903225806451613
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k4",
+      "shot_budget": 4096,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 56,
+        "FAILS": 4
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9333333333333333,
+        "FAILS": 0.06666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 27,
+          "denominator": 560,
+          "rate": 0.048214285714285716
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 40,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 4,
+          "rate": 0.5
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k4",
+      "shot_budget": 4096,
+      "kernel_seed": 4,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 25,
+        "FAILS": 35
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.4166666666666667,
+        "FAILS": 0.5833333333333334
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 8,
+          "denominator": 250,
+          "rate": 0.032
+        },
+        "FAILS": {
+          "numerator": 217,
+          "denominator": 350,
+          "rate": 0.62
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 25,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 24,
+          "denominator": 35,
+          "rate": 0.6857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k4",
+      "shot_budget": 4096,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 57,
+        "FAILS": 3
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.95,
+        "FAILS": 0.05
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 21,
+          "denominator": 570,
+          "rate": 0.03684210526315789
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 30,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 57,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 1,
+          "denominator": 3,
+          "rate": 0.3333333333333333
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k4",
+      "shot_budget": 4096,
+      "kernel_seed": 4,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 27,
+        "FAILS": 33
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.45,
+        "FAILS": 0.55
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 12,
+          "denominator": 270,
+          "rate": 0.044444444444444446
+        },
+        "FAILS": {
+          "numerator": 165,
+          "denominator": 330,
+          "rate": 0.5
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 27,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 23,
+          "denominator": 33,
+          "rate": 0.696969696969697
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k5",
+      "shot_budget": 4096,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 59,
+        "FAILS": 1
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9833333333333333,
+        "FAILS": 0.016666666666666666
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 18,
+          "denominator": 590,
+          "rate": 0.030508474576271188
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 10,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 59,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 1,
+          "rate": 0.0
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k5",
+      "shot_budget": 4096,
+      "kernel_seed": 5,
+      "regime": "raw",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 32,
+        "FAILS": 28
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.5333333333333333,
+        "FAILS": 0.4666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 66,
+          "denominator": 320,
+          "rate": 0.20625
+        },
+        "FAILS": {
+          "numerator": 143,
+          "denominator": 280,
+          "rate": 0.5107142857142857
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 28,
+          "rate": 0.2857142857142857
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k5",
+      "shot_budget": 4096,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "deployment_relative",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 55,
+        "FAILS": 5
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.9166666666666666,
+        "FAILS": 0.08333333333333333
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 26,
+          "denominator": 550,
+          "rate": 0.04727272727272727
+        },
+        "FAILS": {
+          "numerator": 0,
+          "denominator": 50,
+          "rate": 0.0
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 55,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 2,
+          "denominator": 5,
+          "rate": 0.4
+        }
+      }
+    },
+    {
+      "deployment_id": "shots4096|k5",
+      "shot_budget": 4096,
+      "kernel_seed": 5,
+      "regime": "psd_repaired",
+      "claim_semantics": "ideal_anchored",
+      "evaluable_condition_cells": 60,
+      "condition_cell_counts": {
+        "HOLDS": 32,
+        "FAILS": 28
+      },
+      "condition_cell_fractions": {
+        "HOLDS": 0.5333333333333333,
+        "FAILS": 0.4666666666666667
+      },
+      "audit_verdict_flip": {
+        "HOLDS": {
+          "numerator": 62,
+          "denominator": 320,
+          "rate": 0.19375
+        },
+        "FAILS": {
+          "numerator": 133,
+          "denominator": 280,
+          "rate": 0.475
+        }
+      },
+      "truth_sign_flip": {
+        "HOLDS": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "FAILS": {
+          "numerator": 8,
+          "denominator": 28,
+          "rate": 0.2857142857142857
+        }
+      }
+    }
+  ],
+  "across_deployments": {
+    "raw": {
+      "deployment_relative": {
+        "n_noisy_kernel_deployments": 30,
+        "evaluable_condition_cells_per_deployment": {
+          "n_deployments_contributing": 30,
+          "median": 60.0,
+          "q1": 60.0,
+          "q3": 60.0,
+          "iqr": 0.0,
+          "min": 60.0,
+          "max": 60.0,
+          "mean": 60.0,
+          "sample_sd": 0.0
+        },
+        "condition_cell_fractions": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.9333333333333333,
+            "q1": 0.9208333333333333,
+            "q3": 0.95,
+            "iqr": 0.029166666666666674,
+            "min": 0.8666666666666667,
+            "max": 1.0,
+            "mean": 0.9366666666666666,
+            "sample_sd": 0.02781989144754624
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.06666666666666667,
+            "q1": 0.05,
+            "q3": 0.07916666666666666,
+            "iqr": 0.02916666666666666,
+            "min": 0.0,
+            "max": 0.13333333333333333,
+            "mean": 0.06333333333333334,
+            "sample_sd": 0.027819891447546246
+          }
+        },
+        "audit_verdict_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.05800637958532695,
+            "q1": 0.04843344155844156,
+            "q3": 0.07276785714285715,
+            "iqr": 0.02433441558441559,
+            "min": 0.028333333333333332,
+            "max": 0.09444444444444444,
+            "mean": 0.05972734829419287,
+            "sample_sd": 0.01702697554797305
+          },
+          "FAILS": {
+            "n_deployments_contributing": 29,
+            "median": 0.0,
+            "q1": 0.0,
+            "q3": 0.02857142857142857,
+            "iqr": 0.02857142857142857,
+            "min": 0.0,
+            "max": 0.06666666666666667,
+            "mean": 0.01374384236453202,
+            "sample_sd": 0.01970978050741115
+          }
+        },
+        "truth_sign_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.0,
+            "q1": 0.0,
+            "q3": 0.0,
+            "iqr": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "sample_sd": 0.0
+          },
+          "FAILS": {
+            "n_deployments_contributing": 29,
+            "median": 0.5,
+            "q1": 0.375,
+            "q3": 0.6666666666666666,
+            "iqr": 0.29166666666666663,
+            "min": 0.0,
+            "max": 0.75,
+            "mean": 0.46941707717569786,
+            "sample_sd": 0.20584153741481617
+          }
+        }
+      },
+      "ideal_anchored": {
+        "n_noisy_kernel_deployments": 30,
+        "evaluable_condition_cells_per_deployment": {
+          "n_deployments_contributing": 30,
+          "median": 60.0,
+          "q1": 60.0,
+          "q3": 60.0,
+          "iqr": 0.0,
+          "min": 60.0,
+          "max": 60.0,
+          "mean": 60.0,
+          "sample_sd": 0.0
+        },
+        "condition_cell_fractions": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.42500000000000004,
+            "q1": 0.35833333333333334,
+            "q3": 0.5791666666666667,
+            "iqr": 0.22083333333333338,
+            "min": 0.08333333333333333,
+            "max": 0.9666666666666667,
+            "mean": 0.47000000000000003,
+            "sample_sd": 0.18270005567822795
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.575,
+            "q1": 0.42083333333333334,
+            "q3": 0.6416666666666667,
+            "iqr": 0.22083333333333338,
+            "min": 0.03333333333333333,
+            "max": 0.9166666666666666,
+            "mean": 0.53,
+            "sample_sd": 0.18270005567822792
+          }
+        },
+        "audit_verdict_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.18981900452488687,
+            "q1": 0.046674418604651165,
+            "q3": 0.216191904047976,
+            "iqr": 0.16951748544332484,
+            "min": 0.01904761904761905,
+            "max": 0.56,
+            "mean": 0.16696144177776256,
+            "sample_sd": 0.1250973313793131
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.621764705882353,
+            "q1": 0.3769230769230769,
+            "q3": 0.7685897435897435,
+            "iqr": 0.3916666666666666,
+            "min": 0.0,
+            "max": 0.9163636363636364,
+            "mean": 0.5755153040871548,
+            "sample_sd": 0.24574100476708194
+          }
+        },
+        "truth_sign_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.0,
+            "q1": 0.0,
+            "q3": 0.0,
+            "iqr": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "sample_sd": 0.0
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.45454545454545453,
+            "q1": 0.3141025641025641,
+            "q3": 0.6153846153846154,
+            "iqr": 0.3012820512820513,
+            "min": 0.27586206896551724,
+            "max": 0.7058823529411765,
+            "mean": 0.4663600010495275,
+            "sample_sd": 0.1587726112343995
+          }
+        }
+      }
+    },
+    "psd_repaired": {
+      "deployment_relative": {
+        "n_noisy_kernel_deployments": 30,
+        "evaluable_condition_cells_per_deployment": {
+          "n_deployments_contributing": 30,
+          "median": 60.0,
+          "q1": 60.0,
+          "q3": 60.0,
+          "iqr": 0.0,
+          "min": 60.0,
+          "max": 60.0,
+          "mean": 60.0,
+          "sample_sd": 0.0
+        },
+        "condition_cell_fractions": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.9166666666666666,
+            "q1": 0.9041666666666667,
+            "q3": 0.9333333333333333,
+            "iqr": 0.029166666666666674,
+            "min": 0.85,
+            "max": 0.9666666666666667,
+            "mean": 0.9194444444444444,
+            "sample_sd": 0.027010475239603267
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.08333333333333333,
+            "q1": 0.06666666666666667,
+            "q3": 0.09583333333333334,
+            "iqr": 0.029166666666666674,
+            "min": 0.03333333333333333,
+            "max": 0.15,
+            "mean": 0.08055555555555556,
+            "sample_sd": 0.027010475239603263
+          }
+        },
+        "audit_verdict_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.07053571428571428,
+            "q1": 0.048660714285714286,
+            "q3": 0.08213507625272332,
+            "iqr": 0.03347436196700903,
+            "min": 0.03103448275862069,
+            "max": 0.11960784313725491,
+            "mean": 0.06842751425891622,
+            "sample_sd": 0.023366752406917116
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.02,
+            "q1": 0.0,
+            "q3": 0.0475,
+            "iqr": 0.0475,
+            "min": 0.0,
+            "max": 0.08,
+            "mean": 0.026349206349206348,
+            "sample_sd": 0.027718617116014244
+          }
+        },
+        "truth_sign_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.0,
+            "q1": 0.0,
+            "q3": 0.0,
+            "iqr": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "sample_sd": 0.0
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.4,
+            "q1": 0.2976190476190476,
+            "q3": 0.5,
+            "iqr": 0.20238095238095238,
+            "min": 0.16666666666666666,
+            "max": 0.75,
+            "mean": 0.40026455026455027,
+            "sample_sd": 0.1460604986646876
+          }
+        }
+      },
+      "ideal_anchored": {
+        "n_noisy_kernel_deployments": 30,
+        "evaluable_condition_cells_per_deployment": {
+          "n_deployments_contributing": 30,
+          "median": 60.0,
+          "q1": 60.0,
+          "q3": 60.0,
+          "iqr": 0.0,
+          "min": 60.0,
+          "max": 60.0,
+          "mean": 60.0,
+          "sample_sd": 0.0
+        },
+        "condition_cell_fractions": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.4166666666666667,
+            "q1": 0.275,
+            "q3": 0.5083333333333334,
+            "iqr": 0.2333333333333334,
+            "min": 0.08333333333333333,
+            "max": 0.8666666666666667,
+            "mean": 0.42,
+            "sample_sd": 0.19634592977174506
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.5833333333333334,
+            "q1": 0.4916666666666667,
+            "q3": 0.725,
+            "iqr": 0.23333333333333328,
+            "min": 0.13333333333333333,
+            "max": 0.9166666666666666,
+            "mean": 0.58,
+            "sample_sd": 0.19634592977174503
+          }
+        },
+        "audit_verdict_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.18854166666666666,
+            "q1": 0.058653846153846154,
+            "q3": 0.21877811094452773,
+            "iqr": 0.1601242647906816,
+            "min": 0.016666666666666666,
+            "max": 0.76,
+            "mean": 0.18521766430259684,
+            "sample_sd": 0.14876826085442454
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.5871428571428572,
+            "q1": 0.4864955357142857,
+            "q3": 0.8878246753246752,
+            "iqr": 0.4013291396103895,
+            "min": 0.075,
+            "max": 0.9181818181818182,
+            "mean": 0.6233763346988643,
+            "sample_sd": 0.2576865264112248
+          }
+        },
+        "truth_sign_flip_rates": {
+          "HOLDS": {
+            "n_deployments_contributing": 30,
+            "median": 0.0,
+            "q1": 0.0,
+            "q3": 0.0,
+            "iqr": 0.0,
+            "min": 0.0,
+            "max": 0.0,
+            "mean": 0.0,
+            "sample_sd": 0.0
+          },
+          "FAILS": {
+            "n_deployments_contributing": 30,
+            "median": 0.45454545454545453,
+            "q1": 0.3487074030552291,
+            "q3": 0.5694805194805195,
+            "iqr": 0.22077311642529035,
+            "min": 0.27586206896551724,
+            "max": 0.696969696969697,
+            "mean": 0.4690499775896957,
+            "sample_sd": 0.15002476561741745
+          }
+        }
+      }
+    }
+  },
+  "reproducibility": {
+    "canonical_payload_sha256": "3947A84B755FC79B4AE0BCAC0EDD5C93CAECD2B7DEE1F20F622764B6B9C56140"
+  }
+}

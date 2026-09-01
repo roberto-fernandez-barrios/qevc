@@ -5,6 +5,8 @@ import copy
 import hashlib
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 from qevc.auditing.stability import (
     FAILS,
@@ -21,6 +23,12 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "analyze_e16_psd_sensitivity.py"
 PRIMARY = ROOT / "results" / "tables" / "E16_quantum_uncertainty.json"
 ARTIFACT = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
+DEPLOYMENT_SUMMARY = (
+    ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json"
+)
+DEPLOYMENT_SUMMARY_SCRIPT = (
+    ROOT / "scripts" / "summarize_e16_proposition4_deployments.py"
+)
 
 
 def _case(status: str, flips: list[bool]) -> dict:
@@ -203,3 +211,32 @@ def test_all_recorded_protected_inputs_remain_byte_identical() -> None:
     for relative_path, expected in recorded.items():
         observed = hashlib.sha256((ROOT / relative_path).read_bytes()).hexdigest().upper()
         assert observed == expected, relative_path
+
+
+def test_deployment_summary_exactly_reproduces_frozen_instantiation() -> None:
+    completed = subprocess.run(
+        [sys.executable, str(DEPLOYMENT_SUMMARY_SCRIPT), "--check"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+
+    summary = json.loads(DEPLOYMENT_SUMMARY.read_text(encoding="utf-8"))
+    assert summary["independent_descriptive_unit"] == "noisy-kernel deployment"
+    assert summary["accounting"] == {
+        "noisy_kernel_deployments": 30,
+        "regimes": ["raw", "psd_repaired"],
+        "claim_semantics": ["deployment_relative", "ideal_anchored"],
+        "condition_cells_per_deployment_regime_semantics_slice": 60,
+        "audit_streams_per_condition_cell": 10,
+        "correlation_warning": (
+            "Cells and audit streams share each deployment's realized Gram, refit, "
+            "calibration, threshold and paired common-random-number streams."
+        ),
+    }
+    assert all(
+        row["truth_sign_flip"]["HOLDS"]["numerator"] == 0
+        for row in summary["per_deployment"]
+    )

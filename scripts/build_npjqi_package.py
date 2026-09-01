@@ -19,6 +19,9 @@ DIST_DIR = ROOT / "dist"
 CHECKSUM_FILE = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 PSD_ANALYSIS = ROOT / "results" / "tables" / "E16_psd_sensitivity.json"
 PROPOSITION4_ANALYSIS = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
+PROPOSITION4_DEPLOYMENT_SUMMARY = (
+    ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json"
+)
 
 
 def sha256(path: Path) -> str:
@@ -80,6 +83,7 @@ def main() -> None:
             ROOT / "docs" / "submission" / "npjqi_submission_metadata.md": "submission/npjqi_submission_metadata.md",
             ROOT / "results" / "tables" / "E16_psd_sensitivity.json": "source/results/tables/E16_psd_sensitivity.json",
             ROOT / "results" / "tables" / "E16_proposition4_instantiation.json": "source/results/tables/E16_proposition4_instantiation.json",
+            ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json": "source/results/tables/E16_proposition4_deployment_summary.json",
         }
         for source, arcname in source_files.items():
             zf.write(source, arcname)
@@ -91,7 +95,13 @@ def main() -> None:
                 f"source/results/figures/{Path(name).name}",
             )
 
-    checksum_targets = [*outputs.values(), archive, PSD_ANALYSIS, PROPOSITION4_ANALYSIS]
+    checksum_targets = [
+        *outputs.values(),
+        archive,
+        PSD_ANALYSIS,
+        PROPOSITION4_ANALYSIS,
+        PROPOSITION4_DEPLOYMENT_SUMMARY,
+    ]
     lines = [f"{sha256(path)}  {path.relative_to(ROOT).as_posix()}" for path in checksum_targets]
     CHECKSUM_FILE.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

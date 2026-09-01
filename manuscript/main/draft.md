@@ -4,7 +4,7 @@
 
 ## Abstract
 
-Claims made by deployed quantum machine-learning classifiers can fail under target shift or when finite-shot quantum evaluation randomizes the model. We develop an information-conditional, fail-closed framework returning supported, refuted or unresolved verdicts. Anytime-valid error control applies to each fixed I2 label-stream claim, conditional on the frozen finite audit population under declared with-replacement sampling; I3 and CMS procedures are separately coverage-gated or calibrated. On a Higgs-to-tau-tau benchmark, we give an exact fixed-threshold reduction for physics-weighted ratio claims and a feature-only identifiability boundary. Stable classifier metrics do not ensure signal-strength coverage. Finite-shot deployments propagate each realized Gram through refitting, calibration and thresholding. Deterministic replay instantiates a sufficient sign-stability bound, which holds in 68.7\% of evaluated cells and discriminates observed flips. All evaluated far-margin deployment-relative claims were true and remained supported across raw and PSD-repaired realizations. Matched classical controls remove apparent quantum-specific performance and sensing effects. We claim no quantum advantage.
+Claims made by deployed quantum machine-learning classifiers can fail under target shift or when finite-shot quantum evaluation randomizes the model. We develop an information-conditional, fail-closed framework returning supported, refuted or unresolved verdicts. Anytime-valid error control applies to each fixed I2 label-stream claim, conditional on the frozen finite audit population under declared with-replacement sampling; I3 and CMS procedures are separately coverage-gated or calibrated. On a Higgs-to-tau-tau benchmark, we give an exact fixed-threshold reduction for physics-weighted ratio claims and a feature-only identifiability boundary. Stable classifier metrics do not ensure signal-strength coverage. Finite-shot deployments propagate each realized Gram through refitting, calibration and thresholding. Deterministic replay instantiates the sufficient sign-stability bound and shows that it discriminates observed instability while remaining sufficient rather than necessary. All evaluated far-margin deployment-relative claims were true and remained supported across raw and PSD-repaired realizations. Matched classical controls remove apparent quantum-specific performance and sensing effects. We claim no quantum advantage.
 
 ## Introduction
 
@@ -32,7 +32,11 @@ here remains distinct (Sec.~the referenced section).
 
 We therefore ask: *which claims about a quantum event classifier remain
 justified when both layers act, given only the information experimentally
-available at deployment?* We encode that information as source data (I0),
+available at deployment?* In this work, *deployment* denotes a frozen
+finite-population batch deployment: a fixed realization is evaluated against a
+finite, frozen audit population. We claim no guarantee for a continually
+re-estimated online kernel service or for an unspecified future
+superpopulation. We encode the available information as source data (I0),
 unlabeled target data (I1), $n$ target labels (I2($n$)), and experimentally
 available aggregates such as control-region rates and nuisance estimates
 (I3). A fail-closed auditor returns SUPPORTED or REFUTED only when the declared
@@ -52,7 +56,8 @@ inference, and finite simulation templates create genuinely different
 information sets. We instantiate the framework on the FAIR Universe HiggsML
 Uncertainty benchmark with a quantum-kernel classifier and matched classical
 controls, propagate claims through signal-strength inference, and test the
-decision discipline across four provably disjoint simulated worlds, CMS open
+decision discipline across four simulated worlds verified row-disjoint by
+construction, CMS open
 data, and QPU-estimated kernels (Fig.~the referenced section).
 
 [t]
@@ -81,9 +86,10 @@ Signal-strength coverage can collapse at nearly unchanged AUC. Under shared
 simulation, a gate-validated fixed-template profile recovers coverage in most
 tested scale and normalization cells that its nuisance model represents, at a
 measured 1.8--3.4 interval-width price, but fails for unrepresented smearing
-and interaction terms. Registered independent-MC studies then show that
-template noise at the archived MC size can invalidate this fixed-template
-construction even nominally. Inference validity is therefore jointly limited
+and interaction terms. Registered independent-MC studies then show that the
+evaluated archived fixed-template construction can lose coverage, including
+in nominal controls, under independent-MC template noise at the studied MC
+size. Inference validity is therefore jointly limited
 by nuisance representability and auxiliary-template quality. A fail-closed
 ledger on the complete public CMS Run2012 $H\to\tau\tau$ sample certifies only
 the aggregate claims that its control-region information supports and refuses
@@ -145,10 +151,16 @@ literature: inductive bias and data-dependent advantage
 , shot requirements for resolving kernel entries
 , data-embedding limitations
 , and benchmark scrutiny .
-These results motivate our bandwidth-limited map, matched RBF control and
-explicit finite-shot accounting. They do not propagate a realized noisy Gram
-matrix through refitting, calibration, claim resolution and a downstream
-scientific estimand.
+Finite measurements and device noise can also make empirical quantum-kernel
+matrices indefinite. Agliardi et al. enforce symmetry and obtain a nearest
+normalized PSD matrix by clipping negative eigenvalues, using the distance to
+that projection in their bit-flip-tolerance calibration. This projection is
+not our pipeline. We preserve the historically executed RAW-INDEFINITE
+analysis and use minimum diagonal loading only as a declared post-hoc
+sensitivity; we neither optimize nor benchmark PSD-repair strategies. These
+results motivate our bandwidth-limited map, matched RBF control and explicit
+finite-shot accounting, but do not propagate a realized noisy Gram through
+refitting, calibration, claim resolution and a downstream scientific estimand.
 
 In the quantum literature, certification can mean hypothesis-test certificates for devices
 , formal verification of circuits
@@ -168,8 +180,15 @@ simulation-based inference .
 The FAIR Universe program (; results overview
 ) supplies the benchmark infrastructure we build on --
 parameterized nuisances with official semantics and a $\mu$-inference
-protocol -- but not information-conditional auditing. We do not propose a
-better learner; we test the validity of claims made by a frozen one.
+protocol. On the same FAIR-HUC benchmark, He et al. train a systematics-aware
+graph learner for signal-strength inference and assess a binned
+profile-likelihood construction through coverage and interval precision. We do
+not propose a better learner; we freeze the classifier and audit which I0--I3
+claims remain justified, separate classifier validity from
+scientific-inference validity through identifiability and observability, show
+that the evaluated fixed-template construction depends on nuisance
+representability and auxiliary-template quality, and add finite-shot/noisy
+quantum deployment uncertainty.
 
 Outside physics, unsupervised accuracy estimation under shift is impossible
 without assumptions , while active
@@ -446,7 +465,8 @@ order $\pm$0.05 (bootstrap CI half-widths 0.04--0.09) that partition-level
 replication structurally understates.*
 
 Two further worlds (seeds 131, 141; E17) turn that inference into a
-measured cross-world fact: over four independent worlds the between-world
+measured cross-world fact: over four worlds verified row-disjoint by
+construction the between-world
 standard deviation of absolute weighted AUC is 0.030--0.050 per model
 (ranges up to 0.121), while QK $-$ XGB stays negative in all four worlds
 ($-0.022$ to $-0.076$) and QK $-$ RBF8 changes sign across worlds -- the
@@ -698,9 +718,10 @@ The central result is negative: *inference validity is jointly limited by
 nuisance representability and auxiliary-template quality*. Shared-simulation
 profiling can recover coverage in a favorable, representable case, but this is
 not a general repair. When templates and pseudoexperiments are statistically
-independent at the archived MC size, the fixed-template profile is invalid even
-in the shift-free control. Representability is therefore necessary but not
-sufficient for the construction tested here.
+independent at the archived MC size, the evaluated archived fixed-template
+construction can lose coverage even in the shift-free control.
+Representability is therefore necessary but not sufficient for the
+construction tested here.
 
 The underlying decoupling is direct. With the deployment-blind counting
 estimator, 73 development-world cells combine $\DeltaAUC$ consistent
@@ -898,7 +919,11 @@ tests refutation stability. Far-margin ideal-anchored means change to 31.5, 40.7
 25.1, 3.0, 6.9 and 0.3% across increasing shot budgets: their heterogeneity,
 non-monotonicity and endpoint reduction survive, but their magnitudes are
 repair-sensitive (Supplementary Table S7). We therefore classify
-the result as \textsc{PSD-sensitive-but-scoped}, not PSD-invariant.
+the result as \textsc{PSD-sensitive-but-scoped}, not PSD-invariant. Alternative
+PSD projections, including negative-eigenvalue clipping used in prior noisy
+quantum-kernel work, may yield different quantitative deployments. The present
+diagonal-loading analysis is a declared robustness sensitivity rather than an
+optimization or comparison of PSD-repair strategies.
 
 [t]
 
@@ -1033,9 +1058,11 @@ The interpretation has five principal limitations.
   Real CMS data provide no queryable event truth, so accuracy remains
   UNRESOLVED regardless of collision-sample size.
 \item The positive profile-likelihood result is shared-simulation-conditional.
-  At the tested independent-template statistics, the fixed-template
-  construction is invalid even nominally. We do not evaluate a general
-  MC-statistics-aware likelihood.
+  At the studied MC size, the evaluated archived fixed-template construction
+  can lose coverage under independent-MC template noise, including in nominal
+  controls. Methods that explicitly model MC/template uncertainty, such as
+  nuisance-aware or hierarchical/template-statistical constructions, are
+  outside scope.
 \item E16 has five noisy-kernel deployments per shot budget. Its rates and
   ranges are descriptive. Proposition~the referenced section is informatively
   instantiated (68.7% of condition cells satisfy the sufficient inequality),
@@ -1064,8 +1091,8 @@ the realized Gram matrix through the complete decision pipeline.
 
 FAIR Universe HiggsML Uncertainty (Zenodo 15131565; 220,099,101 events
 verified at ingestion; the official normalization no-op defect found,
-worked around, and reported upstream). Four provably disjoint 300k-event
-worlds drawn from the benchmark: the development world (seed 101 -- the
+worked around, and reported upstream). Four 300k-event worlds were drawn from
+the benchmark and verified row-disjoint by construction: the development world (seed 101 -- the
 only parquet draw of the development era), the confirmatory world
 (seed 121, drawn after the deployment freeze), and two additional
 variance-characterization worlds (seeds 131, 141; E17). Disjointness is
@@ -1192,7 +1219,7 @@ is https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T, under CC0
 . Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-https://doi.org/10.5281/zenodo.22214449 . Raw source
+https://doi.org/10.5281/zenodo.22227158 . Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1202,7 +1229,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 https://github.com/roberto-fernandez-barrios/qevc and in the versioned
-Zenodo archive https://doi.org/10.5281/zenodo.22214449
+Zenodo archive https://doi.org/10.5281/zenodo.22227158
 . The software is released under the MIT License.
 
 ## Acknowledgements
