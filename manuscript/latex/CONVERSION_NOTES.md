@@ -22,8 +22,9 @@ corrections applied in parallel to both sources. Compiled and visually checked.
 - **Paragraph pseudo-headings:** 8 (`\paragraph`): C1-C3 in Sec. 1; Events and
   environments / Frozen deployment / Quantum kernels / Claims, estimands, and
   information sets / Conditional validity in Sec. 3.
-- **Formal environments:** Theorem 1 (Sec. 4.3), Propositions 2 (Sec. 3),
-  3 and 4 (Sec. 7). Shared counter, explicitly seeded (see below).
+- **Formal environments:** Proposition 1 (Sec. 3), Theorem 1 (Sec. 4.3),
+  Propositions 2 and 3 (Sec. 7). Theorem and proposition counters are separate
+  and advance naturally in document order.
 - **Figures:** 8 floats; Figs. 4, 7, 8 are subfigure pairs (a)/(b), so 11
   graphics files total. Fig. S16 excluded (supplement).
 - **Tables:** 3 (D-030 numbering: Table 1 = claim x information set, Sec. 6.5;
@@ -45,19 +46,17 @@ corrections applied in parallel to both sources. Compiled and visually checked.
    (`sec:weighted-cert`, `sec:i3-method`). Trailing periods of those headings
    dropped (heading style). Unnumbered bold lead-ins (C1-C3, the Sec. 3
    blocks) stayed `\paragraph{}` as in source.
-3. **Theorem-counter seeding.** `\newtheorem{theorem}{Theorem}` +
-   `\newtheorem{proposition}[theorem]{Proposition}` share one counter, but
-   Proposition 2 appears in Sec. 3, *before* Theorem 1 in Sec. 4.3. Seeding:
-   `\setcounter{theorem}{1}` before Prop 2 (prints "Proposition 2"),
-   `\setcounter{theorem}{0}` before Theorem 1 (prints "Theorem 1"),
-   `\setcounter{theorem}{2}` immediately after Theorem 1 so Sec. 7 prints
-   Propositions 3 and 4. Printed numbers match every prose reference
-   (all prose references use `\ref`, so they track automatically).
+3. **Natural formal-result numbering.** Since the 0.3.5 submission-hygiene
+   patch, `\newtheorem{theorem}{Theorem}` and
+   `\newtheorem{proposition}{Proposition}` use separate counters. Document
+   order therefore prints Proposition 1, Theorem 1, and Propositions 2--3.
+   No theorem/proposition counter is manually seeded; prose references use
+   `\ref` and track the labels automatically.
 4. **Table-counter seeding (D-030).** Table 3 (Sec. 5.2) precedes Table 1
    (Sec. 6.5) in document order: `\setcounter{table}{2}` before the Sec. 5.2
    float, `\setcounter{table}{0}` before the Sec. 6.5 float; the Sec. 8 ledger
    then naturally prints Table 2.
-5. **Proposition 2's Corollary** kept as a bold run-in (`\textbf{Corollary.}`)
+5. **Proposition 1's Corollary** kept as a bold run-in (`\textbf{Corollary.}`)
    inside the proof paragraph, exactly as in source; no corollary environment
    introduced.
 6. **Proofs are plain text.** "Proof: ..." paragraphs kept as ordinary prose
@@ -80,7 +79,7 @@ corrections applied in parallel to both sources. Compiled and visually checked.
    `\ref`. Companion-figure references mapped 4b -> 4(b), 7b -> 7(b),
    8b -> 8(b).
 10. **Fig. S16**: not included (supplement). The prose reference in
-    Proposition 4 kept literally as "Fig.~S16" (points to the supplement);
+    Proposition 3 kept literally as "Fig.~S16" (points to the supplement);
     its caption block was dropped with the working section.
 11. **Captions working section deleted.** The "Figure and table captions
     (working section...)" block near the end of the draft was consumed into
@@ -120,7 +119,7 @@ corrections applied in parallel to both sources. Compiled and visually checked.
     fig8_shots_hardware + fig8b_estimation_noise_verdicts (subfig a/b).
 16. **Float placement.** Fig. 1 in Sec. 1; Figs. 2-8 in the sections whose
     headings/captions tie to them (6.2, 6.3, 6.3, 6.4, 6.6, 6.7, 7.1).
-    Fig. 3's first prose reference is in Sec. 3 (Proposition 2 corollary) --
+    Fig. 3's first prose reference is in Sec. 3 (Proposition 1 corollary) --
     a forward reference to the Sec. 6.3 float.
 17. **Wide tables** (Tables 1 and 2) set in `\footnotesize` with
     ragged-right `p{}` columns (`array` package added for the `>{}`

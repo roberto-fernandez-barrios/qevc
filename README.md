@@ -3,16 +3,19 @@
 Research codebase for the paper *"Conditional validity of quantum event
 classifiers under collider systematics and quantum estimation uncertainty"*.
 
-**npj Quantum Information submission release `0.3.4` (2026-09-01).** The
+**npj Quantum Information submission release `0.3.5` (2026-09-01).** The
 scientific program is closed: no new dataset, model, configuration, QPU run or
 primary result was added. The manuscript, Supplementary Information and
-Collection-specific cover letter incorporate the bounded final micro-patch and
+Collection-specific cover letter incorporate the bounded submission-hygiene patch and
 pass the mathematical, editorial, journal-format and cross-document gates.
 The self-contained submission package is built and independently recompiles;
 it has not yet been submitted. The exact release is tagged
-[`npjqi-submission-v1.4`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.4)
-and archived as Zenodo version `0.3.4` at
-[10.5281/zenodo.22229290](https://doi.org/10.5281/zenodo.22229290). The
+[`npjqi-submission-v1.5`](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.5)
+and archived as Zenodo version `0.3.5` at
+[10.5281/zenodo.22231469](https://doi.org/10.5281/zenodo.22231469). The
+historical `0.3.4 / npjqi-submission-v1.4` release is preserved in its
+[GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.4)
+and at [10.5281/zenodo.22229290](https://doi.org/10.5281/zenodo.22229290). The
 historical `0.3.3 / npjqi-submission-v1.3` release is preserved in its
 [GitHub release](https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.3)
 and at [10.5281/zenodo.22227158](https://doi.org/10.5281/zenodo.22227158). The
@@ -77,7 +80,7 @@ contribution is methodological, organized as three contributions:
 - **Contribution 3 — Quantum deployment uncertainty:** finite-shot and noisy quantum
   evaluation adds measurement-induced deployment uncertainty;
   deployment-relative vs ideal-anchored claim semantics preserve per-claim
-  validity. The final deterministic replay reconstructs Proposition 4's
+  validity. The final deterministic replay reconstructs Proposition 3's
   `ΔM_S`, `ΔM_T` and `ΔM_T−ΔM_S` exactly for all 7,200 raw/PSD condition cells.
   The pooled, correlated cell-level condition holds in 68.7% and discriminates
   paired-stream verdict flips (9.2% when it holds versus 60.4% when it fails),
@@ -127,10 +130,10 @@ and adds finite-shot/noisy quantum deployment uncertainty.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 28 | `482364C9FC18803DE8159A5C6B15E1ED0EBAE8B13C8037E848400EDFA2BF161B` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 13 | `3DD6FC8135250D6DFB6BABCE0308F14EEC9928A18EF15E27253330DB242695AF` |
-| `output/pdf/npjqi_cover_letter.pdf` | 1 | `214B31ECA7F7F3ECF240094D1DA909A0FF8602CE19B550F1189F3C77670FABC6` |
-| `dist/npjqi-submission.zip` | source + 3 PDFs | `3EDDE555413B358EDBA2D1DA859E526A7D5CAEDA5ED70E344F588C1E156FC940` |
+| `output/pdf/npjqi_manuscript.pdf` | 28 | `FAC684BD7173972E4941DD323D53ED0B96A97BB96AC7DC881A2FD5E538447D79` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 14 | `D56B56549F10AB312ED7890702527FA21C789829D677217772209EEDD7D0ADFB` |
+| `output/pdf/npjqi_cover_letter.pdf` | 1 | `4692B5C4CE27211F8D49E7C63D067BAA35E0F7D145E5C99CF3669560AE8B713A` |
+| `dist/npjqi-submission.zip` | source + 3 PDFs | `B5E4256A1583AB345D67E0FAA6EB0C14DD097A1B4298068E2EDF74E19DF68A2A` |
 | `results/tables/E16_psd_sensitivity.json` | 30 deployments | `5EDE2C056327DFB5768933C7BEE78A662C9E257011EF39984151E163170AABF1` |
 | `results/tables/E16_proposition4_instantiation.json` | 7,200 condition cells | `E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B` |
 | `results/tables/E16_proposition4_deployment_summary.json` | 30 noisy-kernel deployments | `4E09E3B86A38F26EB7892F49FC55C146BECFC5C7DDF6BFF210CD3EEBB60CE31B` |
@@ -138,7 +141,7 @@ and adds finite-shot/noisy quantum deployment uncertainty.
 The authoritative checksum file is
 `docs/submission/npjqi_checksums.sha256`. The bundle includes the three PDFs,
 the self-contained Springer Nature source, figure PDFs, submission metadata
-and the complete derived PSD-sensitivity, Proposition 4 and deployment-summary
+and the complete derived PSD-sensitivity, Proposition 3 and deployment-summary
 JSON artifacts.
 
 ## Governing documents
@@ -150,12 +153,13 @@ JSON artifacts.
 | `docs/dataset_audit.md` | Dataset selection audit; Gate 1 |
 | `docs/statistical_analysis_plan.md` | Predeclared statistical protocol |
 | `docs/weighted_certification_spec.md` | Weighted anytime-valid certification (D-019) |
-| `docs/formal_results.md` | Formal statements + proofs (Theorem 1, Props. 2–4) |
+| `docs/formal_results.md` | Formal statements + proofs (Proposition 1, Theorem 1, Props. 2–3) |
 | `docs/experiment_registry.md` | Registry of all experiments (E00–E19; falsifiers frozen before execution) |
 | `docs/decisions.md` | Log of every material design decision (D-001…) |
 | `docs/audits/` | Pre-campaign, post-campaign and pre-submission falsification audits |
 | `docs/submission/npjqi_submission_metadata.md` | Portal metadata, claim guardrails and final author checklist |
 | `scripts/verify_npjqi_submission.py` | Executable npj format and disclosure gate |
+| `scripts/verify_release_consistency.py` | Release gate for version/DOI/tag, real PDF page counts, hashes, ZIP and manifest |
 
 ## Experimental levels
 
@@ -194,6 +198,10 @@ Version 0.3.4 adds only the historical-gate interpretation correction, two
 finite-shot quantum-kernel references, retrospective wording for the frozen
 Proposition 4 replay, Tier-A Gram shot accounting and objective Supplement
 filename wrapping. Scientific artifacts remain byte-identical to 0.3.3.
+Version 0.3.5 changes submission hygiene only: natural formal-result numbering,
+the cover-letter date, release-document synchronization and a 0.5 pt
+bibliography-spacing microadjustment. The scientific baseline remains
+byte-identical to 0.3.4.
 
 ## Repository layout
 

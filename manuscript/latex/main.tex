@@ -11,13 +11,11 @@
 \graphicspath{{../../results/figures/}}
 \setlength{\emergencystretch}{2em}
 
-% Theorem numbering shares one counter so that the printed identities match the
-% prose: Proposition 2 (Sec. 3), Theorem 1 (Sec. 4.3), Propositions 3-4 (Sec. 7).
-% Because Proposition 2 appears BEFORE Theorem 1 in document order, the counter
-% is seeded explicitly before each formal environment (see \setcounter calls).
+% Theorems and propositions use separate, natural counters in document order:
+% Proposition 1, Theorem 1, Propositions 2--3.
 \theoremstyle{thmstyleone}
 \newtheorem{theorem}{Theorem}
-\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}
 
 \hypersetup{
   hypertexnames=false,
@@ -317,7 +315,6 @@ hidden process subclasses. I3 adds observable counts, control-region yields,
 exposures and nuisance estimates with their uncertainties. These channels are
 available in real experiments even when event-level truth labels are not.
 
-\setcounter{theorem}{1}% Proposition 2 precedes Theorem 1 in document order (D-030 identities preserved)
 \begin{proposition}[feature-only unidentifiability for weight-only nuisances]
 \label{prop:unident}
 Suppose a weight-only nuisance satisfies
@@ -390,7 +387,6 @@ empirically against simulation truth.
 \subsubsection{Weighted certification (I2)}
 \label{sec:weighted-cert}
 
-\setcounter{theorem}{0}% Theorem 1 (D-030 identities preserved)
 \begin{theorem}[exact fixed-threshold weighted reduction]
 \label{thm:weighted}
 Condition on a frozen finite audit population and a scalar bound $w_{\max}$
@@ -408,7 +404,6 @@ stopping times for that fixed claim; (c) the unweighted system is the special ca
 $w_{\max} = 1$.
 \end{theorem}
 
-\setcounter{theorem}{2}% subsequent formal environments resume at Proposition 3 (Sec. 7)
 Proof: $u(c-\tau)$ lies in $[-\tau w_{\max},(1-\tau)w_{\max}]$, so $Z\in[0,1]$, and
 $E[Z]-\tau=E[u](R-\tau)/w_{\max}$, proving the equivalence because $E[u]>0$.
 A false certification or false refutation then requires a coverage violation
@@ -1335,7 +1330,7 @@ is \url{https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T}, under CC0
 \citep{cernopendata12350}. Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-\url{https://doi.org/10.5281/zenodo.22229290} \citep{qevc_artifact}. Raw source
+\url{https://doi.org/10.5281/zenodo.22231469} \citep{qevc_artifact}. Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1345,7 +1340,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 \url{https://github.com/roberto-fernandez-barrios/qevc} and in the versioned
-Zenodo archive \url{https://doi.org/10.5281/zenodo.22229290}
+Zenodo archive \url{https://doi.org/10.5281/zenodo.22231469}
 \citep{qevc_artifact}. The software is released under the MIT License.
 
 \section*{Acknowledgements}
@@ -1374,7 +1369,7 @@ The authors declare no financial or non-financial competing interests.
 % Keep the compact reference list together; the review layout otherwise
 % strands the final entry on an almost empty page.
 \begingroup
-\setlength{\bibsep}{0pt}
+\setlength{\bibsep}{-0.5pt}
 \bibliography{../bibliography/references}
 \endgroup
 

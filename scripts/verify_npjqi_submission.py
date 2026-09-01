@@ -32,13 +32,14 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_4_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_5_metadata.json"
 )
 PSD_ANALYSIS = ROOT / "results" / "tables" / "E16_psd_sensitivity.json"
 PROPOSITION4_ANALYSIS = ROOT / "results" / "tables" / "E16_proposition4_instantiation.json"
 PROPOSITION4_DEPLOYMENT_SUMMARY = (
     ROOT / "results" / "tables" / "E16_proposition4_deployment_summary.json"
 )
+RELEASE_CONSISTENCY_GATE = ROOT / "scripts" / "verify_release_consistency.py"
 
 
 def sha256(path: Path) -> str:
@@ -189,13 +190,13 @@ def main() -> int:
         re.search(r"not simultaneous(?:ly)?\s+across a grid", main_tex) is not None,
     )
     check(
-        "Proposition 4 instantiated",
+        "Proposition 3 instantiated",
         proposition4["interpretation"] == "INFORMATIVELY INSTANTIATED"
         and proposition4["aggregate_summaries"]["overall"]["condition_cell_counts"]["HOLDS"] == 4943
         and "informatively instantiated" in main_tex.lower(),
     )
     check(
-        "Proposition 4 deployment summary",
+        "Proposition 3 deployment summary",
         proposition4_deployment["independent_descriptive_unit"]
         == "noisy-kernel deployment"
         and proposition4_deployment["accounting"]["noisy_kernel_deployments"] == 30
@@ -206,7 +207,7 @@ def main() -> int:
         and "E16\\_proposition4\\_deployment\\_summary.json" in supp_tex,
     )
     check(
-        "Proposition 4 logical structure",
+        "Proposition 3 logical structure",
         "sign-stability condition, coverage" in main_tex
         and "resolution of both audits" in main_tex
         and "2\\alpha" in main_tex
@@ -215,17 +216,17 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22229290" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22231469" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.4" in text and "npjqi-submission-v1.4" in text
+        all("0.3.5" in text and "npjqi-submission-v1.5" in text
             for text in (readme, metadata, release_manifest, zenodo_metadata)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22229290" in text
+        all("10.5281/zenodo.22231469" in text
             for text in (main_tex, readme, metadata, citation, release_manifest,
-                         precision_audit)),
+                         zenodo_metadata)),
     )
     check(
         "historical 0.3.3 release retained",
@@ -251,12 +252,12 @@ def main() -> int:
     check("README submission state", "has not yet been submitted" in readme)
     check("PSD sensitivity archived", "PSD-SENSITIVE-BUT-SCOPED" in readme and PSD_ANALYSIS.is_file())
     check(
-        "Proposition 4 artifact archived",
+        "Proposition 3 artifact archived",
         PROPOSITION4_ANALYSIS.is_file()
         and "E16_proposition4_instantiation.json" in readme,
     )
     check(
-        "Proposition 4 deployment artifact archived",
+        "Proposition 3 deployment artifact archived",
         PROPOSITION4_DEPLOYMENT_SUMMARY.is_file()
         and "E16_proposition4_deployment_summary.json" in readme,
     )
@@ -316,7 +317,7 @@ def main() -> int:
         and "per-claim confidence-sequence result" in supp_tex,
     )
     check(
-        "Proposition 4 retrospective diagnostic",
+        "Proposition 3 retrospective diagnostic",
         "Its E16 instantiation is retrospective" in main_tex
         and "diagnostic of observed" in main_tex
         and "not as an operational pre-audit certificate" in main_tex
@@ -405,9 +406,21 @@ def main() -> int:
         all("representability" in text and "template" in text for text in framing_docs.values()),
     )
     check(
-        "Proposition 4 evidence synchronized",
+        "Proposition 3 evidence synchronized",
         all("informatively instantiated" in text.lower()
             for text in (readme, main_tex, supp_tex, metadata)),
+    )
+    release_consistency = subprocess.run(
+        [sys.executable, str(RELEASE_CONSISTENCY_GATE), "--allow-unreleased"],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    check(
+        "release consistency gate",
+        release_consistency.returncode == 0,
+        release_consistency.stdout.strip() if release_consistency.returncode else "",
     )
     check(
         "E16 deployment unit synchronized",
@@ -436,14 +449,14 @@ def main() -> int:
         "scripts/summarize_e16_proposition4_deployments.py",
     )
     protected_diff = subprocess.run(
-        ["git", "diff", "--name-only", "npjqi-submission-v1.3", "--", *protected_paths],
+        ["git", "diff", "--name-only", "npjqi-submission-v1.4", "--", *protected_paths],
         cwd=ROOT,
         check=False,
         capture_output=True,
         text=True,
     )
     check(
-        "protected scientific artifacts unchanged from 0.3.3",
+        "protected scientific artifacts unchanged from 0.3.4",
         protected_diff.returncode == 0 and not protected_diff.stdout.strip(),
         protected_diff.stdout.strip(),
     )

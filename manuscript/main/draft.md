@@ -272,8 +272,6 @@ hidden process subclasses. I3 adds observable counts, control-region yields,
 exposures and nuisance estimates with their uncertainties. These channels are
 available in real experiments even when event-level truth labels are not.
 
-{1}% Proposition 2 precedes Theorem 1 in document order (D-030 identities preserved)
-
 **Formal statement: feature-only unidentifiability for weight-only nuisances.**
 
 Suppose a weight-only nuisance satisfies
@@ -345,8 +343,6 @@ empirically against simulation truth.
 
 #### Weighted certification (I2)
 
-{0}% Theorem 1 (D-030 identities preserved)
-
 **Formal statement: exact fixed-threshold weighted reduction.**
 
 Condition on a frozen finite audit population and a scalar bound $w_{\max}$
@@ -363,7 +359,6 @@ $P(\exists n: REFUTED issued \wedge R \ge \tau) \le \alpha$ over all
 stopping times for that fixed claim; (c) the unweighted system is the special case $u \equiv 1$,
 $w_{\max} = 1$.
 
-{2}% subsequent formal environments resume at Proposition 3 (Sec. 7)
 Proof: $u(c-\tau)$ lies in $[-\tau w_{\max},(1-\tau)w_{\max}]$, so $Z\in[0,1]$, and
 $E[Z]-\tau=E[u](R-\tau)/w_{\max}$, proving the equivalence because $E[u]>0$.
 A false certification or false refutation then requires a coverage violation
@@ -1240,7 +1235,7 @@ is https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T, under CC0
 . Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-https://doi.org/10.5281/zenodo.22229290 . Raw source
+https://doi.org/10.5281/zenodo.22231469 . Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1250,7 +1245,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 https://github.com/roberto-fernandez-barrios/qevc and in the versioned
-Zenodo archive https://doi.org/10.5281/zenodo.22229290
+Zenodo archive https://doi.org/10.5281/zenodo.22231469
 . The software is released under the MIT License.
 
 ## Acknowledgements

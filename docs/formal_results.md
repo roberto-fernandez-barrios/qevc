@@ -2,12 +2,12 @@
 
 Status: synchronized pre-submission formalization, 2026-08-13. The manuscript's three
 contributions each carry formal statements: **C1** gets Theorem 1 and
-Proposition 2; **C3** gets Propositions 3 and 4. Notation follows
+Proposition 1; **C3** gets Propositions 2 and 3. Notation follows
 `docs/weighted_certification_spec.md` (D-019) and the frozen decision rule
 D-006. Every statement lists its empirical instance in the archived tables —
 the theory and the measurements are cross-referenced deliberately.
 
-Presentation rule (D-029): Proposition 3's mathematics is deliberately
+Presentation rule (D-029): Proposition 2's mathematics is deliberately
 elementary; its content is the claim *semantics* and the fact that the E16
 campaign instantiates it measurably. It is presented as a clarification, not
 sold as a deep theorem.
@@ -106,7 +106,7 @@ A_w on weight-only environments (E13 v2). Label price: n*_w/n*_unw median
 
 ---
 
-## Proposition 2 — Feature-only unidentifiability for weight-only nuisances
+## Proposition 1 — Feature-only unidentifiability for weight-only nuisances
 
 I1 is the fixed-size or count-conditioned feature experiment
 
@@ -149,7 +149,7 @@ the adversarial rate claim (`E14_i3.json`).
 
 ---
 
-## Proposition 3 — Error control under estimated (random) deployments
+## Proposition 2 — Error control under estimated (random) deployments
 
 **Setting (D-029).** With finite-shot or hardware kernels the deployed
 pipeline is itself estimated: the realized kernel noise ω (shot outcomes,
@@ -191,7 +191,7 @@ validity of what is certified."
 **Remark (quantum-specific role).** Classical pipelines may also contain
 training and inference randomness. Quantum-kernel evaluation adds an
 additional measurement-induced deployment uncertainty intrinsic to
-finite-shot and noisy quantum execution. Proposition 3 says the
+finite-shot and noisy quantum execution. Proposition 2 says the
 certification layer is indifferent to the source of randomness while claim
 semantics must not be.
 
@@ -203,7 +203,7 @@ with 0 false certifications (`E16_quantum_uncertainty.json`, `E16_hw.json`).
 
 ---
 
-## Proposition 4 — Truth-sign and resolved-verdict stability
+## Proposition 3 — Truth-sign and resolved-verdict stability
 
 **Setting.** Fix a claim family and let m⋆ be its ideal signed margin. Define
 the signed target and source movements
@@ -273,6 +273,6 @@ changing the replay or adding population inference.
 | Result | Manuscript location | Proof location |
 |---|---|---|
 | Theorem 1 | §4 (Method, C1) — statement; short proof inline | inline (8 lines) |
-| Proposition 2 + corollary | §3 (Formulation, C1) — already present as prose; elevate to numbered environment | inline (already short) |
-| Proposition 3 | §7 opening (C3) + conceptual front matter | inline (3 lines) |
-| Proposition 4 | §7 (C3), before the independent E16 empirical results | inline |
+| Proposition 1 + corollary | §3 (Formulation, C1) — already present as prose; elevate to numbered environment | inline (already short) |
+| Proposition 2 | §7 opening (C3) + conceptual front matter | inline (3 lines) |
+| Proposition 3 | §7 (C3), before the independent E16 empirical results | inline |

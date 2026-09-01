@@ -1,0 +1,49 @@
+{
+  "title": "qevc: Quantum Event Validity Certification — conditional validity of (quantum) event classifiers under collider systematics and estimation uncertainty",
+  "upload_type": "software",
+  "description": "<p>Exact 0.3.5 / npjqi-submission-v1.5 submission-hygiene release of the qevc research code and submission artifacts for <em>Conditional validity of quantum event classifiers under collider systematics and quantum estimation uncertainty</em>.</p><p>This version changes presentation and release metadata only: it synchronizes README page counts and hashes with the authoritative artifacts, updates the cover-letter date to 1 September 2026, replaces manually forced shared theorem counters with natural counters separated by formal-result type, and applies a 0.5 pt bibliography-spacing microadjustment that removes a final page containing only the tail of one reference.</p><p>No experiment, Gram realization, seed, sample, dataset, model, quantum kernel, feature map, hyperparameter, claim, threshold, alpha level, likelihood, CMS analysis, QPU job, PSD repair, E16 result or E20 execution was added, removed or changed. The protected scientific artifact set and all scientific conclusions are byte-identical to version 0.3.4. Historical artifact filenames containing <code>proposition4</code> remain unchanged.</p>",
+  "creators": [
+    {
+      "name": "Fernández-Barrios, Roberto",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0009-0003-5312-2634"
+    },
+    {
+      "name": "Pastor-López, Iker",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0000-0002-3068-6248"
+    },
+    {
+      "name": "González-Santocildes, Asier",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0009-0002-8888-8560"
+    },
+    {
+      "name": "García Bringas, Pablo",
+      "affiliation": "Faculty of Engineering, University of Deusto",
+      "orcid": "0000-0003-3594-9534"
+    }
+  ],
+  "access_right": "open",
+  "license": "mit-license",
+  "publication_date": "2026-09-01",
+  "version": "0.3.5 / npjqi-submission-v1.5",
+  "prereserve_doi": true,
+  "notes": "<p>Reserved Zenodo version DOI: 10.5281/zenodo.22231469. Zenodo concept DOI: 10.5281/zenodo.21894291.</p>",
+  "keywords": [
+    "quantum machine learning",
+    "distribution shift",
+    "anytime-valid inference",
+    "collider physics",
+    "certification",
+    "quantum estimation uncertainty",
+    "finite-shot quantum kernel"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/roberto-fernandez-barrios/qevc/releases/tag/npjqi-submission-v1.5",
+      "relation": "isIdenticalTo",
+      "scheme": "url"
+    }
+  ]
+}

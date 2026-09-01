@@ -167,14 +167,14 @@ def main() -> int:
 
     # Final mathematical/editorial audit: formal scope and stale-claim guards.
     audit.check(
-        "Proposition 2 size/power correction synchronized",
+        "Proposition 1 size/power correction synchronized",
         "power equal to its actual size and\nhence at most $\\alpha$" in main_tex
         and "power equal to its actual size and hence\nat most $\\alpha$" in supplement
         and re.search(r"power equal to its actual\s+size", formal) is not None
         and "power equal to its actual size" in weighted_spec,
     )
     audit.check(
-        "Proposition 2 fail-closed policy is not a theorem",
+        "Proposition 1 fail-closed policy is not a theorem",
         "Under our\nfail-closed policy they remain UNRESOLVED" in main_tex
         and "fail-closed policy, affected rate and true-weighted\nclaims remain UNRESOLVED" in supplement
         and "reported UNRESOLVED under the fail-closed policy" in formal
@@ -336,7 +336,7 @@ def main() -> int:
     e16_proposition4 = load("E16_proposition4_instantiation.json")
     proposition4_overall = e16_proposition4["aggregate_summaries"]["overall"]
     audit.check(
-        "Proposition 4 informatively instantiated",
+        "Proposition 3 informatively instantiated",
         e16_proposition4["interpretation"] == "INFORMATIVELY INSTANTIATED"
         and proposition4_overall["n_condition_cells"] == 7200
         and proposition4_overall["n_evaluable_condition_cells"] == 7200
@@ -345,14 +345,14 @@ def main() -> int:
         and "informatively instantiated" in supplement.lower(),
     )
     audit.check(
-        "Proposition 4 sufficient-not-necessary semantics",
+        "Proposition 3 sufficient-not-necessary semantics",
         proposition4_overall["verdict_flip_contingency"]["FAILS"]
         == {"flip": 13637, "no_flip": 8933}
         and re.search(r"sufficient\s+rather than\s+necessary", main_tex) is not None
         and re.search(r"sufficient\s+rather than\s+necessary", supplement) is not None,
     )
     audit.check(
-        "no stale Proposition 4 flip inference",
+        "no stale Proposition 3 flip inference",
         all(phrase not in main_tex for phrase in
             ["must flip", "must not", "theory's prediction traced", "they predict what follows"]),
     )
@@ -498,7 +498,7 @@ def main() -> int:
         and "not an IID sample size" in supplement,
     )
     audit.check(
-        "Proposition 4 counterexample",
+        "Proposition 3 counterexample",
         "$\\Delta M_T=-0.10$" in main_tex
         and "$m^\\star=0.05$, $\\Delta M_T=-0.10$" in supplement,
     )

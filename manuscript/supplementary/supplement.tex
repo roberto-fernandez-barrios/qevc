@@ -191,7 +191,7 @@ sufficient conditions without new randomness or QPU jobs; the resulting
 Section~\ref{sec:prop4-instantiation} and
 Table~\ref{tab:prop4-instantiation}.
 This E16 use is retrospective: the target movements are reconstructed from the
-frozen target population after the deployment is available. Proposition 4 is
+frozen target population after the deployment is available. Proposition 3 is
 a formal sufficient sign-stability condition, but this instantiation is a
 diagnostic of observed deployment stability rather than an operational
 pre-audit certificate. A holding condition is sufficient for truth-sign
@@ -385,7 +385,7 @@ Refutation direction & 31 & 3.12 & 3.34 & 3.65 \\
 relative Frobenius error, effective-rank inflation, and source-reference
 movement $|\Delta M_S|$. The primary artifact plotted only source movement;
 the final deterministic raw/PSD replay reconstructs
-$\Delta M_T$ and $\Delta M_T-\Delta M_S$ and instantiates Proposition 4 in
+$\Delta M_T$ and $\Delta M_T-\Delta M_S$ and instantiates Proposition 3 in
 Table~\ref{tab:prop4-instantiation}. Sources:
 \texttt{results/tables/E16\_quantum\_uncertainty.json} and
 \texttt{results/tables/E16\_proposition4\_instantiation.json}.}
@@ -532,7 +532,7 @@ verdict is therefore \textsc{PSD-sensitive-but-scoped}: Contribution 3's
 qualitative statement survives, whereas its raw ideal-anchored percentages
 must not be treated as repair-invariant.
 
-\subsubsection{Deterministic retrospective instantiation of Proposition 4}
+\subsubsection{Deterministic retrospective instantiation of Proposition 3}
 \label{sec:prop4-instantiation}
 
 For the unweighted family, $M$ is mean correctness on the frozen source or
@@ -556,7 +556,7 @@ remain conditioned on confidence-sequence coverage and resolution.
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
-\caption{Proposition 4 instantiation. ``H'' and ``F'' mean that the strict
+\caption{Proposition 3 instantiation. ``H'' and ``F'' mean that the strict
 sufficient condition holds or fails; entries are verdict flip/no-flip counts
 over the ten paired audit streams per condition cell. Cells and streams within
 a deployment are correlated; the descriptive unit remains the deployment.
@@ -582,7 +582,7 @@ The inequality holds in 4,943/7,200 cells and preserves the truth sign in all
 4,943, while 1,188 of the 2,257 failing cells also retain their sign. At audit
 level, ternary verdict flips occur in 9.2\% of streams when the condition holds
 and 60.4\% when it fails. Two condition-holding streams produce opposite
-resolved verdicts; Proposition 4 bounds such events through confidence-sequence
+resolved verdicts; Proposition 3 bounds such events through confidence-sequence
 coverage and does not assert deterministic verdict equality from the margin
 inequality alone. The condition is therefore informative but conservative:
 it is most useful for deployment-relative far/moderate cells and least often
@@ -600,7 +600,7 @@ No population inference or independence assumption is added.
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
-\caption{Deployment-level descriptive aggregation of Proposition 4. Each
+\caption{Deployment-level descriptive aggregation of Proposition 3. Each
 column summarizes the 30 noisy-kernel deployments for one analysis slice;
 each deployment contains 60 evaluable condition cells in that slice. Entries
 are percentages shown as median [Q1, Q3] on the first line and min--max on the

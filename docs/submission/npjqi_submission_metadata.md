@@ -1,9 +1,11 @@
 # npj Quantum Information submission metadata
 
-Status: final micro-patch release on 2026-09-01; not yet submitted.
+Status: final submission-hygiene release on 2026-09-01; not yet submitted.
 
-- Release version: `0.3.4` / `npjqi-submission-v1.4`
-- Version DOI: `10.5281/zenodo.22229290`
+- Release version: `0.3.5` / `npjqi-submission-v1.5`
+- Version DOI: `10.5281/zenodo.22231469`
+- Historical `0.3.4` / `npjqi-submission-v1.4` DOI:
+  `10.5281/zenodo.22229290`
 - Historical `0.3.3` / `npjqi-submission-v1.3` DOI:
   `10.5281/zenodo.22227158`
 - Historical `0.3.2` / `npjqi-submission-v1.2` DOI:
@@ -92,7 +94,7 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
   deployments, claims and thresholds, those quantities are not interpreted as
   IID sampling standard errors or confidence boundaries. Formal validity is
   per fixed claim from the confidence sequence; pooled rates are descriptive.
-- Proposition 4 is informatively instantiated by deterministic replay: all
+- Proposition 3 is informatively instantiated by deterministic replay: all
   7,200 condition cells are evaluable, 68.7% satisfy the sufficient inequality,
   and paired-stream flips are 9.2% when it holds versus 60.4% when it fails.
   Failure remains non-predictive because the condition is sufficient, not
@@ -105,7 +107,7 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
   give a 2-alpha union bound, or alpha jointly when each uses alpha/2.
 - Observed verdict flips are descriptive comparisons, not deterministic theorem
   predictions or independent replications.
-- The deployment-level derivative aggregates only the frozen Proposition 4
+- The deployment-level derivative aggregates only the frozen Proposition 3
   JSON. It reports median, IQR, range, mean and sample SD across 30 noisy-kernel
   deployments; no population inference or new independence assumption is
   introduced.
