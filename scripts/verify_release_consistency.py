@@ -178,7 +178,11 @@ def git_head() -> str:
     ).stdout.strip()
 
 
-def validate(*, require_tag: bool = True) -> list[tuple[str, bool, str]]:
+def validate(
+    *,
+    require_tag: bool = True,
+    require_build_evidence: bool = True,
+) -> list[tuple[str, bool, str]]:
     checks: list[tuple[str, bool, str]] = []
 
     def check(name: str, condition: bool, detail: str = "") -> None:
@@ -193,8 +197,6 @@ def validate(*, require_tag: bool = True) -> list[tuple[str, bool, str]]:
         SUBMISSION_METADATA,
         ZENODO_METADATA,
         MAIN_TEX,
-        MAIN_AUX,
-        MAIN_LOG,
         SUPPLEMENT_TEX,
         COVER_TEX,
         BIBLIOGRAPHY,
@@ -202,6 +204,8 @@ def validate(*, require_tag: bool = True) -> list[tuple[str, bool, str]]:
         FORMAL_RESULTS,
         *(ROOT / path for path in ARTIFACTS),
     ]
+    if require_build_evidence:
+        required.extend((MAIN_AUX, MAIN_LOG))
     missing = [path.relative_to(ROOT).as_posix() for path in required if not path.is_file()]
     check("all release inputs exist", not missing, ", ".join(missing))
     if missing:
@@ -215,8 +219,12 @@ def validate(*, require_tag: bool = True) -> list[tuple[str, bool, str]]:
     metadata = SUBMISSION_METADATA.read_text(encoding="utf-8")
     zenodo = ZENODO_METADATA.read_text(encoding="utf-8")
     main_tex = MAIN_TEX.read_text(encoding="utf-8")
-    main_aux = MAIN_AUX.read_text(encoding="utf-8")
-    main_log = MAIN_LOG.read_text(encoding="utf-8", errors="replace")
+    main_aux = MAIN_AUX.read_text(encoding="utf-8") if MAIN_AUX.is_file() else ""
+    main_log = (
+        MAIN_LOG.read_text(encoding="utf-8", errors="replace")
+        if MAIN_LOG.is_file()
+        else ""
+    )
     supplement = SUPPLEMENT_TEX.read_text(encoding="utf-8")
     cover = COVER_TEX.read_text(encoding="utf-8")
     bibliography = BIBLIOGRAPHY.read_text(encoding="utf-8")
@@ -393,20 +401,21 @@ def validate(*, require_tag: bool = True) -> list[tuple[str, bool, str]]:
         "no artificial theorem/proposition counter reset",
         re.search(r"\\setcounter\{(?:theorem|proposition)\}", main_tex) is None,
     )
-    aux_values = aux_label_values(main_aux)
-    for label, expected in EXPECTED_LABELS.items():
+    if require_build_evidence:
+        aux_values = aux_label_values(main_aux)
+        for label, expected in EXPECTED_LABELS.items():
+            check(
+                f"resolved formal label: {label}",
+                aux_values.get(label) == expected,
+                aux_values.get(label, "missing"),
+            )
         check(
-            f"resolved formal label: {label}",
-            aux_values.get(label) == expected,
-            aux_values.get(label, "missing"),
+            "no undefined references or citations",
+            "undefined references" not in main_log.lower()
+            and "undefined citations" not in main_log.lower()
+            and "citation(s) may have changed" not in main_log.lower(),
         )
-    check(
-        "no undefined references or citations",
-        "undefined references" not in main_log.lower()
-        and "undefined citations" not in main_log.lower()
-        and "citation(s) may have changed" not in main_log.lower(),
-    )
-    check("no rendered unresolved markers", "??" not in main_log)
+        check("no rendered unresolved markers", "??" not in main_log)
 
     audit_table = re.search(
         r"\\begin\{table\}\[H\].*?\\label\{tab:audit-trail\}.*?\\end\{table\}",

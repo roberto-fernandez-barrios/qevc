@@ -1,3 +1,17 @@
 *.pdf binary
 *.png binary
 *.zip binary
+
+# Frozen provenance hashes were recorded from these exact working-tree byte
+# representations.  Pin their line endings so Linux and Windows checkouts
+# reproduce the same protected inputs without rewriting any scientific file.
+configs/experiments/E01.yaml text eol=lf
+configs/experiments/E16.yaml text eol=lf
+configs/frozen/frozen_deployment_v1.yaml text eol=lf
+experiments/E16_quantum_uncertainty/run_e16.py text eol=lf
+scripts/analyze_e16_psd_sensitivity.py text eol=lf
+results/tables/E13_weighted_cs.json text eol=crlf
+results/tables/E16_quantum_uncertainty.json text eol=crlf
+results/tables/E16_psd_sensitivity.json text eol=crlf
+results/tables/E16_proposition4_instantiation.json text eol=crlf
+results/tables/E16_proposition4_deployment_summary.json text eol=crlf

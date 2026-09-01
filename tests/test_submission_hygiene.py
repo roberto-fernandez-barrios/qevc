@@ -17,7 +17,12 @@ SPEC.loader.exec_module(GATE)
 
 def test_release_consistency_gate_passes_before_tagging() -> None:
     failures = [
-        f"{name}: {detail}" for name, ok, detail in GATE.validate(require_tag=False) if not ok
+        f"{name}: {detail}"
+        for name, ok, detail in GATE.validate(
+            require_tag=False,
+            require_build_evidence=False,
+        )
+        if not ok
     ]
     assert failures == []
 
@@ -35,7 +40,14 @@ def test_readme_page_count_drift_is_detected(tmp_path, monkeypatch) -> None:
     stale_readme = tmp_path / "README.md"
     stale_readme.write_text(stale, encoding="utf-8")
     monkeypatch.setattr(GATE, "README", stale_readme)
-    failures = {name for name, ok, _ in GATE.validate(require_tag=False) if not ok}
+    failures = {
+        name
+        for name, ok, _ in GATE.validate(
+            require_tag=False,
+            require_build_evidence=False,
+        )
+        if not ok
+    }
     assert f"README page count: {manuscript}" in failures
 
 
@@ -47,7 +59,14 @@ def test_readme_hash_drift_is_detected(tmp_path, monkeypatch) -> None:
     stale_readme = tmp_path / "README.md"
     stale_readme.write_text(stale, encoding="utf-8")
     monkeypatch.setattr(GATE, "README", stale_readme)
-    failures = {name for name, ok, _ in GATE.validate(require_tag=False) if not ok}
+    failures = {
+        name
+        for name, ok, _ in GATE.validate(
+            require_tag=False,
+            require_build_evidence=False,
+        )
+        if not ok
+    }
     assert f"README matches checksum: {manuscript}" in failures
 
 

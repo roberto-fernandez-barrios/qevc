@@ -66,6 +66,16 @@ def test_archived_primary_hash_matches_derived_provenance_when_present() -> None
     observed = hashlib.sha256(PRIMARY.read_bytes()).hexdigest().upper()
     assert payload["provenance"]["primary_e16_sha256"] == observed
     assert payload["raw_replay_validation"]["all_30_primary_rows_match"] is True
+    missing_raw = [
+        relative
+        for relative in payload["provenance"]["hardware_raw_sha256"]
+        if not (ROOT / relative).is_file()
+    ]
+    if missing_raw:
+        # The hardware raw directory is deliberately gitignored and is not
+        # part of a source-only CI checkout.  Its archived hashes remain in
+        # the derived artifact and are checked whenever those files exist.
+        return
     for relative, expected in payload["provenance"]["hardware_raw_sha256"].items():
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest().upper() == expected
 
