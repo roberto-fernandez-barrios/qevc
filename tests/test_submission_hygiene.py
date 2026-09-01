@@ -99,4 +99,12 @@ def test_protected_scientific_baseline_matches_v034() -> None:
         capture_output=True,
         text=True,
     )
-    assert completed.stdout.strip() == ""
+    # Version 0.3.6 adds three derived JSON artifacts (no new randomness);
+    # every other protected path must remain byte-identical to 0.3.4.
+    derived_0_3_6 = {
+        "results/tables/E16_stage_decomposition.json",
+        "results/tables/E16_prop3_margin_stratification.json",
+        "results/tables/E13_wmax_nominal_bound_sensitivity.json",
+    }
+    changed = {line.replace("\\", "/") for line in completed.stdout.split()}
+    assert changed <= derived_0_3_6, changed - derived_0_3_6
