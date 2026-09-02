@@ -66,7 +66,7 @@ def fig4b() -> None:
             vals = [a["per_family"][key][f]["rho"] for f in fams]
             vals.append(a["pooled"][key]["rho"])
             ax.scatter(vals, y + off, s=42, color=color, zorder=3,
-                       label=label if w == "s101" else None)
+                       label=label if w == "e12" else None)
             for v, yy in zip(vals, y + off):
                 ax.plot([0, v], [yy, yy], color=color, lw=1.2, alpha=0.45,
                         zorder=2)
@@ -76,9 +76,11 @@ def fig4b() -> None:
         ax.set_xlabel(r"out-of-grid Spearman $\rho$ (sensor vs |$\Delta$AUC|)")
         ax.set_title(wtitle, fontsize=9)
         ax.set_xlim(-0.35, 1.05)
-    axes[0].legend(loc="lower right", frameon=False, fontsize=8)
+    fig.legend(loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=2,
+               frameon=False, fontsize=8, handletextpad=0.4,
+               columnspacing=1.6)
     fig.suptitle("Frozen label-free sensors on 48 never-seen nuisance "
-                 "configurations per world (own-model targets)", y=1.04,
+                 "configurations per world (own-model targets)", y=1.14,
                  fontsize=10)
     save(fig, "fig4b_out_of_grid_sensor")
 
@@ -125,11 +127,13 @@ def fig7b() -> None:
     ax.set_yticks(y)
     ax.set_yticklabels([labels[r] for r in rows])
     ax.set_xlabel("mean empirical coverage of the 68.27% interval")
-    ax.set_xlim(0, 0.82)
+    ax.set_xlim(-0.018, 0.82)
+    ax.set_ylim(-0.6, 8.45)
     ax.set_title("Coverage by nuisance family and inference level\n"
                  "(3 calibration-gated models; B:xgboost gate-excluded)",
                  fontsize=9.5)
-    ax.legend(loc="lower right", frameon=False, fontsize=8)
+    ax.legend(loc="lower right", frameon=True, facecolor="white",
+              edgecolor="none", framealpha=0.95, fontsize=8)
     save(fig, "fig7b_inference_levels")
 
 

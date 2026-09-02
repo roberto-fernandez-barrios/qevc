@@ -61,6 +61,22 @@ DERIVED_0_3_6 = {
     "results/tables/E13_wmax_nominal_bound_sensitivity.json",
 }
 
+# Post-0.3.8 figure-legibility patch: seven figures re-rendered to fix label
+# overlap/clipping only; the generating inputs and result JSONs are unchanged.
+REFRESHED_FIGURES = {
+    f"results/figures/{stem}.{ext}"
+    for stem in (
+        "fig1_framework",
+        "fig2_tes_replicated",
+        "fig4b_out_of_grid_sensor",
+        "fig5_certification_landscape",
+        "fig7_h5_decoupling",
+        "fig7b_inference_levels",
+        "fig8_shots_hardware",
+    )
+    for ext in ("pdf", "png")
+}
+
 
 def test_protected_scientific_artifacts_match_v033() -> None:
     protected = (
@@ -80,4 +96,5 @@ def test_protected_scientific_artifacts_match_v033() -> None:
         text=True,
     )
     changed = {line.replace("\\", "/") for line in completed.stdout.split()}
-    assert changed <= DERIVED_0_3_6, changed - DERIVED_0_3_6
+    allowed = DERIVED_0_3_6 | REFRESHED_FIGURES
+    assert changed <= allowed, changed - allowed

@@ -51,16 +51,20 @@ def fig2() -> None:
     d = load("E02R_multiseed")["summary"]
     tes_x = [0.98, 0.99, 1.01, 1.02]
     fig, ax = plt.subplots(figsize=(4.4, 3.2))
-    for key, color, label in (
-        ("A:qksvc", C["qksvc"], "QK-SVC"),
-        ("A:xgboost", C["xgboost"], "XGBoost"),
-        ("A:rbf_svc", C["rbf_svc"], "RBF-SVC"),
+    label_x = max(tes_x) + 0.0012  # common anchor, right of every error bar
+    for key, color, label, off in (
+        ("A:qksvc", C["qksvc"], "QK-SVC", -0.0012),
+        ("A:xgboost", C["xgboost"], "XGBoost", 0.0),
+        ("A:rbf_svc", C["rbf_svc"], "RBF-SVC", 0.0012),
     ):
+        x = np.asarray(tes_x) + off  # slight dodge: error bars share x
         mu = [d[key]["delta_auc"][f"tes={t}"]["mean"] for t in tes_x]
         sd = [d[key]["delta_auc"][f"tes={t}"]["std"] for t in tes_x]
-        ax.errorbar(tes_x, mu, yerr=sd, color=color, lw=2, marker="o",
-                    ms=5, capsize=3, label=label)
-        ax.annotate(label, (tes_x[-1], mu[-1]), xytext=(6, 0),
+        eb = ax.errorbar(x, mu, yerr=sd, color=color, lw=1.6, marker="o",
+                         ms=4, capsize=2, elinewidth=0.9, label=label)
+        for part in list(eb[1]) + list(eb[2]):  # caps + bars recede
+            part.set_alpha(0.45)
+        ax.annotate(label, (label_x, mu[-1]), xytext=(8, 0),
                     textcoords="offset points", color=INK, fontsize=8,
                     va="center")
     ax.axhline(0, color=MUTED, lw=0.8, ls="--")
@@ -123,14 +127,23 @@ def fig5() -> None:
                         cells[i].append([c["resolved_frac_at_budget"][str(b)]
                                          for b in budgets])
     fig, ax = plt.subplots(figsize=(4.8, 3.4))
+    ends: list[tuple[float, str]] = []
     for i, (lo, hi) in enumerate(buckets):
         if not cells[i]:
             continue
         mean = np.mean(cells[i], axis=0)
         ax.plot(budgets, mean, color=SEQ_BLUE[i], lw=2, marker="o", ms=4)
-        ax.annotate(f"[{lo:g}, {hi:g})", (budgets[-1], mean[-1]),
-                    xytext=(6, 0), textcoords="offset points",
-                    color=INK, fontsize=7.5, va="center")
+        ends.append((float(mean[-1]), f"[{lo:g}, {hi:g})"))
+    # Stagger direct labels: saturated curves end at the same y, so nudge
+    # any label that would sit closer than `gap` to the one above it.
+    gap = 0.055
+    prev = None
+    for y_end, text in sorted(ends, key=lambda e: e[0], reverse=True):
+        y_lab = y_end if prev is None else min(y_end, prev - gap)
+        prev = y_lab
+        ax.annotate(text, (budgets[-1], y_lab), xytext=(6, 0),
+                    textcoords="offset points", color=INK, fontsize=7.5,
+                    va="center")
     ax.set_xscale("log")
     ax.set_xlabel("label budget n")
     ax.set_ylabel("fraction of claims resolved")
@@ -156,19 +169,20 @@ def fig7() -> None:
             m = v["models"][key]
             xs.append(max(abs(m["delta_auc"]), 2e-5))
             ys.append(m["coverage_mean"])
-        ax.scatter(xs, ys, s=22, color=C[ck], alpha=0.85, label=label,
-                   edgecolors="white", linewidths=1.0)
+        ax.scatter(xs, ys, s=16, color=C[ck], alpha=0.7, label=label,
+                   edgecolors="white", linewidths=0.8)
     ax.axhline(0.6827, color=MUTED, lw=1.0, ls="--")
     ax.text(1.3e-5, 0.695, "nominal coverage", color=INK2, fontsize=7.5)
     ax.axvspan(1e-5, 5e-3, ymin=0, ymax=0.633 / 1.05, color="#f4e8e7",
-               zorder=0)
+               alpha=0.55, zorder=0)
     ax.text(2.4e-5, 0.06, "classifier looks fine,\nphysics broken (H5)",
             color="#a03432", fontsize=8)
     ax.set_xscale("log")
     ax.set_xlabel(r"|$\Delta$AUC| vs nominal (log)")
     ax.set_ylabel(r"mean coverage of the 68.27% $\mu$ interval")
     ax.set_ylim(-0.05, 1.0)
-    ax.legend(loc="center right", fontsize=7.5, frameon=False)
+    ax.legend(loc="upper right", fontsize=7.5, frameon=True,
+              facecolor="white", edgecolor="none", framealpha=0.95)
     ax.set_title("Classifier health does not protect inference validity")
     save(fig, "fig7_h5_decoupling")
 
@@ -216,8 +230,10 @@ def fig8() -> None:
     ax.fill_between(shots, lo, hi, color=C["qksvc"], alpha=0.18, lw=0)
     ax.plot(shots, mu, color=C["qksvc"], lw=2, marker="o", ms=5)
     ax.axhline(exact_auc, color=MUTED, lw=1.0, ls="--")
-    ax.text(shots[0], exact_auc + 0.002, f"exact kernel: {exact_auc:.3f}",
-            color=INK2, fontsize=7.5)
+    ax.text(shots[0], exact_auc + 0.0015, f"exact kernel: {exact_auc:.3f}",
+            color=INK2, fontsize=7.5, va="bottom",
+            bbox=dict(facecolor="white", edgecolor="none", alpha=0.9,
+                      pad=1.2))
     ax.set_xscale("log")
     ax.minorticks_off()
     ax.set_xlabel("shots per kernel entry")

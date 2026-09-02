@@ -254,15 +254,17 @@ E13v2(b) & All true benchmark BA claims unresolved by 5,000 labels & TPR compone
 \normalsize
 \FloatBarrier
 
-\begin{table}[H]
-\centering
 \small
-\caption{Audit-trail summary. The full findings and dispositions are in \texttt{docs/audits/}.}
-\label{tab:audit-trail}
-\begin{tabular}{>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.51\linewidth}}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.51\linewidth}}
+\caption{Audit-trail summary. The full findings and dispositions are in \texttt{docs/audits/}.}\label{tab:audit-trail}\\
 \toprule
 Audit & Scope & Material effect \\
 \midrule
+\endfirsthead
+\toprule
+Audit & Scope & Material effect \\
+\midrule
+\endhead
 Pre-campaign, 2026-08-11 & All E00--E11 code, tables, splits, and governance & Seven design constraints frozen before E12--E16: archived row indices, role separation, post-selection sensor validation, an independent floor, independent quantum-noise streams, a typed deployment snapshot, and weighted estimands. No prior headline invalidated. \\
 Post-campaign, 2026-08-11 & E12--E16, E04v3, E11v2; 172 registry values and about 178 manuscript claims & E13 nominal-weight estimand fixed and rerun; E15 gate rejected two implementations; E16 dual accounting added; E12 normalization reading corrected; all superseded tables retained. \\
 Pre-submission, 2026-08-12 & Extension runners, figure scripts, and line-by-line formal proofs & Two HIGH findings fixed: JES tracking scoped and disclosed; E19 weighted estimand corrected and rerun. Proposition 4 gained its coverage-event and scale-bridge qualifiers. Eight LOW findings were fixed, completed, disclosed, or documented. \\
@@ -274,8 +276,8 @@ Final technical PSD audit, 2026-08-31 & The 30 frozen E16 deployments, LIBSVM se
 Mechanistic-clarity / derived-analysis patch, 2026-09-01 & The 30 frozen E16 deployments and their loaded counterparts, the Proposition-3 instantiation, the E13/E19 weighted audits, C2/C3 framing & Deterministic counterfactual stage decomposition after exact endpoint reproduction (predeclared classification \textsc{mixed}: recalibration generates the far-margin flips, threshold refreezing partly compensates); Proposition 3 stratified by margin; weight-bound conservatism measured on identical streams; plain-language abstract; adverse independent-template result leads Contribution 2; editorial corrections. No new randomness, seed, sample, model, repair, likelihood or QPU job. 0.3.7: regime-specific C3 wording only. \\
 Editorial focus / concision patch, 2026-09-01 & Main-text structure and wording, Supplement Table~S1 provenance, release metadata & Proposition-3 statement freed of the general stability-ordering clause; abstract scopes the classical controls to nominal-performance and sensing effects; the finite-template condition stated with every Contribution-2 coverage claim; internal experiment identifiers replaced by descriptive language in the main text; acronyms defined; main text shortened; freeze/provenance column added to Table~S1. No number, table value, figure file or scientific artifact changed. \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
+\normalsize
 \FloatBarrier
 
 \section{Extended numerical results}

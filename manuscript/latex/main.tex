@@ -9,6 +9,7 @@
 \usepackage{xurl}
 
 \graphicspath{{../../results/figures/}}
+\raggedbottom  % sn-jnl \flushbottom stretches glue under tall floats
 \setlength{\emergencystretch}{2em}
 
 % Theorems and propositions use separate, natural counters in document order:
@@ -587,9 +588,9 @@ response grows with severity; the gray band is the CRN draw-noise $\pm1\sigma$.}
 
 \begin{figure}[t]
 \centering
-\makebox[\linewidth][l]{\textbf{a}}\\[-0.35em]
+\makebox[\linewidth][l]{\textbf{a}}\\[0.2em]
 \includegraphics[width=\linewidth]{fig4_geometry_sensor.pdf}\\[0.55em]
-\makebox[\linewidth][l]{\textbf{b}}\\[-0.35em]
+\makebox[\linewidth][l]{\textbf{b}}\\[0.2em]
 \includegraphics[width=\linewidth]{fig4b_out_of_grid_sensor.pdf}
 \caption{Sensor generalization; (a) development grid, (b)
 out-of-grid. (a) MMD$^2$ vs replicated $|\Delta\mathrm{AUC}|$ over 28 shift
@@ -808,9 +809,9 @@ both I3 resolution and downstream inference.
 
 \begin{figure}[!t]
 \centering
-\makebox[\linewidth][l]{\textbf{a}}\\[-0.35em]
+\makebox[\linewidth][l]{\textbf{a}}\\[0.2em]
 \includegraphics[width=0.66\linewidth]{fig7_h5_decoupling.pdf}\\[0.45em]
-\makebox[\linewidth][l]{\textbf{b}}\\[-0.35em]
+\makebox[\linewidth][l]{\textbf{b}}\\[0.2em]
 \includegraphics[width=0.84\linewidth]{fig7b_inference_levels.pdf}
 \caption{Physics decoupling; (a) counting, (b) inference levels.
 (a) Coverage vs $|\Delta\mathrm{AUC}|$ for the deployment-blind counting estimator:
@@ -1036,12 +1037,12 @@ upstream finite-shot perturbation, need not itself be quantum-specific.
 \centering
 \begin{minipage}[t]{0.48\linewidth}
 \centering
-\makebox[\linewidth][l]{\textbf{a}}\\[-0.35em]
+\makebox[\linewidth][l]{\textbf{a}}\\[0.2em]
 \includegraphics[width=\linewidth]{fig8_shots_hardware.pdf}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.48\linewidth}
 \centering
-\makebox[\linewidth][l]{\textbf{b}}\\[-0.35em]
+\makebox[\linewidth][l]{\textbf{b}}\\[0.2em]
 \includegraphics[width=\linewidth]{fig8b_estimation_noise_verdicts.pdf}
 \end{minipage}
 \caption{Estimation uncertainty; (a) kernels and hardware, (b)

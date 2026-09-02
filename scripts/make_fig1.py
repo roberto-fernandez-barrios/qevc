@@ -58,7 +58,7 @@ arrow(ax, 57, 19, 62, 19, color=BLUE)  # sensor veto path
 ax.text(59.4, 20.2, "veto\nonly", ha="center", color=BLUE, fontsize=6.6)
 
 # information sets feeding the auditor
-box(ax, 62, 1.5, 15, 7,
+box(ax, 59.5, 1.0, 20, 7.5,
     "information set\nI0: source; I1: $X\\mid N=n$\nI2: + queried labels; I3: + rates", fs=6.6)
 arrow(ax, 69.5, 8.5, 69.5, 12)
 

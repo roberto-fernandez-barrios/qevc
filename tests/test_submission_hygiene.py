@@ -106,5 +106,21 @@ def test_protected_scientific_baseline_matches_v034() -> None:
         "results/tables/E16_prop3_margin_stratification.json",
         "results/tables/E13_wmax_nominal_bound_sensitivity.json",
     }
+    # The figure-legibility patch (post-0.3.8) re-renders seven figures to
+    # fix label overlap/clipping; inputs and result JSONs are unchanged.
+    refreshed_figures = {
+        f"results/figures/{stem}.{ext}"
+        for stem in (
+            "fig1_framework",
+            "fig2_tes_replicated",
+            "fig4b_out_of_grid_sensor",
+            "fig5_certification_landscape",
+            "fig7_h5_decoupling",
+            "fig7b_inference_levels",
+            "fig8_shots_hardware",
+        )
+        for ext in ("pdf", "png")
+    }
+    allowed = derived_0_3_6 | refreshed_figures
     changed = {line.replace("\\", "/") for line in completed.stdout.split()}
-    assert changed <= derived_0_3_6, changed - derived_0_3_6
+    assert changed <= allowed, changed - allowed
