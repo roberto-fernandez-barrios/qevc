@@ -32,7 +32,7 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_7_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_8_metadata.json"
 )
 MECHANISM_AUDIT = ROOT / "docs" / "audits" / "mechanistic_clarity_patch_2026-09-01.md"
 STAGE_DECOMPOSITION = ROOT / "results" / "tables" / "E16_stage_decomposition.json"
@@ -235,17 +235,22 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22236115" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22250951" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.7" in text and "npjqi-submission-v1.7" in text
+        all("0.3.8" in text and "npjqi-submission-v1.8" in text
             for text in (readme, metadata, release_manifest, zenodo_metadata)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22236115" in text
+        all("10.5281/zenodo.22250951" in text
             for text in (main_tex, readme, metadata, citation, release_manifest,
                          zenodo_metadata)),
+    )
+    check(
+        "historical 0.3.7 release retained",
+        "10.5281/zenodo.22236115" in readme
+        and "10.5281/zenodo.22236115" in release_manifest,
     )
     check(
         "historical 0.3.6 release retained",
@@ -348,7 +353,7 @@ def main() -> int:
     )
     check(
         "Proposition 3 retrospective diagnostic",
-        "Its E16 instantiation is retrospective" in main_tex
+        "its instantiation on the frozen deployments is" in main_tex
         and "diagnostic of observed" in main_tex
         and "not as an operational pre-audit certificate" in main_tex
         and "retrospective diagnostic" in supp_tex
@@ -372,8 +377,8 @@ def main() -> int:
     )
     check(
         "PSD repair benchmark excluded",
-        "neither optimize nor benchmark PSD-repair" in main_tex
-        and "rather than an\noptimization or comparison of PSD-repair strategies" in main_tex,
+        "neither optimizing nor benchmarking PSD-repair" in main_tex
+        and "rather than an optimized mitigation pipeline" in flat_main,
     )
     check(
         "I2 I3 CMS guarantee separation",
@@ -470,8 +475,8 @@ def main() -> int:
     )
     check(
         "measurement-induced semantics scoped",
-        "names the source of the perturbation that E16 controls" in flat_main
-        and "Classical pipelines can exhibit analogous downstream sensitivity" in flat_main,
+        "names the source of the perturbation controlled here" in flat_main
+        and "classical pipelines can exhibit analogous downstream sensitivity" in flat_main,
     )
     check(
         "C2 adverse result leads",

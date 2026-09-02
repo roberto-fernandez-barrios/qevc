@@ -19,11 +19,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.3.7"
-TAG = "npjqi-submission-v1.7"
+VERSION = "0.3.8"
+TAG = "npjqi-submission-v1.8"
 # Filled with the DOI reserved for the new Zenodo version before final release.
 PENDING_DOI = "10.5281/zenodo.00000000"
-VERSION_DOI = "10.5281/zenodo.22236115"
+VERSION_DOI = "10.5281/zenodo.22250951"
 CONCEPT_DOI = "10.5281/zenodo.21894291"
 
 README = ROOT / "README.md"
@@ -33,7 +33,7 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 SUBMISSION_METADATA = ROOT / "docs" / "submission" / "npjqi_submission_metadata.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_7_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_8_metadata.json"
 )
 MAIN_TEX = ROOT / "manuscript" / "latex" / "main.tex"
 MAIN_AUX = ROOT / "manuscript" / "latex" / "main.aux"
@@ -296,13 +296,13 @@ def validate(
         VERSION_DOI,
     )
     check("concept DOI synchronized", CONCEPT_DOI in manifest and CONCEPT_DOI in zenodo)
-    check("cover visible date", "1 September 2026" in cover)
-    check("old cover date absent", "31 August 2026" not in cover)
+    check("cover visible date", "2 September 2026" in cover)
+    check("old cover date absent", "1 September 2026" not in cover)
     check(
         "release date synchronized",
-        'date-released: "2026-09-01"' in citation
-        and "Release date: 2026-09-01" in manifest
-        and '"publication_date": "2026-09-01"' in zenodo,
+        'date-released: "2026-09-02"' in citation
+        and "Release date: 2026-09-02" in manifest
+        and '"publication_date": "2026-09-02"' in zenodo,
     )
 
     try:
@@ -362,7 +362,7 @@ def validate(
     cover_creation = creation_match.group(1).decode("ascii") if creation_match else ""
     check(
         "cover PDF metadata date",
-        cover_creation == "20260901",
+        cover_creation == "20260902",
         cover_creation or "unavailable",
     )
 

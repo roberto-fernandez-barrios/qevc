@@ -230,9 +230,13 @@ by a union bound, with no independence assumption. Running each audit at α/2
 gives joint level-α control; no sharper dependence-based bound is claimed.
 For weighted claims,
 the metric-scale margin maps to the Z scale by E[u]/w_max. (iii)
-*Common-mode cancellation.* If ΔM_T ≈ ΔM_S, the deployment-relative movement
-is small while the ideal-anchored movement retains ΔM_T, so C_dep is
-structurally the stabler claim class.
+*Common-mode movement.* If ΔM_T ≈ ΔM_S, the deployment-relative movement
+is small while the ideal-anchored movement retains ΔM_T. This is an
+algebraic consequence of (i) for the given realization; it is not a claim
+that one claim semantics is universally or structurally stabler than the
+other (0.3.8 wording: the earlier "structurally the stabler class" clause
+is withdrawn from the formal statement and kept only as the empirical
+E16 interpretation below).
 
 **Proof and counterexamples.** Substitute the signed movements into each
 margin. If a perturbation has magnitude below |m⋆|, it cannot cross zero. Under

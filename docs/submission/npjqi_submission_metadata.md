@@ -1,9 +1,12 @@
 # npj Quantum Information submission metadata
 
-Status: wording micro-patch release 0.3.7 on 2026-09-01; not yet submitted.
+Status: editorial focus / concision patch release 0.3.8 on 2026-09-02; not
+yet submitted.
 
-- Release version: `0.3.7` / `npjqi-submission-v1.7`
-- Version DOI: `10.5281/zenodo.22236115`
+- Release version: `0.3.8` / `npjqi-submission-v1.8`
+- Version DOI: `10.5281/zenodo.22250951`
+- Historical `0.3.7` / `npjqi-submission-v1.7` DOI:
+  `10.5281/zenodo.22236115`
 - Historical `0.3.6` / `npjqi-submission-v1.6` DOI:
   `10.5281/zenodo.22235287`
 - Historical `0.3.5` / `npjqi-submission-v1.5` DOI:
@@ -39,24 +42,25 @@ Compliance: 13 words; no punctuation, idiom, or pun.
 
 ## Abstract
 
-Claims about a deployed quantum machine-learning classifier can fail when the
+Claims about a deployed quantum machine-learning classifier can fail when
 target data shift or when finite-shot quantum evaluation randomizes the model
 itself. We develop an information-conditional, fail-closed auditing framework
 that returns supported, refuted or unresolved verdicts with anytime-valid
 per-claim error control under a declared sampling protocol. On a
 Higgs-to-tau-tau collider benchmark, stable classifier metrics do not guarantee
-valid signal-strength inference: the evaluated fixed-template profile can lose
-coverage, even in shift-free controls, when its simulation templates are
-estimated independently. Across 30 frozen finite-shot quantum-kernel
-deployments, every realized Gram matrix is propagated through refitting,
-calibration and threshold selection. A deterministic stage decomposition shows
-that, in the primary raw pipeline, ranking changes are modest while downstream
-recalibration and operating-point selection substantially reshape claim-level
-effects; the diagonal-loading sensitivity decomposes differently. Matched
-classical controls remove apparent quantum-specific effects. We claim no
-quantum advantage.
+valid signal-strength inference: at the studied finite-template statistics,
+the fixed-template profile can lose coverage, even in shift-free controls,
+when its templates are estimated independently and template-statistical
+uncertainty is not modeled explicitly. Across 30 frozen finite-shot
+quantum-kernel deployments, every realized Gram matrix is propagated through
+refitting, calibration and threshold selection; in the primary raw pipeline
+these perturbations leave ranking nearly unchanged yet move thresholded
+target metrics by about 0.02, flipping ideal-anchored claims, and the
+diagonal-loading sensitivity decomposes differently. Matched classical
+controls remove apparent quantum-specific nominal-performance and sensing
+effects. We claim no quantum advantage.
 
-Compliance: 139 words (at most 150 by the repository verifier); no citations, equations, subheadings or undefined internal labels
+Compliance: 149 words (at most 150 by the repository verifier); no citations, equations, subheadings or undefined internal labels
 (I2, I3, CMS, PSD).
 
 ## Keywords
@@ -177,8 +181,10 @@ micro-scale IBM QPU deployment. It explicitly does not claim quantum advantage.
 - Deployment denotes a frozen finite-population batch deployment evaluated
   against a finite, frozen audit population, not a continually re-estimated
   online kernel service or an unspecified future superpopulation.
-- The matched classical control removes apparent quantum-specific performance
-  and sensing effects; no quantum advantage is claimed.
+- The matched classical control removes apparent quantum-specific
+  nominal-performance and sensing effects; no quantum advantage is claimed.
+  No matched classical stochastic control was executed for the finite-shot
+  deployment study, and the manuscript does not claim one.
 - Brown, Spannowsky and Williams (arXiv:2608.11330) now provide directly
   adjacent collider-QML evidence under controlled detector-inspired feature
   smearing. This manuscript therefore makes no priority claim for studying

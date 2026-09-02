@@ -224,25 +224,31 @@ implementations before the valid grid was allowed to run. This convention
 reconciles the nine-arm tally with the two gate interventions.
 
 \footnotesize
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.10\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.32\linewidth}@{}}
-\caption{All nine registered falsifier arms that fired. Frozen conditions and consequences are recorded in \texttt{docs/experiment\_registry.md}.}\label{tab:falsifiers}\\
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.09\linewidth}>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.22\linewidth}>{\raggedright\arraybackslash}p{0.26\linewidth}>{\raggedright\arraybackslash}p{0.14\linewidth}@{}}
+\caption{All nine registered falsifier arms that fired. Frozen conditions and
+consequences are recorded in \texttt{docs/experiment\_registry.md}. The
+freeze/provenance column gives the short Git commit and date at which the
+frozen condition entered the public repository; every listed commit precedes
+the corresponding archived run manifest. E02R's registration and launch share
+one commit (the archived run began 25 minutes later), so it is documented at
+launch rather than strictly predeclared.}\label{tab:falsifiers}\\
 \toprule
-Arm & Frozen condition & Observed firing & Consequence obeyed \\
+Arm & Frozen condition & Observed firing & Consequence obeyed & Freeze / provenance \\
 \midrule
 \endfirsthead
 \toprule
-Arm & Frozen condition & Observed firing & Consequence obeyed \\
+Arm & Frozen condition & Observed firing & Consequence obeyed & Freeze / provenance \\
 \midrule
 \endhead
-E02R & TES sign pattern fails multi-seed replication & Up-shift monotonicity in only 2/5 seeds & Down-shift retained provisionally within-world; E17 later withdrew the directional cross-world claim. \\
-E12(e) & Two flagship decoupling cells fail to reproduce & Diboson flagship cells stayed nominal-like in the fresh world & Normalization-collapse statement scoped to signal-region composition; failing registered cells kept. \\
-E14 v1 & Control-region interval coverage below nominal & Pure-Poisson fit gave ttbar bias $+0.07$ and zero coverage & Run blocked; template-statistics likelihood registered, then rerun as v2. \\
-E15 gate & Nominal L2 coverage outside $0.6827\pm0.02$ & Conditional-ensemble and numerical-conditioning implementations each failed & Both grids blocked; ensemble semantics and optimizer fixed before any shifted claim. \\
-E17(b) & Degradation signs fail across additional worlds & One world improved QK under combo by 0.009; another under TES-down by 0.005 & Cross-world degradation claim withdrawn. \\
-E08v2(a) & Corrected counting coverage outside the nominal band & One-draw corrected coverage $0.9916$--$1.000$ & Arm blocked and bounded multi-draw E08v3 registered. \\
-E08v2(b) & Independent-template flagship L2 coverage $<0.633$ & Coverage 0.000 versus shared 0.7188 & ``Profiling restores validity'' made explicitly shared-simulation-conditional. \\
-E08v3(a) & Marginal symmetric-BB coverage outside $0.6827\pm0.06$ for at least two gated models & All three gated models overcovered, 0.7513--0.8284 & Calibration-restoration claim withdrawn; conservative direction reported. \\
-E13v2(b) & All true benchmark BA claims unresolved by 5,000 labels & TPR component 0/200 resolutions in every cell & BA path published as information-limited; TNR success and mechanism reported separately. \\
+E02R & TES sign pattern fails multi-seed replication & Up-shift monotonicity in only 2/5 seeds & Down-shift retained provisionally within-world; E17 later withdrew the directional cross-world claim. & \texttt{ce6734d}, 2026-08-10 (at launch) \\
+E12(e) & Two flagship decoupling cells fail to reproduce & Diboson flagship cells stayed nominal-like in the fresh world & Normalization-collapse statement scoped to signal-region composition; failing registered cells kept. & \texttt{f6d99cb}, 2026-08-11 \\
+E14 v1 & Control-region interval coverage below nominal & Pure-Poisson fit gave ttbar bias $+0.07$ and zero coverage & Run blocked; template-statistics likelihood registered, then rerun as v2. & \texttt{f6d99cb}, 2026-08-11 \\
+E15 gate & Nominal L2 coverage outside $0.6827\pm0.02$ & Conditional-ensemble and numerical-conditioning implementations each failed & Both grids blocked; ensemble semantics and optimizer fixed before any shifted claim. & \texttt{f6d99cb}, 2026-08-11 \\
+E17(b) & Degradation signs fail across additional worlds & One world improved QK under combo by 0.009; another under TES-down by 0.005 & Cross-world degradation claim withdrawn. & \texttt{1d6d93d}, 2026-08-11 \\
+E08v2(a) & Corrected counting coverage outside the nominal band & One-draw corrected coverage $0.9916$--$1.000$ & Arm blocked and bounded multi-draw E08v3 registered. & \texttt{1d6d93d}, 2026-08-11 \\
+E08v2(b) & Independent-template flagship L2 coverage $<0.633$ & Coverage 0.000 versus shared 0.7188 & ``Profiling restores validity'' made explicitly shared-simulation-conditional. & \texttt{1d6d93d}, 2026-08-11 \\
+E08v3(a) & Marginal symmetric-BB coverage outside $0.6827\pm0.06$ for at least two gated models & All three gated models overcovered, 0.7513--0.8284 & Calibration-restoration claim withdrawn; conservative direction reported. & \texttt{1faecfc}, 2026-08-12 \\
+E13v2(b) & All true benchmark BA claims unresolved by 5,000 labels & TPR component 0/200 resolutions in every cell & BA path published as information-limited; TNR success and mechanism reported separately. & \texttt{1d6d93d} + \texttt{309025f}, 2026-08-11/12 \\
 \bottomrule
 \end{longtable}
 \normalsize
@@ -266,6 +272,7 @@ Senior-author pre-submission, 2026-08-13 & Observable experiments, Proposition 4
 Final pre-submission patch, 2026-08-31 & Primary literature, novelty claims, abstract hierarchy, methods, supplement, release metadata and rendered artifacts & Added the closest competitive work, removed priority language, made Contribution 3 deployment semantics primary, expanded protocol detail, and synchronized editorial/release records. No experiment, dataset, model, configuration or primary result changed. \\
 Final technical PSD audit, 2026-08-31 & The 30 frozen E16 deployments, LIBSVM semantics, hardware-entry provenance and sealed-role wording & Deterministically replayed every raw deployment, measured the complete training-Gram spectra, applied one declared minimum-diagonal-loading sensitivity, and classified the result \textsc{PSD-sensitive-but-scoped}. No new Gram realization, seed, sample or QPU job was generated. \\
 Mechanistic-clarity / derived-analysis patch, 2026-09-01 & The 30 frozen E16 deployments and their loaded counterparts, the Proposition-3 instantiation, the E13/E19 weighted audits, C2/C3 framing & Deterministic counterfactual stage decomposition after exact endpoint reproduction (predeclared classification \textsc{mixed}: recalibration generates the far-margin flips, threshold refreezing partly compensates); Proposition 3 stratified by margin; weight-bound conservatism measured on identical streams; plain-language abstract; adverse independent-template result leads Contribution 2; editorial corrections. No new randomness, seed, sample, model, repair, likelihood or QPU job. 0.3.7: regime-specific C3 wording only. \\
+Editorial focus / concision patch, 2026-09-01 & Main-text structure and wording, Supplement Table~S1 provenance, release metadata & Proposition-3 statement freed of the general stability-ordering clause; abstract scopes the classical controls to nominal-performance and sensing effects; the finite-template condition stated with every Contribution-2 coverage claim; internal experiment identifiers replaced by descriptive language in the main text; acronyms defined; main text shortened; freeze/provenance column added to Table~S1. No number, table value, figure file or scientific artifact changed. \\
 \bottomrule
 \end{tabular}
 \end{table}

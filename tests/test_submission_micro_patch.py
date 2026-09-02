@@ -34,7 +34,7 @@ def test_two_finite_shot_kernel_references_are_cited() -> None:
 
 
 def test_proposition_four_is_a_retrospective_diagnostic() -> None:
-    assert "Its E16 instantiation is retrospective" in MAIN
+    assert "its instantiation on the frozen deployments is" in MAIN
     assert "diagnostic of observed" in MAIN
     assert "not as an operational pre-audit certificate" in MAIN
     assert "retrospective diagnostic" in SUPP

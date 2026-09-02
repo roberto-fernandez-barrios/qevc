@@ -1,11 +1,13 @@
 # npj Quantum Information submission release manifest
 
-- Version: `0.3.7`
-- Git tag: `npjqi-submission-v1.7`
-- Release date: 2026-09-01
+- Version: `0.3.8`
+- Git tag: `npjqi-submission-v1.8`
+- Release date: 2026-09-02
 - Journal state: frozen and ready for portal upload; not yet submitted
-- Zenodo version DOI: `10.5281/zenodo.22236115`
+- Zenodo version DOI: `10.5281/zenodo.22250951`
 - Zenodo concept DOI: `10.5281/zenodo.21894291`
+- Historical wording micro-patch retained: `0.3.7` /
+  `npjqi-submission-v1.7` / `10.5281/zenodo.22236115`
 - Historical mechanistic-clarity patch retained: `0.3.6` /
   `npjqi-submission-v1.6` / `10.5281/zenodo.22235287`
 - Historical submission-hygiene patch retained: `0.3.5` /
@@ -27,10 +29,10 @@
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 31 | `462536E01462D21F3295BA06F5BEB960E0B765E4849A7E21D2D5D659A65AE3E3` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `B6399EC4CE6293EDAC37ADC7B367D55DCD5B91E698CF2B7BE90450135140D955` |
-| `output/pdf/npjqi_cover_letter.pdf` | 1 | `C4EDC6199B0AC0FC7BEFD568924CC798E24C932ED0D334A534CB380ABAF60B95` |
-| `dist/npjqi-submission.zip` | source + three PDFs | `F770DB073FDE333CFA903BBCA7A7ED579DC357CCC632DA274B0C428F8FFAD021` |
+| `output/pdf/npjqi_manuscript.pdf` | 31 | `4FEF337458D1A46E0DBDDD0319E12E1DFA2D120FC58492DCD2C870043EC1CA1B` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `3077C899F9939F18C05F50CD40A5DE5315295F841CE6FF78DE47651AB2AA5CF3` |
+| `output/pdf/npjqi_cover_letter.pdf` | 1 | `CBE6FA5ACC444C149082E795A44628866E2C4E22FC40373E38AB85994AF73FA4` |
+| `dist/npjqi-submission.zip` | source + three PDFs | `0E64B760AD89A0CD089C5CFCD27CE3E6E123552E9A9E9C0D74330A9800F3A034` |
 | `results/tables/E16_psd_sensitivity.json` | 30 deployments | `5EDE2C056327DFB5768933C7BEE78A662C9E257011EF39984151E163170AABF1` |
 | `results/tables/E16_proposition4_instantiation.json` | 7,200 condition cells | `E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B` |
 | `results/tables/E16_proposition4_deployment_summary.json` | 30 noisy-kernel deployments | `4E09E3B86A38F26EB7892F49FC55C146BECFC5C7DDF6BFF210CD3EEBB60CE31B` |
@@ -45,7 +47,16 @@ release manifest, metadata record and release README.
 
 ## Scope integrity
 
-The 0.3.7 release is a wording micro-patch on 0.3.6: the Contribution-3
+The 0.3.8 release is an editorial focus / concision patch on 0.3.7: main-text
+shortening and de-jargonization, the Proposition-3 formal statement freed of
+the general stability-ordering clause (mathematics unchanged), the abstract's
+classical-control scope restricted to nominal-performance and sensing
+effects, the finite-template-statistics condition co-located with every
+Contribution-2 coverage statement, added Hubregtsen (2022) and
+Barlow--Beeston (1993) citations, figure-layout legibility fixes (no figure
+file changed) and a freeze/provenance column in Supplementary Table S1, with
+no change to any number, JSON artifact, seed, result or gate expectation.
+The 0.3.7 release was a wording micro-patch on 0.3.6: the Contribution-3
 mechanism statement is made regime-specific (primary raw decomposition mixed;
 diagonal-loading sensitivity decomposes differently; no universal downstream
 mechanism claimed) with no change to any number, JSON artifact, seed, result or

@@ -194,7 +194,7 @@ def main() -> int:
     )
     audit.check(
         "E13v2 oracle qualification",
-        "E13v2 is not an operational" in main_tex
+        "not an operational I2 guarantee" in main_tex
         and "oracle/benchmark diagnostic" in supplement
         and "oracle/benchmark diagnostic" in weighted_spec
         and "oracle/benchmark diagnostic" in registry,

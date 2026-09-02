@@ -1286,3 +1286,49 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   reserved Zenodo version DOI `10.5281/zenodo.22236115` (concept
   `10.5281/zenodo.21894291`), preserving all prior tags and DOIs.
 - **Hard stop:** no new analysis, experiment, critique or review is authorized.
+
+## D-048 — Editorial focus / concision patch (0.3.8)
+
+- **Date:** 2026-09-01
+- **Scope:** editorial only; no new science. (1) Proposition 3's formal
+  statement no longer contains the general clause "deployment-relative claims
+  are structurally the stabler class"; the common-mode cancellation stays in
+  the empirical text and is explicitly not claimed as a universal structural
+  ordering between claim semantics (`docs/formal_results.md` updated in the
+  same sense; mathematics unchanged). (2) The abstract scopes the matched
+  classical controls to nominal-performance and sensing effects. (3) Every
+  statement of the Contribution-2 coverage loss carries its
+  finite-template-statistics condition in the same sentence. (4) The
+  Contribution-3 mechanism (ranking nearly unchanged, median nominal-AUC
+  change +0.001, versus thresholded target metrics moving by a median of
+  about 0.02) is stated in the abstract, Introduction, Results and
+  Discussion, with an explicit QML-limitations journal-fit sentence in the
+  contributions framing. (5) The main text is shortened by removing repeated
+  caveats, audit-history narrative and internal experiment/decision
+  identifiers (retained in Methods and the Supplement where needed for
+  reproducibility); acronyms are defined at first use (TES, JES, soft-MET,
+  CRN, HEP, mu as the signal-strength parameter); the Delta-AUC sign
+  convention is stated; the five-seed versus single-seed reporting is
+  clarified; Figs. 4 and 7 are stacked at full width for legibility with
+  bold lower-case panel labels; Table 1's font is raised from 6.5 pt to
+  7.5 pt; an unbalanced parenthesis in Sec. 2.5 is fixed. Figure files are
+  byte-identical. (6) Hubregtsen et al., Phys. Rev. A 106, 042431 (2022) is
+  added where alternative noisy-kernel mitigation is discussed, and
+  Barlow-Beeston (1993) is cited at the BB-lite definition. (7) Supplement
+  Table S1 gains a freeze/provenance column (short Git SHA and date per
+  arm; E02R marked "at launch" because registration and launch share one
+  commit). Gate literals in `scripts/verify_npjqi_submission.py`,
+  `scripts/verify_f8_2.py` and `tests/test_submission_micro_patch.py` are
+  updated to the new wording only; no gate is weakened.
+- **Unchanged:** every number, figure file, JSON artifact, seed, QPU record,
+  model, threshold, claim grid, alpha, dataset, likelihood, Theorem-1 and
+  Proposition-3 mathematics; `configs/`, `data/`, `experiments/`, `src/` and
+  `results/` are byte-identical to `npjqi-submission-v1.7`.
+- **Release rule:** publish as `0.3.8 / npjqi-submission-v1.8` under the
+  reserved Zenodo version DOI `10.5281/zenodo.22250951` (concept
+  `10.5281/zenodo.21894291`), release date 2026-09-02, preserving
+  all prior tags and DOIs.
+- **Hard stop:** no new analysis, experiment, critique or review is
+  authorized; reviewer requests classified C/D (new deployments, stochastic
+  classical controls, new PSD repairs, template-statistics likelihoods,
+  without-replacement theorems, more QPU) remain out of scope.
