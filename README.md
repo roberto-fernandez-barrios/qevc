@@ -1,5 +1,9 @@
 # Conditional validity of quantum event classifiers under collider systematics and quantum estimation uncertainty
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21894291.svg)](https://doi.org/10.5281/zenodo.21894291)
+[![Tests](https://github.com/roberto-fernandez-barrios/qevc/actions/workflows/tests.yml/badge.svg)](https://github.com/roberto-fernandez-barrios/qevc/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Research codebase for the paper *"Conditional validity of quantum event
 classifiers under collider systematics and quantum estimation uncertainty"*.
 
@@ -268,6 +272,14 @@ made regime-specific in the abstract, Introduction, Results, Discussion, cover
 letter and Supplement, so that it cannot be read as one downstream mechanism
 dominating both the raw pipeline and the diagonal-loading sensitivity. No
 number, JSON artifact, seed, result or gate expectation changed.
+Version 0.3.8 is an editorial focus / concision patch: main-text shortening
+and de-jargonization with no change to any number, figure file or artifact.
+Version 0.3.9 re-renders seven figures for label legibility and applies the
+audited final literature / prior-art citation patch (Alexe 2026, Miroszewski
+2026 and Howard 2021 added; FAIR Universe and the without-replacement
+confidence-sequence reference updated to their versions of record; three
+compact positioning sentences, no new priority claim). The scientific JSON
+artifacts remain byte-identical; only the re-rendered figure files changed.
 
 ## Repository layout
 
@@ -291,3 +303,32 @@ SHA-256, seeds, package versions). The frozen deployment is
 - Data provenance, licenses and archive hashes: `data/README.md`.
   QPU jobs are archived with raw counts and usage records under
   `results/raw/E10_hw/` and `results/raw/E16_hw/`.
+
+## How to cite
+
+If you use this code or its derived results, cite the Zenodo archive: the
+concept DOI [10.5281/zenodo.21894291](https://doi.org/10.5281/zenodo.21894291)
+always resolves to the latest version, and the version DOI
+[10.5281/zenodo.22254835](https://doi.org/10.5281/zenodo.22254835) pins
+release 0.3.9. GitHub's "Cite this repository" button uses `CITATION.cff`.
+
+```bibtex
+@software{qevc,
+  author  = {Fern{\'a}ndez-Barrios, Roberto and Pastor-L{\'o}pez, Iker and
+             Gonz{\'a}lez-Santocildes, Asier and Garc{\'i}a Bringas, Pablo},
+  title   = {qevc: Quantum Event Validity Certification},
+  year    = {2026},
+  version = {0.3.9},
+  doi     = {10.5281/zenodo.22254835},
+  url     = {https://doi.org/10.5281/zenodo.21894291}
+}
+```
+
+The associated manuscript is under submission to *npj Quantum Information*;
+this section will link the version of record upon publication.
+
+## License
+
+The code is released under the [MIT License](LICENSE). The FAIR Universe
+HiggsML Uncertainty dataset (CC-BY-4.0) and the CMS Open Data records (CC0)
+retain their own licenses and terms; see `data/README.md`.
