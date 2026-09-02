@@ -1332,3 +1332,37 @@ effect. Format: ID, date, decision, alternatives considered, rationale, status.
   authorized; reviewer requests classified C/D (new deployments, stochastic
   classical controls, new PSD repairs, template-statistics likelihoods,
   without-replacement theorems, more QPU) remain out of scope.
+
+## D-049 — Figure-legibility and final literature / prior-art patch (0.3.9)
+
+- **Date:** 2026-09-02
+- **Scope:** presentation and bibliography only; no new science. (1) Seven
+  figure files (figs. 1, 2, 4b, 5, 7, 7b, 8) are re-rendered to fix label
+  overlap, clipping and visual weight; the a/b panel-label skips and a
+  stretched-glue gap are fixed in `main.tex` (`\raggedbottom`); Supplementary
+  Table S2 becomes a page-breaking longtable. Underlying data, result JSONs
+  and figure semantics are unchanged; the protected-baseline allowlists gain
+  exactly the fourteen refreshed renders. (2) A deep bibliographic audit to
+  2026-09-02 returned zero novelty blockers and five class-B actions, all
+  applied: add Alexe, Bendavid, Bianchini and Bruschini (Nucl. Instrum.
+  Methods A 1086, 171360, 2026; finite-MC profile-likelihood under-coverage);
+  add Miroszewski (arXiv:2605.22275, 2026; noisy-Gram kernel-SVM
+  sensitivity); add Howard, Ramdas, McAuliffe and Sekhon (Ann. Statist. 49,
+  1055--1080, 2021; general time-uniform confidence-sequence framework);
+  update FAIR Universe to its NeurIPS 2025 Datasets and Benchmarks version
+  of record (DOI 10.52202/085713-2767, pp. 92065--92101); update the
+  without-replacement confidence-sequence reference to its NeurIPS 2020
+  version of record (arXiv:2006.04347 retained). Three compact positioning
+  sentences state the relation to this prior art; the combined-object
+  novelty framing is preserved and no priority claim is added.
+- **Unchanged:** every number, JSON artifact, seed, QPU record, PSD
+  treatment, model, threshold, claim grid, alpha, dataset, likelihood,
+  Theorem-1 and Proposition-3 mathematics; `configs/`, `data/`,
+  `experiments/` and `src/` are byte-identical to `npjqi-submission-v1.8`,
+  and `results/` differs only in the fourteen re-rendered figure files.
+- **Release rule:** publish as `0.3.9 / npjqi-submission-v1.9` under the
+  reserved Zenodo version DOI `10.5281/zenodo.22254835` (concept
+  `10.5281/zenodo.21894291`), release date 2026-09-02, preserving all prior
+  tags and DOIs.
+- **Hard stop:** no new analysis, experiment, critique, review or reference
+  beyond the five audited actions is authorized.

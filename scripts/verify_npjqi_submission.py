@@ -32,7 +32,7 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 CITATION = ROOT / "CITATION.cff"
 RELEASE_MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_8_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_9_metadata.json"
 )
 MECHANISM_AUDIT = ROOT / "docs" / "audits" / "mechanistic_clarity_patch_2026-09-01.md"
 STAGE_DECOMPOSITION = ROOT / "results" / "tables" / "E16_stage_decomposition.json"
@@ -235,17 +235,22 @@ def main() -> int:
     check("no quantum advantage guardrail", "We claim no\nquantum advantage" in main_tex)
     check("micro-scale hardware guardrail", "micro-scale full-pipeline IBM QPU run" in main_tex)
     check("public data DOI", "https://doi.org/10.5281/zenodo.15131565" in main_tex)
-    check("public code DOI", "https://doi.org/10.5281/zenodo.22250951" in main_tex)
+    check("public code DOI", "https://doi.org/10.5281/zenodo.22254835" in main_tex)
     check(
         "patch release synchronized",
-        all("0.3.8" in text and "npjqi-submission-v1.8" in text
+        all("0.3.9" in text and "npjqi-submission-v1.9" in text
             for text in (readme, metadata, release_manifest, zenodo_metadata)),
     )
     check(
         "patch DOI synchronized",
-        all("10.5281/zenodo.22250951" in text
+        all("10.5281/zenodo.22254835" in text
             for text in (main_tex, readme, metadata, citation, release_manifest,
                          zenodo_metadata)),
+    )
+    check(
+        "historical 0.3.8 release retained",
+        "10.5281/zenodo.22250951" in readme
+        and "10.5281/zenodo.22250951" in release_manifest,
     )
     check(
         "historical 0.3.7 release retained",
@@ -474,6 +479,15 @@ def main() -> int:
         and "theorem and protocol here are unchanged" in flat_main,
     )
     check(
+        "final literature patch citations",
+        all(key in main_tex and f"{{{key}," in bib
+            for key in ("arxiv2401.10542", "arxiv2605.22275",
+                        "arxiv1810.08240"))
+        and "10.52202/085713-2767" in bib
+        and "Advances in Neural Information Processing Systems 33" in bib
+        and "not a priority claim" in flat_main,
+    )
+    check(
         "measurement-induced semantics scoped",
         "names the source of the perturbation controlled here" in flat_main
         and "classical pipelines can exhibit analogous downstream sensitivity" in flat_main,
@@ -590,6 +604,19 @@ def main() -> int:
         "results/tables/E16_stage_decomposition.json",
         "results/tables/E16_prop3_margin_stratification.json",
         "results/tables/E13_wmax_nominal_bound_sensitivity.json",
+    } | {
+        # 0.3.9 figure-legibility patch: re-rendered figure files only.
+        f"results/figures/{stem}.{ext}"
+        for stem in (
+            "fig1_framework",
+            "fig2_tes_replicated",
+            "fig4b_out_of_grid_sensor",
+            "fig5_certification_landscape",
+            "fig7_h5_decoupling",
+            "fig7b_inference_levels",
+            "fig8_shots_hardware",
+        )
+        for ext in ("pdf", "png")
     }
     unexpected = [
         line for line in protected_diff.stdout.split()

@@ -1,10 +1,12 @@
 # npj Quantum Information submission metadata
 
-Status: editorial focus / concision patch release 0.3.8 on 2026-09-02; not
-yet submitted.
+Status: figure-legibility and final literature / prior-art patch release
+0.3.9 on 2026-09-02; not yet submitted.
 
-- Release version: `0.3.8` / `npjqi-submission-v1.8`
-- Version DOI: `10.5281/zenodo.22250951`
+- Release version: `0.3.9` / `npjqi-submission-v1.9`
+- Version DOI: `10.5281/zenodo.22254835`
+- Historical `0.3.8` / `npjqi-submission-v1.8` DOI:
+  `10.5281/zenodo.22250951`
 - Historical `0.3.7` / `npjqi-submission-v1.7` DOI:
   `10.5281/zenodo.22236115`
 - Historical `0.3.6` / `npjqi-submission-v1.6` DOI:

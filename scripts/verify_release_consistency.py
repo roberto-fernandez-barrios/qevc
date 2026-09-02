@@ -19,11 +19,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "0.3.8"
-TAG = "npjqi-submission-v1.8"
+VERSION = "0.3.9"
+TAG = "npjqi-submission-v1.9"
 # Filled with the DOI reserved for the new Zenodo version before final release.
 PENDING_DOI = "10.5281/zenodo.00000000"
-VERSION_DOI = "10.5281/zenodo.22250951"
+VERSION_DOI = "10.5281/zenodo.22254835"
 CONCEPT_DOI = "10.5281/zenodo.21894291"
 
 README = ROOT / "README.md"
@@ -33,7 +33,7 @@ CHECKSUMS = ROOT / "docs" / "submission" / "npjqi_checksums.sha256"
 MANIFEST = ROOT / "docs" / "submission" / "npjqi_release_manifest.md"
 SUBMISSION_METADATA = ROOT / "docs" / "submission" / "npjqi_submission_metadata.md"
 ZENODO_METADATA = (
-    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_8_metadata.json"
+    ROOT / "docs" / "submission" / "zenodo_npjqi_submission_v1_9_metadata.json"
 )
 MAIN_TEX = ROOT / "manuscript" / "latex" / "main.tex"
 MAIN_AUX = ROOT / "manuscript" / "latex" / "main.aux"
@@ -444,7 +444,8 @@ def validate(
         check("no rendered unresolved markers", "??" not in main_log)
 
     audit_table = re.search(
-        r"\\begin\{table\}\[H\].*?\\label\{tab:audit-trail\}.*?\\end\{table\}",
+        r"\\begin\{longtable\}(?:(?!\\end\{longtable\}).)*?"
+        r"\\label\{tab:audit-trail\}.*?\\end\{longtable\}",
         supplement,
         re.DOTALL,
     )

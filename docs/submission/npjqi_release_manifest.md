@@ -1,11 +1,13 @@
 # npj Quantum Information submission release manifest
 
-- Version: `0.3.8`
-- Git tag: `npjqi-submission-v1.8`
+- Version: `0.3.9`
+- Git tag: `npjqi-submission-v1.9`
 - Release date: 2026-09-02
 - Journal state: frozen and ready for portal upload; not yet submitted
-- Zenodo version DOI: `10.5281/zenodo.22250951`
+- Zenodo version DOI: `10.5281/zenodo.22254835`
 - Zenodo concept DOI: `10.5281/zenodo.21894291`
+- Historical editorial focus / concision patch retained: `0.3.8` /
+  `npjqi-submission-v1.8` / `10.5281/zenodo.22250951`
 - Historical wording micro-patch retained: `0.3.7` /
   `npjqi-submission-v1.7` / `10.5281/zenodo.22236115`
 - Historical mechanistic-clarity patch retained: `0.3.6` /
@@ -29,10 +31,10 @@
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `output/pdf/npjqi_manuscript.pdf` | 31 | `4FEF337458D1A46E0DBDDD0319E12E1DFA2D120FC58492DCD2C870043EC1CA1B` |
-| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `3077C899F9939F18C05F50CD40A5DE5315295F841CE6FF78DE47651AB2AA5CF3` |
+| `output/pdf/npjqi_manuscript.pdf` | 31 | `4472779DB52E6DCFBEC99A09B9D3C3A4FD74194DD4AA35C49AD4359357C3F96B` |
+| `output/pdf/npjqi_supplementary_information.pdf` | 18 | `F442F1F5A6FF54590B3FEA94929B84DC5ED6E7F4ACBDC436458215D1F788A977` |
 | `output/pdf/npjqi_cover_letter.pdf` | 1 | `CBE6FA5ACC444C149082E795A44628866E2C4E22FC40373E38AB85994AF73FA4` |
-| `dist/npjqi-submission.zip` | source + three PDFs | `0E64B760AD89A0CD089C5CFCD27CE3E6E123552E9A9E9C0D74330A9800F3A034` |
+| `dist/npjqi-submission.zip` | source + three PDFs | `C67CE7F8C988D4C7780E8C5B8DFA45F6614CD6FF0D98C908C654F903E57010A7` |
 | `results/tables/E16_psd_sensitivity.json` | 30 deployments | `5EDE2C056327DFB5768933C7BEE78A662C9E257011EF39984151E163170AABF1` |
 | `results/tables/E16_proposition4_instantiation.json` | 7,200 condition cells | `E98FF0E9E160E172DFC4DA69D8B5645D5E5A98C7BF8654CEF3BFD16ADF07115B` |
 | `results/tables/E16_proposition4_deployment_summary.json` | 30 noisy-kernel deployments | `4E09E3B86A38F26EB7892F49FC55C146BECFC5C7DDF6BFF210CD3EEBB60CE31B` |
@@ -47,6 +49,14 @@ release manifest, metadata record and release README.
 
 ## Scope integrity
 
+The 0.3.9 release is a figure-legibility and final literature / prior-art
+patch on 0.3.8: seven figure files re-rendered for label legibility (no data
+change), panel-label and Supplementary Table S2 layout repairs, three added
+references (Alexe et al. 2026; Miroszewski 2026; Howard et al. 2021), two
+version-of-record updates (FAIR Universe, NeurIPS 2025 Datasets and
+Benchmarks; Waudby-Smith and Ramdas, NeurIPS 2020) and three compact
+positioning sentences, with no change to any number, result JSON, seed,
+claim or gate semantics and no new priority claim.
 The 0.3.8 release is an editorial focus / concision patch on 0.3.7: main-text
 shortening and de-jargonization, the Proposition-3 formal statement freed of
 the general stability-ordering clause (mathematics unchanged), the abstract's

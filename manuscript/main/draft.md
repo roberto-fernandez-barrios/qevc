@@ -174,7 +174,12 @@ literature: inductive bias and data-dependent advantage
 , shot-noise-driven optimization complexity and
 solution accuracy for quantum SVMs ,
 data-embedding limitations , and benchmark scrutiny
-. Finite measurements and device noise can also make
+. Recent work also studies the non-uniform sensitivity
+of kernelized-SVM solutions to noisy Gram observations, including margin and
+support-vector active-set instability under adaptive measurement allocation
+; we instead propagate each realized kernel through
+refitting, recalibration, operating-point selection and scientific-claim
+evaluation. Finite measurements and device noise can also make
 empirical quantum-kernel matrices indefinite: Hubregtsen et al.
  analyze finite-sampling and device-noise
 effects on quantum embedding kernels and propose mitigation tailored to them,
@@ -200,8 +205,11 @@ the downstream scientific-inference context.
 Outside physics, unsupervised accuracy estimation under shift is impossible
 without assumptions , while active
 testing and related methods optimize label efficiency
-. Bounded-mean confidence sequences
- provide our statistical backbone; weighted and
+. The general time-uniform
+confidence-sequence framework is developed by Howard et
+al.~; our bounded-mean implementation follows the
+betting and predictable-plug-in constructions  that
+provide our statistical backbone. Weighted and
 self-normalized anytime-valid inference already exists in off-policy
 confidence sequences  and their extensions
 to adaptively collected policies . Our
@@ -733,9 +741,13 @@ nominal calibration. Across 10 profile splits, the fixed-template fit is
 invalid in 10/10 flagship draws (coverage 0.000--0.238 versus 0.719 shared) and
 10/10 nominal controls (0.000--0.359), with $\hat\mu$ bias spanning $-6.6$ to
 $+7.5$. A calibration gate supplied with these independent nominal templates
-would reject the construction. This result does not test, and therefore does
-not reject, MC-statistics-aware profiling in general; it invalidates the
-archived fixed-template construction at this auxiliary-template quality. The
+would reject the construction. Finite-simulation fluctuations are already
+known to induce under-coverage in profile-likelihood inference, including in
+apparently high-statistics regimes ; the result is
+therefore not a priority claim for that general effect and does not test
+MC-statistics-aware profiling -- it establishes the failure mode for the
+archived classifier-to-inference construction and template statistics
+evaluated here, at this auxiliary-template quality. The
 mechanism is consistent with the heavy-tailed signal weights of the template
 role: its signal effective sample size is about 46 events
 (Sec.~the referenced section), which bounds the statistical quality of any
@@ -1283,7 +1295,7 @@ is https://doi.org/10.7483/OPENDATA.CMS.GV20.PR5T, under CC0
 . Derived split definitions, immutable run manifests,
 complete aggregate results, audit tables, and integrity hashes supporting this
 study are archived at Zenodo,
-https://doi.org/10.5281/zenodo.22250951 . Raw source
+https://doi.org/10.5281/zenodo.22254835 . Raw source
 records are not redistributed and remain subject to their original access
 conditions.
 
@@ -1293,7 +1305,7 @@ The code used to construct the data worlds, run the experiments, verify the
 registered acceptance criteria, regenerate all tables and figures, and audit
 the submission is available at
 https://github.com/roberto-fernandez-barrios/qevc and in the versioned
-Zenodo archive https://doi.org/10.5281/zenodo.22250951
+Zenodo archive https://doi.org/10.5281/zenodo.22254835
 . The software is released under the MIT License.
 
 ## Acknowledgements
