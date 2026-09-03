@@ -418,7 +418,8 @@ estimand is linear-fractional, and therefore monotone, in each scale.
 Sweeping claims ($\delta$ grid, including
 adversarially false claims) across environments and replicated label
 streams yields the survival curves of $n^*$ -- the certification landscape
-whose controlling variable is claim margin, not model family.
+(Fig.~the referenced section) whose controlling variable is claim margin, not
+model family.
 
 #### Physics-level inference
 
@@ -478,8 +479,8 @@ across partitions).
 ### Behavior under systematics
 
 Throughout, $\DeltaAUC$ denotes the nominal minus the shifted-environment
-AUC, so positive values are degradations. Within the development world, TES
-down-shifts degrade the QK-SVC in 5/5
+AUC, so positive values are degradations. Within the development world
+(Fig.~the referenced section), TES down-shifts degrade the QK-SVC in 5/5
 seeds ($+0.0024 \pm 0.0010$ at $-2\sigma$; the up-shift arm does not replicate) and
 the adverse combination degrades it in 5/5 seeds ($+0.025 \pm 0.024$); both
 signs reproduce on the confirmatory holdout ($+0.0011$; $+0.0081$). The two
@@ -510,12 +511,12 @@ the text but are not displayed in this panel.}
 
 ### The label-free sensor: generalization and exact blindness
 
-On the development grid, the frozen MMD$^2$ sensors predict replicated
-degradation out-of-environment (quantum $\rho_S = 0.56$ own-model, 0.68
+On the development grid (Fig.~the referenced sectiona), the frozen MMD$^2$ sensors
+predict replicated degradation out-of-environment (quantum $\rho_S = 0.56$ own-model, 0.68
 transfer; matched rbf8 0.73/0.60 -- the matched classical sensor is at
 least as good, so sensing is not quantum-specific). The campaign's
 generalization test evaluates the frozen sensors on 48 out-of-grid
-environments per world -- off-grid single-nuisance values and 24
+environments per world (Fig.~the referenced sectionb) -- off-grid single-nuisance values and 24
 multi-nuisance draws from the official priors -- with the sensor archived
 before any target existed. Pooled out-of-grid rank association is
 positive in both worlds and for both sensors (best: quantum$\to$own 0.65;
@@ -566,7 +567,8 @@ magnitude, is the claim. No IID environment-level $p$-value is assigned.}
 Unweighted (development world): across 19,680 correlated claim-stream
 evaluations, empirical false certification is 0.61% $\le \alpha = 5%$ on
 genuinely-false claims, false refutation 0.03%, and 98% of near-boundary
-false claims end UNRESOLVED at $n = 3{,}000$. On the confirmatory holdout the
+false claims end UNRESOLVED at $n = 3{,}000$ (Fig.~the referenced section). On
+the confirmatory holdout the
 corresponding rate over non-vetoed false-claim streams is 0.69% (streams are
 shared across the $\delta$ grid, so pooled denominators are correlated;
 per-claim $\alpha$ is unaffected). A dedicated fresh-world replication on the
@@ -714,7 +716,7 @@ Representability is therefore necessary but not sufficient for the
 construction tested here.
 
 The underlying decoupling is direct. With the deployment-blind counting
-estimator, 73 development-world cells combine $\DeltaAUC$ consistent
+estimator (Fig.~the referenced sectiona), 73 development-world cells combine $\DeltaAUC$ consistent
 with zero and coverage below 0.633. The confirmatory world reproduces the
 phenomenon in 74 cells, including 18/32 TES/JES cells with zero coverage at flat
 AUC. Normalization-driven collapse depends on signal-region composition: it is
@@ -723,8 +725,8 @@ cells below 0.633, down to 0.008) and absent where the fresh-draw region contain
 little of either. Ranking metrics do not encode the yield information needed by
 the downstream likelihood.
 
-Under shared simulation, a gated score-binned profile with all six nuisances
-raises mean TES/JES coverage from 0.000/0.002 to 0.653/0.629 and normalization
+Under shared simulation (Fig.~the referenced sectionb), a gated score-binned
+profile with all six nuisances raises mean TES/JES coverage from 0.000/0.002 to 0.653/0.629 and normalization
 coverage from 0.27--0.59 to about 0.67. In the TES $-2\sigma$ flagship cell,
 coverage rises from 0 to 0.719, the fitted pull is $-2.007$, and $\hat\mu$ bias
 is 0.004, at a $1.8$--$3.4$ interval-width cost. This conditional result fails
@@ -877,7 +879,8 @@ renumbered).
 
 #### Finite-shot deployments
 
-Kernel error scales as $1/\sqrt{shots}$ (13.7% $\to$ 2.4% Frobenius); effective rank
+Kernel error scales as $1/\sqrt{shots}$ (13.7% $\to$ 2.4% Frobenius;
+Fig.~the referenced sectiona); effective rank
 inflates under shot noise; the classifier is shot-tolerant at $n = 2000$
 (within $\pm$0.015 AUC at 128 shots). The campaign's certification study rebuilds the
 *entire deployment* -- refit, recalibration, threshold refreeze -- under
@@ -893,8 +896,8 @@ random numbers; the dispersion below is descriptive.
 All far-margin deployment-relative claims ($|m|\geq0.04$) in the evaluated grid
 are true and remain SUPPORTED in all 30 raw deployments. The grid contains no
 false far-margin deployment-relative claim with which to assess refutation
-stability. Ideal-anchored far-margin behavior is heterogeneous: at
-128 shots the deployment-level mean is 20.8%, sample SD 19.9% and range
+stability. Ideal-anchored far-margin behavior is heterogeneous
+(Fig.~the referenced sectionb): at 128 shots the deployment-level mean is 20.8%, sample SD 19.9% and range
 0--44%; at 4096 shots it is 0.4%, SD 0.65% and range 0--1.5%. The
 intermediate means (17.7, 0.9, 11.9 and 5.8%) are each dominated by one or two
 deployments (ranges 0--88.5% at 256 shots and 0--59% at 1024 shots); the
@@ -1190,7 +1193,7 @@ official selection: train 109,699, `source_val` 41,128,
 `nominal_test` 41,116, `auditor_dev` 41,001, and sealed
 `final_eval` 41,060. Tier A trains on a matched, stratified 2000-event
 subset of the train role (the statevector-feasible matched scale); tier B uses
-all 109,699 train events. The eight QK/RBF-control inputs are, in frozen order,
+all 109,699 train events (Table~the referenced section). The eight QK/RBF-control inputs are, in frozen order,
 `DER_mass_transverse_met_lep`, `DER_mass_vis`,
 `DER_pt_ratio_lep_had`, `DER_met_phi_centrality`,
 `DER_deltar_had_lep`, `DER_pt_h`,
@@ -1219,7 +1222,8 @@ XGBoost (A) & all 28 & 400 trees, depth 8, lr 0.03 \\
 LightGBM (A) & all 28 & 400 trees, 63 leaves, lr 0.03 \\
 XGBoost (B, 110k) & all 28 & 800 trees, depth 4, lr 0.1 \\
 
-Hyperparameters were selected by seeded random search on the train role only:
+Hyperparameters (Table~the referenced section) were selected by seeded
+random search on the train role only:
 10 configurations per family (five for the MLP), three stratified folds, and
 physics-weighted validation AUC. Search spaces and all remaining settings are
 reported in the Supplement, and the nominal test performance of every trained
