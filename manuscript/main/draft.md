@@ -1184,7 +1184,9 @@ and no such opt-in occurs in an experiment: those roles have not been used for
 model or hyperparameter selection, calibration or threshold choices, claim
 construction, or any reported evaluation. Level II uses the complete public CMS
 Run2012B+C TauPlusX $H\to\tau\tau$ samples (126,164 selected collision events at
-11,467 pb$^{-1}$) with mirror MC re-weighted to full luminosity.
+11,467 pb$^{-1}$) with mirror MC re-weighted to full luminosity. The frozen
+models, feature sets and hyperparameters deployed on these worlds are listed in
+Table~the referenced section.
 
 ### Models and budgets
 
